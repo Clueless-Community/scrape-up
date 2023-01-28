@@ -40,7 +40,7 @@ While working on a project, we often ran into a situation where we faced issues 
 
 ## Wants to contribute? 👀
 We happily welcome any meaningful change or modification to this project.
-Before start contributing, we recommend you go through the [CONTRIBUTING.md](https://github.com/Clueless-Community/fintech-api/blob/main/CONTRIBUTING.md) file, where all the guidelines have been mentioned that will guide you to make your contribution.
+Before start contributing, we recommend you go through the [CONTRIBUTING.md](https://github.com/Clueless-Community/scrape-up/blob/main/contribution.md) file, where all the guidelines have been mentioned that will guide you to make your contribution.
 
 
 ---
