@@ -1,4 +1,4 @@
-<h1 align=center> Scrape UP </h1>
+<h1 align=center> Scrape Up </h1>
 
 <h3 align=center> An alternative to API, this project is a web-scraping-based python package that enables you to scrape data from various platforms like GitHub, Twitter, Instagram, or any useful website.</h3>
 
