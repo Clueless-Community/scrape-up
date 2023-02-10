@@ -8,12 +8,17 @@ class User:
             self.url = f"https://github.com/{username}"
         elif url:
             self.url = url
+        else:
+            raise AttributeError("Github username or profile url required.")
 
         try:
             response = requests.get(self.url)
             self.soup = BeautifulSoup(response.text, "html.parser")
         except:
             print("Username not found")
+
+    def __str__(self):
+        return f"User({self.fullname})"
 
     @property
     def username(self):
@@ -75,3 +80,9 @@ class User:
         """Returns total number of contributions this year"""
         contributions = self.soup.select_one("[class*='js-yearly-contributions']")
         return contributions.find('h2').text.split()[0]
+
+    def get_pinned_repos(self):
+        repos = self.soup.find_all("span", class_="repo")
+        if repos:
+            return [repo.text for repo in repos]
+        return None

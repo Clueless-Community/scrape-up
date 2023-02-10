@@ -1,2 +1,7 @@
-from user import User
-from repo import Repository
+from github.user import User
+from github.repo import Repository
+
+__all__ = [
+    "User",
+    "Repository"
+]
