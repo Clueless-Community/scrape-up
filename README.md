@@ -28,7 +28,7 @@ from scrape_up import github
 user = github.User(username="nikhil25803")
 
 # Cal the followers function
-print(user.followers())
+print(user.followers)
 
 # Output - '59'
 ```
