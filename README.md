@@ -16,7 +16,7 @@
 ## How to use?
 + Install the package from `pip`
 ```powershell
-pip install scrape-up
+pip install scrape-up --upgrade
 ```
 
 + Scrape the required information, for example one want to extract number of followers of a user.
