@@ -60,7 +60,7 @@ source env/scripts/activate
 pip install -r requirements.txt
 ```
 
-Now you are done with the project setup, now you can make the changes you want or assigned.
+Now you are done with the project setup, now you can make the changes you want or assign.
 
 
 Once you are done with the changes you wanted to add. Follow the steps to make the pull request.
