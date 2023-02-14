@@ -36,7 +36,7 @@ pip install scrape-up --upgrade
 from scrape_up import github
 
 # Instantiate an object with username provided.
-user = github.Users(username="nikhil25803")
+user =  github.Users(username="nikhil25803")
 
 # Cal the followers function
 print(user.followers())
