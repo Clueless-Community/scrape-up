@@ -12,6 +12,17 @@
 </p>
 
 ---
+## Contribute to this project under JWoC 2023.
+
+![image](https://user-images.githubusercontent.com/93156825/218812396-11adb7dd-7d59-4d99-bd0b-651bcd00f22d.png)
+
+
+JWoC (JGEC Winter of Code) is a begineer friendly open-source coding event organised annually by JGEC which helps students to plunge into Open Source contribution and get the realm of Software Development.
+
+We happily welcome any meaningful change or modification to this project.
+Before start contributing, we recommend you go through the [CONTRIBUTING.md](https://github.com/Clueless-Community/scrape-up/blob/main/contribution.md) file, where all the guidelines have been mentioned that will guide you to make your contribution.
+
+---
 
 ## How to use?
 + Install the package from `pip`
@@ -37,10 +48,5 @@ You can check all the methods that we provide [here]()
 
 ## The goal 🎯
 While working on a project, we often ran into a situation where we faced issues like request timeout, rate limit, etc. But leveraging the power of web scrapping, we are here with a solution. This project is a web-scraping-based Python tool that you may use as an alternative to APIs to scrape data from a variety of sites, including GitHub, Twitter, Instagram, and any helpful website.
-
-## Wants to contribute? 👀
-We happily welcome any meaningful change or modification to this project.
-Before start contributing, we recommend you go through the [CONTRIBUTING.md](https://github.com/Clueless-Community/scrape-up/blob/main/contribution.md) file, where all the guidelines have been mentioned that will guide you to make your contribution.
-
 
 ---
