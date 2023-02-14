@@ -37,3 +37,37 @@ class Users:
         except:
             message = f"Avatart not found for username {self.username}"
             return message
+
+    def repo_count(self):
+        """
+        Fetch the number of repositories of Github user.
+        """
+        page = self.__scrape_page()
+        try:
+            count_repo = page.find_all(class_="Counter")
+            count_repo_list=[]
+            for word in count_repo:
+                find_all_example=word.get_text()
+                count_repo_list.append(find_all_example)
+            return(count_repo_list[0])
+        except:        
+            message = f"No. of Repos not found for username {self.username}"
+            return message
+
+    def star_count(self):
+        """
+        Fetch the number of stars of Github user.
+        """
+        page = self.__scrape_page()
+        try:
+            count_star = page.find_all(class_="Counter")
+            count_star_list=[]
+            for words in count_star:
+                find_all_example=words.get_text()
+                count_star_list.append(find_all_example)
+            return(count_star_list[3])
+        except:        
+            message = f"Starred repo not found for username {self.username}"
+            return message
+
+    
