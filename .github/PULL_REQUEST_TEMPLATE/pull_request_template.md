@@ -8,7 +8,6 @@ Please make sure that the following checkpoints have been completed before submi
 
 - [ ] Have you followed the code convention guidelines specified in the repository?
 - [ ] Have you included the updated method/function documentation in the `documentation.md` file?
-- [ ] Have you included the method in the endpoints.md file?
 
 ## Resolves: [Issue Number]
 
