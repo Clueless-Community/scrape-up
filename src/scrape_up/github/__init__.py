@@ -94,3 +94,28 @@ class Users:
         except:        
             message = f"Starred repo not found for username {self.username}"
             return message
+    
+    def __get_repo_page(self):
+        """
+        Scrape the repositories page of a GitHub user.
+        """
+        username = self.username
+        repo_data = requests.get(f"https://github.com/{username}?tab=repositories")
+        repo_data = BeautifulSoup(repo_data.text, "html.parser")
+        return repo_data
+
+    def get_repositories(self):
+        """
+        Fetch the number of repositories of a GitHub user.
+        """
+        page = self.__get_repo_page()
+        try:
+            repo_body = page.find('div', id = 'user-repositories-list')
+            repositories = []
+            if repo_body != None:
+                for repo in repo_body.find_all('div', class_='col-10 col-lg-9 d-inline-block'):
+                    repositories.append('https://github.com' + repo.a['href'])
+            return repositories
+        except:
+            message = f"Repositories not found for username {self.username}"
+            return message
