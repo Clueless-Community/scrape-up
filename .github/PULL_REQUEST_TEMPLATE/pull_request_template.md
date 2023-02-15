@@ -8,15 +8,8 @@ Please make sure that the following checkpoints have been completed before submi
 
 - [ ] Have you followed the code convention guidelines specified in the repository?
 - [ ] Have you included the updated method/function documentation in the `documentation.md` file?
+- [ ] Have you included the method in the endpoints.md file?
 
-## Code Convention
+## Resolves: [Issue Number]
 
-Please provide a brief explanation of how your code adheres to the code convention guidelines in the repository.
-
-## Documentation
-
-Please provide a brief explanation of how your changes have been documented in the `documentation.md` file.
-
-## Additional Information
-
-Please include any additional information or resources that may be relevant to this pull request.
+## Please upload a screenshot demonstrating the method you have created.
