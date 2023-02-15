@@ -39,3 +39,4 @@ user = github.Users(username="nikhil25803")
 |  `.followers()` | Returns the number of followers of a user. |
 |  `.get_avatar()` | Returns the avatar url of a user. |
 |  `.get_bio()`  | Returns the bio of a user. |
+|  `.get_repo()` | Returns the list of pinned repositories for a user. |
