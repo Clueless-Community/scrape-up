@@ -38,6 +38,19 @@ class Users:
             message = f"Avatart not found for username {self.username}"
             return message
 
+
+    def get_bio(self):
+        """
+        Fetch the bio of a GitHub user.
+        """
+        page = self.__scrape_page()
+        try:
+            bio = page.find(class_="p-note user-profile-bio mb-3 js-user-profile-bio f4")
+            return bio.text
+        except:
+            message = f"Bio not found for username {self.username}"
+            return message
+
     def repo_count(self):
         """
         Fetch the number of repositories of Github user.
@@ -69,5 +82,3 @@ class Users:
         except:        
             message = f"Starred repo not found for username {self.username}"
             return message
-
-    
