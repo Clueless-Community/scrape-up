@@ -38,7 +38,6 @@ class Users:
             message = f"Avatart not found for username {self.username}"
             return message
 
-
     def get_bio(self):
         """
         Fetch the bio of a GitHub user.
@@ -50,7 +49,7 @@ class Users:
         except:
             message = f"Bio not found for username {self.username}"
             return message
-            
+
     def get_repo(self):
         """
         Fetch the titles of all pinned repositories of a GitHub user.
@@ -94,5 +93,19 @@ class Users:
             return(count_star_list[3])
         except:        
             message = f"Starred repo not found for username {self.username}"
+            return message
+
+        
+    def get_yearly_contributions(self):
+        
+        """         
+        Fetch the contributions made in 365 days frame
+        """        
+        page=self.__scrape_page()
+        try:
+            contributions = page.find('h2',class_="f4 text-normal mb-2")
+            return ''.join(contributions.text.split())
+        except:
+            message = f"Yearly contributions not found for username {self.username}"
             return message
 
