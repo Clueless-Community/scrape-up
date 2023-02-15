@@ -59,7 +59,7 @@ class Users:
         Fetch the number of stars of Github user.
         """
         page = self.__scrape_page()
-        try:
+        try:           
             count_star = page.find_all(class_="Counter")
             count_star_list=[]
             for words in count_star:
