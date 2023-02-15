@@ -39,3 +39,4 @@ user = github.Users(username="nikhil25803")
 |  `.followers()` | Returns the number of followers of a user. |
 |  `.get_avatar()` | Returns the avatar url of a user. |
 |  `.get_bio()`  | Returns the bio of a user. |
+|  `.get_yearly_contributions() |Returns the number of contributions made in 365 days frame. |
