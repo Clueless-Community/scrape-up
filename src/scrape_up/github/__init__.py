@@ -51,6 +51,18 @@ class Users:
             message = f"Bio not found for username {self.username}"
             return message
 
+    def get_repo(self):
+        """
+        Fetch the titles of all pinned repositories of a GitHub user.
+        """
+        page = self.__scrape_page()
+        try:
+            pinned_repos = page.find_all(class_="mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-6")
+            titles = [repo.find('span', class_='repo').text for repo in pinned_repos]
+            return titles
+        except:
+            message=f"pinned repositories not found for username {self.username}" 
+            return message
     def repo_count(self):
         """
         Fetch the number of repositories of Github user.
