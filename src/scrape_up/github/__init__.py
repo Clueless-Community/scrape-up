@@ -9,7 +9,7 @@ class Users:
 
     def __scrape_page(self):
         username = self.username
-        data = requests.get(f"https://github.com/{username}")
+        data = requests.get(f"https://github.com/nikhil25803")
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
@@ -107,3 +107,15 @@ class Users:
             message = f"Yearly contributions not found for username {self.username}"
             return message
 
+    def get_organizations(self):
+
+        """
+        Fetch the names of organization, a user is part of
+        """
+        page = self.__scrape_page()
+        try:
+            orgs = [org.login for org in page.get_orgs()]
+            return orgs
+        except:
+            message = f"No organizations found for the username {self.username}"
+            return message
