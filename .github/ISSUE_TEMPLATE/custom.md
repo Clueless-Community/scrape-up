@@ -9,10 +9,10 @@ assignees: ''
 
 ## Proposed Method: [Method Name]
 
-## To what class it belongs?: [Class Name]
-
 ### Description
-[Provide a brief description of the class and its purpose.]
+[Provide a brief description of the method and its purpose.]
+
+## To what class it belongs?: [Class Name]
 
 ### Example Usage
 [Include an example of how the proposed method can be used within the class.]
