@@ -38,7 +38,6 @@ class Users:
             message = f"Avatart not found for username {self.username}"
             return message
 
-
     def get_bio(self):
         """
         Fetch the bio of a GitHub user.
@@ -107,3 +106,4 @@ class Users:
         except:
             message = f"Yearly contributions not found for username {self.username}"
             return message 
+
