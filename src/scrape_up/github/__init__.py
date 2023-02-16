@@ -9,7 +9,7 @@ class Users:
 
     def __scrape_page(self):
         username = self.username
-        data = requests.get(f"https://github.com/nikhil25803")
+        data = requests.get(f"https://github.com/{username}")
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
