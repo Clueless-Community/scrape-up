@@ -145,3 +145,28 @@ class Users:
         except:
             message = f"No organizations found for the username {self.username}"
             return message
+        
+    def __get_starred_page(self):
+        """
+        Scrape the starred page of a GitHub user.
+        """
+        username = self.username
+        starred_data = requests.get(f"https://github.com/{username}?tab=stars")
+        starred_data = BeautifulSoup(starred_data.text, "html.parser")
+        return starred_data
+    
+    def get_starred_repos(self):
+        """
+        Fetches the starred repositories of a GitHub user.
+        """
+        page = self.__get_starred_page()
+        try:
+            starred_body = page.find('turbo-frame', id = 'user-starred-repos')
+            starred_repos = []
+            if starred_body != None:
+                for repo in starred_body.find_all('div', class_='col-12 d-block width-full py-4 border-bottom color-border-muted'):
+                    starred_repos.append('https://github.com' + repo.a['href'])
+            return starred_repos
+        except:
+            message = f"Starred repositories not found for username {self.username}"
+            return message
