@@ -1,5 +1,5 @@
-from github.users import Users
-
+import requests
+from bs4 import BeautifulSoup
 
 
 class Users:
@@ -133,28 +133,6 @@ class Users:
             return message
 
 
-
-    def following(self):
-        """
-        Fetch the number of following of Github user.
-        """
-        page = self.__scrape_page()
-        
-        try:           
-            following = page.find_all(class_="text-bold color-fg-default")
-            following_num_list=[]
-            for num in following:
-                find_all_following=num.get_text()
-                following_num_list.append(find_all_following)
-            print(following_num_list[1])
-        except:        
-            message = f"Starred repo not found for username {self.username}"
-            return message
-
-    
-
-
-
     def get_organizations(self):
 
         """
@@ -167,8 +145,3 @@ class Users:
         except:
             message = f"No organizations found for the username {self.username}"
             return message
-
-__all__ = [
-    "User"
-]
-
