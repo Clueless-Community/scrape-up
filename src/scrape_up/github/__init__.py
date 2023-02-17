@@ -85,7 +85,7 @@ class Users:
                 following_num_list.append(find_all_following)
             print(following_num_list[1])
         except:        
-            message = f"Starred repo not found for username {self.username}"
+            message = f"Following not found for username: {self.username}"
             return message
 
     

@@ -41,3 +41,5 @@ user = github.Users(username="nikhil25803")
 
 |  .repo_count() | Returns the number of Repositories of a user. |
 |  .star_count() | Returns the number of stars of a user. |
+
+| `.following()` | Returns the number of followings of a user. |
