@@ -1,5 +1,5 @@
-import requests
-from bs4 import BeautifulSoup
+from github.users import Users
+
 
 
 class Users:
@@ -89,3 +89,8 @@ class Users:
             return message
 
     
+
+__all__ = [
+    "User"
+]
+
