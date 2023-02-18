@@ -78,3 +78,15 @@ class Repository:
         except:
             message = "No topics found"
             return message
+
+    def pull_requests(self):
+        """
+        Get the number of pull requests opened in a repository.
+        """
+        data = self.__scrape_page()
+        try:
+            pull_requests = data.find_all(class_="UnderlineNav-item mr-0 mr-md-1 mr-lg-3")[2].find_all("span")[1].text.strip()
+            return pull_requests
+        except:
+            message = "Failed to fetch pull requests"
+            return message
