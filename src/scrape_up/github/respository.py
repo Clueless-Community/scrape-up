@@ -13,6 +13,11 @@ class Repository:
         data = BeautifulSoup(data.text,"html.parser")
         return data
 
+    def __scrape_tags_page(self):
+        data = requests.get(f"https://github.com/{self.username}/{self.repository}/tags")
+        data = BeautifulSoup(data.text,"html.parser")
+        return data
+
     def languagesUsed(self):
 
         """
@@ -89,4 +94,21 @@ class Repository:
             return pull_requests
         except:
             message = "Failed to fetch pull requests"
+            return message
+
+    def tags(self):
+
+        """
+        Fetch last ten tags of repository
+        """
+        data = self.__scrape_tags_page()
+
+        tags = data.find_all(class_="Link--primary")
+        allTags = []
+        for item in tags:
+            allTags.append(item.text)
+        if(len(allTags)):
+            return allTags  # return list of tags
+        else:
+            message = "No tag found"
             return message
