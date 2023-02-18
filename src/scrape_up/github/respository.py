@@ -44,3 +44,19 @@ class Repository:
         except:
             message = "No details found in the about section"
             return message
+
+    def topics(self):
+        """
+        Fetch topics of repository
+        """
+        data = self.__scrape_page()
+    
+        try:
+            topics = data.find_all(class_="topic-tag topic-tag-link")
+            allTopics = []
+            for item in topics:
+                allTopics.append(item.text)
+            return allTopics  # return list of topics
+        except:
+            message = "No topics found"
+            return message
