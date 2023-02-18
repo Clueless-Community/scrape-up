@@ -57,3 +57,4 @@ repository = github.Repository(username="nikhil25803", repo="scrape-up")
 | Methods |  Details |
 |---|---|
 |  `.fork_count()` | Returns the number of forks of a repository. |
+|  `.topics()` | Returns the topics of a repository. |
