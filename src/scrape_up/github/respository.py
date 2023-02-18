@@ -18,6 +18,11 @@ class Repository:
         data = BeautifulSoup(data.text,"html.parser")
         return data
 
+    def __scrape_releases_page(self):
+        data = requests.get(f"https://github.com/{self.username}/{self.repository}/releases")
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
+
     def languagesUsed(self):
 
         """
@@ -111,4 +116,21 @@ class Repository:
             return allTags  # return list of tags
         else:
             message = "No tag found"
+            return message
+
+    def releases(self):
+
+        """
+        Fetch last ten releases of repository
+        """
+        data = self.__scrape_tags_page()
+
+        releases = data.find_all(class_="Link--primary")
+        allReleases = []
+        for item in releases:
+            allReleases.append(item.text)
+        if (len(allReleases)):
+            return allReleases  # return list of releases
+        else:
+            message = "No releases found"
             return message
