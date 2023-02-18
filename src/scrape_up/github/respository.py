@@ -25,6 +25,7 @@ class Repository:
             allLanguages = []
             for item in languages:
                 allLanguages.append(item.text)
+            allTopics = list(map(lambda s: s.strip(), allTopics))
             return allLanguages  # return list of languages
         except:
             message = "No languages found"
