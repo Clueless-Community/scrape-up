@@ -25,6 +25,7 @@ class Repository:
             allLanguages = []
             for item in languages:
                 allLanguages.append(item.text)
+            allTopics = list(map(lambda s: s.strip(), allTopics))
             return allLanguages  # return list of languages
         except:
             message = "No languages found"
@@ -43,4 +44,20 @@ class Repository:
             return about  # return string about
         except:
             message = "No details found in the about section"
+            return message
+
+    def topics(self):
+        """
+        Fetch topics of repository
+        """
+        data = self.__scrape_page()
+    
+        try:
+            topics = data.find_all(class_="topic-tag topic-tag-link")
+            allTopics = []
+            for item in topics:
+                allTopics.append(item.text)
+            return allTopics  # return list of topics
+        except:
+            message = "No topics found"
             return message

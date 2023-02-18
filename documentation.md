@@ -45,3 +45,12 @@ user = github.Users(username="nikhil25803")
 |  `.get_yearly_contributions()` |Returns the number of contributions made in 365 days frame. |
 |  `.get_repositories()` | Returns the list of repositories of a user. |
 |  `.get_starred_repos()` | Return the list of starred repositories of a user. | 
+
+class `Repository`
+```python
+repo = github.Repository(username="Clueless-Community", repository="scrape-up")
+```
+
+| Method | Details |
+|---|---|
+|  `.topics()` | Returns the topics of a repository. |
