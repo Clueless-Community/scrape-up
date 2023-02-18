@@ -29,3 +29,18 @@ class Repository:
         except:
             message = "No languages found"
             return message
+
+    def about(self):
+
+        """
+        Fetch details in about section of repository
+        """
+        data = self.__scrape_page()
+
+        try:
+            tag = data.find(class_="f4 mb-3")
+            about = tag.get_text()
+            return about  # return string about
+        except:
+            message = "No details found in the about section"
+            return message
