@@ -78,3 +78,17 @@ class Repository:
         except:
             message = "No topics found"
             return message
+        
+
+    def star_count(self):
+        """
+        Fetch star count of a repository
+        """
+        try:
+            data = self.__scrape_page()
+            starCount = data.find('a', href=f"/{self.username}/{self.repository}/stargazers").find('span').text.strip()
+            return starCount
+        except:
+            message = "Oops! No Stars found"
+            return message
+
