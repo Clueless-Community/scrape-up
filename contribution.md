@@ -62,7 +62,7 @@ Now you are done with the project setup, now you can make the changes you want o
 ### Let say you want to scrape the avatar url of and user. Steps applying which we can do this
 + At first we have to scrape the profile page of an user. For that we have defined a function in the user class as
 ```python
-# scrape-up/src/scrape_up/github/__init__.py/
+# scrape-up/src/scrape_up/github/respository.py
 class Users:
 
     def __init__(self, username):
