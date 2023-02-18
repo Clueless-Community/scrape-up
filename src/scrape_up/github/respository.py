@@ -46,6 +46,23 @@ class Repository:
             message = "No details found in the about section"
             return message
 
+    
+    def fork_count(self):
+
+        """
+        Returns the number of forks of the repository
+        """
+        data = self.__scrape_page()
+        try:
+            stats_body = data.find("ul", class_ = "pagehead-actions flex-shrink-0 d-none d-md-inline")
+            forks = stats_body.find('span', id = 'repo-network-counter')
+            fork_count = forks.text.strip()
+            return fork_count
+        except:
+            message = f"Repository Stats are not found for username {self.username}"
+            return message
+
+
     def topics(self):
         """
         Fetch topics of repository

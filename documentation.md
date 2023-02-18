@@ -46,11 +46,15 @@ user = github.Users(username="nikhil25803")
 |  `.get_repositories()` | Returns the list of repositories of a user. |
 |  `.get_starred_repos()` | Return the list of starred repositories of a user. | 
 
-class `Repository`
+
+### Scrape Repository details
+
+First create an object of class `Repository`
 ```python
-repo = github.Repository(username="Clueless-Community", repository="scrape-up")
+repository = github.Repository(username="nikhil25803", repo="scrape-up")
 ```
 
-| Method | Details |
+| Methods |  Details |
 |---|---|
+|  `.fork_count()` | Returns the number of forks of a repository. |
 |  `.topics()` | Returns the topics of a repository. |
