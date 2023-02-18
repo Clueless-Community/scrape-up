@@ -61,3 +61,4 @@ repository = github.Repository(username="nikhil25803", repo="scrape-up")
 |  `.topics()` | Returns the topics of a repository.                         |
 |  `.pull_requests()` | Returns the number of pull requests opened in a repository. |
 |  `.tags()` | Returns the last ten tags of a repository.                  |
+|  `.releases()` | Returns the last ten releases of a repository.                  |
