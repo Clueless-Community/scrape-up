@@ -18,26 +18,23 @@ cd scrape-up
 > Folder Structure
 ```
 scrape-up
-│   
-└───📂src
-│   │   └───📂scrape_up 
-|   |       |   📄__init__.py
-|   |       | 
-│   │       └───📂github 
-|   |       |   └───📄__init__.py
-|   |       |
-│   │       └───📂twitter
-|   |       |   └───📄__init__.py
-|   |       |
-|   |
-📄.gitignore
-📄contribution.md
-📄documentation.py
-📄LICENCE
-📄pyproject.toml
-📄README.md
-📄requirements.txt
-📄setup.cfg
+ ├── 📄  LICENSE  
+ ├── 📄  README.md  
+ ├── 📄  contribution.md  
+ ├── 📄  documentation.md  
+ ├── 📄  pyproject.toml  
+ ├── 📄  requirements.txt  
+ ├── 📄  setup.cfg  
+ └── 📂  src/ 
+ │  └──── 📂  scrape_up/ 
+ │  │  ├──── 📄  __init__.py  
+ │  │  └──── 📂  github/ 
+ │  │  │  ├──── 📄  __init__.py  
+ │  │  │  ├──── 📄  respository.py  
+ │  │  │  └──── 📄  users.py  
+ │  │  └──── 📂  twitter/ 
+ │  │  │  └──── 📄  __init__.py  
+
 ```
 
 
