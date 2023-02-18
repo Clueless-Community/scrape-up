@@ -44,7 +44,7 @@ print(user.followers())
 # Output - '59'
 ```
 
-You can check all the methods that we provide [here]()
+You can check all the methods that we provide [here](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#the-platforms-and-methods-we-cover-)
 
 ## The goal 🎯
 While working on a project, we often ran into a situation where we faced issues like request timeout, rate limit, etc. But leveraging the power of web scrapping, we are here with a solution. This project is a web-scraping-based Python tool that you may use as an alternative to APIs to scrape data from a variety of sites, including GitHub, Twitter, Instagram, and any helpful website.
