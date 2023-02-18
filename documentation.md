@@ -45,3 +45,15 @@ user = github.Users(username="nikhil25803")
 |  `.get_yearly_contributions()` |Returns the number of contributions made in 365 days frame. |
 |  `.get_repositories()` | Returns the list of repositories of a user. |
 |  `.get_starred_repos()` | Return the list of starred repositories of a user. | 
+
+
+### Scrape Repository details
+
+First create an object of class `Repository`
+```python
+repository = github.Repository(username="nikhil25803", repo="scrape-up")
+```
+
+| Methods |  Details |
+|---|---|
+|  `.fork_count()` | Returns the number of forks of a repository. |
