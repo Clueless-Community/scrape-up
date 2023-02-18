@@ -45,6 +45,7 @@ user = github.Users(username="nikhil25803")
 |  `.get_yearly_contributions()` |Returns the number of contributions made in 365 days frame. |
 |  `.get_repositories()` | Returns the list of repositories of a user. |
 |  `.get_starred_repos()` | Return the list of starred repositories of a user. | 
+|  `.pul_requests()` |Return the number of pull requests opened in a repository. |
 
 
 ### Scrape Repository details
