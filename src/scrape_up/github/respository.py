@@ -13,6 +13,16 @@ class Repository:
         data = BeautifulSoup(data.text,"html.parser")
         return data
 
+    def __scrape_tags_page(self):
+        data = requests.get(f"https://github.com/{self.username}/{self.repository}/tags")
+        data = BeautifulSoup(data.text,"html.parser")
+        return data
+
+    def __scrape_releases_page(self):
+        data = requests.get(f"https://github.com/{self.username}/{self.repository}/releases")
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
+
     def languagesUsed(self):
 
         """
@@ -92,3 +102,49 @@ class Repository:
             message = "Oops! No Stars found"
             return message
 
+
+    def pull_requests(self):
+        """
+        Get the number of pull requests opened in a repository.
+        """
+        data = self.__scrape_page()
+        try:
+            pull_requests = data.find_all(class_="UnderlineNav-item mr-0 mr-md-1 mr-lg-3")[2].find_all("span")[1].text.strip()
+            return pull_requests
+        except:
+            message = "Failed to fetch pull requests"
+            return message
+
+    def tags(self):
+
+        """
+        Fetch last ten tags of repository
+        """
+        data = self.__scrape_tags_page()
+
+        tags = data.find_all(class_="Link--primary")
+        allTags = []
+        for item in tags:
+            allTags.append(item.text)
+        if(len(allTags)):
+            return allTags  # return list of tags
+        else:
+            message = "No tag found"
+            return message
+
+    def releases(self):
+
+        """
+        Fetch last ten releases of repository
+        """
+        data = self.__scrape_tags_page()
+
+        releases = data.find_all(class_="Link--primary")
+        allReleases = []
+        for item in releases:
+            allReleases.append(item.text)
+        if (len(allReleases)):
+            return allReleases  # return list of releases
+        else:
+            message = "No releases found"
+            return message
