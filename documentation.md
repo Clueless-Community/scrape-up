@@ -55,7 +55,9 @@ First create an object of class `Repository`
 repository = github.Repository(username="nikhil25803", repo="scrape-up")
 ```
 
-| Methods |  Details |
-|---|---|
-|  `.fork_count()` | Returns the number of forks of a repository. |
-|  `.topics()` | Returns the topics of a repository. |
+| Methods | Details                                                     |
+|---|-------------------------------------------------------------|
+|  `.fork_count()` | Returns the number of forks of a repository.                |
+|  `.topics()` | Returns the topics of a repository.                         |
+|  `.pull_requests()` | Returns the number of pull requests opened in a repository. |
+|  `.tags()` | Returns the last ten tags of a repository.                  |
