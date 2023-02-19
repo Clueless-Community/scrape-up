@@ -74,6 +74,7 @@ First create an object of class `Repository`
 repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
 ```
 
-| Methods | Details                                                     |
-|---|-------------------------------------------------------------|
-|  `.assignees()` | Returns the assignees of an issue.                |
+| Methods        | Details                                                        |
+|----------------|----------------------------------------------------------------|
+| `.assignees()` | Returns the assignees of an issue.                             |
+| `.opened_by()` | Returns the name of the user, who opened the issue. |
