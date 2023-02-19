@@ -149,7 +149,7 @@ class Repository:
             message = "No releases found"
             return message
 
-    def issues_coount(self):
+    def issues_count(self):
 
         """
         Fetch total issues in a repository
