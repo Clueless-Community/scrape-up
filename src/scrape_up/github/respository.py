@@ -148,3 +148,16 @@ class Repository:
         else:
             message = "No releases found"
             return message
+
+    def issues_coount(self):
+
+        """
+        Fetch total issues in a repository
+        """
+        data = self.__scrape_page()
+        try:
+            issues = data.find("span", {"id": "issues-repo-tab-count"}).text.strip()
+            return issues
+        except:
+            message = "Failed to fetch no. of issues"
+            return message
