@@ -28,3 +28,19 @@ class Issue:
         except:
             message = "No assignees found"
             return message
+
+    def labels(self):
+        """
+        Fetch labels of issues
+        """
+        data = self.__scrape_page()
+        try:
+            labelsDiv = data.find(class_ = "js-issue-labels d-flex flex-wrap")
+            allLabelsHtml = labelsDiv.find_all(class_="css-truncate css-truncate-target width-fit")
+            allLabels = []
+            for label in allLabelsHtml:
+                allLabels.append(label.text)
+            return allLabels
+        except:
+            message = "No label found"
+            return message
