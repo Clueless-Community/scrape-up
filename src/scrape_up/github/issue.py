@@ -29,6 +29,7 @@ class Issue:
             message = "No assignees found"
             return message
 
+
     def opened_by(self):
         """
         Fetch the name of the user, who opened the issue
@@ -36,3 +37,18 @@ class Issue:
         data = self.__scrape_page()
         author_name = data.find('a', class_='author text-bold Link--secondary').text
         return author_name
+
+    
+    def title(self):
+        """
+        Fetch title of the issue
+        """
+        data = self.__scrape_page()
+        try:
+            title_body = data.find('bdi', class_="js-issue-title markdown-title")
+            title = title_body.text.strip()
+            return title
+        except:
+            message = "No title found"
+            return message
+
