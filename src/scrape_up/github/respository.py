@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+import requests_html
+
 
 
 class Repository:
@@ -165,3 +167,18 @@ class Repository:
         except:
             message = "Failed to fetch no. of issues"
             return message
+        
+    def readme(self):
+        """
+        Fetch readme.md of a user
+        """
+        session = requests_html.HTMLSession()
+        r = session.get(f"https://github.com/{self.username}/{self.username}/blob/main/README.md")
+        markdown_content = r.text
+
+        try:
+            with open('out.md', 'w', encoding='utf-8') as f:
+                f.write(markdown_content)
+        except:
+            err=f"No readme found for {self.username}"
+            return err
