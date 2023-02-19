@@ -154,11 +154,11 @@ class Repository:
             message = "No releases found"
             return message
 
-    def issues_count():
+    def issues_count(self):
         """
         Fetches the number of issues in a respository
         """
-        page = __scrape_issues_page()
+        page = self.__scrape_issues_page()
         try:
             issues = page.find_all(class_="Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title")
             allIssues = []
