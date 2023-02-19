@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import requests_html
 
 
 class Users:
@@ -107,24 +106,67 @@ class Users:
         except:
             message = f"Yearly contributions not found for username {self.username}"
             return message
-    def get_readme(self):
-        session = requests_html.HTMLSession()
-        r = session.get(f"https://github.com/{self.username}/{self.username}/blob/main/README.md")
-        
-        markdown_content = r.text
+    
+    def __get_repo_page(self):
+        """
+        Scrape the repositories page of a GitHub user.
+        """
+        username = self.username
+        repo_data = requests.get(f"https://github.com/{username}?tab=repositories")
+        repo_data = BeautifulSoup(repo_data.text, "html.parser")
+        return repo_data
 
+    def get_repositories(self):
+        """
+        Fetch the number of repositories of a GitHub user.
+        """
+        page = self.__get_repo_page()
         try:
-            with open('readme.md', 'w', encoding='utf-8') as f:
-                f.write(markdown_content)
+            repo_body = page.find('div', id = 'user-repositories-list')
+            repositories = []
+            if repo_body != None:
+                for repo in repo_body.find_all('div', class_='col-10 col-lg-9 d-inline-block'):
+                    repositories.append('https://github.com' + repo.a['href'])
+            return repositories
         except:
-            err=f"No readme found for {self.username}"
-            return err
-        
-        
-        
-from github.users import Users
-from github.respository import Repository
-from github.issue import Issue
+            message = f"Repositories not found for username {self.username}"
+            return message
 
 
-__all__ = ["Users", "Repository", "Issue"]
+    def get_organizations(self):
+
+        """
+        Fetch the names of organization, a user is part of
+        """
+        page = self.__scrape_page()
+        try:
+            orgs = [org.login for org in page.get_orgs()]
+            return orgs
+        except:
+            message = f"No organizations found for the username {self.username}"
+            return message
+        
+    def __get_starred_page(self):
+        """
+        Scrape the starred page of a GitHub user.
+        """
+        username = self.username
+        starred_data = requests.get(f"https://github.com/{username}?tab=stars")
+        starred_data = BeautifulSoup(starred_data.text, "html.parser")
+        return starred_data
+    
+    def get_starred_repos(self):
+        """
+        Fetches the starred repositories of a GitHub user.
+        """
+        page = self.__get_starred_page()
+        try:
+            starred_body = page.find('turbo-frame', id = 'user-starred-repos')
+            starred_repos = []
+            if starred_body != None:
+                for repo in starred_body.find_all('div', class_='col-12 d-block width-full py-4 border-bottom color-border-muted'):
+                    starred_repos.append('https://github.com' + repo.a['href'])
+            return starred_repos
+        except:
+            message = f"Starred repositories not found for username {self.username}"
+            return message
