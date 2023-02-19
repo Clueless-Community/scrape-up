@@ -28,3 +28,16 @@ class Issue:
         except:
             message = "No assignees found"
             return message
+    
+    def title(self):
+        """
+        Fetch title of the issue
+        """
+        data = self.__scrape_page()
+        try:
+            title_body = data.find('bdi', class_="js-issue-title markdown-title")
+            title = title_body.text.strip()
+            return title
+        except:
+            message = "No title found"
+            return message
