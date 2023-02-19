@@ -23,6 +23,11 @@ class Repository:
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
+    def __scrape_issues_page(self):
+        data = requests.get(f"https://github.com/{self.username}/{self.repository}/issues")
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
+
     def languagesUsed(self):
 
         """
@@ -147,4 +152,19 @@ class Repository:
             return allReleases  # return list of releases
         else:
             message = "No releases found"
+            return message
+
+    def issues_count():
+        """
+        Fetches the number of issues in a respository
+        """
+        page = __scrape_issues_page()
+        try:
+            issues = page.find_all(class_="Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title")
+            allIssues = []
+            for item in issues:
+                allIssues.append(item.text)
+            return allIssues
+        except:
+            message = "Failed to fetch issues"
             return message
