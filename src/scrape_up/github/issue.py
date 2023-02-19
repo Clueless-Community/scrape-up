@@ -28,6 +28,16 @@ class Issue:
         except:
             message = "No assignees found"
             return message
+
+
+    def opened_by(self):
+        """
+        Fetch the name of the user, who opened the issue
+        """
+        data = self.__scrape_page()
+        author_name = data.find('a', class_='author text-bold Link--secondary').text
+        return author_name
+
     
     def title(self):
         """
@@ -41,3 +51,4 @@ class Issue:
         except:
             message = "No title found"
             return message
+
