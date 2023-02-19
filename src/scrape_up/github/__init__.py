@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import requests_html
 
 
 class Users:
@@ -106,4 +107,19 @@ class Users:
         except:
             message = f"Yearly contributions not found for username {self.username}"
             return message
+    def get_readme(self):
+        session = requests_html.HTMLSession()
+        r = session.get(f"https://github.com/{self.username}/{self.username}/blob/main/README.md")
+        
+        markdown_content = r.text
+
+        try:
+            with open('readme.md', 'w', encoding='utf-8') as f:
+                f.write(markdown_content)
+        except:
+            err=f"No readme found for {self.username}"
+            return err
+        
+        
+        
 
