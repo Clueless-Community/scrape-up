@@ -78,6 +78,7 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 | Methods        | Details                                                        |
 |----------------|----------------------------------------------------------------|
 | `.assignees()` | Returns the assignees of an issue.                             |
+|  `.labels()`     | Returns the labels of an issue.                    |
 | `.opened_by()` | Returns the name of the user, who opened the issue. |
 |  `.title()`     | Returns the title of an issue.                    |
 
