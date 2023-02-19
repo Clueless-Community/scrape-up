@@ -47,12 +47,13 @@ user = github.Users(username="nikhil25803")
 |  `.get_starred_repos()` | Return the list of starred repositories of a user. | 
 |  `.pul_requests()` |Return the number of pull requests opened in a repository. |
 
+-----
 
 ### Scrape Repository details
 
 First create an object of class `Repository`
 ```python
-repository = github.Repository(username="nikhil25803", repo="scrape-up")
+repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
 ```
 
 | Methods | Details                                                     |
@@ -63,3 +64,15 @@ repository = github.Repository(username="nikhil25803", repo="scrape-up")
 |  `.tags()` | Returns the last ten tags of a repository.                  |
 |  `.releases()` | Returns the last ten releases of a repository.                  |
 |  `.issues_count()` | Returns number of issues in a respository |
+
+------------
+
+### Scrape an issue details
+
+First create an object of class `Repository`
+```python
+repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
+```
+
+| Methods | Details                                                     |
+|---|-------------------------------------------------------------|
