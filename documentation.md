@@ -77,3 +77,4 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 | Methods | Details                                                     |
 |---|-------------------------------------------------------------|
 |  `.assignees()` | Returns the assignees of an issue.                |
+|  `.title()`     | Returns the title of an issue.                    |
