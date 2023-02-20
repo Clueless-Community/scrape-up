@@ -71,5 +71,9 @@ class Issue:
         """
         Returns a string containing the time when the issue was opened in ISO format
         """
-        data = self.__scrape_page()
-        return data.find('relative-time').text
+        try:
+            data = self.__scrape_page()
+            return data.find('relative-time').text
+        except:
+            message = "Unable to fetch time"
+            return message
