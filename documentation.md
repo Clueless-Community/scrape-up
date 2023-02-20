@@ -89,7 +89,7 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 
 First create an object of class `Repository`
 ```python
-repository = github.Issue(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
+repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
 ```
 
 

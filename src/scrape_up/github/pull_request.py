@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class Issue:
+class PullRequest:
 
     def __init__(self, username: str, repository_name:str, pull_request_number:int):
         self.username = username
