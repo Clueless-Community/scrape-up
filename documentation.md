@@ -98,3 +98,4 @@ repository = github.PullRequest(username="nikhil25803", repository_name="scrape-
 | Methods      | Details                                               |
 |--------------|-------------------------------------------------------|
 | `.commits()` | Returns the number of commits made in a pull request. |
+| `.title()`   | Returns the title of a pull request.                  |

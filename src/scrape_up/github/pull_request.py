@@ -21,3 +21,16 @@ class PullRequest:
         data = self.__scrape_page()
         commits_count = data.find('span', id='commits_tab_counter').text.strip()
         return commits_count
+    
+    def title(self):
+        """
+        Fetch the title of a pull request
+        """
+        data = self.__scrape_page()
+        try:
+            title_body = data.find('bdi', class_='js-issue-title markdown-title')
+            title = title_body.text.strip()
+            return title
+        except:
+            Message = "No title found"
+            return Message
