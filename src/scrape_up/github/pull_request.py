@@ -22,6 +22,11 @@ class PullRequest:
             labels_found.append(d.get_text().strip())   
         return labels_found
         
-        
-t=PullRequest("Clueless-Community","scrape-up",82)
-t.labels()
+
+    def commits(self):
+        """
+        Fetch the number of commits made in a pull request
+        """
+        data = self.__scrape_page()
+        commits_count = data.find('span', id='commits_tab_counter').text.strip()
+        return commits_count

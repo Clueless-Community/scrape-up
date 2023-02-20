@@ -27,6 +27,12 @@ class Repository:
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
+
+    def __scrape_issues_page(self):
+        data = requests.get(f"https://github.com/{self.username}/{self.repository}/issues"
+        )
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
     
     def __scrape_pull_requests_page(self):
         data = requests.get(
@@ -205,4 +211,20 @@ class Repository:
             return pull_requests_ids           
         except:
             message = "No pull requests found"
+            return message
+
+    def get_issues(self):
+        """
+        Fetch the list of issues in a respository
+        """
+        data = self.__scrape_issues_page()
+        try:
+            issues = data.find_all(class_="Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title")
+            allIssues = []
+
+            for item in issues:
+                allIssues.append(item.text)
+            return allIssues
+        except:
+            message = "Failed to fetch list of issues"
             return message
