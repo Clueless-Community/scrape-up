@@ -66,6 +66,7 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 |  `.issues_count()` | Returns number of issues in a respository |
 |  `.readme` | Saves the readme.md file of given user to current working directory. To view the readme.md with live server, change ".md" to ".html" in "readme.md". |
 |  `.get_pull_requests_ids()` | Returns all id's of opened pull requests in a repository. |
+|  `.get_issues()` | Returns list of all open issues in a repository. |
 
 ------------
 
