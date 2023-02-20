@@ -83,3 +83,15 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 | `.opened_by()` | Returns the name of the user, who opened the issue. |
 |  `.title()`     | Returns the title of an issue.                    |
 
+------------
+
+### Scrape a pull request details
+
+First create an object of class `Repository`
+```python
+repository = github.Issue(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
+```
+
+
+| Methods        | Details                                                        |
+|----------------|----------------------------------------------------------------|
