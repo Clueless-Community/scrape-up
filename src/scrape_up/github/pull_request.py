@@ -13,3 +13,11 @@ class PullRequest:
         data = requests.get(f"https://github.com/{self.username}/{self.repository}/pull/{self.pr_number}")
         data = BeautifulSoup(data.text,"html.parser")
         return data
+
+    def commits(self):
+        """
+        Fetch the number of commits made in a pull request
+        """
+        data = self.__scrape_page()
+        commits_count = data.find('span', id='commits_tab_counter').text.strip()
+        return commits_count

@@ -95,5 +95,6 @@ repository = github.PullRequest(username="nikhil25803", repository_name="scrape-
 ```
 
 
-| Methods        | Details                                                        |
-|----------------|----------------------------------------------------------------|
+| Methods      | Details                                               |
+|--------------|-------------------------------------------------------|
+| `.commits()` | Returns the number of commits made in a pull request. |
