@@ -27,6 +27,13 @@ class Repository:
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
+    
+    def __scrape_pull_requests_page(self):
+        data = requests.get(
+            f"https://github.com/{self.username}/{self.repository}/pulls"
+        )
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
 
     def languagesUsed(self):
         """
@@ -182,3 +189,20 @@ class Repository:
         except:
             err=f"No readme found for {self.username}"
             return err
+    
+    def get_pull_requests_ids(self):
+        """
+        Fetch all opened pull requests id's of a repository
+        """
+        data = self.__scrape_pull_requests_page()
+        try:
+            pr_body = data.find('div', class_='js-navigation-container js-active-navigation-container')
+            pull_requests_ids = []
+            for each_pr in pr_body.find_all('a', class_='Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title'):
+                pr_id = each_pr['href'].split('/')[-1]
+                pull_requests_ids.append(pr_id)
+
+            return pull_requests_ids           
+        except:
+            message = "No pull requests found"
+            return message
