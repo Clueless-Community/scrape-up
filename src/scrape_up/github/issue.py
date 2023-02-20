@@ -72,4 +72,4 @@ class Issue:
         Returns a string containing the time when the issue was opened in ISO format
         """
         data = self.__scrape_page()
-        return data.find('relative-time')['datetime']
+        return data.find('relative-time').text
