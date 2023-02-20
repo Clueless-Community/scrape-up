@@ -13,3 +13,15 @@ class PullRequest:
         data = requests.get(f"https://github.com/{self.username}/{self.repository}/pull/{self.pr_number}")
         data = BeautifulSoup(data.text,"html.parser")
         return data
+    def labels(self):
+        labels_found=[]
+        data=self.__scrape_page()
+        label_raw=data.find_all("a",class_="IssueLabel hx_IssueLabel width-fit mb-1 mr-1")
+        for d in label_raw:
+            pass
+            labels_found.append(d.get_text().strip())   
+        return labels_found
+        
+        
+t=PullRequest("Clueless-Community","scrape-up",82)
+t.labels()
