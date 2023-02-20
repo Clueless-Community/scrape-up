@@ -1,7 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
-import pytz
 
 class Issue:
 
@@ -69,33 +67,9 @@ class Issue:
             message = "No title found"
             return message
         
-    def opened_at(self,time_zone='UTC'):
+    def opened_at(self):
         """
-        Returns a string containing the time range when the issue was opened in local time
+        Returns a string containing the time when the issue was opened in ISO format
         """
         data = self.__scrape_page()
-        opened_time = data.find('relative-time')['datetime']
-        opened_time_utc = datetime.fromisoformat(opened_time[:-1]).replace(tzinfo=pytz.utc)
-        opened_time_local = opened_time_utc.astimezone(pytz.timezone(time_zone))
-        return self.__time_range(opened_time_local,time_zone)
-
-    def __time_range(self, date_time,time_zone):
-        """
-        Returns a string containing the time range between the given date/time and now
-        """
-        now = datetime.now(pytz.timezone(time_zone))
-        delta = now - date_time
-
-        days = delta.days
-        seconds = delta.seconds
-
-        if days > 7:
-            return f"{days // 7} weeks ago"
-        elif days > 0:
-            return f"{days} days ago"
-        elif seconds >= 3600:
-            return f"{seconds // 3600} hours ago"
-        elif seconds >= 60:
-            return f"{seconds // 60} minutes ago"
-        else:
-            return "just now"
+        return data.find('relative-time')['datetime']
