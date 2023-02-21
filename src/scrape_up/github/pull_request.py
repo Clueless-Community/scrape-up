@@ -34,3 +34,25 @@ class PullRequest:
         except:
             Message = "No title found"
             return Message
+    
+    def __files_changed_body(self):
+        '''
+        scrape the data of files changed in a pull request
+        '''
+        link = f"https://github.com/{self.username}/{self.repository}/pull/{self.pr_number}/files"
+        data = requests.get(link)
+        data = BeautifulSoup(data.text,"html.parser")
+        return data
+        
+    def files_changed(self):
+        """
+        Fetch the number of files changed in a pull request
+        """
+        data = self.__files_changed_body()
+        try:
+            files_changed_body = data.find('span', id='files_tab_counter')
+            files_changed = files_changed_body.text.strip()
+            return files_changed
+        except:
+            Message = "No files changed found"
+            return Message
