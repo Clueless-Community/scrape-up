@@ -1,6 +1,7 @@
 {
-    // "python.pythonPath":"C:/Users/User/AppData/Local/Programs/Python/Python39/",
-    "liveServer.settings.port": 5501,
+
+    
+
     "python.testing.unittestArgs": [
         "-v",
         "-s",
@@ -10,4 +11,8 @@
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.unittestEnabled": true
+
+    "liveServer.settings.port": 5501,
+    "python.formatting.provider": "black"
+
 }
