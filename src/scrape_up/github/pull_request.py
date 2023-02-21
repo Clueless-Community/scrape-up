@@ -17,10 +17,14 @@ class PullRequest:
         labels_found=[]
         data=self.__scrape_page()
         label_raw=data.find_all("a",class_="IssueLabel hx_IssueLabel width-fit mb-1 mr-1")
-        for d in label_raw:
-            pass
-            labels_found.append(d.get_text().strip())   
-        return labels_found
+        try:
+            for d in label_raw:
+                labels_found.append(d.get_text().strip())
+            labels_found+1
+            return labels_found
+        except:
+            return "An exception occured"   
+        
         
 
     def commits(self):
