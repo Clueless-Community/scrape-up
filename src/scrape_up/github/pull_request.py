@@ -13,6 +13,19 @@ class PullRequest:
         data = requests.get(f"https://github.com/{self.username}/{self.repository}/pull/{self.pr_number}")
         data = BeautifulSoup(data.text,"html.parser")
         return data
+    def labels(self):
+        labels_found=[]
+        data=self.__scrape_page()
+        label_raw=data.find_all("a",class_="IssueLabel hx_IssueLabel width-fit mb-1 mr-1")
+        try:
+            for d in label_raw:
+                labels_found.append(d.get_text().strip())
+            labels_found+1
+            return labels_found
+        except:
+            return "An exception occured"   
+        
+        
 
     def commits(self):
         """
