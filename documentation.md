@@ -119,3 +119,4 @@ repository = github.Organization(organization_name="Clueless-Community")
 |-----------------|-------------------------------------------------------|
 | `.top_topics()` | Returns list of the most used topics in an organization. |
 |  `.followers()` | Returns the number of followers of an organization. |
+|  `.avatar()` | Returns the avatar url of an organization. |
