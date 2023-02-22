@@ -239,12 +239,3 @@ class Users:
         except:
             message = f"Following users not found for username {self.username}"
             return message
-    def test(self):
-        data=self.__scrape_page()
-        data=data.find_all("img", class_="achievement-badge-sidebar",alt=True)
-        itr=0
-        while itr<len(data)/2:
-            print(data[itr]["alt"].split(':')[1].strip(" "))
-            itr=itr+1
-        # print(data)
-
