@@ -202,10 +202,9 @@ class Users:
         try:
             followers_body = page.find('turbo-frame', id = 'user-profile-frame')
             followers = []
-            for user in followers_body.find_all('a', class_='d-inline-block'):
-                followers.append((user['href'])[1:])
+            for user in followers_body.find_all('span', class_='Link--secondary'):
+                followers.append(user.text.strip())
             
-            followers = set(followers)
             return followers
         except:
             message = f"Followers not found for username {self.username}"
