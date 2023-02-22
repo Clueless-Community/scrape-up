@@ -48,6 +48,7 @@ user = github.Users(username="nikhil25803")
 |  `.pul_requests()` |Return the number of pull requests opened in a repository. |
 |  `.get_followers()` | Returns the list of followers of a user. |
 |  `.get_following_users()` | Returns the list of users followed by a user. |
+|  `.get_achievements()` | Returns the list of achievements of an user. |
 -----
 
 ### Scrape Repository details
