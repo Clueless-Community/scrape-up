@@ -145,6 +145,7 @@ class Users:
         except:
             message = f"No organizations found for the username {self.username}"
             return message
+
         
     def get_achievements(self):
         """
@@ -157,3 +158,59 @@ class Users:
                     if li.startswith("- ") or li.startswith("* "):
                         achievement.append(li[2:])
         return achievement
+
+
+    def commits(self, repo_name: str):
+
+    """
+
+    Fetch the number of commits made in a repository.
+
+    """
+
+    username = self.username
+
+    url = f"https://api.github.com/repos/{username}/{repo_name}/commits"
+
+    headers = {"Accept": "application/vnd.github.v3+json"}
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+
+        commits = len(response.json())
+
+        return commits
+
+    else:
+
+        message = f"Error fetching commits for repository {repo_name}."
+
+        return message
+
+        
+    def __get_starred_page(self):
+        """
+        Scrape the starred page of a GitHub user.
+        """
+        username = self.username
+        starred_data = requests.get(f"https://github.com/{username}?tab=stars")
+        starred_data = BeautifulSoup(starred_data.text, "html.parser")
+        return starred_data
+    
+    def get_starred_repos(self):
+        """
+        Fetches the starred repositories of a GitHub user.
+        """
+        page = self.__get_starred_page()
+        try:
+            starred_body = page.find('turbo-frame', id = 'user-starred-repos')
+            starred_repos = []
+            if starred_body != None:
+                for repo in starred_body.find_all('div', class_='col-12 d-block width-full py-4 border-bottom color-border-muted'):
+                    starred_repos.append('https://github.com' + repo.a['href'])
+            return starred_repos
+        except:
+            message = f"Starred repositories not found for username {self.username}"
+            return message
+
