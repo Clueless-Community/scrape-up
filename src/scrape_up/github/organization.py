@@ -11,6 +11,21 @@ class Organization:
         data = requests.get(f"https://github.com/{self.organization}")
         data = BeautifulSoup(data.text, "html.parser")
         return data
+    def top_languages(self):
+        """
+        Returns a list of the most used languages in an organization
+        """
+        try:
+            languages=[]
+            data=self.__scrape_page()
+            lang_raw=data.find_all("a",class_="no-wrap color-fg-muted d-inline-block Link--muted mt-2")
+            for lang in lang_raw:
+                
+                languages.append(lang.get_text().strip())
+            return languages
+        except:
+            return "An exception occured, cannot get the languages"
+        
 
     def top_topics(self):
         """
@@ -46,3 +61,4 @@ class Organization:
             return url
         except:
             return "No avatar found for this organization"
+
