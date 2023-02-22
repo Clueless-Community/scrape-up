@@ -124,4 +124,4 @@ repository = github.Organization(organization_name="Clueless-Community")
 | `.top_languages()` | Returns the top languages used in an organization. |
 |  `.followers()` | Returns the number of followers of an organization. |
 |  `.avatar()` | Returns the avatar url of an organization. |
-
+|  `.repositories()` | Returns the list of repositories of an organization. |

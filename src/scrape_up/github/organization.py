@@ -61,4 +61,25 @@ class Organization:
             return url
         except:
             return "No avatar found for this organization"
+    
+    def __scrape_repositories(self):
+        """
+        scrapes the repositories page of an organization
+        """
+        organization = self.organization
+        data = requests.get(f"https://github.com/orgs/{organization}/repositories")
+    
+    def repositories(self):
+        """
+        Returns List of repositories of an organization
+        """
+        page = self.__scrape_repositories()
+        try:
+            repositories_body = page.find('div', id = 'org-repositories')
+            repositories = []
+            for repo in repositories_body.find_all('a', attrs = {'itemprop': 'name codeRepository'}):
+                repositories.append(repo.text.strip())
 
+            return repositories
+        except:
+            return "No repositories found for this organization"
