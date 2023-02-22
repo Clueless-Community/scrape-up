@@ -13,6 +13,9 @@ class Users:
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
+    def get_username(self):
+        return self.username;
+
     def followers(self):
         """
         Fetch the number of followers of a GitHub user.
@@ -170,3 +173,9 @@ class Users:
         except:
             message = f"Starred repositories not found for username {self.username}"
             return message
+
+
+# user = Users("Laxmankohar")
+# # followers = user.followers()
+# Avatar = user.get_avatar()
+# print(Avatar)
