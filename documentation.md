@@ -103,6 +103,7 @@ repository = github.PullRequest(username="nikhil25803", repository_name="scrape-
 | `.title()`   | Returns the title of a pull request.                  |
 | `.labels()`  | Returns all the labels of a pull request,empty list in case of no labels.| 
 | `.files_changed()` | Returns the number of files changed in a pull request. |
+| `.reviewers()`     | Return the list of reviewers assigned in a pull request. |
 
 
 ------
