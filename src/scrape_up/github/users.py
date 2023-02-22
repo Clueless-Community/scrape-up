@@ -248,5 +248,3 @@ class Users:
             itr=itr+1
         # print(data)
 
-t=Users("nikhil25803")
-print(t.get_achievements())
