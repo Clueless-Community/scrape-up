@@ -72,7 +72,7 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 
 ### Scrape an issue details
 
-First create an object of class `Repository`
+First create an object of class `Issue`
 ```python
 repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
 ```
@@ -89,7 +89,7 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 
 ### Scrape a pull request details
 
-First create an object of class `Repository`
+First create an object of class `PullRequest`
 ```python
 repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
 ```
@@ -100,3 +100,16 @@ repository = github.PullRequest(username="nikhil25803", repository_name="scrape-
 | `.commits()` | Returns the number of commits made in a pull request. |
 | `.title()`   | Returns the title of a pull request.                  |
 | `.files_changed()` | Returns the number of files changed in a pull request. |
+
+------
+
+### Scrape the details of an organization
+
+First create an object of class `Organization`
+```python
+repository = github.Organization(organization_name="Clueless-Community")
+```
+
+
+| Methods      | Details                                               |
+|--------------|-------------------------------------------------------|
