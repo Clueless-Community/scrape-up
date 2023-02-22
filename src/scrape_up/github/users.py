@@ -196,3 +196,53 @@ class Users:
         except:
             message = f"Starred repositories not found for username {self.username}"
             return message
+    def __scrape_followers_page(self):
+        """
+        Scrape the followers page of a GitHub user.
+        """
+        username = self.username
+        followers_data = requests.get(f"https://github.com/{username}?tab=followers")
+        followers_data = BeautifulSoup(followers_data.text, "html.parser")
+        return followers_data
+
+    def get_followers(self):
+        """
+        Fetches the following users of a GitHub user.
+        """
+        page = self.__scrape_followers_page()
+        try:
+            followers_body = page.find('turbo-frame', id = 'user-profile-frame')
+            followers = []
+            for user in followers_body.find_all('span', class_='Link--secondary'):
+                followers.append(user.text.strip())
+
+            return followers
+        except:
+            message = f"Followers not found for username {self.username}"
+            return message
+
+    def __scrape_following_page(self):
+        """
+
+         Scrape the following page of a GitHub user.
+        """
+        username = self.username
+        following_data = requests.get(f"https://github.com/{username}?tab=following")
+        following_data = BeautifulSoup(following_data.text, "html.parser")
+        return following_data
+
+    def get_following_users(self):
+        """
+        Fetches the following users of a GitHub user.
+        """
+        page = self.__scrape_following_page()
+        try:
+            following_body = page.find('turbo-frame', id = 'user-profile-frame')
+            following = []
+            for user in following_body.find_all('span', class_='Link--secondary'):
+                following.append(user.text.strip())
+
+            return following
+        except:
+            message = f"Following users not found for username {self.username}"
+            return message
