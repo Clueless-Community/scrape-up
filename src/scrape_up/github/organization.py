@@ -34,3 +34,15 @@ class Organization:
             return followers
         except:
             return "No followers found for this organization"
+    
+    def avatar(self):
+        """
+        Returns url of the avatar of an organization
+        """
+        page = self.__scrape_page()
+        try:
+            avatar = page.find('a', attrs = {'itemprop': 'url'})
+            url = avatar.text.strip()
+            return url
+        except:
+            return "No avatar found for this organization"
