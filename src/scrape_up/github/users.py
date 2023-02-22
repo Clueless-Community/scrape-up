@@ -151,13 +151,18 @@ class Users:
         """
         Fetch the names of achievements, a user is has achieved
         """
-        achievement = []
-        for ul in self.split("\n\n"):
-            if ul.startswith("- ") or ul.startswith("* "):
-                for li in ul.split("\n"):
-                    if li.startswith("- ") or li.startswith("* "):
-                        achievement.append(li[2:])
-        return achievement
+        try:
+            achievement = []
+            data=self.__scrape_page()
+            data=data.find_all("img", class_="achievement-badge-sidebar",alt=True)
+            itr=0
+            while itr<len(data)/2:
+                achievement.append(data[itr]["alt"].split(':')[1].strip(" "))
+                itr=itr+1
+            
+            return achievement
+        except:
+            return "Achievements cannot be fetched"
 
         
     def __get_starred_page(self):
@@ -234,3 +239,14 @@ class Users:
         except:
             message = f"Following users not found for username {self.username}"
             return message
+    def test(self):
+        data=self.__scrape_page()
+        data=data.find_all("img", class_="achievement-badge-sidebar",alt=True)
+        itr=0
+        while itr<len(data)/2:
+            print(data[itr]["alt"].split(':')[1].strip(" "))
+            itr=itr+1
+        # print(data)
+
+t=Users("nikhil25803")
+print(t.get_achievements())
