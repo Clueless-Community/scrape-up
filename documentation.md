@@ -78,12 +78,13 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 ```
 
 
-| Methods        | Details                                                        |
-|----------------|----------------------------------------------------------------|
-| `.assignees()` | Returns the assignees of an issue.                             |
-|  `.labels()`     | Returns the labels of an issue.                    |
-| `.opened_by()` | Returns the name of the user, who opened the issue. |
-|  `.title()`     | Returns the title of an issue.                    |
+| Methods           | Details                                                        |
+|-------------------|----------------------------------------------------------------|
+| `.assignees()`    | Returns the assignees of an issue.                             |
+| `.labels()`       | Returns the labels of an issue.                    |
+| `.opened_by()`    | Returns the name of the user, who opened the issue. |
+| `.title()`        | Returns the title of an issue.                    |
+| `.is_milestone()` | Returns the milestone, if the issue is part of one or 'No milestone', if it's not.                   |
 
 ------------
 
