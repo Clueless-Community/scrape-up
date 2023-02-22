@@ -118,4 +118,5 @@ repository = github.Organization(organization_name="Clueless-Community")
 | Methods         | Details                                               |
 |-----------------|-------------------------------------------------------|
 | `.top_topics()` | Returns list of the most used topics in an organization. |
-|  `.followers()` | Returns the number of followers of an organization. |
+| `.followers()` | Returns the number of followers of an organization. |
+| `.top_languages()` | Returns the top languages used in an organization. |
