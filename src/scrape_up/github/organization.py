@@ -12,6 +12,9 @@ class Organization:
         data = BeautifulSoup(data.text, "html.parser")
         return data
     def top_languages(self):
+        """
+        Returns a list of the most used languages in an organization
+        """
         try:
             languages=[]
             data=self.__scrape_page()
