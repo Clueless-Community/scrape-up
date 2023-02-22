@@ -22,3 +22,15 @@ class Organization:
         for topic in all_topics:
             topics.append(topic.text.strip())
         return topics
+    
+    def followers(self):
+        """
+        Returns number of followers of an organization
+        """
+        page = self.__scrape_page()
+        try:
+            followers_body = page.find('a', class_='Link--secondary no-underline no-wrap')
+            followers = followers_body.span.text.strip()
+            return followers
+        except:
+            return "No followers found for this organization"
