@@ -196,4 +196,3 @@ class Users:
         except:
             message = f"Starred repositories not found for username {self.username}"
             return message
-

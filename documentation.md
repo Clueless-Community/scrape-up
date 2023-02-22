@@ -46,7 +46,8 @@ user = github.Users(username="nikhil25803")
 |  `.get_repositories()` | Returns the list of repositories of a user. |
 |  `.get_starred_repos()` | Return the list of starred repositories of a user. | 
 |  `.pul_requests()` |Return the number of pull requests opened in a repository. |
-
+|  `.get_followers()` | Returns the list of followers of a user. |
+|  `.get_following_users()` | Returns the list of users followed by a user. |
 -----
 
 ### Scrape Repository details
@@ -78,12 +79,14 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 ```
 
 
-| Methods        | Details                                                        |
-|----------------|----------------------------------------------------------------|
-| `.assignees()` | Returns the assignees of an issue.                             |
-|  `.labels()`     | Returns the labels of an issue.                    |
-| `.opened_by()` | Returns the name of the user, who opened the issue. |
-|  `.title()`     | Returns the title of an issue.                    |
+| Methods           | Details                                                        |
+|-------------------|----------------------------------------------------------------|
+| `.assignees()`    | Returns the assignees of an issue.                             |
+| `.labels()`       | Returns the labels of an issue.                    |
+| `.opened_by()`    | Returns the name of the user, who opened the issue. |
+| `.title()`        | Returns the title of an issue.                    |
+| `.is_milestone()` | Returns the milestone, if the issue is part of one or 'No milestone', if it's not.                   |
+| `.opened_at()` | Returns a string containing the time when the issue was opened in ISO format. |
 
 ------------
 
@@ -113,6 +116,7 @@ repository = github.Organization(organization_name="Clueless-Community")
 ```
 
 
-| Methods      | Details                                               |
-|--------------|-------------------------------------------------------|
-
+| Methods         | Details                                               |
+|-----------------|-------------------------------------------------------|
+| `.top_topics()` | Returns list of the most used topics in an organization. |
+|  `.followers()` | Returns the number of followers of an organization. |
