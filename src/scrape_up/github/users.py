@@ -145,36 +145,6 @@ class Users:
         except:
             message = f"No organizations found for the username {self.username}"
             return message
-
-
-    def commits(self, repo_name: str):
-
-    """
-
-    Fetch the number of commits made in a repository.
-
-    """
-
-    username = self.username
-
-    url = f"https://api.github.com/repos/{username}/{repo_name}/commits"
-
-    headers = {"Accept": "application/vnd.github.v3+json"}
-
-    response = requests.get(url, headers=headers)
-
-    if response.status_code == 200:
-
-        commits = len(response.json())
-
-        return commits
-
-    else:
-
-        message = f"Error fetching commits for repository {repo_name}."
-
-        return message
-
         
     def __get_starred_page(self):
         """
@@ -200,4 +170,3 @@ class Users:
         except:
             message = f"Starred repositories not found for username {self.username}"
             return message
-
