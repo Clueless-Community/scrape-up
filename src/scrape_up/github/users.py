@@ -25,6 +25,18 @@ class Users:
             message = f"{self.username} not found !"
             return message
 
+    def following(self):
+        """"
+        Fetch the number of following of a GitHub users.
+        """
+        page = self.__scrape_page()
+        try:
+            following=page.find_all(class_="text-bold color-fg-default")
+            return following[1].text
+        except:
+            message = f"{self.username} not found !"
+            return message
+
     def get_avatar(self):
         """
         Fetch the avatar URL of a GitHub user.
@@ -184,3 +196,4 @@ class Users:
         except:
             message = f"Starred repositories not found for username {self.username}"
             return message
+
