@@ -86,6 +86,7 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 | `.opened_by()`    | Returns the name of the user, who opened the issue. |
 | `.title()`        | Returns the title of an issue.                    |
 | `.is_milestone()` | Returns the milestone, if the issue is part of one or 'No milestone', if it's not.                   |
+| `.opened_at()` | Returns a string containing the time when the issue was opened in ISO format. |
 
 ------------
 

@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-
 class Issue:
 
     def __init__(self, username: str, repository_name:str, issue_number:int):
@@ -66,6 +65,17 @@ class Issue:
             return title
         except:
             message = "No title found"
+            return message
+        
+    def opened_at(self):
+        """
+        Returns a string containing the time when the issue was opened in ISO format
+        """
+        try:
+            data = self.__scrape_page()
+            return data.find('relative-time').text
+        except:
+            message = "Unable to fetch time"
             return message
 
     def is_milestone(self):
