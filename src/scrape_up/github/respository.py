@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+import requests_html
+
 
 
 class Repository:
@@ -22,6 +24,19 @@ class Repository:
     def __scrape_releases_page(self):
         data = requests.get(
             f"https://github.com/{self.username}/{self.repository}/releases"
+        )
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
+
+    def __scrape_issues_page(self):
+        data = requests.get(f"https://github.com/{self.username}/{self.repository}/issues"
+        )
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
+    
+    def __scrape_pull_requests_page(self):
+        data = requests.get(
+            f"https://github.com/{self.username}/{self.repository}/pulls"
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
@@ -164,4 +179,52 @@ class Repository:
             return issues
         except:
             message = "Failed to fetch no. of issues"
+            return message
+        
+    def readme(self):
+        """
+        Fetch readme.md of a user
+        """
+        session = requests_html.HTMLSession()
+        r = session.get(f"https://github.com/{self.username}/{self.username}/blob/main/README.md")
+        markdown_content = r.text
+
+        try:
+            with open('out.md', 'w', encoding='utf-8') as f:
+                f.write(markdown_content)
+        except:
+            err=f"No readme found for {self.username}"
+            return err
+    
+    def get_pull_requests_ids(self):
+        """
+        Fetch all opened pull requests id's of a repository
+        """
+        data = self.__scrape_pull_requests_page()
+        try:
+            pr_body = data.find('div', class_='js-navigation-container js-active-navigation-container')
+            pull_requests_ids = []
+            for each_pr in pr_body.find_all('a', class_='Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title'):
+                pr_id = each_pr['href'].split('/')[-1]
+                pull_requests_ids.append(pr_id)
+
+            return pull_requests_ids           
+        except:
+            message = "No pull requests found"
+            return message
+
+    def get_issues(self):
+        """
+        Fetch the list of issues in a respository
+        """
+        data = self.__scrape_issues_page()
+        try:
+            issues = data.find_all(class_="Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title")
+            allIssues = []
+
+            for item in issues:
+                allIssues.append(item.text)
+            return allIssues
+        except:
+            message = "Failed to fetch list of issues"
             return message

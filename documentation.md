@@ -46,7 +46,8 @@ user = github.Users(username="nikhil25803")
 |  `.get_repositories()` | Returns the list of repositories of a user. |
 |  `.get_starred_repos()` | Return the list of starred repositories of a user. | 
 |  `.pul_requests()` |Return the number of pull requests opened in a repository. |
-
+|  `.get_followers()` | Returns the list of followers of a user. |
+|  `.get_following_users()` | Returns the list of users followed by a user. |
 -----
 
 ### Scrape Repository details
@@ -63,22 +64,59 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 |  `.pull_requests()` | Returns the number of pull requests opened in a repository. |
 |  `.tags()` | Returns the last ten tags of a repository.                  |
 |  `.releases()` | Returns the last ten releases of a repository.                  |
-|  `.issues_count()` | Returns number of issues in a respository |
-
+|  `.issues_count()` | Returns number of issues in a repository |
+|  `.readme` | Saves the readme.md file of given user to current working directory. To view the readme.md with live server, change ".md" to ".html" in "readme.md". |
+|  `.get_pull_requests_ids()` | Returns all id's of opened pull requests in a repository. |
+|  `.get_issues()` | Returns list of all open issues in a repository. |
+|  `.commits()` | Returns number of commits in a repository. |
 ------------
 
 ### Scrape an issue details
 
-First create an object of class `Repository`
+First create an object of class `Issue`
 ```python
 repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
 ```
 
 
-| Methods        | Details                                                        |
-|----------------|----------------------------------------------------------------|
-| `.assignees()` | Returns the assignees of an issue.                             |
-|  `.labels()`     | Returns the labels of an issue.                    |
-| `.opened_by()` | Returns the name of the user, who opened the issue. |
-|  `.title()`     | Returns the title of an issue.                    |
+| Methods           | Details                                                        |
+|-------------------|----------------------------------------------------------------|
+| `.assignees()`    | Returns the assignees of an issue.                             |
+| `.labels()`       | Returns the labels of an issue.                    |
+| `.opened_by()`    | Returns the name of the user, who opened the issue. |
+| `.title()`        | Returns the title of an issue.                    |
+| `.is_milestone()` | Returns the milestone, if the issue is part of one or 'No milestone', if it's not.                   |
 | `.opened_at()` | Returns a string containing the time when the issue was opened in ISO format. |
+
+------------
+
+### Scrape a pull request details
+
+First create an object of class `PullRequest`
+```python
+repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
+```
+
+
+| Methods      | Details                                               |
+|--------------|-------------------------------------------------------|
+| `.commits()` | Returns the number of commits made in a pull request. |
+| `.title()`   | Returns the title of a pull request.                  |
+| `.labels()`  | Returns all the labels of a pull request,empty list in case of no labels.| 
+| `.files_changed()` | Returns the number of files changed in a pull request. |
+
+
+------
+
+### Scrape the details of an organization
+
+First create an object of class `Organization`
+```python
+repository = github.Organization(organization_name="Clueless-Community")
+```
+
+
+| Methods         | Details                                               |
+|-----------------|-------------------------------------------------------|
+| `.top_topics()` | Returns list of the most used topics in an organization. |
+|  `.followers()` | Returns the number of followers of an organization. |

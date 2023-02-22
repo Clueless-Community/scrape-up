@@ -77,3 +77,15 @@ class Issue:
         except:
             message = "Unable to fetch time"
             return message
+
+    def is_milestone(self):
+        """
+        Returns the milestone, if the issue is part of one or 'No milestone', if it's not.
+        """
+        data = self.__scrape_page()
+        try:
+            milestone = data.find('a', class_='Link--secondary mt-1 d-block text-bold css-truncate').text.strip()
+            return milestone
+        except:
+            message = "No milestone"
+            return message
