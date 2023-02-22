@@ -49,6 +49,7 @@ user = github.Users(username="nikhil25803")
 |  `.pul_requests()` |Return the number of pull requests opened in a repository. |
 |  `.get_followers()` | Returns the list of followers of a user. |
 |  `.get_following_users()` | Returns the list of users followed by a user. |
+|  `.get_achievements()` | Returns the list of achievements of an user. |
 -----
 
 ### Scrape Repository details
@@ -105,6 +106,7 @@ repository = github.PullRequest(username="nikhil25803", repository_name="scrape-
 | `.title()`   | Returns the title of a pull request.                  |
 | `.labels()`  | Returns all the labels of a pull request,empty list in case of no labels.| 
 | `.files_changed()` | Returns the number of files changed in a pull request. |
+| `.reviewers()`     | Return the list of reviewers assigned in a pull request. |
 
 
 ------
@@ -120,4 +122,8 @@ repository = github.Organization(organization_name="Clueless-Community")
 | Methods         | Details                                               |
 |-----------------|-------------------------------------------------------|
 | `.top_topics()` | Returns list of the most used topics in an organization. |
+| `.followers()` | Returns the number of followers of an organization. |
+| `.top_languages()` | Returns the top languages used in an organization. |
 |  `.followers()` | Returns the number of followers of an organization. |
+|  `.avatar()` | Returns the avatar url of an organization. |
+|  `.repositories()` | Returns the list of repositories of an organization. |
