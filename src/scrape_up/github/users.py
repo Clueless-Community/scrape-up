@@ -146,19 +146,6 @@ class Users:
             message = f"No organizations found for the username {self.username}"
             return message
 
-        
-    def get_achievements(self):
-        """
-        Fetch the names of achievements, a user is has achieved
-        """
-        achievement = []
-        for ul in self.split("\n\n"):
-            if ul.startswith("- ") or ul.startswith("* "):
-                for li in ul.split("\n"):
-                    if li.startswith("- ") or li.startswith("* "):
-                        achievement.append(li[2:])
-        return achievement
-
 
     def commits(self, repo_name: str):
 
