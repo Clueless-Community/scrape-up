@@ -115,6 +115,7 @@ repository = github.Organization(organization_name="Clueless-Community")
 ```
 
 
-| Methods      | Details                                               |
-|--------------|-------------------------------------------------------|
+| Methods         | Details                                               |
+|-----------------|-------------------------------------------------------|
+| `.top_topics()` | Returns list of the most used topics in an organization. |
 
