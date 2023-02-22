@@ -209,3 +209,28 @@ class Users:
         except:
             message = f"Followers not found for username {self.username}"
             return message
+    
+    def __scrape_following_page(self):
+        """
+        Scrape the following page of a GitHub user.
+        """
+        username = self.username
+        following_data = requests.get(f"https://github.com/{username}?tab=following")
+        following_data = BeautifulSoup(following_data.text, "html.parser")
+        return following_data
+    
+    def get_following_users(self):
+        """
+        Fetches the following users of a GitHub user.
+        """
+        page = self.__scrape_following_page()
+        try:
+            following_body = page.find('turbo-frame', id = 'user-profile-frame')
+            following = []
+            for user in following_body.find_all('span', class_='Link--secondary'):
+                following.append(user.text.strip())
+            
+            return following
+        except:
+            message = f"Following users not found for username {self.username}"
+            return message
