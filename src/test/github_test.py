@@ -55,12 +55,6 @@ class TestUsers(unittest.TestCase):
     def test_yearly_contribution_not_found(self):
         self.assertTrue(callable(self.users.get_yearly_contributions))
     
-    def test_repo_page(self):
-        self.assertTrue(callable(self.users.__get_repo_page))
-
-    def test_get_repo_page_not_found(self):
-        self.assertTrue(callable(self.__get_repo_page))
-
     def test_get_repositories(self):
         self.assertTrue(callable(self.users.get_repositories))
 
@@ -76,26 +70,6 @@ class TestUsers(unittest.TestCase):
 
     def test_get_organizations_no_orgs(self):
         self.assertTrue(callable(self.users.get_organizations))
-
-    # valid user
-    def test_get_starred_page(self):
-        self.assertTrue(callable(self.users.__get_stared_page))
-
-    # invalid user
-    def test_get_starred_page_not_found(self):
-        self.assertTrue(callable(self.users.__get_stared_page))
-
-    # Test case for valid username with starred repositories
-    def test_get_starred_repos_valid(self):
-        self.assertTrue(callable(self.users.__get_stared_page))
-
-    # Test case for invalid username
-    def test_get_starred_repos_invalid(self):
-        self.assertTrue(callable(self.users.__get_stared_page))
-
-    # Test case for username with no starred repositories
-    def test_get_starred_repos_empty(self):
-        self.assertTrue(callable(self.users.__get_stared_page))
 
 if __name__ == '__main__':
     unittest.main()
