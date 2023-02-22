@@ -69,3 +69,20 @@ class PullRequest:
         except:
             Message = "No files changed found"
             return Message
+
+    def reviewers(self):
+        """
+        Get the list of reviewers assigned in a PR
+        """
+        data = self.__scrape_page()
+        try:
+            reviewerList = []
+            reviewers = data.find_all('span',class_ = 'css-truncate-target width-fit v-align-middle')
+            if len(reviewers) == 0:
+                return f"Oops, The repository {self.repository} doesn't have any reviewers yet!"
+            else:
+                for reviewer in reviewers:
+                    reviewerList.append(reviewer.text)
+                return reviewerList
+        except:
+            return "Oops! An Error Occured"   

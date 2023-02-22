@@ -86,6 +86,7 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 | `.opened_by()`    | Returns the name of the user, who opened the issue. |
 | `.title()`        | Returns the title of an issue.                    |
 | `.is_milestone()` | Returns the milestone, if the issue is part of one or 'No milestone', if it's not.                   |
+| `.opened_at()` | Returns a string containing the time when the issue was opened in ISO format. |
 
 ------------
 
@@ -103,6 +104,7 @@ repository = github.PullRequest(username="nikhil25803", repository_name="scrape-
 | `.title()`   | Returns the title of a pull request.                  |
 | `.labels()`  | Returns all the labels of a pull request,empty list in case of no labels.| 
 | `.files_changed()` | Returns the number of files changed in a pull request. |
+| `.reviewers()`     | Return the list of reviewers assigned in a pull request. |
 
 
 ------
@@ -120,3 +122,6 @@ repository = github.Organization(organization_name="Clueless-Community")
 | `.top_topics()` | Returns list of the most used topics in an organization. |
 | `.followers()` | Returns the number of followers of an organization. |
 | `.top_languages()` | Returns the top languages used in an organization. |
+|  `.followers()` | Returns the number of followers of an organization. |
+|  `.avatar()` | Returns the avatar url of an organization. |
+
