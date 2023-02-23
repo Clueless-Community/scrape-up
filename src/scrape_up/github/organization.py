@@ -256,6 +256,3 @@ class Organization:
             return repositories
         except:
             return "No repositories found for this organization"
-
-org = Organization("Clueless-Community")
-print(org.repository_details())
