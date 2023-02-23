@@ -25,6 +25,18 @@ class Users:
             message = f"{self.username} not found !"
             return message
 
+    def following(self):
+        """"
+        Fetch the number of following of a GitHub users.
+        """
+        page = self.__scrape_page()
+        try:
+            following=page.find_all(class_="text-bold color-fg-default")
+            return following[1].text
+        except:
+            message = f"{self.username} not found !"
+            return message
+
     def get_avatar(self):
         """
         Fetch the avatar URL of a GitHub user.
@@ -189,7 +201,6 @@ class Users:
         except:
             message = f"Starred repositories not found for username {self.username}"
             return message
-    
     def __scrape_followers_page(self):
         """
         Scrape the followers page of a GitHub user.
@@ -209,21 +220,22 @@ class Users:
             followers = []
             for user in followers_body.find_all('span', class_='Link--secondary'):
                 followers.append(user.text.strip())
-            
+
             return followers
         except:
             message = f"Followers not found for username {self.username}"
             return message
-    
+
     def __scrape_following_page(self):
         """
-        Scrape the following page of a GitHub user.
+
+         Scrape the following page of a GitHub user.
         """
         username = self.username
         following_data = requests.get(f"https://github.com/{username}?tab=following")
         following_data = BeautifulSoup(following_data.text, "html.parser")
         return following_data
-    
+
     def get_following_users(self):
         """
         Fetches the following users of a GitHub user.
@@ -234,7 +246,7 @@ class Users:
             following = []
             for user in following_body.find_all('span', class_='Link--secondary'):
                 following.append(user.text.strip())
-            
+
             return following
         except:
             message = f"Following users not found for username {self.username}"

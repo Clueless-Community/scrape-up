@@ -37,6 +37,7 @@ user = github.Users(username="nikhil25803")
 | Methods |  Details |
 |---|---|
 |  `.followers()` | Returns the number of followers of a user. |
+|  `.following()` | Returns the number of following of a user. |
 |  `.get_avatar()` | Returns the avatar url of a user. |
 |  `.get_bio()`  | Returns the bio of a user. |
 |  `.get_repo()` | Returns the list of pinned repositories for a user. |
@@ -125,4 +126,6 @@ repository = github.Organization(organization_name="Clueless-Community")
 | `.top_languages()` | Returns the top languages used in an organization. |
 |  `.followers()` | Returns the number of followers of an organization. |
 |  `.avatar()` | Returns the avatar url of an organization. |
-
+|  `.repositories()` | Returns the list of repositories of an organization. |
+|  `.people()` | Returns the list of people in an organization. |
+|  `.peoples() ` | Returns the number of people in a organization. |

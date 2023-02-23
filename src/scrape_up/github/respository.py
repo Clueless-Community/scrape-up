@@ -213,6 +213,18 @@ class Repository:
             message = "No pull requests found"
             return message
 
+        
+    def commits(self):
+        """
+        Fetch the number of commits in a repository 
+        """
+        data = self.__scrape_page()
+        try:
+            commits = (data.find("a",href=f"/{self.username}/{self.repository}/commits").find("span").text.strip())
+            return commits
+        except:
+            message = "No commits found"
+
     def get_issues(self):
         """
         Fetch the list of issues in a respository
