@@ -32,6 +32,7 @@ class Users:
         page = self.__scrape_page()
         try:
             following=page.find_all(class_="text-bold color-fg-default")
+            # print(page.find_all("span"))
             return following[1].text
         except:
             message = f"{self.username} not found !"
@@ -251,3 +252,12 @@ class Users:
         except:
             message = f"Following users not found for username {self.username}"
             return message
+    def company(self):
+        page=self.__scrape_following_page()
+        try:
+            cmp=page.find(class_="Link--primary")
+            print(cmp.text)
+            # print(page.find_all("a"))
+        except:
+            message=f"Following users not found for username {self.username}"
+

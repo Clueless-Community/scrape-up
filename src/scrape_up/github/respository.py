@@ -97,6 +97,7 @@ class Repository:
         try:
             topics = data.find_all(class_="topic-tag topic-tag-link")
             allTopics = []
+            print(allTopics)
             for item in topics:
                 allTopics.append(item.text)
             return allTopics  # return list of topics
@@ -120,6 +121,7 @@ class Repository:
             message = "Oops! No Stars found"
             return message
 
+
     def pull_requests(self):
         """
         Get the number of pull requests opened in a repository.
@@ -128,7 +130,7 @@ class Repository:
         try:
             pull_requests = (
                 data.find_all(class_="UnderlineNav-item mr-0 mr-md-1 mr-lg-3")[2]
-                .find_all("span")[1]
+                .find_all("span")[1]    
                 .text.strip()
             )
             return pull_requests
@@ -228,3 +230,16 @@ class Repository:
         except:
             message = "Failed to fetch list of issues"
             return message
+
+    def get_contributors(self):
+        data= self.__scrape_page()
+
+        try:
+            contributors = data.find_all("a", href=f"/{self.username}/{self.repository}/graphs/contributors")
+            contributor=[]
+            for it in contributors:
+                contributor.append(it.get_text())
+            return contributor[0].strip() 
+        except:
+            message="Oops! No contributors found"
+            return message 
