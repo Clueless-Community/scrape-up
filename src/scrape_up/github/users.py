@@ -239,3 +239,12 @@ class Users:
         except:
             message = f"Following users not found for username {self.username}"
             return message
+        
+    def get_status(self):
+        try: 
+            data=self.__scrape_page()
+            t=data.find("div",class_="user-status-container position-relative hide-sm hide-md")
+            return t.text.strip().replace('\n','')
+        except: 
+            return "Status not available"
+        
