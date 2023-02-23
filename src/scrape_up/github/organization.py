@@ -83,3 +83,87 @@ class Organization:
             return repositories
         except:
             return "No repositories found for this organization"
+    
+    def __scrape_people_page(self):
+        """
+        scrapes the head page of people of an organization
+        """
+        organization = self.organization
+        data = requests.get(f"https://github.com/orgs/{organization}/people")
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
+    
+    def __scrape_people(self, page):
+        """
+        scrapes the people page of an organization
+        """
+        organization = self.organization
+        data = requests.get(page)
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
+
+    def people(self):
+        """
+        Returns List of people in an organization
+        """
+        organization = self.organization
+        data = self.__scrape_people_page()
+        try:
+            pages_body = data.find('div', class_='paginate-container')
+            current_page = pages_body.find('em', class_='current')
+            total_pages = 1
+            if current_page != None:
+                total_pages = (int)(current_page['data-total-pages'])
+            
+            pages = []
+            if total_pages == 1:
+                pages.append(f"https://github.com/orgs/{organization}/people")
+            else:
+                for i in range(1, total_pages + 1):
+                    pages.append(f"https://github.com/orgs/{organization}/people?page={i}")
+            
+            people = []
+            for page in pages:
+                page_data = self.__scrape_people(page)
+                people_body = page_data.find('div', id = 'org-members-table')
+                for person in people_body.find_all('li'):
+                    person_username = person.find('a', class_='d-inline-block')
+                    people.append(person_username['href'][1:])
+            
+            return people
+        except:
+            return "No people found for this organization"
+
+
+    def peoples(self):
+        """
+        Return number of people in a organizaton
+        """
+        data = self.__scrape_people_page()
+        try:
+            body = data.find('div', class_='paginate-container')
+            current_page = body.find('em', class_='current')
+            page_count = 1
+            if current_page != None:
+                page_count = int((current_page['data-total-pages']))
+
+            pages = []
+
+            if page_count == 1:
+                pages.append(f"https://github.com/orgs/{self.organization}/people")
+            else:
+                for i in range(1, page_count + 1):
+                    pages.append(f"https://github.com/orgs/{self.organization}/people?page={i}")
+            
+            people_count = 0
+            for page in pages:
+                page_data = self.__scrape_people(page)
+                people_body = page_data.find('div', id = 'org-members-table')
+                people_count = len(people_body.find_all('li'))
+
+            return people_count
+        except:
+            return "No people found for this organization"
+
+
+
