@@ -62,23 +62,49 @@ class Organization:
         except:
             return "No avatar found for this organization"
     
-    def __scrape_repositories(self):
+    def __scrape_repositories_page(self):
         """
-        scrapes the repositories page of an organization
+        scrapes the head page of repositories of an organization
         """
         organization = self.organization
         data = requests.get(f"https://github.com/orgs/{organization}/repositories")
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
+
+    def __scrape_repositories(self, page):
+        """
+        scrapes the repositories page of an organization
+        """
+        data = requests.get(page)
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
     
     def repositories(self):
         """
         Returns List of repositories of an organization
         """
-        page = self.__scrape_repositories()
+        organization = self.organization
+        data = self.__scrape_repositories_page()
         try:
-            repositories_body = page.find('div', id = 'org-repositories')
+            pages_body = data.find('div', class_='paginate-container')
+            current_page = pages_body.find('em', class_='current')
+            total_pages = 1
+            if current_page != None:
+                total_pages = (int)(current_page['data-total-pages'])
+            
+            pages = []
+            if total_pages == 1:
+                pages.append(f"https://github.com/orgs/{organization}/repositories")
+            else:
+                for i in range(1, total_pages + 1):
+                    pages.append(f"https://github.com/orgs/{organization}/repositories?page={i}")
+            
             repositories = []
-            for repo in repositories_body.find_all('a', attrs = {'itemprop': 'name codeRepository'}):
-                repositories.append(repo.text.strip())
+            for page in pages:
+                page_data = self.__scrape_repositories(page)
+                repositories_body = page_data.find('div', id = 'org-repositories')
+                for repo in repositories_body.find_all('a', attrs = {'itemprop': 'name codeRepository'}):
+                    repositories.append(repo.text.strip())
 
             return repositories
         except:
@@ -165,5 +191,68 @@ class Organization:
         except:
             return "No people found for this organization"
 
+    def repository_stats(self, repo_url):
+        """
+        Returns the stats of a repository
+        """
+        data = self.__scrape_repositories(repo_url)
+        try:
+            # forks
+            forksCount = (
+                data.find("span", id="repo-network-counter").text.strip()
+            )
+            # stars
+            starCount = (
+                data.find('span', id = 'repo-stars-counter-star').text.strip()
+            )
+            # issues
+            issuesCount = (
+                data.find("span", id= "issues-repo-tab-count").text.strip()
+            )
+            # pull requests
+            pullRequests = (
+                data.find("span", id="pull-requests-repo-tab-count").text.strip()
+            )
 
+            return forksCount, starCount, issuesCount, pullRequests
+        except:
+            return "No such repository found"
 
+    
+    def repository_details(self):
+        """
+        Returns the details of all the repositories of an organization
+        """
+        organization = self.organization
+        data = self.__scrape_repositories_page()
+        try:
+            pages_body = data.find('div', class_='paginate-container')
+            current_page = pages_body.find('em', class_='current')
+            total_pages = 1
+            if current_page != None:
+                total_pages = (int)(current_page['data-total-pages'])
+            
+            pages = []
+            if total_pages == 1:
+                pages.append(f"https://github.com/orgs/{organization}/repositories")
+            else:
+                for i in range(1, total_pages + 1):
+                    pages.append(f"https://github.com/orgs/{organization}/repositories?page={i}")
+            
+            repositories = []
+            for page in pages:
+                page_data = self.__scrape_repositories(page)
+                repositories_body = page_data.find('div', id = 'org-repositories')
+                for repo in repositories_body.find_all('li'):
+                    repo_name = repo.find('a', attrs = {'itemprop': 'name codeRepository'}).text.strip()
+                    repo_url = f"https://github.com{repo.find('a', attrs = {'itemprop': 'name codeRepository'})['href']}"
+                    repo_description_body = repo.find('p', attrs = {'itemprop': 'description'})
+                    repo_description = repo_description_body.text.strip() if repo_description_body != None else "No description"
+                    repo_language_body = repo.find('span', attrs = {'itemprop': 'programmingLanguage'})
+                    repo_language = repo_language_body.text.strip() if repo_language_body != None else "No language"
+                    repo_forks, repo_stars, repo_issues, repo_pull_requests = self.repository_stats(repo_url)
+                    repositories.append({"name": repo_name, "url": repo_url, "description": repo_description, "language": repo_language, "forks": repo_forks, "stars": repo_stars, "issues": repo_issues, "pull_requests": repo_pull_requests})
+                
+            return repositories
+        except:
+            return "No repositories found for this organization"
