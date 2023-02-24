@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import requests_html
 
 
-
 class Repository:
     def __init__(self, username: str, repository_name: str):
         self.username = username
@@ -29,11 +28,12 @@ class Repository:
         return data
 
     def __scrape_issues_page(self):
-        data = requests.get(f"https://github.com/{self.username}/{self.repository}/issues"
+        data = requests.get(
+            f"https://github.com/{self.username}/{self.repository}/issues"
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
-    
+
     def __scrape_pull_requests_page(self):
         data = requests.get(
             f"https://github.com/{self.username}/{self.repository}/pulls"
@@ -121,7 +121,6 @@ class Repository:
             message = "Oops! No Stars found"
             return message
 
-
     def pull_requests(self):
         """
         Get the number of pull requests opened in a repository.
@@ -130,7 +129,7 @@ class Repository:
         try:
             pull_requests = (
                 data.find_all(class_="UnderlineNav-item mr-0 mr-md-1 mr-lg-3")[2]
-                .find_all("span")[1]    
+                .find_all("span")[1]
                 .text.strip()
             )
             return pull_requests
@@ -171,7 +170,6 @@ class Repository:
             return message
 
     def issues_count(self):
-
         """
         Fetch total issues in a repository
         """
@@ -182,47 +180,57 @@ class Repository:
         except:
             message = "Failed to fetch no. of issues"
             return message
-        
+
     def readme(self):
         """
         Fetch readme.md of a user
         """
         session = requests_html.HTMLSession()
-        r = session.get(f"https://github.com/{self.username}/{self.username}/blob/main/README.md")
+        r = session.get(
+            f"https://github.com/{self.username}/{self.username}/blob/main/README.md"
+        )
         markdown_content = r.text
 
         try:
-            with open('out.md', 'w', encoding='utf-8') as f:
+            with open("out.md", "w", encoding="utf-8") as f:
                 f.write(markdown_content)
         except:
-            err=f"No readme found for {self.username}"
+            err = f"No readme found for {self.username}"
             return err
-    
+
     def get_pull_requests_ids(self):
         """
         Fetch all opened pull requests id's of a repository
         """
         data = self.__scrape_pull_requests_page()
         try:
-            pr_body = data.find('div', class_='js-navigation-container js-active-navigation-container')
+            pr_body = data.find(
+                "div", class_="js-navigation-container js-active-navigation-container"
+            )
             pull_requests_ids = []
-            for each_pr in pr_body.find_all('a', class_='Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title'):
-                pr_id = each_pr['href'].split('/')[-1]
+            for each_pr in pr_body.find_all(
+                "a",
+                class_="Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title",
+            ):
+                pr_id = each_pr["href"].split("/")[-1]
                 pull_requests_ids.append(pr_id)
 
-            return pull_requests_ids           
+            return pull_requests_ids
         except:
             message = "No pull requests found"
             return message
 
-        
     def commits(self):
         """
-        Fetch the number of commits in a repository 
+        Fetch the number of commits in a repository
         """
         data = self.__scrape_page()
         try:
-            commits = (data.find("a",href=f"/{self.username}/{self.repository}/commits").find("span").text.strip())
+            commits = (
+                data.find("a", href=f"/{self.username}/{self.repository}/commits")
+                .find("span")
+                .text.strip()
+            )
             return commits
         except:
             message = "No commits found"
@@ -233,7 +241,9 @@ class Repository:
         """
         data = self.__scrape_issues_page()
         try:
-            issues = data.find_all(class_="Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title")
+            issues = data.find_all(
+                class_="Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title"
+            )
             allIssues = []
 
             for item in issues:
@@ -244,14 +254,16 @@ class Repository:
             return message
 
     def get_contributors(self):
-        data= self.__scrape_page()
+        data = self.__scrape_page()
 
         try:
-            contributors = data.find_all("a", href=f"/{self.username}/{self.repository}/graphs/contributors")
-            contributor=[]
+            contributors = data.find_all(
+                "a", href=f"/{self.username}/{self.repository}/graphs/contributors"
+            )
+            contributor = []
             for it in contributors:
                 contributor.append(it.get_text())
-            return contributor[0].strip() 
+            return contributor[0].strip()
         except:
-            message="Oops! No contributors found"
-            return message 
+            message = "Oops! No contributors found"
+            return message
