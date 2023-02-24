@@ -63,6 +63,7 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 | Methods | Details                                                     |
 |---|-------------------------------------------------------------|
 |  `.fork_count()` | Returns the number of forks of a repository.                |
+|  `.get_contributors()` | Returns the number of contributors of a repository.                |
 |  `.topics()` | Returns the topics of a repository.                         |
 |  `.pull_requests()` | Returns the number of pull requests opened in a repository. |
 |  `.tags()` | Returns the last ten tags of a repository.                  |
