@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 
 
 class Organization:
@@ -290,3 +291,60 @@ class Organization:
             return repositories
         except:
             return "No repositories found for this organization"
+
+    def pinned_repository(self):
+        organization = self.organization
+
+        data = self.__scrape_page()
+
+        try:
+            pinned_repos = data.find('ol', class_='d-flex flex-wrap list-style-none gutter-condensed mb-2 js-pinned-items-reorder-list')
+
+            repo_info_list = []
+
+            for repo in pinned_repos.find_all('li'):
+                name = repo.find('span', class_='repo').text.strip()
+
+                desc = repo.find('p', class_='pinned-item-desc color-fg-muted text-small mt-2 mb-0').text.strip()
+
+                top_tech = repo.find('span', itemprop='programmingLanguage').text.strip()
+
+                url = 'https://github.com' + repo.find('a', href=True)['href']
+                response = requests.get(url)
+                
+
+                url_parts = url.split("/")
+
+                organization = url_parts[3]
+
+                repository = url_parts[4]
+                
+                soup = BeautifulSoup(response.content, 'html.parser')
+
+                star_count_elem = soup.find("a", href=f"/{organization}/{repository}/stargazers").find("span")
+                star_count = int(star_count_elem.text.strip())
+
+                stats_body = soup.find("ul", class_="pagehead-actions flex-shrink-0 d-none d-md-inline")
+                forks = stats_body.find("span", id="repo-network-counter")
+                fork_count = forks.text.strip()
+
+                repo_info = {
+                    'name': name,
+                    'link': url,
+                    'detail': desc,
+                    'top_lang': top_tech,
+                    'stars': star_count,
+                    'forks': fork_count
+                }
+                repo_info_list.append(repo_info)
+
+            json_data = json.dumps(repo_info_list)
+
+            return json_data
+
+        except:
+            return "no pinned repository found for this organisation"
+
+
+
+
