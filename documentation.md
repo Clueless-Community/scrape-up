@@ -51,6 +51,8 @@ user = github.Users(username="nikhil25803")
 |  `.get_following_users()` | Returns the list of users followed by a user. |
 |  `.get_achievements()` | Returns the list of achievements of an user. |
 |  `.get_status()` | Returns the status of an user. |
+|  `.get_contribution_streak()` | Returns the maximum contribution streak of an user in past year starting from current date. |
+
 -----
 
 ### Scrape Repository details

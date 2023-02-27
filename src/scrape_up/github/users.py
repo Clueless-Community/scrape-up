@@ -300,5 +300,5 @@ class Users:
             else:
                 count+= 1
                 result = max(result, count)
-        print(int(result))
+        return int(result)
 
