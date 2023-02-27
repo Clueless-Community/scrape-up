@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import respository
 
 
 class Users:
@@ -304,3 +305,54 @@ class Users:
             return int(result) 
         except:
             return "contribution streak cannot be obtained"
+    
+    def __get_page_details(self, link):
+        '''
+        scrape the data in the page
+        '''
+        data = requests.get(link)
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
+    
+    def get_pages(self, curr_repo_link, pages_links):
+        '''
+        get the links of all the pages of the repositories
+        '''
+        data = self.__get_page_details(curr_repo_link)
+        pages_body = data.find('div', class_='paginate-container')
+        if pages_body.find('a', class_='next_page') != None:
+            pages_links.append("https://github.com" + pages_body.find('a', class_='next_page')['href'])
+            self.get_pages(pages_links[-1], pages_links)
+
+        return pages_links
+
+    def get_repository_details(self):
+        '''
+        Fetches the details of the repositories of a GitHub user.
+        '''
+        username = self.username
+        repository_link = f"https://github.com/{username}?tab=repositories"
+        try:
+            # get all the pages of the repositories
+            pages_links = self.get_pages(repository_link, [repository_link])
+            repositories = []
+            for page in pages_links:
+                page_data = self.__get_page_details(page)
+                # get the repositories in the page
+                repositories_body = page_data.find('div', id = 'user-repositories-list')
+                for repo in repositories_body.find_all('li'):
+                    repo_name = repo.find('a', attrs = {'itemprop': 'name codeRepository'}).text.strip()
+                    repo_url = f"https://github.com/{repo.find('a', attrs = {'itemprop': 'name codeRepository'})['href']}"
+                    repo_description_body = repo.find('p', attrs = {'itemprop': 'description'})
+                    repo_description = repo_description_body.text.strip() if repo_description_body != None else "No description"
+                    repo_language_body = repo.find('span', attrs = {'itemprop': 'programmingLanguage'})
+                    repo_language = repo_language_body.text.strip() if repo_language_body != None else "No language"
+                    # create a repository object
+                    repository_name = repo_url.split('/')[-1]
+                    repository = respository.Repository(username, repository_name) 
+                    repo_forks, repo_stars, repo_issues, repo_pull_requests = repository.fork_count(), repository.star_count(), repository.issues_count(), repository.pull_requests()
+                    repositories.append({"name": repo_name, "url": repo_url, "description": repo_description, "language": repo_language, "forks": repo_forks, "stars": repo_stars, "issues": repo_issues, "pull_requests": repo_pull_requests})
+                        
+            return repositories
+        except:
+            return "No repositories found"
