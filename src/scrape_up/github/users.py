@@ -259,4 +259,47 @@ class Users:
             return t.text.strip().replace('\n','')
         except: 
             return "Status not available"
+    def getMaxLength(arr, n):
+        count = 0
+        result = 0
+    
+        for i in range(0, n):
+            if (arr[i] == 0):
+                count = 0
+    
+            # If 1 is found, increment count
+            # and update result if count
+            # becomes more.
+            else:
+                
+                # increase count
+                count+= 1
+                result = max(result, count)
+            
+        return result
+    def get_contribution_streak(self):
+        data=self.__scrape_page()
+        t=data.find_all("rect", class_="ContributionCalendar-day")
+        array=[]
+        for a in t:
+            contri=a.get_text()
+            if contri:
+                if contri[0]=='N':
+                    array.append(0)
+                else :
+                    array.append(1)
         
+        count = 0
+        result = 0
+    
+        for i in range(0, len(array)):
+            if (array[i] == 0):
+                count = 0.
+            else:
+                count+= 1
+                result = max(result, count)
+        print(int(result))
+        
+
+u=Users("nikhil25803")
+u.get_contribution_streak()
