@@ -279,3 +279,28 @@ class Users:
         except:
             message = f"Status not found for username {self.username}"
             return message
+    def get_contribution_streak(self):
+        try: 
+            data=self.__scrape_page()
+            t=data.find_all("rect", class_="ContributionCalendar-day")
+            array=[]
+            for a in t:
+                contri=a.get_text()
+                if contri:
+                    if contri[0]=='N':
+                        array.append(0)
+                    else :
+                        array.append(1)
+            
+            count = 0
+            result = 0
+        
+            for i in range(0, len(array)):
+                if (array[i] == 0):
+                    count = 0.
+                else:
+                    count+= 1
+                    result = max(result, count)
+            return int(result) 
+        except:
+            return "contribution streak cannot be obtained"
