@@ -52,6 +52,7 @@ user = github.Users(username="nikhil25803")
 |  `.get_achievements()` | Returns the list of achievements of an user. |
 |  `.get_status()` | Returns the status of an user. |
 |  `.get_contribution_streak()` | Returns the maximum contribution streak of an user in past year starting from current date. |
+|  `.get_repository_details()` | Returns the list of repositories with their details. |
 
 -----
 
