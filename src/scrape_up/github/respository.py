@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import requests_html
+# import requests_html
 import os
 
 
@@ -270,7 +270,7 @@ class Repository:
             return message
 
     
-    def get_special_repo(self):
+    def get_readme(self):
         """
         Get the special repository of the user and save it locally.
         """
@@ -288,6 +288,6 @@ class Repository:
                 return error
             data = data.text
             readmeFile = os.open(path + "/README.md", os.O_RDWR | os.O_CREAT)
-            ret = os.write(readmeFile, data.encode("utf-8"))
+            os.write(readmeFile, data.encode("utf-8"))
             message = "README.md found & saved"
             return message
