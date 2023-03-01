@@ -50,6 +50,10 @@ user = github.Users(username="nikhil25803")
 |  `.get_followers()` | Returns the list of followers of a user. |
 |  `.get_following_users()` | Returns the list of users followed by a user. |
 |  `.get_achievements()` | Returns the list of achievements of an user. |
+|  `.get_status()` | Returns the status of an user. |
+|  `.get_contribution_streak()` | Returns the maximum contribution streak of an user in past year starting from current date. |
+|  `.get_repository_details()` | Returns the list of repositories with their details. |
+
 -----
 
 ### Scrape Repository details
@@ -131,3 +135,5 @@ repository = github.Organization(organization_name="Clueless-Community")
 |  `.people()` | Returns the list of people in an organization. |
 |  `.peoples() ` | Returns the number of people in a organization. |
 |  `.get_location() ` | Returns the location of an organization. |
+|  `.repository_details()` | Returns the list of repositories with their details. |
+|  `.pinned_repository()` | Returns the list of pinned repositories with their details. |
