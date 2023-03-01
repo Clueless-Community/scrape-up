@@ -4,6 +4,7 @@ import requests_html
 
 
 
+
 class Repository:
     def __init__(self, username: str, repository_name: str):
         self.username = username
@@ -48,7 +49,7 @@ class Repository:
         data = self.__scrape_page()
 
         try:
-            languages = data.find_all(class_="color-fg-default text-bold mr-1")
+            languages = data.find_all( class_="color-fg-default text-bold mr-1")
             allLanguages = []
             for item in languages:
                 allLanguages.append(item.text)
@@ -255,3 +256,5 @@ class Repository:
         except:
             message="Oops! No contributors found"
             return message 
+
+

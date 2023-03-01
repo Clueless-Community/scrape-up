@@ -130,3 +130,4 @@ repository = github.Organization(organization_name="Clueless-Community")
 |  `.repositories()` | Returns the list of repositories of an organization. |
 |  `.people()` | Returns the list of people in an organization. |
 |  `.peoples() ` | Returns the number of people in a organization. |
+|  `.get_location() ` | Returns the location of an organization. |

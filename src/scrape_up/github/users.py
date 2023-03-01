@@ -260,4 +260,3 @@ class Users:
             # print(page.find_all("a"))
         except:
             message=f"Following users not found for username {self.username}"
-
