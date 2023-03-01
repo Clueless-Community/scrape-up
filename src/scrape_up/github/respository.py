@@ -3,11 +3,6 @@ from bs4 import BeautifulSoup
 import requests_html
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 9d7599db2898e58413d0191ce4580d48138c853b
 class Repository:
     def __init__(self, username: str, repository_name: str):
         self.username = username
@@ -270,12 +265,6 @@ class Repository:
                 contributor.append(it.get_text())
             return contributor[0].strip()
         except:
-<<<<<<< HEAD
-            message="Oops! No contributors found"
-            return message 
-
-
-=======
             message = "Oops! No contributors found"
             return message
->>>>>>> 9d7599db2898e58413d0191ce4580d48138c853b
+
