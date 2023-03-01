@@ -366,6 +366,3 @@ class Organization:
         return links
 
         
-
-orrg=Organization('oppia')
-print(orrg.get_organization_links())
