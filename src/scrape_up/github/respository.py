@@ -361,8 +361,11 @@ class Repository:
             update=data.find_all("relative-time", class_="no-wrap")
             return update[0].get_text()
         except:
-            message="Oops! No Repo or Organization found"
-            return message
+            message=f"No updation found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
     
 
             
