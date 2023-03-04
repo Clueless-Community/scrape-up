@@ -5,11 +5,9 @@ import requests_html
 import os
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> b83e7288cedf1a5b84183ca489bd4269a31b8653
+
 class Repository:
     def __init__(self, username: str, repository_name: str):
         self.username = username
@@ -55,7 +53,7 @@ class Repository:
         data = self.__scrape_page()
 
         try:
-            languages = data.find_all(class_="color-fg-default text-bold mr-1")
+            languages = data.find_all( class_="color-fg-default text-bold mr-1")
             allLanguages = []
             for item in languages:
                 allLanguages.append(item.text)
@@ -350,9 +348,11 @@ class Repository:
                 "message": f"Contributors of {self.repository} repository",
             }
         except:
-<<<<<<< HEAD
-            message="Oops! No contributors found"
-            return message 
+            message = f"No contributors found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
 
     def last_update_at(self):
@@ -364,14 +364,8 @@ class Repository:
             message="Oops! No Repo or Organization found"
             return message
     
-t=Repository("Clueless-Community","scrape-up")
-print(t.last_update_at())
-=======
-            message = f"No contributors found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+
+            
 
     def get_readme(self):
         """
@@ -401,4 +395,3 @@ print(t.last_update_at())
             os.write(readmeFile, data.encode("utf-8"))
             message = "README.md found & saved"
             return message
->>>>>>> b83e7288cedf1a5b84183ca489bd4269a31b8653
