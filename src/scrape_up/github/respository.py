@@ -310,6 +310,13 @@ class Repository:
         try:
             data = self.__scrape_deployments_page()
             link = data.find("a",class_='btn btn-outline flex-self-start mt-2 mt-md-0').get('href')
-            return link 
+            return {
+                "data": link,
+                "message": f"Found the latest {link} from {self.repository}",
+            }
         except:
-            return "Oops! An Error occured"
+            message = f"No link found for {self.repository}"
+            return {
+                "data": None,
+                "message": message,
+            }
