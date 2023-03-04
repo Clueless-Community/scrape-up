@@ -77,6 +77,7 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 |  `.get_issues()` | Returns list of all open issues in a repository. |
 |  `.commits()` | Returns number of commits in a repository. |
 |  `.get_readme()` | Returns & saves README.md file of the special repository (if exists)|
+|  `.get_environment()` | Returns the latest deployed link of a repository (if exists). |
 ------------
 
 ### Scrape an issue details
