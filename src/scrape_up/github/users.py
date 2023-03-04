@@ -267,6 +267,7 @@ class Users:
             print(cmp.text)
             # print(page.find_all("a"))
         except:
+            message=f"Following users not found for username {self.username}"
             message = f"Following users not found for username {self.username}"
             return message
 

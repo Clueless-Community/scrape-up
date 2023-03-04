@@ -201,6 +201,15 @@ class Organization:
         except:
             return "No people found for this organization"
 
+    def get_location(self):
+        page=self.__scrape_page()
+        lc=page.find("span", itemprop="location")
+        if lc:
+            return lc.text.strip()
+        else:
+            message="Oops! No Organization found"
+            return message
+    
     def repository_stats(self, repo_url):
         """
         Returns the stats of a repository

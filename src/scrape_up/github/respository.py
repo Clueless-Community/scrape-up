@@ -49,7 +49,7 @@ class Repository:
         data = self.__scrape_page()
 
         try:
-            languages = data.find_all(class_="color-fg-default text-bold mr-1")
+            languages = data.find_all( class_="color-fg-default text-bold mr-1")
             allLanguages = []
             for item in languages:
                 allLanguages.append(item.text)
@@ -291,3 +291,4 @@ class Repository:
             os.write(readmeFile, data.encode("utf-8"))
             message = "README.md found & saved"
             return message
+
