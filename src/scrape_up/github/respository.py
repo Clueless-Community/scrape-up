@@ -42,6 +42,13 @@ class Repository:
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
+    
+    def __scrape_deployments_page(self):
+        data = requests.get(
+            f"https://github.com/{self.username}/{self.repository}/deployments/activity_log"
+        )
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
 
     def languagesUsed(self):
         """
@@ -295,3 +302,14 @@ class Repository:
             os.write(readmeFile, data.encode("utf-8"))
             message = "README.md found & saved"
             return message
+
+    def get_environment(self):
+        """
+        Fetch recent deployment link of a repository
+        """
+        try:
+            data = self.__scrape_deployments_page()
+            link = data.find("a",class_='btn btn-outline flex-self-start mt-2 mt-md-0').get('href')
+            return link 
+        except:
+            return "Oops! An Error occured"
