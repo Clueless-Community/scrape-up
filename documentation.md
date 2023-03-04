@@ -69,6 +69,7 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 |  `.get_contributors()` | Returns the number of contributors of a repository.                |
 |  `.topics()` | Returns the topics of a repository.                         |
 |  `.pull_requests()` | Returns the number of pull requests opened in a repository. |
+|  `.last_updated_at()` | Returns the last updated date of a repository. |
 |  `.tags()` | Returns the last ten tags of a repository.                  |
 |  `.releases()` | Returns the last ten releases of a repository.                  |
 |  `.issues_count()` | Returns number of issues in a repository |
@@ -76,6 +77,7 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 |  `.get_pull_requests_ids()` | Returns all id's of opened pull requests in a repository. |
 |  `.get_issues()` | Returns list of all open issues in a repository. |
 |  `.commits()` | Returns number of commits in a repository. |
+|  `.get_readme()` | Returns & saves README.md file of the special repository (if exists)|
 ------------
 
 ### Scrape an issue details
@@ -137,3 +139,4 @@ repository = github.Organization(organization_name="Clueless-Community")
 |  `.get_location() ` | Returns the location of an organization. |
 |  `.repository_details()` | Returns the list of repositories with their details. |
 |  `.pinned_repository()` | Returns the list of pinned repositories with their details. |
+|  `.get_organization_links()` | Returns a dictionary of important website links of a community. |

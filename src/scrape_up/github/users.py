@@ -13,17 +13,36 @@ class Users:
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
-    def followers(self):
+    def followers(self) -> str:
         """
-        Fetch the number of followers of a GitHub user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        followers = user.followers()
+        ```
+        Return\n
+        ```python
+        return 
+        {
+            "data": followers.text,
+            "message":f"Followers found for user {self.username}"
+        }  
+        ```
         """
         page = self.__scrape_page()
         try:
             followers = page.find(class_="text-bold color-fg-default")
-            return followers.text
+            return {
+                "data": followers.text,
+                "message":f"Followers found for user {self.username}"
+            }
         except:
-            message = f"{self.username} not found !"
-            return message
+            message = f"Followers not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def following(self):
         """ "
@@ -32,11 +51,16 @@ class Users:
         page = self.__scrape_page()
         try:
             following = page.find_all(class_="text-bold color-fg-default")
-            # print(page.find_all("span"))
-            return following[1].text
+            return {
+                "data": following[1].text,
+                "message":f"Following found for user {self.username}"
+            }
         except:
-            message = f"{self.username} not found !"
-            return message
+            message = f"Following users are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def get_avatar(self):
         """
@@ -47,10 +71,16 @@ class Users:
             avatar = page.find(
                 class_="avatar avatar-user width-full border color-bg-default"
             )
-            return avatar["src"]
+            return {
+                "data": avatar["src"],
+                "message":f"Avatar found for user {self.username}"
+            }
         except:
-            message = f"Avatart not found for username {self.username}"
-            return message
+            message = f"Avatar not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def get_bio(self):
         """
@@ -61,10 +91,16 @@ class Users:
             bio = page.find(
                 class_="p-note user-profile-bio mb-3 js-user-profile-bio f4"
             )
-            return bio.text
+            return {
+                "data": bio.text,
+                "message":f"Bio found for user {self.username}"
+            }
         except:
-            message = f"Bio not found for username {self.username}"
-            return message
+            message = f"Bio not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def get_repo(self):
         """
@@ -76,10 +112,16 @@ class Users:
                 class_="mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-6"
             )
             titles = [repo.find("span", class_="repo").text for repo in pinned_repos]
-            return titles
+            return {
+                "data": titles,
+                "message":f"Repo found for user {self.username}"
+            }
         except:
-            message = f"pinned repositories not found for username {self.username}"
-            return message
+            message = f"Repos are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def repo_count(self):
         """
@@ -92,10 +134,16 @@ class Users:
             for word in count_repo:
                 find_all_example = word.get_text()
                 count_repo_list.append(find_all_example)
-            return count_repo_list[0]
+            return {
+                "data": count_repo_list[0],
+                "message":f"Repo found for user {self.username}"
+            }
         except:
-            message = f"No. of Repos not found for username {self.username}"
-            return message
+            message = f"Repos are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def star_count(self):
         """
@@ -108,10 +156,16 @@ class Users:
             for words in count_star:
                 find_all_example = words.get_text()
                 count_star_list.append(find_all_example)
-            return count_star_list[3]
+            return {
+                "data": count_star_list[3],
+                "message":f"Star found for user {self.username}"
+            }
         except:
-            message = f"Starred repo not found for username {self.username}"
-            return message
+            message = f"Stars are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def get_yearly_contributions(self):
         """
@@ -120,10 +174,16 @@ class Users:
         page = self.__scrape_page()
         try:
             contributions = page.find("h2", class_="f4 text-normal mb-2")
-            return "".join(contributions.text.split())
+            return {
+                "data": "".join(contributions.text.split()),
+                "message":f"Yearly contributions found for user {self.username}"
+            }
         except:
-            message = f"Yearly contributions not found for username {self.username}"
-            return message
+            message = f"Yearly contributions not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def __get_repo_page(self):
         """
@@ -147,10 +207,16 @@ class Users:
                     "div", class_="col-10 col-lg-9 d-inline-block"
                 ):
                     repositories.append("https://github.com" + repo.a["href"])
-            return repositories
+            return {
+                "data": repositories,
+                "message":f"Repositories found for user {self.username}"
+            }
         except:
-            message = f"Repositories not found for username {self.username}"
-            return message
+            message = f"Repositories are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def get_organizations(self):
         """
@@ -159,10 +225,16 @@ class Users:
         page = self.__scrape_page()
         try:
             orgs = [org.login for org in page.get_orgs()]
-            return orgs
+            return {
+                "data": orgs,
+                "message":f"Organizations found for user {self.username}"
+            }
         except:
-            message = f"No organizations found for the username {self.username}"
-            return message
+            message = f"Organizations are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def get_achievements(self):
         """
@@ -177,9 +249,16 @@ class Users:
                 achievement.append(data[itr]["alt"].split(":")[1].strip(" "))
                 itr = itr + 1
 
-            return achievement
+            return {
+                "data": achievement,
+                "message":f"Achievements found for user {self.username}"
+            }
         except:
-            return "Achievements cannot be fetched"
+            message = f"Achievements are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def __get_starred_page(self):
         """
@@ -204,10 +283,16 @@ class Users:
                     class_="col-12 d-block width-full py-4 border-bottom color-border-muted",
                 ):
                     starred_repos.append("https://github.com" + repo.a["href"])
-            return starred_repos
+            return {
+                "data": starred_repos,
+                "message":f"Starred repositories found for user {self.username}"
+            }
         except:
-            message = f"Starred repositories not found for username {self.username}"
-            return message
+            message = f"Starred repositories are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def __scrape_followers_page(self):
         """
@@ -220,7 +305,7 @@ class Users:
 
     def get_followers(self):
         """
-        Fetches the following users of a GitHub user.
+        Fetch the list of followers a user have.
         """
         page = self.__scrape_followers_page()
         try:
@@ -229,10 +314,16 @@ class Users:
             for user in followers_body.find_all("span", class_="Link--secondary"):
                 followers.append(user.text.strip())
 
-            return followers
+            return {
+                "data": followers,
+                "message":f"Followers found for user {self.username}"
+            }
         except:
-            message = f"Followers not found for username {self.username}"
-            return message
+            message = f"Followers are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def __scrape_following_page(self):
         """
@@ -255,82 +346,121 @@ class Users:
             for user in following_body.find_all("span", class_="Link--secondary"):
                 following.append(user.text.strip())
 
-            return following
+            return {
+                "data": following,
+                "message":f"Following users found for user {self.username}"
+            }
         except:
-            message = f"Following users not found for username {self.username}"
-            return message
+            message = f"Following users are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def company(self):
         page = self.__scrape_following_page()
         try:
             cmp = page.find(class_="Link--primary")
-            print(cmp.text)
-            # print(page.find_all("a"))
+            return {
+                "data": cmp.text,
+                "message":f"Company found for user {self.username}"
+            }
         except:
-            message=f"Following users not found for username {self.username}"
-            message = f"Following users not found for username {self.username}"
-            return message
+            message = f"Company is not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def get_status(self):
+        """
+        Fetch the number of contribution made in recent month.
+        """
         try:
             data = self.__scrape_page()
             t = data.find(
                 "div", class_="user-status-container position-relative hide-sm hide-md"
             )
-            return t.text.strip().replace("\n", "")
+            return {
+                "data": t.text.strip().replace("\n", ""),
+                "message":f"Status found for user {self.username}"
+            }
         except:
-            message = f"Status not found for username {self.username}"
-            return message
+            message = f"Status is not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
+
     def get_contribution_streak(self):
-        try: 
-            data=self.__scrape_page()
-            t=data.find_all("rect", class_="ContributionCalendar-day")
-            array=[]
+        try:
+            data = self.__scrape_page()
+            t = data.find_all("rect", class_="ContributionCalendar-day")
+            array = []
             for a in t:
-                contri=a.get_text()
+                contri = a.get_text()
                 if contri:
-                    if contri[0]=='N':
+                    if contri[0] == "N":
                         array.append(0)
-                    else :
+                    else:
                         array.append(1)
-            
+
             count = 0
             result = 0
-        
+
             for i in range(0, len(array)):
-                if (array[i] == 0):
-                    count = 0.
+                if array[i] == 0:
+                    count = 0.0
                 else:
-                    count+= 1
+                    count += 1
                     result = max(result, count)
-            return int(result) 
+            return {
+                "data": int(result),
+                "message":f"Contribution streak found for user {self.username}"
+            }
         except:
-            return "contribution streak cannot be obtained"
-    
+            message = f"Contribution streak is not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
+
     def __get_page_details(self, link):
-        '''
+        """
         scrape the data in the page
-        '''
+        """
         data = requests.get(link)
         data = BeautifulSoup(data.text, "html.parser")
         return data
-    
-    def get_pages(self, curr_repo_link, pages_links):
-        '''
-        get the links of all the pages of the repositories
-        '''
-        data = self.__get_page_details(curr_repo_link)
-        pages_body = data.find('div', class_='paginate-container')
-        if pages_body.find('a', class_='next_page') != None:
-            pages_links.append("https://github.com" + pages_body.find('a', class_='next_page')['href'])
-            self.get_pages(pages_links[-1], pages_links)
 
-        return pages_links
+    def get_pages(self, curr_repo_link, pages_links):
+        """
+        get the links of all the pages of the repositories
+        """
+        data = self.__get_page_details(curr_repo_link)
+        try:
+            pages_body = data.find("div", class_="paginate-container")
+            if pages_body.find("a", class_="next_page") != None:
+                pages_links.append(
+                    "https://github.com" + pages_body.find("a", class_="next_page")["href"]
+                )
+                self.get_pages(pages_links[-1], pages_links)
+
+            return {
+                "data": pages_links,
+                "message":f"Pages found for user {self.username}"
+            }
+        except:
+            message = f"Pages for repos are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }
 
     def get_repository_details(self):
-        '''
+        """
         Fetches the details of the repositories of a GitHub user.
-        '''
+        """
         username = self.username
         repository_link = f"https://github.com/{username}?tab=repositories"
         try:
@@ -340,20 +470,57 @@ class Users:
             for page in pages_links:
                 page_data = self.__get_page_details(page)
                 # get the repositories in the page
-                repositories_body = page_data.find('div', id = 'user-repositories-list')
-                for repo in repositories_body.find_all('li'):
-                    repo_name = repo.find('a', attrs = {'itemprop': 'name codeRepository'}).text.strip()
+                repositories_body = page_data.find("div", id="user-repositories-list")
+                for repo in repositories_body.find_all("li"):
+                    repo_name = repo.find(
+                        "a", attrs={"itemprop": "name codeRepository"}
+                    ).text.strip()
                     repo_url = f"https://github.com/{repo.find('a', attrs = {'itemprop': 'name codeRepository'})['href']}"
-                    repo_description_body = repo.find('p', attrs = {'itemprop': 'description'})
-                    repo_description = repo_description_body.text.strip() if repo_description_body != None else "No description"
-                    repo_language_body = repo.find('span', attrs = {'itemprop': 'programmingLanguage'})
-                    repo_language = repo_language_body.text.strip() if repo_language_body != None else "No language"
+                    repo_description_body = repo.find(
+                        "p", attrs={"itemprop": "description"}
+                    )
+                    repo_description = (
+                        repo_description_body.text.strip()
+                        if repo_description_body != None
+                        else "No description"
+                    )
+                    repo_language_body = repo.find(
+                        "span", attrs={"itemprop": "programmingLanguage"}
+                    )
+                    repo_language = (
+                        repo_language_body.text.strip()
+                        if repo_language_body != None
+                        else "No language"
+                    )
                     # create a repository object
-                    repository_name = repo_url.split('/')[-1]
-                    repository = respository.Repository(username, repository_name) 
-                    repo_forks, repo_stars, repo_issues, repo_pull_requests = repository.fork_count(), repository.star_count(), repository.issues_count(), repository.pull_requests()
-                    repositories.append({"name": repo_name, "url": repo_url, "description": repo_description, "language": repo_language, "forks": repo_forks, "stars": repo_stars, "issues": repo_issues, "pull_requests": repo_pull_requests})
-                        
-            return repositories
+                    repository_name = repo_url.split("/")[-1]
+                    repository = respository.Repository(username, repository_name)
+                    repo_forks, repo_stars, repo_issues, repo_pull_requests = (
+                        repository.fork_count(),
+                        repository.star_count(),
+                        repository.issues_count(),
+                        repository.pull_requests(),
+                    )
+                    repositories.append(
+                        {
+                            "name": repo_name,
+                            "url": repo_url,
+                            "description": repo_description,
+                            "language": repo_language,
+                            "forks": repo_forks,
+                            "stars": repo_stars,
+                            "issues": repo_issues,
+                            "pull_requests": repo_pull_requests,
+                        }
+                    )
+
+            return {
+                "data": repositories,
+                "message":f"Repositories found for user {self.username}"
+            }
         except:
-            return "No repositories found"
+            message = f"Repositories are not found for user {self.username}"
+            return {
+                "data":None,
+                "message":message
+            }

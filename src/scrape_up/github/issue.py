@@ -27,10 +27,16 @@ class Issue:
                 "a", class_="assignee Link--primary css-truncate-target width-fit"
             ):
                 assignees.append(assignee.text.replace("\n", "").strip())
-            return assignees
+            return {
+                "data": assignees,
+                "message": f"Found assignees for {self.repository}",
+            }
         except:
-            message = "No assignees found"
-            return message
+            message = f"No assignees found for {self.repository}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def labels(self):
         """
@@ -45,18 +51,34 @@ class Issue:
             allLabels = []
             for label in allLabelsHtml:
                 allLabels.append(label.text)
-            return allLabels
+            return {
+                "data": allLabels,
+                "message": f"Found labels for {self.repository}",
+            }
         except:
-            message = "No label found"
-            return message
+            message = f"No labels found for {self.repository}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def opened_by(self):
         """
         Fetch the name of the user, who opened the issue
         """
         data = self.__scrape_page()
-        author_name = data.find("a", class_="author text-bold Link--secondary").text
-        return author_name
+        try:
+            author_name = data.find("a", class_="author text-bold Link--secondary").text
+            return {
+                "data": author_name,
+                "message": f"Found author for {self.repository}",
+            }
+        except:
+            message = f"No author found for {self.repository}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def title(self):
         """
@@ -66,10 +88,16 @@ class Issue:
         try:
             title_body = data.find("bdi", class_="js-issue-title markdown-title")
             title = title_body.text.strip()
-            return title
+            return {
+                "data": title,
+                "message": f"Found title for {self.repository}",
+            }
         except:
-            message = "No title found"
-            return message
+            message = f"No title found for {self.repository}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def opened_at(self):
         """
@@ -77,10 +105,16 @@ class Issue:
         """
         try:
             data = self.__scrape_page()
-            return data.find("relative-time").text
+            return {
+                "data": data.find("relative-time").text,
+                "message": f"Found time for {self.repository}",
+            }
         except:
-            message = "Unable to fetch time"
-            return message
+            message = f"No time found for {self.repository}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def is_milestone(self):
         """
@@ -91,7 +125,13 @@ class Issue:
             milestone = data.find(
                 "a", class_="Link--secondary mt-1 d-block text-bold css-truncate"
             ).text.strip()
-            return milestone
+            return {
+                "data": milestone,
+                "message": f"Found milestone for {self.repository}",
+            }
         except:
-            message = "No milestone"
-            return message
+            message = f"No milestone found for {self.repository}"
+            return {
+                "data": None,
+                "message": message,
+            }

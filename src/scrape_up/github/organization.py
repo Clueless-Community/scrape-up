@@ -24,20 +24,37 @@ class Organization:
             )
             for lang in lang_raw:
                 languages.append(lang.get_text().strip())
-            return languages
+            return {
+                "data": languages,
+                "message": f"Found languages for {self.organization}",
+            }
         except:
-            return "An exception occured, cannot get the languages"
+            message = f"No languages found for {self.organization}"
+            return {
+                "data": languages,
+                "message": message,
+            }
 
     def top_topics(self):
         """
         Returns list of the most used topics in an organization
         """
         page = self.__scrape_page()
-        all_topics = page.find_all(class_="topic-tag topic-tag-link")
-        topics = []
-        for topic in all_topics:
-            topics.append(topic.text.strip())
-        return topics
+        try:
+            all_topics = page.find_all(class_="topic-tag topic-tag-link")
+            topics = []
+            for topic in all_topics:
+                topics.append(topic.text.strip())
+            return {
+                "data": topics,
+                "message": f"Found topics for {self.organization}",
+            }
+        except:
+            message = f"No topics found for {self.organization}"
+            return {
+                "data": topics,
+                "message": message,
+            }
 
     def followers(self):
         """
@@ -49,9 +66,16 @@ class Organization:
                 "a", class_="Link--secondary no-underline no-wrap"
             )
             followers = followers_body.span.text.strip()
-            return followers
+            return {
+                "data": followers,
+                "message": f"Found {followers} followers for {self.organization}",
+            }
         except:
-            return "No followers found for this organization"
+            message = f"No followers found for {self.organization}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def avatar(self):
         """
@@ -61,9 +85,16 @@ class Organization:
         try:
             avatar = page.find("a", attrs={"itemprop": "url"})
             url = avatar.text.strip()
-            return url
+            return {
+                "data": url,
+                "message": f"Found avatar for {self.organization}",
+            }
         except:
-            return "No avatar found for this organization"
+            message = f"No avatar found for {self.organization}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def __scrape_repositories_page(self):
         """
@@ -113,9 +144,16 @@ class Organization:
                 ):
                     repositories.append(repo.text.strip())
 
-            return repositories
+            return {
+                "data": repositories,
+                "message": f"Found {len(repositories)} repositories for {organization}",
+            }
         except:
-            return "No repositories found for this organization"
+            message = f"No repositories found for {organization}"
+            return {
+                "data": repositories,
+                "message": message,
+            }
 
     def __scrape_people_page(self):
         """
@@ -165,9 +203,16 @@ class Organization:
                     person_username = person.find("a", class_="d-inline-block")
                     people.append(person_username["href"][1:])
 
-            return people
+            return {
+                "data": people,
+                "message": f"Found {len(people)} people for {organization}",
+            }
         except:
-            return "No people found for this organization"
+            message = f"No people found for {organization}"
+            return {
+                "data": people,
+                "message": message,
+            }
 
     def peoples(self):
         """
@@ -197,19 +242,32 @@ class Organization:
                 people_body = page_data.find("div", id="org-members-table")
                 people_count = len(people_body.find_all("li"))
 
-            return people_count
+            return {
+                "data": people_count,
+                "message": f"Found {people_count} people for {self.organization}",
+            }
         except:
-            return "No people found for this organization"
+            message = f"No people found for {self.organization}"
+            return {
+                "data": people_count,
+                "message": message,
+            }
 
     def get_location(self):
-        page=self.__scrape_page()
-        lc=page.find("span", itemprop="location")
-        if lc:
-            return lc.text.strip()
-        else:
-            message="Oops! No Organization found"
-            return message
-    
+        page = self.__scrape_page()
+        try:
+            lc = page.find("span", itemprop="location")
+            return {
+                "data": lc.text.strip(),
+                "message": f"Found location for {self.organization}",
+            }
+        except:
+            message = f"No location found for {self.organization}"
+            return {
+                "data": None,
+                "message": message,
+            }
+
     def repository_stats(self, repo_url):
         """
         Returns the stats of a repository
@@ -227,9 +285,21 @@ class Organization:
                 "span", id="pull-requests-repo-tab-count"
             ).text.strip()
 
-            return forksCount, starCount, issuesCount, pullRequests
+            return {
+                "data": {
+                    "forks": forksCount,
+                    "stars": starCount,
+                    "issues": issuesCount,
+                    "pullRequests": pullRequests,
+                },
+                "message": f"Found stats for {repo_url}",
+            }
         except:
-            return "No such repository found"
+            message = f"No stats found for {repo_url}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def repository_details(self):
         """
@@ -297,9 +367,16 @@ class Organization:
                         }
                     )
 
-            return repositories
+            return {
+                "data": repositories,
+                "message": f"Found {len(repositories)} repositories for {organization}",
+            }
         except:
-            return "No repositories found for this organization"
+            message = f"No repositories found for {organization}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def pinned_repository(self):
         organization = self.organization
@@ -307,53 +384,84 @@ class Organization:
         data = self.__scrape_page()
 
         try:
-            pinned_repos = data.find('ol', class_='d-flex flex-wrap list-style-none gutter-condensed mb-2 js-pinned-items-reorder-list')
+            pinned_repos = data.find(
+                "ol",
+                class_="d-flex flex-wrap list-style-none gutter-condensed mb-2 js-pinned-items-reorder-list",
+            )
 
             repo_info_list = []
 
-            for repo in pinned_repos.find_all('li'):
-                name = repo.find('span', class_='repo').text.strip()
+            for repo in pinned_repos.find_all("li"):
+                name = repo.find("span", class_="repo").text.strip()
 
-                desc = repo.find('p', class_='pinned-item-desc color-fg-muted text-small mt-2 mb-0').text.strip()
+                desc = repo.find(
+                    "p", class_="pinned-item-desc color-fg-muted text-small mt-2 mb-0"
+                ).text.strip()
 
-                top_tech = repo.find('span', itemprop='programmingLanguage').text.strip()
+                top_tech = repo.find(
+                    "span", itemprop="programmingLanguage"
+                ).text.strip()
 
-                url = 'https://github.com' + repo.find('a', href=True)['href']
+                url = "https://github.com" + repo.find("a", href=True)["href"]
                 response = requests.get(url)
-                
 
                 url_parts = url.split("/")
 
                 organization = url_parts[3]
 
                 repository = url_parts[4]
-                
-                soup = BeautifulSoup(response.content, 'html.parser')
 
-                star_count_elem = soup.find("a", href=f"/{organization}/{repository}/stargazers").find("span")
+                soup = BeautifulSoup(response.content, "html.parser")
+
+                star_count_elem = soup.find(
+                    "a", href=f"/{organization}/{repository}/stargazers"
+                ).find("span")
                 star_count = int(star_count_elem.text.strip())
 
-                stats_body = soup.find("ul", class_="pagehead-actions flex-shrink-0 d-none d-md-inline")
+                stats_body = soup.find(
+                    "ul", class_="pagehead-actions flex-shrink-0 d-none d-md-inline"
+                )
                 forks = stats_body.find("span", id="repo-network-counter")
                 fork_count = forks.text.strip()
 
                 repo_info = {
-                    'name': name,
-                    'link': url,
-                    'detail': desc,
-                    'top_lang': top_tech,
-                    'stars': star_count,
-                    'forks': fork_count
+                    "name": name,
+                    "link": url,
+                    "detail": desc,
+                    "top_lang": top_tech,
+                    "stars": star_count,
+                    "forks": fork_count,
                 }
                 repo_info_list.append(repo_info)
 
             json_data = json.dumps(repo_info_list)
 
-            return json_data
-
+            return {
+                "data": json_data,
+                "message": f"Found pinned repositories for {organization}",
+            }
         except:
-            return "no pinned repository found for this organisation"
+            message = f"No pinned repositories found for {organization}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
-
-
-
+    def get_organization_links(self):
+        try:
+            links={}
+            data=self.__scrape_page()
+            website_link=data.find("a",rel="nofollow",itemprop="url",href=True)['href']
+            links['website']=website_link
+            gmail=data.find("a",itemprop="email",href=True)['href']
+            links['gmail']=gmail
+            other_link=data.find_all("a",rel="nofollow",href=True)
+            for o in other_link:
+                name=o['href'].split("//")[1].split('/')[0].replace("www.","").split('.')[0]
+                if name!=self.organization or name.find(self.organization)==-1 :
+                    if not name in links:
+                        links[name]=o['href']
+            return links
+        except : 
+            return "An exception occured, information cannot be printed"
+                
