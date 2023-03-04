@@ -404,3 +404,16 @@ class Repository:
                 "data": None,
                 "message": message,
             }
+
+    def get_branch(self):
+        data = requests.get(f"https://github.com/{self.username}/{self.repository}/branches")
+        data = BeautifulSoup(data.text, "html.parser")
+        try:
+            branch = data.find_all(class_="branch-name css-truncate-target v-align-baseline width-fit mr-2 Details-content--shown")
+            allBranches = []
+            for branchNames in branch:
+                allBranches.append(branchNames.text.strip())
+            return allBranches
+        except:
+            message = "Failed to fetch branches"
+            return message
