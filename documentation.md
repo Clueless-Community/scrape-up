@@ -138,3 +138,4 @@ repository = github.Organization(organization_name="Clueless-Community")
 |  `.get_location() ` | Returns the location of an organization. |
 |  `.repository_details()` | Returns the list of repositories with their details. |
 |  `.pinned_repository()` | Returns the list of pinned repositories with their details. |
+|  `.get_organization_links()` | Returns a dictionary of important website links of a community. |
