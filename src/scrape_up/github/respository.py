@@ -3,11 +3,8 @@ from bs4 import BeautifulSoup
 import requests_html
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 9d7599db2898e58413d0191ce4580d48138c853b
 class Repository:
     def __init__(self, username: str, repository_name: str):
         self.username = username
@@ -270,12 +267,18 @@ class Repository:
                 contributor.append(it.get_text())
             return contributor[0].strip()
         except:
-<<<<<<< HEAD
             message="Oops! No contributors found"
             return message 
 
 
-=======
-            message = "Oops! No contributors found"
+    def last_update_at(self):
+        data=self.__scrape_page()
+        try:
+            update=data.find_all("relative-time", class_="no-wrap")
+            return update[0].get_text()
+        except:
+            message="Oops! No Repo or Organization found"
             return message
->>>>>>> 9d7599db2898e58413d0191ce4580d48138c853b
+    
+t=Repository("Clueless-Community","scrape-up")
+print(t.last_update_at())
