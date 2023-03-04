@@ -38,7 +38,7 @@ class Users:
                 "message":f"Followers found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Followers not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -56,7 +56,7 @@ class Users:
                 "message":f"Following found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Following users are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -76,7 +76,7 @@ class Users:
                 "message":f"Avatar found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Avatar not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -96,7 +96,7 @@ class Users:
                 "message":f"Bio found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Bio not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -117,7 +117,7 @@ class Users:
                 "message":f"Repo found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Repos are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -139,7 +139,7 @@ class Users:
                 "message":f"Repo found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Repos are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -161,7 +161,7 @@ class Users:
                 "message":f"Star found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Stars are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -179,7 +179,7 @@ class Users:
                 "message":f"Yearly contributions found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Yearly contributions not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -212,7 +212,7 @@ class Users:
                 "message":f"Repositories found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Repositories are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -230,7 +230,7 @@ class Users:
                 "message":f"Organizations found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Organizations are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -254,7 +254,7 @@ class Users:
                 "message":f"Achievements found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Achievements are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -288,7 +288,7 @@ class Users:
                 "message":f"Starred repositories found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Starred repositories are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -319,7 +319,7 @@ class Users:
                 "message":f"Followers found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Followers are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -351,7 +351,7 @@ class Users:
                 "message":f"Following users found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Following users are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -366,7 +366,7 @@ class Users:
                 "message":f"Company found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Company is not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -386,7 +386,7 @@ class Users:
                 "message":f"Status found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Status is not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -419,7 +419,7 @@ class Users:
                 "message":f"Contribution streak found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Contribution streak is not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -451,7 +451,7 @@ class Users:
                 "message":f"Pages found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Pages for repos are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
@@ -519,7 +519,7 @@ class Users:
                 "message":f"Repositories found for user {self.username}"
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"Repositories are not found for user {self.username}"
             return {
                 "data":None,
                 "message":message
