@@ -413,7 +413,10 @@ class Repository:
             allBranches = []
             for branchNames in branch:
                 allBranches.append(branchNames.text.strip())
-            return allBranches
+            return {
+                "data": allBranches,
+                "message": f"The branches of {self.repository}/{self.username} is {allBranches}"
+            }
         except:
             message = f"Failed to fetch branches of {self.username}/{self.repository}"
             return {
