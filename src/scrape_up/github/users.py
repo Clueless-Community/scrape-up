@@ -13,17 +13,36 @@ class Users:
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
-    def followers(self):
+    def followers(self) -> str:
         """
-        Fetch the number of followers of a GitHub user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        followers = user.followers()
+        ```
+        Return\n
+        ```python
+        return 
+        {
+            "data": followers.text,
+            "message":f"Followers found for user {self.username}"
+        }  
+        ```
         """
         page = self.__scrape_page()
         try:
             followers = page.find(class_="text-bold color-fg-default")
-            return followers.text
+            return {
+                "data": followers.text,
+                "message":f"Followers found for user {self.username}"
+            }
         except:
             message = f"{self.username} not found !"
-            return message
+            return {
+                "data":None,
+                "message":message
+            }
 
     def following(self):
         """ "
@@ -220,7 +239,7 @@ class Users:
 
     def get_followers(self):
         """
-        Fetches the following users of a GitHub user.
+        Fetch the list of followers a user have.
         """
         page = self.__scrape_followers_page()
         try:
@@ -268,9 +287,13 @@ class Users:
             # print(page.find_all("a"))
         except:
             message = f"Following users not found for username {self.username}"
+            message = f"Following users not found for username {self.username}"
             return message
 
     def get_status(self):
+        """
+        Fetch the number of contribution made in recent month.
+        """
         try:
             data = self.__scrape_page()
             t = data.find(
@@ -280,56 +303,59 @@ class Users:
         except:
             message = f"Status not found for username {self.username}"
             return message
+
     def get_contribution_streak(self):
-        try: 
-            data=self.__scrape_page()
-            t=data.find_all("rect", class_="ContributionCalendar-day")
-            array=[]
+        try:
+            data = self.__scrape_page()
+            t = data.find_all("rect", class_="ContributionCalendar-day")
+            array = []
             for a in t:
-                contri=a.get_text()
+                contri = a.get_text()
                 if contri:
-                    if contri[0]=='N':
+                    if contri[0] == "N":
                         array.append(0)
-                    else :
+                    else:
                         array.append(1)
-            
+
             count = 0
             result = 0
-        
+
             for i in range(0, len(array)):
-                if (array[i] == 0):
-                    count = 0.
+                if array[i] == 0:
+                    count = 0.0
                 else:
-                    count+= 1
+                    count += 1
                     result = max(result, count)
-            return int(result) 
+            return int(result)
         except:
             return "contribution streak cannot be obtained"
-    
+
     def __get_page_details(self, link):
-        '''
+        """
         scrape the data in the page
-        '''
+        """
         data = requests.get(link)
         data = BeautifulSoup(data.text, "html.parser")
         return data
-    
+
     def get_pages(self, curr_repo_link, pages_links):
-        '''
+        """
         get the links of all the pages of the repositories
-        '''
+        """
         data = self.__get_page_details(curr_repo_link)
-        pages_body = data.find('div', class_='paginate-container')
-        if pages_body.find('a', class_='next_page') != None:
-            pages_links.append("https://github.com" + pages_body.find('a', class_='next_page')['href'])
+        pages_body = data.find("div", class_="paginate-container")
+        if pages_body.find("a", class_="next_page") != None:
+            pages_links.append(
+                "https://github.com" + pages_body.find("a", class_="next_page")["href"]
+            )
             self.get_pages(pages_links[-1], pages_links)
 
         return pages_links
 
     def get_repository_details(self):
-        '''
+        """
         Fetches the details of the repositories of a GitHub user.
-        '''
+        """
         username = self.username
         repository_link = f"https://github.com/{username}?tab=repositories"
         try:
@@ -339,20 +365,50 @@ class Users:
             for page in pages_links:
                 page_data = self.__get_page_details(page)
                 # get the repositories in the page
-                repositories_body = page_data.find('div', id = 'user-repositories-list')
-                for repo in repositories_body.find_all('li'):
-                    repo_name = repo.find('a', attrs = {'itemprop': 'name codeRepository'}).text.strip()
+                repositories_body = page_data.find("div", id="user-repositories-list")
+                for repo in repositories_body.find_all("li"):
+                    repo_name = repo.find(
+                        "a", attrs={"itemprop": "name codeRepository"}
+                    ).text.strip()
                     repo_url = f"https://github.com/{repo.find('a', attrs = {'itemprop': 'name codeRepository'})['href']}"
-                    repo_description_body = repo.find('p', attrs = {'itemprop': 'description'})
-                    repo_description = repo_description_body.text.strip() if repo_description_body != None else "No description"
-                    repo_language_body = repo.find('span', attrs = {'itemprop': 'programmingLanguage'})
-                    repo_language = repo_language_body.text.strip() if repo_language_body != None else "No language"
+                    repo_description_body = repo.find(
+                        "p", attrs={"itemprop": "description"}
+                    )
+                    repo_description = (
+                        repo_description_body.text.strip()
+                        if repo_description_body != None
+                        else "No description"
+                    )
+                    repo_language_body = repo.find(
+                        "span", attrs={"itemprop": "programmingLanguage"}
+                    )
+                    repo_language = (
+                        repo_language_body.text.strip()
+                        if repo_language_body != None
+                        else "No language"
+                    )
                     # create a repository object
-                    repository_name = repo_url.split('/')[-1]
-                    repository = respository.Repository(username, repository_name) 
-                    repo_forks, repo_stars, repo_issues, repo_pull_requests = repository.fork_count(), repository.star_count(), repository.issues_count(), repository.pull_requests()
-                    repositories.append({"name": repo_name, "url": repo_url, "description": repo_description, "language": repo_language, "forks": repo_forks, "stars": repo_stars, "issues": repo_issues, "pull_requests": repo_pull_requests})
-                        
+                    repository_name = repo_url.split("/")[-1]
+                    repository = respository.Repository(username, repository_name)
+                    repo_forks, repo_stars, repo_issues, repo_pull_requests = (
+                        repository.fork_count(),
+                        repository.star_count(),
+                        repository.issues_count(),
+                        repository.pull_requests(),
+                    )
+                    repositories.append(
+                        {
+                            "name": repo_name,
+                            "url": repo_url,
+                            "description": repo_description,
+                            "language": repo_language,
+                            "forks": repo_forks,
+                            "stars": repo_stars,
+                            "issues": repo_issues,
+                            "pull_requests": repo_pull_requests,
+                        }
+                    )
+
             return repositories
         except:
             return "No repositories found"

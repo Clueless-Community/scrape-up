@@ -201,6 +201,15 @@ class Organization:
         except:
             return "No people found for this organization"
 
+    def get_location(self):
+        page = self.__scrape_page()
+        lc = page.find("span", itemprop="location")
+        if lc:
+            return lc.text.strip()
+        else:
+            message = "Oops! No Organization found"
+            return message
+
     def repository_stats(self, repo_url):
         """
         Returns the stats of a repository
@@ -298,43 +307,53 @@ class Organization:
         data = self.__scrape_page()
 
         try:
-            pinned_repos = data.find('ol', class_='d-flex flex-wrap list-style-none gutter-condensed mb-2 js-pinned-items-reorder-list')
+            pinned_repos = data.find(
+                "ol",
+                class_="d-flex flex-wrap list-style-none gutter-condensed mb-2 js-pinned-items-reorder-list",
+            )
 
             repo_info_list = []
 
-            for repo in pinned_repos.find_all('li'):
-                name = repo.find('span', class_='repo').text.strip()
+            for repo in pinned_repos.find_all("li"):
+                name = repo.find("span", class_="repo").text.strip()
 
-                desc = repo.find('p', class_='pinned-item-desc color-fg-muted text-small mt-2 mb-0').text.strip()
+                desc = repo.find(
+                    "p", class_="pinned-item-desc color-fg-muted text-small mt-2 mb-0"
+                ).text.strip()
 
-                top_tech = repo.find('span', itemprop='programmingLanguage').text.strip()
+                top_tech = repo.find(
+                    "span", itemprop="programmingLanguage"
+                ).text.strip()
 
-                url = 'https://github.com' + repo.find('a', href=True)['href']
+                url = "https://github.com" + repo.find("a", href=True)["href"]
                 response = requests.get(url)
-                
 
                 url_parts = url.split("/")
 
                 organization = url_parts[3]
 
                 repository = url_parts[4]
-                
-                soup = BeautifulSoup(response.content, 'html.parser')
 
-                star_count_elem = soup.find("a", href=f"/{organization}/{repository}/stargazers").find("span")
+                soup = BeautifulSoup(response.content, "html.parser")
+
+                star_count_elem = soup.find(
+                    "a", href=f"/{organization}/{repository}/stargazers"
+                ).find("span")
                 star_count = int(star_count_elem.text.strip())
 
-                stats_body = soup.find("ul", class_="pagehead-actions flex-shrink-0 d-none d-md-inline")
+                stats_body = soup.find(
+                    "ul", class_="pagehead-actions flex-shrink-0 d-none d-md-inline"
+                )
                 forks = stats_body.find("span", id="repo-network-counter")
                 fork_count = forks.text.strip()
 
                 repo_info = {
-                    'name': name,
-                    'link': url,
-                    'detail': desc,
-                    'top_lang': top_tech,
-                    'stars': star_count,
-                    'forks': fork_count
+                    "name": name,
+                    "link": url,
+                    "detail": desc,
+                    "top_lang": top_tech,
+                    "stars": star_count,
+                    "forks": fork_count,
                 }
                 repo_info_list.append(repo_info)
 
