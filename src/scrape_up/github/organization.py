@@ -358,11 +358,12 @@ class Organization:
                 if name!=self.organization or name.find(self.organization)==-1 :
                     if not name in links:
                         links[name]=o['href']
+            return links
         except : 
-            print("An exception occured, information cannot be printed")
+            return "An exception occured, information cannot be printed"
                 
 
 
-        return links
+        
 
         
