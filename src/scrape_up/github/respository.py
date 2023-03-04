@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-import requests_html
+# import requests_html
+import os
 
 
 class Repository:
@@ -266,4 +267,27 @@ class Repository:
             return contributor[0].strip()
         except:
             message = "Oops! No contributors found"
+            return message
+
+    
+    def get_readme(self):
+        """
+        Get the special repository of the user and save it locally.
+        """
+        data = requests.get(f"https://raw.githubusercontent.com/{self.username}/{self.username}/master/README.md")
+        if data.status_code == 404:
+            data = requests.get(f"https://raw.githubusercontent.com/{self.username}/{self.username}/main/README.md")
+            if data.status_code == 404:
+                message = (f"No special repository found with username {self.username}")
+                return message
+        else:
+            path = (f"./{self.username}")
+            try:
+                os.mkdir(path)
+            except OSError as error:
+                return error
+            data = data.text
+            readmeFile = os.open(path + "/README.md", os.O_RDWR | os.O_CREAT)
+            os.write(readmeFile, data.encode("utf-8"))
+            message = "README.md found & saved"
             return message
