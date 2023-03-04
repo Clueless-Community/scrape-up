@@ -312,7 +312,7 @@ class Repository:
             link = data.find("a",class_='btn btn-outline flex-self-start mt-2 mt-md-0').get('href')
             return {
                 "data": link,
-                "message": f"Found the latest {link} from {self.repository}",
+                "message": f"Latest enviornment link for {self.repository} is {link}",
             }
         except:
             message = f"No link found for {self.repository}"
