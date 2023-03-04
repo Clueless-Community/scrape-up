@@ -25,17 +25,35 @@ class PullRequest:
             for d in label_raw:
                 labels_found.append(d.get_text().strip())
             labels_found + 1
-            return labels_found
+            # return labels_found
+            return {
+                "data": labels_found,
+                "message": f"Found labels for {self.repository}",
+            }
         except:
-            return "An exception occured"
+            message = f"No labels found for {self.repository}"
+            return {
+                "data": labels_found,
+                "message": message,
+            }
 
     def commits(self):
         """
         Fetch the number of commits made in a pull request
         """
         data = self.__scrape_page()
-        commits_count = data.find("span", id="commits_tab_counter").text.strip()
-        return commits_count
+        try:
+            commits_count = data.find("span", id="commits_tab_counter").text.strip()
+            return {
+                "data": commits_count,
+                "message": f"Found {commits_count} commits for {self.pr_number}",
+            }
+        except:
+            message = f"No commits found for {self.pr_number}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def title(self):
         """
@@ -45,10 +63,16 @@ class PullRequest:
         try:
             title_body = data.find("bdi", class_="js-issue-title markdown-title")
             title = title_body.text.strip()
-            return title
+            return {
+                "data": title,
+                "message": f"Found title for {self.pr_number}",
+            }
         except:
-            Message = "No title found"
-            return Message
+            message = f"No title found for {self.pr_number}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def __files_changed_body(self):
         """
@@ -67,10 +91,16 @@ class PullRequest:
         try:
             files_changed_body = data.find("span", id="files_tab_counter")
             files_changed = files_changed_body.text.strip()
-            return files_changed
+            return {
+                "data": files_changed,
+                "message": f"Found {files_changed} files changed for {self.pr_number}",
+            }
         except:
-            Message = "No files changed found"
-            return Message
+            message = f"No files changed found for {self.pr_number}"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def reviewers(self):
         """
@@ -83,10 +113,21 @@ class PullRequest:
                 "span", class_="css-truncate-target width-fit v-align-middle"
             )
             if len(reviewers) == 0:
-                return f"Oops, The repository {self.repository} doesn't have any reviewers yet!"
+                message = f"No reviewers found for {self.pr_number}"
+                return {
+                    "data": reviewerList,
+                    "message": message,
+                }
             else:
                 for reviewer in reviewers:
                     reviewerList.append(reviewer.text)
-                return reviewerList
+                return {
+                    "data": reviewerList,
+                    "message": f"Found {len(reviewerList)} reviewers for {self.pr_number}",
+                }
         except:
-            return "Oops! An Error Occured"
+            message = f"No reviewers found for {self.pr_number}"
+            return {
+                "data": None,
+                "message": message,
+            }

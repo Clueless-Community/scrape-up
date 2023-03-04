@@ -55,10 +55,17 @@ class Repository:
             for item in languages:
                 allLanguages.append(item.text)
             allTopics = list(map(lambda s: s.strip(), allTopics))
-            return allLanguages  # return list of languages
+            # return allLanguages  # return list of languages
+            return {
+                "data": allLanguages,
+                "message": f"Languages used in {self.repository} repository",
+            }
         except:
-            message = "No languages found"
-            return message
+            message = f"No languages found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def about(self):
         """
@@ -69,10 +76,16 @@ class Repository:
         try:
             tag = data.find(class_="f4 mb-3")
             about = tag.get_text()
-            return about  # return string about
+            return {
+                "data": about,
+                "message": f"About {self.repository} repository",
+            }
         except:
-            message = "No details found in the about section"
-            return message
+            message = f"No details found in the about section of {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def fork_count(self):
         """
@@ -85,10 +98,16 @@ class Repository:
             )
             forks = stats_body.find("span", id="repo-network-counter")
             fork_count = forks.text.strip()
-            return fork_count
+            return {
+                "data": fork_count,
+                "message": f"Number of forks of {self.repository} repository",
+            }
         except:
-            message = f"Repository Stats are not found for username {self.username}"
-            return message
+            message = f"No forks found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def topics(self):
         """
@@ -102,10 +121,16 @@ class Repository:
             print(allTopics)
             for item in topics:
                 allTopics.append(item.text)
-            return allTopics  # return list of topics
+            return {
+                "data": allTopics,
+                "message": f"Topics of {self.repository} repository",
+            }
         except:
-            message = "No topics found"
-            return message
+            message = f"No topics found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def star_count(self):
         """
@@ -118,10 +143,16 @@ class Repository:
                 .find("span")
                 .text.strip()
             )
-            return starCount
+            return {
+                "data": starCount,
+                "message": f"Star count of {self.repository} repository",
+            }
         except:
-            message = "Oops! No Stars found"
-            return message
+            message = f"No stars found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def pull_requests(self):
         """
@@ -134,42 +165,58 @@ class Repository:
                 .find_all("span")[1]
                 .text.strip()
             )
-            return pull_requests
+            return {
+                "data": pull_requests,
+                "message": f"Pull requests of {self.repository} repository",
+            }
         except:
-            message = "Failed to fetch pull requests"
-            return message
+            message = f"No pull requests found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def tags(self):
         """
         Fetch last ten tags of repository
         """
         data = self.__scrape_tags_page()
-
-        tags = data.find_all(class_="Link--primary")
-        allTags = []
-        for item in tags:
-            allTags.append(item.text)
-        if len(allTags):
-            return allTags  # return list of tags
-        else:
-            message = "No tag found"
-            return message
+        try:
+            tags = data.find_all(class_="Link--primary")
+            allTags = []
+            for item in tags:
+                allTags.append(item.text)
+            return {
+                "data": allTags,
+                "message": f"Tags of {self.repository} repository",
+            }
+        except:
+            message = f"No tags found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def releases(self):
         """
         Fetch last ten releases of repository
         """
         data = self.__scrape_tags_page()
-
-        releases = data.find_all(class_="Link--primary")
-        allReleases = []
-        for item in releases:
-            allReleases.append(item.text)
-        if len(allReleases):
-            return allReleases  # return list of releases
-        else:
-            message = "No releases found"
-            return message
+        try:
+            releases = data.find_all(class_="Link--primary")
+            allReleases = []
+            for item in releases:
+                allReleases.append(item.text)
+            return {
+                "data": allReleases,
+                "message": f"Releases of {self.repository} repository",
+            }
+        except:
+            message = f"No releases found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def issues_count(self):
         """
@@ -178,10 +225,16 @@ class Repository:
         data = self.__scrape_page()
         try:
             issues = data.find("span", {"id": "issues-repo-tab-count"}).text.strip()
-            return issues
+            return {
+                "data": issues,
+                "message": f"Total issues in {self.repository} repository",
+            }
         except:
-            message = "Failed to fetch no. of issues"
-            return message
+            message = f"No issues found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def readme(self):
         """
@@ -197,8 +250,11 @@ class Repository:
             with open("out.md", "w", encoding="utf-8") as f:
                 f.write(markdown_content)
         except:
-            err = f"No readme found for {self.username}"
-            return err
+            message = f"No readme found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def get_pull_requests_ids(self):
         """
@@ -217,10 +273,16 @@ class Repository:
                 pr_id = each_pr["href"].split("/")[-1]
                 pull_requests_ids.append(pr_id)
 
-            return pull_requests_ids
+            return {
+                "data": pull_requests_ids,
+                "message": f"Pull requests of {self.repository} repository",
+            }
         except:
-            message = "No pull requests found"
-            return message
+            message = f"No pull requests found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def commits(self):
         """
@@ -233,9 +295,16 @@ class Repository:
                 .find("span")
                 .text.strip()
             )
-            return commits
+            return {
+                "data": commits,
+                "message": f"Commits of {self.repository} repository",
+            }
         except:
-            message = "No commits found"
+            message = f"No commits found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def get_issues(self):
         """
@@ -250,10 +319,16 @@ class Repository:
 
             for item in issues:
                 allIssues.append(item.text)
-            return allIssues
+            return {
+                "data": allIssues,
+                "message": f"Issues of {self.repository} repository",
+            }
         except:
-            message = "Failed to fetch list of issues"
-            return message
+            message = f"No issues found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def get_contributors(self):
         data = self.__scrape_page()
@@ -265,10 +340,16 @@ class Repository:
             contributor = []
             for it in contributors:
                 contributor.append(it.get_text())
-            return contributor[0].strip()
+            return {
+                "data": contributor[0].strip(),
+                "message": f"Contributors of {self.repository} repository",
+            }
         except:
-            message = "Oops! No contributors found"
-            return message
+            message = f"No contributors found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
 
     def get_readme(self):
         """
@@ -283,7 +364,10 @@ class Repository:
             )
             if data.status_code == 404:
                 message = f"No special repository found with username {self.username}"
-                return message
+                return {
+                    "data": None,
+                    "message": message,
+                }
         else:
             path = f"./{self.username}"
             try:
