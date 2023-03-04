@@ -13,17 +13,36 @@ class Users:
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
-    def followers(self):
+    def followers(self) -> str:
         """
-        Fetch the number of followers of a GitHub user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        followers = user.followers()
+        ```
+        Return\n
+        ```python
+        return 
+        {
+            "data": followers.text,
+            "message":f"Followers found for user {self.username}"
+        }  
+        ```
         """
         page = self.__scrape_page()
         try:
             followers = page.find(class_="text-bold color-fg-default")
-            return followers.text
+            return {
+                "data": followers.text,
+                "message":f"Followers found for user {self.username}"
+            }
         except:
             message = f"{self.username} not found !"
-            return message
+            return {
+                "data":None,
+                "message":message
+            }
 
     def following(self):
         """ "
