@@ -359,7 +359,10 @@ class Repository:
         data=self.__scrape_page()
         try:
             update=data.find_all("relative-time", class_="no-wrap")
-            return update[0].get_text()
+            return {
+                "data": update[0].get_text(),
+                "message": f" last Updated of {self.repository} repository",
+            }
         except:
             message=f"No updation found in {self.repository} repository"
             return {
