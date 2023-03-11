@@ -5,6 +5,9 @@ import requests_html
 import os
 
 
+
+
+
 class Repository:
     def __init__(self, username: str, repository_name: str):
         self.username = username
@@ -57,7 +60,7 @@ class Repository:
         data = self.__scrape_page()
 
         try:
-            languages = data.find_all(class_="color-fg-default text-bold mr-1")
+            languages = data.find_all( class_="color-fg-default text-bold mr-1")
             allLanguages = []
             for item in languages:
                 allLanguages.append(item.text)
@@ -357,6 +360,25 @@ class Repository:
                 "data": None,
                 "message": message,
             }
+
+
+    def last_update_at(self):
+        data=self.__scrape_page()
+        try:
+            update=data.find_all("relative-time", class_="no-wrap")
+            return {
+                "data": update[0].get_text(),
+                "message": f" last Updated of {self.repository} repository",
+            }
+        except:
+            message=f"No updation found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
+    
+
+            
 
     def get_readme(self):
         """
