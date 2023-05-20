@@ -27,31 +27,6 @@ An alternative to APIs, Scrape Up is a Python package for web scraping. It allow
 -  Dynamic Web Scraping: Handle dynamic web pages and AJAX-loaded content.
 -  Efficient and Fast: Designed for efficient and reliable scraping of data from multiple sources.
 
-## 🚀 Getting Started
-
-To start using Scrape Up, follow these simple steps:
-
-1. Install Scrape Up using pip:
-
-```bash
-pip install scrape-up
-```
-
-2. Import the Scrape Up package into your Python project:
-
-```python
-import scrape_up
-```
-
-3. Use the provided scraping functions to extract data from different platforms. For example, to scrape data from GitHub:
-
-```python
-scraper = scrape_up.Scraper()
-github_data = scraper.scrape_github('username')
-```
-
-Happy scraping! 🕸️
-
 ## How to use? ✨
 
 1. Install the package using `pip`:
@@ -86,6 +61,8 @@ Output:
 ```
 
 4. Explore all the available methods provided by Scrape Up on different platforms [here](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#the-platforms-and-methods-we-cover-).
+
+Happy scraping! 🕸️
 
 ## The goal 🎯
 
