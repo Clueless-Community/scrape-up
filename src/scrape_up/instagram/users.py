@@ -41,7 +41,39 @@ class Users:
             message = f"{self.username} not found !"
             return {"data": None, "message": message}
 
+    def following(self) -> str:
+        """
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = instagram.User(username="nikhil25803")
+        following = user.following()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            "data": following_count,
+            "message":f"Following found for user {self.username}"
+        }
+        ```
+        """
+        page = self.__scrape_page()
+        try:
+            following = page.findAll("meta", attrs={"name": "description"})
+            following_count = (
+                following[0]["content"].split(",")[1].strip().split(" ")[0]
+            )
+            return {
+                "data": following_count,
+                "message": f"Following found for user {self.username}",
+            }
+        except:
+            message = f"{self.username} not found !"
+            return {"data": None, "message": message}
+
 
 # Test
 # user = Users(username="nikhil_raj803")
 # print(user.followers())
+# print(user.following())
