@@ -54,7 +54,7 @@ class Users:
         return
         {
             "data": following_count,
-            "message":f"Following found for user {self.username}"
+            "message":f"User {self.username} is following {following_count} people"
         }
         ```
         """
@@ -66,7 +66,7 @@ class Users:
             )
             return {
                 "data": following_count,
-                "message": f"Following found for user {self.username}",
+                "message": f"User {self.username} is following {following_count} people.",
             }
         except:
             message = f"{self.username} not found !"
