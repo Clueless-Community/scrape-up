@@ -155,8 +155,11 @@ First create an object of class `User`
 user = instagram.Users(username="nikhil25803")
 ```
 
-| Methods |  Details |
-|---|---|
-|  `.followers()` | Returns the number of followers of a user. |
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.followers()` | Returns the number of followers of a user.          |
+| `.following()` | Returns the number of people the user is following. |
+
+---
 
 -----
