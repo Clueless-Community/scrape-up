@@ -62,9 +62,10 @@ pip install -r requirements.txt
 Now you are done with the project setup, now you can make the changes you want or assign.
 
 ### Let say you want to scrape the avatar url of and user. Steps applying which we can do this
-+ At first we have to scrape the profile page of a user. For that we have defined a function in the user class as
+
+- At first we have to scrape the profile page of a user. For that we have defined a function in the user class as
 ```python
-# scrape-up/src/scrape_up/github/users.py
+- scrape-up/src/scrape_up/github/users.py
 class Users:
 
     def __init__(self, username):
@@ -93,24 +94,24 @@ def followers(self):
 
 Once you are done with the changes you wanted to add,follow the steps to make the pull request.
 ## Create and checkout to the new branch.
-```powershell
+powershell
 git checkout -b <branch_name>
-```
+
 ## Add the changes
-```
+
 git add .
-```
+
 
 ## Commit your change with a proper messagge
-```
+
 git commit -m "Enter your message here"
-```
+
 
 ## Make the Pull Request
-```
+
 git push origin <branch_name>
-```
----
+
+
 
 ## Writing Tests ✍️
 
@@ -141,7 +142,7 @@ git push origin <branch_name>
 
 - Suggest new features or improvements that you believe would enhance the project.
 
-###☘️ Spread the Word
+### ☘️ Spread the Word
 
 - Share your experience and the project with others.
 - Spread the word about the project on social media, developer forums, or any relevant community platforms.
