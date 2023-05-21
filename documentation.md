@@ -12,7 +12,7 @@ from scrape_up import github
 # Instantiate an object with username provided.
 user = github.User(username="nikhil25803")
 
-# Cal the followers function
+# Call the followers function
 print(user.followers())
 
 # Output - '59'
