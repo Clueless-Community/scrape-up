@@ -12,20 +12,19 @@ class Users:
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
-    def followers(self) -> str:
+    def followers(self) -> dict:
         """
         Class - `Users`\n
         Example -\n
         ```python
-        user = instagram.User(username="nikhil25803")
+        user = Users(username="nikhil25803")
         followers = user.followers()
         ```
         Return\n
         ```python
-        return
-        {
+        return {
             "data": followers_count,
-            "message":f"Followers found for user {self.username}"
+            "message": f"Followers found for user {self.username}"
         }
         ```
         """
@@ -38,23 +37,22 @@ class Users:
                 "message": f"Followers found for user {self.username}",
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"{self.username} not found!"
             return {"data": None, "message": message}
 
-    def following(self) -> str:
+    def following(self) -> dict:
         """
         Class - `Users`\n
         Example -\n
         ```python
-        user = instagram.User(username="nikhil25803")
+        user = Users(username="nikhil25803")
         following = user.following()
         ```
         Return\n
         ```python
-        return
-        {
+        return {
             "data": following_count,
-            "message":f"User {self.username} is following {following_count} people"
+            "message": f"User {self.username} is following {following_count} people"
         }
         ```
         """
@@ -69,11 +67,40 @@ class Users:
                 "message": f"User {self.username} is following {following_count} people.",
             }
         except:
-            message = f"{self.username} not found !"
+            message = f"{self.username} not found!"
+            return {"data": None, "message": message}
+
+    def posts(self) -> dict:
+        """
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = Users(username="nikhil25803")
+        posts = user.posts()
+        ```
+        Return\n
+        ```python
+        return {
+            "data": posts_count,
+            "message": f"User {self.username} has {posts_count} posts."
+        }
+        ```
+        """
+        page = self.__scrape_page()
+        try:
+            posts = page.findAll("span", class_="g47SY")
+            posts_count = posts[0].text
+            return {
+                "data": posts_count,
+                "message": f"User {self.username} has {posts_count} posts.",
+            }
+        except:
+            message = f"{self.username} not found!"
             return {"data": None, "message": message}
 
 
 # Test
-# user = Users(username="nikhil_raj803")
-# print(user.followers())
-# print(user.following())
+user = Users(username="nikhil_raj803")
+print(user.followers())
+print(user.following())
+print(user.posts())
