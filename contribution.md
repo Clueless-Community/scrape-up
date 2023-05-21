@@ -1,9 +1,11 @@
 <h1 align=center> For the contributors 🫂 </h1>
 
 ### Haven't made your first-contribution yet? 😢
+
 Do check our [First Contribution](https://github.com/Clueless-Community/first-contribution) repository, where we have provided the guidelines to set up Git and how to make a pull request !
 
 # Project setup 
+
 ## Fork and clone the repository
 Copy the URL of the forked repository and clone it.
 ```bash
@@ -114,7 +116,34 @@ git push origin <branch_name>
 
 - Ensure that your code changes are accompanied by relevant tests.
 
-- Write test cases that
+- Write test cases that cover different scenarios and edge cases.
 
 
 - Follow the existing test structure and naming conventions.
+
+### Documentation 📑
+
+- Document any significant changes or additions to the codebase.
+- Provide clear and concise explanations of the functionality, usage, and any relevant considerations.
+- Update the `README.md` file to reflect the changes made and provide instructions on how to use the project.
+
+### ✅ Code Reviews 
+
+- Be open to feedback and constructive criticism from other contributors.
+- Participate in code reviews by reviewing and providing feedback.
+
+### ✅ Bug Fixes and Issue Reporting 
+
+- Help identify and fix bugs in the project.
+- Report any issues or bugs you encounter during your contribution by creating a new issue in the GitHub repository.
+
+### 🚀🚀Feature Requests
+
+- Suggest new features or improvements that you believe would enhance the project.
+
+###☘️ Spread the Word
+
+- Share your experience and the project with others.
+- Spread the word about the project on social media, developer forums, or any relevant community platforms.
+
+Thank you for your valuable contribution and for being a part of the Clueless Community! Together, we can make a difference. 🚀
