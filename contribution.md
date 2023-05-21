@@ -109,3 +109,12 @@ git commit -m "Enter your message here"
 git push origin <branch_name>
 ```
 ---
+
+## Writing Tests ✍️
+
+- Ensure that your code changes are accompanied by relevant tests.
+
+- Write test cases that
+
+
+- Follow the existing test structure and naming conventions.
