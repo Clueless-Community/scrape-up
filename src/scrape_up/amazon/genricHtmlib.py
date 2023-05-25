@@ -1,5 +1,4 @@
 from multiprocessing import Pool
-import logging
 import os
 from datetime import datetime
 import lxml.html as html

@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime
-from scrape_up.Amazon.amazon import AmazonScraper
+from scrape_up.amazon.product_scraper import AmazonScraper
 
 class AmazonScraperTest(unittest.TestCase):
 
