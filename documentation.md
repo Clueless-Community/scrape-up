@@ -55,6 +55,11 @@ user = github.Users(username="nikhil25803")
 |  `.get_repository_details()` | Returns the list of repositories with their details. |
 | `.get_branch()` | Returns the list of branches in a repository. |
 
+**Example:**
+```python
+bio = user.get_bio() #user var taken from above example
+print(bio)
+```
 -----
 
 ### Scrape Repository details
@@ -80,6 +85,12 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 |  `.commits()` | Returns number of commits in a repository. |
 |  `.get_readme()` | Returns & saves README.md file of the special repository (if exists)|
 |  `.get_environment()` | Returns the latest deployed link of a repository (if exists). |
+
+**Example:**
+```python
+fork_count = repository.fork_count() #repository var taken from above example
+print(fork_count)
+```
 ------------
 
 ### Scrape an issue details
@@ -99,6 +110,11 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 | `.is_milestone()` | Returns the milestone, if the issue is part of one or 'No milestone', if it's not.                   |
 | `.opened_at()` | Returns a string containing the time when the issue was opened in ISO format. |
 
+**Example:**
+```python
+assigned = repository.assignees() #user var taken from above example
+print(assigned)
+```
 ------------
 
 ### Scrape a pull request details
@@ -117,7 +133,11 @@ repository = github.PullRequest(username="nikhil25803", repository_name="scrape-
 | `.files_changed()` | Returns the number of files changed in a pull request. |
 | `.reviewers()`     | Return the list of reviewers assigned in a pull request. |
 
-
+**Example:**
+```python
+files_changed = repository.files_changed() #user var taken from above example
+print(files_changed)
+```
 ------
 
 ### Scrape the details of an organization
@@ -133,7 +153,6 @@ repository = github.Organization(organization_name="Clueless-Community")
 | `.top_topics()` | Returns list of the most used topics in an organization. |
 | `.followers()` | Returns the number of followers of an organization. |
 | `.top_languages()` | Returns the top languages used in an organization. |
-|  `.followers()` | Returns the number of followers of an organization. |
 |  `.avatar()` | Returns the avatar url of an organization. |
 |  `.repositories()` | Returns the list of repositories of an organization. |
 |  `.people()` | Returns the list of people in an organization. |
@@ -143,6 +162,12 @@ repository = github.Organization(organization_name="Clueless-Community")
 |  `.pinned_repository()` | Returns the list of pinned repositories with their details. |
 |  `.get_organization_links()` | Returns a dictionary of important website links of a community. |
 
+**Example:**
+```python
+top = repository.top_topics() #user var taken from above example
+print(top)
+```
+---
 ## Instagram
 ```python
 from scrape_up import instagram
@@ -160,6 +185,11 @@ user = instagram.Users(username="nikhil25803")
 | `.followers()` | Returns the number of followers of a user.          |
 | `.following()` | Returns the number of people the user is following. |
 
+**Example:**
+```python
+following = user.following() #user var taken from above
+print(following)
+```
 ---
 
------
+
