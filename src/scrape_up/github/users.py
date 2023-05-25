@@ -139,7 +139,7 @@ class Users:
         page = self.__scrape_page()
         try:
             contributions = page.find("h2", class_="f4 text-normal mb-2")
-            return "".join(contributions.text.split())
+            return " ".join(contributions.text.split())
         except:
             message = f"Yearly contributions not found for username {self.username}"
             return message
@@ -413,6 +413,6 @@ class Users:
         except:
             return "No repositories found"
 
-
-user = Users(username="nikhil25803")
-user.followers()
+# TEST
+# user = Users(username="nikhil25803")
+# user.followers()
