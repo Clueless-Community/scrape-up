@@ -91,3 +91,5 @@ With our web-scraping-based Python tool, you can unlock a world of data and over
 
 
 ---
+
+<p align="right">(<a href="#top">Back to top</a>)</p>
