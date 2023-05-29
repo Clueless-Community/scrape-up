@@ -96,9 +96,9 @@ class Users:
         
 
 # Test
-user = Users(username="k")
-print(user.followers())
-print(user.following())
-print(user.posts())
+# user = Users(username="k")
+# print(user.followers())
+# print(user.following())
+# print(user.posts())
 
 
