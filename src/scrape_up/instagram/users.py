@@ -96,7 +96,7 @@ class Users:
         
 
 # Test
-# user = Users(username="k")
+# user = Users(username="nikhil_raj803")
 # print(user.followers())
 # print(user.following())
 # print(user.posts())
