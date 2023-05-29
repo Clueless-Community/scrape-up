@@ -13,6 +13,9 @@ class Repository:
         self.username = username
         self.repository = repository_name
 
+    def __str__(self):
+        return f"{self.repository} belongs to {self.username}"
+
     def __scrape_page(self):
         data = requests.get(f"https://github.com/{self.username}/{self.repository}")
         data = BeautifulSoup(data.text, "html.parser")
@@ -445,3 +448,7 @@ class Repository:
                     "data": None,
                     "message": message,
             }
+
+# Test
+# repo = Repository(username="", repository_name="")
+# breakpoint()
