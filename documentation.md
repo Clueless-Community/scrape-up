@@ -192,6 +192,7 @@ user = instagram.Users(username="nikhil25803")
 following = user.following() #user var taken from above
 print(following)
 ```
+
 ---
 
 
