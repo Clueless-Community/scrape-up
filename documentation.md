@@ -184,6 +184,8 @@ user = instagram.Users(username="nikhil25803")
 | -------------- | --------------------------------------------------- |
 | `.followers()` | Returns the number of followers of a user.          |
 | `.following()` | Returns the number of people the user is following. |
+| `.posts()`     | Returns the number of posts the user has.           |
+
 
 **Example:**
 ```python
