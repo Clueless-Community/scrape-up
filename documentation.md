@@ -205,3 +205,26 @@ following = user.following() #user var taken from above
 print(following)
 ```
 ---
+## KooApp
+```py
+from scrape_up import kooapp
+```
+### Scrap up kooapp user's detail
+Create an instance of `KooUser` class.
+```py
+user = kooapp.KooUser('krvishal')
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.get_name()` | Returns the name of the user. |
+| `.get_bio()` | Returns the bio of the user. |
+| `.get_avatar_url()` | Returns the url of first avatar of the user. |
+| `.followers()` | Returns the number of followers of a user.          |
+| `.following()` | Returns the number of people the user is following. |
+| `.get_social_profiles()` | Returns all the connected social media profiles of user. |
+| `.get_profession()` | Returns the title/profession of the user. |
+**Example:**
+```py
+name = user.get_name() #user variable is taken from above example
+print(name)
+```
