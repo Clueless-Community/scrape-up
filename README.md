@@ -17,6 +17,9 @@ An alternative to APIs, Scrape Up is a Python package for web scraping. It allow
   <img src="https://img.shields.io/github/last-commit/Clueless-Community/scrape-up?style=for-the-badge" />
 </div>
 
+-------
+![image](https://github.com/Clueless-Community/scrape-up/assets/93156825/7f10b5c9-b998-4924-965c-01cfea5c71d0)
+-------
 
 ## ✨ Features
 

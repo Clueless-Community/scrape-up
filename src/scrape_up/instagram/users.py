@@ -75,3 +75,33 @@ class InstagramScraper:
         except Exception as e:
             message = f"{self.username} not found!"
             return {"data": None, "message": message}
+          
+    
+    def posts(self):
+        """
+         returns the no of posts of the given profile.
+        """
+        page = self.__scrape_page()
+        try:
+            post = page.select("meta", attrs={"name": "description"})
+            meta = post[11]
+            meta = [x for x in meta["content"].split()]
+            iterator_meta = iter(meta)
+            for i in range(len(meta)):
+                if next(iterator_meta, 0) == 'Posts':
+                    post_count = meta[i-1]
+                   
+            return {
+                "data": post_count,
+                "message": f"User {self.username} has {post_count} posts.",
+            }
+        except:
+            message = f"{self.username} not found !"
+            return {"data": None, "message": message}
+        
+
+# Test
+# user = Users(username="nikhil_raj803")
+# print(user.followers())
+# print(user.following())
+# print(user.posts())
