@@ -1,4 +1,4 @@
-from NSE import NSE
+from nse import NSE
 
 class StockPrice:
     """
