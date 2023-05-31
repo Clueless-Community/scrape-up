@@ -1,5 +1,11 @@
-from scrape_up.twitter.numidconverter import unametoid,idtouname
+from scrape_up.twitter.numidconverter import TwitterScraper
 
-print(unametoid("elonmusk"))
-print(idtouname("44196397"))
+twitter_scraper = TwitterScraper()
 
+numid = "44196397"
+username = twitter_scraper.idtouname(numid)
+print(username)
+
+username = "elonmusk"
+user_id = twitter_scraper.unametoid(username)
+print(user_id)

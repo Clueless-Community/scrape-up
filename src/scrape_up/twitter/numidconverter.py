@@ -6,56 +6,41 @@ from time import sleep
 from bs4 import BeautifulSoup
 import json
 
-def unametoid(username):
-    url = 'https://twitter.com/{}'.format(username)
-    print(url)
-    # service = Service(ChromeDriverManager().install())
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-extensions")
-    chrome_options.add_argument("--disable-logging")
-    chrome_options.add_argument("--log-level=3")
-    chrome_options.add_argument("--silent")
-    chrome_options.add_argument("--blink-settings=imagesEnabled=false")
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.get(url)
+class TwitterScraper:
+    def __init__(self):
+        self.chrome_options = Options()
+        self.chrome_options.add_argument("--headless")
+        self.chrome_options.add_argument("--window-size=1920,1080")
+        self.chrome_options.add_argument("--disable-gpu")
+        self.chrome_options.add_argument("--no-sandbox")
+        self.chrome_options.add_argument("--disable-dev-shm-usage")
+        self.chrome_options.add_argument("--disable-extensions")
+        self.chrome_options.add_argument("--disable-logging")
+        self.chrome_options.add_argument("--log-level=3")
+        self.chrome_options.add_argument("--silent")
+        self.chrome_options.add_argument("--blink-settings=imagesEnabled=false")
+    
+    def unametoid(self, username):
+        url = 'https://twitter.com/{}'.format(username)
+        # print(url)
+        self.driver = webdriver.Chrome(options=self.chrome_options)
+        self.driver.get(url)
 
-    html = driver.page_source
-    soup = BeautifulSoup(html, 'html.parser')
-    user_id = soup.find('script', {'data-testid': 'UserProfileSchema-test'})
-    # print(user_id)
-    data = json.loads(user_id.string)
-    # print(data['author']['identifier'])
-    return data['author']['identifier']
-
-def idtouname(numid):
-    url2='https://twitter.com/i/user/{}'.format(numid)
-    # service = Service(ChromeDriverManager().install())
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-extensions")
-    chrome_options.add_argument("--disable-logging")
-    chrome_options.add_argument("--log-level=3")
-    chrome_options.add_argument("--silent")
-    chrome_options.add_argument("--blink-settings=imagesEnabled=false")
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.get(url2)
-
-    html = driver.page_source
-    soup = BeautifulSoup(html, 'html.parser')
-    user_id = soup.find('script', {'data-testid': 'UserProfileSchema-test'})
-    # print(user_id.string)
-    data = json.loads(user_id.string)
-    # print(data['author']['additionalName'])
-    return data['author']['additionalName']
-
-print(unametoid("elonmusk"))
-print(idtouname("44196397"))
+        html = self.driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        user_id = soup.find('script', {'data-testid': 'UserProfileSchema-test'})
+        data = json.loads(user_id.string)
+        self.driver.quit()
+        return data['author']['identifier'] 
+    
+    def idtouname(self,numid):
+        url = 'https://twitter.com/i/user/{}'.format(numid)
+        self.driver = webdriver.Chrome(options=self.chrome_options)
+        self.driver.get(url)
+        html = self.driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        user_id = soup.find('script', {'data-testid': 'UserProfileSchema-test'})
+        data = json.loads(user_id.string)
+        self.driver.quit()
+        return data['author']['additionalName']
+        
