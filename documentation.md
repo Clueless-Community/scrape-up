@@ -205,7 +205,6 @@ following = user.following() #user var taken from above
 print(following)
 ```
 ---
-
 ## Twitter
 
 ```python
