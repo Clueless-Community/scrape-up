@@ -223,8 +223,9 @@ user = kooapp.KooUser('krvishal')
 | `.following()` | Returns the number of people the user is following. |
 | `.get_social_profiles()` | Returns all the connected social media profiles of user. |
 | `.get_profession()` | Returns the title/profession of the user. |
+
 **Example:**
 ```py
-name = user.get_name() #user variable is taken from above example
+name = user.get_name() # user variable is taken from above example
 print(name)
 ```
