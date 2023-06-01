@@ -6,6 +6,7 @@ class StockPrice:
     Usage:
         Create an instance of Stock price class for Infosys
         >>> infosys_stock = StockPrice('infosys','nse')
+        >>> infosys_stock = StockPrice('infosys')
 
         # the stock_index option is optional as it is set to 'nse' by default for now
 
