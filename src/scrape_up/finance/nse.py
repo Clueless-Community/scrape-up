@@ -64,6 +64,9 @@ class NSE:
 
     # please use this return format for other classes (like bse, nasdaq) too if they are created in future
     def get_latest_price(self):
+        '''
+        Gets Latest stock price info of given nse stock.
+        '''
         price_info = self.fetcher.get(self.latest_price_url).json()['priceInfo']
         return {
             'latestPrice': price_info['lastPrice'],
@@ -76,6 +79,9 @@ class NSE:
 
     # Please give dates in DD-MM-YYYY format
     def get_historical_data(self, from_date, to_date):
+        '''
+        Gets historical stock price (vwap) in range from_date to to_date
+        '''
         historical_price_data_raw = self.fetcher.get(
             self.historical_data_url.format(symbol=self.stock_symbol, from_date=from_date, to_date=to_date)).json()[
             'data']
