@@ -2,6 +2,9 @@ import requests
 
 # All the prices returned from this class are in INR
 class NSE:
+    '''
+    Handles all data request for nse stock.
+    '''
     autocomplete_url = 'https://www.nseindia.com/api/search/autocomplete?q={}'
     latest_price_url = 'https://www.nseindia.com/api/quote-equity?symbol={symbol}'
     chart_data_url = 'https://www.nseindia.com/api/chart-databyindex?index={symbol}'

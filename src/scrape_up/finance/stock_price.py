@@ -31,7 +31,13 @@ class StockPrice:
     # these two functions could potentially be modified to
     # also return data as pandas format
     def get_latest_price(self):
+        '''
+        Gets Latest stock price info of given stock
+        '''
         return self.stock.get_latest_price()
 
     def get_historical_data(self, from_date, to_date):
+        '''
+        Gets historical stock price (vwap) in range from_date to to_date
+        '''
         return self.stock.get_historical_data(from_date, to_date)
