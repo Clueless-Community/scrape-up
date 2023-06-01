@@ -198,6 +198,8 @@ user = instagram.Users(username="nikhil25803")
 | -------------- | --------------------------------------------------- |
 | `.followers()` | Returns the number of followers of a user.          |
 | `.following()` | Returns the number of people the user is following. |
+| `.posts()`     | Returns the number of posts the user has.           |
+
 
 **Example:**
 ```python
@@ -205,21 +207,27 @@ following = user.following() #user var taken from above
 print(following)
 ```
 ---
-## Twitter
-
-```python
-from scrape_up import twitter
+## KooApp
+```py
+from scrape_up import kooapp
 ```
-
-### Scrape
-
-First create an object of class `TwitterScraper`
-
-```python
-twitter_scraper = TwitterScraper()
+### Scrap up kooapp user's detail
+Create an instance of `KooUser` class.
+```py
+user = kooapp.KooUser('krvishal')
 ```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.get_name()` | Returns the name of the user. |
+| `.get_bio()` | Returns the bio of the user. |
+| `.get_avatar_url()` | Returns the url of first avatar of the user. |
+| `.followers()` | Returns the number of followers of a user.          |
+| `.following()` | Returns the number of people the user is following. |
+| `.get_social_profiles()` | Returns all the connected social media profiles of user. |
+| `.get_profession()` | Returns the title/profession of the user. |
 
-| Methods                    | Details                                             |
-| ---------------------------| --------------------------------------------------- |
-| `.unametoid(username)`     | Returns the numerical_id on passing username.       |
-| `.idtouname(numerical_id)` | Returns the username on passing numerical_id.       |
+**Example:**
+```py
+name = user.get_name() # user variable is taken from above example
+print(name)
+```
