@@ -23,24 +23,43 @@ class TwitterScraper:
     def unametoid(self, username):
         url = 'https://twitter.com/{}'.format(username)
         # print(url)
-        self.driver = webdriver.Chrome(options=self.chrome_options)
-        self.driver.get(url)
+        driver = webdriver.Chrome(options=self.chrome_options)
+        driver.get(url)
 
-        html = self.driver.page_source
+        html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
-        user_id = soup.find('script', {'data-testid': 'UserProfileSchema-test'})
-        data = json.loads(user_id.string)
-        self.driver.quit()
-        return data['author']['identifier'] 
+        try:
+            user_id = soup.find('script', {'data-testid': 'UserProfileSchema-test'})
+            data = json.loads(user_id.string)
+            # driver.quit()
+            return {
+                "data":data['author']['identifier'] ,
+                "message":f"Numerical id found for username {username}"
+            }
+        except:
+            return{
+                "data":None,
+                "message":f"Numerical id not found for username {username}"
+            }
+        
     
     def idtouname(self,numid):
         url = 'https://twitter.com/i/user/{}'.format(numid)
-        self.driver = webdriver.Chrome(options=self.chrome_options)
-        self.driver.get(url)
-        html = self.driver.page_source
+        driver = webdriver.Chrome(options=self.chrome_options)
+        driver.get(url)
+        html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
-        user_id = soup.find('script', {'data-testid': 'UserProfileSchema-test'})
-        data = json.loads(user_id.string)
-        self.driver.quit()
-        return data['author']['additionalName']
+        try:
+            user_id = soup.find('script', {'data-testid': 'UserProfileSchema-test'})
+            data = json.loads(user_id.string)
+            # driver.quit()
+            return{
+                "data":data['author']['additionalName'],
+                "message":f"Username found for numerical id {numid}"
+            }
+        except:
+            return{
+                "data":None,
+                "message":f"Username not found for numerical id {numid}"
+            }
         
