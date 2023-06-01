@@ -1,4 +1,7 @@
-from nse import NSE
+try:
+    from nse import NSE
+except ModuleNotFoundError:
+    from scrape_up.finance.nse import NSE
 
 class StockPrice:
     """

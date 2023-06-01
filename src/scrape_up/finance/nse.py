@@ -28,16 +28,7 @@ class NSE:
     fetcher = requests.Session()
     fetcher.headers.update(headers)
 
-    '''
-     The line below is necessary as nseindia.com does no give access to its 
-     api unless you have cookies of visiting main page.
-     Hence visiting mainpage would imitate behaviour of a human user and let us
-     access all the nseindia APIs.
-    '''
-    try:
-        main_page = fetcher.get('https://www.nseindia.com')
-    except requests.exceptions.ConnectionError:
-        raise Exception('Connection Error, Please try again.')
+
 
     def __init__(self, stock_name):
         self.stock_name = stock_name
@@ -48,6 +39,13 @@ class NSE:
     # gets closest matching name and symbol of stock based given stock_name
     def get_data(self):
         try:
+            '''
+            The line below is necessary as nseindia.com does no give access to its 
+            api unless you have cookies of visiting main page.
+            Hence visiting mainpage would imitate behaviour of a human user and let us
+            access all the nseindia APIs.
+            '''
+            main_page = self.fetcher.get('https://www.nseindia.com')
             data = self.fetcher.get(self.autocomplete_url.format(self.stock_name)).json()['symbols'][0]
         except IndexError:
             raise Exception('Invalid Stock Name.')
