@@ -194,4 +194,51 @@ print(following)
 ```
 ---
 
+## Medium
+```python
+from scrape_up import medium
+```
 
+### Scrape user details
+
+First create an object of class `User`
+```python
+user = medium.Users(username="nikhil25803")
+```
+
+| Methods           | Details                                             |
+| ------------------| --------------------------------------------------- |
+| `.get_articles()` | prints the title of the users.                      |
+
+**Example**
+```python
+user.get_articles() #user var taken from above
+```
+
+### Scrape trending articles
+
+| Methods           | Details                                             |
+| ------------------| --------------------------------------------------- |
+| `.get_trending()` | prints the trending titles of medium.               |
+
+**Example**
+```python
+Trending.get_trending() #Prints the trending titles
+```
+
+### Scrape publication details
+
+First create an object of class `Publication`
+```python
+publication = medium.Publication(link="https://....")
+```
+
+| Methods                | Details                                                            |
+| ---------------------- | ------------------------------------------------------------------ |
+| `.get_articles_list()` | prints the articles of publications which are arranged in a list.  |
+| `.get_articles_grid()` | prints the articles of publications which are arranged in a grid.  |
+
+**Example**
+```python
+publication.get_articles_list() #publication var taken from above
+```
