@@ -7,6 +7,9 @@ class Users:
     def __init__(self, username: str):
         self.username = username
 
+    def __str__(self):
+        return f' The username is: {self.username}'
+
     def __scrape_page(self):
         username = self.username
         data = requests.get(f"https://github.com/{username}")
@@ -68,7 +71,7 @@ class Users:
             )
             return avatar["src"]
         except:
-            message = f"Avatart not found for username {self.username}"
+            message = f"Avatar not found for username {self.username}"
             return message
 
     def get_bio(self):
@@ -139,7 +142,7 @@ class Users:
         page = self.__scrape_page()
         try:
             contributions = page.find("h2", class_="f4 text-normal mb-2")
-            return "".join(contributions.text.split())
+            return " ".join(contributions.text.split())
         except:
             message = f"Yearly contributions not found for username {self.username}"
             return message
@@ -155,7 +158,7 @@ class Users:
 
     def get_repositories(self):
         """
-        Fetch the number of repositories of a GitHub user.
+        Fetch the list of repositories of a GitHub user.
         """
         page = self.__get_repo_page()
         try:
@@ -413,6 +416,7 @@ class Users:
         except:
             return "No repositories found"
 
-
-user = Users(username="nikhil25803")
-user.followers()
+# TEST
+# user = Users(username="nikhil25803")
+# breakpoint()
+# user.followers()
