@@ -16,9 +16,9 @@ class Article:
 
     def articles_list(self):
         page = self.__scrap_page()
+        article_list = []
         try:
             articles = page.find_all('span', class_="titleline")
-            article_list = []
             for article in articles:
                 article_list.append(article.text)
                 link = article.find('a')
@@ -27,6 +27,9 @@ class Article:
             return json.dumps(article_list)
         except:
             message = "An Error Occured!"
-            return message
+            return {
+                "data": json.dumps(article_list),
+                "message": message
+            }
 
 
