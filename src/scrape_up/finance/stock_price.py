@@ -26,9 +26,13 @@ class StockPrice:
         self.stock_index = stock_index.strip().lower()
         if self.stock_index == 'nse':
             print(f'Searching for {self.stock_name} nse stock...')
-            self.stock = NSE(stock_name)
-            self.stock_name = self.stock.stock_name
-            print(f'Found stock based on provided name: {self.stock_name}\nStock instance created')
+            try:
+                self.stock = NSE(stock_name)
+                self.stock_name = self.stock.stock_name
+                print(f'Found stock based on provided name: {self.stock_name}\nStock instance created')
+            except:
+                self.stock = None
+                print(f'No stock found based on provided name: {self.stock_name}')
         else:
             print(f'{self.stock_index} stock scraping code under development.\nPlease wait for Update.')
 
@@ -38,10 +42,31 @@ class StockPrice:
         '''
         Gets Latest stock price info of given stock
         '''
-        return self.stock.get_latest_price()
+        try:
+            data = self.stock.get_latest_price()
+            message = f'Found latest stock price for {self.stock_name}'
+        except:
+            data = None
+            message = f'No latest stock price found for {self.stock_name}'
+        finally:
+            return {
+                'data' : data,
+                'message' : message,
+            }
 
     def get_historical_data(self, from_date, to_date):
         '''
         Gets historical stock price (vwap) in range from_date to to_date
         '''
-        return self.stock.get_historical_data(from_date, to_date)
+        try:
+            data = self.stock.get_historical_data(from_date, to_date)
+            message = f'Historical stock price found for {self.stock_name} in range {from_date} to {to_date}'
+        except:
+            data = None
+            message = f'No historial stock price found for {self.stock_name}'
+        finally:
+            return {
+                'data' : data,
+                'message' : message,
+            }
+
