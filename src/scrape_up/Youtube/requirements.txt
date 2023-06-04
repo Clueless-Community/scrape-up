@@ -1,0 +1,7 @@
+beautifulsoup4
+requests
+
+
+#To install the dependencies, you can run the following command in your project directory:
+
+pip install -r requirements.txt
