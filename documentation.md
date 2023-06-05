@@ -271,10 +271,10 @@ First create an object of class `Publication`
 publication = medium.Publication(link="https://....")
 ```
 
-| Methods                | Details                                                            |
-| ---------------------- | ------------------------------------------------------------------ |
-| `.get_articles_list()` | Returns the articles of publications which are arranged in a list. |
-| `.get_articles_grid()` | Returns the articles of publications which are arranged in a grid. |
+| Methods                | Details                                                                 |
+| ---------------------- | ----------------------------------------------------------------------- |
+| `.get_articles_list()` | Returns the articles of publications which are arranged in list format. |
+| `.get_articles_grid()` | Returns the articles of publications which are arranged in grid format. |
 
 **Example**
 ```python

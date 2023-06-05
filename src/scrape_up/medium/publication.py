@@ -20,7 +20,7 @@ class Publication:
     def get_articles_list(self):
         "Gets the articles of the publication which are arranged in the form of a list"
         try:
-            titles = []
+            articles = []
             link = self.link
             driver.get(link)
             scroll_pause = 0.5
@@ -48,15 +48,15 @@ class Publication:
                     break
             elements = driver.find_elements(By.CSS_SELECTOR, "h2")
             for x in elements:
-                titles.append(x.text)
-            return titles
+                articles.append(x.text)
+            return articles
         except:
                 print("page/publication not found.")
     
     def get_articles_grid(self):
         "Gets the articles of the publication which are arranged in the grid format"
         try:
-            titles = []
+            articles = []
             link = self.link
             driver.get(link)
             scroll_pause = 0.5
@@ -84,8 +84,8 @@ class Publication:
                     break
             elements = driver.find_elements(By.CSS_SELECTOR, "h3")
             for x in elements:
-                titles.append(x.text)
-            return titles
+                articles.append(x.text)
+            return articles
         except:
             print("Page/publication not found.")
 

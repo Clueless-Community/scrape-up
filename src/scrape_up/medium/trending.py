@@ -20,7 +20,7 @@ class Trending:
         except:
             return {
                 "data": None,
-                "message": "Something went wrong! Try again"
+                "message": "Something went wrong! Try again!"
             }
 
 print(Trending.get_trending())

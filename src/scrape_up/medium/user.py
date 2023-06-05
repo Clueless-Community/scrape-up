@@ -48,7 +48,7 @@ class User:
             elements = driver.find_elements(By.CSS_SELECTOR, "h2")
             for x in elements:
                 titles.append(x.text)
-            return  titles
+            return titles
             
         except:
             return f"{username} not found."
