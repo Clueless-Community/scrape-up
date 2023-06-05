@@ -91,6 +91,8 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 | `.commits()`               | Returns number of commits in a repository.                                                                                                           |
 | `.get_readme()`            | Returns & saves README.md file of the special repository (if exists)                                                                                 |
 | `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                        |
+| `.watch_count()` | Returns the number of watchers of a repository
+|`.all_watchers()`| Returns the username of all watches of a repository
 
 **Example:**
 ```python
@@ -207,3 +209,46 @@ following = user.following() #user var taken from above
 print(following)
 ```
 ---
+## KooApp
+```py
+from scrape_up import kooapp
+```
+### Scrap up kooapp user's detail
+Create an instance of `KooUser` class.
+```py
+user = kooapp.KooUser('krvishal')
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.get_name()` | Returns the name of the user. |
+| `.get_bio()` | Returns the bio of the user. |
+| `.get_avatar_url()` | Returns the url of first avatar of the user. |
+| `.followers()` | Returns the number of followers of a user.          |
+| `.following()` | Returns the number of people the user is following. |
+| `.get_social_profiles()` | Returns all the connected social media profiles of user. |
+| `.get_profession()` | Returns the title/profession of the user. |
+
+**Example:**
+```py
+name = user.get_name() # user variable is taken from above example
+print(name)
+```
+---
+
+## Hacker News
+```py
+from scrape_up import hacker_news
+```
+### Scrap up Hacker News latest articles
+Create an instance of `Article` class.
+```py
+articles = hacker_news.Article()
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.articles_list()` | Returns the latest articles along with their links in JSON format. |
+**Example:**
+```py
+article = Article()
+print(article.articles_list())
+```
