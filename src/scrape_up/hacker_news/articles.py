@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import json
+
 
 class Article:
 
@@ -20,15 +20,14 @@ class Article:
         try:
             articles = page.find_all('span', class_="titleline")
             for article in articles:
-                article_list.append(article.text)
                 link = article.find('a')
-                article_list.append(link['href'])
+                article_list.append({"Article": article.text, "Link": link['href']})
+            return article_list
 
-            return json.dumps(article_list)
         except:
-            message = "An Error Occured!"
+            message = "An Error Occurred!"
             return {
-                "data": json.dumps(article_list),
+                "data": article_list,
                 "message": message
             }
 
