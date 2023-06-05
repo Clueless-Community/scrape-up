@@ -51,7 +51,7 @@ class Publication:
                 articles.append(x.text)
             return articles
         except:
-                print("page/publication not found.")
+                return "page/publication not found."
     
     def get_articles_grid(self):
         "Gets the articles of the publication which are arranged in the grid format"
@@ -87,6 +87,6 @@ class Publication:
                 articles.append(x.text)
             return articles
         except:
-            print("Page/publication not found.")
+            return "Page/publication not found."
 
 
