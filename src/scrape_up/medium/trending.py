@@ -9,12 +9,18 @@ class Trending:
 
     def get_trending():
         try:
+            titles = []
             r = requests.get("https://medium.com/", headers=headers)
             soup = bs(r.text, 'html.parser')
             elements = soup.select('h2[class^="by j"]')
             for x in elements:
-                print(x.text)
+                titles.append(x.text)
+            return titles
+            
         except:
-            print("Something went wrong! Try again")
+            return {
+                "data": None,
+                "message": "Something went wrong! Try again"
+            }
 
-Trending.get_trending()
+print(Trending.get_trending())

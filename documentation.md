@@ -208,7 +208,7 @@ user = medium.Users(username="nikhil25803")
 
 | Methods           | Details                                             |
 | ------------------| --------------------------------------------------- |
-| `.get_articles()` | prints the title of the users.                      |
+| `.get_articles()` | Returns the article titles of the users.            |
 
 **Example**
 ```python
@@ -219,7 +219,7 @@ user.get_articles() #user var taken from above
 
 | Methods           | Details                                             |
 | ------------------| --------------------------------------------------- |
-| `.get_trending()` | prints the trending titles of medium.               |
+| `.get_trending()` | Returns the trending titles of medium.              |
 
 **Example**
 ```python
@@ -235,8 +235,8 @@ publication = medium.Publication(link="https://....")
 
 | Methods                | Details                                                            |
 | ---------------------- | ------------------------------------------------------------------ |
-| `.get_articles_list()` | prints the articles of publications which are arranged in a list.  |
-| `.get_articles_grid()` | prints the articles of publications which are arranged in a grid.  |
+| `.get_articles_list()` | Returns the articles of publications which are arranged in a list. |
+| `.get_articles_grid()` | Returns the articles of publications which are arranged in a grid. |
 
 **Example**
 ```python

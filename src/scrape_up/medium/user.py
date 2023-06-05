@@ -19,6 +19,7 @@ class User:
     def get_articles(self):
         """Gets the articles of the users"""
         try:
+            titles = []
             username = self.username
             driver.get(f"https://{username}.medium.com")
             scroll_pause = 0.5
@@ -46,7 +47,9 @@ class User:
                     break
             elements = driver.find_elements(By.CSS_SELECTOR, "h2")
             for x in elements:
-                print(x.text)
+                titles.append(x.text)
+            return  titles
+            
         except:
-            print(f"{username} not found.")
+            return f"{username} not found."
     
