@@ -91,6 +91,8 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 | `.commits()`               | Returns number of commits in a repository.                                                                                                           |
 | `.get_readme()`            | Returns & saves README.md file of the special repository (if exists)                                                                                 |
 | `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                        |
+| `.watch_count()` | Returns the number of watchers of a repository
+|`.all_watchers()`| Returns the username of all watches of a repository
 
 **Example:**
 ```python
@@ -207,6 +209,36 @@ following = user.following() #user var taken from above
 print(following)
 ```
 ---
+
+## Internshala
+
+```python
+from scrape_up.internshala.internships import Internships
+```
+
+### Scrape Internship details
+
+Create an object of the 'Internships' class:
+
+```python
+scraper = Internships()
+```
+
+| Methods          | Details                                                             |
+| -----------------| --------------------------------------------------------------------|
+| `.internships()` | Scrapes and returns a list of dictionaries representing internships.|
+
+
+**Example:**
+```python
+scraper = Internships()
+internships = scraper.scrape_internships()
+for internship in internships:
+    print(internship)
+
+```
+---
+
 ## KooApp
 ```py
 from scrape_up import kooapp
@@ -231,6 +263,7 @@ user = kooapp.KooUser('krvishal')
 name = user.get_name() # user variable is taken from above example
 print(name)
 ```
+
 ---
 
 ## Medium
@@ -283,4 +316,45 @@ articles = publication.get_articles() #publication var taken from above
 for article in articles:
     print(article) #For better visibility/readability
 ```
+
+
+---
+
+## Hacker News
+```py
+from scrape_up import hacker_news
+```
+### Scrap up Hacker News latest articles
+Create an instance of `Article` class.
+```py
+articles = hacker_news.Article()
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.articles_list()` | Returns the latest articles along with their links in JSON format. |
+**Example:**
+```py
+article = Article()
+print(article.articles_list())
+```
+
+
+## Twitter
+
+```python
+from scrape_up import twitter
+```
+
+### Scrape
+
+First create an object of class `TwitterScraper`
+
+```python
+twitter_scraper = TwitterScraper()
+```
+
+| Methods                    | Details                                             |
+| ---------------------------| --------------------------------------------------- |
+| `.unametoid(username)`     | Returns the numerical_id on passing username.       |
+| `.idtouname(numerical_id)` | Returns the username on passing numerical_id.       |
 
