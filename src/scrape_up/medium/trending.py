@@ -23,4 +23,4 @@ class Trending:
                 "message": "Something went wrong! Try again!"
             }
 
-print(Trending.get_trending())
+
