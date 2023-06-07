@@ -1,9 +1,19 @@
 import requests
 from bs4 import BeautifulSoup
 
-def fetch_html(url):
-    # Make an HTTP GET request to the given URL and return the HTML content
-    # Use the requests library
+
+class WebScraper:
+    def fetch_html(self, url):
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # Raise an exception for unsuccessful status codes
+            html_content = response.text
+            return html_content
+        except requests.exceptions.RequestException as e:
+            print("Error occurred while fetching HTML:", e)
+            return None
+
+@nikhil25803 this would work iy
 
 def parse_html(html_content):
     # Parse the HTML content using BeautifulSoup and extract the desired data
