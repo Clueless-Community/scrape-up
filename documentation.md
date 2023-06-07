@@ -209,6 +209,36 @@ following = user.following() #user var taken from above
 print(following)
 ```
 ---
+
+## Internshala
+
+```python
+from scrape_up.internshala.internships import Internships
+```
+
+### Scrape Internship details
+
+Create an object of the 'Internships' class:
+
+```python
+scraper = Internships()
+```
+
+| Methods          | Details                                                             |
+| -----------------| --------------------------------------------------------------------|
+| `.internships()` | Scrapes and returns a list of dictionaries representing internships.|
+
+
+**Example:**
+```python
+scraper = Internships()
+internships = scraper.scrape_internships()
+for internship in internships:
+    print(internship)
+
+```
+---
+
 ## KooApp
 ```py
 from scrape_up import kooapp
