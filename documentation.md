@@ -264,6 +264,27 @@ name = user.get_name() # user variable is taken from above example
 print(name)
 ```
 
+---
+
+## Hacker News
+```py
+from scrape_up import hacker_news
+```
+### Scrap up Hacker News latest articles
+Create an instance of `Article` class.
+```py
+articles = hacker_news.Article()
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.articles_list()` | Returns the latest articles along with their links in JSON format. |
+**Example:**
+```py
+article = Article()
+print(article.articles_list())
+```
+
+
 ## Twitter
 
 ```python
@@ -282,3 +303,4 @@ twitter_scraper = TwitterScraper()
 | ---------------------------| --------------------------------------------------- |
 | `.unametoid(username)`     | Returns the numerical_id on passing username.       |
 | `.idtouname(numerical_id)` | Returns the username on passing numerical_id.       |
+
