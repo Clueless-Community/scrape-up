@@ -55,6 +55,13 @@ class Repository:
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
+    
+    def __scrape_watchers_page(self):
+        data = requests.get(
+            f"https://github.com/{self.username}/{self.repository}/watchers"
+        )
+        data = BeautifulSoup(data.text,"html.parser")
+        return data
 
     def languagesUsed(self):
         """
@@ -447,6 +454,39 @@ class Repository:
             return {
                     "data": None,
                     "message": message,
+            }
+        
+    def watch_count(self):
+        """ Fetch the number of watches of a repository """
+        data = self.__scrape_watchers_page()
+        try:
+            watches = len(data.find("ol",{"class": "gutter"}).find_all("li"))
+            return {
+                "data": watches,
+                "message": f"Total watches in {self.repository} repository",
+            }
+        except:
+            message = f"No watches found in {self.repository} repository"
+            return {
+                "data": None,
+                "message": message,
+            }
+    
+    def all_watchers(self):
+        """ Fetch all the watchers of the repository """
+        data = self.__scrape_watchers_page()
+        try:
+            all = data.find("ol",{"class": "gutter"}).find_all("a",{"data-hovercard-type": "user"})[1::2]
+            watchers = []
+            for watcher in all:
+                watchers.append(watcher.text.strip())
+            return watchers
+
+        except:
+            message = f"No watchers found in {self.repository} repository"
+            return{
+                "data": None,
+                "message": message,
             }
 
 # Test

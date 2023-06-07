@@ -91,6 +91,8 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 | `.commits()`               | Returns number of commits in a repository.                                                                                                           |
 | `.get_readme()`            | Returns & saves README.md file of the special repository (if exists)                                                                                 |
 | `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                        |
+| `.watch_count()` | Returns the number of watchers of a repository
+|`.all_watchers()`| Returns the username of all watches of a repository
 
 **Example:**
 ```python
