@@ -250,7 +250,9 @@ user = medium.Users(username="nikhil25803")
 
 **Example**
 ```python
-user.get_articles() #user var taken from above
+articles = user.get_articles() #user var taken from above
+for article in articles:
+    print(article) #For better visibility/readability
 ```
 
 ### Scrape trending articles
@@ -271,13 +273,14 @@ First create an object of class `Publication`
 publication = medium.Publication(link="https://....")
 ```
 
-| Methods                | Details                                                                 |
-| ---------------------- | ----------------------------------------------------------------------- |
-| `.get_articles_list()` | Returns the articles of publications which are arranged in list format. |
-| `.get_articles_grid()` | Returns the articles of publications which are arranged in grid format. |
+| Methods                | Details                                                |
+| ---------------------- | ------------------------------------------------------ |
+| `.get_articles()`      | Returns a list of articles of the given publication.   |
 
 **Example**
 ```python
-publication.get_articles_list() #publication var taken from above
+articles = publication.get_articles() #publication var taken from above
+for article in articles:
+    print(article) #For better visibility/readability
 ```
 
