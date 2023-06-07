@@ -24,6 +24,9 @@ print(user.followers())
 ---
 
 # The platforms and methods we cover 💫
++ GitHub
++ Instagram
++ Internshala
 
 ## GitHub
 

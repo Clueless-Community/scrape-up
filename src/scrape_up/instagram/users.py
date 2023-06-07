@@ -103,6 +103,3 @@ class Instagram:
 
 # # Test
 # user = Instagram(username="nikhil_raj803")
-# print(user.followers())
-# print(user.following())
-# print(user.posts())

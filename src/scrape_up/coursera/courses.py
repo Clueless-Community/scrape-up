@@ -45,7 +45,6 @@ class Coursera:
                     By.CSS_SELECTOR, 'button[aria-label="Next Page"]'
                 )
                 if "disabled" in next_btn.get_attribute("class"):
-                    print("There are no more pages")
                     break
                 else:
                     next_btn.click()

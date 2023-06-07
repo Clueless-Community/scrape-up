@@ -89,5 +89,6 @@ class NSE:
             historical_price_data[i["mTIMESTAMP"]] = i["VWAP"]
         return historical_price_data
 
+
 nse = NSE(stock_name="RELIANCE INDUSTRIES LTD")
 nse.get_latest_price()

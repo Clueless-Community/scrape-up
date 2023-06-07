@@ -71,6 +71,9 @@ class Internships:
 
                 internships.append(internship_data)
 
-            return internships
+            return {
+                "data":internship,
+                "message":"Interships are now fetched"
+            }
         except Exception as e:
             raise Exception(f"An error occurred while scraping internships: {str(e)}")

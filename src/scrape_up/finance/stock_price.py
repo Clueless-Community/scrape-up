@@ -74,5 +74,7 @@ class StockPrice:
                 "data": data,
                 "message": message,
             }
+
+
 sp = StockPrice(stock_index="infosys")
 sp.get_historical_data()
