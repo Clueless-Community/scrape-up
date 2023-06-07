@@ -209,6 +209,36 @@ following = user.following() #user var taken from above
 print(following)
 ```
 ---
+
+## Internshala
+
+```python
+from scrape_up.internshala.internships import Internships
+```
+
+### Scrape Internship details
+
+Create an object of the 'Internships' class:
+
+```python
+scraper = Internships()
+```
+
+| Methods          | Details                                                             |
+| -----------------| --------------------------------------------------------------------|
+| `.internships()` | Scrapes and returns a list of dictionaries representing internships.|
+
+
+**Example:**
+```python
+scraper = Internships()
+internships = scraper.scrape_internships()
+for internship in internships:
+    print(internship)
+
+```
+---
+
 ## KooApp
 ```py
 from scrape_up import kooapp
@@ -233,6 +263,7 @@ user = kooapp.KooUser('krvishal')
 name = user.get_name() # user variable is taken from above example
 print(name)
 ```
+
 ---
 
 ## Hacker News
@@ -252,3 +283,24 @@ articles = hacker_news.Article()
 article = Article()
 print(article.articles_list())
 ```
+
+
+## Twitter
+
+```python
+from scrape_up import twitter
+```
+
+### Scrape
+
+First create an object of class `TwitterScraper`
+
+```python
+twitter_scraper = TwitterScraper()
+```
+
+| Methods                    | Details                                             |
+| ---------------------------| --------------------------------------------------- |
+| `.unametoid(username)`     | Returns the numerical_id on passing username.       |
+| `.idtouname(numerical_id)` | Returns the username on passing numerical_id.       |
+
