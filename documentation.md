@@ -266,6 +266,60 @@ print(name)
 
 ---
 
+## Medium
+```python
+from scrape_up import medium
+```
+### Scrape user details
+
+First create an object of class `User`
+```python
+user = medium.Users(username="nikhil25803")
+```
+
+| Methods           | Details                                             |
+| ------------------| --------------------------------------------------- |
+| `.get_articles()` | Returns the article titles of the users.            |
+
+**Example**
+```python
+articles = user.get_articles() #user var taken from above
+for article in articles:
+    print(article) #For better visibility/readability
+```
+
+### Scrape trending articles
+
+| Methods           | Details                                             |
+| ------------------| --------------------------------------------------- |
+| `.get_trending()` | Returns the trending titles of medium.              |
+
+**Example**
+```python
+Trending.get_trending() #Prints the trending titles
+```
+
+### Scrape publication details
+
+First create an object of class `Publication`
+```python
+publication = medium.Publication(link="https://....")
+```
+
+| Methods                | Details                                                |
+| ---------------------- | ------------------------------------------------------ |
+| `.get_articles()`      | Returns a list of articles of the given publication.   |
+
+**Example**
+```python
+articles = publication.get_articles() #publication var taken from above
+for article in articles:
+    print(article) #For better visibility/readability
+```
+
+
+---
+
 ## Hacker News
 ```py
 from scrape_up import hacker_news
