@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class Article:
+class HackerNews:
 
     def __init__(self):
         self.help = "This scrapes articles"
@@ -22,7 +22,10 @@ class Article:
             for article in articles:
                 link = article.find('a')
                 article_list.append({"Article": article.text, "Link": link['href']})
-            return article_list
+            return {
+                "data": article_list,
+                "message": "Successfylly fetched data."
+            }
 
         except:
             message = "An Error Occurred!"
@@ -30,5 +33,6 @@ class Article:
                 "data": article_list,
                 "message": message
             }
-
+news = HackerNews()
+print(news.articles_list())
 
