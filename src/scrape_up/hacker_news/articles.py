@@ -46,7 +46,7 @@ class HackerNews:
                 }
                 }
             ],
-            "message": "Successfylly fetched data."
+            "message": "Successfully fetched data."
         }
         ```
         """
@@ -57,7 +57,7 @@ class HackerNews:
             for article in articles:
                 link = article.find("a")
                 article_list.append({"Article": article.text, "Link": link["href"]})
-            return {"data": article_list, "message": "Successfylly fetched data."}
+            return {"data": article_list, "message": "Successfully fetched data."}
 
         except:
             message = "An Error Occurred!"
