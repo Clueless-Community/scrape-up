@@ -3,11 +3,34 @@ from bs4 import BeautifulSoup
 
 
 class Internshala:
+    """
+    Class to scrape internships from Internshala website.
+    """
+
+    def __init__(self, search_type):
+        """
+        Initializes the Internships class.
+        """
+
+
+class Internshala:
     def __init__(self, search_type):
         self.base_url = "https://internshala.com/internships/"
         self.search_type = search_type
 
     def scrape_page(self, url):
+        """
+        Fetches the HTML content of the specified URL.
+
+        Args:
+            url (str): The URL to fetch.
+
+        Returns:
+            str: The HTML content of the URL.
+
+        Raises:
+            Exception: If an error occurs while fetching the page.
+        """
         try:
             html_text = requests.get(url)
             html_text.raise_for_status()
@@ -16,6 +39,18 @@ class Internshala:
             raise Exception(f"An error occurred while fetching the page: {str(e)}")
 
     def parse_page(self, html):
+        """
+        Parses the HTML content using BeautifulSoup.
+
+        Args:
+            html (str): The HTML content to parse.
+
+        Returns:
+            BeautifulSoup: The parsed BeautifulSoup object.
+
+        Raises:
+            Exception: If an error occurs while parsing the page.
+        """
         try:
             soup = BeautifulSoup(html, "lxml")
             return soup
@@ -24,6 +59,8 @@ class Internshala:
 
     def internships(self):
         """
+        Fetches the internships data.
+
         Class - `Internships`
         Example:
         ```
@@ -69,6 +106,9 @@ class Internshala:
 
                 internships.append(internship_data)
 
-            return {"data": internships, "message": "Internships are now fetched"}
+            return {
+                "data": internships,
+                "message": "Internships are now fetched",
+            }
         except Exception as e:
             raise Exception(f"An error occurred while scraping internships: {str(e)}")
