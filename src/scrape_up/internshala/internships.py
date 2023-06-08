@@ -3,10 +3,29 @@ from bs4 import BeautifulSoup
 
 
 class Internships:
+    """
+    Class to scrape internships from Internshala website.
+    """
+
     def __init__(self):
+        """
+        Initializes the Internships class.
+        """
         self.base_url = "https://internshala.com/internships/"
 
     def scrape_page(self, url):
+        """
+        Fetches the HTML content of the specified URL.
+
+        Args:
+            url (str): The URL to fetch.
+
+        Returns:
+            str: The HTML content of the URL.
+
+        Raises:
+            Exception: If an error occurs while fetching the page.
+        """
         try:
             html_text = requests.get(url)
             html_text.raise_for_status()
@@ -15,6 +34,18 @@ class Internships:
             raise Exception(f"An error occurred while fetching the page: {str(e)}")
 
     def parse_page(self, html):
+        """
+        Parses the HTML content using BeautifulSoup.
+
+        Args:
+            html (str): The HTML content to parse.
+
+        Returns:
+            BeautifulSoup: The parsed BeautifulSoup object.
+
+        Raises:
+            Exception: If an error occurs while parsing the page.
+        """
         try:
             soup = BeautifulSoup(html, "lxml")
             return soup
@@ -23,19 +54,13 @@ class Internships:
 
     def internships(self):
         """
-        Class - `Internships`
-        Example:
-        ```
-        scraper = Internships()
-        internships = scraper.internships()
-        ```
+        Fetches the internships data.
+
         Returns:
-        List of dictionaries, where each dictionary represents an internship and contains the following keys:
-        - 'title': Title of the internship
-        - 'company': Company offering the internship
-        - 'location': Location of the internship
-        - 'duration': Duration of the internship
-        - 'stipend': Stipend offered for the internship
+            dict: A dictionary containing the fetched internships data.
+
+        Raises:
+            Exception: If an error occurs while scraping internships.
         """
         try:
             search_type = input(
@@ -72,8 +97,8 @@ class Internships:
                 internships.append(internship_data)
 
             return {
-                "data":internship,
-                "message":"Interships are now fetched"
+                "data": internships,
+                "message": "Internships are now fetched",
             }
         except Exception as e:
             raise Exception(f"An error occurred while scraping internships: {str(e)}")
