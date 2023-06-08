@@ -49,7 +49,7 @@ class StockPrice:
         """
         try:
             data = self.stock.get_latest_price()
-            message = f"Found latest stock price for {self.stock_name}"
+            message = f"Found latest stock price(in {self.stock.currency_type}) for {self.stock_name}"
         except:
             data = None
             message = f"No latest stock price found for {self.stock_name}"
@@ -65,7 +65,7 @@ class StockPrice:
         """
         try:
             data = self.stock.get_historical_data(from_date, to_date)
-            message = f"Historical stock price found for {self.stock_name} in range {from_date} to {to_date}"
+            message = f"Historical stock price(in {self.stock.currency_type}) found for {self.stock_name} in range {from_date} to {to_date}"
         except:
             data = None
             message = f"No historial stock price found for {self.stock_name}"
@@ -76,5 +76,3 @@ class StockPrice:
             }
 
 
-sp = StockPrice(stock_index="infosys")
-sp.get_historical_data()
