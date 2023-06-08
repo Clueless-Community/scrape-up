@@ -11,6 +11,10 @@ class Internshala:
         """
         Initializes the Internships class.
         """
+
+
+class Internshala:
+    def __init__(self, search_type):
         self.base_url = "https://internshala.com/internships/"
         self.search_type = search_type
 
@@ -55,6 +59,8 @@ class Internshala:
 
     def internships(self):
         """
+        Fetches the internships data.
+
         Class - `Internships`
         Example:
         ```
@@ -100,6 +106,9 @@ class Internshala:
 
                 internships.append(internship_data)
 
-            return {"data": internships, "message": "Internships are now fetched"}
+            return {
+                "data": internships,
+                "message": "Internships are now fetched",
+            }
         except Exception as e:
             raise Exception(f"An error occurred while scraping internships: {str(e)}")
