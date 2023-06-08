@@ -2,16 +2,17 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class Internships:
+class Internshala:
     """
     Class to scrape internships from Internshala website.
     """
 
-    def __init__(self):
+    def __init__(self, search_type):
         """
         Initializes the Internships class.
         """
         self.base_url = "https://internshala.com/internships/"
+        self.search_type = search_type
 
     def scrape_page(self, url):
         """
@@ -54,19 +55,22 @@ class Internships:
 
     def internships(self):
         """
-        Fetches the internships data.
-
+        Class - `Internships`
+        Example:
+        ```
+        scraper = Internshala(search_type="keyword")
+        internships = scraper.internships()
+        ```
         Returns:
-            dict: A dictionary containing the fetched internships data.
-
-        Raises:
-            Exception: If an error occurs while scraping internships.
+        List of dictionaries, where each dictionary represents an internship and contains the following keys:
+        - 'title': Title of the internship
+        - 'company': Company offering the internship
+        - 'location': Location of the internship
+        - 'duration': Duration of the internship
+        - 'stipend': Stipend offered for the internship
         """
         try:
-            search_type = input(
-                "Enter the type of internships you want to search for: "
-            )
-            url = self.base_url + search_type
+            url = self.base_url + self.search_type
             html = self.scrape_page(url)
             page = self.parse_page(html)
             internships = []
@@ -96,9 +100,6 @@ class Internships:
 
                 internships.append(internship_data)
 
-            return {
-                "data": internships,
-                "message": "Internships are now fetched",
-            }
+            return {"data": internships, "message": "Internships are now fetched"}
         except Exception as e:
             raise Exception(f"An error occurred while scraping internships: {str(e)}")
