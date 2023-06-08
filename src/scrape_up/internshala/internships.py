@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class Internships:
+class Internshala:
     def __init__(self, search_type):
         self.base_url = "https://internshala.com/internships/"
         self.search_type = search_type
@@ -27,7 +27,7 @@ class Internships:
         Class - `Internships`
         Example:
         ```
-        scraper = Internships("keyword")
+        scraper = Internshala(search_type="keyword")
         internships = scraper.internships()
         ```
         Returns:
@@ -69,20 +69,6 @@ class Internships:
 
                 internships.append(internship_data)
 
-            return {
-                "data": internships,
-                "message": "Internships are now fetched"
-            }
+            return {"data": internships, "message": "Internships are now fetched"}
         except Exception as e:
             raise Exception(f"An error occurred while scraping internships: {str(e)}")
-        
-        
- #Basically you can create an instance of the Internships class by passing the desired keyword as an argument, like this:
-
-'''
-scraper = Internships("keyword")
-internships = scraper.internships()       
-
-'''
-
-#You have to replace the keyword with actual word you want to search for. The program will no longer wait for user input and will use the provided keyword directly.
