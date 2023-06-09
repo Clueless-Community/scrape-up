@@ -361,3 +361,23 @@ twitter_scraper = TwitterScraper()
 | `.unametoid(username)`     | Returns the numerical_id on passing username.       |
 | `.idtouname(numerical_id)` | Returns the username on passing numerical_id.       |
 
+
+
+## Leetcode
+
+```python
+from scrape_up import leetcode
+```
+
+### Scrape
+
+First create an object of class `LeetCodeScraper`
+
+```python
+leetcode_scraper = LeetCodeScraper()
+```
+
+| Methods                    | Details                                             |
+| ---------------------------| --------------------------------------------------- |
+| `.scrape_rank(username)`   | Used to scrape the rank of a user on LeetCode.      |
+| `.scrape_rating(username)` | Used to scrape the rating of a user on LeetCode.    |
