@@ -449,19 +449,26 @@ class Organization:
 
     def get_organization_links(self):
         try:
-            links={}
-            data=self.__scrape_page()
-            website_link=data.find("a",rel="nofollow",itemprop="url",href=True)['href']
-            links['website']=website_link
-            gmail=data.find("a",itemprop="email",href=True)['href']
-            links['gmail']=gmail
-            other_link=data.find_all("a",rel="nofollow",href=True)
+            links = {}
+            data = self.__scrape_page()
+            website_link = data.find("a", rel="nofollow", itemprop="url", href=True)[
+                "href"
+            ]
+            links["website"] = website_link
+            gmail = data.find("a", itemprop="email", href=True)["href"]
+            links["gmail"] = gmail
+            other_link = data.find_all("a", rel="nofollow", href=True)
             for o in other_link:
-                name=o['href'].split("//")[1].split('/')[0].replace("www.","").split('.')[0]
-                if name!=self.organization or name.find(self.organization)==-1 :
+                name = (
+                    o["href"]
+                    .split("//")[1]
+                    .split("/")[0]
+                    .replace("www.", "")
+                    .split(".")[0]
+                )
+                if name != self.organization or name.find(self.organization) == -1:
                     if not name in links:
-                        links[name]=o['href']
+                        links[name] = o["href"]
             return links
-        except : 
+        except:
             return "An exception occured, information cannot be printed"
-                
