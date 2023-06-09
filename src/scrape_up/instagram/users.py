@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class InstagramScraper:
+class Instagram:
     def __init__(self, username: str):
         self.username = username
 
@@ -67,7 +67,9 @@ class InstagramScraper:
             html = self.__scrape_page()
             page = self.__parse_page(html)
             following = page.find_all("meta", attrs={"name": "description"})
-            following_count = following[0]["content"].split(",")[1].strip().split(" ")[0]
+            following_count = (
+                following[0]["content"].split(",")[1].strip().split(" ")[0]
+            )
             return {
                 "data": following_count,
                 "message": f"User {self.username} is following {following_count} people.",
@@ -75,11 +77,10 @@ class InstagramScraper:
         except Exception as e:
             message = f"{self.username} not found!"
             return {"data": None, "message": message}
-          
-    
+
     def posts(self):
         """
-         returns the no of posts of the given profile.
+        returns the no of posts of the given profile.
         """
         page = self.__scrape_page()
         try:
@@ -88,9 +89,9 @@ class InstagramScraper:
             meta = [x for x in meta["content"].split()]
             iterator_meta = iter(meta)
             for i in range(len(meta)):
-                if next(iterator_meta, 0) == 'Posts':
-                    post_count = meta[i-1]
-                   
+                if next(iterator_meta, 0) == "Posts":
+                    post_count = meta[i - 1]
+
             return {
                 "data": post_count,
                 "message": f"User {self.username} has {post_count} posts.",
@@ -98,10 +99,7 @@ class InstagramScraper:
         except:
             message = f"{self.username} not found !"
             return {"data": None, "message": message}
-        
 
-# Test
-# user = Users(username="nikhil_raj803")
-# print(user.followers())
-# print(user.following())
-# print(user.posts())
+
+# # Test
+# user = Instagram(username="nikhil_raj803")

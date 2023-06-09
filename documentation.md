@@ -24,6 +24,9 @@ print(user.followers())
 ---
 
 # The platforms and methods we cover 💫
++ GitHub
++ Instagram
++ Internshala
 
 ## GitHub
 
@@ -209,6 +212,36 @@ following = user.following() #user var taken from above
 print(following)
 ```
 ---
+
+## Internshala
+
+```python
+from scrape_up.internshala.internships import Internships
+```
+
+### Scrape Internship details
+
+Create an object of the 'Internships' class:
+
+```python
+scraper = Internships()
+```
+
+| Methods          | Details                                                             |
+| -----------------| --------------------------------------------------------------------|
+| `.internships()` | Scrapes and returns a list of dictionaries representing internships.|
+
+
+**Example:**
+```python
+scraper = Internships()
+internships = scraper.scrape_internships()
+for internship in internships:
+    print(internship)
+
+```
+---
+
 ## KooApp
 ```py
 from scrape_up import kooapp
@@ -233,3 +266,98 @@ user = kooapp.KooUser('krvishal')
 name = user.get_name() # user variable is taken from above example
 print(name)
 ```
+
+---
+
+## Medium
+```python
+from scrape_up import medium
+```
+### Scrape user details
+
+First create an object of class `User`
+```python
+user = medium.Users(username="nikhil25803")
+```
+
+| Methods           | Details                                             |
+| ------------------| --------------------------------------------------- |
+| `.get_articles()` | Returns the article titles of the users.            |
+
+**Example**
+```python
+articles = user.get_articles() #user var taken from above
+for article in articles:
+    print(article) #For better visibility/readability
+```
+
+### Scrape trending articles
+
+| Methods           | Details                                             |
+| ------------------| --------------------------------------------------- |
+| `.get_trending()` | Returns the trending titles of medium.              |
+
+**Example**
+```python
+Trending.get_trending() #Prints the trending titles
+```
+
+### Scrape publication details
+
+First create an object of class `Publication`
+```python
+publication = medium.Publication(link="https://....")
+```
+
+| Methods                | Details                                                |
+| ---------------------- | ------------------------------------------------------ |
+| `.get_articles()`      | Returns a list of articles of the given publication.   |
+
+**Example**
+```python
+articles = publication.get_articles() #publication var taken from above
+for article in articles:
+    print(article) #For better visibility/readability
+```
+
+
+---
+
+## Hacker News
+```py
+from scrape_up import hacker_news
+```
+### Scrap up Hacker News latest articles
+Create an instance of `Article` class.
+```py
+articles = hacker_news.Article()
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.articles_list()` | Returns the latest articles along with their links in JSON format. |
+**Example:**
+```py
+article = Article()
+print(article.articles_list())
+```
+
+
+## Twitter
+
+```python
+from scrape_up import twitter
+```
+
+### Scrape
+
+First create an object of class `TwitterScraper`
+
+```python
+twitter_scraper = TwitterScraper()
+```
+
+| Methods                    | Details                                             |
+| ---------------------------| --------------------------------------------------- |
+| `.unametoid(username)`     | Returns the numerical_id on passing username.       |
+| `.idtouname(numerical_id)` | Returns the username on passing numerical_id.       |
+
