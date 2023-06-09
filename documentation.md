@@ -361,3 +361,19 @@ twitter_scraper = TwitterScraper()
 | `.unametoid(username)`     | Returns the numerical_id on passing username.       |
 | `.idtouname(numerical_id)` | Returns the username on passing numerical_id.       |
 
+---
+
+## IMDb
+
+### Scrap up IMDb Top 250 details
+Create an instance of `Movie` class.
+```python
+top_250 = IMDB()
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.top_rated()` | Returns the top rated movies listed on IMDB. |
+
+---
+
+
