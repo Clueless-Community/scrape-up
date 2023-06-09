@@ -75,4 +75,3 @@ class StockPrice:
                 "message": message,
             }
 
-
