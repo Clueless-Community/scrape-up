@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class InstagramScraper:
+class Users:
     def __init__(self, username: str):
         self.username = username
 
@@ -24,10 +24,10 @@ class InstagramScraper:
 
     def followers(self):
         """
-        Class - `InstagramScraper`
+        Class - `Users`
         Example:
         ```
-        scraper = InstagramScraper(username="nikhil25803")
+        scraper = Users(username="nikhil25803")
         followers = scraper.followers()
         ```
         Returns:
@@ -51,10 +51,10 @@ class InstagramScraper:
 
     def following(self):
         """
-        Class - `InstagramScraper`
+        Class - `Users`
         Example:
         ```
-        scraper = InstagramScraper(username="nikhil25803")
+        scraper = Users(username="nikhil25803")
         following = scraper.following()
         ```
         Returns:
@@ -79,9 +79,11 @@ class InstagramScraper:
     
     def posts(self):
         """
-         returns the no of posts of the given profile.
+        Returns post count of the user.
         """
+
         page = self.__scrape_page()
+        page = self.__parse_page(page)
         try:
             post = page.select("meta", attrs={"name": "description"})
             meta = post[11]
