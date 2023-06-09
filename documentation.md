@@ -361,7 +361,7 @@ twitter_scraper = TwitterScraper()
 | `.unametoid(username)`     | Returns the numerical_id on passing username.       |
 | `.idtouname(numerical_id)` | Returns the username on passing numerical_id.       |
 
-
+---
 
 ## Finance
 
@@ -387,5 +387,19 @@ latest_info = infosys.get_latest_price() # infosys var taken from above
 historical_data = infosys.get_historical_data('02-05-2023', '31-05-2023')
 ```
 
+---
+
+## IMDb
+
+### Scrap up IMDb Top 250 details
+Create an instance of `Movie` class.
+```python
+top_250 = IMDB()
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.top_rated()` | Returns the top rated movies listed on IMDB. |
+
+---
 
 
