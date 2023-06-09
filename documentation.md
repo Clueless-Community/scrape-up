@@ -361,3 +361,45 @@ twitter_scraper = TwitterScraper()
 | `.unametoid(username)`     | Returns the numerical_id on passing username.       |
 | `.idtouname(numerical_id)` | Returns the username on passing numerical_id.       |
 
+---
+
+## IMDb
+```python
+from .imdb import Movie
+__all__ = ['Movie']
+
+You can also use -
+
+from scrape_up.imdb.imdb import Movie
+__all__ = ['Movie'] 
+```
+### Scrap up IMDb Top 250 details
+Create an instance of `Movie` class.
+```python
+movie_name = input("Enter a movie name: ")
+movie = Movie(name=movie_name)
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.details()` | Returns the name, rank, year, and rating of the movie. |
+| `.scrape_movies()` | Returns the list of all Top 250 movies with their name, rank, year, and rating. |
+| `.save_all_movies_to_excel()` | Creates an excel file that has the list of all Top 250 movies with their details. |
+| `.save_to_excel()` | Saves the name of a movie in an excel sheet if not present in Top 250.         |
+
+
+**Example:**
+```py
+movie_name = input("Enter a movie name: ")
+movie = Movie(name=movie_name)
+if movie_name:
+    print(movie.details())
+else:
+    print(movie.save_to_excel())
+    
+movie.save_all_movies_to_excel()
+
+```
+
+---
+
+
