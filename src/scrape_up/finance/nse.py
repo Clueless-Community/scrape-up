@@ -87,3 +87,4 @@ class NSE:
         for i in historical_price_data_raw:
             historical_price_data[i['mTIMESTAMP']] = i['VWAP']
         return historical_price_data
+    

@@ -1,7 +1,4 @@
-try:
-    from nse import NSE
-except ModuleNotFoundError:
-    from scrape_up.finance.nse import NSE
+from nse import NSE
 
 class StockPrice:
     """
@@ -70,3 +67,5 @@ class StockPrice:
                 'message' : message,
             }
 
+indus = StockPrice("INDUSINDBK")
+print(indus.get_latest_price())
