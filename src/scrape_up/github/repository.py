@@ -5,9 +5,6 @@ import requests_html
 import os
 
 
-
-
-
 class Repository:
     def __init__(self, username: str, repository_name: str):
         self.username = username
@@ -48,19 +45,19 @@ class Repository:
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
-    
+
     def __scrape_deployments_page(self):
         data = requests.get(
             f"https://github.com/{self.username}/{self.repository}/deployments/activity_log"
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
-    
+
     def __scrape_watchers_page(self):
         data = requests.get(
             f"https://github.com/{self.username}/{self.repository}/watchers"
         )
-        data = BeautifulSoup(data.text,"html.parser")
+        data = BeautifulSoup(data.text, "html.parser")
         return data
 
     def languagesUsed(self):
@@ -70,7 +67,7 @@ class Repository:
         data = self.__scrape_page()
 
         try:
-            languages = data.find_all( class_="color-fg-default text-bold mr-1")
+            languages = data.find_all(class_="color-fg-default text-bold mr-1")
             allLanguages = []
             for item in languages:
                 allLanguages.append(item.text)
@@ -101,7 +98,9 @@ class Repository:
                 "message": f"About {self.repository} repository",
             }
         except:
-            message = f"No details found in the about section of {self.repository} repository"
+            message = (
+                f"No details found in the about section of {self.repository} repository"
+            )
             return {
                 "data": None,
                 "message": message,
@@ -371,24 +370,20 @@ class Repository:
                 "message": message,
             }
 
-
     def last_update_at(self):
-        data=self.__scrape_page()
+        data = self.__scrape_page()
         try:
-            update=data.find_all("relative-time", class_="no-wrap")
+            update = data.find_all("relative-time", class_="no-wrap")
             return {
                 "data": update[0].get_text(),
                 "message": f" last Updated of {self.repository} repository",
             }
         except:
-            message=f"No updation found in {self.repository} repository"
+            message = f"No updation found in {self.repository} repository"
             return {
                 "data": None,
                 "message": message,
             }
-    
-
-            
 
     def get_readme(self):
         """
@@ -425,7 +420,9 @@ class Repository:
         """
         try:
             data = self.__scrape_deployments_page()
-            link = data.find("a",class_='btn btn-outline flex-self-start mt-2 mt-md-0').get('href')
+            link = data.find(
+                "a", class_="btn btn-outline flex-self-start mt-2 mt-md-0"
+            ).get("href")
             return {
                 "data": link,
                 "message": f"Latest enviornment link for {self.repository} is {link}",
@@ -438,29 +435,33 @@ class Repository:
             }
 
     def get_branch(self):
-        data = requests.get(f"https://github.com/{self.username}/{self.repository}/branches")
+        data = requests.get(
+            f"https://github.com/{self.username}/{self.repository}/branches"
+        )
         data = BeautifulSoup(data.text, "html.parser")
         try:
-            branch = data.find_all(class_="branch-name css-truncate-target v-align-baseline width-fit mr-2 Details-content--shown")
+            branch = data.find_all(
+                class_="branch-name css-truncate-target v-align-baseline width-fit mr-2 Details-content--shown"
+            )
             allBranches = []
             for branchNames in branch:
                 allBranches.append(branchNames.text.strip())
             return {
                 "data": allBranches,
-                "message": f"The branches of {self.repository}/{self.username} is {allBranches}"
+                "message": f"The branches of {self.repository}/{self.username} is {allBranches}",
             }
         except:
             message = f"Failed to fetch branches of {self.username}/{self.repository}"
             return {
-                    "data": None,
-                    "message": message,
+                "data": None,
+                "message": message,
             }
-        
+
     def watch_count(self):
-        """ Fetch the number of watches of a repository """
+        """Fetch the number of watches of a repository"""
         data = self.__scrape_watchers_page()
         try:
-            watches = len(data.find("ol",{"class": "gutter"}).find_all("li"))
+            watches = len(data.find("ol", {"class": "gutter"}).find_all("li"))
             return {
                 "data": watches,
                 "message": f"Total watches in {self.repository} repository",
@@ -471,12 +472,14 @@ class Repository:
                 "data": None,
                 "message": message,
             }
-    
+
     def all_watchers(self):
-        """ Fetch all the watchers of the repository """
+        """Fetch all the watchers of the repository"""
         data = self.__scrape_watchers_page()
         try:
-            all = data.find("ol",{"class": "gutter"}).find_all("a",{"data-hovercard-type": "user"})[1::2]
+            all = data.find("ol", {"class": "gutter"}).find_all(
+                "a", {"data-hovercard-type": "user"}
+            )[1::2]
             watchers = []
             for watcher in all:
                 watchers.append(watcher.text.strip())
@@ -484,10 +487,11 @@ class Repository:
 
         except:
             message = f"No watchers found in {self.repository} repository"
-            return{
+            return {
                 "data": None,
                 "message": message,
             }
+
 
 # Test
 # repo = Repository(username="", repository_name="")
