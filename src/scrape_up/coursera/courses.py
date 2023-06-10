@@ -25,7 +25,7 @@ class Coursera:
         Class - `Courses`
         Example:
         ```
-        topic = Courses("Machine Learning", 10)
+        topic = Courses("Machine Learning", 11)
         courses = topic.titles()
         ```
         Returns:
