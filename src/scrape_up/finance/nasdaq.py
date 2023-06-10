@@ -76,7 +76,7 @@ class NASDAQ:
         ).json()["data"]["tradesTable"]["rows"]
         historical_price_data = {}
         for i in historical_price_data_raw:
-            date_formatted = datetime.strptime(i["date"], "%m/%d/%Y").strftime("%d/%m/%Y")
+            date_formatted = datetime.strptime(i["date"], "%m/%d/%Y").strftime("%d-%m-%Y")
             historical_price_data[date_formatted] = float(i["open"][1:])
         return historical_price_data
 

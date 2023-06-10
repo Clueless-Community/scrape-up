@@ -1,7 +1,9 @@
 try:
     from nse import NSE
+    from nasdaq import NASDAQ
 except ModuleNotFoundError:
     from scrape_up.finance.nse import NSE
+    from scrape_up.finance.nasdaq import NASDAQ
 
 
 class StockPrice:
@@ -25,10 +27,16 @@ class StockPrice:
     def __init__(self, stock_name, stock_index="nse"):
         self.stock_name = stock_name.strip()
         self.stock_index = stock_index.strip().lower()
+        stock_class = None
         if self.stock_index == "nse":
-            print(f"Searching for {self.stock_name} nse stock...")
+            stock_class = NSE
+        elif self.stock_index == "nasdaq":
+            stock_class = NASDAQ
+        
+        if(stock_class):
+            print(f"Searching for {self.stock_name} {self.stock_index} stock...")
             try:
-                self.stock = NSE(stock_name)
+                self.stock = stock_class(stock_name)
                 self.stock_name = self.stock.stock_name
                 print(
                     f"Found stock based on provided name: {self.stock_name}\nStock instance created"
