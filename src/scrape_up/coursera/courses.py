@@ -22,7 +22,17 @@ class Coursera:
 
     def titles(self):
         """
-        Returns the titles of courses
+        Class - `Courses`
+        Example:
+        ```
+        topic = Courses("Machine Learning", 11)
+        courses = topic.titles()
+        ```
+        Returns:
+        {
+            "data": titles,
+            "message": f"Course Titles for {self.keyword}"
+        }
         """
         wait, driver = self.__scrape_page()
         titles = []
