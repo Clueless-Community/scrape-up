@@ -1,14 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
-import respository
-
+from github.repository import Repository
 
 class Users:
     def __init__(self, username: str):
         self.username = username
 
     def __str__(self):
-        return f' The username is: {self.username}'
+        return f" The username is: {self.username}"
 
     def __scrape_page(self):
         username = self.username
@@ -26,11 +25,11 @@ class Users:
         ```
         Return\n
         ```python
-        return 
+        return
         {
             "data": followers.text,
             "message":f"Followers found for user {self.username}"
-        }  
+        }
         ```
         """
         page = self.__scrape_page()
@@ -38,14 +37,11 @@ class Users:
             followers = page.find(class_="text-bold color-fg-default")
             return {
                 "data": followers.text,
-                "message":f"Followers found for user {self.username}"
+                "message": f"Followers found for user {self.username}",
             }
         except:
             message = f"{self.username} not found !"
-            return {
-                "data":None,
-                "message":message
-            }
+            return {"data": None, "message": message}
 
     def following(self):
         """ "
@@ -392,7 +388,7 @@ class Users:
                     )
                     # create a repository object
                     repository_name = repo_url.split("/")[-1]
-                    repository = respository.Repository(username, repository_name)
+                    repository = Repository(username, repository_name)
                     repo_forks, repo_stars, repo_issues, repo_pull_requests = (
                         repository.fork_count(),
                         repository.star_count(),
@@ -415,6 +411,7 @@ class Users:
             return repositories
         except:
             return "No repositories found"
+
 
 # TEST
 # user = Users(username="nikhil25803")
