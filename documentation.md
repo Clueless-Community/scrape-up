@@ -361,7 +361,7 @@ twitter_scraper = TwitterScraper()
 | `.unametoid(username)`     | Returns the numerical_id on passing username.       |
 | `.idtouname(numerical_id)` | Returns the username on passing numerical_id.       |
 
-
+----------------
 
 ## Leetcode
 
@@ -381,3 +381,44 @@ leetcode_scraper = LeetCodeScraper()
 | ---------------------------| --------------------------------------------------- |
 | `.scrape_rank(username)`   | Used to scrape the rank of a user on LeetCode.      |
 | `.scrape_rating(username)` | Used to scrape the rating of a user on LeetCode.    |
+---
+
+## Finance
+
+```python
+from scrape_up import StockPrice
+```
+
+### Scrape stock data
+
+First create an instance of class ```StockPrice``` with stock name and index name (optional, default is nse)
+```python
+infosys = StockPrice('infosys','nse')
+```
+| Methods                    | Details                                             |
+| ---------------------------| --------------------------------------------------- |
+| `.get_latest_price()`      | Returns latest stock price of give stock name.      |
+| `.get_historical_data(from_date,to_date)`   | Returns stock price from ```from_date``` to ```to_date``` in format (date in format dd-mm-yyyy)      |
+
+**Example**
+```python
+# all data returned in dictionary format
+latest_info = infosys.get_latest_price() # infosys var taken from above
+historical_data = infosys.get_historical_data('02-05-2023', '31-05-2023')
+```
+
+---
+
+## IMDb
+
+### Scrap up IMDb Top 250 details
+Create an instance of `Movie` class.
+```python
+top_250 = IMDB()
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.top_rated()` | Returns the top rated movies listed on IMDB. |
+
+---
+
