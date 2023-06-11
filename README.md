@@ -1,7 +1,7 @@
 
 ## 🕷️ Scrape Up
 
-An alternative to APIs, Scrape Up is a Python package for web scraping. It allows you to extract data from platforms like GitHub, Twitter, Instagram, or any other website that contains valuable information. It enables you to gather data programming
+An alternative to APIs, Scrape Up is a Python package for web scraping. It allows you to extract data from platforms like GitHub, Twitter, Instagram, or any other website that contains valuable information. It enables you to gather data through programming.
 
 <div align="center">
   <br>
