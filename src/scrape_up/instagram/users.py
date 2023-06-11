@@ -80,7 +80,17 @@ class Instagram:
 
     def posts(self):
         """
-        returns the no of posts of the given profile.
+        Class - `InstagramScraper`
+        Example:
+        ```
+        scraper = InstagramScraper(username="nikhil25803")
+        posts = scraper.posts()
+        ```
+        Returns:
+        {
+            "data": post_count,
+            "message": f"User {self.username} has {post_count} posts."
+        }
         """
         page = self.__scrape_page()
         try:
