@@ -1,8 +1,8 @@
 <h1 align=center> For the contributors 🫂 </h1>
 
-### Haven't made your first-contribution yet? 😢
+### Haven't made your first contribution yet? 😢
 
-Do check our [First Contribution](https://github.com/Clueless-Community/first-contribution) repository, where we have provided the guidelines to set up Git and how to make a pull request !
+Do check our [First Contribution](https://github.com/Clueless-Community/first-contribution) repository, where we have provided the guidelines to set up Git and how to make a pull request!
 
 # Project setup 
 
@@ -61,9 +61,9 @@ pip install -r requirements.txt
 
 Now you are done with the project setup, now you can make the changes you want or assign.
 
-### Let say you want to scrape the avatar url of and user. Steps applying which we can do this
+### Let's say you want to scrape the avatar URL of and user. Steps applying which we can do this
 
-- At first we have to scrape the profile page of a user. For that we have defined a function in the user class as
+- At first, we have to scrape the profile page of a user. For that, we have defined a function in the user class as
 ```python
 - scrape-up/src/scrape_up/github/users.py
 class Users:
@@ -79,7 +79,7 @@ class Users:
 ```
 
 + The `__scrape_page` is a private function defined to scrape any page. 
-+ Now we have to create a function with an approporiate name, in this case `get_avatar`.
++ Now we have to create a function with an appropriate name, in this case, `get_avatar`.
 ```python
 def followers(self):
         page = self.__scrape_page()
@@ -90,9 +90,9 @@ def followers(self):
             message = f"{self.username} not found !"
             return message
 ```
-+ When you do inspect element of the page, you will get to know class named `avatar avatar-user width-full border color-bg-default` contains the avatar url.
++ When you do inspect the element of the page, you will get to know the class named `avatar avatar-user width-full border color-bg-default` contains the avatar URL.
 
-Once you are done with the changes you wanted to add,follow the steps to make the pull request.
+Once you are done with the changes you wanted to add, follow the steps to make the pull request.
 ## Create and checkout to the new branch.
 powershell
 git checkout -b <branch_name>
@@ -102,7 +102,7 @@ git checkout -b <branch_name>
 git add .
 
 
-## Commit your change with a proper messagge
+## Commit your change with a proper message
 
 git commit -m "Enter your message here"
 
