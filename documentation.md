@@ -6,13 +6,13 @@
 pip install scrape-up
 ```
 
-- Scrape the required information, for example one want to extract number of followers of a user.
+- Scrape the required information, for example, one wants to extract the number of followers of a user.
 
 ```python
 # Import the required module
 from scrape_up import github
 
-# Instantiate an object with username provided.
+# Instantiate an object with the username provided.
 user = github.Users(username="nikhil25803")
 
 # Call the followers function
@@ -36,7 +36,7 @@ from scrape_up import github
 
 ### Scrape User details
 
-First create an object of class `Users`
+First, create an object of class `Users`
 
 ```python
 user = github.Users(username="nikhil25803")
@@ -46,7 +46,7 @@ user = github.Users(username="nikhil25803")
 | ----------------------------- | ------------------------------------------------------------------------------------------- |
 | `.followers()`                | Returns the number of followers of a user.                                                  |
 | `.following()`                | Returns the number of following of a user.                                                  |
-| `.get_avatar()`               | Returns the avatar url of a user.                                                           |
+| `.get_avatar()`               | Returns the avatar URL of a user.                                                           |
 | `.get_bio()`                  | Returns the bio of a user.                                                                  |
 | `.get_repo()`                 | Returns the list of pinned repositories for a user.                                         |
 | `.repo_count()`               | Returns the number of Repositories of a user.                                               |
@@ -57,9 +57,9 @@ user = github.Users(username="nikhil25803")
 | `.pul_requests()`             | Return the number of pull requests opened in a repository.                                  |
 | `.get_followers()`            | Returns the list of followers of a user.                                                    |
 | `.get_following_users()`      | Returns the list of users followed by a user.                                               |
-| `.get_achievements()`         | Returns the list of achievements of an user.                                                |
-| `.get_status()`               | Returns the status of an user.                                                              |
-| `.get_contribution_streak()`  | Returns the maximum contribution streak of an user in past year starting from current date. |
+| `.get_achievements()`         | Returns the list of achievements of a user.                                                |
+| `.get_status()`               | Returns the status of a user.                                                              |
+| `.get_contribution_streak()`  | Returns the maximum contribution streak of a user in the past year starting from the current date. |
 | `.get_repository_details()`   | Returns the list of repositories with their details.                                        |
 | `.get_branch()`               | Returns the list of branches in a repository.                                               |
 
@@ -73,7 +73,7 @@ print(bio)
 
 ### Scrape Repository details
 
-First create an object of class `Repository`
+First, create an object of class `Repository`
 
 ```python
 repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
@@ -88,10 +88,10 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 | `.tags()`                  | Returns the last ten tags of a repository.                                                                                                           |
 | `.releases()`              | Returns the last ten releases of a repository.                                                                                                       |
 | `.issues_count()`          | Returns number of issues in a repository                                                                                                             |
-| `.readme`                  | Saves the readme.md file of given user to current working directory. To view the readme.md with live server, change ".md" to ".html" in "readme.md". |
-| `.get_pull_requests_ids()` | Returns all id's of opened pull requests in a repository.                                                                                            |
-| `.get_issues()`            | Returns list of all open issues in a repository.                                                                                                     |
-| `.commits()`               | Returns number of commits in a repository.                                                                                                           |
+| `.readme`                  | Saves the readme.md file of the given user to the current working directory. To view the readme.md with a live server, change ".md" to ".html" in "readme.md". |
+| `.get_pull_requests_ids()` | Returns all ids of opened pull requests in a repository.                                                                                            |
+| `.get_issues()`            | Returns the list of all open issues in a repository.                                                                                                     |
+| `.commits()`               | Returns the number of commits in a repository.                                                                                                           |
 | `.get_readme()`            | Returns & saves README.md file of the special repository (if exists)                                                                                 |
 | `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                        |
 | `.watch_count()` | Returns the number of watchers of a repository
@@ -107,7 +107,7 @@ print(fork_count)
 
 ### Scrape an issue details
 
-First create an object of class `Issue`
+First, create an object of class `Issue`
 
 ```python
 repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
@@ -132,7 +132,7 @@ print(assigned)
 
 ### Scrape a pull request details
 
-First create an object of class `PullRequest`
+First, create an object of class `PullRequest`
 
 ```python
 repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
@@ -142,7 +142,7 @@ repository = github.PullRequest(username="nikhil25803", repository_name="scrape-
 | ------------------ | ------------------------------------------------------------------------- |
 | `.commits()`       | Returns the number of commits made in a pull request.                     |
 | `.title()`         | Returns the title of a pull request.                                      |
-| `.labels()`        | Returns all the labels of a pull request,empty list in case of no labels. |
+| `.labels()`        | Returns all the labels of a pull request, empty list in case of no labels. |
 | `.files_changed()` | Returns the number of files changed in a pull request.                    |
 | `.reviewers()`     | Return the list of reviewers assigned in a pull request.                  |
 
@@ -156,7 +156,7 @@ print(files_changed)
 
 ### Scrape the details of an organization
 
-First create an object of class `Organization`
+First, create an object of class `Organization`
 
 ```python
 repository = github.Organization(organization_name="Clueless-Community")
@@ -164,14 +164,14 @@ repository = github.Organization(organization_name="Clueless-Community")
 
 | Methods                     | Details                                                         |
 | --------------------------- | --------------------------------------------------------------- |
-| `.top_topics()`             | Returns list of the most used topics in an organization.        |
+| `.top_topics()`             | Returns a list of the most used topics in an organization.        |
 | `.followers()`              | Returns the number of followers of an organization.             |
 | `.top_languages()`          | Returns the top languages used in an organization.              |
 | `.followers()`              | Returns the number of followers of an organization.             |
-| `.avatar()`                 | Returns the avatar url of an organization.                      |
+| `.avatar()`                 | Returns the avatar URL of an organization.                      |
 | `.repositories()`           | Returns the list of repositories of an organization.            |
 | `.people()`                 | Returns the list of people in an organization.                  |
-| `.peoples() `               | Returns the number of people in a organization.                 |
+| `.peoples() `               | Returns the number of people in an organization.                 |
 | `.get_location() `          | Returns the location of an organization.                        |
 | `.repository_details()`     | Returns the list of repositories with their details.            |
 | `.pinned_repository()`      | Returns the list of pinned repositories with their details.     |
@@ -193,7 +193,7 @@ from scrape_up import instagram
 
 ### Scrape User details
 
-First create an object of class `User`
+First, create an object of the class `User`
 
 ```python
 user = instagram.Users(username="nikhil25803")
@@ -221,7 +221,7 @@ from scrape_up.internshala.internships import Internships
 
 ### Scrape Internship details
 
-Create an object of the 'Internships' class:
+Create an object for the 'Internships' class:
 
 ```python
 scraper = Internships()
@@ -246,7 +246,7 @@ for internship in internships:
 ```py
 from scrape_up import kooapp
 ```
-### Scrap up kooapp user's detail
+### Scrap up the kooapp user's detail
 Create an instance of `KooUser` class.
 ```py
 user = kooapp.KooUser('krvishal')
@@ -255,10 +255,10 @@ user = kooapp.KooUser('krvishal')
 | -------------- | --------------------------------------------------- |
 | `.get_name()` | Returns the name of the user. |
 | `.get_bio()` | Returns the bio of the user. |
-| `.get_avatar_url()` | Returns the url of first avatar of the user. |
+| `.get_avatar_url()` | Returns the URL of the first avatar of the user. |
 | `.followers()` | Returns the number of followers of a user.          |
 | `.following()` | Returns the number of people the user is following. |
-| `.get_social_profiles()` | Returns all the connected social media profiles of user. |
+| `.get_social_profiles()` | Returns all the connected social media profiles of the user. |
 | `.get_profession()` | Returns the title/profession of the user. |
 
 **Example:**
@@ -295,7 +295,7 @@ for article in articles:
 
 | Methods           | Details                                             |
 | ------------------| --------------------------------------------------- |
-| `.get_trending()` | Returns the trending titles of medium.              |
+| `.get_trending()` | Returns the trending titles of the medium.              |
 
 **Example**
 ```python
@@ -304,7 +304,7 @@ Trending.get_trending() #Prints the trending titles
 
 ### Scrape publication details
 
-First create an object of class `Publication`
+First, create an object of class `Publication`
 ```python
 publication = medium.Publication(link="https://....")
 ```
@@ -327,7 +327,7 @@ for article in articles:
 ```py
 from scrape_up import hacker_news
 ```
-### Scrap up Hacker News latest articles
+### Scrap up Hacker News's latest articles
 Create an instance of `Article` class.
 ```py
 articles = hacker_news.Article()
@@ -371,7 +371,7 @@ from scrape_up import leetcode
 
 ### Scrape
 
-First create an object of class `LeetCodeScraper`
+First, create an object of class `LeetCodeScraper`
 
 ```python
 leetcode_scraper = LeetCodeScraper()
@@ -391,13 +391,13 @@ from scrape_up import StockPrice
 
 ### Scrape stock data
 
-First create an instance of class ```StockPrice``` with stock name and index name (optional, default is nse)
+First create an instance of class ```StockPrice``` with stock name and index name.
 ```python
 infosys = StockPrice('infosys','nse')
 ```
 | Methods                    | Details                                             |
 | ---------------------------| --------------------------------------------------- |
-| `.get_latest_price()`      | Returns latest stock price of give stock name.      |
+| `.get_latest_price()`      | Returns the latest stock price of the given stock name.      |
 | `.get_historical_data(from_date,to_date)`   | Returns stock price from ```from_date``` to ```to_date``` in format (date in format dd-mm-yyyy)      |
 
 **Example**
@@ -418,7 +418,7 @@ top_250 = IMDB()
 ```
 | Methods        | Details                                             |
 | -------------- | --------------------------------------------------- |
-| `.top_rated()` | Returns the top rated movies listed on IMDB. |
+| `.top_rated()` | Returns the top-rated movies listed on IMDB. |
 
 ---
 ## Coursera
@@ -444,7 +444,7 @@ scraper = Courses("courses","page_count")
 
 **Example**
 ```python
-# all data returned in dictionary format
+# All data returned in dictionary format
 javaCourses = Courses("java", 4)  # Keyword,Pages
 print(javaCourses.titles())
  #For better visibility/readability
