@@ -422,3 +422,19 @@ top_250 = IMDB()
 
 ---
 
+## Amazon
+
+### Scrape details about a product
+Create an instance of `Movie` class.
+```python
+product = Product(product_name="watch")
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.get_product()` | Returns product data(links). |
+| `.get_product_details()` | Returns product detail. |
+| `.get_product_image()` | Returns product image. |
+| `.customer_review()` | Returns product review. |
+
+---
+
