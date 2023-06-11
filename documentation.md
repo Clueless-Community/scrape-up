@@ -421,4 +421,63 @@ top_250 = IMDB()
 | `.top_rated()` | Returns the top rated movies listed on IMDB. |
 
 ---
+## Coursera
+
+```python
+from scrape_up import Coursera
+```
+
+### Scrape Courses Details
+<br>
+
+
+Create an object of the 'Courses' class:
+
+
+```python
+scraper = Courses("courses","page_count")
+```
+| Methods                    | Details                                             |
+| ---------------------------| --------------------------------------------------- |
+| `.titles()`      | Returns the titles of courses      |
+
+
+**Example**
+```python
+# all data returned in dictionary format
+javaCourses = Courses("java", 4)  # Keyword,Pages
+print(javaCourses.titles())
+ #For better visibility/readability
+```
+
+---
+
+## Wikipedia
+
+```python
+from scrape_up import Wikipedia
+```
+
+### Scrape Wikipedia Details
+<br>
+
+
+Create an object of the 'WikipediaScrapper' class:
+
+```python
+Scraper = WikipediaScraper(url)
+```
+| Methods                    | Details                                             |
+| ---------------------------| --------------------------------------------------- |
+| `.scrape()`      | Returns the Scraped Data from Wikipedia    |
+
+**Example**
+```python
+# Returning the data
+scraped_data = scraper.scrape()
+print(scraped_data) 
+```
+
+
+---
 
