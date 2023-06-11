@@ -391,7 +391,7 @@ from scrape_up import StockPrice
 
 ### Scrape stock data
 
-First create an instance of class ```StockPrice``` with stock name and index name (optional, default is nse)
+First create an instance of class ```StockPrice``` with stock name and index name.
 ```python
 infosys = StockPrice('infosys','nse')
 ```
