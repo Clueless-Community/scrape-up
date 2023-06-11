@@ -4,7 +4,8 @@ import re
 from selenium import webdriver
 import chromedriver_binary
 import string
-# from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options
+
 
 pd.options.display.float_format = '{:.0f}'.format
 # Options = Options()
@@ -18,6 +19,17 @@ class YahooFinance:
     """
     def __init__(self,ticker):
         self.ticker = ticker
+        self.chrome_options = Options()
+        self.chrome_options.add_argument("--headless")
+        self.chrome_options.add_argument("--window-size=1920,1080")
+        self.chrome_options.add_argument("--disable-gpu")
+        self.chrome_options.add_argument("--no-sandbox")
+        self.chrome_options.add_argument("--disable-dev-shm-usage")
+        self.chrome_options.add_argument("--disable-extensions")
+        self.chrome_options.add_argument("--disable-logging")
+        self.chrome_options.add_argument("--log-level=3")
+        self.chrome_options.add_argument("--silent")
+        self.chrome_options.add_argument("--blink-settings=imagesEnabled=false")
         self.financial_url = f"https://finance.yahoo.com/quote/{self.ticker}/financials?p={self.ticker}"
         self.historical_data_url = f"https://finance.yahoo.com/quote/{self.ticker}/history?p={self.ticker}" 
         self.profile_url = f"https://finance.yahoo.com/quote/{self.ticker}/profile?p={self.ticker}"
@@ -70,7 +82,7 @@ class YahooFinance:
         df = pd.DataFrame(data=all_rows)
         df.columns = headings
         return df
-# v = YahooFinance('TSLA')
-# data = v.get_historical_data()
-# print(data)
+v = YahooFinance('ADANIENT.NS')
+data = v.get_historical_data()
+print(data)
 # print()
