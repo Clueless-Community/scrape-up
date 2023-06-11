@@ -1,6 +1,6 @@
 ---
 name: Custom issue template
-about: Got any bugs or wanna create a new features to be implemented
+about: Got any bugs or wanna create a new feature to be implemented
 title: ''
 labels: ''
 assignees: ''
