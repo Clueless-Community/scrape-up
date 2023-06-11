@@ -1,15 +1,19 @@
 import requests
 from datetime import datetime
 
+
 # All prices returned form this class are in USD
 class NASDAQ:
     """
     Handles all requests for nasdaq stock
     """
+
     autocomplete_url = "https://api.nasdaq.com/api/search/result?query={}&order=relevence&offset=0&lang=en"
-    latest_price_url = "https://api.nasdaq.com/api/quote/{symbol}/info?assetclass=stocks"
+    latest_price_url = (
+        "https://api.nasdaq.com/api/quote/{symbol}/info?assetclass=stocks"
+    )
     chart_data_url = "https://api.nasdaq.com/api/quote/{symbol}/chart?assetclass=stocks"
-    historical_data_url = "https://api.nasdaq.com/api/quote/{symbol}/historical?assetclass=stocks&fromdate={from_date}&limit=0&todate={to_date}" # date in yyyy-mm-dd format
+    historical_data_url = "https://api.nasdaq.com/api/quote/{symbol}/historical?assetclass=stocks&fromdate={from_date}&limit=0&todate={to_date}"  # date in yyyy-mm-dd format
     currency_type = "USD"
 
     headers = {
@@ -54,36 +58,85 @@ class NASDAQ:
     def get_latest_price(self):
         """
         Gets Latest stock price info of given nse stock.
-        """
-        price_info = self.fetcher.get(self.latest_price_url).json()["data"]["primaryData"]
-        return {
-            "latestPrice": float(price_info["lastSalePrice"][1:]),
-            "rateChange": float(price_info["netChange"]),
-            "pChange": float(price_info["percentageChange"][:-1]),
+        Class - `finance.NASDAQ()`\n
+        Example -\n
+        ```python
+        google = NASDAQ("alphabet")
+        print(google.get_latest_price())
+        ```
+        Return\n
+        ```python
+        return
+        {
+            "data": data,
+            "message": f"Latest price of the stock has been fetched",
         }
-    
+        ```
+        """
+        try:
+            price_info = self.fetcher.get(self.latest_price_url).json()["data"][
+                "primaryData"
+            ]
+            data = {
+                "latestPrice": float(price_info["lastSalePrice"][1:]),
+                "rateChange": float(price_info["netChange"]),
+                "pChange": float(price_info["percentageChange"][:-1]),
+            }
+            return {
+                "data": data,
+                "message": f"Latest price of the stock has been fetched",
+            }
+        except:
+            return {
+                "data": None,
+                "message": f"Not able to fetch latest price of the stock",
+            }
+
     # Please give dates in DD-MM-YYYY format
     def get_historical_data(self, from_date, to_date):
         """
-        Gets historical stock price (vwap) in range from_date to to_date
+        Gets Latest stock price info of given nse stock.
+        Class - `finance.NASDAQ()`\n
+        Example -\n
+        ```python
+        google = NASDAQ("alphabet")
+        print(google.get_historical_data("05-06-2023", "09-06-2023"))
+        ```
+        Return\n
+        ```python
+        return
+        {
+            "data": historical_price_data,
+            "message": f"Sucessfylly scrapped the historic data of the stock.",
+        }
+        ```
         """
-        from_date = datetime.strptime(from_date, '%d-%m-%Y').strftime('%Y-%m-%d')
-        to_date = datetime.strptime(to_date, '%d-%m-%Y').strftime('%Y-%m-%d')
-        historical_price_data_raw = self.fetcher.get(
-            self.historical_data_url.format(
-                symbol=self.stock_symbol, from_date=from_date, to_date=to_date
-            )
-        ).json()["data"]["tradesTable"]["rows"]
-        historical_price_data = {}
-        for i in historical_price_data_raw:
-            date_formatted = datetime.strptime(i["date"], "%m/%d/%Y").strftime("%d-%m-%Y")
-            historical_price_data[date_formatted] = float(i["open"][1:])
-        return historical_price_data
+        try:
+            from_date = datetime.strptime(from_date, "%d-%m-%Y").strftime("%Y-%m-%d")
+            to_date = datetime.strptime(to_date, "%d-%m-%Y").strftime("%Y-%m-%d")
+            historical_price_data_raw = self.fetcher.get(
+                self.historical_data_url.format(
+                    symbol=self.stock_symbol, from_date=from_date, to_date=to_date
+                )
+            ).json()["data"]["tradesTable"]["rows"]
+            historical_price_data = {}
+            for i in historical_price_data_raw:
+                date_formatted = datetime.strptime(i["date"], "%m/%d/%Y").strftime(
+                    "%d-%m-%Y"
+                )
+                historical_price_data[date_formatted] = float(i["open"][1:])
+            return {
+                "data": historical_price_data,
+                "message": f"Sucessfylly scrapped the historic data of the stock.",
+            }
+        except:
+            return {
+                "data": None,
+                "message": f"Not able to fetch historical data of the stock.",
+            }
 
-if __name__=="__main__":
-    google = NASDAQ('alphabet')
+
+if __name__ == "__main__":
+    google = NASDAQ("alphabet")
     print(google.get_latest_price())
     print(google.get_historical_data("05-06-2023", "09-06-2023"))
-
-
-        

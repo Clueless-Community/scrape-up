@@ -8,7 +8,6 @@ except ModuleNotFoundError:
     from scrape_up.finance.bse import BSE
 
 
-
 class StockPrice:
     """
     This is entry point for users to scrape data.
@@ -37,7 +36,7 @@ class StockPrice:
             stock_class = NASDAQ
         elif self.stock_index == "bse":
             stock_class = BSE
-        if(stock_class):
+        if stock_class:
             print(f"Searching for {self.stock_name} {self.stock_index} stock...")
             try:
                 self.stock = stock_class(stock_name)
@@ -58,6 +57,21 @@ class StockPrice:
     def get_latest_price(self):
         """
         Gets Latest stock price info of given stock
+        Gets Latest stock price info of given nse stock.
+        Class - `finance.StockPrice()`\n
+        Example -\n
+        ```python
+        infosys_stock = StockPrice("infosys", "nse")
+        print(infosys_stock.get_latest_price())
+        ```
+        Return\n
+        ```python
+        return
+        {
+            "data": data,
+            "message": f"No latest stock price found for {self.stock_name}"
+        }
+        ```
         """
         try:
             data = self.stock.get_latest_price()
@@ -74,6 +88,20 @@ class StockPrice:
     def get_historical_data(self, from_date, to_date):
         """
         Gets historical stock price (vwap) in range from_date to to_date
+        Class - `finance.StockPrice()`\n
+        Example -\n
+        ```python
+        infosys_stock = StockPrice("infosys", "nse")
+        print(infosys_stock.get_historical_data('02-05-2023', '31-05-2023'))
+        ```
+        Return\n
+        ```python
+        return
+        {
+            "data": data,
+            "message": f"No historial stock price found for {self.stock_name}"
+        }
+        ```
         """
         try:
             data = self.stock.get_historical_data(from_date, to_date)
@@ -86,4 +114,3 @@ class StockPrice:
                 "data": data,
                 "message": message,
             }
-

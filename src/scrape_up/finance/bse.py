@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import json
 
+
 # All the prices returned from this class are in INR
 class BSE:
     """
@@ -11,10 +12,10 @@ class BSE:
 
     autocomplete_url = "https://api.bseindia.com/Msource/90D/getQouteSearch.aspx?Type=EQ&text={}&flag=gq"
     latest_price_url = "https://api.bseindia.com/BseIndiaAPI/api/getScripHeaderData/w?Debtflag=&scripcode={code}&seriesid="
-    historical_data_url = "https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w?scripcode={code}&flag=1&fromdate={from_date}&todate={to_date}&seriesid=" # date format yyyymmdd
+    historical_data_url = "https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w?scripcode={code}&flag=1&fromdate={from_date}&todate={to_date}&seriesid="  # date format yyyymmdd
     chart_data_url = "https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w?scripcode={code}&flag=0&fromdate=&todate=&seriesid="
-    currency_type = 'INR'
-    
+    currency_type = "INR"
+
     headers = {
         "Connection": "keep-alive",
         "Cache-Control": "max-age=0",
@@ -42,14 +43,12 @@ class BSE:
     # gets closest matching name and symbol of stock based given stock_name
     def get_data(self):
         try:
-            data_html = self.fetcher.get(
-                self.autocomplete_url.format(self.stock_name)
-            )
+            data_html = self.fetcher.get(self.autocomplete_url.format(self.stock_name))
             soup = BeautifulSoup(data_html.text, "html.parser")
             li_element = soup.find("li", class_="quotemenu")
             stock_code = li_element.find("span").text.split()[-1]
             stock_name = li_element.find("strong").text
-            if(li_element.find("strong").next_sibling.strip):
+            if li_element.find("strong").next_sibling.strip:
                 stock_name += str(li_element.find("strong").next_sibling.strip())
 
         except IndexError:
@@ -60,22 +59,17 @@ class BSE:
             raise Exception("Connection Error, Please try again.")
         else:
             self.stock_name = stock_name
-            return {
-                "code": stock_code,
-                "symbol_info": stock_name
-                }
+            return {"code": stock_code, "symbol_info": stock_name}
 
     def get_latest_price(self):
         """
         Gets Latest stock price info of given bse stock.
         """
-        price_info = self.fetcher.get(
-            self.latest_price_url
-            ).json()["CurrRate"]
+        price_info = self.fetcher.get(self.latest_price_url).json()["CurrRate"]
         return {
             "latestPrice": float(price_info["LTP"]),
             "rateChange": float(price_info["Chg"]),
-            "pChange": float(price_info["PcChg"])
+            "pChange": float(price_info["PcChg"]),
         }
 
     # Please give dates in DD-MM-YYYY format
@@ -86,7 +80,7 @@ class BSE:
 
         from_date = datetime.strptime(from_date, "%d-%m-%Y").strftime("%Y%m%d")
         to_date = datetime.strptime(to_date, "%d-%m-%Y").strftime("%Y%m%d")
-        
+
         historical_price_data_raw = self.fetcher.get(
             self.historical_data_url.format(
                 code=self.stock_code, from_date=from_date, to_date=to_date
@@ -97,15 +91,16 @@ class BSE:
         historical_price_data = {}
 
         for item in historical_price_data_raw:
-            dttm = datetime.strptime(item["dttm"], "%a %b %d %Y %H:%M:%S").strftime("%d-%m-%Y")
+            dttm = datetime.strptime(item["dttm"], "%a %b %d %Y %H:%M:%S").strftime(
+                "%d-%m-%Y"
+            )
             vale1 = float(item["vale1"])
             historical_price_data[dttm] = vale1
 
         return historical_price_data
 
-if __name__=="__main__":
-    infosys = BSE("infosys ltd")
+
+if __name__ == "__main__":
+    infosys = BSE(stock_name="infosys ltd")
     print(infosys.get_latest_price())
     print(infosys.get_historical_data("05-06-2023", "10-06-2023"))
-
-
