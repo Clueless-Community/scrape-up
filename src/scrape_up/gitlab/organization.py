@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class Organization:
     def init(self, organization_name):
         self.organization_name = organization_name
@@ -21,16 +22,18 @@ class Organization:
             members = []
             member_elements = data.find_all("li", class_="group-member-row")
             for member_element in member_elements:
-                username = member_element.find("a", class_="group-member-username").text.strip()
+                username = member_element.find(
+                    "a", class_="group-member-username"
+                ).text.strip()
                 members.append(username)
             return {
                 "data": members,
-                "message": f"Retrieved members for organization {self.organization_name}"
+                "message": f"Retrieved members for organization {self.organization_name}",
             }
         except Exception as e:
             return {
                 "data": None,
-                "message": f"Error retrieving members for organization {self.organization_name}: {str(e)}"
+                "message": f"Error retrieving members for organization {self.organization_name}: {str(e)}",
             }
 
     def get_projects(self):
@@ -43,16 +46,16 @@ class Organization:
             projects = []
             project_elements = data.find_all("div", class_="gl-project-card")
             for project_element in project_elements:
-                name = project_element.find("a", class_="gl-project-card-title").text.strip()
+                name = project_element.find(
+                    "a", class_="gl-project-card-title"
+                ).text.strip()
                 projects.append(name)
             return {
                 "data": projects,
-                "message": f"Retrieved projects for organization {self.organization_name}"
+                "message": f"Retrieved projects for organization {self.organization_name}",
             }
         except Exception as e:
             return {
                 "data": None,
-                "message": f"Error retrieving projects for organization {self.organization_name}: {str(e)}"
+                "message": f"Error retrieving projects for organization {self.organization_name}: {str(e)}",
             }
-
-    

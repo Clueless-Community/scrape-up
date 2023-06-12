@@ -20,12 +20,12 @@ class Repository:
             name = data.find("h1", class_="project-title").text.strip()
             return {
                 "data": name,
-                "message": f"Retrieved name for repository {self.repository_name}"
+                "message": f"Retrieved name for repository {self.repository_name}",
             }
         except Exception as e:
             return {
                 "data": None,
-                "message": f"Error retrieving name for repository {self.repository_name}: {str(e)}"
+                "message": f"Error retrieving name for repository {self.repository_name}: {str(e)}",
             }
 
     def get_description(self):
@@ -34,10 +34,10 @@ class Repository:
             description = data.find("div", class_="project-description").text.strip()
             return {
                 "data": description,
-                "message": f"Retrieved description for repository {self.repository_name}"
+                "message": f"Retrieved description for repository {self.repository_name}",
             }
         except Exception as e:
             return {
                 "data": None,
-                "message": f"Error retrieving description for repository {self.repository_name}: {str(e)}"
+                "message": f"Error retrieving description for repository {self.repository_name}: {str(e)}",
             }
