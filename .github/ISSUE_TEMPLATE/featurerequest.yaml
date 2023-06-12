@@ -3,11 +3,10 @@ description: "Suggest an idea for this project "
 title: "Feat:"
 labels: [Feat, Needs Triage]
 body:
- 
   - type: textarea
     attributes:
       label: "Describe the feature"
-      description: 
+      description:
     validations:
       required: true
   - type: textarea
@@ -16,7 +15,6 @@ body:
       description: "Add sufficient SS to explain your issue."
     validations:
       required: true
- 
   - type: checkboxes
     attributes:
       label: "Record"

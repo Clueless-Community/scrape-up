@@ -3,7 +3,6 @@ description: "Improve Documentation"
 title: "DOC:"
 labels: [DOC, Needs Triage]
 body:
- 
   - type: textarea
     attributes:
       label: "What's wrong with the existing documentation"
@@ -15,8 +14,8 @@ body:
       label: "Add ScreenShots"
       description: "Add sufficient SS to explain your issue."
     validations:
-      required: true
- 
+      required: false
+
   - type: checkboxes
     attributes:
       label: "Record"

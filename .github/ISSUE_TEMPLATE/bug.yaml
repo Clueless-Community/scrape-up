@@ -16,23 +16,6 @@ body:
       description: "A concise description of what you're experiencing."
     validations:
       required: true
-  - type: textarea
-    attributes:
-      label: "Add ScreenShots"
-      description: "Add sufficient SS to explain your issue."
-    validations:
-      required: true
-  - type: dropdown
-    id: browsers
-    attributes:
-      label: "What browser are you seeing the problem on?"
-      multiple: true
-      options:
-        - "Firefox"
-        - "Chrome"
-        - "Microsoft Edge"
-        - "Safari"
-        - "Arc"
   - type: checkboxes
     attributes:
       label: "Record"
