@@ -16,6 +16,19 @@ class PullRequest:
         return data
 
     def labels(self):
+        """
+        Class - `PullRequest`
+        Example:
+        ```
+        repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
+        labels = repository.labels()
+        ```
+        Returns:
+        {
+        "data": labels_found,
+        "message": f"Found labels for {self.repository}",
+        } 
+        """
         labels_found = []
         data = self.__scrape_page()
         label_raw = data.find_all(
@@ -39,7 +52,17 @@ class PullRequest:
 
     def commits(self):
         """
-        Fetch the number of commits made in a pull request
+        Class - `PullRequest`
+        Example:
+        ```
+        repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
+        commits = repository.commits()
+        ```
+        Returns:
+        {
+        "data": commits_count,
+        "message": f"Found {commits_count} commits for {self.pr_number}",
+        } 
         """
         data = self.__scrape_page()
         try:
@@ -57,7 +80,18 @@ class PullRequest:
 
     def title(self):
         """
-        Fetch the title of a pull request
+    
+        Class - `PullRequest`
+        Example:
+        ```
+        repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
+        title = repository.title()
+        ```
+        Returns:
+        {
+        "data": title,
+        "message": f"Found title for {self.pr_number}",
+        } 
         """
         data = self.__scrape_page()
         try:
@@ -85,7 +119,18 @@ class PullRequest:
 
     def files_changed(self):
         """
-        Fetch the number of files changed in a pull request
+        
+        Class - `PullRequest`
+        Example:
+        ```
+        repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
+        files_changed = repository.files_changed()
+        ```
+        Returns:
+        {
+        "data": files_changed,
+        "message": f"Found {files_changed} files changed for {self.pr_number}",
+        } 
         """
         data = self.__files_changed_body()
         try:
@@ -104,7 +149,17 @@ class PullRequest:
 
     def reviewers(self):
         """
-        Get the list of reviewers assigned in a PR
+        Class - `PullRequest`
+        Example:
+        ```
+        repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
+        reviewers = repository.reviewers()
+        ```
+        Returns:
+        {
+        "data": reviewerList,
+        "message": f"Found {len(reviewerList)} reviewers for {self.pr_number}",
+        } 
         """
         data = self.__scrape_page()
         try:

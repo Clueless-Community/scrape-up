@@ -14,7 +14,18 @@ class Organization:
 
     def top_languages(self):
         """
-        Returns a list of the most used languages in an organization
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        top_languages = repository.top_languages()
+        ```
+        Returns:
+        {
+            "data": languages,
+            "message": f"Found languages for {self.organization}",
+            }
+            
         """
         try:
             languages = []
@@ -37,7 +48,17 @@ class Organization:
 
     def top_topics(self):
         """
-        Returns list of the most used topics in an organization
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        top_topics = repository.top_topics()
+        ```
+        Returns:
+        {
+            "data": topics,
+            "message": f"Found topics for {self.organization}",
+        }   
         """
         page = self.__scrape_page()
         try:
@@ -58,7 +79,17 @@ class Organization:
 
     def followers(self):
         """
-        Returns number of followers of an organization
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        followers = repository.followers()
+        ```
+        Returns:
+        {
+            "data": followers,
+            "message": f"Found {followers} followers for {self.organization}",
+        }   
         """
         page = self.__scrape_page()
         try:
@@ -78,8 +109,20 @@ class Organization:
             }
 
     def avatar(self):
+    
         """
-        Returns url of the avatar of an organization
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        avatar = repository.avatar()
+        ```
+        Returns:
+        {
+            "data": url,
+            "message": f"Found avatar for {self.organization}",
+            
+        }   
         """
         page = self.__scrape_page()
         try:
@@ -115,7 +158,18 @@ class Organization:
 
     def repositories(self):
         """
-        Returns List of repositories of an organization
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        repositories = repository.repositories()
+        ```
+        Returns:
+        {
+           "data": repositories,
+            "message": f"Found {len(repositories)} repositories for {organization}",
+
+        }   
         """
         organization = self.organization
         data = self.__scrape_repositories_page()
@@ -157,7 +211,8 @@ class Organization:
 
     def __scrape_people_page(self):
         """
-        scrapes the head page of people of an organization
+         scrapes the head page of people of an organization
+
         """
         organization = self.organization
         data = requests.get(f"https://github.com/orgs/{organization}/people")
@@ -175,7 +230,17 @@ class Organization:
 
     def people(self):
         """
-        Returns List of people in an organization
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        people = repository.people()
+        ```
+        Returns:
+        {
+           "data": people,
+           "message": f"Found {len(people)} people for {organization}",
+        } 
         """
         organization = self.organization
         data = self.__scrape_people_page()
@@ -216,7 +281,17 @@ class Organization:
 
     def peoples(self):
         """
-        Return number of people in a organizaton
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        peoples = repository.peoples()
+        ```
+        Returns:
+        {
+           "data": people_count,
+            "message": f"Found {people_count} people for {self.organization}",
+        } 
         """
         data = self.__scrape_people_page()
         try:
@@ -254,6 +329,19 @@ class Organization:
             }
 
     def get_location(self):
+        """
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        get_location = repository.get_location()
+        ```
+        Returns:
+        {
+           "data": lc.text.strip(),
+            "message": f"Found location for {self.organization}",
+        }
+        """
         page = self.__scrape_page()
         try:
             lc = page.find("span", itemprop="location")
@@ -270,7 +358,22 @@ class Organization:
 
     def repository_stats(self, repo_url):
         """
-        Returns the stats of a repository
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        repository_stats = repository.repository_stats()
+        ```
+        Returns:
+        {
+           "data": {
+                    "forks": forksCount,
+                    "stars": starCount,
+                    "issues": issuesCount,
+                    "pullRequests": pullRequests,
+                },
+                "message": f"Found stats for {repo_url}",
+        }
         """
         data = self.__scrape_repositories(repo_url)
         try:
@@ -303,7 +406,17 @@ class Organization:
 
     def repository_details(self):
         """
-        Returns the details of all the repositories of an organization
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        repository_details = repository.repository_details()
+        ```
+        Returns:
+        {
+           "data": repositories,
+            "message": f"Found {len(repositories)} repositories for {organization}",
+        }
         """
         organization = self.organization
         data = self.__scrape_repositories_page()
@@ -379,6 +492,19 @@ class Organization:
             }
 
     def pinned_repository(self):
+        """
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        pinned_repository = repository.pinned_repository()
+        ```
+        Returns:
+        {
+           "data": json_data,
+            "message": f"Found pinned repositories for {organization}",
+        }
+        """
         organization = self.organization
 
         data = self.__scrape_page()
@@ -448,6 +574,21 @@ class Organization:
             }
 
     def get_organization_links(self):
+        """"
+        Class - `Organisation`
+        Example:
+        ```
+        repository = github.Organization(organization_name="Clueless-Community")
+        get_organization_links = repository.get_organization_links()
+        ```
+        Returns:
+        {
+            if name != self.organization or name.find(self.organization) == -1:
+                    if not name in links:
+                        links[name] = o["href"]
+            return links;
+        }
+        """
         try:
             links = {}
             data = self.__scrape_page()
