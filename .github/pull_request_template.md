@@ -1,25 +1,25 @@
 ## Description
-> Please provide a brief description of the changes made in this pull request.
-
-## Checklist
-> Please make sure that the following checkpoints have been completed before submitting this pull request:
-
-- [ ] Have you followed the code convention guidelines specified in the repository?
-- [ ] Have you included the updated method/function documentation in the `documentation.md` file?
-- [ ] Have you returned the output/response with a message?
-- [ ] Have you implemented the try-catch method?
-- [ ] Have you included the method/class in the documentation (md file)?
+> The changes made in this pull request should be briefly described.
 
 ## Resolves: [Issue Number]
 
+## Checklist
+> Before submitting this pull request, kindly verify that the ensuing checkpoints have been reached.
+
+- [ ] Have you adhered to the repository's defined coding convention rules?
+- [ ] Have you updated the 'documentation.md' file with the method/function documentation?
+- [ ] Have you sent a message along with the result or response?
+- [ ] Have you used the try-catch technique?
+- [ ] Has the method/class been added to the documentation (md file)?
+
 
 ## Screenshots
-> Please upload a screenshot demonstrating the method you have created for validation (Compulsory).
+> Uploading a screenshot illustrating the approach you developed for validation is required.
+
 
 ## Additional Notes/Comments
-> Please add any additional notes or comments regarding the pull request here.
-
+> Any additional remarks or suggestions concerning this pull request are welcome.
 
 ---
-By submitting this pull request, I confirm that I have completed the necessary checks and included the required screenshot for validation.
-Thank you for your contribution!
+I certify that I have carried out the relevant checks and provided the requisite screenshot for validation by submitting this pull request.
+I appreciate your contribution.
