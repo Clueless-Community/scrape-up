@@ -2,10 +2,13 @@ try:
     from nse import NSE
     from nasdaq import NASDAQ
     from bse import BSE
+    from crypto import CRYPTO
 except ModuleNotFoundError:
     from scrape_up.finance.nse import NSE
     from scrape_up.finance.nasdaq import NASDAQ
     from scrape_up.finance.bse import BSE
+    from scrape_up.finance.crypto import CRYPTO
+
 
 
 class StockPrice:
@@ -36,6 +39,8 @@ class StockPrice:
             stock_class = NASDAQ
         elif self.stock_index == "bse":
             stock_class = BSE
+        elif self.stock_index == "crypto":
+            stock_class = CRYPTO
         if stock_class:
             print(f"Searching for {self.stock_name} {self.stock_index} stock...")
             try:
@@ -114,3 +119,4 @@ class StockPrice:
                 "data": data,
                 "message": message,
             }
+

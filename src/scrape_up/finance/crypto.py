@@ -32,7 +32,7 @@ class CRYPTO:
     fetcher.headers.update(headers)
 
     def __init__(self,crypto_name):
-        self.crypto_name = crypto_name
+        self.stock_name = crypto_name
         self.currency_type = "USD"
         try:
             """
@@ -50,7 +50,7 @@ class CRYPTO:
         try:
             price_info = self.fetcher.get(
                 self.price_url.format(
-                    crypto_name = self.crypto_name,
+                    crypto_name = self.stock_name,
                     timestamp = get_unix_timestamp()
                 )
             ).json()
@@ -74,7 +74,7 @@ class CRYPTO:
             date_str = curr_date_obj.strftime("%d-%m-%Y")
             historical_price_data[date_str] = self.fetcher.get(
                 self.price_url.format(
-                    crypto_name = self.crypto_name,
+                    crypto_name = self.stock_name,
                     timestamp = get_unix_timestamp(curr_date_obj)
                 )
             ).json()["usd_price"]
@@ -85,5 +85,5 @@ if __name__=="__main__":
     solana = CRYPTO("bitcoin")
     print(solana.get_latest_price())
     print(solana.get_historical_data("05-06-2023","10-06-2023"))
-        
+
     
