@@ -82,7 +82,7 @@ class CRYPTO:
         return historical_price_data
 
 if __name__=="__main__":
-    solana = CRYPTO("bitcoin")
+    solana = CRYPTO("solana")
     print(solana.get_latest_price())
     print(solana.get_historical_data("05-06-2023","10-06-2023"))
 
