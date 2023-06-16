@@ -497,3 +497,17 @@ product = Product(product_name="watch")
 
 ---
 
+## Amazon-Kindle Bookstore
+
+### Scrape details of a book
+Create an instance of `Book` class.
+```python
+book= Book(url= "https://www.amazon.in/gp/bestsellers/books/")
+book.scrape_page()
+```
+
+| Methods                    | Details                                             |
+| ---------------------------| --------------------------------------------------- |
+| `.scrape_page()`      | Returns the list of books with their particular details   |
+
+---
