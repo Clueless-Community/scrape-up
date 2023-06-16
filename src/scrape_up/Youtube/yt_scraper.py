@@ -1,60 +1,50 @@
-import requests
-from bs4 import BeautifulSoup
+import youtube_dl
 
-
-class WebScraper:
-    def fetch_html(self, url):
-        try:
-            response = requests.get(url)
-            response.raise_for_status()  # Raise an exception for unsuccessful status codes
-            html_content = response.text
-            return html_content
-        except requests.exceptions.RequestException as e:
-            print("Error occurred while fetching HTML:", e)
-            return None
-
-@nikhil25803 this would work iy
-
-def parse_html(html_content):
+def youtube_scraper(keyword):
     """
-    Parse HTML content and extract relevant information.
-    
-    Parameters:
-        html_content (str): HTML content to be parsed.
-    
+    Scrapes YouTube videos based on a keyword search.
+
+    Args:
+        keyword (str): The keyword to search for on YouTube.
+
     Returns:
-        dict: Parsed information extracted from the HTML.
+        list: A list of dictionaries containing video information, including title, URL, and duration.
     """
-    parsed_data = {}
-    
-    # Create a BeautifulSoup object
-    soup = BeautifulSoup(html_content, 'html.parser')
-    
-    # Perform parsing operations and extract relevant information
-    # Example: Extract page title
-    title = soup.title.string
-    parsed_data['title'] = title
-    
-    # Example: Extract all paragraph text
-    paragraphs = soup.find_all('p')
-    paragraph_texts = [p.get_text() for p in paragraphs]
-    parsed_data['paragraphs'] = paragraph_texts
-    
-    # Example: Extract all links
-    links = soup.find_all('a')
-    link_urls = [a['href'] for a in links]
-    parsed_data['links'] = link_urls
-    
-    return parsed_data
+    videos = []
 
+    # Set up the options for the YouTube downloader
+    ydl_opts = {
+        'ignoreerrors': True,
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
 
-def scrape_youtube(url):
-    # Main scraping function that combines the fetching and parsing logic
-    html_content = fetch_html(url)
-    data = parse_html(html_content)
-    return data
+    # Perform the search and retrieve video information
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        search_results = ydl.extract_info(f"ytsearch:{keyword}", download=False)
+
+        # Iterate over the retrieved videos
+        for video in search_results['entries']:
+            if video is not None:
+                title = video['title']
+                url = video['webpage_url']
+                duration = video['duration']
+                videos.append({
+                    'title': title,
+                    'url': url,
+                    'duration': duration
+                })
+
+    return videos
 
 # Example usage
-video_url = "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
-scraped_data = scrape_youtube(video_url)
-print(scraped_data)
+results = youtube_scraper("python tutorial")
+for video in results:
+    print(f"Title: {video['title']}")
+    print(f"URL: {video['url']}")
+    print(f"Duration: {video['duration']} seconds")
+    print()
