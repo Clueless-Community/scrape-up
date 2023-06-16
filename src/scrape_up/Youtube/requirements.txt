@@ -1,5 +1,4 @@
-beautifulsoup4
-requests
+pip install youtube_dl
 
 
 #To install the dependencies, you can run the following command in your project directory:
