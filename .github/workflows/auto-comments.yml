@@ -13,7 +13,7 @@ jobs:
         if: github.event.pull_request.merged
         uses: wow-actions/auto-comment@v1
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CommentToken }}
           pullRequestMerged: |
             Great work @{user} !!
             Don't forget to:
