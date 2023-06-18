@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
 
 
@@ -25,7 +27,9 @@ class LeetCodeScraper:
         self.chrome_options.add_argument("--blink-settings=imagesEnabled=false")
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
-        self.driver = webdriver.Chrome(options=self.chrome_options)
+        self.service = Service(ChromeDriverManager().install())
+
+        self.driver = webdriver.Chrome(service=self.service, options=self.chrome_options)
         self.wait = WebDriverWait(self.driver, 100)
 
     def __scrape_user_profile(self):
