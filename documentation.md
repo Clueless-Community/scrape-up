@@ -2,7 +2,7 @@
 
 - Install the package from `pip`
 
-```powershell
+```PowerShell
 pip install scrape-up
 ```
 
@@ -28,6 +28,14 @@ print(user.followers())
 - GitHub
 - Instagram
 - Internshala
+- GitHub
+- Instagram
+- Internshala
++ GitHub
++ GitLab
++ Instagram
++ Internshala
+
 
 ## GitHub
 
@@ -192,6 +200,146 @@ print(top)
 
 ---
 
+## Gitlab
+
+```python
+from scrape_up import gitlab
+```
+
+### Scrape up users details
+
+First, create an object of the `User` class:
+
+```python
+user = gitlab.Users(username="example_user")
+```
+
+| Methods           | Details                                                                            |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| `.get_name()`    | Returns the name of the user.                                                 |
+| `.get_bio()`       | Returns the bio of the user.                                                    |
+| `.get_avatar_url()`    | Returns the avatar URL of the user.                                |
+| `.get_repositories()`        | Returns a list of repositories owned by the user.                                                     |
+| `.get_project_details(project_id)` | Returns the details of a specific project owned by the user. |
+
+**Example:**
+```python
+name_result = user.get_name()
+print("Name:", name_result["data"])
+print("Status:", name_result["message"])
+```
+---
+
+### Scrape Repository Details
+
+First, create an object of the `Repository` class:
+
+```python
+repository = gitlab.Repository(username="example_user", repository_name="example_repository")
+```
+
+| Methods           | Details                                                                            |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| `.get_name()`    | Returns the name of the repository.                                                 |
+| `.get_description()`       | Returns the description of the repository.                                                    |
+
+**Example:**
+```python
+name_result = repository.get_name()
+print("Repository Name:", name_result["data"])
+```
+---
+
+### Scrape Organization Members
+
+First, create an object of the `Organization` class:
+
+```python
+organization = gitlab.Organization(organization_name="example_organization")
+```
+
+| Methods           | Details                                                                            |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| `.get_members()`    | Returns a list of usernames of the members in the organization.                                                 |
+| `get_projects()`       | Returns a list of project names associated with the organization.                                                    |
+
+**Example:**
+```python
+members = organization.get_members()
+print("Organization Members:", members)
+
+projects = organization.get_projects()
+print("Organization Projects:", projects)
+
+```
+---
+
+### Scrape Issues
+
+To scrape information about an `issue` on GitLab, create an object of the `Issue` class by providing the following parameters:
+
+- username: The GitLab username of the repository owner.
+- repository: The name of the repository.
+- issue_number: The number of the issue.
+
+Here's an example of creating an object of the `Issue` class:
+
+```python
+issue = gitlab.Issue(username="example_user", repository="example_repository", issue_number=123)
+
+```
+
+| Methods           | Details                                                                            |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| `.get_title()`    | Returns the title of the issue.                                                 |
+| `.get_description()`       | Returns the description of the issue.                                                    |
+| `.get_author()`       | Returns the author of the issue.                                                    |
+
+**Example:**
+```python
+title = issue.get_title()
+print("Issue Title:", title["data"])
+
+description = issue.get_description()
+print("Issue Description:", description["data"])
+
+author = issue.get_author()
+print("Issue Author:", author["data"])
+
+```
+
+### Scrape Pull Requests
+
+To scrape pull request details from GitLab, create an object of the `PullRequest` class:
+
+```python
+pull_request = gitlab.PullRequest(username="example_user", repository="example_repository", pull_request_number=123)
+
+
+```
+
+| Methods           | Details                                                                            |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| `.get_title()`    | Returns the title of the pull request.                                                 |
+| `.get_description()`       | Returns the description of the pull request.                                                    |
+| `.get_author()`       | Returns the author of the pull request.                                                    |
+
+**Example:**
+```python
+title = pull_request.get_title()
+print("Pull Request Title:", title)
+
+description = pull_request.get_description()
+print("Pull Request Description:", description)
+
+author = pull_request.get_author()
+print("Pull Request Author:", author)
+
+```
+
+
+---
+
 ## Instagram
 
 ```python
@@ -292,7 +440,7 @@ from scrape_up import medium
 
 ### Scrape user details
 
-First create an object of class `User`
+First, create an object of class `User`
 
 ```python
 user = medium.Users(username="nikhil25803")
@@ -377,7 +525,7 @@ from scrape_up import twitter
 
 ### Scrape
 
-First create an object of class `TwitterScraper`
+First, create an object of class `TwitterScraper`
 
 ```python
 twitter_scraper = TwitterScraper()
@@ -419,7 +567,7 @@ from scrape_up import StockPrice
 
 ### Scrape stock data
 
-First create an instance of class `StockPrice` with stock name and index name.
+First, create an instance of class `StockPrice` with stock name and index name.
 
 ```python
 infosys = StockPrice('infosys','nse')
@@ -444,7 +592,7 @@ historical_data = infosys.get_historical_data('02-05-2023', '31-05-2023')
 
 ### Scrap up IMDb Top 250 details
 
-Create an instance of `Movie` class.
+Create an instance of the `Movie` class.
 
 ```python
 top_250 = IMDB()
@@ -521,7 +669,8 @@ print(scraped_data)
 
 ### Scrape details about a product
 
-Create an instance of `Movie` class.
+Create an instance of `Product` class with a `product_name` propertiese.
+
 
 ```python
 product = Product(product_name="watch")
@@ -534,7 +683,6 @@ product = Product(product_name="watch")
 | `.get_product_image()`   | Returns product image.       |
 | `.customer_review()`     | Returns product review.      |
 
----
 
 ## Amazon-Kindle Bookstore
 
@@ -549,5 +697,4 @@ books = AmazonKindle()
 | Methods          | Details                                                |
 | ---------------- | ------------------------------------------------------ |
 | `.bestsellers()` | Returns the list of best seeling books on AmazonKindle |
-
 ---
