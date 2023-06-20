@@ -25,7 +25,9 @@ print(user.followers())
 
 # The platforms and methods we cover 💫
 
-
+- GitHub
+- Instagram
+- Internshala
 - GitHub
 - Instagram
 - Internshala
@@ -335,8 +337,8 @@ print("Pull Request Author:", author)
 
 ```
 
----
 
+---
 
 ## Instagram
 
@@ -667,7 +669,8 @@ print(scraped_data)
 
 ### Scrape details about a product
 
-Create an instance of the `Movie` class.
+Create an instance of `Product` class with a `product_name` propertiese.
+
 
 ```python
 product = Product(product_name="watch")
@@ -680,4 +683,18 @@ product = Product(product_name="watch")
 | `.get_product_image()`   | Returns product image.       |
 | `.customer_review()`     | Returns product review.      |
 
+
+## Amazon-Kindle Bookstore
+
+### Scrape details of a book
+
+Create an instance of `Book` class.
+
+```python
+books = AmazonKindle()
+```
+
+| Methods          | Details                                                |
+| ---------------- | ------------------------------------------------------ |
+| `.bestsellers()` | Returns the list of best seeling books on AmazonKindle |
 ---
