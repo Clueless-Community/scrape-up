@@ -1,2 +1,3 @@
-from scrape_up.kindle_bookstore.kindle import Book
-__all__=['Book']
+from kindle import AmazonKindle
+
+__all__ = ["AmazonKindle"]
