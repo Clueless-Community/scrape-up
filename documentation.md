@@ -35,7 +35,7 @@ print(user.followers())
 + GitLab
 + Instagram
 + Internshala
-
++ Google Maps
 
 ## GitHub
 
@@ -697,4 +697,28 @@ books = AmazonKindle()
 | Methods          | Details                                                |
 | ---------------- | ------------------------------------------------------ |
 | `.bestsellers()` | Returns the list of best seeling books on AmazonKindle |
+---
+
+## Google Maps
+
+```python
+from scrape_up import google_maps
+```
+
+### Scrape
+
+First, create an object of class `main`
+
+```python
+google_maps_scraper = google_maps.main()
+```
+```
+
+| Methods                    | Details                                              |
+| -------------------------- | ---------------------------------------------------- |
+| `.dataframe`               | Used to transform business_list to pandas dataframe. |
+| `.save_to_csv'             | Used to saves pandas dataframe to csv file.          |
+| `.save_to_excel'           | Used to saves pandas dataframe to xlsx file.         |
+| `.sync_playwright'         | For scrapinhg data from the search in google maps.   |
+
 ---
