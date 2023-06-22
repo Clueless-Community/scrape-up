@@ -25,13 +25,6 @@ class Repository:
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
-    def __scrape_releases_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/releases"
-        )
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
-
     def __scrape_issues_page(self):
         data = requests.get(
             f"https://github.com/{self.username}/{self.repository}/issues"
@@ -72,7 +65,7 @@ class Repository:
         {
         "data": allLanguages,
         "message": f"Languages used in {self.repository} repository",
-        } 
+        }
         """
         data = self.__scrape_page()
 
@@ -80,9 +73,9 @@ class Repository:
             languages = data.find_all(class_="color-fg-default text-bold mr-1")
             allLanguages = []
             for item in languages:
-                item=str(item)
-                item=item[46:]
-                item=item[:-7]
+                item = str(item)
+                item = item[46:]
+                item = item[:-7]
                 allLanguages.append(item)
             # return allLanguages  # return list of languages
             return {
@@ -108,7 +101,7 @@ class Repository:
         {
         "data": about,
         "message": f"About {self.repository} repository",
-        } 
+        }
         """
         data = self.__scrape_page()
 
@@ -140,8 +133,8 @@ class Repository:
         {
         "data": fork_count,
         "message": f"Number of forks of {self.repository} repository",
-        
-        } 
+
+        }
         """
         data = self.__scrape_page()
         try:
@@ -173,7 +166,7 @@ class Repository:
         {
         "data": allTopics,
         "message": f"Topics of {self.repository} repository",
-        } 
+        }
         """
         data = self.__scrape_page()
 
@@ -206,7 +199,7 @@ class Repository:
         {
         "data": starCount,
         "message": f"Star count of {self.repository} repository",
-        } 
+        }
         """
         try:
             data = self.__scrape_page()
@@ -238,7 +231,7 @@ class Repository:
         {
         "data": pull_requests,
         "message": f"Pull requests of {self.repository} repository",
-        } 
+        }
         """
         data = self.__scrape_page()
         try:
@@ -270,7 +263,7 @@ class Repository:
         {
         "data": allTags,
         "message": f"Tags of {self.repository} repository",
-        } 
+        }
         """
         data = self.__scrape_tags_page()
         try:
@@ -301,7 +294,7 @@ class Repository:
         {
         "data": allReleases,
         "message": f"Releases of {self.repository} repository",
-        } 
+        }
         """
         data = self.__scrape_tags_page()
         try:
@@ -332,7 +325,7 @@ class Repository:
         {
         "data": issues,
         "message": f"Total issues in {self.repository} repository",
-        } 
+        }
         """
         data = self.__scrape_page()
         try:
@@ -359,7 +352,7 @@ class Repository:
         Returns:
         {
          message = f"No readme found in {self.repository} repository"
-        } 
+        }
         """
         session = requests_html.HTMLSession()
         r = session.get(
@@ -389,7 +382,7 @@ class Repository:
         {
         "data": pull_requests_ids,
         "message": f"Pull requests of {self.repository} repository",
-        } 
+        }
         """
         data = self.__scrape_pull_requests_page()
         try:
@@ -427,7 +420,7 @@ class Repository:
         {
         "data": commits,
         "message": f"Commits of {self.repository} repository",
-        } 
+        }
         """
         data = self.__scrape_page()
         try:
@@ -459,7 +452,7 @@ class Repository:
         {
         "data": allIssues,
         "message": f"Issues of {self.repository} repository",
-        } 
+        }
         """
         data = self.__scrape_issues_page()
         try:
@@ -529,7 +522,7 @@ class Repository:
         {
         "data": None,
         "message": message,
-        } 
+        }
         """
         data = requests.get(
             f"https://raw.githubusercontent.com/{self.username}/{self.username}/master/README.md"
@@ -568,7 +561,7 @@ class Repository:
         {
         "data": link,
         "message": f"Latest enviornment link for {self.repository} is {link}",
-        } 
+        }
         """
         try:
             data = self.__scrape_deployments_page()
@@ -621,7 +614,7 @@ class Repository:
         {
         "data": watches,
         "message": f"Total watches in {self.repository} repository",
-        } 
+        }
         """
         data = self.__scrape_watchers_page()
         try:
@@ -648,7 +641,7 @@ class Repository:
         Returns:
         {
           return watchers
-        } 
+        }
         """
         data = self.__scrape_watchers_page()
         try:
@@ -666,8 +659,3 @@ class Repository:
                 "data": None,
                 "message": message,
             }
-
-
-# Test
-# repo = Repository(username="", repository_name="")
-# breakpoint()
