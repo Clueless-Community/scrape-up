@@ -7,7 +7,7 @@ class USER:
     """
     Fetches user data from CodeForces Competitive Platform
     """
-    user_url = "https://codeforces.com/api/user.info?handles={}"
+    user_url = "https://codeforces.com/profile/{}"
 
     def __init__(self,username):
         self.username = username
@@ -64,11 +64,15 @@ class USER:
         try:
             url = self.user_url.format(self.username)
             info = requests.get(url)
-            user_info_set = info.json()
-            user_info_data = user_info_set['result'][0]
-            for data in user_info_data:
-                print(f'{data} → {user_info_data[data]}')
-            return "Data Fetching Successful" if user_info_set['status'] == "OK" else "Failed"
+            soup = BeautifulSoup(info.content)
+            print(soup.prettify())
+            # d = BeautifulSoup(url)
+            # return 
+            # user_info_set = info.json()
+            # user_info_data = user_info_set['result'][0]
+            # for data in user_info_data:
+            #     print(f'{data} → {user_info_data[data]}')
+            # return "Data Fetching Successful" if user_info_set['status'] == "OK" else "Failed"
         except IndexError:
             raise Exception("Invalid User Name.")
         except TypeError:
