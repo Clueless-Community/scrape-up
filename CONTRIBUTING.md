@@ -4,57 +4,67 @@
 
 Do check our [First Contribution](https://github.com/Clueless-Community/first-contribution) repository, where we have provided the guidelines to set up Git and how to make a pull request!
 
-# Project setup 
+# Project setup
 
 ## Fork and clone the repository
+
 Copy the URL of the forked repository and clone it.
+
 ```bash
 https://github.com/<your_username>/scrape-up
 ```
 
 ## Change the directory
+
 ```bash
 cd scrape-up
 ```
 
 > Folder Structure
+
 ```
 scrape-up
- ├── 📄  LICENSE  
- ├── 📄  README.md  
- ├── 📄  contribution.md  
- ├── 📄  documentation.md  
- ├── 📄  pyproject.toml  
- ├── 📄  requirements.txt  
- ├── 📄  setup.cfg  
- └── 📂  src/ 
- │  └──── 📂  scrape_up/ 
- │  │  ├──── 📄  __init__.py  
- │  │  └──── 📂  github/ 
- │  │  │  ├──── 📄  __init__.py  
- │  │  │  ├──── 📄  respository.py  
- │  │  │  └──── 📄  users.py  
- │  │  └──── 📂  twitter/ 
- │  │  │  └──── 📄  __init__.py  
+ ├── 📄  LICENSE
+ ├── 📄  README.md
+ ├── 📄  contribution.md
+ ├── 📄  documentation.md
+ ├── 📄  pyproject.toml
+ ├── 📄  requirements.txt
+ ├── 📄  setup.cfg
+ └── 📂  src/
+ │  └──── 📂  scrape_up/
+ │  │  ├──── 📄  __init__.py
+ │  │  └──── 📂  github/
+ │  │  │  ├──── 📄  __init__.py
+ │  │  │  ├──── 📄  respository.py
+ │  │  │  └──── 📄  users.py
+ │  │  └──── 📂  twitter/
+ │  │  │  └──── 📄  __init__.py
 
 ```
 
-
 ## Create a virtual environment
+
 ```bash
 python -m venv env
 ```
+
 ## Activate the virtual environment
+
 > For windows
+
 ```bash
 env\scripts\activate
 ```
+
 > For Linux
+
 ```bash
 source env/scripts/activate
 ```
 
 ## Install the dependencies
+
 ```powershell
 pip install -r requirements.txt
 ```
@@ -64,6 +74,7 @@ Now you are done with the project setup, now you can make the changes you want o
 ### Let's say you want to scrape the avatar URL of and user. Steps applying which we can do this
 
 - At first, we have to scrape the profile page of a user. For that, we have defined a function in the user class as
+
 ```python
 - scrape-up/src/scrape_up/github/users.py
 class Users:
@@ -78,8 +89,9 @@ class Users:
         return data
 ```
 
-+ The `__scrape_page` is a private function defined to scrape any page. 
-+ Now we have to create a function with an appropriate name, in this case, `get_avatar`.
+- The `__scrape_page` is a private function defined to scrape any page.
+- Now we have to create a function with an appropriate name, in this case, `get_avatar`.
+
 ```python
 def followers(self):
         page = self.__scrape_page()
@@ -90,35 +102,33 @@ def followers(self):
             message = f"{self.username} not found !"
             return message
 ```
-+ When you do inspect the element of the page, you will get to know the class named `avatar avatar-user width-full border color-bg-default` contains the avatar URL.
+
+- When you do inspect the element of the page, you will get to know the class named `avatar avatar-user width-full border color-bg-default` contains the avatar URL.
 
 Once you are done with the changes you wanted to add, follow the steps to make the pull request.
+
 ## Create and checkout to the new branch.
-powershell
+
+PowerShell
 git checkout -b <branch_name>
 
 ## Add the changes
 
 git add .
 
-
 ## Commit your change with a proper message
 
 git commit -m "Enter your message here"
 
-
 ## Make the Pull Request
 
 git push origin <branch_name>
-
-
 
 ## Writing Tests ✍️
 
 - Ensure that your code changes are accompanied by relevant tests.
 
 - Write test cases that cover different scenarios and edge cases.
-
 
 - Follow the existing test structure and naming conventions.
 
@@ -128,12 +138,12 @@ git push origin <branch_name>
 - Provide clear and concise explanations of the functionality, usage, and any relevant considerations.
 - Update the `README.md` file to reflect the changes made and provide instructions on how to use the project.
 
-### ✅ Code Reviews 
+### ✅ Code Reviews
 
 - Be open to feedback and constructive criticism from other contributors.
 - Participate in code reviews by reviewing and providing feedback.
 
-### ✅ Bug Fixes and Issue Reporting 
+### ✅ Bug Fixes and Issue Reporting
 
 - Help identify and fix bugs in the project.
 - Report any issues or bugs you encounter during your contribution by creating a new issue in the GitHub repository.
