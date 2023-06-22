@@ -1,21 +1,29 @@
 import scrapy
 
-
 class LinkedInPeopleProfileSpider(scrapy.Spider):
     name = "linkedin_people_profile"
+
     custom_settings = {
-        'FEEDS': {'data/%(name)s_%(time)s.jsonl': {'format': 'jsonlines',}}
+        'FEEDS': { 'data/%(name)s_%(time)s.jsonl': { 'format': 'jsonlines',}}
     }
 
     def start_requests(self):
         profile_list = ['reidhoffman']  # Any public profile username can be added
         for profile in profile_list:
-            linkedin_people_url = f'https://www.linkedin.com/in/{profile}/'
-            yield scrapy.Request(url=linkedin_people_url, callback=self.parse_profile,
-                                 meta={'profile': profile, 'linkedin_url': linkedin_people_url})
+            linkedin_people_url = f'https://www.linkedin.com/in/{profile}/' 
+            yield scrapy.Request(url=linkedin_people_url, callback=self.parse_profile, meta={'profile': profile, 'linkedin_url': linkedin_people_url})
 
     def parse_profile(self, response):
-        item = LinkedInProfileItem()
+        item = self.extract_profile_info(response)
+
+        item['about'] = self.extract_about_section(response)
+        item['experience'] = self.extract_experience_section(response)
+        item['education'] = self.extract_education_section(response)
+
+        yield item
+
+    def extract_profile_info(self, response):
+        item = {}
         item['profile'] = response.meta['profile']
         item['url'] = response.meta['linkedin_url']
 
@@ -23,11 +31,12 @@ class LinkedInPeopleProfileSpider(scrapy.Spider):
         item['name'] = summary_box.css("h1::text").get().strip()
         item['description'] = summary_box.css("h2::text").get().strip()
 
-        location_info = summary_box.css('div.top-card__subline-item::text').get()
-        if location_info:
-            item['location'] = location_info.strip()
-        else:
-            item['location'] = ''
+        try:
+            item['location'] = summary_box.css('div.top-card__subline-item::text').get()
+        except:
+            item['location'] = summary_box.css('span.top-card__subline-item::text').get().strip()
+            if 'followers' in item['location'] or 'connections' in item['location']:
+                item['location'] = ''
 
         item['followers'] = ''
         item['connections'] = ''
@@ -38,34 +47,15 @@ class LinkedInPeopleProfileSpider(scrapy.Spider):
             if 'connections' in span_text:
                 item['connections'] = span_text.replace(' connections', '').strip()
 
-        about_section = AboutSection(response)
-        item['about'] = about_section.extract_about()
+        return item
 
-        experience_section = ExperienceSection(response)
-        item['experience'] = experience_section.extract_experience()
+    def extract_about_section(self, response):
+        about_section = response.css('section.summary div.core-section-container__content p::text')
+        return about_section.get(default='')
 
-        education_section = EducationSection(response)
-        item['education'] = education_section.extract_education()
-
-        yield item
-
-
-class AboutSection:
-    def __init__(self, response):
-        self.response = response
-
-    def extract_about(self):
-        about = self.response.css('section.summary div.core-section-container__content p::text').get(default='')
-        return about
-
-
-class ExperienceSection:
-    def __init__(self, response):
-        self.response = response
-
-    def extract_experience(self):
+    def extract_experience_section(self, response):
+        experience_blocks = response.css('li.experience-item')
         experience_list = []
-        experience_blocks = self.response.css('li.experience-item')
 
         for block in experience_blocks:
             experience = {}
@@ -88,72 +78,54 @@ class ExperienceSection:
                     experience['start_time'] = date_ranges[0]
                     experience['end_time'] = date_ranges[1]
                     experience['duration'] = block.css('span.date-range__duration::text').get()
+               
                 elif len(date_ranges) == 1:
                     experience['start_time'] = date_ranges[0]
                     experience['end_time'] = 'present'
                     experience['duration'] = block.css('span.date-range__duration::text').get()
+                
             except Exception as e:
                 print('experience --> time ranges', e)
                 experience['start_time'] = ''
                 experience['end_time'] = ''
                 experience['duration'] = ''
-
-            experience_list.append(experience)
+                experience_list.append(experience)
 
         return experience_list
 
+def extract_education_section(self, response):
+    education_blocks = response.css('li.education__list-item')
+    education_list = []
 
-class EducationSection:
-    def __init__(self, response):
-        self.response = response
+    for block in education_blocks:
+        education = {}
+        education['organisation'] = block.css('h3::text').get(default='').strip()
+        education['organisation_profile'] = block.css('a::attr(href)').get(default='').split('?')[0]
 
-    def extract_education(self):
-        education_list = []
-        education_blocks = self.response.css('li.education__list-item')
+        try:
+            education['course_details'] = ''
+            for text in block.css('h4 span::text').getall():
+                education['course_details'] = education['course_details'] + text.strip() + ' '
+            education['course_details'] = education['course_details'].strip()
+        except Exception as e:
+            print("education --> course_details", e)
+            education['course_details'] = ''
 
-        for block in education_blocks:
-            education = {}
-            education['organisation'] = block.css('h3::text').get(default='').strip()
-            education['organisation_profile'] = block.css('a::attr(href)').get(default='').split('?')[0]
+        education['description'] = block.css('div.education__item--details p::text').get(default='').strip()
 
-            try:
-                course_details = ''
-                for text in block.css('h4 span::text').getall():
-                    course_details = course_details + text.strip() + ' '
-                education['course_details'] = course_details.strip()
-            except Exception as e:
-                print("education --> course_details", e)
-                education['course_details'] = ''
+        try:
+            date_ranges = block.css('span.date-range time::text').getall()
+            if len(date_ranges) == 2:
+                education['start_time'] = date_ranges[0]
+                education['end_time'] = date_ranges[1]
+            elif len(date_ranges) == 1:
+                education['start_time'] = date_ranges[0]
+                education['end_time'] = 'present'
+        except Exception as e:
+            print("education --> time_ranges", e)
+            education['start_time'] = ''
+            education['end_time'] = ''
 
-            education['description'] = block.css('div.education__item--details p::text').get(default='').strip()
+        education_list.append(education)
 
-            try:
-                date_ranges = block.css('span.date-range time::text').getall()
-                if len(date_ranges) == 2:
-                    education['start_time'] = date_ranges[0]
-                    education['end_time'] = date_ranges[1]
-                elif len(date_ranges) == 1:
-                    education['start_time'] = date_ranges[0]
-                    education['end_time'] = 'present'
-            except Exception as e:
-                print("education --> time_ranges", e)
-                education['start_time'] = ''
-                education['end_time'] = ''
-
-            education_list.append(education)
-
-        return education_list
-
-
-class LinkedInProfileItem(scrapy.Item):
-    profile = scrapy.Field()
-    url = scrapy.Field()
-    name = scrapy.Field()
-    description = scrapy.Field()
-    location = scrapy.Field()
-    followers = scrapy.Field()
-    connections = scrapy.Field()
-    about = scrapy.Field()
-    experience = scrapy.Field()
-    education = scrapy.Field()
-
+    return education_list
