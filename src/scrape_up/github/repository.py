@@ -80,8 +80,10 @@ class Repository:
             languages = data.find_all(class_="color-fg-default text-bold mr-1")
             allLanguages = []
             for item in languages:
-                allLanguages.append(item.text)
-            allTopics = list(map(lambda s: s.strip(), allTopics))
+                item=str(item)
+                item=item[46:]
+                item=item[:-7]
+                allLanguages.append(item)
             # return allLanguages  # return list of languages
             return {
                 "data": allLanguages,
