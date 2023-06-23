@@ -11,4 +11,4 @@ __all__=['Python']
 #scrape the whats new page
 # print(Python('3.11').whats_new())
 #scrape all the pages with one function
-# print(Python('3.11').get_all())
+print(Python('3.11').get_all())

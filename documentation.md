@@ -438,3 +438,19 @@ product = Product(product_name="watch")
 
 ---
 
+## Python Documentation
+Create an instance of `PythonDocs` class.
+```python
+docs = Python()
+```
+| Methods        | Details                                             |
+| -------------- | --------------------------------------------------- |
+| `.get_version()` | Returns python version. |
+| `.get_url()` | Returns url of specified version. |
+| `.tutorial()` | Returns content of tutorial page. |
+| `.library_reference()` | Returns content of library reference page. |
+| `.language_reference()` | Returns content of language reference page. |
+| `.whats_new()` | Returns content of whats new page. |
+| `.get_all()` | Returns content of all the above function as key value pair. |
+
+----

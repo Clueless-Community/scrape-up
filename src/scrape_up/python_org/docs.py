@@ -13,51 +13,66 @@ class Python:
         return f'https://docs.python.org/{self.version}/'
     
     def tutorial(self):
-        url = self.get_url() + 'tutorial/index.html'
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        details=soup.find_all('p')
-        passage=[]
-        for paragraph in (details):
-            text=(paragraph.text.strip())
-            passage.append(text)
-        return passage
+        try:
+            url = self.get_url() + 'tutorial/index.html'
+            response = requests.get(url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            details=soup.find_all('p')
+            passage=[]
+            for paragraph in (details):
+                text=(paragraph.text.strip())
+                passage.append(text)
+            return passage
+        except:
+            return None
+        
     
     def library_reference(self):
-        url=self.get_url() + 'library/index.html'
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        details=soup.find_all('p')
-         
-        passage=[]
-        for paragraph in (details):
-            text=(paragraph.text.strip())
-            passage.append(text)
-        return passage
-    
+        try:
+            url=self.get_url() + 'library/index.html'
+            response = requests.get(url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            details=soup.find_all('p')
+            
+            passage=[]
+            for paragraph in (details):
+                text=(paragraph.text.strip())
+                passage.append(text)
+            return passage
+        except:
+            return None
+        
     def language_reference(self):
-        url=self.get_url() + 'reference/index.html'
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        details=soup.find_all('p')
-         
-        passage=[]
-        for paragraph in (details):
-            text=(paragraph.text.strip())
-            passage.append(text)
-        return passage
+        try:
+            url=self.get_url() + 'reference/index.html'
+            response = requests.get(url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            details=soup.find_all('p')
+            
+            passage=[]
+            for paragraph in (details):
+                text=(paragraph.text.strip())
+                passage.append(text)
+            return passage
+        except:
+            return None 
     
     def whats_new(self):
-        url=self.get_url() + 'whatsnew/index.html'
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        details=soup.find_all('p')
-         
-        passage=[]
-        for paragraph in (details):
-            text=(paragraph.text.strip())
-            passage.append(text)
-        return passage
+        try:
+            
+            url=self.get_url() + 'whatsnew/index.html'
+            response = requests.get(url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            details=soup.find_all('p')
+            
+            passage=[]
+            for paragraph in (details):
+                text=(paragraph.text.strip())
+                passage.append(text)
+            return passage
+        except:
+            return None
+        
     def get_all(self):
         return {
             "version": self.get_version(),
