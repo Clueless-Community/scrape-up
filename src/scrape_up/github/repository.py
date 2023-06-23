@@ -424,11 +424,10 @@ class Repository:
         """
         data = self.__scrape_page()
         try:
-            commits = (
-                data.find("a", href=f"/{self.username}/{self.repository}/commits")
-                .find("span")
-                .text.strip()
-            )
+            commits = str(data.find_all(class_="d-none d-sm-inline"))
+            s = commits.split("<strong>")
+            s = s[1].split("</strong>")
+            commits = int(s[0])
             return {
                 "data": commits,
                 "message": f"Commits of {self.repository} repository",
@@ -659,3 +658,4 @@ class Repository:
                 "data": None,
                 "message": message,
             }
+
