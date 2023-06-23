@@ -25,13 +25,6 @@ class Repository:
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
-    def __scrape_releases_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/releases"
-        )
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
-
     def __scrape_issues_page(self):
         data = requests.get(
             f"https://github.com/{self.username}/{self.repository}/issues"
@@ -666,6 +659,3 @@ class Repository:
                 "message": message,
             }
 
-
-repo = Repository(username="Clueless-Community", repository_name="scrape-up")
-print(repo.commits())
