@@ -123,7 +123,7 @@ class Product:
             product_image = soup.find(
                 "img", {"class": "a-dynamic-image a-stretch-horizontal"}
             )["src"]
-      
+
             return {
                 "data": product_image,
                 "message": f"Product image has been fetched",
@@ -191,4 +191,3 @@ class Product:
                 "data": None,
                 "message": f"Unable to fetch product review",
             }
-

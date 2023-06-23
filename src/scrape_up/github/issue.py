@@ -17,7 +17,19 @@ class Issue:
 
     def assignees(self):
         """
-        Fetch list of assignees
+        Class - `Issues`
+        Example:
+        ```
+        repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
+        assignees = repository.assignees()
+        ```
+        Returns:
+        {
+            return {
+                "data": assignees,
+                "message": f"Found assignees for {self.repository}",
+            }
+        }
         """
         data = self.__scrape_page()
         try:
@@ -40,7 +52,19 @@ class Issue:
 
     def labels(self):
         """
-        Fetch labels of issues
+        Class - `Issues`
+        Example:
+        ```
+        repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
+        labels = repository.labels()
+        ```
+        Returns:
+        {
+            return {
+                "data": allLabels,
+                "message": f"Found labels for {self.repository}", 
+            }
+        }
         """
         data = self.__scrape_page()
         try:
@@ -64,7 +88,19 @@ class Issue:
 
     def opened_by(self):
         """
-        Fetch the name of the user, who opened the issue
+        Class - `Issues`
+        Example:
+        ```
+        repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
+        opened_by = repository.opened_by()
+        ```
+        Returns:
+        {
+            return {
+                   "data": author_name,
+                "message": f"Found author for {self.repository}",
+            }
+        }
         """
         data = self.__scrape_page()
         try:
@@ -82,7 +118,20 @@ class Issue:
 
     def title(self):
         """
-        Fetch title of the issue
+        Class - `Issues`
+        Example:
+        ```
+        repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
+        title = repository.title()
+        ```
+        Returns:
+        {
+            return {
+               "data": title,
+                "message": f"Found title for {self.repository}",
+            }
+        }
+        
         """
         data = self.__scrape_page()
         try:
@@ -101,7 +150,19 @@ class Issue:
 
     def opened_at(self):
         """
-        Returns a string containing the time when the issue was opened in ISO format
+        Class - `Issues`
+        Example:
+        ```
+        repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
+        opened_at = repository.opened_at()
+        ```
+        Returns:
+        {
+            return {
+               "data": data.find("relative-time").text,
+                "message": f"Found time for {self.repository}",
+            }
+        }
         """
         try:
             data = self.__scrape_page()
@@ -118,7 +179,19 @@ class Issue:
 
     def is_milestone(self):
         """
-        Returns the milestone, if the issue is part of one or 'No milestone', if it's not.
+        Class - `Issues`
+        Example:
+        ```
+        repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
+        is_milestone = repository.is_milestone()
+        ```
+        Returns:
+        {
+            return {
+               "data": milestone,
+                "message": f"Found milestone for {self.repository}",
+            }
+        }
         """
         data = self.__scrape_page()
         try:
