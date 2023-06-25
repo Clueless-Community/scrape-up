@@ -697,4 +697,21 @@ books = AmazonKindle()
 | Methods          | Details                                                |
 | ---------------- | ------------------------------------------------------ |
 | `.bestsellers()` | Returns the list of best seeling books on AmazonKindle |
+
+
+
+## Flipkart
+
+### Scrape details of products
+
+Create an instance of `Flipkart` class.
+
+```python
+item = Flipkart()
+```
+
+| Methods          | Details                                                |
+| ---------------- | ------------------------------------------------------ |
+| `.item_TV()` | Returns the list of TV sets on flipkart |
+| `.bestSellers()` | Returns the list of Bestseller items on flipkart  |
 ---
