@@ -31,11 +31,11 @@ print(user.followers())
 - GitHub
 - Instagram
 - Internshala
-+ GitHub
-+ GitLab
-+ Instagram
-+ Internshala
 
+* GitHub
+* GitLab
+* Instagram
+* Internshala
 
 ## GitHub
 
@@ -214,20 +214,22 @@ First, create an object of the `User` class:
 user = gitlab.Users(username="example_user")
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_name()`    | Returns the name of the user.                                                 |
-| `.get_bio()`       | Returns the bio of the user.                                                    |
-| `.get_avatar_url()`    | Returns the avatar URL of the user.                                |
-| `.get_repositories()`        | Returns a list of repositories owned by the user.                                                     |
+| Methods                            | Details                                                      |
+| ---------------------------------- | ------------------------------------------------------------ |
+| `.get_name()`                      | Returns the name of the user.                                |
+| `.get_bio()`                       | Returns the bio of the user.                                 |
+| `.get_avatar_url()`                | Returns the avatar URL of the user.                          |
+| `.get_repositories()`              | Returns a list of repositories owned by the user.            |
 | `.get_project_details(project_id)` | Returns the details of a specific project owned by the user. |
 
 **Example:**
+
 ```python
 name_result = user.get_name()
 print("Name:", name_result["data"])
 print("Status:", name_result["message"])
 ```
+
 ---
 
 ### Scrape Repository Details
@@ -238,16 +240,18 @@ First, create an object of the `Repository` class:
 repository = gitlab.Repository(username="example_user", repository_name="example_repository")
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_name()`    | Returns the name of the repository.                                                 |
-| `.get_description()`       | Returns the description of the repository.                                                    |
+| Methods              | Details                                    |
+| -------------------- | ------------------------------------------ |
+| `.get_name()`        | Returns the name of the repository.        |
+| `.get_description()` | Returns the description of the repository. |
 
 **Example:**
+
 ```python
 name_result = repository.get_name()
 print("Repository Name:", name_result["data"])
 ```
+
 ---
 
 ### Scrape Organization Members
@@ -258,12 +262,13 @@ First, create an object of the `Organization` class:
 organization = gitlab.Organization(organization_name="example_organization")
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_members()`    | Returns a list of usernames of the members in the organization.                                                 |
-| `get_projects()`       | Returns a list of project names associated with the organization.                                                    |
+| Methods          | Details                                                           |
+| ---------------- | ----------------------------------------------------------------- |
+| `.get_members()` | Returns a list of usernames of the members in the organization.   |
+| `get_projects()` | Returns a list of project names associated with the organization. |
 
 **Example:**
+
 ```python
 members = organization.get_members()
 print("Organization Members:", members)
@@ -272,6 +277,7 @@ projects = organization.get_projects()
 print("Organization Projects:", projects)
 
 ```
+
 ---
 
 ### Scrape Issues
@@ -289,13 +295,14 @@ issue = gitlab.Issue(username="example_user", repository="example_repository", i
 
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_title()`    | Returns the title of the issue.                                                 |
-| `.get_description()`       | Returns the description of the issue.                                                    |
-| `.get_author()`       | Returns the author of the issue.                                                    |
+| Methods              | Details                               |
+| -------------------- | ------------------------------------- |
+| `.get_title()`       | Returns the title of the issue.       |
+| `.get_description()` | Returns the description of the issue. |
+| `.get_author()`      | Returns the author of the issue.      |
 
 **Example:**
+
 ```python
 title = issue.get_title()
 print("Issue Title:", title["data"])
@@ -318,13 +325,14 @@ pull_request = gitlab.PullRequest(username="example_user", repository="example_r
 
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_title()`    | Returns the title of the pull request.                                                 |
-| `.get_description()`       | Returns the description of the pull request.                                                    |
-| `.get_author()`       | Returns the author of the pull request.                                                    |
+| Methods              | Details                                      |
+| -------------------- | -------------------------------------------- |
+| `.get_title()`       | Returns the title of the pull request.       |
+| `.get_description()` | Returns the description of the pull request. |
+| `.get_author()`      | Returns the author of the pull request.      |
 
 **Example:**
+
 ```python
 title = pull_request.get_title()
 print("Pull Request Title:", title)
@@ -336,7 +344,6 @@ author = pull_request.get_author()
 print("Pull Request Author:", author)
 
 ```
-
 
 ---
 
@@ -671,7 +678,6 @@ print(scraped_data)
 
 Create an instance of `Product` class with a `product_name` propertiese.
 
-
 ```python
 product = Product(product_name="watch")
 ```
@@ -682,7 +688,6 @@ product = Product(product_name="watch")
 | `.get_product_details()` | Returns product detail.      |
 | `.get_product_image()`   | Returns product image.       |
 | `.customer_review()`     | Returns product review.      |
-
 
 ## Amazon-Kindle Bookstore
 
@@ -699,7 +704,6 @@ books = AmazonKindle()
 | `.bestsellers()` | Returns the list of best seeling books on AmazonKindle |
 
 
-
 ## Flipkart
 
 ### Scrape details of products
@@ -714,4 +718,37 @@ item = Flipkart()
 | ---------------- | ------------------------------------------------------ |
 | `.item_TV()` | Returns the list of TV sets on flipkart |
 | `.bestSellers()` | Returns the list of Bestseller items on flipkart  |
+
+---
+
+## Ask Ubuntu
+
+### Scrape questions, views, votes, answer counts, and descriptions from Ask Ubuntu website regarding a topic
+
+Create an instance of `Questions` class.
+
+```python
+questions = Questions("topic")
+```
+
+| Methods          | Details                                                |
+| ---------------- | ------------------------------------------------------ |
+| `.scrape()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
+
+**Example**
+
+```python
+que = Questions("github")
+scrape = que.scrape()
+json = json.loads(scrape)
+questions = json["questions"]
+for q in questions:
+    print("\nQuestion: ", q["question"])
+    print("Views: ", q["views"])
+    print("Votes: ", q["vote_count"])
+    print("Answers: ", q["answer_count"])
+    print("Description: ", q["description\n"])
+
+```
+
 ---
