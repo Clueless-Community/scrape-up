@@ -742,3 +742,14 @@ for q in questions:
 ```
 
 ---
+### Scrap up filpkart data under 50k
+
+Create an instance of the `FlipkartSpider` class.
+
+```python
+start_urls=[link]
+```
+
+| Methods        | Details                                      |
+| -------------- | -------------------------------------------- |
+| `.getall()` | method is used to extract multiple values from HTML elements. |
