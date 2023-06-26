@@ -703,7 +703,6 @@ books = AmazonKindle()
 | ---------------- | ------------------------------------------------------ |
 | `.bestsellers()` | Returns the list of best seeling books on AmazonKindle |
 
-
 ## Flipkart
 
 ### Scrape details of products
@@ -714,10 +713,10 @@ Create an instance of `Flipkart` class.
 item = Flipkart()
 ```
 
-| Methods          | Details                                                |
-| ---------------- | ------------------------------------------------------ |
-| `.item_TV()` | Returns the list of TV sets on flipkart |
-| `.bestSellers()` | Returns the list of Bestseller items on flipkart  |
+| Methods               | Details                                          |
+| --------------------- | ------------------------------------------------ |
+| `.TVs()`              | Returns the list of TV sets on flipkart          |
+| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
 
 ---
 
@@ -731,8 +730,8 @@ Create an instance of `Questions` class.
 questions = Questions("topic")
 ```
 
-| Methods          | Details                                                |
-| ---------------- | ------------------------------------------------------ |
+| Methods     | Details                                                                             |
+| ----------- | ----------------------------------------------------------------------------------- |
 | `.scrape()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
 
 **Example**
