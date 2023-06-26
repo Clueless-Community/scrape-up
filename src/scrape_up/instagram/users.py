@@ -8,11 +8,15 @@ from selenium.webdriver.firefox.service import Service
 driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
 
 
-class Users:
+class User:
     def __init__(self, username: str):
         self.username = username
 
     def user_details(self):
+        """
+        user = User(username=" ")
+        print(user.user_details())
+        """
         try:
             driver.get(f"https://www.instagram.com/{self.username}/")
             wait = WebDriverWait(driver, 180)
