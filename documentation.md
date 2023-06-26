@@ -29,13 +29,7 @@ print(user.followers())
 - Instagram
 - Internshala
 - GitHub
-- Instagram
 - Internshala
-
-* GitHub
-* GitLab
-* Instagram
-* Internshala
 
 ## GitHub
 
@@ -358,20 +352,17 @@ from scrape_up import instagram
 First, create an object of the class `User`
 
 ```python
-user = instagram.Users(username="nikhil25803")
+user = instagram.User(username="nikhil25803")
 ```
 
-| Methods        | Details                                             |
-| -------------- | --------------------------------------------------- |
-| `.followers()` | Returns the number of followers of a user.          |
-| `.following()` | Returns the number of people the user is following. |
-| `.posts()`     | Returns the number of posts the user has.           |
+| Methods           | Details                                    |
+| ----------------- | ------------------------------------------ |
+| `.user_details()` | Returns the number of followers of a user. |
 
 **Example:**
 
 ```python
-following = user.following() #user var taken from above
-print(following)
+print(user.user_details()) #user var taken from above
 ```
 
 ---
