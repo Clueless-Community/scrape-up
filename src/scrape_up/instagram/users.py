@@ -27,5 +27,3 @@ class Users:
         finally:
             driver.quit()
 
-user = Users('nikhil_raj803')
-print(user.user_details())

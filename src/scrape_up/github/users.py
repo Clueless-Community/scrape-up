@@ -44,8 +44,22 @@ class Users:
             return {"data": None, "message": message}
 
     def following(self):
-        """ "
-        Fetch the number of following of a GitHub users.
+        """ 
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        following = user.following()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            following = page.find_all(class_="text-bold color-fg-default")
+            # print(page.find_all("span"))
+            return following[1].text
+        }
+        ```
         """
         page = self.__scrape_page()
         try:
@@ -58,7 +72,19 @@ class Users:
 
     def get_avatar(self):
         """
-        Fetch the avatar URL of a GitHub user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_avatar = user.get_avatar()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return avatar["src"]
+        }
+        ```
         """
         page = self.__scrape_page()
         try:
@@ -72,7 +98,19 @@ class Users:
 
     def get_bio(self):
         """
-        Fetch the bio of a GitHub user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_bio = user.get_bio()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return bio.text
+        }
+        ```
         """
         page = self.__scrape_page()
         try:
@@ -86,7 +124,19 @@ class Users:
 
     def get_repo(self):
         """
-        Fetch the titles of all pinned repositories of a GitHub user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_repo = user.get_repo()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return titles
+        }
+        ```
         """
         page = self.__scrape_page()
         try:
@@ -101,7 +151,19 @@ class Users:
 
     def repo_count(self):
         """
-        Fetch the number of repositories of Github user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        repo_count = user.repo_count()
+        ```
+        Return\n
+        ```python
+        return
+        {
+           return count_repo_list[0]
+        }
+        ```
         """
         page = self.__scrape_page()
         try:
@@ -117,7 +179,19 @@ class Users:
 
     def star_count(self):
         """
-        Fetch the number of stars of Github user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        star_count = user.star_count()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return count_star_list[3]
+        }
+        ```
         """
         page = self.__scrape_page()
         try:
@@ -133,7 +207,19 @@ class Users:
 
     def get_yearly_contributions(self):
         """
-        Fetch the contributions made in 365 days frame
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_yearly_contributions = user.get_yearly_contributions()
+        ```
+        Return\n
+        ```python
+        return
+        {
+           return " ".join(contributions.text.split())
+        }
+        ```
         """
         page = self.__scrape_page()
         try:
@@ -145,7 +231,7 @@ class Users:
 
     def __get_repo_page(self):
         """
-        Scrape the repositories page of a GitHub user.
+         Scrape the repositories page of a GitHub user.
         """
         username = self.username
         repo_data = requests.get(f"https://github.com/{username}?tab=repositories")
@@ -154,7 +240,19 @@ class Users:
 
     def get_repositories(self):
         """
-        Fetch the list of repositories of a GitHub user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_repositories = user.get_repositories()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return repositories
+        }
+        ```
         """
         page = self.__get_repo_page()
         try:
@@ -172,7 +270,19 @@ class Users:
 
     def get_organizations(self):
         """
-        Fetch the names of organization, a user is part of
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_organizations = user.get_organizations()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return orgs
+        }
+        ```
         """
         page = self.__scrape_page()
         try:
@@ -184,7 +294,19 @@ class Users:
 
     def get_achievements(self):
         """
-        Fetch the names of achievements, a user is has achieved
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_achievements = user.get_achievements()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return achievement
+        }
+        ```
         """
         try:
             achievement = []
@@ -210,7 +332,19 @@ class Users:
 
     def get_starred_repos(self):
         """
-        Fetches the starred repositories of a GitHub user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_starred_repos = user.get_starred_repos()
+        ```
+        Return\n
+        ```python
+        return
+        {
+             return starred_repos
+        }
+        ```
         """
         page = self.__get_starred_page()
         try:
@@ -238,7 +372,19 @@ class Users:
 
     def get_followers(self):
         """
-        Fetch the list of followers a user have.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_followers = user.get_followers()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return followers
+        }
+        ```
         """
         page = self.__scrape_followers_page()
         try:
@@ -264,7 +410,19 @@ class Users:
 
     def get_following_users(self):
         """
-        Fetches the following users of a GitHub user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_following_users = user.get_following_users()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return following
+        }
+        ```
         """
         page = self.__scrape_following_page()
         try:
@@ -290,8 +448,19 @@ class Users:
             return message
 
     def get_status(self):
-        """
-        Fetch the number of contribution made in recent month.
+        """Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_status = user.get_status()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return t.text.strip().replace("\n", "")
+        }
+        
         """
         try:
             data = self.__scrape_page()
@@ -304,6 +473,21 @@ class Users:
             return message
 
     def get_contribution_streak(self):
+        """
+         Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_contribution_streak = user.get_contribution_streak()
+        ```
+        Return\n
+        ```python
+        return
+        {
+             return int(result)
+        }
+        
+        """
         try:
             data = self.__scrape_page()
             t = data.find_all("rect", class_="ContributionCalendar-day")
@@ -339,7 +523,19 @@ class Users:
 
     def get_pages(self, curr_repo_link, pages_links):
         """
-        get the links of all the pages of the repositories
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_pages = user.get_pages()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return pages_links
+        }
+        ```
         """
         data = self.__get_page_details(curr_repo_link)
         pages_body = data.find("div", class_="paginate-container")
@@ -353,7 +549,19 @@ class Users:
 
     def get_repository_details(self):
         """
-        Fetches the details of the repositories of a GitHub user.
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_repository_details = user.get_repository_details()
+        ```
+        Return\n
+        ```python
+        return
+        {
+            return repositories
+        }
+        ```
         """
         username = self.username
         repository_link = f"https://github.com/{username}?tab=repositories"

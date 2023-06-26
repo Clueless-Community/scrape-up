@@ -1,7 +1,6 @@
-
 ## 🕷️ Scrape Up
 
-An alternative to APIs, Scrape Up is a Python package for web scraping. It allows you to extract data from platforms like GitHub, Twitter, Instagram, or any other website that contains valuable information. It enables you to gather data programming
+An alternative to APIs, Scrape Up is a Python package for web scraping. It allows you to extract data from platforms like GitHub, Twitter, Instagram, or any other website that contains valuable information. It enables you to gather data through programming.
 
 <div align="center">
   <br>
@@ -17,18 +16,18 @@ An alternative to APIs, Scrape Up is a Python package for web scraping. It allow
   <img src="https://img.shields.io/github/last-commit/Clueless-Community/scrape-up?style=for-the-badge" />
 </div>
 
--------
-![image](https://github.com/Clueless-Community/scrape-up/assets/93156825/7f10b5c9-b998-4924-965c-01cfea5c71d0)
--------
+---
+
+## ![image](https://github.com/Clueless-Community/scrape-up/assets/93156825/7f10b5c9-b998-4924-965c-01cfea5c71d0)
 
 ## ✨ Features
 
--  Flexible Scraping: Customize and define the specific data you want to extract from different platforms.
--  Easy-to-Use: Intuitive Python package interface for both beginners and experienced developers.
--  Multiple Platforms: Scrape data from various platforms, including GitHub, Twitter, Instagram, and more.
--  Customizable Data Extraction: Tailor the scraping process to extract the exact information you need.
--  Dynamic Web Scraping: Handle dynamic web pages and AJAX-loaded content.
--  Efficient and Fast: Designed for efficient and reliable scraping of data from multiple sources.
+- Flexible Scraping: Customize and define the specific data you want to extract from different platforms.
+- Easy-to-Use: Intuitive Python package interface for both beginners and experienced developers.
+- Multiple Platforms: Scrape data from various platforms, including GitHub, Twitter, Instagram, and more.
+- Customizable Data Extraction: Tailor the scraping process to extract the exact information you need.
+- Dynamic Web Scraping: Handle dynamic web pages and AJAX-loaded content.
+- Efficient and Fast: Designed for efficient and reliable scraping of data from multiple sources.
 
 ## How to use it? ✨
 
@@ -59,6 +58,7 @@ print(followers_count)
 ```
 
 Output:
+
 ```
 59
 ```
@@ -80,6 +80,7 @@ In our project journey, we encountered several challenges, including requesting 
 With our web-scraping-based Python tool, you can unlock a world of data and overcome the limitations often encountered when relying solely on APIs.
 
 ## ✨ Thank You for Your Contribution!
+
 <div align="center">
   <a href="https://github.com/Clueless-Community/scrape-up/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=Clueless-Community/scrape-up" alt="Contributors" />
@@ -91,7 +92,6 @@ With our web-scraping-based Python tool, you can unlock a world of data and over
 🌟 We value the time and effort you put into contributing, and we look forward to reviewing and merging your contributions. Together, let's make web scraping a powerful and accessible tool for extracting data from various platforms.
 
 ✨ Once again, thank you for your contribution!
-
 
 ---
 
