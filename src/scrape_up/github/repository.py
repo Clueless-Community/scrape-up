@@ -25,13 +25,6 @@ class Repository:
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
-    def __scrape_releases_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/releases"
-        )
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
-
     def __scrape_issues_page(self):
         data = requests.get(
             f"https://github.com/{self.username}/{self.repository}/issues"
@@ -62,7 +55,17 @@ class Repository:
 
     def languagesUsed(self):
         """
-        Fetch list of languages used in repository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        languagesUsed = repository.languagesUsed()
+        ```
+        Returns:
+        {
+        "data": allLanguages,
+        "message": f"Languages used in {self.repository} repository",
+        }
         """
         data = self.__scrape_page()
 
@@ -70,8 +73,10 @@ class Repository:
             languages = data.find_all(class_="color-fg-default text-bold mr-1")
             allLanguages = []
             for item in languages:
-                allLanguages.append(item.text)
-            allTopics = list(map(lambda s: s.strip(), allTopics))
+                item = str(item)
+                item = item[46:]
+                item = item[:-7]
+                allLanguages.append(item)
             # return allLanguages  # return list of languages
             return {
                 "data": allLanguages,
@@ -86,7 +91,17 @@ class Repository:
 
     def about(self):
         """
-        Fetch details in about section of repository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        about = repository.about()
+        ```
+        Returns:
+        {
+        "data": about,
+        "message": f"About {self.repository} repository",
+        }
         """
         data = self.__scrape_page()
 
@@ -108,7 +123,18 @@ class Repository:
 
     def fork_count(self):
         """
-        Returns the number of forks of the repository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        fork_count = repository.fork_count()
+        ```
+        Returns:
+        {
+        "data": fork_count,
+        "message": f"Number of forks of {self.repository} repository",
+
+        }
         """
         data = self.__scrape_page()
         try:
@@ -130,7 +156,17 @@ class Repository:
 
     def topics(self):
         """
-        Fetch topics of repository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        topics = repository.topics()
+        ```
+        Returns:
+        {
+        "data": allTopics,
+        "message": f"Topics of {self.repository} repository",
+        }
         """
         data = self.__scrape_page()
 
@@ -153,7 +189,17 @@ class Repository:
 
     def star_count(self):
         """
-        Fetch star count of a repository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        star_count = repository.star_count()
+        ```
+        Returns:
+        {
+        "data": starCount,
+        "message": f"Star count of {self.repository} repository",
+        }
         """
         try:
             data = self.__scrape_page()
@@ -175,7 +221,17 @@ class Repository:
 
     def pull_requests(self):
         """
-        Get the number of pull requests opened in a repository.
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        pull_requests = repository.pull_requests()
+        ```
+        Returns:
+        {
+        "data": pull_requests,
+        "message": f"Pull requests of {self.repository} repository",
+        }
         """
         data = self.__scrape_page()
         try:
@@ -197,7 +253,17 @@ class Repository:
 
     def tags(self):
         """
-        Fetch last ten tags of repository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        tags = repository.tags()
+        ```
+        Returns:
+        {
+        "data": allTags,
+        "message": f"Tags of {self.repository} repository",
+        }
         """
         data = self.__scrape_tags_page()
         try:
@@ -218,7 +284,17 @@ class Repository:
 
     def releases(self):
         """
-        Fetch last ten releases of repository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        releases = repository.releases()
+        ```
+        Returns:
+        {
+        "data": allReleases,
+        "message": f"Releases of {self.repository} repository",
+        }
         """
         data = self.__scrape_tags_page()
         try:
@@ -239,7 +315,17 @@ class Repository:
 
     def issues_count(self):
         """
-        Fetch total issues in a repository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        issues_count = repository.issues_count()
+        ```
+        Returns:
+        {
+        "data": issues,
+        "message": f"Total issues in {self.repository} repository",
+        }
         """
         data = self.__scrape_page()
         try:
@@ -257,7 +343,16 @@ class Repository:
 
     def readme(self):
         """
-        Fetch readme.md of a user
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        readme = repository.readme()
+        ```
+        Returns:
+        {
+         message = f"No readme found in {self.repository} repository"
+        }
         """
         session = requests_html.HTMLSession()
         r = session.get(
@@ -277,7 +372,17 @@ class Repository:
 
     def get_pull_requests_ids(self):
         """
-        Fetch all opened pull requests id's of a repository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        get_pull_requests_ids = repository.get_pull_requests_ids()
+        ```
+        Returns:
+        {
+        "data": pull_requests_ids,
+        "message": f"Pull requests of {self.repository} repository",
+        }
         """
         data = self.__scrape_pull_requests_page()
         try:
@@ -305,15 +410,24 @@ class Repository:
 
     def commits(self):
         """
-        Fetch the number of commits in a repository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        commits = repository.commits()
+        ```
+        Returns:
+        {
+        "data": commits,
+        "message": f"Commits of {self.repository} repository",
+        }
         """
         data = self.__scrape_page()
         try:
-            commits = (
-                data.find("a", href=f"/{self.username}/{self.repository}/commits")
-                .find("span")
-                .text.strip()
-            )
+            commits = str(data.find_all(class_="d-none d-sm-inline"))
+            s = commits.split("<strong>")
+            s = s[1].split("</strong>")
+            commits = int(s[0])
             return {
                 "data": commits,
                 "message": f"Commits of {self.repository} repository",
@@ -327,7 +441,17 @@ class Repository:
 
     def get_issues(self):
         """
-        Fetch the list of issues in a respository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        get_issues = repository.get_issues()
+        ```
+        Returns:
+        {
+        "data": allIssues,
+        "message": f"Issues of {self.repository} repository",
+        }
         """
         data = self.__scrape_issues_page()
         try:
@@ -387,7 +511,17 @@ class Repository:
 
     def get_readme(self):
         """
-        Get the special repository of the user and save it locally.
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        get_readme = repository.get_readme()
+        ```
+        Returns:
+        {
+        "data": None,
+        "message": message,
+        }
         """
         data = requests.get(
             f"https://raw.githubusercontent.com/{self.username}/{self.username}/master/README.md"
@@ -416,7 +550,17 @@ class Repository:
 
     def get_environment(self):
         """
-        Fetch recent deployment link of a repository
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        get_environment = repository.get_environment()
+        ```
+        Returns:
+        {
+        "data": link,
+        "message": f"Latest enviornment link for {self.repository} is {link}",
+        }
         """
         try:
             data = self.__scrape_deployments_page()
@@ -458,7 +602,19 @@ class Repository:
             }
 
     def watch_count(self):
-        """Fetch the number of watches of a repository"""
+        """
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        watch_count = repository.watch_count()
+        ```
+        Returns:
+        {
+        "data": watches,
+        "message": f"Total watches in {self.repository} repository",
+        }
+        """
         data = self.__scrape_watchers_page()
         try:
             watches = len(data.find("ol", {"class": "gutter"}).find_all("li"))
@@ -474,7 +630,18 @@ class Repository:
             }
 
     def all_watchers(self):
-        """Fetch all the watchers of the repository"""
+        """
+        Class - `Repository`
+        Example:
+        ```
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        all_watchers = repository.all_watchers()
+        ```
+        Returns:
+        {
+          return watchers
+        }
+        """
         data = self.__scrape_watchers_page()
         try:
             all = data.find("ol", {"class": "gutter"}).find_all(
@@ -492,7 +659,3 @@ class Repository:
                 "message": message,
             }
 
-
-# Test
-# repo = Repository(username="", repository_name="")
-# breakpoint()

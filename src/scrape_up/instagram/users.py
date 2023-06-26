@@ -33,6 +33,9 @@ class Users:
         finally:
             driver.quit()
 
+<<<<<<< HEAD
 
 user = Users("nikhil_raj803")
 print(user.user_details())
+=======
+>>>>>>> 22ae27959e541119637f3db4aa4644cb730f3eb3
