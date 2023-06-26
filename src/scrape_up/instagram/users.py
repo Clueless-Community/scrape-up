@@ -7,18 +7,24 @@ from selenium.webdriver.firefox.service import Service
 
 driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
 
+
 class Users:
     def __init__(self, username: str):
         self.username = username
 
     def user_details(self):
         try:
-            driver.get(f'https://www.instagram.com/{self.username}/')
+            driver.get(f"https://www.instagram.com/{self.username}/")
             wait = WebDriverWait(driver, 180)
-            account_details = wait.until(EC.presence_of_all_elements_located((By.XPATH, '//span[@class="_ac2a"]')))
-            return {'Number of Posts:': account_details[0].text,
-            'Number of Followers:': account_details[1].text,
-            'Number of Following:': account_details[2].text
+            account_details = wait.until(
+                EC.presence_of_all_elements_located(
+                    (By.XPATH, '//span[@class="_ac2a"]')
+                )
+            )
+            return {
+                "Number of Posts:": account_details[0].text,
+                "Number of Followers:": account_details[1].text,
+                "Number of Following:": account_details[2].text,
             }
 
         except Exception as e:
@@ -27,5 +33,6 @@ class Users:
         finally:
             driver.quit()
 
-user = Users('nikhil_raj803')
+
+user = Users("nikhil_raj803")
 print(user.user_details())
