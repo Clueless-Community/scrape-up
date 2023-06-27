@@ -108,38 +108,25 @@ class Flipkart:
             return None
         
 
-    def scrapdatamobiles(self):
+def scrapdatamobiles():
         try:
-            """
-            Class - `Flipkart`\n
-            Example -\n
-            ```python
-            item = Flipkart()
-            item.scrapdatamobiles()
-            ```
-            Return\n
-            ```python
-            return {all_items with details in json}
-            ```
-            """
-
-            link ="https://www.flipkart.com/search?q=MOBILE+PHONE+UNDER+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page="+str(2)
+            link = "https://www.flipkart.com/search?q=MOBILE+PHONE+UNDER+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=2"
             page = requests.get(link)
             soup = bs(page.content, "html.parser")
 
             all_items = []
 
-            for data in soup.findAll("div", class_="_1YokD2 _3Mn1Gg"):
-                names = data.find("div", class_={"class": "_4rR01T"})
-                price = data.find("div", class_={"class": "_30jeq3 _1_WHN1"})
-                descriptioin = data.find("ul", class_={"class": "_1xgFaf"})
-                review = data.find("div", class_={"class": "_3LWZlK"})
+            for data in soup.findAll("div", class_="_1AtVbE"):
+                names = data.find("a", class_="_1fQZEK")
+                price = data.find("div", class_="_30jeq3 _1_WHN1")
+                description = data.find("ul", class_="_1xgFaf")
+                review = data.find("div", class_="_3LWZlK")
 
                 item_details = {
-                    "Item_Name": names.text,
-                    "Price": price.text,
-                    "descriptioin": descriptioin.text if descriptioin else None,
-                    "review": review.text if review else None,
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
                 }
 
                 all_items.append(item_details)
@@ -147,5 +134,9 @@ class Flipkart:
             return all_items
 
         except Exception as e:
+            print("Error:", str(e))
             return None
         
+
+items = scrapdatamobiles()
+print(items)
