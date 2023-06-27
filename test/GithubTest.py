@@ -183,3 +183,31 @@ class IssueTest:
         opened_at = self.issue.opened_at()
         return opened_at
 
+class PullRequestTest:
+
+    def __init__(self, username, repo, pr_no):
+        self.username= username
+        self.repo = repo
+        self.pr_no = pr_no
+        self.pull_request = github.PullRequest(self.username, self.repo, self.pr_no)
+    
+    def test_commits(self):
+        commits = self.pull_request.commits()
+        return commits
+
+    def test_title(self):
+        title = self.pull_request.title()
+        return title
+
+    def test_labels(self):
+        labels = self.pull_request.labels()
+        return labels    
+
+    def test_files_changed(self):
+        files_changed = self.pull_request.files_changed()
+        return files_changed
+
+    def test_reviewers(self):
+        reviewers = self.pull_request.reviewers()
+        return reviewers
+
