@@ -6,7 +6,23 @@ class EazyDiner:
     def __init__(self, location):
         self.location = location
     def getRestaurants(self):
-        url = 'https://www.eazydiner.com/restaurants?location='+self.location
+        """
+        Class - `EazyDiner`
+        Example:
+        ```
+        blr = EazyDiner("Delhi NCR") or blr = EazyDiner("delhi-ncr")
+        blr.getRestaurants()
+        ```
+        Returns:
+        {
+            "restaurant": restaurant name
+            "location": location of restaurant
+            "rating": rating
+            "cuisine": cuisines provided
+            "price": price for two people
+        }
+        """
+        url = 'https://www.eazydiner.com/restaurants?location='+self.location.replace(" ", "-").lower()
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, 'html.parser')
