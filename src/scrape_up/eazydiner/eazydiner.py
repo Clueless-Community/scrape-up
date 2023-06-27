@@ -10,8 +10,8 @@ class EazyDiner:
         Class - `EazyDiner`
         Example:
         ```
-        blr = EazyDiner("Delhi NCR") or blr = EazyDiner("delhi-ncr")
-        blr.getRestaurants()
+        del = EazyDiner("Delhi NCR") or del = EazyDiner("delhi-ncr")
+        del.getRestaurants()
         ```
         Returns:
         {
