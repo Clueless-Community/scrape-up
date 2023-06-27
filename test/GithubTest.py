@@ -150,3 +150,36 @@ class RepositoryTest:
     def test_all_watchers(self):
         watchers = self.repository.all_watchers()
         return watchers
+
+class IssueTest:
+
+    def __init__(self, username, repo, issue_no):
+        self.username = username
+        self.repo = repo
+        self.issue_no = issue_no
+        self.issue = github.Issue(self.username, self.repo, self.issue_no)
+
+    def test_assignees(self):
+        assignees = self.issue.assignees()
+        return assignees
+
+    def test_labels(self):
+        labels = self.issue.labels()
+        return labels
+
+    def test_opened_by(self):
+        opened_by = self.issue.opened_by()
+        return opened_by
+
+    def test_title(self):
+        title = self.issue.title()
+        return title
+
+    def test_is_milestone(self):
+        milestone = self.issue.is_milestone()
+        return milestone
+
+    def test_opened_at(self):
+        opened_at = self.issue.opened_at()
+        return opened_at
+
