@@ -15,7 +15,17 @@ class User:
         self.username = username
 
     def get_articles(self):
-        """Gets the articles of the users"""
+        """
+        Class `Users`
+        Example:
+        ```python
+        user = medium.User(username='karthikbhandary2')
+        article_titles = user.get_articles()
+        for article in article_titles:
+            print(article) # For better readability
+        ```
+        Returns a list of the titles.
+        """
         try:
             titles = []
             username = self.username
