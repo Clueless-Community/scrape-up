@@ -78,3 +78,75 @@ class UserTest():
     def test_get_branch(self):
         branches = self.user.get_branch()
         return branches
+
+class RepositoryTest:
+
+    def __init__(self, username, repo):
+        self.username = username
+        self.repo = repo
+        #SetUp
+        self.repository = github.Repository(self.username, repo)
+    
+    def test_fork_count(self):
+        fork_count = self.repository.fork_count()
+        return fork_count
+
+    def test_get_contributors(self):
+        contributors = self.repository.get_contributors()
+        return contributors
+    
+    def test_topics(self):
+        topics = self.repository.topics()
+        return topics
+    
+    def test_pull_requests(self):
+        pull_requests = self.repository.pull_requests()
+        return pull_requests
+
+    def test_last_updated_at(self):
+        last_updated_at = self.repository.last_update_at()
+        return last_updated_at
+
+    def test_tags(self):
+        tags = self.repository.tags()
+        return tags
+
+    def test_releases(self):
+        releases = self.repository.releases()
+        return releases
+
+    def test_issues_count(self):
+        issues_count = self.repository.issues_count()
+        return issues_count        
+
+    def test_readme(self):
+        readme_path = self.repository.readme()
+        return readme_path
+
+    def test_get_pull_requests_ids(self):
+        pull_requests_ids = self.repository.get_pull_requests_ids()
+        return pull_requests_ids
+
+    def test_get_issues(self):
+        issues = self.repository.get_issues()
+        return issues
+
+    def test_commits(self):
+        commits = self.repository.commits()
+        return commits    
+
+    def test_get_readme(self):
+        readme = self.repository.get_readme()
+        return readme
+
+    def test_get_environment(self):
+        environment = self.repository.get_environment()
+        return environment    
+
+    def test_watch_count(self):
+        watch_count = self.repository.watch_count()
+        return watch_count
+
+    def test_all_watchers(self):
+        watchers = self.repository.all_watchers()
+        return watchers
