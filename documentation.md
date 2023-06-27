@@ -542,7 +542,40 @@ twitter_scraper = TwitterScraper()
 from scrape_up import leetcode
 ```
 
-### Scrape
+### Scrape user details
+
+First, create an object of class `LeetCodeScraper`
+
+```python
+leetcode_scraper = LeetCodeScraper(username="leetcode_username")
+```
+
+| Methods                    | Details                                          |
+| -------------------------- | ------------------------------------------------ |
+| `.scrape_rank()`   | Used to scrape the rank of a user on LeetCode.   |
+| `.scrape_rating()` | Used to scrape the rating of a user on LeetCode. |
+| `.get_problems_solved()`   | Used to scrape total problems solved by a user on LeetCode.   |
+| `.get_solved_by_difficulty()` | Used to scrape difficulty wise problems solved by a user on LeetCode. |
+| `.get_github_link()`   | Used to scrape github link of a user on LeetCode.   |
+| `.get_linkedin_link()` | Used to scrape linkedin link of a user on LeetCode. |
+| `.get_community_stats()` | Used to scrape community stats of a user on LeetCode. |
+
+**Example**
+
+```python
+# all data returned in dictionary format
+leetcodeScraper = LeetCodeScraper(username="test")
+rank = leetcodeScraper.scrape_rank()
+rating = leetcodeScraper.scrape_rating()
+total_problems = leetcodeScraper.get_problems_solved()
+difficulty_wise_problems = leetcodeScraper.get_solved_by_difficulty()
+github_link = leetcodeScraper.get_github_link()
+linkedin_link = leetcodeScraper.get_linkedin_link()
+community_stats = leetcodeScraper.get_community_stats()
+```
+---
+
+### Scrape other details (problems & contests)
 
 First, create an object of class `LeetCodeScraper`
 
@@ -552,9 +585,19 @@ leetcode_scraper = LeetCodeScraper()
 
 | Methods                    | Details                                          |
 | -------------------------- | ------------------------------------------------ |
-| `.scrape_rank(username)`   | Used to scrape the rank of a user on LeetCode.   |
-| `.scrape_rating(username)` | Used to scrape the rating of a user on LeetCode. |
+| `.get_problems(difficulty, tags_list, search_key)`   | Used to scrape top problems of LeetCode based on filters. Difficulty is string from ("easy", "medium", "hard"). Tags_list is list of tags. Search_key is string to search. All ther parameters are optional.   |
+| `.get_contests()` | Used to scrape the upcoming LeetCode Contests details. |
+| `.get_daily_challenge()`   | Used to scrape LeetCode Daily Challenge details.   |
 
+**Example**
+
+```python
+# all data returned in dictionary format
+leetcodeScraper = LeetCodeScraper()
+problems_list = leetcodeScraper.get_problems(difficulty="medium", tags=["dynamic-programming"], search_key="palindrome")
+contest_details = leetcodeScraper.get_contests()
+daily_challenge = leetcodeScraper.get_daily_challenge()
+```
 ---
 
 ## Finance
