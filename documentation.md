@@ -742,3 +742,35 @@ for q in questions:
 ```
 
 ---
+
+## EazyDiner
+
+### Scrape restaurants name, location, rating, cuisine and prices from eazydiner website for a given city
+
+Create an instance of `EazyDiner` class.
+
+```python
+restaurants = EazyDiner("city-name")
+```
+
+| Methods     | Details                                                                             |
+| ----------- | ----------------------------------------------------------------------------------- |
+| `.getRestaurants()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format |
+
+**Example**
+
+```python
+blr = EazyDiner("south-bengaluru")
+scrape = blr.getRestaurants()
+json = json.loads(scrape)
+restaurants = json["restaurants"]
+for r in restaurants:
+    print("\nRestaurant: ", q["restaurant"])
+    print("Location: ", q["location"])
+    print("Rating: ", q["rating"])
+    print("Cuisines: ", q["cuisine"])
+    print("Price: ", q["price\n"])
+
+```
+
+---
