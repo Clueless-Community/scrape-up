@@ -157,6 +157,7 @@ class IssueTest:
         self.username = username
         self.repo = repo
         self.issue_no = issue_no
+        #SetUp
         self.issue = github.Issue(self.username, self.repo, self.issue_no)
 
     def test_assignees(self):
@@ -189,6 +190,7 @@ class PullRequestTest:
         self.username= username
         self.repo = repo
         self.pr_no = pr_no
+        #SetUp
         self.pull_request = github.PullRequest(self.username, self.repo, self.pr_no)
     
     def test_commits(self):
@@ -215,6 +217,7 @@ class OrganizationTest:
 
     def __init__(self, org_name):
         self.org_name = org_name
+        #SetUp
         self.organization = github.Organization(self.org_name)
     
     def test_top_topics(self):
