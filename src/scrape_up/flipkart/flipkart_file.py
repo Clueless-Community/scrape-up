@@ -106,3 +106,46 @@ class Flipkart:
 
         except Exception as e:
             return None
+        
+
+    def scrapdatamobiles(self):
+        try:
+            """
+            Class - `Flipkart`\n
+            Example -\n
+            ```python
+            item = Flipkart()
+            item.scrapdatamobiles()
+            ```
+            Return\n
+            ```python
+            return {all_items with details in json}
+            ```
+            """
+
+            link ="https://www.flipkart.com/search?q=MOBILE+PHONE+UNDER+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page="+str(2)
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1YokD2 _3Mn1Gg"):
+                names = data.find("div", class_={"class": "_4rR01T"})
+                price = data.find("div", class_={"class": "_30jeq3 _1_WHN1"})
+                descriptioin = data.find("ul", class_={"class": "_1xgFaf"})
+                review = data.find("div", class_={"class": "_3LWZlK"})
+
+                item_details = {
+                    "Item_Name": names.text,
+                    "Price": price.text,
+                    "descriptioin": descriptioin.text if descriptioin else None,
+                    "review": review.text if review else None,
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+        

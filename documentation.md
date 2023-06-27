@@ -708,6 +708,7 @@ item = Flipkart()
 | --------------------- | ------------------------------------------------ |
 | `.TVs()`              | Returns the list of TV sets on flipkart          |
 | `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
+| `.scrapdatamobiles()` | Returns the list of the mobile phone which are under 50k flipkart |
 
 ---
 
@@ -742,14 +743,4 @@ for q in questions:
 ```
 
 ---
-### Scrap up filpkart data under 50k
 
-Create an instance of the `FlipkartSpider` class.
-
-```python
-start_urls=[link]
-```
-
-| Methods        | Details                                      |
-| -------------- | -------------------------------------------- |
-| `.getall()` | method is used to extract multiple values from HTML elements. |
