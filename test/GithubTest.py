@@ -211,3 +211,52 @@ class PullRequestTest:
         reviewers = self.pull_request.reviewers()
         return reviewers
 
+class OrganizationTest:
+
+    def __init__(self, org_name):
+        self.org_name = org_name
+        self.organization = github.Organization(self.org_name)
+    
+    def test_top_topics(self):
+        top_topics = self.organization.top_topics()
+        return top_topics
+
+    def test_followers(self):
+        followers = self.organization.followers()
+        return followers
+
+    def test_top_languages(self):
+        top_languages = self.organization.top_languages()
+        return top_languages
+
+    def test_avatar(self):
+        avatar = self.organization.avatar()
+        return avatar
+
+    def test_repositories(self):
+        repositories = self.organization.repositories()
+        return repositories
+
+    def test_people(self):
+        people = self.organization.people()
+        return people
+
+    def test_peoples(self):
+        peoples = self.organization.peoples()
+        return peoples
+
+    def test_get_location(self):
+        location = self.organization.get_location()
+        return location
+
+    def test_repository_details(self):
+        repository_details = self.organization.repository_details()
+        return repository_details
+
+    def test_pinned_repository(self):
+        pinned_repository = self.organization.pinned_repository()
+        return pinned_repository
+
+    def test_get_organization_links(self):
+        organization_links = self.organization.get_organization_links()
+        return organization_links
