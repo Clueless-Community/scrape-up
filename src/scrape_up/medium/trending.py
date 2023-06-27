@@ -14,7 +14,7 @@ class Trending:
         ```python
         trending = Trending.get_trending()
         for trend in trending:
-            print(trend) #For better readability
+            print(trend) #For better readability/clarity
         ```
         Returns a list of trending titles
 

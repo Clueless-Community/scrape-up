@@ -22,7 +22,7 @@ class User:
         user = medium.User(username='karthikbhandary2')
         article_titles = user.get_articles()
         for article in article_titles:
-            print(article) # For better readability
+            print(article) # For better readability/clarity
         ```
         Returns a list of the titles.
         """

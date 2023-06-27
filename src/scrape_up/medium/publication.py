@@ -23,7 +23,7 @@ class Publication:
         publication = medium.Publication("https://towardsdatascience.com")
         articles = publication.get_articles()
         for article in articles:
-            print(article) #For better readability
+            print(article) #For better readability/clarity
         ```
         Returns the articles of the publication which are arranged in the form of a list
         """
