@@ -25,15 +25,14 @@ print(user.followers())
 
 # The platforms and methods we cover 💫
 
-
 - GitHub
 - Instagram
 - Internshala
-+ GitHub
-+ GitLab
-+ Instagram
-+ Internshala
 
+* GitHub
+* GitLab
+* Instagram
+* Internshala
 
 ## GitHub
 
@@ -212,20 +211,22 @@ First, create an object of the `User` class:
 user = gitlab.Users(username="example_user")
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_name()`    | Returns the name of the user.                                                 |
-| `.get_bio()`       | Returns the bio of the user.                                                    |
-| `.get_avatar_url()`    | Returns the avatar URL of the user.                                |
-| `.get_repositories()`        | Returns a list of repositories owned by the user.                                                     |
+| Methods                            | Details                                                      |
+| ---------------------------------- | ------------------------------------------------------------ |
+| `.get_name()`                      | Returns the name of the user.                                |
+| `.get_bio()`                       | Returns the bio of the user.                                 |
+| `.get_avatar_url()`                | Returns the avatar URL of the user.                          |
+| `.get_repositories()`              | Returns a list of repositories owned by the user.            |
 | `.get_project_details(project_id)` | Returns the details of a specific project owned by the user. |
 
 **Example:**
+
 ```python
 name_result = user.get_name()
 print("Name:", name_result["data"])
 print("Status:", name_result["message"])
 ```
+
 ---
 
 ### Scrape Repository Details
@@ -236,16 +237,18 @@ First, create an object of the `Repository` class:
 repository = gitlab.Repository(username="example_user", repository_name="example_repository")
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_name()`    | Returns the name of the repository.                                                 |
-| `.get_description()`       | Returns the description of the repository.                                                    |
+| Methods              | Details                                    |
+| -------------------- | ------------------------------------------ |
+| `.get_name()`        | Returns the name of the repository.        |
+| `.get_description()` | Returns the description of the repository. |
 
 **Example:**
+
 ```python
 name_result = repository.get_name()
 print("Repository Name:", name_result["data"])
 ```
+
 ---
 
 ### Scrape Organization Members
@@ -256,12 +259,13 @@ First, create an object of the `Organization` class:
 organization = gitlab.Organization(organization_name="example_organization")
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_members()`    | Returns a list of usernames of the members in the organization.                                                 |
-| `get_projects()`       | Returns a list of project names associated with the organization.                                                    |
+| Methods          | Details                                                           |
+| ---------------- | ----------------------------------------------------------------- |
+| `.get_members()` | Returns a list of usernames of the members in the organization.   |
+| `get_projects()` | Returns a list of project names associated with the organization. |
 
 **Example:**
+
 ```python
 members = organization.get_members()
 print("Organization Members:", members)
@@ -270,6 +274,7 @@ projects = organization.get_projects()
 print("Organization Projects:", projects)
 
 ```
+
 ---
 
 ### Scrape Issues
@@ -287,13 +292,14 @@ issue = gitlab.Issue(username="example_user", repository="example_repository", i
 
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_title()`    | Returns the title of the issue.                                                 |
-| `.get_description()`       | Returns the description of the issue.                                                    |
-| `.get_author()`       | Returns the author of the issue.                                                    |
+| Methods              | Details                               |
+| -------------------- | ------------------------------------- |
+| `.get_title()`       | Returns the title of the issue.       |
+| `.get_description()` | Returns the description of the issue. |
+| `.get_author()`      | Returns the author of the issue.      |
 
 **Example:**
+
 ```python
 title = issue.get_title()
 print("Issue Title:", title["data"])
@@ -316,13 +322,14 @@ pull_request = gitlab.PullRequest(username="example_user", repository="example_r
 
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_title()`    | Returns the title of the pull request.                                                 |
-| `.get_description()`       | Returns the description of the pull request.                                                    |
-| `.get_author()`       | Returns the author of the pull request.                                                    |
+| Methods              | Details                                      |
+| -------------------- | -------------------------------------------- |
+| `.get_title()`       | Returns the title of the pull request.       |
+| `.get_description()` | Returns the description of the pull request. |
+| `.get_author()`      | Returns the author of the pull request.      |
 
 **Example:**
+
 ```python
 title = pull_request.get_title()
 print("Pull Request Title:", title)
@@ -336,7 +343,6 @@ print("Pull Request Author:", author)
 ```
 
 ---
-
 
 ## Instagram
 
@@ -547,58 +553,28 @@ from scrape_up import leetcode
 First, create an object of class `LeetCodeScraper`
 
 ```python
-leetcode_scraper = LeetCodeScraper(username="leetcode_username")
+LeetCode = LeetCode(username="nikhil25803")
 ```
 
-| Methods                    | Details                                          |
-| -------------------------- | ------------------------------------------------ |
-| `.scrape_rank()`   | Used to scrape the rank of a user on LeetCode.   |
-| `.scrape_rating()` | Used to scrape the rating of a user on LeetCode. |
-| `.get_problems_solved()`   | Used to scrape total problems solved by a user on LeetCode.   |
+**User Specific Methods**
+
+| Methods                       | Details                                                               |
+| ----------------------------- | --------------------------------------------------------------------- |
+| `.scrape_rank()`              | Used to scrape the rank of a user on LeetCode.                        |
+| `.scrape_rating()`            | Used to scrape the rating of a user on LeetCode.                      |
+| `.get_problems_solved()`      | Used to scrape total problems solved by a user on LeetCode.           |
 | `.get_solved_by_difficulty()` | Used to scrape difficulty wise problems solved by a user on LeetCode. |
-| `.get_github_link()`   | Used to scrape github link of a user on LeetCode.   |
-| `.get_linkedin_link()` | Used to scrape linkedin link of a user on LeetCode. |
-| `.get_community_stats()` | Used to scrape community stats of a user on LeetCode. |
+| `.get_github_link()`          | Used to scrape github link of a user on LeetCode.                     |
+| `.get_linkedin_link()`        | Used to scrape linkedin link of a user on LeetCode.                   |
+| `.get_community_stats()`      | Used to scrape community stats of a user on LeetCode.                 |
 
-**Example**
+**General Purpose Methods**
 
-```python
-# all data returned in dictionary format
-leetcodeScraper = LeetCodeScraper(username="test")
-rank = leetcodeScraper.scrape_rank()
-rating = leetcodeScraper.scrape_rating()
-total_problems = leetcodeScraper.get_problems_solved()
-difficulty_wise_problems = leetcodeScraper.get_solved_by_difficulty()
-github_link = leetcodeScraper.get_github_link()
-linkedin_link = leetcodeScraper.get_linkedin_link()
-community_stats = leetcodeScraper.get_community_stats()
-```
----
-
-### Scrape other details (problems & contests)
-
-First, create an object of class `LeetCodeScraper`
-
-```python
-leetcode_scraper = LeetCodeScraper()
-```
-
-| Methods                    | Details                                          |
-| -------------------------- | ------------------------------------------------ |
-| `.get_problems(difficulty, tags_list, search_key)`   | Used to scrape top problems of LeetCode based on filters. Difficulty is string from ("easy", "medium", "hard"). Tags_list is list of tags. Search_key is string to search. All ther parameters are optional.   |
-| `.get_contests()` | Used to scrape the upcoming LeetCode Contests details. |
-| `.get_daily_challenge()`   | Used to scrape LeetCode Daily Challenge details.   |
-
-**Example**
-
-```python
-# all data returned in dictionary format
-leetcodeScraper = LeetCodeScraper()
-problems_list = leetcodeScraper.get_problems(difficulty="medium", tags=["dynamic-programming"], search_key="palindrome")
-contest_details = leetcodeScraper.get_contests()
-daily_challenge = leetcodeScraper.get_daily_challenge()
-```
----
+| Methods                                            | Details                                                                                                                                                                                                      |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `.get_problems(difficulty, tags_list, search_key)` | Used to scrape top problems of LeetCode based on filters. Difficulty is string from ("easy", "medium", "hard"). Tags_list is list of tags. Search_key is string to search. All ther parameters are optional. |
+| `.get_contests()`                                  | Used to scrape the upcoming LeetCode Contests details.                                                                                                                                                       |
+| `.get_daily_challenge()`                           | Used to scrape LeetCode Daily Challenge details.                                                                                                                                                             |
 
 ## Finance
 
