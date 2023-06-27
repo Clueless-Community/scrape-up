@@ -108,8 +108,20 @@ class Flipkart:
             return None
         
 
-def scrapdatamobiles():
+    def scrapdatamobiles():
         try:
+            """
+            Class - `Flipkart`\n
+            Example -\n
+            ```python
+            item = Flipkart()
+            item.BestsellersBooks()
+            ```
+            Return\n
+            ```python
+            return {all_items with details in json}
+            ```
+            """
             link = "https://www.flipkart.com/search?q=MOBILE+PHONE+UNDER+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=2"
             page = requests.get(link)
             soup = bs(page.content, "html.parser")
@@ -137,6 +149,3 @@ def scrapdatamobiles():
             print("Error:", str(e))
             return None
         
-
-items = scrapdatamobiles()
-print(items)
