@@ -14,7 +14,11 @@ class geeksforgeeks:
         """
         Fetches popular now courses and related information from gfg portal
 
-        :return: datatype : dataframe
+        :return: datatype : dictionary containing:
+            -> Name : Name of courses
+            -> Rating : Rating of courses
+            -> Interested : Number of people interested
+            -> Price : Price of given course
         """
         try:
             popular_now = geeksforgeeks.soup.find("div", {
@@ -33,11 +37,11 @@ class geeksforgeeks:
                 rating.append(rating_geek.text)
                 interseted_geeks = items.find("div", {
                     "class": "courseListingPage_descriptionText__zN_K1 sofia-pro g-opacity-50 g-mb-0 grid_with__meta"})
-                interested.append(interseted_geeks.text)
+                interested.append(interseted_geeks.text.split(" ")[0])
                 course_price = items.find("p", {"class": "sofia-pro g-mb-0 courseListingPage_batchFee__0NlbJ"})
                 price.append(course_price.text)
 
-            course_popular_now = pd.DataFrame({'Name': name, 'Rating': rating, "Interested": interested,"Price":price})
+            course_popular_now = dict({'Name': name, 'Rating': rating, "Interested": interested,"Price":price})
             return {
                 "data": course_popular_now,
                 "message": "Popular Courses are now fetched",
@@ -49,7 +53,11 @@ class geeksforgeeks:
         """
         Fetches self-paced courses and related information from gfg portal
 
-        :return: datatype : dataframe
+        :return: datatype : dictionary containing:
+            -> Name : Name of courses
+            -> Rating : Rating of courses
+            -> Interested : Number of people interested
+            -> Price : Price of given course
         """
         try:
             self_paced = geeksforgeeks.soup.find("div", {
@@ -67,11 +75,11 @@ class geeksforgeeks:
                 rating.append(course_rating.text)
                 course_interseted = items.find("div", {
                     "class": "courseListingPage_descriptionText__zN_K1 sofia-pro g-opacity-50 g-mb-0 grid_with__meta"})
-                interested.append(course_interseted.text)
+                interested.append(course_interseted.text.split(" ")[0])
                 course_price = items.find("p", {"class": "sofia-pro g-mb-0 courseListingPage_batchFee__0NlbJ"})
                 price.append(course_price.text)
 
-            course_self_paced = pd.DataFrame({'Name': name, 'Rating': rating, "Interested": interested, "Price": price})
+            course_self_paced = dict({'Name': name, 'Rating': rating, "Interested": interested, "Price": price})
             return {
                 "data": course_self_paced,
                 "message": "Self paced Courses are now fetched",
@@ -84,7 +92,11 @@ class geeksforgeeks:
         """
         Fetches self-paced courses and related information from gfg portal
     
-        :return: datatype : dataframe
+        :return: datatype : dictionary containing:
+            -> Name : Name of courses
+            -> Rating : Rating of courses
+            -> Interested : Number of people interested
+            -> Price : Price of given course
         """
         try:
             live = geeksforgeeks.soup.find("div", {"class": "g-mt-8"}).next_sibling.next_sibling.next_sibling
@@ -100,11 +112,11 @@ class geeksforgeeks:
                 rating.append(course_rating.text[:3])
                 course_interseted = item.find("div", {
                     "class": "courseListingPage_descriptionText__zN_K1 sofia-pro g-opacity-50 g-mb-0 grid_with__meta"})
-                interested.append(course_interseted.text)
+                interested.append(course_interseted.text.split(" ")[0])
                 course_price = item.find("p", {"class": "sofia-pro g-mb-0 courseListingPage_batchFee__0NlbJ"})
                 price.append(course_price.text)
 
-            course_live = pd.DataFrame({'Name': name, 'Rating': rating, "Interested": interested, "Price": price})
+            course_live = dict({'Name': name, 'Rating': rating, "Interested": interested, "Price": price})
             return {
                 "data": course_live,
                 "message":"Live Courses are now fetched",
