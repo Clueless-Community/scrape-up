@@ -789,3 +789,21 @@ for r in restaurants:
 ```
 
 ---
+## GeeksforGeeks
+
+### Scrape details of courses
+
+Create an instance of `geeksforgeeks` class.
+
+```python
+item = geeksforgeeks()
+```
+
+| Methods               | Details                                          |
+| --------------------- | ------------------------------------------------ |
+| `.get_popular_now()`  | Returns a dataframe of popular courses           |
+| `.get_self_paced()`   | Returns a dataframe of self paced courses        |
+| `.get_live_course()`  | Returns a dataframe of live courses              |
+
+---
+
