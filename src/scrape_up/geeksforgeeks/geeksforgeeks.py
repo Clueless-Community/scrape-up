@@ -12,9 +12,9 @@ class geeksforgeeks:
 
     def get_popular_now(self):
         """
-        Fetches Popular Now courses from GeeksForGeeks
+        Fetches popular now courses and related information from gfg portal
 
-        :return: DataFrame containing required information
+        :return: datatype : dataframe
         """
         try:
             popular_now = geeksforgeeks.soup.find("div", {
@@ -83,7 +83,7 @@ class geeksforgeeks:
     def get_live_course(self):
         """
         Fetches self-paced courses and related information from gfg portal
-        Class - `Scrape_live_course`
+    
         :return: datatype : dataframe
         """
         try:
