@@ -8,6 +8,17 @@ headers = {
 
 class Trending:
     def get_trending():
+        """
+        Class - `Trending`
+        Example
+        ```python
+        trending = Trending.get_trending()
+        for trend in trending:
+            print(trend) #For better readability/clarity
+        ```
+        Returns a list of trending titles
+
+        """
         try:
             titles = []
             r = requests.get("https://medium.com/", headers=headers)
