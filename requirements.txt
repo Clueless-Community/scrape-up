@@ -9,4 +9,4 @@ urllib3==1.26.14
 requests-html==0.10.0
 selenium==4.9.1
 webdriver_manager
-pandas
+
