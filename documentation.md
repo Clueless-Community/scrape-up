@@ -799,11 +799,11 @@ Create an instance of `geeksforgeeks` class.
 item = geeksforgeeks()
 ```
 
-| Methods               | Details                                          |
-| --------------------- | ------------------------------------------------ |
-| `.get_popular_now()`  | Returns a dataframe of popular courses           |
-| `.get_self_paced()`   | Returns a dataframe of self paced courses        |
-| `.get_live_course()`  | Returns a dataframe of live courses              |
+| Methods               | Details                                              |
+| --------------------- | -----------------------------------------------------|
+| `.get_popular_now()`  | Returns a dictionary consisting of popular courses   |
+| `.get_self_paced()`   | Returns a dictionary consisting of self-paced courses|
+| `.get_live_course()`  | Returns a dictionary consisting of live courses      |
 
 ---
 
