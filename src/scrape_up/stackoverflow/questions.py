@@ -1,60 +1,63 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
-from time import sleep
 from bs4 import BeautifulSoup
+import requests
+import json
 
 
-class StackOverflowScraper:
-    def __init__(self):
-        self.chrome_options = Options()
-        self.chrome_options.add_argument("--headless")
-        self.chrome_options.add_argument("--window-size=1920,1080")
+class StackOverflow:
+    def __init__(self, topic):
+        self.topic = topic
 
-    def scrape_stack_overflow(self, keyword):
-        url = f"https://stackoverflow.com/search?q={keyword}&tab=votes"
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=self.chrome_options)
-        driver.get(url)
+    def result(self):
+        """
+        Class - `StackOverflow`
+        Example:
+        ```
+        que = StackOverflow("github")
+        scrape = que.result()
+        ```
+        Returns:
+        {
+            "question": question title
+            "views": view count of question
+            "vote_count": vote count of question
+            "answer_count": no. of answers to the question
+            "description": description of the question
+        }
+        """
+        url = "https://stackoverflow.com/questions/tagged/" + self.topic
+        try:
+            res = requests.get(url)
+            soup = BeautifulSoup(res.text, "html.parser")
 
-        sleep(2)  # Give the page time to load (you can adjust the delay as needed)
+            questions_data = {"questions": []}
 
-        html = driver.page_source
-        soup = BeautifulSoup(html, "html.parser")
-        # print(soup)
-        questions = soup.select(".s-post-summary")
-        
-        # print(questions)
-        for question in questions:
-            que_content = question.select_one(".s-post-summary--content")
-            que_stats = question.select_one(".s-post-summary--stats")
+            questions = soup.select(".s-post-summary")
+            for que in questions:
+                title = que.select_one(".s-link").getText()
+                stats = que.select(".s-post-summary--stats-item-number")
+                vote = stats[0].getText()
+                ans = stats[1].getText()
+                views = stats[2].getText()
+                desc = (
+                    que.select_one(".s-post-summary--content-excerpt")
+                    .getText()
+                    .strip()
+                    .encode("ascii", "ignore")
+                    .decode()
+                )
+                questions_data["questions"].append(
+                    {
+                        "question": title,
+                        "views": views,
+                        "vote_count": vote,
+                        "answer_count": ans,
+                        "description": desc,
+                    }
+                )
+            json_data = json.dumps(questions_data)
+            return json_data
+        except:
+            error_message = {"message": "No questions related to the topic found"}
 
-
-            title = que_content.select_one(".s-post-summary--content-title").find("a").attrs.get("href")
-            description = que_content.select_one(".s-post-summary--content-title").find("a").getText()
-
-            stats_content = que_stats.select(".s-post-summary--stats-item")
-            votes =  stats_content[0].findChild(attrs={"class":"s-post-summary--stats-item-number"}).getText()
-            # answers =  stats_content[1].findChild(attrs={"class":"s-post-summary--stats-item-number"}).getText()
-            try:
-                answers =  stats_content[1].findChild(attrs={"class":"s-post-summary--stats-item-number"}).getText()
-            except (AttributeError, IndexError):
-                answers = "N/A"
-
-            print(f"Title: {title}")
-            print(f"Votes: {votes}")
-            print(f"No of Answers: {answers}")
-            print(f"Question Description: {description}")
-            print("----")
-
-        driver.quit()
-
-
-# Create an instance of the StackOverflowScraper class
-scraper = StackOverflowScraper()
-
-# Take a keyword as input from the user
-keyword = input("Enter a keyword to search for questions on Stack Overflow: ")
-
-# Call the scrape_stack_overflow method to start scraping Stack Overflow
-scraper.scrape_stack_overflow(keyword)
+            ejson = json.dumps(error_message)
+            return ejson
