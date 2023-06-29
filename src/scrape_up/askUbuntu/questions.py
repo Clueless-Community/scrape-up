@@ -7,13 +7,13 @@ class AskUbuntu:
     def __init__(self, topic):
         self.topic = topic
 
-    def result(self):
+    def getQuestions(self):
         """
-        Class - `Questions`
+        Class - `AskUbuntu`
         Example:
         ```
         que = AskUbuntu("github")
-        scrape = que.result()
+        scrape = que.getQuestions()
         ```
         Returns:
         {
