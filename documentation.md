@@ -562,9 +562,7 @@ leetcode_scraper = LeetCodeScraper(username="nikhil25803")
 | `.get_linkedin_link()`        | Used to scrape linkedin link of a user on LeetCode.                   |
 | `.get_community_stats()`      | Used to scrape community stats of a user on LeetCode.                 |
 
-
 **General Purpose Methods - Does not Require Username**
-
 
 | Methods                                            | Details                                                                                                                                                                                                      |
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -802,7 +800,7 @@ questions = StackOverflow("topic")
 
 | Methods     | Details                                                                             |
 | ----------- | ----------------------------------------------------------------------------------- |
-| `.result()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
+| `.questions()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
 
 **Example**
 

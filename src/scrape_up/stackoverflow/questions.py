@@ -7,13 +7,14 @@ class StackOverflow:
     def __init__(self, topic):
         self.topic = topic
 
-    def result(self):
+    def questions(self):
         """
+        Returns the questions, views, votes, answer counts, and descriptions in JSON format\n
         Class - `StackOverflow`
         Example:
         ```
-        que = StackOverflow("github")
-        scrape = que.result()
+        que = StackOverflow(topic="github")
+        scrape = que.questions()
         ```
         Returns:
         {
@@ -62,3 +63,7 @@ class StackOverflow:
 
             ejson = json.dumps(error_message)
             return ejson
+
+
+ques = StackOverflow(topic="Python")
+print(ques.result())
