@@ -13,7 +13,7 @@ class AskUbuntu:
         Example:
         ```
         que = AskUbuntu("github")
-        scrape = que.getQuestions()
+        scrape = que.getNewQuestions()
         ```
         Returns:
         {
@@ -62,13 +62,13 @@ class AskUbuntu:
             ejson = json.dumps(error_message)
             return ejson
     
-    def getNewQuestions(self):
+    def getActiveQuestions(self):
         """
         Class - `AskUbuntu`
         Example:
         ```
         que = AskUbuntu("github")
-        scrape = que.getNewQuestions()
+        scrape = que.getActiveQuestions()
         ```
         Returns:
         {
@@ -79,7 +79,7 @@ class AskUbuntu:
             "description": description of the question
         }
         """
-        url = "https://askubuntu.com/search?tab=newest&q=" + self.topic
+        url = "https://askubuntu.com/questions/tagged/" + self.topic+"?tab=Active"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
