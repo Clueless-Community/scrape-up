@@ -1,6 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
-from github.repository import Repository
+import repository
+import asyncio
+import aiohttp
+from tqdm import tqdm
+
+# from github.repository import Repository
+
 
 class Users:
     def __init__(self, username: str):
@@ -44,7 +50,7 @@ class Users:
             return {"data": None, "message": message}
 
     def following(self):
-        """ 
+        """
         Class - `Users`\n
         Example -\n
         ```python
@@ -231,7 +237,7 @@ class Users:
 
     def __get_repo_page(self):
         """
-         Scrape the repositories page of a GitHub user.
+        Scrape the repositories page of a GitHub user.
         """
         username = self.username
         repo_data = requests.get(f"https://github.com/{username}?tab=repositories")
@@ -460,7 +466,7 @@ class Users:
         {
             return t.text.strip().replace("\n", "")
         }
-        
+
         """
         try:
             data = self.__scrape_page()
@@ -486,7 +492,7 @@ class Users:
         {
              return int(result)
         }
-        
+
         """
         try:
             data = self.__scrape_page()
@@ -596,7 +602,7 @@ class Users:
                     )
                     # create a repository object
                     repository_name = repo_url.split("/")[-1]
-                    repository = Repository(username, repository_name)
+                    repository = repository.Repository(username, repository_name)
                     repo_forks, repo_stars, repo_issues, repo_pull_requests = (
                         repository.fork_count(),
                         repository.star_count(),
@@ -620,8 +626,65 @@ class Users:
         except:
             return "No repositories found"
 
+    def get_all_repo_details(self):
+        page = self.__get_repo_page()
 
-# TEST
-# user = Users(username="nikhil25803")
-# breakpoint()
-# user.followers()
+        repo_elements = page.select("#user-repositories-list ul li")
+        repositories = []
+
+        for repo_element in tqdm(repo_elements):
+            link = repo_element.find("a")["href"]
+            repositories.append(f"https://github.com{link}")
+
+            name = repo_element.find("a").text.split("/")[-1]
+            repositories.append(name.replace("\n", ""))
+
+            description = (
+                repo_element.find("p").get_text(strip=True)
+                if repo_element.find("p")
+                else None
+            )
+            # description= description.replace('\n','')
+            repositories.append(description)
+
+            url1 = "https://github.com" + link
+            response1 = requests.get(url1)
+            soup = BeautifulSoup(response1.content, "html.parser")
+            li_elements = soup.find_all("li", class_="d-inline")
+
+            for li in li_elements:
+                language = li.text.strip()
+                repositories.append(language.replace("\n", ""))
+
+                stars = soup.find("span", class_="text-bold")
+                num_of_stars = stars.text if stars else "N/A"
+                repositories.append(num_of_stars.replace("\n", ""))
+
+            pullurl = url1 + "/pulls"
+            issuesurl = url1 + "/issues"
+            pullresponse = requests.get(
+                pullurl
+            )  # getting the content of pull requests page
+            issueresponse = requests.get(
+                issuesurl
+            )  # getting the content of issues page
+
+            p_soup = BeautifulSoup(
+                pullresponse.content, "html.parser"
+            )  # creating beautifulsoup object for pull requests page
+            i_soup = BeautifulSoup(
+                issueresponse.content, "html.parser"
+            )  # creating beautifulsoup object for issues page
+
+            # to find number of pull requests
+            pullrequests = p_soup.find(
+                "div", class_="table-list-header-toggle states flex-auto pl-0"
+            )
+            num_of_pull_requests = pullrequests.text.strip() if pullrequests else "N/A"
+            repositories.append(num_of_pull_requests.replace("\n", ""))
+
+            issues = i_soup.select_one("span#issues-repo-tab-count")
+            num_of_issues = issues.text.strip() if issues else "N/A"
+            repositories.append(num_of_issues.replace("\n", ""))
+
+        return repositories
