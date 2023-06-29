@@ -7,7 +7,7 @@ class AskUbuntu:
     def __init__(self, topic):
         self.topic = topic
 
-    def getQuestions(self):
+    def getNewQuestions(self):
         """
         Class - `AskUbuntu`
         Example:
@@ -24,7 +24,7 @@ class AskUbuntu:
             "description": description of the question
         }
         """
-        url = "https://askubuntu.com/search?q=" + self.topic
+        url = "https://askubuntu.com/questions/tagged/" + self.topic+"?tab=Newest"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
