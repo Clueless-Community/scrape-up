@@ -717,10 +717,11 @@ Create an instance of `Flipkart` class.
 item = Flipkart()
 ```
 
-| Methods               | Details                                          |
-| --------------------- | ------------------------------------------------ |
-| `.TVs()`              | Returns the list of TV sets on flipkart          |
-| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
+| Methods               | Details                                           |
+| --------------------- | ------------------------------------------------- |
+| `.TVs()`              | Returns the list of TV sets on flipkart           |
+| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart  |
+| `.SportsShoes()`      | Returns the list of sprt shoes listed on Flipkart |
 
 ---
 
@@ -798,8 +799,8 @@ Create an instance of `StackOverflow` class.
 questions = StackOverflow("topic")
 ```
 
-| Methods     | Details                                                                             |
-| ----------- | ----------------------------------------------------------------------------------- |
+| Methods        | Details                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
 | `.questions()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
 
 **Example**
