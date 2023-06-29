@@ -737,13 +737,18 @@ questions = AskUbuntu("topic")
 
 | Methods     | Details                                                                             |
 | ----------- | ----------------------------------------------------------------------------------- |
-| `.getQuestions()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getNewQuestions()` | Returns the new questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getActiveQuestions()` | Returns the active questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getBountiedQuestions()` | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getFrequentQuestions()` | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format |
 
 **Example**
 
 ```python
 que = AskUbuntu("github")
-scrape = que.getQuestions()
+scrape = que.getNewQuestions()
 json = json.loads(scrape)
 questions = json["questions"]
 for q in questions:
