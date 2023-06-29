@@ -729,21 +729,21 @@ item = Flipkart()
 
 ### Scrape questions, views, votes, answer counts, and descriptions from Ask Ubuntu website regarding a topic
 
-Create an instance of `Questions` class.
+Create an instance of `AskUbuntu` class.
 
 ```python
-questions = Questions("topic")
+questions = AskUbuntu("topic")
 ```
 
 | Methods     | Details                                                                             |
 | ----------- | ----------------------------------------------------------------------------------- |
-| `.scrape()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getQuestions()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
 
 **Example**
 
 ```python
-que = Questions("github")
-scrape = que.scrape()
+que = AskUbuntu("github")
+scrape = que.getQuestions()
 json = json.loads(scrape)
 questions = json["questions"]
 for q in questions:
