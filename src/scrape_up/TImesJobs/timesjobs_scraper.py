@@ -20,6 +20,8 @@ class TimesJobs:
         
         '''
         Job_role = input('Enter your desired role: ')
+        if not Job_role:
+            return None
         try:
             spl = Job_role.split()
             Job_role = '%20'.join(spl)
@@ -51,7 +53,8 @@ class TimesJobs:
         except Exception as e:
             print('Not possible to webscrape')
             return None
-        
+
+
 if __name__ == "__main__":
     jobs = TimesJobs()
     jobs.scrape()

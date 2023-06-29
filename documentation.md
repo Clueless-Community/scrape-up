@@ -30,6 +30,7 @@ print(user.followers())
 - Internshala
 - GitHub
 - Internshala
+- TimesJobs
 
 ## GitHub
 
@@ -740,5 +741,30 @@ for q in questions:
     print("Description: ", q["description\n"])
 
 ```
+## TimesJobs
 
+```python
+from timesjobs_scraper import TimesJobs
+```
+
+### Scrape Job Details
+
+First, create an object of the class `Job`
+
+```python
+Job = TimesJobs()
+```
+
+| Methods           | Details                                    |
+| ----------------- | ------------------------------------------ |
+| `.scrape()` | Returns the various details regarding the companies based on the Job-role. |
+
+**Example:**
+
+```python
+Job = TimesJobs()
+Job.scrape() #user var taken from above
+```
+
+---
 ---
