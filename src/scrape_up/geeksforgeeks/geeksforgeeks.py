@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
-
+from selenium.common.exceptions import WebDriverException, NoSuchElementException
 
 class geeksforgeeks:
     # using seleinum to access html content
@@ -68,8 +68,8 @@ class geeksforgeeks:
                 "data": course_popular_now,
                 "message": "Popular Courses are now fetched",
             }
-        except Exception as e:
-            raise Exception(f"An error occurred while scraping courses: {str(e)}")
+        except (WebDriverException, NoSuchElementException) as e:
+            raise Exception(f"An error occurred while scraping popular courses: {str(e)}")
 
     def get_self_paced(self):
         """
@@ -128,8 +128,8 @@ class geeksforgeeks:
                 "data": course_self_paced,
                 "message": "Self paced Courses are now fetched",
             }
-        except Exception as e:
-            raise Exception(f"An error occurred while scraping courses: {str(e)}")
+        except (WebDriverException, NoSuchElementException) as e:
+            raise Exception(f"An error occurred while scraping popular courses: {str(e)}")
 
     def get_live_course(self):
         """
@@ -185,6 +185,5 @@ class geeksforgeeks:
                 "data": course_live,
                 "message": "Live Courses are now fetched",
             }
-        except Exception as e:
-            raise Exception(f"An error occurred while scraping courses: {str(e)}")
-
+        except (WebDriverException, NoSuchElementException) as e:
+            raise Exception(f"An error occurred while scraping popular courses: {str(e)}")
