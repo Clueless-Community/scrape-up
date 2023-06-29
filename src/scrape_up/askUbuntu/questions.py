@@ -4,6 +4,23 @@ import json
 
 
 class AskUbuntu:
+    """
+    Create an instance of `AskUbuntu` class.
+
+    ```python
+    questions = AskUbuntu("topic")
+    ```
+
+    | Methods                     | Details                                                                                              |
+    | --------------------------- | ---------------------------------------------------------------------------------------------------- |
+    | `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format              |
+    | `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format           |
+    | `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format       |
+    | `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format         |
+    | `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
+    | `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
+    """
+
     def __init__(self, topic):
         self.topic = topic
 
@@ -24,7 +41,7 @@ class AskUbuntu:
             "description": description of the question
         }
         """
-        url = "https://askubuntu.com/questions/tagged/" + self.topic+"?tab=Newest"
+        url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Newest"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -61,7 +78,7 @@ class AskUbuntu:
 
             ejson = json.dumps(error_message)
             return ejson
-    
+
     def getActiveQuestions(self):
         """
         Class - `AskUbuntu`
@@ -79,7 +96,7 @@ class AskUbuntu:
             "description": description of the question
         }
         """
-        url = "https://askubuntu.com/questions/tagged/" + self.topic+"?tab=Active"
+        url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Active"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -116,7 +133,7 @@ class AskUbuntu:
 
             ejson = json.dumps(error_message)
             return ejson
-        
+
     def getUnansweredQuestions(self):
         """
         Class - `AskUbuntu`
@@ -134,7 +151,7 @@ class AskUbuntu:
             "description": description of the question
         }
         """
-        url = "https://askubuntu.com/questions/tagged/" + self.topic+"?tab=Unanswered"
+        url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Unanswered"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -171,7 +188,7 @@ class AskUbuntu:
 
             ejson = json.dumps(error_message)
             return ejson
-         
+
     def getBountiedQuestions(self):
         """
         Class - `AskUbuntu`
@@ -189,7 +206,7 @@ class AskUbuntu:
             "description": description of the question
         }
         """
-        url = "https://askubuntu.com/questions/tagged/" + self.topic+"?tab=Bountied"
+        url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Bountied"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -226,7 +243,7 @@ class AskUbuntu:
 
             ejson = json.dumps(error_message)
             return ejson
-        
+
     def getFrequentQuestions(self):
         """
         Class - `AskUbuntu`
@@ -244,7 +261,7 @@ class AskUbuntu:
             "description": description of the question
         }
         """
-        url = "https://askubuntu.com/questions/tagged/" + self.topic+"?tab=Frequent"
+        url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Frequent"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -281,7 +298,7 @@ class AskUbuntu:
 
             ejson = json.dumps(error_message)
             return ejson
-    
+
     def getHighScoredQuestions(self):
         """
         Class - `AskUbuntu`
@@ -299,7 +316,7 @@ class AskUbuntu:
             "description": description of the question
         }
         """
-        url = "https://askubuntu.com/questions/tagged/" + self.topic+"?tab=Votes"
+        url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Votes"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -336,3 +353,6 @@ class AskUbuntu:
 
             ejson = json.dumps(error_message)
             return ejson
+
+ask = AskUbuntu(topic="Python")
+print(ask.getActiveQuestions())
