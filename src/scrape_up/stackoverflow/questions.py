@@ -44,6 +44,7 @@ class StackOverflow:
                     .strip()
                     .encode("ascii", "ignore")
                     .decode()
+                    .replace("  ", "")
                 )
                 questions_data["questions"].append(
                     {
