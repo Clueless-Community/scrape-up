@@ -8,7 +8,7 @@ class TechCrunch:
     Class - `TechCrunch`
     Example:
     ```
-    articless = TechCrunch(category = "topic")
+    articles = TechCrunch(category = "topic")
     ```\n
     Methods :\n
     1. ``.getArticles() | Response - Articles with title, descriptions, images, date and link.
