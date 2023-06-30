@@ -192,27 +192,36 @@ class Product:
                 "message": f"Unable to fetch product review",
             }
 
-    def get_availability(self, soup):
+    def get_product_availability(self):
         """
         Class - `Product`
         Example:
         ```
         product = Product(product_name="watch")
-        product_link = product.get_product()["data"]
-        headers = {
-            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
-        }
-        r = requests.get(product_link, headers=headers)
-        soup = BeautifulSoup(r.content, "html.parser")
-        availability = product.get_availability(soup)
+        product.get_product_availability()
         ```
         Returns:
-        The availability of the product as a string.
-        If the availability information is not found, it returns "Not Available".
+        {
+            "data": availability,
+            "message": "Product availability has been fetched",
+        }
         """
         try:
-            available = soup.find("div", attrs={'id': 'availability'})
-            available = available.find("span").string.strip()
-        except AttributeError:
-            available = "Not Available"    
-        return available
+            product_link = self.get_product()["data"]
+            headers = {
+                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
+            }
+            r = requests.get(product_link, headers=headers)
+            soup = BeautifulSoup(r.content, "html.parser")
+
+            availability = soup.find("div", attrs={'id': 'availability'}).find("span").text.strip()
+
+            return {
+                "data": availability,
+                "message": "Product availability has been fetched",
+            }
+        except:
+            return {
+                "data": None,
+                "message": "Unable to fetch product availability",
+            }
