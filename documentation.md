@@ -825,3 +825,36 @@ for q in questions:
 ```
 
 ---
+
+## Tech Crunch
+
+### Scrape articles with title, descriptions, images, date and link regarding a category
+
+Create an instance of `TechCrunch` class.
+
+```python
+articles = TechCrunch("category")
+```
+
+| Methods        | Details                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
+| `.getArticles()` | Returns the articles with title, descriptions, images, date and link in JSON format |
+
+**Example**
+
+```python
+art = TechCrunch("fintech")
+scrape = art.getArticles()
+json = json.loads(scrape)
+articles = json["articles"]
+for a in articles:
+    print("\nTitle: ", a["title"])
+    print("Description: ", a["description"])
+    print("Image: ", a["image"])
+    print("Author: ", a["author"])
+    print("Date: ", a["date"])
+    print("Link: ", a["link"])
+
+```
+
+---
