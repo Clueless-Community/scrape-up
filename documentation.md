@@ -542,20 +542,33 @@ twitter_scraper = TwitterScraper()
 from scrape_up import leetcode
 ```
 
-### Scrape
+### Scrape user details
 
 First, create an object of class `LeetCodeScraper`
 
 ```python
-leetcode_scraper = LeetCodeScraper()
+leetcode_scraper = LeetCodeScraper(username="nikhil25803")
 ```
 
-| Methods                    | Details                                          |
-| -------------------------- | ------------------------------------------------ |
-| `.scrape_rank(username)`   | Used to scrape the rank of a user on LeetCode.   |
-| `.scrape_rating(username)` | Used to scrape the rating of a user on LeetCode. |
+**User Specific Methods - Require Username**
 
----
+| Methods                       | Details                                                               |
+| ----------------------------- | --------------------------------------------------------------------- |
+| `.scrape_rank()`              | Used to scrape the rank of a user on LeetCode.                        |
+| `.scrape_rating()`            | Used to scrape the rating of a user on LeetCode.                      |
+| `.get_problems_solved()`      | Used to scrape total problems solved by a user on LeetCode.           |
+| `.get_solved_by_difficulty()` | Used to scrape difficulty wise problems solved by a user on LeetCode. |
+| `.get_github_link()`          | Used to scrape github link of a user on LeetCode.                     |
+| `.get_linkedin_link()`        | Used to scrape linkedin link of a user on LeetCode.                   |
+| `.get_community_stats()`      | Used to scrape community stats of a user on LeetCode.                 |
+
+**General Purpose Methods - Does not Require Username**
+
+| Methods                                            | Details                                                                                                                                                                                                      |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `.get_problems(difficulty, tags_list, search_key)` | Used to scrape top problems of LeetCode based on filters. Difficulty is string from ("easy", "medium", "hard"). Tags_list is list of tags. Search_key is string to search. All ther parameters are optional. |
+| `.get_contests()`                                  | Used to scrape the upcoming LeetCode Contests details.                                                                                                                                                       |
+| `.get_daily_challenge()`                           | Used to scrape LeetCode Daily Challenge details.                                                                                                                                                             |
 
 ## Finance
 
@@ -709,6 +722,12 @@ item = Flipkart()
 | `.TVs()`              | Returns the list of TV sets on flipkart          |
 | `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
 | `.scrapdatamobiles()` | Returns the list of the mobile phone which are under 50k flipkart |
+=======
+| Methods               | Details                                           |
+| --------------------- | ------------------------------------------------- |
+| `.TVs()`              | Returns the list of TV sets on flipkart           |
+| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart  |
+| `.SportsShoes()`      | Returns the list of sprt shoes listed on Flipkart |
 
 ---
 
@@ -716,21 +735,26 @@ item = Flipkart()
 
 ### Scrape questions, views, votes, answer counts, and descriptions from Ask Ubuntu website regarding a topic
 
-Create an instance of `Questions` class.
+Create an instance of `AskUbuntu` class.
 
 ```python
-questions = Questions("topic")
+questions = AskUbuntu("topic")
 ```
 
-| Methods     | Details                                                                             |
-| ----------- | ----------------------------------------------------------------------------------- |
-| `.scrape()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format              |
+| `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format           |
+| `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format       |
+| `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format         |
+| `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
 
 **Example**
 
 ```python
-que = Questions("github")
-scrape = que.scrape()
+que = AskUbuntu("github")
+scrape = que.getNewQuestions()
 json = json.loads(scrape)
 questions = json["questions"]
 for q in questions:
@@ -772,6 +796,38 @@ for r in restaurants:
     print("Rating: ", q["rating"])
     print("Cuisines: ", q["cuisine"])
     print("Price: ", q["price\n"])
+
+```
+
+---
+
+## Stack Overflow
+
+### Scrape questions, views, votes, answer counts, and descriptions from Stack Overflow website regarding a topic
+
+Create an instance of `StackOverflow` class.
+
+```python
+questions = StackOverflow("topic")
+```
+
+| Methods        | Details                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
+| `.questions()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
+
+**Example**
+
+```python
+que = StackOverflow("github")
+scrape = que.scrape()
+json = json.loads(scrape)
+questions = json["questions"]
+for q in questions:
+    print("\nQuestion: ", q["question"])
+    print("Views: ", q["views"])
+    print("Votes: ", q["vote_count"])
+    print("Answers: ", q["answer_count"])
+    print("Description: ", q["description\n"])
 
 ```
 

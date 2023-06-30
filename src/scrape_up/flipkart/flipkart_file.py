@@ -109,6 +109,8 @@ class Flipkart:
         
 
     def scrapdatamobiles():
+
+    def SportsShoes(self):
         try:
             """
             Class - `Flipkart`\n
@@ -116,6 +118,7 @@ class Flipkart:
             ```python
             item = Flipkart()
             item.BestsellersBooks()
+            item.SportsShoes()
             ```
             Return\n
             ```python
@@ -139,6 +142,30 @@ class Flipkart:
                     "Price": price.text if price else None,
                     "Description": description.text if description else None,
                     "Review": review.text if review else None,
+
+            url = "https://www.flipkart.com/mens-footwear/sports-shoes/pr?sid=osp,cil,1cu&otracker=nmenu_sub_Men_0_Sports%20Shoes"
+            response = requests.get(url)
+            html_content = response.content
+            soup = bs(html_content, "html.parser")
+
+            all_items = []
+
+            div_elements = soup.find_all("div", class_="_1xHGtK _373qXS")
+
+            for div in div_elements:
+                name_element = div.find("a", class_="IRpwTa")
+                name = name_element.text.strip() if name_element else ""
+
+                image_element = div.find("img", class_="_2r_T1I")
+                image_url = image_element["src"] if image_element else ""
+
+                details_element = div.find("a", class_="_3bPFwb")
+                details = details_element.text.strip() if details_element else ""
+
+                item_details = {
+                    "Name": name,
+                    "Image URL": image_url,
+                    "Details": details,
                 }
 
                 all_items.append(item_details)
@@ -149,3 +176,7 @@ class Flipkart:
             print("Error:", str(e))
             return None
         
+            return None
+
+shoes = Flipkart()
+print(shoes.SportsShoes())
