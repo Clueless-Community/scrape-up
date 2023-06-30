@@ -4,12 +4,37 @@ import json
 
 
 class TechCrunch:
+    """
+    Class - `TechCrunch`
+    Example:
+    ```
+    articless = TechCrunch(category = "topic")
+    ```\n
+    Methods :\n
+    1. ``.getArticles() | Response - Articles with title, descriptions, images, date and link.
+    """
 
     def __init__(self, category):
         self.category = category
 
     def getArticles(self):
-        
+        """
+        Class - `TechCrunch`
+        Example:
+        ```
+        news = TechCrunch("artificial-intelligence")
+        news.getArticles()
+        ```
+        Returns:
+        {
+            "title": Tile of the article
+            "description": Description of the article
+            "image": Image of the article
+            "author": Author of the Article
+            "date": Date the article was posted
+            "link": Link to the article
+        }
+        """
         url = (
             "https://techcrunch.com/category/"
             + self.category.replace(" ", "-").lower()
