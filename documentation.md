@@ -749,23 +749,40 @@ from timesjobs_scraper import TimesJobs
 
 ### Scrape Job Details
 
+<<<<<<< HEAD
 First, create an object of the class `Job` and specify the domain to which you want to apply.
 
 ```python
 Job = TimesJobs('example')
+=======
+First, create an object of the class `Job`
+
+```python
+Job = TimesJobs()
+>>>>>>> 7343c6e2d9c8a2e3f4c2d8c199268f08763b9f07
 ```
 
 | Methods           | Details                                    |
 | ----------------- | ------------------------------------------ |
+<<<<<<< HEAD
 | `.scrape()` | Returns the various details regarding the companies based on the Job-role as JSON data. |
+=======
+| `.scrape()` | Returns the various details regarding the companies based on the Job-role. |
+>>>>>>> 7343c6e2d9c8a2e3f4c2d8c199268f08763b9f07
 
 **Example:**
 
 ```python
+<<<<<<< HEAD
 jobs = TimesJobs('Python')
 job_data=jobs.scrape()
 if job_data:
     print(job_data)
+=======
+Job = TimesJobs()
+Job.scrape() #user var taken from above
+>>>>>>> 7343c6e2d9c8a2e3f4c2d8c199268f08763b9f07
 ```
 
+---
 ---

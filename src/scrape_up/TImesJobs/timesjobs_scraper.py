@@ -14,24 +14,14 @@ class TimesJobs:
         Example -\n
         ```python
 
-        jobs = TimesJobs()
-        jobs.scrape('Python')
-        ```
-        Return\n
-        ```python
-        return
-        {
-            "Company": "Name of the comapny",
-            "Location": "Location at which the company is located",
-            "Experience": "Experience of the applicants required for that post",
-            "Posted": "Number of days before which this job was posted on this webiste",
-            "Apply here": "Link which directly takes you to the Web-page where you can apply for the job"
-        }
-        """
-        if isinstance(self.Job_role, int):
-            print('Enter a valid Job role')
-            return None
-            
+        Company: The name of the company\n
+        Location: The location at which the company is located\n
+        Experience: The experience of the applicants required for the post\n
+        Days: The number of days before which this job was posted on this webiste\n
+        Application Links: The link which directly takes you to the Web-page where you can fill-in the details\n
+        
+        '''
+        Job_role = input('Enter your desired role: ')
         try:
             spl = self.Job_role.split()
             self.Job_role = '%20'.join(spl)
@@ -73,7 +63,8 @@ class TimesJobs:
         except Exception as e:
             print('Not possible to webscrape')
             return None
-        
+
+
 if __name__ == "__main__":
     jobs = TimesJobs('Python')
     job_data=jobs.scrape()
