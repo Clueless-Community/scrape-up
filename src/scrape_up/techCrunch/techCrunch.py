@@ -22,8 +22,8 @@ class TechCrunch:
         Class - `TechCrunch`
         Example:
         ```
-        news = TechCrunch("artificial-intelligence")
-        news.getArticles()
+        articles = TechCrunch("artificial-intelligence")
+        articles.getArticles()
         ```
         Returns:
         {
@@ -47,13 +47,37 @@ class TechCrunch:
 
             articles = soup.find_all("div", class_="post-block post-block--image post-block--unread")
             for n in articles:
-                name = n.select_one(".post-block__title__link").getText().strip().encode("ascii", "ignore").decode()
-                desc = n.select_one(".post-block__content").getText().strip().encode("ascii", "ignore").decode()
+                name = (
+                    n.select_one(".post-block__title__link")
+                    .getText()
+                    .strip()
+                    .encode("ascii", "ignore")
+                    .decode()
+                )
+                desc = (
+                    n.select_one(".post-block__content")
+                    .getText()
+                    .strip()
+                    .encode("ascii", "ignore")
+                    .decode()
+                    )
                 img = n.find_all("img", src=True)
                 image = img[0]["src"]
-                author = n.select_one(".river-byline__authors").getText().strip().encode("ascii", "ignore").decode()
+                author = (
+                    n.select_one(".river-byline__authors")
+                    .getText()
+                    .strip()
+                    .encode("ascii", "ignore")
+                    .decode()
+                )
                 time = n.find_all("div", class_="river-byline")
-                date = time[0].select_one(".river-byline__time").getText().strip().encode("ascii", "ignore").decode()
+                date = (
+                    time[0].select_one(".river-byline__time")
+                    .getText()
+                    .strip()
+                    .encode("ascii", "ignore")
+                    .decode()
+                    )
                 links = n.find_all("a", class_="post-block__title__link", href=True)
                 link = links[0]["href"]
                 articles_data["articles"].append(
