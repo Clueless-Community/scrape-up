@@ -76,7 +76,7 @@ class EazyDiner:
             }
             ejson = json.dumps(error_message)
             return ejson
-        
+
     def getBreakfast(self):
         """
         Class - `EazyDiner`
@@ -96,7 +96,8 @@ class EazyDiner:
         """
         url = (
             "https://www.eazydiner.com/restaurants?location="
-            + self.location.replace(" ", "-").replace(",", "").lower() + "&meal_period=breakfast"
+            + self.location.replace(" ", "-").replace(",", "").lower()
+            + "&meal_period=breakfast"
         )
         try:
             res = requests.get(url)
@@ -136,7 +137,7 @@ class EazyDiner:
             }
             ejson = json.dumps(error_message)
             return ejson
-        
+
     def getLunch(self):
         """
         Class - `EazyDiner`
@@ -156,7 +157,8 @@ class EazyDiner:
         """
         url = (
             "https://www.eazydiner.com/restaurants?location="
-            + self.location.replace(" ", "-").replace(",", "").lower() + "&meal_period=lunch"
+            + self.location.replace(" ", "-").replace(",", "").lower()
+            + "&meal_period=lunch"
         )
         try:
             res = requests.get(url)
@@ -196,7 +198,7 @@ class EazyDiner:
             }
             ejson = json.dumps(error_message)
             return ejson
-        
+
     def getDinner(self):
         """
         Class - `EazyDiner`
@@ -216,7 +218,8 @@ class EazyDiner:
         """
         url = (
             "https://www.eazydiner.com/restaurants?location="
-            + self.location.replace(" ", "-").replace(",", "").lower() + "&meal_period=dinner"
+            + self.location.replace(" ", "-").replace(",", "").lower()
+            + "&meal_period=dinner"
         )
         try:
             res = requests.get(url)
@@ -256,6 +259,3 @@ class EazyDiner:
             }
             ejson = json.dumps(error_message)
             return ejson
-
-hotels = EazyDiner(location="Patna")
-print(hotels.getRestaurants())
