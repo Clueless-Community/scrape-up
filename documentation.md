@@ -749,14 +749,6 @@ questions = AskUbuntu("topic")
 ```python
 que = AskUbuntu("github")
 scrape = que.getNewQuestions()
-json = json.loads(scrape)
-questions = json["questions"]
-for q in questions:
-    print("\nQuestion: ", q["question"])
-    print("Views: ", q["views"])
-    print("Votes: ", q["vote_count"])
-    print("Answers: ", q["answer_count"])
-    print("Description: ", q["description\n"])
 
 ```
 
@@ -784,14 +776,6 @@ restaurants = EazyDiner(location="city-name")
 ```python
 blr = EazyDiner("south-bengaluru")
 scrape = blr.getRestaurants()
-json = json.loads(scrape)
-restaurants = json["restaurants"]
-for r in restaurants:
-    print("\nRestaurant: ", q["restaurant"])
-    print("Location: ", q["location"])
-    print("Rating: ", q["rating"])
-    print("Cuisines: ", q["cuisine"])
-    print("Price: ", q["price\n"])
 
 ```
 
@@ -816,15 +800,29 @@ questions = StackOverflow("topic")
 ```python
 que = StackOverflow("github")
 scrape = que.scrape()
-json = json.loads(scrape)
-questions = json["questions"]
-for q in questions:
-    print("\nQuestion: ", q["question"])
-    print("Views: ", q["views"])
-    print("Votes: ", q["vote_count"])
-    print("Answers: ", q["answer_count"])
-    print("Description: ", q["description\n"])
+```
 
+---
+
+## Tech Crunch
+
+### Scrape articles with title, descriptions, images, date and link regarding a category
+
+Create an instance of `TechCrunch` class.
+
+```python
+articles = TechCrunch("category")
+```
+
+| Methods        | Details                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
+| `.getArticles()` | Returns the articles with title, descriptions, images, date and link in JSON format |
+
+**Example**
+
+```python
+art = TechCrunch("fintech")
+scrape = art.getArticles()
 ```
 
 ---
