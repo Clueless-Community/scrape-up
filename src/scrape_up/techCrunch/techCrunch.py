@@ -36,8 +36,7 @@ class TechCrunch:
         }
         """
         url = (
-            "https://techcrunch.com/category/"
-            + self.category.replace(" ", "-").lower()
+            "https://techcrunch.com/category/" + self.category.replace(" ", "-").lower()
         )
         try:
             res = requests.get(url)
@@ -45,7 +44,9 @@ class TechCrunch:
 
             articles_data = {"articles": []}
 
-            articles = soup.find_all("div", class_="post-block post-block--image post-block--unread")
+            articles = soup.find_all(
+                "div", class_="post-block post-block--image post-block--unread"
+            )
             for n in articles:
                 name = (
                     n.select_one(".post-block__title__link")
@@ -60,7 +61,7 @@ class TechCrunch:
                     .strip()
                     .encode("ascii", "ignore")
                     .decode()
-                    )
+                )
                 img = n.find_all("img", src=True)
                 image = img[0]["src"]
                 author = (
@@ -72,12 +73,13 @@ class TechCrunch:
                 )
                 time = n.find_all("div", class_="river-byline")
                 date = (
-                    time[0].select_one(".river-byline__time")
+                    time[0]
+                    .select_one(".river-byline__time")
                     .getText()
                     .strip()
                     .encode("ascii", "ignore")
                     .decode()
-                    )
+                )
                 links = n.find_all("a", class_="post-block__title__link", href=True)
                 link = links[0]["href"]
                 articles_data["articles"].append(
@@ -87,7 +89,7 @@ class TechCrunch:
                         "image": image,
                         "author": author,
                         "date": date,
-                        "link": link
+                        "link": link,
                     }
                 )
             res_json = json.dumps(articles_data)
