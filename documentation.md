@@ -775,6 +775,9 @@ restaurants = EazyDiner(location="city-name")
 | Methods             | Details                                                                                                                                                                       |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.getRestaurants()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format. Check the cities which are accepted in the [eazydiner](https://www.eazydiner.com/) website |
+| `.getBreakfast()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast. |
+| `.getLunch()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch. |
+| `.getDinner()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner. |
 
 **Example**
 
