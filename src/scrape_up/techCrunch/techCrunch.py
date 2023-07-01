@@ -48,14 +48,14 @@ class TechCrunch:
                 "div", class_="post-block post-block--image post-block--unread"
             )
             for n in articles:
-                name = (
+                title = (
                     n.select_one(".post-block__title__link")
                     .getText()
                     .strip()
                     .encode("ascii", "ignore")
                     .decode()
                 )
-                desc = (
+                description = (
                     n.select_one(".post-block__content")
                     .getText()
                     .strip()
@@ -84,19 +84,19 @@ class TechCrunch:
                 link = links[0]["href"]
                 articles_data["articles"].append(
                     {
-                        "title": name,
-                        "description": desc,
+                        "title": title,
+                        "description": description,
                         "image": image,
                         "author": author,
                         "date": date,
                         "link": link,
                     }
                 )
-            res_json = json.dumps(articles_data)
-            return res_json
+            result_json = json.dumps(articles_data)
+            return result_json
         except:
             error_message = {
                 "message": "Can't fetch any articles from the topic provided."
             }
-            ejson = json.dumps(error_message)
-            return ejson
+            error_json = json.dumps(error_message)
+            return error_json
