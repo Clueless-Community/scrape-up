@@ -842,10 +842,10 @@ dev = DevCommunity('python','francescoxx')
 
 | Methods             | Details                                                                               |
 | --------------      | -----------------------------------------------------------------------------------   |
-| `.all_articles()`   | Returns latest articles from the home page of DevCommunity.                       |
+| `.all_articles()`   | Returns latest articles from the home page of DevCommunity.                           |
 |`.__strTag__()`      | Returns name of the tag specified whose articles we want returned.                    |
 | `.tag_articles()`   | Returns latest articles which have the specified tag in DevCommunity.                 |
-| `.__str__()`        | Returns username of the user.                   |
+| `.__strUser__()`    | Returns username of the user.                                                         |
 | `.user_details()`   | Returns the user details.                                                             |
 |`.pinned_articles()` | Returns all pinned articles which have been written by the user.                      |
 | `.user_articles()`  | Returns all articles written by the user.                                             |
