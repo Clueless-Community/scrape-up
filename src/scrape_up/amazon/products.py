@@ -1,227 +1,125 @@
-import requests
 from bs4 import BeautifulSoup
 
-
-# scraping amazon product page
-class Product:
-    def __init__(self, product_name: str):
-        self.product_name = product_name
-
-    def get_product(self):
+class Amazon:
+    def __init__(self, html_file):
         """
-        Class - `Product`\n
-        Example -\n
-        ```python
-        product = Product(product_name="watch")
-        product.get_product()
-        ```
-        Return\n
-        ```python
-        return
-        {
-            "data": product_link,
-            "message": f"Product data has been fetched",
-        }
-        ```
+        Initialize the Amazon class.
+        
+        Parameters:
+        - html_file: The path to the HTML file to be parsed.
+        """
+        self.html_file = html_file
+        self.soup = None
+    
+    def read_html_file(self):
+        """
+        Read the HTML file and parse it using Beautiful Soup.
         """
         try:
-            product_name = self.product_name
-            product_name = product_name.replace(" ", "+")
-            url = f"https://www.amazon.in/s?k={product_name}"
-            headers = {
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
-                    (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
-            }
-            r = requests.get(url, headers=headers)
-            soup = BeautifulSoup(r.content, "html.parser")
-            product = soup.find("div", {"class": "s-product-image-container"})
-            product_link = product.find("a", {"class": "a-link-normal"})["href"]
-            product_link = "https://www.amazon.in" + product_link
-            return {
-                "data": product_link,
-                "message": f"Product data has been fetched",
-            }
-        except:
-            return {
-                "data": None,
-                "message": f"Unable to fetch product's data",
-            }
-
-    # Get product details
-    def get_product_details(self):
+            with open(self.html_file, "r", encoding="utf-8") as file:
+                html = file.read()
+            self.soup = BeautifulSoup(html, "html.parser")
+        except FileNotFoundError:
+            print("HTML file not found.")
+        except Exception as e:
+            print("Error occurred while reading the HTML file:", str(e))
+    
+    def get_product_name(self, div):
         """
-        Class - `Product`\n
-        Example -\n
-        ```python
-        product = Product(product_name="watch")
-        product.get_product_details()
-        ```
-        Return\n
-        ```python
-        return
-        {
-            "data": product_details,
-            "message": f"Product detail has been fetched",
-        }
-        ```
-        """
-        try:
-            product_link = self.get_product()["data"]
-            headers = {
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
-                    (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
-            }
-            r = requests.get(product_link, headers=headers)
-            soup = BeautifulSoup(r.content, "html.parser")
-            product_name = soup.find("span", {"id": "productTitle"}).text.strip()
-            product_price = soup.find("span", {"class": "a-price-whole"}).text.strip()
-            product_rating = soup.find(
-                "span", {"class": "a-size-base a-color-base"}
-            ).text.strip()
-            product_details = {
-                "product_name": product_name,
-                "product_price": product_price,
-                "product_rating": product_rating,
-                "product_link": product_link,
-            }
-            return {
-                "data": product_details,
-                "message": f"Product detail has been fetched",
-            }
-        except:
-            return {
-                "data": None,
-                "message": f"Unable to fetch product detail",
-            }
-
-    # Get product image
-    def get_product_image(self):
-        """
-        Class - `Product`\n
-        Example -\n
-        ```python
-        product = Product(product_name="watch")
-        product.get_product_image()
-        ```
-        Return\n
-        ```python
-        return
-        {
-            "data": product_image,
-            "message": f"Product image has been fetched",
-        }
-        ```
-        """
-        try:
-            product_link = self.get_product()["data"]
-            headers = {
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
-                    (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
-            }
-            r = requests.get(product_link, headers=headers)
-            soup = BeautifulSoup(r.content, "html.parser")
-            product_image = soup.find(
-                "img", {"class": "a-dynamic-image a-stretch-horizontal"}
-            )["src"]
-
-            return {
-                "data": product_image,
-                "message": f"Product image has been fetched",
-            }
-        except:
-            return {
-                "data": None,
-                "message": f"Unable to fetch product image",
-            }
-
-    # Get customer reviews
-    def customer_review(self):
-        """
-        Class - `Product`\n
-        Example -\n
-        ```python
-        product = Product(product_name="watch")
-        product.customer_review()
-        ```
-        Return\n
-        ```python
-        return
-        {
-            "data": review,
-            "message": f"Product review has been fetched",
-        }
-        ```
-        """
-        try:
-            product_link = self.get_product()["data"]
-            headers = {
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
-                    (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
-            }
-            r = requests.get(product_link, headers=headers)
-            soup = BeautifulSoup(r.content, "html.parser")
-
-            review_elements = soup.find_all("div", {"data-hook": "review"})
-
-            for review_element in review_elements:
-                reviewer_name = review_element.find(
-                    "span", {"class": "a-profile-name"}
-                ).text
-                rating = (
-                    review_element.find("i", {"class": "a-icon-star"})
-                    .find("span", {"class": "a-icon-alt"})
-                    .text
-                )
-                review_title = review_element.find(
-                    "a", {"data-hook": "review-title"}
-                ).text.strip()
-                review_date = review_element.find(
-                    "span", {"data-hook": "review-date"}
-                ).text
-                review_text = review_element.find(
-                    "span", {"data-hook": "review-body"}
-                ).text.strip()
-                review = [reviewer_name, rating, review_title, review_date, review_text]
-            return {
-                "data": review,
-                "message": f"Product review has been fetched",
-            }
-        except:
-            return {
-                "data": None,
-                "message": f"Unable to fetch product review",
-            }
-
-    def get_product_availability(self):
-        """
-        Class - `Product`
-        Example:
-        ```
-        product = Product(product_name="watch")
-        product.get_product_availability()
-        ```
+        Extract the product name from the given div.
+        
+        Parameters:
+        - div: The div element containing the product information.
+        
         Returns:
-        {
-            "data": availability,
-            "message": "Product availability has been fetched",
-        }
+        - The product name.
         """
-        try:
-            product_link = self.get_product()["data"]
-            headers = {
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
-            }
-            r = requests.get(product_link, headers=headers)
-            soup = BeautifulSoup(r.content, "html.parser")
+        name_span = div.find("span", class_="a-size-medium a-color-base a-text-normal")
+        return name_span.text.strip() if name_span else ""
+    
+    def get_product_price(self, div):
+        """
+        Extract the product price from the given div.
+        
+        Parameters:
+        - div: The div element containing the product information.
+        
+        Returns:
+        - The product price.
+        """
+        price_span = div.find("span", class_="a-price-whole")
+        return price_span.text.strip() if price_span else ""
+    
+    def get_product_reviews(self, div):
+        """
+        Extract the product reviews from the given div.
+        
+        Parameters:
+        - div: The div element containing the product information.
+        
+        Returns:
+        - The product reviews.
+        """
+        reviews_span = div.find("span", class_="a-size-base")
+        return reviews_span.text.strip() if reviews_span else ""
+    
+    def get_product_availability(self, div):
+        """
+        Extract the product availability from the given div.
+        
+        Parameters:
+        - div: The div element containing the product information.
+        
+        Returns:
+        - The product availability.
+        """
+        availability_span = div.find("span", class_="a-color-base a-text-bold")
+        return availability_span.text.strip() if availability_span else ""
+    
+    def get_product_image(self, div):
+        """
+        Extract the product image URL from the given div.
+        
+        Parameters:
+        - div: The div element containing the product information.
+        
+        Returns:
+        - The product image URL.
+        """
+        image = div.find("img", class_="s-image")
+        return image.get("src") if image else ""
+    
+    def display_product_details(self):
+        """
+        Display the product details by iterating over the divs in the HTML.
+        """
+        if not self.soup:
+            self.read_html_file()
 
-            availability = soup.find("div", attrs={'id': 'availability'}).find("span").text.strip()
+        if self.soup:
+            # Find all divs with the specified class
+            divs = self.soup.find_all("div", class_="sg-row")
 
-            return {
-                "data": availability,
-                "message": "Product availability has been fetched",
-            }
-        except:
-            return {
-                "data": None,
-                "message": "Unable to fetch product availability",
-            }
+            # Iterate over the divs and extract the desired information
+            for div in divs:
+                product_name = self.get_product_name(div)
+                product_price = self.get_product_price(div)
+                product_reviews = self.get_product_reviews(div)
+                product_availability = self.get_product_availability(div)
+                product_image = self.get_product_image(div)
+
+                # Display the product details only if all information is available
+                if product_name and product_price and product_reviews:
+                    print("Product Name:", product_name)
+                    print("Product Price:", product_price)
+                    print("Product Reviews:", product_reviews)
+                    print("Product Image:", product_image)
+                    print("Product Availability:", product_availability)
+                    print("-" * 20)
+    
+    def run(self):
+        """
+        Run the Amazon class to display the product details.
+        """
+        self.display_product_details()
+
