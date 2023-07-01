@@ -1,3 +1,3 @@
-from products import Product
+from products import Amazon
 
-__all__ = ["Product"]
+__all__ = ["Amazon"]
