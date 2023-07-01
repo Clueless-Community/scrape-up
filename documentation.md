@@ -25,15 +25,11 @@ print(user.followers())
 
 # The platforms and methods we cover 💫
 
-
 - GitHub
 - Instagram
 - Internshala
-+ GitHub
-+ GitLab
-+ Instagram
-+ Internshala
-
+- GitHub
+- Internshala
 
 ## GitHub
 
@@ -212,20 +208,22 @@ First, create an object of the `User` class:
 user = gitlab.Users(username="example_user")
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_name()`    | Returns the name of the user.                                                 |
-| `.get_bio()`       | Returns the bio of the user.                                                    |
-| `.get_avatar_url()`    | Returns the avatar URL of the user.                                |
-| `.get_repositories()`        | Returns a list of repositories owned by the user.                                                     |
+| Methods                            | Details                                                      |
+| ---------------------------------- | ------------------------------------------------------------ |
+| `.get_name()`                      | Returns the name of the user.                                |
+| `.get_bio()`                       | Returns the bio of the user.                                 |
+| `.get_avatar_url()`                | Returns the avatar URL of the user.                          |
+| `.get_repositories()`              | Returns a list of repositories owned by the user.            |
 | `.get_project_details(project_id)` | Returns the details of a specific project owned by the user. |
 
 **Example:**
+
 ```python
 name_result = user.get_name()
 print("Name:", name_result["data"])
 print("Status:", name_result["message"])
 ```
+
 ---
 
 ### Scrape Repository Details
@@ -236,16 +234,18 @@ First, create an object of the `Repository` class:
 repository = gitlab.Repository(username="example_user", repository_name="example_repository")
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_name()`    | Returns the name of the repository.                                                 |
-| `.get_description()`       | Returns the description of the repository.                                                    |
+| Methods              | Details                                    |
+| -------------------- | ------------------------------------------ |
+| `.get_name()`        | Returns the name of the repository.        |
+| `.get_description()` | Returns the description of the repository. |
 
 **Example:**
+
 ```python
 name_result = repository.get_name()
 print("Repository Name:", name_result["data"])
 ```
+
 ---
 
 ### Scrape Organization Members
@@ -256,12 +256,13 @@ First, create an object of the `Organization` class:
 organization = gitlab.Organization(organization_name="example_organization")
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_members()`    | Returns a list of usernames of the members in the organization.                                                 |
-| `get_projects()`       | Returns a list of project names associated with the organization.                                                    |
+| Methods          | Details                                                           |
+| ---------------- | ----------------------------------------------------------------- |
+| `.get_members()` | Returns a list of usernames of the members in the organization.   |
+| `get_projects()` | Returns a list of project names associated with the organization. |
 
 **Example:**
+
 ```python
 members = organization.get_members()
 print("Organization Members:", members)
@@ -270,6 +271,7 @@ projects = organization.get_projects()
 print("Organization Projects:", projects)
 
 ```
+
 ---
 
 ### Scrape Issues
@@ -287,13 +289,14 @@ issue = gitlab.Issue(username="example_user", repository="example_repository", i
 
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_title()`    | Returns the title of the issue.                                                 |
-| `.get_description()`       | Returns the description of the issue.                                                    |
-| `.get_author()`       | Returns the author of the issue.                                                    |
+| Methods              | Details                               |
+| -------------------- | ------------------------------------- |
+| `.get_title()`       | Returns the title of the issue.       |
+| `.get_description()` | Returns the description of the issue. |
+| `.get_author()`      | Returns the author of the issue.      |
 
 **Example:**
+
 ```python
 title = issue.get_title()
 print("Issue Title:", title["data"])
@@ -316,13 +319,14 @@ pull_request = gitlab.PullRequest(username="example_user", repository="example_r
 
 ```
 
-| Methods           | Details                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| `.get_title()`    | Returns the title of the pull request.                                                 |
-| `.get_description()`       | Returns the description of the pull request.                                                    |
-| `.get_author()`       | Returns the author of the pull request.                                                    |
+| Methods              | Details                                      |
+| -------------------- | -------------------------------------------- |
+| `.get_title()`       | Returns the title of the pull request.       |
+| `.get_description()` | Returns the description of the pull request. |
+| `.get_author()`      | Returns the author of the pull request.      |
 
 **Example:**
+
 ```python
 title = pull_request.get_title()
 print("Pull Request Title:", title)
@@ -337,7 +341,6 @@ print("Pull Request Author:", author)
 
 ---
 
-
 ## Instagram
 
 ```python
@@ -349,20 +352,17 @@ from scrape_up import instagram
 First, create an object of the class `User`
 
 ```python
-user = instagram.Users(username="nikhil25803")
+user = instagram.User(username="nikhil25803")
 ```
 
-| Methods        | Details                                             |
-| -------------- | --------------------------------------------------- |
-| `.followers()` | Returns the number of followers of a user.          |
-| `.following()` | Returns the number of people the user is following. |
-| `.posts()`     | Returns the number of posts the user has.           |
+| Methods           | Details                                    |
+| ----------------- | ------------------------------------------ |
+| `.user_details()` | Returns the number of followers of a user. |
 
 **Example:**
 
 ```python
-following = user.following() #user var taken from above
-print(following)
+print(user.user_details()) #user var taken from above
 ```
 
 ---
@@ -542,20 +542,33 @@ twitter_scraper = TwitterScraper()
 from scrape_up import leetcode
 ```
 
-### Scrape
+### Scrape user details
 
 First, create an object of class `LeetCodeScraper`
 
 ```python
-leetcode_scraper = LeetCodeScraper()
+leetcode_scraper = LeetCodeScraper(username="nikhil25803")
 ```
 
-| Methods                    | Details                                          |
-| -------------------------- | ------------------------------------------------ |
-| `.scrape_rank(username)`   | Used to scrape the rank of a user on LeetCode.   |
-| `.scrape_rating(username)` | Used to scrape the rating of a user on LeetCode. |
+**User Specific Methods - Require Username**
 
----
+| Methods                       | Details                                                               |
+| ----------------------------- | --------------------------------------------------------------------- |
+| `.scrape_rank()`              | Used to scrape the rank of a user on LeetCode.                        |
+| `.scrape_rating()`            | Used to scrape the rating of a user on LeetCode.                      |
+| `.get_problems_solved()`      | Used to scrape total problems solved by a user on LeetCode.           |
+| `.get_solved_by_difficulty()` | Used to scrape difficulty wise problems solved by a user on LeetCode. |
+| `.get_github_link()`          | Used to scrape github link of a user on LeetCode.                     |
+| `.get_linkedin_link()`        | Used to scrape linkedin link of a user on LeetCode.                   |
+| `.get_community_stats()`      | Used to scrape community stats of a user on LeetCode.                 |
+
+**General Purpose Methods - Does not Require Username**
+
+| Methods                                            | Details                                                                                                                                                                                                      |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `.get_problems(difficulty, tags_list, search_key)` | Used to scrape top problems of LeetCode based on filters. Difficulty is string from ("easy", "medium", "hard"). Tags_list is list of tags. Search_key is string to search. All ther parameters are optional. |
+| `.get_contests()`                                  | Used to scrape the upcoming LeetCode Contests details.                                                                                                                                                       |
+| `.get_daily_challenge()`                           | Used to scrape LeetCode Daily Challenge details.                                                                                                                                                             |
 
 ## Finance
 
@@ -667,7 +680,7 @@ print(scraped_data)
 
 ### Scrape details about a product
 
-Create an instance of the `Movie` class.
+Create an instance of `Product` class with a `product_name` propertiese.
 
 ```python
 product = Product(product_name="watch")
@@ -679,5 +692,137 @@ product = Product(product_name="watch")
 | `.get_product_details()` | Returns product detail.      |
 | `.get_product_image()`   | Returns product image.       |
 | `.customer_review()`     | Returns product review.      |
+
+## Amazon-Kindle Bookstore
+
+### Scrape details of a book
+
+Create an instance of `Book` class.
+
+```python
+books = AmazonKindle()
+```
+
+| Methods          | Details                                                |
+| ---------------- | ------------------------------------------------------ |
+| `.bestsellers()` | Returns the list of best seeling books on AmazonKindle |
+
+## Flipkart
+
+### Scrape details of products
+
+Create an instance of `Flipkart` class.
+
+```python
+item = Flipkart()
+```
+
+| Methods               | Details                                           |
+| --------------------- | ------------------------------------------------- |
+| `.TVs()`              | Returns the list of TV sets on flipkart           |
+| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart  |
+| `.SportsShoes()`      | Returns the list of sprt shoes listed on Flipkart |
+
+---
+
+## Ask Ubuntu
+
+### Scrape questions, views, votes, answer counts, and descriptions from Ask Ubuntu website regarding a topic
+
+Create an instance of `AskUbuntu` class.
+
+```python
+questions = AskUbuntu("topic")
+```
+
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format              |
+| `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format           |
+| `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format       |
+| `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format         |
+| `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
+
+**Example**
+
+```python
+que = AskUbuntu("github")
+scrape = que.getNewQuestions()
+
+```
+
+---
+
+## EazyDiner
+
+### Scrape restaurants name, location, rating, cuisine and prices from eazydiner website for a given city
+
+Create an instance of `EazyDiner` class.
+
+```python
+restaurants = EazyDiner(location="city-name")
+```
+
+| Methods             | Details                                                                                                                                                                       |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.getRestaurants()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format. Check the cities which are accepted in the [eazydiner](https://www.eazydiner.com/) website |
+| `.getBreakfast()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast. |
+| `.getLunch()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch. |
+| `.getDinner()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner. |
+
+**Example**
+
+```python
+blr = EazyDiner("south-bengaluru")
+scrape = blr.getRestaurants()
+
+```
+
+---
+
+## Stack Overflow
+
+### Scrape questions, views, votes, answer counts, and descriptions from Stack Overflow website regarding a topic
+
+Create an instance of `StackOverflow` class.
+
+```python
+questions = StackOverflow("topic")
+```
+
+| Methods        | Details                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
+| `.questions()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
+
+**Example**
+
+```python
+que = StackOverflow("github")
+scrape = que.scrape()
+```
+
+---
+
+## Tech Crunch
+
+### Scrape articles with title, descriptions, images, date and link regarding a category
+
+Create an instance of `TechCrunch` class.
+
+```python
+articles = TechCrunch("category")
+```
+
+| Methods        | Details                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
+| `.getArticles()` | Returns the articles with title, descriptions, images, date and link in JSON format |
+
+**Example**
+
+```python
+art = TechCrunch("fintech")
+scrape = art.getArticles()
+```
 
 ---
