@@ -30,6 +30,7 @@ print(user.followers())
 - Internshala
 - GitHub
 - Internshala
+- TimesJobs
 
 ## GitHub
 
@@ -843,7 +844,34 @@ articles = TechCrunch("category")
 art = TechCrunch("fintech")
 scrape = art.getArticles()
 ```
+## TimesJobs
 
+```python
+from timesjobs_scraper import TimesJobs
+```
+
+### Scrape Job Details
+
+First, create an object of the class `Job` and specify the domain to which you want to apply.
+
+```python
+Job = TimesJobs('example')
+```
+
+| Methods           | Details                                    |
+| ----------------- | ------------------------------------------ |
+| `.scrape()` | Returns the various details regarding the companies based on the Job-role as JSON data. |
+
+**Example:**
+
+```python
+jobs = TimesJobs('Python')
+job_data=jobs.scrape()
+if job_data:
+    print(job_data)
+```
+
+---
 ---
 
 ## Dev Community 
