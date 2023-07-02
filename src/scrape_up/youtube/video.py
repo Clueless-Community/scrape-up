@@ -4,7 +4,17 @@ import json
 
 
 class Video:
-   
+    """
+    Class - `Video`
+    Example:
+    ```
+    video_data = Video(video_url = "url")
+    ```\n
+    Methods :\n
+    1. ``.getDetails() | Response - Video details with title, descriptions, views count, upload date, 
+                                    comment count, channel name, channel avatar, subscriber_count, channel_url
+    """
+
     def __init__(self, video_url):
         self.video_url = video_url
 
@@ -58,6 +68,3 @@ class Video:
             }
             ejson = json.dumps(error_message)
             return ejson
-
-vid = Video("https://www.youtube.com/watch?v=bc0g7rNUMCE")
-print(vid.getDetails())
