@@ -83,7 +83,7 @@ class Video:
             return res_json
         except:
             error_message = {
-                "message": "Can't fetch any articles from the topic provided."
+                "message": "Can't fetch video data from the url provided."
             }
             ejson = json.dumps(error_message)
             return ejson
