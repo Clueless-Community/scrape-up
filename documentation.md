@@ -859,7 +859,7 @@ vid = Video("video_url")
 
 | Methods        | Details                                                                             |
 | -------------- | ----------------------------------------------------------------------------------- |
-| `.getDetails()` | Returns the video details with title, descriptions, views count, upload date, comment count, channel name, channel avatar, subscriber_count, channel_url in JSON |
+| `.getDetails()` | Returns the video details with title, descriptions, views count, upload date, comment count, channel name, channel avatar, subscriber_count, channel_url in JSON format |
 
 **Example**
 
