@@ -543,20 +543,33 @@ twitter_scraper = TwitterScraper()
 from scrape_up import leetcode
 ```
 
-### Scrape
+### Scrape user details
 
 First, create an object of class `LeetCodeScraper`
 
 ```python
-leetcode_scraper = LeetCodeScraper()
+leetcode_scraper = LeetCodeScraper(username="nikhil25803")
 ```
 
-| Methods                    | Details                                          |
-| -------------------------- | ------------------------------------------------ |
-| `.scrape_rank(username)`   | Used to scrape the rank of a user on LeetCode.   |
-| `.scrape_rating(username)` | Used to scrape the rating of a user on LeetCode. |
+**User Specific Methods - Require Username**
 
----
+| Methods                       | Details                                                               |
+| ----------------------------- | --------------------------------------------------------------------- |
+| `.scrape_rank()`              | Used to scrape the rank of a user on LeetCode.                        |
+| `.scrape_rating()`            | Used to scrape the rating of a user on LeetCode.                      |
+| `.get_problems_solved()`      | Used to scrape total problems solved by a user on LeetCode.           |
+| `.get_solved_by_difficulty()` | Used to scrape difficulty wise problems solved by a user on LeetCode. |
+| `.get_github_link()`          | Used to scrape github link of a user on LeetCode.                     |
+| `.get_linkedin_link()`        | Used to scrape linkedin link of a user on LeetCode.                   |
+| `.get_community_stats()`      | Used to scrape community stats of a user on LeetCode.                 |
+
+**General Purpose Methods - Does not Require Username**
+
+| Methods                                            | Details                                                                                                                                                                                                      |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `.get_problems(difficulty, tags_list, search_key)` | Used to scrape top problems of LeetCode based on filters. Difficulty is string from ("easy", "medium", "hard"). Tags_list is list of tags. Search_key is string to search. All ther parameters are optional. |
+| `.get_contests()`                                  | Used to scrape the upcoming LeetCode Contests details.                                                                                                                                                       |
+| `.get_daily_challenge()`                           | Used to scrape LeetCode Daily Challenge details.                                                                                                                                                             |
 
 ## Finance
 
@@ -705,10 +718,29 @@ Create an instance of `Flipkart` class.
 item = Flipkart()
 ```
 
+| Methods               | Details                                           |
+| --------------------- | ------------------------------------------------- |
+| `.TVs()`              | Returns the list of TV sets on flipkart           |
+| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart  |
+| `.SportsShoes()`      | Returns the list of sprt shoes listed on Flipkart |
+
+---
+
+## Spotify
+
+### Scrape up songs
+
+Create an instance of `Spotify` class.
+
+```python
+scraper = Spotify()
+```
+
 | Methods               | Details                                          |
 | --------------------- | ------------------------------------------------ |
-| `.TVs()`              | Returns the list of TV sets on flipkart          |
-| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
+| `.scrape_songs_by_keyword()` | Returns the list of songs that are related to the keyword   |
+| `.scrape_homepage()` | Returns the list of playlists on the homepage |
+| `.close()` | To close the chrome tab that is showing results |
 
 ---
 
@@ -716,30 +748,101 @@ item = Flipkart()
 
 ### Scrape questions, views, votes, answer counts, and descriptions from Ask Ubuntu website regarding a topic
 
-Create an instance of `Questions` class.
+Create an instance of `AskUbuntu` class.
 
 ```python
-questions = Questions("topic")
+questions = AskUbuntu("topic")
 ```
 
-| Methods     | Details                                                                             |
-| ----------- | ----------------------------------------------------------------------------------- |
-| `.scrape()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format              |
+| `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format           |
+| `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format       |
+| `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format         |
+| `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
+
 
 **Example**
 
 ```python
-que = Questions("github")
-scrape = que.scrape()
-json = json.loads(scrape)
-questions = json["questions"]
-for q in questions:
-    print("\nQuestion: ", q["question"])
-    print("Views: ", q["views"])
-    print("Votes: ", q["vote_count"])
-    print("Answers: ", q["answer_count"])
-    print("Description: ", q["description\n"])
+que = AskUbuntu("github")
+scrape = que.getNewQuestions()
 
+```
+
+---
+
+## EazyDiner
+
+### Scrape restaurants name, location, rating, cuisine and prices from eazydiner website for a given city
+
+Create an instance of `EazyDiner` class.
+
+```python
+restaurants = EazyDiner(location="city-name")
+```
+
+| Methods             | Details                                                                                                                                                                       |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.getRestaurants()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format. Check the cities which are accepted in the [eazydiner](https://www.eazydiner.com/) website |
+| `.getBreakfast()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast. |
+| `.getLunch()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch. |
+| `.getDinner()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner. |
+
+**Example**
+
+```python
+blr = EazyDiner("south-bengaluru")
+scrape = blr.getRestaurants()
+
+```
+
+---
+
+## Stack Overflow
+
+### Scrape questions, views, votes, answer counts, and descriptions from Stack Overflow website regarding a topic
+
+Create an instance of `StackOverflow` class.
+
+```python
+questions = StackOverflow("topic")
+```
+
+| Methods        | Details                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
+| `.questions()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
+
+**Example**
+
+```python
+que = StackOverflow("github")
+scrape = que.scrape()
+```
+
+---
+
+## Tech Crunch
+
+### Scrape articles with title, descriptions, images, date and link regarding a category
+
+Create an instance of `TechCrunch` class.
+
+```python
+articles = TechCrunch("category")
+```
+
+| Methods        | Details                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
+| `.getArticles()` | Returns the articles with title, descriptions, images, date and link in JSON format |
+
+**Example**
+
+```python
+art = TechCrunch("fintech")
+scrape = art.getArticles()
 ```
 ## TimesJobs
 
@@ -769,4 +872,54 @@ if job_data:
 ```
 
 ---
+---
+
+## Dev Community 
+
+### Scrape latest articles from home page
+### Scrape latest articles based on a tag
+### Scrape user data, all articles  written by a user and pinned articles written by a user
+
+Create an instance of `DevCommunity` class.
+
+```python
+
+dev = DevCommunity('francescoxx')
+
+```
+
+| Methods             | Details                                                                               |
+| --------------      | -----------------------------------------------------------------------------------   |
+| `.all_articles()`   | Returns latest articles from the home page of DevCommunity.                           |
+|`.__strTag__()`      | Returns name of the tag specified whose articles we want returned.                    |
+| `.tag_articles()`   | Returns latest articles which have the specified tag in DevCommunity.                 |
+| `.__strUser__()`    | Returns username of the user.                                                         |
+| `.user_details()`   | Returns the user details.                                                             |
+|`.pinned_articles()` | Returns all pinned articles which have been written by the user.                      |
+| `.user_articles()`  | Returns all articles written by the user.                                             |
+
+**Example**
+
+```python
+
+dev = DevCommunity('francescoxx')
+articles = dev.all_articles()
+pprint(articles)
+
+tag_name = dev.__strTag__(tag='python')
+tagged_articles = dev.tag_articles(tag='python')
+print(tag_name)
+pprint(tagged_articles)
+
+user = dev.__strUser__()
+user_detail = dev.user_details()
+pin_articles = dev.pinned_articles()
+user_article = dev.user_articles()
+print(user)
+print(user_detail)
+pprint(pin_articles)
+pprint(user_article)
+
+```
+
 ---
