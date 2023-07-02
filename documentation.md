@@ -836,9 +836,8 @@ scrape = art.getArticles()
 Create an instance of `DevCommunity` class.
 
 ```python
-dev = DevCommunity('francescoxx')
-```
 
+dev = DevCommunity('francescoxx')
 
 | Methods             | Details                                                                               |
 | --------------      | -----------------------------------------------------------------------------------   |
@@ -853,6 +852,7 @@ dev = DevCommunity('francescoxx')
 **Example**
 
 ```python
+
 dev = DevCommunity('francescoxx')
 articles = dev.all_articles()
 pprint(articles)
