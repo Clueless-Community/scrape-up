@@ -14,11 +14,10 @@ class DevCommunity:
 
     Example - \n
     ```python
-    dev = DevCommunity('python','francescoxx')
+    dev = DevCommunity('francescoxx')
     """
-    def __init__(self, tag: str, username: str):
+    def __init__(self, username: str):
         self.help = "This scrapes articles from the DevCommunity website."
-        self.tag = tag
         self.username = username
 
     
@@ -112,24 +111,25 @@ class DevCommunity:
             return message
 
 
-    def __strTag__(self):
+    def __strTag__(self, tag: str):
         """
 		Class - `DevCommunity` \n
     	Example - \n
     	```python
-        tag_name = dev.__strTag__() 
+        tag_name = dev.__strTag__(tag='python')
         print(tag_name)
         ```
         Return \n
         ```python
 		The list of articles we want to scrape have the tag: python
 		"""
+        self.tag = tag
         return f" The list of articles we want to scrape have the tag: {self.tag}"
     
-    def __scrape_tag(self):
+    def __scrape_tag(self, tag: str):
         try:
-            tag = self.tag
-            data = requests.get(f"https://www.dev.to/t/{tag}")
+            self.tag = tag  
+            data = requests.get(f"https://www.dev.to/t/{self.tag}")
             data.raise_for_status()
             data = BeautifulSoup(data.text, "html.parser")
             return data
@@ -138,12 +138,12 @@ class DevCommunity:
             return message
     
     
-    def tag_articles(self):
+    def tag_articles(self, tag: str):
         """
 		Class - `DevCommunity` \n
     	Example - \n
     	```python
-        tagged_articles = dev.tag_articles()
+        tagged_articles = dev.tag_articles(tag='python')
         pprint(tagged_articles)
         ```
         Return \n
@@ -183,8 +183,9 @@ class DevCommunity:
 		'}',
  		'message': 'Successfully fetched all articles with the given tag.'
 		}
-		"""
-        page = self.__scrape_tag()
+		"""  
+        self.tag = tag
+        page = self.__scrape_tag(self.tag)
         articles_list = {"articles": []}
         try:
             articles = page.find_all( class_="substories")
@@ -412,12 +413,12 @@ class DevCommunity:
             
 
 
-dev = DevCommunity('python','francescoxx')
+dev = DevCommunity('francescoxx')
 articles = dev.all_articles()
 pprint(articles)
 
-tag_name = dev.__strTag__()
-tagged_articles = dev.tag_articles()
+tag_name = dev.__strTag__(tag='python')
+tagged_articles = dev.tag_articles(tag='python')
 print(tag_name)
 pprint(tagged_articles)
 
