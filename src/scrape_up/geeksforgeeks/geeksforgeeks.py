@@ -1,11 +1,14 @@
-from bs4 import BeautifulSoup
+# selenium 4
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.common.exceptions import WebDriverException, NoSuchElementException
+from webdriver_manager.chrome import ChromeDriverManager
+from bs4 import BeautifulSoup
 
 class geeksforgeeks:
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     # using seleinum to access html content
     url = f"https://practice.geeksforgeeks.org/courses?utm_source=geeksforgeeks&utm_medium=main_header&utm_campaign=courses"
-    driver = webdriver.Chrome()
     driver.get(url)
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
