@@ -844,6 +844,30 @@ articles = TechCrunch("category")
 art = TechCrunch("fintech")
 scrape = art.getArticles()
 ```
+
+## YouTube
+
+## Scrape Video
+
+### Scrape video details with title, descriptions, views count, upload date, comment count, channel name, channel avatar, subscriber_count, channel_url
+
+Create an instance of `Video` class.
+
+```python
+vid = Video("video_url")
+```
+
+| Methods        | Details                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
+| `.getDetails()` | Returns the video details with title, descriptions, views count, upload date, comment count, channel name, channel avatar, subscriber_count, channel_url |
+
+**Example**
+
+```python
+git = Video("https://www.youtube.com/watch?v=pBy1zgt0XPc")
+scrape = git.getDetails()
+```
+
 ## TimesJobs
 
 ```python
