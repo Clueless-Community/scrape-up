@@ -454,9 +454,11 @@ class LeetCode:
                 "data": daily_challenge,
                 "message": f"Found daily challenge problem",
             }
+        except:
+            return None
 
-
-    def scrape_solved_count(self, username):
+    def __scrape_solved_count(self):
+        username = self.username
         url = f"https://leetcode.com/{username}"
         driver = webdriver.Chrome(options=self.chrome_options)
         driver.get(url)
@@ -479,7 +481,8 @@ class LeetCode:
                 "message": f"Failed to scrape solved count for user '{username}'",
             }
 
-    def scrape_submissions_count(self, username):
+    def __submissions_count(self):
+        username = self.username
         url = f"https://leetcode.com/{username}"
         driver = webdriver.Chrome(options=self.chrome_options)
         driver.get(url)
@@ -504,8 +507,3 @@ class LeetCode:
                 "submissions_count": None,
                 "message": f"Failed to scrape submissions count for user '{username}'",
             }
-
-        except:
-            message = f"Failed to scrape daily challenge"
-            return {"data": None, "message": message}
-
