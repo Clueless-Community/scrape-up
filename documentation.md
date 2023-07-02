@@ -826,3 +826,50 @@ scrape = art.getArticles()
 ```
 
 ---
+
+## Dev Community 
+
+### Scrape latest articles from home page
+### Scrape latest articles based on a tag
+### Scrape user data, all articles  written by a user and pinned articles written by a user
+
+Create an instance of `DevCommunity` class.
+
+```python
+
+dev = DevCommunity('francescoxx')
+
+| Methods             | Details                                                                               |
+| --------------      | -----------------------------------------------------------------------------------   |
+| `.all_articles()`   | Returns latest articles from the home page of DevCommunity.                           |
+|`.__strTag__()`      | Returns name of the tag specified whose articles we want returned.                    |
+| `.tag_articles()`   | Returns latest articles which have the specified tag in DevCommunity.                 |
+| `.__strUser__()`    | Returns username of the user.                                                         |
+| `.user_details()`   | Returns the user details.                                                             |
+|`.pinned_articles()` | Returns all pinned articles which have been written by the user.                      |
+| `.user_articles()`  | Returns all articles written by the user.                                             |
+
+**Example**
+
+```python
+
+dev = DevCommunity('francescoxx')
+articles = dev.all_articles()
+pprint(articles)
+
+tag_name = dev.__strTag__(tag='python')
+tagged_articles = dev.tag_articles(tag='python')
+print(tag_name)
+pprint(tagged_articles)
+
+user = dev.__strUser__()
+user_detail = dev.user_details()
+pin_articles = dev.pinned_articles()
+user_article = dev.user_articles()
+print(user)
+print(user_detail)
+pprint(pin_articles)
+pprint(user_article)
+```
+
+---
