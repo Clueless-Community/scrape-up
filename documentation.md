@@ -839,6 +839,8 @@ Create an instance of `DevCommunity` class.
 
 dev = DevCommunity('francescoxx')
 
+```
+
 | Methods             | Details                                                                               |
 | --------------      | -----------------------------------------------------------------------------------   |
 | `.all_articles()`   | Returns latest articles from the home page of DevCommunity.                           |
@@ -870,6 +872,7 @@ print(user)
 print(user_detail)
 pprint(pin_articles)
 pprint(user_article)
+
 ```
 
 ---
