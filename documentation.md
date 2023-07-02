@@ -725,6 +725,24 @@ item = Flipkart()
 
 ---
 
+## Spotify
+
+### Scrape up songs
+
+Create an instance of `Spotify` class.
+
+```python
+scraper = Spotify()
+```
+
+| Methods               | Details                                          |
+| --------------------- | ------------------------------------------------ |
+| `.scrape_songs_by_keyword()` | Returns the list of songs that are related to the keyword   |
+| `.scrape_homepage()` | Returns the list of playlists on the homepage |
+| `.close()` | To close the chrome tab that is showing results |
+
+---
+
 ## Ask Ubuntu
 
 ### Scrape questions, views, votes, answer counts, and descriptions from Ask Ubuntu website regarding a topic
@@ -743,6 +761,7 @@ questions = AskUbuntu("topic")
 | `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format         |
 | `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
 | `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
+
 
 **Example**
 
