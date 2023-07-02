@@ -3,15 +3,15 @@ from bs4 import BeautifulSoup
 import json
 
 
-class Video:
+class YouTube:
     """
-    Class - `Video`
+    Class - `YouTube`
     Example:
     ```
-    video_data = Video(video_url = "url")
+    video_data = YouTube(video_url = "url")
     ```\n
     Methods :\n
-    1. ``.getDetails() | Response - Video details with title, descriptions, views count, upload date, 
+    1. ``.getDetails() | Response - Video details with title, descriptions, views count, upload date,
                                     comment count, channel name, channel avatar, subscriber_count, channel_url
     """
 
@@ -50,26 +50,50 @@ class Video:
             script = req_script[20:-1]
             data = json.loads(script)
 
-            base = data["contents"]["twoColumnWatchNextResults"]["results"]["results"]["contents"]
+            base = data["contents"]["twoColumnWatchNextResults"]["results"]["results"][
+                "contents"
+            ]
 
             first = base[0]["videoPrimaryInfoRenderer"]
-            title = first["title"]["runs"][0]["text"].strip().encode("ascii", "ignore").decode()
-            views = first["viewCount"]["videoViewCountRenderer"]["viewCount"]["simpleText"]
+            title = (
+                first["title"]["runs"][0]["text"]
+                .strip()
+                .encode("ascii", "ignore")
+                .decode()
+            )
+            views = first["viewCount"]["videoViewCountRenderer"]["viewCount"][
+                "simpleText"
+            ]
             date = first["dateText"]["simpleText"]
 
-            channel_data = base[1]["videoSecondaryInfoRenderer"]["owner"]["videoOwnerRenderer"]
+            channel_data = base[1]["videoSecondaryInfoRenderer"]["owner"][
+                "videoOwnerRenderer"
+            ]
             avatar = channel_data["thumbnail"]["thumbnails"][2]["url"]
             name = channel_data["title"]["runs"][0]["text"]
-            channel_url = channel_data["title"]["runs"][0]["navigationEndpoint"]["commandMetadata"]["webCommandMetadata"]["url"]
-            subs = channel_data["subscriberCountText"]["accessibility"]["accessibilityData"]["label"]
-            
-            desc = base[1]["videoSecondaryInfoRenderer"]["attributedDescription"]["content"].strip().encode("ascii", "ignore").decode()
-            comment_count = base[2]["itemSectionRenderer"]["contents"][0]["commentsEntryPointHeaderRenderer"]["commentCount"]["simpleText"]
-                                    
+            channel_url = channel_data["title"]["runs"][0]["navigationEndpoint"][
+                "commandMetadata"
+            ]["webCommandMetadata"]["url"]
+            subs = channel_data["subscriberCountText"]["accessibility"][
+                "accessibilityData"
+            ]["label"]
+
+            desc = (
+                base[1]["videoSecondaryInfoRenderer"]["attributedDescription"][
+                    "content"
+                ]
+                .strip()
+                .encode("ascii", "ignore")
+                .decode()
+            )
+            comment_count = base[2]["itemSectionRenderer"]["contents"][0][
+                "commentsEntryPointHeaderRenderer"
+            ]["commentCount"]["simpleText"]
+
             video_data["video_data"].append(
                 {
                     "title": title,
-                    "description": desc[:200]+"...",
+                    "description": desc[:200] + "...",
                     "views_count": views,
                     "upload_date": date,
                     "comment_count": comment_count,
@@ -82,8 +106,8 @@ class Video:
             res_json = json.dumps(video_data)
             return res_json
         except:
-            error_message = {
-                "message": "Can't fetch video data from the url provided."
-            }
+            error_message = {"message": "Can't fetch video data from the url provided."}
             ejson = json.dumps(error_message)
             return ejson
+
+

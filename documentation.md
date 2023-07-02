@@ -736,11 +736,11 @@ Create an instance of `Spotify` class.
 scraper = Spotify()
 ```
 
-| Methods               | Details                                          |
-| --------------------- | ------------------------------------------------ |
-| `.scrape_songs_by_keyword()` | Returns the list of songs that are related to the keyword   |
-| `.scrape_homepage()` | Returns the list of playlists on the homepage |
-| `.close()` | To close the chrome tab that is showing results |
+| Methods                      | Details                                                   |
+| ---------------------------- | --------------------------------------------------------- |
+| `.scrape_songs_by_keyword()` | Returns the list of songs that are related to the keyword |
+| `.scrape_homepage()`         | Returns the list of playlists on the homepage             |
+| `.close()`                   | To close the chrome tab that is showing results           |
 
 ---
 
@@ -762,7 +762,6 @@ questions = AskUbuntu("topic")
 | `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format         |
 | `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
 | `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
-
 
 **Example**
 
@@ -787,9 +786,9 @@ restaurants = EazyDiner(location="city-name")
 | Methods             | Details                                                                                                                                                                       |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.getRestaurants()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format. Check the cities which are accepted in the [eazydiner](https://www.eazydiner.com/) website |
-| `.getBreakfast()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast. |
-| `.getLunch()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch. |
-| `.getDinner()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner. |
+| `.getBreakfast()`   | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast.                                                                              |
+| `.getLunch()`       | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch.                                                                                  |
+| `.getDinner()`      | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.                                                                                 |
 
 **Example**
 
@@ -834,8 +833,8 @@ Create an instance of `TechCrunch` class.
 articles = TechCrunch("category")
 ```
 
-| Methods        | Details                                                                             |
-| -------------- | ----------------------------------------------------------------------------------- |
+| Methods          | Details                                                                             |
+| ---------------- | ----------------------------------------------------------------------------------- |
 | `.getArticles()` | Returns the articles with title, descriptions, images, date and link in JSON format |
 
 **Example**
@@ -854,17 +853,17 @@ scrape = art.getArticles()
 Create an instance of `Video` class.
 
 ```python
-vid = Video("video_url")
+vid = YouTube("video_url")
 ```
 
-| Methods        | Details                                                                             |
-| -------------- | ----------------------------------------------------------------------------------- |
+| Methods         | Details                                                                                                                                                                 |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.getDetails()` | Returns the video details with title, descriptions, views count, upload date, comment count, channel name, channel avatar, subscriber_count, channel_url in JSON format |
 
 **Example**
 
 ```python
-git = Video("https://www.youtube.com/watch?v=pBy1zgt0XPc")
+git = YouTube("https://www.youtube.com/watch?v=pBy1zgt0XPc")
 scrape = git.getDetails()
 ```
 
@@ -882,8 +881,8 @@ First, create an object of the class `Job` and specify the domain to which you w
 Job = TimesJobs('example')
 ```
 
-| Methods           | Details                                    |
-| ----------------- | ------------------------------------------ |
+| Methods     | Details                                                                                 |
+| ----------- | --------------------------------------------------------------------------------------- |
 | `.scrape()` | Returns the various details regarding the companies based on the Job-role as JSON data. |
 
 **Example:**
@@ -896,13 +895,16 @@ if job_data:
 ```
 
 ---
+
 ---
 
-## Dev Community 
+## Dev Community
 
 ### Scrape latest articles from home page
+
 ### Scrape latest articles based on a tag
-### Scrape user data, all articles  written by a user and pinned articles written by a user
+
+### Scrape user data, all articles written by a user and pinned articles written by a user
 
 Create an instance of `DevCommunity` class.
 
@@ -912,15 +914,15 @@ dev = DevCommunity('francescoxx')
 
 ```
 
-| Methods             | Details                                                                               |
-| --------------      | -----------------------------------------------------------------------------------   |
-| `.all_articles()`   | Returns latest articles from the home page of DevCommunity.                           |
-|`.__strTag__()`      | Returns name of the tag specified whose articles we want returned.                    |
-| `.tag_articles()`   | Returns latest articles which have the specified tag in DevCommunity.                 |
-| `.__strUser__()`    | Returns username of the user.                                                         |
-| `.user_details()`   | Returns the user details.                                                             |
-|`.pinned_articles()` | Returns all pinned articles which have been written by the user.                      |
-| `.user_articles()`  | Returns all articles written by the user.                                             |
+| Methods              | Details                                                               |
+| -------------------- | --------------------------------------------------------------------- |
+| `.all_articles()`    | Returns latest articles from the home page of DevCommunity.           |
+| `.__strTag__()`      | Returns name of the tag specified whose articles we want returned.    |
+| `.tag_articles()`    | Returns latest articles which have the specified tag in DevCommunity. |
+| `.__strUser__()`     | Returns username of the user.                                         |
+| `.user_details()`    | Returns the user details.                                             |
+| `.pinned_articles()` | Returns all pinned articles which have been written by the user.      |
+| `.user_articles()`   | Returns all articles written by the user.                             |
 
 **Example**
 
