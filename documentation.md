@@ -718,6 +718,12 @@ Create an instance of `Flipkart` class.
 item = Flipkart()
 ```
 
+| Methods               | Details                                          |
+| --------------------- | ------------------------------------------------ |
+| `.TVs()`              | Returns the list of TV sets on flipkart          |
+| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
+| `.scrapdatamobiles()` | Returns the list of the mobile phone which are under 50k flipkart |
+=======
 | Methods               | Details                                           |
 | --------------------- | ------------------------------------------------- |
 | `.TVs()`              | Returns the list of TV sets on flipkart           |
@@ -773,6 +779,7 @@ scrape = que.getNewQuestions()
 
 ---
 
+=======
 ## EazyDiner
 
 ### Scrape restaurants name, location, rating, cuisine and prices from eazydiner website for a given city
