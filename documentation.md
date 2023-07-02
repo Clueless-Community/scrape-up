@@ -717,10 +717,11 @@ Create an instance of `Flipkart` class.
 item = Flipkart()
 ```
 
-| Methods               | Details                                          |
-| --------------------- | ------------------------------------------------ |
-| `.TVs()`              | Returns the list of TV sets on flipkart          |
-| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
+| Methods               | Details                                           |
+| --------------------- | ------------------------------------------------- |
+| `.TVs()`              | Returns the list of TV sets on flipkart           |
+| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart  |
+| `.SportsShoes()`      | Returns the list of sprt shoes listed on Flipkart |
 
 ---
 
@@ -728,29 +729,26 @@ item = Flipkart()
 
 ### Scrape questions, views, votes, answer counts, and descriptions from Ask Ubuntu website regarding a topic
 
-Create an instance of `Questions` class.
+Create an instance of `AskUbuntu` class.
 
 ```python
-questions = Questions("topic")
+questions = AskUbuntu("topic")
 ```
 
-| Methods     | Details                                                                             |
-| ----------- | ----------------------------------------------------------------------------------- |
-| `.scrape()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format              |
+| `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format           |
+| `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format       |
+| `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format         |
+| `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
 
 **Example**
 
 ```python
-que = Questions("github")
-scrape = que.scrape()
-json = json.loads(scrape)
-questions = json["questions"]
-for q in questions:
-    print("\nQuestion: ", q["question"])
-    print("Views: ", q["views"])
-    print("Votes: ", q["vote_count"])
-    print("Answers: ", q["answer_count"])
-    print("Description: ", q["description\n"])
+que = AskUbuntu("github")
+scrape = que.getNewQuestions()
 
 ```
 
@@ -769,20 +767,15 @@ restaurants = EazyDiner(location="city-name")
 | Methods             | Details                                                                                                                                                                       |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.getRestaurants()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format. Check the cities which are accepted in the [eazydiner](https://www.eazydiner.com/) website |
+| `.getBreakfast()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast. |
+| `.getLunch()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch. |
+| `.getDinner()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner. |
 
 **Example**
 
 ```python
 blr = EazyDiner("south-bengaluru")
 scrape = blr.getRestaurants()
-json = json.loads(scrape)
-restaurants = json["restaurants"]
-for r in restaurants:
-    print("\nRestaurant: ", q["restaurant"])
-    print("Location: ", q["location"])
-    print("Rating: ", q["rating"])
-    print("Cuisines: ", q["cuisine"])
-    print("Price: ", q["price\n"])
 
 ```
 
@@ -818,8 +811,8 @@ Create an instance of `StackOverflow` class.
 questions = StackOverflow("topic")
 ```
 
-| Methods     | Details                                                                             |
-| ----------- | ----------------------------------------------------------------------------------- |
+| Methods        | Details                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
 | `.questions()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
 
 **Example**
@@ -827,16 +820,30 @@ questions = StackOverflow("topic")
 ```python
 que = StackOverflow("github")
 scrape = que.scrape()
-json = json.loads(scrape)
-questions = json["questions"]
-for q in questions:
-    print("\nQuestion: ", q["question"])
-    print("Views: ", q["views"])
-    print("Votes: ", q["vote_count"])
-    print("Answers: ", q["answer_count"])
-    print("Description: ", q["description\n"])
-
 ```
 
 ---
 
+
+## Tech Crunch
+
+### Scrape articles with title, descriptions, images, date and link regarding a category
+
+Create an instance of `TechCrunch` class.
+
+```python
+articles = TechCrunch("category")
+```
+
+| Methods        | Details                                                                             |
+| -------------- | ----------------------------------------------------------------------------------- |
+| `.getArticles()` | Returns the articles with title, descriptions, images, date and link in JSON format |
+
+**Example**
+
+```python
+art = TechCrunch("fintech")
+scrape = art.getArticles()
+```
+
+---
