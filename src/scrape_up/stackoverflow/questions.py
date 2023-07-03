@@ -236,7 +236,23 @@ class StackOverflow:
             return ejson
         
     def getFrequentQuestions(self):
-        
+        """
+        Returns the frequent questions, views, votes, answer counts, and descriptions in JSON format\n
+        Class - `StackOverflow`
+        Example:
+        ```
+        que = StackOverflow(topic="github")
+        scrape = que.getFrequentQuestions()
+        ```
+        Returns:
+        {
+            "question": question title
+            "views": view count of question
+            "vote_count": vote count of question
+            "answer_count": no. of answers to the question
+            "description": description of the question
+        }
+        """
         url = "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Frequent"
         try:
             res = requests.get(url)
