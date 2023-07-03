@@ -293,7 +293,23 @@ class StackOverflow:
             return ejson
         
     def getHighScoredQuestions(self):
-        
+        """
+        Returns the high scored questions, views, votes, answer counts, and descriptions in JSON format\n
+        Class - `StackOverflow`
+        Example:
+        ```
+        que = StackOverflow(topic="github")
+        scrape = que.getHighScoredQuestions()
+        ```
+        Returns:
+        {
+            "question": question title
+            "views": view count of question
+            "vote_count": vote count of question
+            "answer_count": no. of answers to the question
+            "description": description of the question
+        }
+        """
         url = "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Votes"
         try:
             res = requests.get(url)
