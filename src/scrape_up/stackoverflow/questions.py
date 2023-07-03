@@ -9,7 +9,7 @@ class StackOverflow:
 
     def getNewQuestions(self):
         """
-        Returns the questions, views, votes, answer counts, and descriptions in JSON format\n
+        Returns the newest questions, views, votes, answer counts, and descriptions in JSON format\n
         Class - `StackOverflow`
         Example:
         ```
@@ -65,7 +65,23 @@ class StackOverflow:
             return ejson
         
     def getActiveQuestions(self):
-        
+        """
+        Returns the active questions, views, votes, answer counts, and descriptions in JSON format\n
+        Class - `StackOverflow`
+        Example:
+        ```
+        que = StackOverflow(topic="github")
+        scrape = que.getActiveQuestions()
+        ```
+        Returns:
+        {
+            "question": question title
+            "views": view count of question
+            "vote_count": vote count of question
+            "answer_count": no. of answers to the question
+            "description": description of the question
+        }
+        """
         url = "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Active"
         try:
             res = requests.get(url)
