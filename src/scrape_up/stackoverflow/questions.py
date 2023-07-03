@@ -7,25 +7,9 @@ class StackOverflow:
     def __init__(self, topic):
         self.topic = topic
 
-    def questions(self):
-        """
-        Returns the questions, views, votes, answer counts, and descriptions in JSON format\n
-        Class - `StackOverflow`
-        Example:
-        ```
-        que = StackOverflow(topic="github")
-        scrape = que.questions()
-        ```
-        Returns:
-        {
-            "question": question title
-            "views": view count of question
-            "vote_count": vote count of question
-            "answer_count": no. of answers to the question
-            "description": description of the question
-        }
-        """
-        url = "https://stackoverflow.com/questions/tagged/" + self.topic
+    def getNewQuestions(self):
+        
+        url = "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Newest"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -66,4 +50,4 @@ class StackOverflow:
 
 
 ques = StackOverflow(topic="Python")
-print(ques.result())
+print(ques.getNewQuestions())
