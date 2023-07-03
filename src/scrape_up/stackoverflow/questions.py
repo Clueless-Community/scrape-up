@@ -348,6 +348,3 @@ class StackOverflow:
 
             ejson = json.dumps(error_message)
             return ejson
-
-ques = StackOverflow(topic="Python")
-print(ques.getHighScoredQuestions())
