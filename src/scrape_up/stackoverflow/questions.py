@@ -8,7 +8,23 @@ class StackOverflow:
         self.topic = topic
 
     def getNewQuestions(self):
-        
+        """
+        Returns the questions, views, votes, answer counts, and descriptions in JSON format\n
+        Class - `StackOverflow`
+        Example:
+        ```
+        que = StackOverflow(topic="github")
+        scrape = que.getNewQuestions()
+        ```
+        Returns:
+        {
+            "question": question title
+            "views": view count of question
+            "vote_count": vote count of question
+            "answer_count": no. of answers to the question
+            "description": description of the question
+        }
+        """
         url = "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Newest"
         try:
             res = requests.get(url)
