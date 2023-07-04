@@ -4,12 +4,29 @@ import json
 
 
 class StackOverflow:
+    """
+        Class - `StackOverflow`\n
+        Example
+        ```python
+        que = StackOverflow(topic:str)
+        ```
+        \n
+    | Methods                     | Details                                                                                              |
+    | --------------------------- | ---------------------------------------------------------------------------------------------------- |
+    | `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format              |
+    | `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format           |
+    | `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format       |
+    | `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format         |
+    | `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
+    | `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
+    """
+
     def __init__(self, topic):
         self.topic = topic
 
     def getNewQuestions(self):
         """
-        Returns the newest questions, views, votes, answer counts, and descriptions in JSON format\n
+        Returns the list of newest questions, views, votes, answer counts, and descriptions.\n
         Class - `StackOverflow`
         Example:
         ```
@@ -63,10 +80,10 @@ class StackOverflow:
 
             ejson = json.dumps(error_message)
             return ejson
-        
+
     def getActiveQuestions(self):
         """
-        Returns the active questions, views, votes, answer counts, and descriptions in JSON format\n
+        Returns the list of active questions, views, votes, answer counts, and descriptions.\n
         Class - `StackOverflow`
         Example:
         ```
@@ -113,17 +130,14 @@ class StackOverflow:
                         "description": desc,
                     }
                 )
-            json_data = json.dumps(questions_data)
-            return json_data
+            questions_list = questions_data["questions"]
+            return questions_list
         except:
-            error_message = {"message": "No questions related to the topic found"}
+            return None
 
-            ejson = json.dumps(error_message)
-            return ejson
-        
     def getBountiedQuestions(self):
         """
-        Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format\n
+        Returns the list of bountied questions, views, votes, answer counts, and descriptions.\n
         Class - `StackOverflow`
         Example:
         ```
@@ -139,7 +153,9 @@ class StackOverflow:
             "description": description of the question
         }
         """
-        url = "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Bounties"
+        url = (
+            "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Bounties"
+        )
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -170,17 +186,14 @@ class StackOverflow:
                         "description": desc,
                     }
                 )
-            json_data = json.dumps(questions_data)
-            return json_data
+            questions_list = questions_data["questions"]
+            return questions_list
         except:
-            error_message = {"message": "No questions related to the topic found"}
+            return None
 
-            ejson = json.dumps(error_message)
-            return ejson
-        
     def getUnansweredQuestions(self):
         """
-        Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format\n
+        Returns the list of unanswered questions, views, votes, answer counts, and descriptions.\n
         Class - `StackOverflow`
         Example:
         ```
@@ -196,7 +209,11 @@ class StackOverflow:
             "description": description of the question
         }
         """
-        url = "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Unanswered"
+        url = (
+            "https://stackoverflow.com/questions/tagged/"
+            + self.topic
+            + "?tab=Unanswered"
+        )
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -227,17 +244,14 @@ class StackOverflow:
                         "description": desc,
                     }
                 )
-            json_data = json.dumps(questions_data)
-            return json_data
+            questions_list = questions_data["questions"]
+            return questions_list
         except:
-            error_message = {"message": "No questions related to the topic found"}
+            return None
 
-            ejson = json.dumps(error_message)
-            return ejson
-        
     def getFrequentQuestions(self):
         """
-        Returns the frequent questions, views, votes, answer counts, and descriptions in JSON format\n
+        Returns the list of frequent questions, views, votes, answer counts, and descriptions.\n
         Class - `StackOverflow`
         Example:
         ```
@@ -253,7 +267,9 @@ class StackOverflow:
             "description": description of the question
         }
         """
-        url = "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Frequent"
+        url = (
+            "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Frequent"
+        )
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -284,17 +300,14 @@ class StackOverflow:
                         "description": desc,
                     }
                 )
-            json_data = json.dumps(questions_data)
-            return json_data
+            questions_list = questions_data["questions"]
+            return questions_list
         except:
-            error_message = {"message": "No questions related to the topic found"}
+            return None
 
-            ejson = json.dumps(error_message)
-            return ejson
-        
     def getHighScoredQuestions(self):
         """
-        Returns the high scored questions, views, votes, answer counts, and descriptions in JSON format\n
+        Returns the list of high scored questions, views, votes, answer counts, and descriptions.\n
         Class - `StackOverflow`
         Example:
         ```
@@ -341,10 +354,11 @@ class StackOverflow:
                         "description": desc,
                     }
                 )
-            json_data = json.dumps(questions_data)
-            return json_data
+            questions_list = questions_data["questions"]
+            return questions_list
         except:
-            error_message = {"message": "No questions related to the topic found"}
+            return None
 
-            ejson = json.dumps(error_message)
-            return ejson
+
+stack = StackOverflow(topic="python")
+print(stack.getBountiedQuestions())

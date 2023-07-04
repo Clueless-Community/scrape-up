@@ -718,17 +718,18 @@ Create an instance of `Flipkart` class.
 item = Flipkart()
 ```
 
-| Methods               | Details                                          |
-| --------------------- | ------------------------------------------------ |
-| `.TVs()`              | Returns the list of TV sets on flipkart          |
-| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
+| Methods               | Details                                                           |
+| --------------------- | ----------------------------------------------------------------- |
+| `.TVs()`              | Returns the list of TV sets on flipkart                           |
+| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart                  |
 | `.scrapdatamobiles()` | Returns the list of the mobile phone which are under 50k flipkart |
+
 =======
-| Methods               | Details                                           |
+| Methods | Details |
 | --------------------- | ------------------------------------------------- |
-| `.TVs()`              | Returns the list of TV sets on flipkart           |
-| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart  |
-| `.SportsShoes()`      | Returns the list of sprt shoes listed on Flipkart |
+| `.TVs()` | Returns the list of TV sets on flipkart |
+| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
+| `.SportsShoes()` | Returns the list of sprt shoes listed on Flipkart |
 
 ---
 
@@ -780,6 +781,7 @@ scrape = que.getNewQuestions()
 ---
 
 =======
+
 ## EazyDiner
 
 ### Scrape restaurants name, location, rating, cuisine and prices from eazydiner website for a given city
@@ -817,8 +819,8 @@ Create an instance of `StackOverflow` class.
 questions = StackOverflow("topic")
 ```
 
-| Methods        | Details                                                                             |
-| -------------- | ----------------------------------------------------------------------------------- |
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format              |
 | `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format           |
 | `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format       |
