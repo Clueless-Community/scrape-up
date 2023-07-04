@@ -4,13 +4,36 @@ import json
 
 
 class GoogleNews:
+    """
+    Class - `GoogleNews`
+    Example:
+    ```
+    articles = GoogleNews(topic = "topic")
+    ```\n
+    Methods :\n
+    1. ``.getArticles() | Response - Articles with title, descriptions, news source, date and link.
+    """
     
-
     def __init__(self, topic):
         self.topic = topic
 
     def getArticles(self):
-        
+        """
+        Class - `GoogleNews`
+        Example:
+        ```
+        articles = GoogleNews("github")
+        articles.getArticles()
+        ```
+        Returns:
+        {
+            "title": Tile of the article
+            "description": Description of the article
+            "news_source": News Source of the Article
+            "date": Date the article was posted
+            "link": Link to the article
+        }
+        """
         url = (
             "https://www.google.com/search?q=" + self.topic + "&tbm=nws"
         )
