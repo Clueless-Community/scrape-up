@@ -983,3 +983,38 @@ pprint(user_article)
 ```
 
 ---
+
+---
+
+## Goodreads
+
+### Scrape all details of a book
+
+Create an instance of `BookScraper` Class.
+
+```py
+# Using author and Book_title
+hp = BookScraper(book_title="Harry Potter and the Philosopher's stone",author="J.K. Rowling")
+# or using book_id
+hp = BookScraper(book_id=72193)
+
+```
+
+| Methods                 | Details                                                                |
+| ------------------------|---------------------------------------------------------------------   |
+| `.get_title()`          | Returns the book title.                                                |
+| `.get_author()`         | Returns name of the author.                                            |
+| `.get_description()`    | Returns description of book.                                           |
+| `.get_genres()`         | Returns list containing genres of book.                                |
+| `.get_edition_details()`| Returns all edition details like numeber of pages, ISBN number etc.    |
+| `.get_all_details()`    | Returns a dictionary containing all the abover details.                |
+
+#### Getting book id of a book from Goodreads.
+1. Go to web page of particular book on [Goodreads](https://goodreads.com) Platform.
+2. Copy the following number from the url of page of book i.e. which is after `https://www.goodreads.com/book/show/`  and before book title.  
+Example:  
+url -> https://www.goodreads.com/book/show/`72193`.Harry_Potter_and_the_Philosopher_s_Stone  
+book id -> 72193
+
+
+
