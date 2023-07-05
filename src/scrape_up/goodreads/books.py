@@ -69,7 +69,12 @@ class BookScraper:
             BeautifulSoup object: Parsed HTML content of the book page.
         """
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        driver_path = os.path.join(BASE_DIR, r"\Drivers\.wdm\drivers\chromedriver\win32\114.0.5735.90\chromedriver.exe")
+        driver_path = ""
+        if "/" in BASE_DIR:
+            driver_path = os.path.join(BASE_DIR, r"/Drivers/.wdm/drivers/chromedriver/win32/114.0.5735.90/chromedriver.exe")
+        else:
+            driver_path = os.path.join(BASE_DIR, r"\Drivers\.wdm\drivers\chromedriver\win32\114.0.5735.90\chromedriver.exe")
+
         driver = webdriver.Chrome(
             service=Service(driver_path),
             options=self.chrome_options
