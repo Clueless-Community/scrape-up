@@ -4,38 +4,42 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import requests
 from bs4 import BeautifulSoup
+import time
 from time import sleep
 import json
 
 
+def time_it(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.perf_counter()
+        result = func(*args, **kwargs)
+        end_time = time.perf_counter()
+        print(f"Elapsed time: {end_time - start_time:.5f} seconds")
+        return result
+    return wrapper
 
 
 
 class BookScraper:
     """
-    
+    The following class helps in scraping details of a particular book based
+    on author and book_title or book id in Goodreads.
+    Usage:
+        Create an instance of class BookScraper for a particular book
+        >>> hp = BookScraper(book_title="Harry Potter and the Philosopher's stone",author="J.K. Rowling")
+        or using book id.
+        >>> hp = BookScraper(book_id=72193)
+        then get all book details of harry potter book by
+        >>> print(hp.get_all_details())
+
+        Note: You can get book id by going to goodreads page for the book you want to scrape.
+        Refer Documentation for more details.
+
     """
     search_url = "https://www.goodreads.com/search?utf8=%E2%9C%93&query={}"
     autocomplete_url = "https://www.goodreads.com/book/auto_complete?format=json&q={}"
     book_url = "https://www.goodreads.com/book/show/{}"
-    # headers = {
-    #     "Connection": "keep-alive",
-    #     "Cache-Control": "max-age=0",
-    #     "DNT": "1",
-    #     "Upgrade-Insecure-Requests": "1",
-    #     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36",
-    #     "Sec-Fetch-User": "?1",
-    #     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-    #     "Sec-Fetch-Site": "none",
-    #     "Sec-Fetch-Mode": "navigate",
-    #     "Accept-Encoding": "gzip, deflate, br",
-    #     "Accept-Language": "en-US,en;q=0.9,hi;q=0.8",
-    # }
-    # to handle html requests
     fetcher = requests.Session()
-    # fetcher.headers.update(headers)
-
-    # adding all options for chrome driver
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-logging")
@@ -71,19 +75,18 @@ class BookScraper:
                 
             except requests.exceptions.ConnectionError:
                 raise Exception("Connection error, Please try again.")
-    
     def get_soup(self):
         """
         Using selenium to get page source after executing javascript
         """
         driver = webdriver.Chrome(
-                service=Service(r".\Drivers\.wdm\drivers\chromedriver\win32\114.0.5735.90\chromedriver.exe"),
+                service=Service(ChromeDriverManager().install()),
                 options=self.chrome_options
             )
         driver.get(
             self.book_url
         )
-
+        
         element = driver.find_element("xpath","/html/body/div[1]/div[2]/main/div[1]/div[2]/div[1]/div[2]/div[6]/div/div/button/span[1]")
         driver.execute_script("arguments[0].click();", element)
 
@@ -130,10 +133,29 @@ class BookScraper:
         self.edition_details = {key:value for key,value in data_list}
         return self.edition_details
 
-
-
+    def get_all_details(self):
+        """
+        """
+        try:
+            data = {
+                "Title": self.get_title(),
+                "Author": self.get_author(),
+                "Description": self.get_description(),
+                "Genres": self.get_genres(),
+                "Edition Details": self.get_edition_details()
+            }
+            message = f"Found all details of book {self.book_title} by {self.author}"
+        except Exception as e:
+            data = None
+            message = f"Could not find Details of book{self.book_title} by {self.author} due to error {e}"
+        finally:
+            return {
+                data: data,
+                message: message,
+            }
 
     
+
 if __name__=="__main__":
     hp = BookScraper(book_title="harry potter and the prisoner of azkaban ",author="J.K. Rowling")
     print(hp.get_title())
