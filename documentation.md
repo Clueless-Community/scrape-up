@@ -994,9 +994,9 @@ Create an instance of `BookScraper` Class.
 
 ```py
 # Using author and Book_title
-hp = BookScraper(book_title="Harry Potter and the Philosopher's stone",author="J.K. Rowling")
+book = BookScraper(book_title="The Hunger Games",author="Suzanne Collins")
 # or using book_id
-hp = BookScraper(book_id=72193)
+book = BookScraper(book_id=2767052)
 
 ```
 
@@ -1009,12 +1009,18 @@ hp = BookScraper(book_id=72193)
 | `.get_edition_details()`| Returns all edition details like numeber of pages, ISBN number etc.    |
 | `.get_all_details()`    | Returns a dictionary containing all the abover details.                |
 
+Example:
+```py
+print(book.get_description())
+print(book.get_all_details())
+```
+
 #### Getting book id of a book from Goodreads.
 1. Go to web page of particular book on [Goodreads](https://goodreads.com) Platform.
 2. Copy the following number from the url of page of book i.e. which is after `https://www.goodreads.com/book/show/`  and before book title.  
 Example:  
-url -> https://www.goodreads.com/book/show/`72193`.Harry_Potter_and_the_Philosopher_s_Stone  
-book id -> 72193
+url -> https://www.goodreads.com/book/show/`2767052`-the-hunger-games
+book id -> 2767052
 
 
 
