@@ -119,7 +119,16 @@ class BookScraper:
             ))[:-1]
         return self.genres
 
-    
+    def get_edition_details(self):
+        data_list = list(
+                map(lambda x: (x.find("dt").text, x.find("dd").text),
+                self.book_soup
+                .find("div",class_="EditionDetails")
+                .find_all("div",class_="DescListItem")
+                )
+            )
+        self.edition_details = {key:value for key,value in data_list}
+        return self.edition_details
 
 
 
