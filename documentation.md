@@ -718,17 +718,18 @@ Create an instance of `Flipkart` class.
 item = Flipkart()
 ```
 
-| Methods               | Details                                          |
-| --------------------- | ------------------------------------------------ |
-| `.TVs()`              | Returns the list of TV sets on flipkart          |
-| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
+| Methods               | Details                                                           |
+| --------------------- | ----------------------------------------------------------------- |
+| `.TVs()`              | Returns the list of TV sets on flipkart                           |
+| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart                  |
 | `.scrapdatamobiles()` | Returns the list of the mobile phone which are under 50k flipkart |
+
 =======
-| Methods               | Details                                           |
+| Methods | Details |
 | --------------------- | ------------------------------------------------- |
-| `.TVs()`              | Returns the list of TV sets on flipkart           |
-| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart  |
-| `.SportsShoes()`      | Returns the list of sprt shoes listed on Flipkart |
+| `.TVs()` | Returns the list of TV sets on flipkart |
+| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
+| `.SportsShoes()` | Returns the list of sprt shoes listed on Flipkart |
 
 ---
 
@@ -780,6 +781,7 @@ scrape = que.getNewQuestions()
 ---
 
 =======
+
 ## EazyDiner
 
 ### Scrape restaurants name, location, rating, cuisine and prices from eazydiner website for a given city
@@ -817,15 +819,20 @@ Create an instance of `StackOverflow` class.
 questions = StackOverflow("topic")
 ```
 
-| Methods        | Details                                                                             |
-| -------------- | ----------------------------------------------------------------------------------- |
-| `.questions()` | Returns the questions, views, votes, answer counts, and descriptions in JSON format |
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format              |
+| `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format           |
+| `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format       |
+| `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format         |
+| `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
+| `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
 
 **Example**
 
 ```python
 que = StackOverflow("github")
-scrape = que.scrape()
+scrape = que.getNewQuestions()
 ```
 
 ---
@@ -874,6 +881,26 @@ git = YouTube("https://www.youtube.com/watch?v=pBy1zgt0XPc")
 scrape = git.getDetails()
 ```
 
+## Google News
+
+### Scrape articles with title, descriptions, news source, date and link regarding a topic
+
+Create an instance of `GoogleNews` class.
+
+```python
+articles = GoogleNews("topic")
+```
+
+| Methods          | Details                                                                             |
+| ---------------- | ----------------------------------------------------------------------------------- |
+| `.getArticles()` | Returns the articles with title, descriptions, news source, date and link in JSON format |
+
+**Example**
+
+```python
+art = GoogleNews("github")
+scrape = art.getArticles()
+```
 ## TimesJobs
 
 ```python
