@@ -881,6 +881,26 @@ git = YouTube("https://www.youtube.com/watch?v=pBy1zgt0XPc")
 scrape = git.getDetails()
 ```
 
+## Google News
+
+### Scrape articles with title, descriptions, news source, date and link regarding a topic
+
+Create an instance of `GoogleNews` class.
+
+```python
+articles = GoogleNews("topic")
+```
+
+| Methods          | Details                                                                             |
+| ---------------- | ----------------------------------------------------------------------------------- |
+| `.getArticles()` | Returns the articles with title, descriptions, news source, date and link in JSON format |
+
+**Example**
+
+```python
+art = GoogleNews("github")
+scrape = art.getArticles()
+```
 ## TimesJobs
 
 ```python
