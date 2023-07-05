@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+import os
 from selenium.webdriver.chrome.options import Options
 import requests
 from bs4 import BeautifulSoup
@@ -68,8 +68,10 @@ class BookScraper:
         Returns:
             BeautifulSoup object: Parsed HTML content of the book page.
         """
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        driver_path = os.path.join(BASE_DIR, r"\Drivers\.wdm\drivers\chromedriver\win32\114.0.5735.90\chromedriver.exe")
         driver = webdriver.Chrome(
-            service=Service(ChromeDriverManager().install()),
+            service=Service(driver_path),
             options=self.chrome_options
         )
         driver.get(self.book_url)
