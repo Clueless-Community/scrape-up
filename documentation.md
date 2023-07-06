@@ -839,23 +839,25 @@ scrape = que.getNewQuestions()
 
 ## Tech Crunch
 
-### Scrape articles with title, descriptions, images, date and link regarding a category
+### Scrape articles with title, descriptions, images, author, date and link
 
 Create an instance of `TechCrunch` class.
 
 ```python
-articles = TechCrunch("category")
+articles = TechCrunch()
 ```
 
 | Methods          | Details                                                                             |
 | ---------------- | ----------------------------------------------------------------------------------- |
-| `.getArticles()` | Returns the articles with title, descriptions, images, date and link in JSON format |
+| `.getArticles()` | Returns the articles with title, descriptions, images, author, date and link regarding a category in JSON format |
+| `.search()` | Returns the searched articles with title, descriptions, images, author, date and link regarding a topic in JSON format |
 
 **Example**
 
 ```python
-art = TechCrunch("fintech")
-scrape = art.getArticles()
+art = TechCrunch()
+scrape = art.getArticles("fintech")
+articles = art.search("github)
 ```
 
 ## YouTube
