@@ -8,7 +8,7 @@ class TechCrunch:
     Class - `TechCrunch`
     Example:
     ```
-    articles = TechCrunch(category = "topic")
+    articles = TechCrunch()
     ```\n
     Methods :\n
     1. ``.getArticles() | Response - Articles with title, descriptions, images, date and link.
@@ -20,8 +20,8 @@ class TechCrunch:
         Class - `TechCrunch`
         Example:
         ```
-        articles = TechCrunch("artificial-intelligence")
-        articles.getArticles()
+        articles = TechCrunch()
+        articles.getArticles("artificial-intelligence")
         ```
         Returns:
         {
