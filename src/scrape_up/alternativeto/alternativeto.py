@@ -1,15 +1,26 @@
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
+
+# Edge
+from selenium.webdriver.edge.options import Options
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from selenium.webdriver.edge.service import Service
+
+# Firefox
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.service import Service as FirefoxService
+
+# Chrome
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 
 class AlternativeTo:
     """
     Class - `AlternativeTo`\n
+    Parameters - `available_browser` -> Provide The Available Browser from (Edge, Chrome and Firefox)\n
     Description - `Scrape data from AlternativeTo and Provide with Alternatives to the app.`\n
     Methods -\n
         `new_apps()` - `Returns a list of new apps from AlternativeTo`\n
@@ -44,21 +55,69 @@ class AlternativeTo:
     }
     BASE_URL = "https://alternativeto.net/"
 
-    def __init__(self) -> None:
-        self.chrome_options = Options()
-        self.chrome_options.add_experimental_option(
-            "excludeSwitches", ["enable-logging"]
-        )
-        self.chrome_options.add_experimental_option("detach", True)
-        self.service = Service(ChromeDriverManager().install())
+    def __init__(self, available_browser=None) -> None:
         self.home_page_data = None
+        if available_browser is not None:
+            self.available_browser = available_browser.lower()
+        else:
+            # Check if Edge is installed
+            try:
+                self.edge_options = Options()
+                self.edge_options.add_experimental_option(
+                    "excludeSwitches", ["enable-logging"]
+                )
+                self.edge_options.add_experimental_option("detach", True)
+                self.edge_service = Service(EdgeChromiumDriverManager().install())
+                self.driver = webdriver.Edge(
+                    service=self.edge_service, options=self.edge_options
+                )
+                self.driver.quit()
+                self.available_browser = "edge"
+            except Exception as e:
+                # Check if Chrome is installed
+                try:
+                    self.chrome_options = ChromeOptions()
+                    self.chrome_options.add_experimental_option(
+                        "excludeSwitches", ["enable-logging"]
+                    )
+                    self.chrome_options.add_experimental_option("detach", True)
+                    self.chrome_service = ChromeService(ChromeDriverManager().install())
+                    self.driver = webdriver.Chrome(
+                        service=self.chrome_service, options=self.chrome_options
+                    )
+                    self.driver.quit()
+                    self.available_browser = "chrome"
+                except Exception as e:
+                    try:
+                        # Check if Firefox is installed
+                        self.firefox_service = FirefoxService(
+                            GeckoDriverManager().install()
+                        )
+                        self.driver = webdriver.Firefox(service=self.firefox_service)
+                        self.driver.quit()
+                        self.available_browser = "firefox"
+                    except Exception as e:
+                        self.available_browser = None
+
+    def __set_driver(self) -> None:
+        if self.available_browser == "edge":
+            self.driver = webdriver.Edge(
+                service=self.edge_service, options=self.edge_options
+            )
+        elif self.available_browser == "chrome":
+            self.driver = webdriver.Chrome(
+                service=self.chrome_service, options=self.chrome_options
+            )
+        elif self.available_browser == "firefox":
+            self.driver = webdriver.Firefox(service=self.firefox_service)
+        else:
+            print("No browser found.")
+            raise Exception("No browser found.")
 
     def __scrape_home(self, index) -> list | None:
         try:
             if self.home_page_data is None:
-                self.driver = webdriver.Chrome(
-                    service=self.service, options=self.chrome_options
-                )
+                self.__set_driver()
                 self.driver.minimize_window()
                 self.wait = WebDriverWait(self.driver, 100)
                 self.driver.get(self.BASE_URL)
@@ -100,7 +159,7 @@ class AlternativeTo:
         Parameters - `None`\n
         Example -\n
         ```python
-            scraper = AlternativeTo()
+            scraper = AlternativeTo("chrome")
             new_apps = scraper.new_apps()
             if new_apps is not None:
                 for app in new_apps:
@@ -128,7 +187,7 @@ class AlternativeTo:
         Parameters - `None`\n
         Example -\n
         ```python
-            scraper = AlternativeTo()
+            scraper = AlternativeTo("chrome")
             most_viewed_apps = scraper.most_viewed()
             if most_viewed_apps is not None:
                 for app in most_viewed_apps:
@@ -153,7 +212,7 @@ class AlternativeTo:
         Parameters - `None`\n
         Example -\n
         ```python
-            scraper = AlternativeTo()
+            scraper = AlternativeTo("chrome")
             trending_apps = scraper.trending()
             if trending_apps is not None:
                 for app in trending_apps:
@@ -178,7 +237,7 @@ class AlternativeTo:
         Parameters - `None`\n
         Example -\n
         ```python
-            scraper = AlternativeTo()
+            scraper = AlternativeTo("chrome")
             crew_picked_apps = scraper.crew_picked()
             if crew_picked_apps is not None:
                 for app in crew_picked_apps:
@@ -206,7 +265,7 @@ class AlternativeTo:
         Parameters - `None`\n
         Example -\n
         ```python
-            scraper = AlternativeTo()
+            scraper = AlternativeTo("chrome")
             discontinued_apps = scraper.discontinued()
             if discontinued_apps is not None:
                 for app in discontinued_apps:
@@ -247,7 +306,7 @@ class AlternativeTo:
             page - `Page number`\n
         Example -\n
         ```python
-            scraper = AlternativeTo()
+            scraper = AlternativeTo("chrome")
             data = scraper.get_alternatives(
                 "youtube",
                 page=1,
@@ -272,9 +331,7 @@ class AlternativeTo:
         ```
         """
         try:
-            self.driver = webdriver.Chrome(
-                service=self.service, options=self.chrome_options
-            )
+            self.__set_driver()
             self.driver.minimize_window()
             self.wait = WebDriverWait(self.driver, 100)
             URL = self.BASE_URL + "software/" + app_id + f"/?p={page}"
@@ -391,7 +448,7 @@ class AlternativeTo:
             page - `Page number`\n
         Example -\n
         ```python
-            scraper = AlternativeTo()
+            scraper = AlternativeTo("chrome")
             data = scraper.search_app("photoshop")
             if data is not None:
                 print("Search Results")
@@ -409,9 +466,7 @@ class AlternativeTo:
         ```
         """
         try:
-            self.driver = webdriver.Chrome(
-                service=self.service, options=self.chrome_options
-            )
+            self.__set_driver()
             self.driver.minimize_window()
             self.wait = WebDriverWait(self.driver, 100)
             URL = self.BASE_URL + "browse/search/?q=" + name + f"&p={page}"

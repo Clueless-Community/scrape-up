@@ -1003,8 +1003,10 @@ from scrape_up.alternativeto import AlternativeTo
 ### Create an instance of `AlternativeTo` class.
 
 ```python
-scraper = AlternativeTo()
+scraper = AlternativeTo("chrome")       # Provide With Available Browser
 ```
+#### Currently Supports Chrome, Edge and Firefox only
+
 
 | Methods              | Details                                                               |
 | -------------------- | --------------------------------------------------------------------- |
@@ -1022,7 +1024,7 @@ scraper = AlternativeTo()
 ```python
 from scrape_up.alternativeto import AlternativeTo
 
-scraper = AlternativeTo()
+scraper = AlternativeTo("chrome")
 new_apps = scraper.new_apps()
 crew_picked = scraper.crew_picked()
 most_viewed = scraper.most_viewed()
@@ -1084,7 +1086,7 @@ else:
 
 ## Get Alternatives
 ```python
-scraper = AlternativeTo()
+scraper = AlternativeTo("chrome")
 data = scraper.get_alternatives(
     "youtube",
     page=1,
@@ -1110,7 +1112,7 @@ else:
 
 ## Search Apps
 ```python
-scraper = AlternativeTo()
+scraper = AlternativeTo("chrome")
 data = scraper.search_app("photoshop",page=1)
 if data is not None:
     print("Search Results")
