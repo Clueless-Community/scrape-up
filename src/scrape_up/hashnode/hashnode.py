@@ -4,10 +4,36 @@ import json
 
 
 class Hashnode:
-    
+    """
+    Class - `Hashnode`
+    Example:
+    ```
+    blogs = Hashnode()
+    ```\n
+    Methods :\n
+    1. ``.getBlogs() | Response - Blogs with title, descriptions, author, read time, like and comment count, date and link.
+    """
     
     def getBlogs(self):
-        
+        """
+        Class - `Hashnode`
+        Example:
+        ```
+        blogs = Hashnode()
+        blogs.getBlogs()
+        ```
+        Returns:
+        {
+            "title": Title of the blog
+            "description": Description of the blog
+            "author": Author of the blog
+            "read_time": Time required to read the blog
+            "like_count": No. of likes of the blog
+            "comment_count": No. of comments of the blog
+            "date": Date the blog was posted
+            "link": Link to the blog
+        }
+        """
         url = (
             "https://hashnode.com/community"
         )
