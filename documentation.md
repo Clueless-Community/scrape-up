@@ -903,6 +903,27 @@ art = GoogleNews("github")
 scrape = art.getArticles()
 ```
 
+## Hashnode
+
+### Scrape blogs with title, descriptions, author, read time, like and comment count, date and link.
+
+Create an instance of `Hashnode` class.
+
+```python
+blogs = Hashnode()
+```
+
+| Methods          | Details                                                                                  |
+| ---------------- | ---------------------------------------------------------------------------------------- |
+| `.getFeed()` | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link in JSON format |
+
+**Example**
+
+```python
+blog = Hashnode()
+blog.getFeed()
+```
+
 ## TimesJobs
 
 ```python
