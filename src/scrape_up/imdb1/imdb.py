@@ -1,10 +1,19 @@
 from bs4 import BeautifulSoup
 import requests
-import json
-import openpyxl
 
 
 class IMDB:
+    """
+    Create an instance of the `Movie` class.
+    ```python
+    scraper = IMDB()
+    ```
+    | Methods        | Details                                      |
+    | -------------- | -------------------------------------------- |
+    | `.top_rated()` | Returns the top-rated movies listed on IMDB. |
+    | `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
+    """
+
     def __init__(self):
         pass
 
@@ -68,7 +77,7 @@ class IMDB:
                 "data": None,
                 "message": f"Unable to fetch top rate movie",
             }
-            
+
     def scrape_genre_movies(self, genre):
         """
         Class - `IMDB`\n
@@ -77,7 +86,7 @@ class IMDB:
         scraper = IMDB()
         genre = "Adventure"
         genre_data = scraper.scrape_genre_movies(genre)
-        
+
         json_data = json.dumps(genre_data, indent=4)
         print(json_data)
         ```
@@ -94,7 +103,7 @@ class IMDB:
             formatted_url = url.format(genre)
 
             resp = requests.get(formatted_url, headers={"User-Agent": "Mozilla/5.0"})
-            content = BeautifulSoup(resp.content, 'lxml')
+            content = BeautifulSoup(resp.content, "lxml")
             genres = [
                 "Adventure",
                 "Animation",
@@ -115,22 +124,30 @@ class IMDB:
                 "Sport",
                 "Thriller",
                 "War",
-                "Western"
+                "Western",
             ]
 
             movie_list = []
 
-            for movie in content.select('.lister-item-content'):
+            for movie in content.select(".lister-item-content"):
                 try:
-                    title_info = movie.select('.lister-item-header')[0]
+                    title_info = movie.select(".lister-item-header")[0]
                     movie_name = title_info.a.text
-                    year = title_info.find('span', class_='lister-item-year').text.strip("()")
-                    certificate = movie.select('.certificate')[0].text.strip()
-                    time = movie.select('.runtime')[0].text.strip()
-                    genre = movie.select('.genre')[0].text.strip()
-                    rating = movie.select('.ratings-imdb-rating')[0].strong.text.strip()
-                    simple_desc = movie.select('.text-muted')[2].text.strip()
-                    votes = movie.select('.sort-num_votes-visible')[0].text.strip().split("|")[0].replace('Votes:', '').strip()
+                    year = title_info.find(
+                        "span", class_="lister-item-year"
+                    ).text.strip("()")
+                    certificate = movie.select(".certificate")[0].text.strip()
+                    time = movie.select(".runtime")[0].text.strip()
+                    genre = movie.select(".genre")[0].text.strip()
+                    rating = movie.select(".ratings-imdb-rating")[0].strong.text.strip()
+                    simple_desc = movie.select(".text-muted")[2].text.strip()
+                    votes = (
+                        movie.select(".sort-num_votes-visible")[0]
+                        .text.strip()
+                        .split("|")[0]
+                        .replace("Votes:", "")
+                        .strip()
+                    )
 
                     data = {
                         "title": movie_name,
@@ -140,21 +157,14 @@ class IMDB:
                         "genre": genre,
                         "rating": rating,
                         "simple_desc": simple_desc,
-                        "votes": votes
+                        "votes": votes,
                     }
                     movie_list.append(data)
                 except IndexError:
                     continue
 
-            return {
-                "movies": movie_list,
-                "message": f"Movies from the '{genre}' genre have been scraped successfully"
-            }
+            return movie_list
 
         except requests.exceptions.RequestException as e:
-            return {
-                "movies": None,
-                "message": f"Failed to scrape movies from the '{genre}' genre",
-            }
-
+            return None
 
