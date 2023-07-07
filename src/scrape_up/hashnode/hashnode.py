@@ -11,16 +11,16 @@ class Hashnode:
     blogs = Hashnode()
     ```\n
     Methods :\n
-    1. ``.getBlogs() | Response - Blogs with title, descriptions, author, read time, like and comment count, date and link.
+    1. ``.getFeed() | Response - Blogs with title, descriptions, author, read time, like and comment count, date and link.
     """
     
-    def getBlogs(self):
+    def getFeed(self):
         """
         Class - `Hashnode`
         Example:
         ```
         blogs = Hashnode()
-        blogs.getBlogs()
+        blogs.getFeed()
         ```
         Returns:
         {
