@@ -602,17 +602,20 @@ historical_data = infosys.get_historical_data('02-05-2023', '31-05-2023')
 
 ## IMDb
 
-### Scrap up IMDb Top 250 details
+### Scrap up IMDb Top 250 details and movies of all genres
 
 Create an instance of the `Movie` class.
 
 ```python
-top_250 = IMDB()
+scraper = IMDB()
 ```
+
 
 | Methods        | Details                                      |
 | -------------- | -------------------------------------------- |
 | `.top_rated()` | Returns the top-rated movies listed on IMDB. |
+| `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
+
 
 ---
 
