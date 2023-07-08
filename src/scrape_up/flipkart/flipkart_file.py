@@ -5,35 +5,30 @@ import requests
 
 class Flipkart:
     """
-    Class - `Flipkart`\n
-    Instantiate a class\n
-    Example -\n
+    Create an instance of `Flipkart` class.
     ```python
     item = Flipkart()
     ```
-    \n
-    Available Methods\n
-    1. TVs - To fetch the list of trending TVs on Flipkart with other details
-    2. BestsellersBooks - To fetch the bestselling items listed on FLipkart
 
+    | Methods               | Details                                                            |
+    | --------------------- | ------------------------------------------------------------------ |
+    | `.TVs()`              | Returns the list of TV sets on flipkart                            |
+    | `.bestseller_books()` | Returns the list of bestselling books data listed on Flipkart.     |
+    | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
+    | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
     """
 
     def __init__(self):
         pass
 
-    def TVs(self):
+    def tvs(self):
         try:
             """
             Class - `Flipkart`\n
             Example -\n
             ```python
             item = Flipkart()
-            item.TVs()
-            ```
-            Return\n
-            ```python
-            return {all_items with details in json}
-            ```
+            item.tvs()
             """
 
             link = "https://www.flipkart.com/search?q=tv&as=on&as-show=on&otracker=AS_Query_TrendingAutoSuggest_8_0_na_na_na&otracker1=AS_Query_TrendingAutoSuggest_8_0_na_na_na&as-pos=8&as-type=TRENDING&suggestionId=tv&requestId=9c9fa553-b7e5-454b-a65b-bbb7a9c74a29"
@@ -66,19 +61,14 @@ class Flipkart:
         except Exception as e:
             return None
 
-    def BestsellersBooks(self):
+    def bestseller_books(self):
         try:
             """
             Class - `Flipkart`\n
             Example -\n
             ```python
             item = Flipkart()
-            item.BestsellersBooks()
-            ```
-            Return\n
-            ```python
-            return {all_items with details in json}
-            ```
+            item.bestseller_books()
             """
 
             link = "https://www.flipkart.com/search?q=bestsellers&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off"
@@ -106,24 +96,18 @@ class Flipkart:
 
         except Exception as e:
             return None
-        
 
-    def scrapdatamobiles():
+    def mobiles(self):
         try:
-             
             """
+            Get the list of mobiles under 50K\n
             Class - `Flipkart`\n
             Example -\n
             ```python
             item = Flipkart()
-            item.BestsellersBooks()
-            ```
-            Return\n
-            ```python
-            return {all_items with details in json}
-            ```
+            item.mobiles()
             """
-             
+
             link = "https://www.flipkart.com/search?q=MOBILE+PHONE+UNDER+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=3"
             page = requests.get(link)
             soup = bs(page.content, "html.parser")
@@ -149,12 +133,8 @@ class Flipkart:
 
         except Exception as e:
             return None
-        
 
-
-
-
-    def SportsShoes():
+    def sport_shoes(self):
         try:
             """
             Class - `Flipkart`\n
@@ -162,17 +142,8 @@ class Flipkart:
             ```python
             item = Flipkart()
             item.BestsellersBooks()
-            item.SportsShoes()
-            ```
-            Return\n
-            ```python
-            return {all_items with details in json}
-            ```
+            item.sport_shoes()
             """
-            link = "https://www.flipkart.com/search?q=MOBILE+PHONE+UNDER+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=2"
-            page = requests.get(link)
-            soup = bs(page.content, "html.parser")
-
             all_items = []
             url = "https://www.flipkart.com/mens-footwear/sports-shoes/pr?sid=osp,cil,1cu&otracker=nmenu_sub_Men_0_Sports%20Shoes"
             response = requests.get(url)
@@ -206,10 +177,4 @@ class Flipkart:
         except Exception as e:
             print("Error:", str(e))
             return None
-        
-            return None
 
-# shoes =Flipkart.SportsShoes()
-# print(shoes)
-# a=Flipkart.scrapdatamobiles()
-# print(a)

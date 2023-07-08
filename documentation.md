@@ -525,18 +525,12 @@ Create an instance of `Flipkart` class.
 item = Flipkart()
 ```
 
-| Methods               | Details                                                           |
-| --------------------- | ----------------------------------------------------------------- |
-| `.TVs()`              | Returns the list of TV sets on flipkart                           |
-| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart                  |
-| `.scrapdatamobiles()` | Returns the list of the mobile phone which are under 50k flipkart |
-
-=======
-| Methods | Details |
-| --------------------- | ------------------------------------------------- |
-| `.TVs()` | Returns the list of TV sets on flipkart |
-| `.BestsellersBooks()` | Returns the list of Bestseller items on flipkart |
-| `.SportsShoes()` | Returns the list of sprt shoes listed on Flipkart |
+| Methods               | Details                                                            |
+| --------------------- | ------------------------------------------------------------------ |
+| `.TVs()`              | Returns the list of TV sets on flipkart                            |
+| `.bestseller_books()` | Returns the list of bestselling books data listed on Flipkart.     |
+| `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
+| `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
 
 ---
 
