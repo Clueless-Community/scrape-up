@@ -12,19 +12,20 @@ class GoogleNews:
     articles = GoogleNews(topic = "topic")
     ```\n
     Methods :\n
-    1. ``.getArticles() | Response - Articles with title, descriptions, news source, date and link.
+    1. `.get_articles()` | Response - Articles with title, descriptions, news source, date and link.
+    2. `.top_stories()` | Response - Top stories listed regarding the mentioned topic.
     """
-    
+
     def __init__(self, topic):
         self.topic = topic
 
-    def getArticles(self):
+    def get_articles(self):
         """
         Class - `GoogleNews`
         Example:
         ```
         articles = GoogleNews("github")
-        articles.getArticles()
+        articles.get_articles()
         ```
         Returns:
         {
@@ -35,40 +36,26 @@ class GoogleNews:
             "link": Link to the article
         }
         """
-        url = (
-            "https://www.google.com/search?q=" + self.topic + "&tbm=nws"
-        )
+        url = "https://www.google.com/search?q=" + self.topic + "&tbm=nws"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
 
             articles_data = {"articles": []}
 
-            articles = soup.find_all(
-                "a", jsname="ACyKwe"
-            )
+            articles = soup.find_all("a", jsname="ACyKwe")
             for a in articles:
-                title = (
-                    a.find("div", class_="BNeawe vvjwJb AP7Wnd")
-                    .getText()
-                )
-                date = (
-                    a.find("span", class_="r0bn4c rQMQod")
-                    .getText()
-                )
+                title = a.find("div", class_="BNeawe vvjwJb AP7Wnd").getText()
+                date = a.find("span", class_="r0bn4c rQMQod").getText()
                 desc = (
                     a.find("div", class_="BNeawe s3v9rd AP7Wnd")
                     .getText()
-                    .replace(date, '')
+                    .replace(date, "")
                 )
-                news_source = (
-                    a.find("div", class_="BNeawe UPmit AP7Wnd lRVwie")
-                    .getText()
-                )
-                link = (
-                    a["href"]
-                    .replace("/url?q=", '')
-                )
+                news_source = a.find(
+                    "div", class_="BNeawe UPmit AP7Wnd lRVwie"
+                ).getText()
+                link = a["href"].replace("/url?q=", "")
                 articles_data["articles"].append(
                     {
                         "title": title,
@@ -78,60 +65,42 @@ class GoogleNews:
                         "link": link,
                     }
                 )
-            res_json = json.dumps(articles_data)
-            return res_json
+            return articles_data
         except:
-            error_message = {
-                "message": "Can't fetch any articles from the topic provided."
-            }
-            ejson = json.dumps(error_message)
-            return ejson
-    def Top_stories(self):
+            return None
+
+    def top_stories(self):
         """
         Class - `GoogleNews`
         Example:
-        
+
         articles = GoogleNews("github")
-        articles.Top_stories()
-        
+        articles.top_stories()
+
         Returns:
-        {
-            "top_stories": [
-                {
-                    "title": Title of the top story,
-                    "date": Date of the top story
-                },
-                ...
-            ]
-        }
+        [
+            {
+                "title": Title of the top story,
+                "date": Date of the top story
+            },
+            ...
+        ]
         """
         url = "https://news.google.com/news/rss"
         try:
             page = requests.get(url)
             soup = BeautifulSoup(page.content, features="xml")
             titles = soup.find_all("title")
-            
+
             top_stories_data = {"top_stories": []}
-            
+
             if len(titles) > 0:
                 for title in titles:
                     top_stories_data["top_stories"].append(
-                        {
-                            "title": title.text.upper(),
-                            "date": time.ctime()
-                        }
+                        {"title": title.text.upper(), "date": time.ctime()}
                     )
-                res_json = json.dumps(top_stories_data)
-                return res_json
+                top_stories_data
             else:
-                error_message = {
-                    "message": "No top stories found."
-                }
-                ejson = json.dumps(error_message)
-                return ejson
+                return None
         except requests.exceptions.RequestException as e:
-            error_message = {
-                "message": "Error occurred while fetching top stories: " + str(e)
-            }
-            ejson = json.dumps(error_message)
-            return ejson
+            return None
