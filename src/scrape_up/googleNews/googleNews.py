@@ -87,25 +87,51 @@ class GoogleNews:
             ejson = json.dumps(error_message)
             return ejson
     def Top_stories(self):
-     """
-    Class - `GoogleNews`
-    Example:
-    ```
-    # articles = GoogleNews("github")
-    ```
-    Prints the top stories from Google News RSS feed.
-    """
-    url = "https://news.google.com/news/rss"
-    try:
-        page = requests.get(url)
-        soup = BeautifulSoup(page.content, features="xml")
-        titles = soup.find_all("title")
-        if len(titles) > 0:
-            for title in titles:
-                print(title.text.upper())
-                print(time.ctime())
-                print("-" * 70)
-        else:
-            print("No top stories found.")
-    except requests.exceptions.RequestException as e:
-        print("Error occurred while fetching top stories:", str(e))
+        """
+        Class - `GoogleNews`
+        Example:
+        
+        articles = GoogleNews("github")
+        articles.Top_stories()
+        
+        Returns:
+        {
+            "top_stories": [
+                {
+                    "title": Title of the top story,
+                    "date": Date of the top story
+                },
+                ...
+            ]
+        }
+        """
+        url = "https://news.google.com/news/rss"
+        try:
+            page = requests.get(url)
+            soup = BeautifulSoup(page.content, features="xml")
+            titles = soup.find_all("title")
+            
+            top_stories_data = {"top_stories": []}
+            
+            if len(titles) > 0:
+                for title in titles:
+                    top_stories_data["top_stories"].append(
+                        {
+                            "title": title.text.upper(),
+                            "date": time.ctime()
+                        }
+                    )
+                res_json = json.dumps(top_stories_data)
+                return res_json
+            else:
+                error_message = {
+                    "message": "No top stories found."
+                }
+                ejson = json.dumps(error_message)
+                return ejson
+        except requests.exceptions.RequestException as e:
+            error_message = {
+                "message": "Error occurred while fetching top stories: " + str(e)
+            }
+            ejson = json.dumps(error_message)
+            return ejson
