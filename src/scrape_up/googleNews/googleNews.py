@@ -87,20 +87,25 @@ class GoogleNews:
             ejson = json.dumps(error_message)
             return ejson
     def Top_stories(self):
-        """
-        Class - `GoogleNews`
-        Example:
-        ```
-        # articles = GoogleNews("github")
-
-        ```
-        Prints the top stories from Google News RSS feed.
-        """
-        url = "https://news.google.com/news/rss"
+     """
+    Class - `GoogleNews`
+    Example:
+    ```
+    # articles = GoogleNews("github")
+    ```
+    Prints the top stories from Google News RSS feed.
+    """
+    url = "https://news.google.com/news/rss"
+    try:
         page = requests.get(url)
-        soup = BeautifulSoup(page.content,features="xml")
+        soup = BeautifulSoup(page.content, features="xml")
         titles = soup.find_all("title")
-        for title in titles:
-            print(title.text.upper())
-            print(time.ctime())
-            print("-" * 70)
+        if len(titles) > 0:
+            for title in titles:
+                print(title.text.upper())
+                print(time.ctime())
+                print("-" * 70)
+        else:
+            print("No top stories found.")
+    except requests.exceptions.RequestException as e:
+        print("Error occurred while fetching top stories:", str(e))
