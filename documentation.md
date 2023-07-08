@@ -662,9 +662,10 @@ Create an instance of `GoogleNews` class.
 articles = GoogleNews("topic")
 ```
 
-| Methods          | Details                                                                                  |
-| ---------------- | ---------------------------------------------------------------------------------------- |
-| `.getArticles()` | Returns the articles with title, descriptions, news source, date and link in JSON format |
+| Methods          | Details                                                                                          |
+| ---------------- | ------------------------------------------------------------------------------------------------ |
+| `.getArticles()` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
+| `.top_stories()` | Returns the list of top stories listed regarding the mentioned topic                             |
 
 ## Hashnode
 
