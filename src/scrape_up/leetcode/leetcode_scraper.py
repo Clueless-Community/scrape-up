@@ -455,5 +455,55 @@ class LeetCode:
                 "message": f"Found daily challenge problem",
             }
         except:
-            message = f"Failed to scrape daily challenge"
-            return {"data": None, "message": message}
+            return None
+
+    def __scrape_solved_count(self):
+        username = self.username
+        url = f"https://leetcode.com/{username}"
+        driver = webdriver.Chrome(options=self.chrome_options)
+        driver.get(url)
+
+        html = driver.page_source
+        soup = BeautifulSoup(html, "html.parser")
+        try:
+            solved_element = soup.find(
+                "div", {"data-cy": "header__side__progress__solved-question-count"}
+            )
+            solved_count = solved_element.text.strip() if solved_element else "Unknown"
+
+            return {
+                "solved_count": solved_count,
+                "message": f"Successfully scraped solved count for user '{username}'",
+            }
+        except:
+            return {
+                "solved_count": None,
+                "message": f"Failed to scrape solved count for user '{username}'",
+            }
+
+    def __submissions_count(self):
+        username = self.username
+        url = f"https://leetcode.com/{username}"
+        driver = webdriver.Chrome(options=self.chrome_options)
+        driver.get(url)
+
+        html = driver.page_source
+        soup = BeautifulSoup(html, "html.parser")
+        try:
+            submissions_element = soup.find(
+                "div",
+                {"data-cy": "header__side__progress__total-submission-count"},
+            )
+            submissions_count = (
+                submissions_element.text.strip() if submissions_element else "Unknown"
+            )
+
+            return {
+                "submissions_count": submissions_count,
+                "message": f"Successfully scraped submissions count for user '{username}'",
+            }
+        except:
+            return {
+                "submissions_count": None,
+                "message": f"Failed to scrape submissions count for user '{username}'",
+            }

@@ -3,31 +3,34 @@ from bs4 import BeautifulSoup
 
 class HackerNews:
     """
-    Class - `HackerNews` \n
+    Class - `HackerNews`
     Creates a scraper for https://news.ycombinator.com/
-    Example - \n
+    Example -
     ```python
     hacker_news = HackerNews()
+    ```
     """
-    def __init__(self):
+
+    def __init__(self, url="https://news.ycombinator.com/"):
+        self.url = url
         self.help = "This scrapes articles"
 
     def __scrap_page(self):
-        data = requests.get("https://news.ycombinator.com/")
+        data = requests.get(self.url)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
     def articles_list(self):
         """
-        Class - `HackerNews` \n
-        Example - \n
+        Class - `HackerNews`
+        Example -
         ```python
         hacker_news = HackerNews()
         articles = hacker_news.articles_list()
         ```
-        Return \n
+        Return
         ```python
-        return 
+        return
         {
             "data": [
                 {
@@ -62,4 +65,3 @@ class HackerNews:
         except:
             message = "An Error Occurred!"
             return {"data": article_list, "message": message}
-

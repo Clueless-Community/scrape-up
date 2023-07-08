@@ -106,6 +106,9 @@ class Flipkart:
 
         except Exception as e:
             return None
+        
+
+    def scrapdatamobiles():
 
     def SportsShoes(self):
         try:
@@ -114,6 +117,7 @@ class Flipkart:
             Example -\n
             ```python
             item = Flipkart()
+            item.BestsellersBooks()
             item.SportsShoes()
             ```
             Return\n
@@ -121,6 +125,23 @@ class Flipkart:
             return {all_items with details in json}
             ```
             """
+            link = "https://www.flipkart.com/search?q=MOBILE+PHONE+UNDER+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=2"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE"):
+                names = data.find("a", class_="_1fQZEK")
+                price = data.find("div", class_="_30jeq3 _1_WHN1")
+                description = data.find("ul", class_="_1xgFaf")
+                review = data.find("div", class_="_3LWZlK")
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
 
             url = "https://www.flipkart.com/mens-footwear/sports-shoes/pr?sid=osp,cil,1cu&otracker=nmenu_sub_Men_0_Sports%20Shoes"
             response = requests.get(url)
@@ -152,6 +173,9 @@ class Flipkart:
             return all_items
 
         except Exception as e:
+            print("Error:", str(e))
+            return None
+        
             return None
 
 shoes = Flipkart()
