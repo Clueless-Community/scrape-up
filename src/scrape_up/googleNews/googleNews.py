@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import json
+import time
 
 
 class GoogleNews:
@@ -85,3 +86,21 @@ class GoogleNews:
             }
             ejson = json.dumps(error_message)
             return ejson
+    def Top_stories(self):
+        """
+        Class - `GoogleNews`
+        Example:
+        ```
+        # articles = GoogleNews("github")
+
+        ```
+        Prints the top stories from Google News RSS feed.
+        """
+        url = "https://news.google.com/news/rss"
+        page = requests.get(url)
+        soup = BeautifulSoup(page.content,features="xml")
+        titles = soup.find_all("title")
+        for title in titles:
+            print(title.text.upper())
+            print(time.ctime())
+            print("-" * 70)
