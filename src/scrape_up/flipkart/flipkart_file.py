@@ -109,8 +109,52 @@ class Flipkart:
         
 
     def scrapdatamobiles():
+        try:
+             
+            """
+            Class - `Flipkart`\n
+            Example -\n
+            ```python
+            item = Flipkart()
+            item.BestsellersBooks()
+            ```
+            Return\n
+            ```python
+            return {all_items with details in json}
+            ```
+            """
+             
+            link = "https://www.flipkart.com/search?q=MOBILE+PHONE+UNDER+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=3"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
 
-    def SportsShoes(self):
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE"):
+                names = data.find("a", class_="_1fQZEK")
+                price = data.find("div", class_="_30jeq3 _1_WHN1")
+                description = data.find("ul", class_="_1xgFaf")
+                review = data.find("div", class_="_3LWZlK")
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+        
+
+
+
+
+    def SportsShoes():
         try:
             """
             Class - `Flipkart`\n
@@ -130,19 +174,6 @@ class Flipkart:
             soup = bs(page.content, "html.parser")
 
             all_items = []
-
-            for data in soup.findAll("div", class_="_1AtVbE"):
-                names = data.find("a", class_="_1fQZEK")
-                price = data.find("div", class_="_30jeq3 _1_WHN1")
-                description = data.find("ul", class_="_1xgFaf")
-                review = data.find("div", class_="_3LWZlK")
-
-                item_details = {
-                    "Item_Name": names.text if names else None,
-                    "Price": price.text if price else None,
-                    "Description": description.text if description else None,
-                    "Review": review.text if review else None,
-
             url = "https://www.flipkart.com/mens-footwear/sports-shoes/pr?sid=osp,cil,1cu&otracker=nmenu_sub_Men_0_Sports%20Shoes"
             response = requests.get(url)
             html_content = response.content
@@ -178,5 +209,7 @@ class Flipkart:
         
             return None
 
-shoes = Flipkart()
-print(shoes.SportsShoes())
+# shoes =Flipkart.SportsShoes()
+# print(shoes)
+# a=Flipkart.scrapdatamobiles()
+# print(a)
