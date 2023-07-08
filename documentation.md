@@ -67,15 +67,6 @@ user = github.Users(username="nikhil25803")
 | `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
 | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
 
-**Example:**
-
-```python
-bio = user.get_bio() #user var taken from above example
-print(bio)
-```
-
----
-
 ### Scrape Repository details
 
 First, create an object of class `Repository`
@@ -103,15 +94,6 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 | `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                 |
 | `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                            |
 
-**Example:**
-
-```python
-fork_count = repository.fork_count() #repository var taken from above example
-print(fork_count)
-```
-
----
-
 ### Scrape an issue details
 
 First, create an object of class `Issue`
@@ -129,15 +111,6 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 | `.is_milestone()` | Returns the milestone, if the issue is part of one or 'No milestone', if it's not. |
 | `.opened_at()`    | Returns a string containing the time when the issue was opened in ISO format.      |
 
-**Example:**
-
-```python
-assigned = repository.assignees() #user var taken from above example
-print(assigned)
-```
-
----
-
 ### Scrape a pull request details
 
 First, create an object of class `PullRequest`
@@ -153,15 +126,6 @@ repository = github.PullRequest(username="nikhil25803", repository_name="scrape-
 | `.labels()`        | Returns all the labels of a pull request, empty list in case of no labels. |
 | `.files_changed()` | Returns the number of files changed in a pull request.                     |
 | `.reviewers()`     | Return the list of reviewers assigned in a pull request.                   |
-
-**Example:**
-
-```python
-files_changed = repository.files_changed() #user var taken from above example
-print(files_changed)
-```
-
----
 
 ### Scrape the details of an organization
 
@@ -186,15 +150,6 @@ repository = github.Organization(organization_name="Clueless-Community")
 | `.pinned_repository()`      | Returns the list of pinned repositories with their details.     |
 | `.get_organization_links()` | Returns a dictionary of important website links of a community. |
 
-**Example:**
-
-```python
-top = repository.top_topics() #user var taken from above example
-print(top)
-```
-
----
-
 ## Gitlab
 
 ```python
@@ -217,16 +172,6 @@ user = gitlab.Users(username="example_user")
 | `.get_repositories()`              | Returns a list of repositories owned by the user.            |
 | `.get_project_details(project_id)` | Returns the details of a specific project owned by the user. |
 
-**Example:**
-
-```python
-name_result = user.get_name()
-print("Name:", name_result["data"])
-print("Status:", name_result["message"])
-```
-
----
-
 ### Scrape Repository Details
 
 First, create an object of the `Repository` class:
@@ -240,15 +185,6 @@ repository = gitlab.Repository(username="example_user", repository_name="example
 | `.get_name()`        | Returns the name of the repository.        |
 | `.get_description()` | Returns the description of the repository. |
 
-**Example:**
-
-```python
-name_result = repository.get_name()
-print("Repository Name:", name_result["data"])
-```
-
----
-
 ### Scrape Organization Members
 
 First, create an object of the `Organization` class:
@@ -261,19 +197,6 @@ organization = gitlab.Organization(organization_name="example_organization")
 | ---------------- | ----------------------------------------------------------------- |
 | `.get_members()` | Returns a list of usernames of the members in the organization.   |
 | `get_projects()` | Returns a list of project names associated with the organization. |
-
-**Example:**
-
-```python
-members = organization.get_members()
-print("Organization Members:", members)
-
-projects = organization.get_projects()
-print("Organization Projects:", projects)
-
-```
-
----
 
 ### Scrape Issues
 
@@ -296,20 +219,6 @@ issue = gitlab.Issue(username="example_user", repository="example_repository", i
 | `.get_description()` | Returns the description of the issue. |
 | `.get_author()`      | Returns the author of the issue.      |
 
-**Example:**
-
-```python
-title = issue.get_title()
-print("Issue Title:", title["data"])
-
-description = issue.get_description()
-print("Issue Description:", description["data"])
-
-author = issue.get_author()
-print("Issue Author:", author["data"])
-
-```
-
 ### Scrape Pull Requests
 
 To scrape pull request details from GitLab, create an object of the `PullRequest` class:
@@ -325,22 +234,6 @@ pull_request = gitlab.PullRequest(username="example_user", repository="example_r
 | `.get_title()`       | Returns the title of the pull request.       |
 | `.get_description()` | Returns the description of the pull request. |
 | `.get_author()`      | Returns the author of the pull request.      |
-
-**Example:**
-
-```python
-title = pull_request.get_title()
-print("Pull Request Title:", title)
-
-description = pull_request.get_description()
-print("Pull Request Description:", description)
-
-author = pull_request.get_author()
-print("Pull Request Author:", author)
-
-```
-
----
 
 ## Instagram
 
@@ -360,14 +253,6 @@ user = instagram.User(username="nikhil25803")
 | ----------------- | ------------------------------------------ |
 | `.user_details()` | Returns the number of followers of a user. |
 
-**Example:**
-
-```python
-print(user.user_details()) #user var taken from above
-```
-
----
-
 ## Internshala
 
 ```python
@@ -385,18 +270,6 @@ scraper = Internships()
 | Methods          | Details                                                              |
 | ---------------- | -------------------------------------------------------------------- |
 | `.internships()` | Scrapes and returns a list of dictionaries representing internships. |
-
-**Example:**
-
-```python
-scraper = Internships()
-internships = scraper.scrape_internships()
-for internship in internships:
-    print(internship)
-
-```
-
----
 
 ## KooApp
 
@@ -422,15 +295,6 @@ user = kooapp.KooUser('krvishal')
 | `.get_social_profiles()` | Returns all the connected social media profiles of the user. |
 | `.get_profession()`      | Returns the title/profession of the user.                    |
 
-**Example:**
-
-```py
-name = user.get_name() # user variable is taken from above example
-print(name)
-```
-
----
-
 ## Medium
 
 ```python
@@ -449,25 +313,11 @@ user = medium.Users(username="nikhil25803")
 | ----------------- | ---------------------------------------- |
 | `.get_articles()` | Returns the article titles of the users. |
 
-**Example**
-
-```python
-articles = user.get_articles() #user var taken from above
-for article in articles:
-    print(article) #For better visibility/readability
-```
-
 ### Scrape trending articles
 
 | Methods           | Details                                    |
 | ----------------- | ------------------------------------------ |
 | `.get_trending()` | Returns the trending titles of the medium. |
-
-**Example**
-
-```python
-Trending.get_trending() #Prints the trending titles
-```
 
 ### Scrape publication details
 
@@ -480,14 +330,6 @@ publication = medium.Publication(link="https://....")
 | Methods           | Details                                              |
 | ----------------- | ---------------------------------------------------- |
 | `.get_articles()` | Returns a list of articles of the given publication. |
-
-**Example**
-
-```python
-articles = publication.get_articles() #publication var taken from above
-for article in articles:
-    print(article) #For better visibility/readability
-```
 
 ---
 
@@ -508,13 +350,6 @@ articles = hacker_news.Article()
 | Methods            | Details                                                            |
 | ------------------ | ------------------------------------------------------------------ |
 | `.articles_list()` | Returns the latest articles along with their links in JSON format. |
-
-**Example:**
-
-```py
-article = Article()
-print(article.articles_list())
-```
 
 ## Twitter
 
@@ -590,14 +425,6 @@ infosys = StockPrice('infosys','nse')
 | `.get_latest_price()`                     | Returns the latest stock price of the given stock name.                                 |
 | `.get_historical_data(from_date,to_date)` | Returns stock price from `from_date` to `to_date` in format (date in format dd-mm-yyyy) |
 
-**Example**
-
-```python
-# all data returned in dictionary format
-latest_info = infosys.get_latest_price() # infosys var taken from above
-historical_data = infosys.get_historical_data('02-05-2023', '31-05-2023')
-```
-
 ---
 
 ## IMDb
@@ -635,17 +462,6 @@ scraper = Courses("courses","page_count")
 | ----------- | ----------------------------- |
 | `.titles()` | Returns the titles of courses |
 
-**Example**
-
-```python
-# All data returned in dictionary format
-javaCourses = Courses("java", 4)  # Keyword,Pages
-print(javaCourses.titles())
- #For better visibility/readability
-```
-
----
-
 ## Wikipedia
 
 ```python
@@ -665,14 +481,6 @@ Scraper = WikipediaScraper(url)
 | Methods     | Details                                 |
 | ----------- | --------------------------------------- |
 | `.scrape()` | Returns the Scraped Data from Wikipedia |
-
-**Example**
-
-```python
-# Returning the data
-scraped_data = scraper.scrape()
-print(scraped_data)
-```
 
 ---
 
@@ -769,14 +577,6 @@ questions = AskUbuntu("topic")
 | `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
 | `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
 
-**Example**
-
-```python
-que = AskUbuntu("github")
-scrape = que.getNewQuestions()
-
-```
-
 ---
 
 =======
@@ -797,14 +597,6 @@ restaurants = EazyDiner(location="city-name")
 | `.getBreakfast()`   | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast.                                                                              |
 | `.getLunch()`       | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch.                                                                                  |
 | `.getDinner()`      | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.                                                                                 |
-
-**Example**
-
-```python
-blr = EazyDiner("south-bengaluru")
-scrape = blr.getRestaurants()
-
-```
 
 ---
 
@@ -827,13 +619,6 @@ questions = StackOverflow("topic")
 | `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
 | `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
 
-**Example**
-
-```python
-que = StackOverflow("github")
-scrape = que.getNewQuestions()
-```
-
 ---
 
 ## Tech Crunch
@@ -851,14 +636,6 @@ articles = TechCrunch()
 | `.getArticles()` | Returns the articles with title, descriptions, images, author, date and link regarding a category in JSON format       |
 | `.search()`      | Returns the searched articles with title, descriptions, images, author, date and link regarding a topic in JSON format |
 
-**Example**
-
-```python
-art = TechCrunch()
-scrape = art.getArticles("fintech")
-articles = art.search("github)
-```
-
 ## YouTube
 
 ## Scrape Video
@@ -875,13 +652,6 @@ vid = YouTube("video_url")
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.getDetails()` | Returns the video details with title, descriptions, views count, upload date, comment count, channel name, channel avatar, subscriber_count, channel_url in JSON format |
 
-**Example**
-
-```python
-git = YouTube("https://www.youtube.com/watch?v=pBy1zgt0XPc")
-scrape = git.getDetails()
-```
-
 ## Google News
 
 ### Scrape articles with title, descriptions, news source, date and link regarding a topic
@@ -896,13 +666,6 @@ articles = GoogleNews("topic")
 | ---------------- | ---------------------------------------------------------------------------------------- |
 | `.getArticles()` | Returns the articles with title, descriptions, news source, date and link in JSON format |
 
-**Example**
-
-```python
-art = GoogleNews("github")
-scrape = art.getArticles()
-```
-
 ## Hashnode
 
 ### Scrape blogs with title, descriptions, author, read time, like and comment count, date and link.
@@ -913,16 +676,9 @@ Create an instance of `Hashnode` class.
 blogs = Hashnode()
 ```
 
-| Methods          | Details                                                                                  |
-| ---------------- | ---------------------------------------------------------------------------------------- |
+| Methods      | Details                                                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------- |
 | `.getFeed()` | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link in JSON format |
-
-**Example**
-
-```python
-blog = Hashnode()
-blog.getFeed()
-```
 
 ## TimesJobs
 
@@ -941,17 +697,6 @@ Job = TimesJobs('example')
 | Methods     | Details                                                                                 |
 | ----------- | --------------------------------------------------------------------------------------- |
 | `.scrape()` | Returns the various details regarding the companies based on the Job-role as JSON data. |
-
-**Example:**
-
-```python
-jobs = TimesJobs('Python')
-job_data=jobs.scrape()
-if job_data:
-    print(job_data)
-```
-
----
 
 ---
 
@@ -980,29 +725,3 @@ dev = DevCommunity('francescoxx')
 | `.user_details()`    | Returns the user details.                                             |
 | `.pinned_articles()` | Returns all pinned articles which have been written by the user.      |
 | `.user_articles()`   | Returns all articles written by the user.                             |
-
-**Example**
-
-```python
-
-dev = DevCommunity('francescoxx')
-articles = dev.all_articles()
-pprint(articles)
-
-tag_name = dev.__strTag__(tag='python')
-tagged_articles = dev.tag_articles(tag='python')
-print(tag_name)
-pprint(tagged_articles)
-
-user = dev.__strUser__()
-user_detail = dev.user_details()
-pin_articles = dev.pinned_articles()
-user_article = dev.user_articles()
-print(user)
-print(user_detail)
-pprint(pin_articles)
-pprint(user_article)
-
-```
-
----

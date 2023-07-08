@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import json
 
 
 class Hashnode:
@@ -13,7 +12,7 @@ class Hashnode:
     Methods :\n
     1. ``.getFeed() | Response - Blogs with title, descriptions, author, read time, like and comment count, date and link.
     """
-    
+
     def getFeed(self):
         """
         Class - `Hashnode`
@@ -34,9 +33,7 @@ class Hashnode:
             "link": Link to the blog
         }
         """
-        url = (
-            "https://hashnode.com/community"
-        )
+        url = "https://hashnode.com/community"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -46,10 +43,7 @@ class Hashnode:
             blogs = soup.find_all("div", class_="css-1s8wn94")
 
             for b in blogs:
-                title = (
-                    b.find("a", class_="css-4zleql")
-                    .getText()
-                )
+                title = b.find("a", class_="css-4zleql").getText()
                 desc = (
                     b.find("p", class_="css-1m4ptby")
                     .getText()
@@ -57,19 +51,11 @@ class Hashnode:
                     .encode("ascii", "ignore")
                     .decode()
                 )
-                author = (
-                    b.find("a", class_="css-9ssaz8")
-                    .getText()
-                )
-                read_time = (
-                    b.find("span", class_="css-1r5gb7q")
-                    .getText()
-                )
+                author = b.find("a", class_="css-9ssaz8").getText()
+                read_time = b.find("span", class_="css-1r5gb7q").getText()
                 try:
                     like_section = b.find("button", class_="css-a0cwys")
-                    like_count=(
-                        like_section.find("span").getText()
-                    )
+                    like_count = like_section.find("span").getText()
                 except:
                     like_count = "0"
                 try:
@@ -77,13 +63,8 @@ class Hashnode:
                     comment_count = comment_section.find("span").getText()
                 except:
                     comment_count = "0"
-                date = (
-                    b.find("a", class_="css-15gyiyx")
-                    .getText()
-                )
-                link = (
-                    b.find("a", class_="css-4zleql", href=True)["href"]
-                )
+                date = b.find("a", class_="css-15gyiyx").getText()
+                link = b.find("a", class_="css-4zleql", href=True)["href"]
 
                 blogs_data["blogs"].append(
                     {
@@ -97,11 +78,6 @@ class Hashnode:
                         "link": link,
                     }
                 )
-            res_json = json.dumps(blogs_data)
-            return res_json
+            return blogs_data
         except:
-            error_message = {
-                "message": "Can't fetch any articles from the topic provided."
-            }
-            ejson = json.dumps(error_message)
-            return ejson
+            return None
