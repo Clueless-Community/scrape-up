@@ -5,7 +5,8 @@ import requests
 
 class Flipkart:
     """
-    Create an instance of `Flipkart` class.
+        Create an instance of `Flipkart` class.
+
     ```python
     item = Flipkart()
     ```
@@ -16,6 +17,7 @@ class Flipkart:
     | `.bestseller_books()` | Returns the list of bestselling books data listed on Flipkart.     |
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
+    | `.laptops()`          | Returns the list of laptop from flipkart.                          |
     """
 
     def __init__(self):
@@ -177,7 +179,6 @@ class Flipkart:
         except Exception as e:
             print("Error:", str(e))
             return None
-
 
     def laptops(self):
         try:
