@@ -1,3 +1,4 @@
-from scrape_up.youtube.video import YouTube
+from video import Video
+from channel import Channel
 
-__all__ = ["YouTube"]
+__all__ = ["Video", "Channel"]

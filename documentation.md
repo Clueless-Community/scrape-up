@@ -574,8 +574,6 @@ questions = AskUbuntu("topic")
 
 ---
 
-=======
-
 ## EazyDiner
 
 ### Scrape restaurants name, location, rating, cuisine and prices from eazydiner website for a given city
@@ -631,21 +629,35 @@ articles = TechCrunch()
 | `.getArticles()` | Returns the articles with title, descriptions, images, author, date and link regarding a category in JSON format       |
 | `.search()`      | Returns the searched articles with title, descriptions, images, author, date and link regarding a topic in JSON format |
 
+---
+
 ## YouTube
 
-## Scrape Video
-
-### Scrape video details with title, descriptions, views count, upload date, comment count, channel name, channel avatar, subscriber_count, channel_url
+### Scrape Video Details
 
 Create an instance of `Video` class.
 
 ```python
-vid = YouTube("video_url")
+video = Video(video_url="video_url")
 ```
 
-| Methods         | Details                                                                                                                                                                 |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.getDetails()` | Returns the video details with title, descriptions, views count, upload date, comment count, channel name, channel avatar, subscriber_count, channel_url in JSON format |
+| Methods         | Details                  |
+| --------------- | ------------------------ |
+| `.getDetails()` | Return the video details |
+
+## Scrape Channel Details
+
+Create an instance of `Channel` class.
+
+```python
+channel_data = Channel(channel_username="BeABetterDev")
+```
+
+| Methods       | Details                                                                |
+| ------------- | ---------------------------------------------------------------------- |
+| `.getAbout()` | Returns the channel details mentioned in the about page of the channel |
+
+---
 
 ## Google News
 
@@ -662,6 +674,8 @@ articles = GoogleNews("topic")
 | `.getArticles()` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
 | `.top_stories()` | Returns the list of top stories listed regarding the mentioned topic                             |
 
+---
+
 ## Hashnode
 
 ### Scrape blogs with title, descriptions, author, read time, like and comment count, date and link.
@@ -675,6 +689,8 @@ blogs = Hashnode()
 | Methods      | Details                                                                                                             |
 | ------------ | ------------------------------------------------------------------------------------------------------------------- |
 | `.getFeed()` | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link in JSON format |
+
+---
 
 ## TimesJobs
 

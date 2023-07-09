@@ -3,16 +3,16 @@ from bs4 import BeautifulSoup
 import json
 
 
-class YouTube:
+class Video:
     """
-    Class - `YouTube`
-    Example:
+    Create an instance of `Video` class.
+    ```python
+    video = Video(video_url="video_url")
     ```
-    video_data = YouTube(video_url = "url")
-    ```\n
-    Methods :\n
-    1. ``.getDetails() | Response - Video details with title, descriptions, views count, upload date,
-                                    comment count, channel name, channel avatar, subscriber_count, channel_url
+
+    | Methods         | Details                  |
+    | --------------- | ------------------------ |
+    | `.getDetails()` | Return the video details |
     """
 
     def __init__(self, video_url):
@@ -103,11 +103,6 @@ class YouTube:
                     "channel_url": "https://youtube.com" + channel_url,
                 }
             )
-            res_json = json.dumps(video_data)
-            return res_json
+            return video_data
         except:
-            error_message = {"message": "Can't fetch video data from the url provided."}
-            ejson = json.dumps(error_message)
-            return ejson
-
-
+            return None
