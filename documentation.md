@@ -648,7 +648,7 @@ vid = Video("video_url")
 
 ## Scrape Channel
 
-### Scrape channel details with title, descriptions, channel avatar, subscriber_count, channel_url, etc.
+### Scrape channel details with name, description, channel avatar, subscriber count, channel url, channel banner, total videos, total views, join date, country and links
 
 Create an instance of `Channel` class.
 
@@ -658,7 +658,7 @@ vid = Channel("channel_url")
 
 | Methods         | Details                                                                                                                                                                 |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.getAbout()` | Returns the channel details with title, descriptions, channel avatar, subscriber_count, channel_url, etc. in JSON format |
+| `.getAbout()` | Returns the channel details with name, description, channel avatar, subscriber count, channel url, channel banner, total videos, total views, join date, country and links in the about page in JSON format |
 
 ## Google News
 
