@@ -632,33 +632,29 @@ articles = TechCrunch()
 
 ## YouTube
 
-## Scrape Video
-
-### Scrape video details with title, descriptions, views count, upload date, comment count, channel name, channel avatar, subscriber_count, channel_url
+### Scrape Video Details
 
 Create an instance of `Video` class.
 
 ```python
-vid = Video("video_url")
+video = Video(video_url="video_url")
 ```
 
-| Methods         | Details                                                                                                                                                                 |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.getDetails()` | Returns the video details with title, descriptions, views count, upload date, comment count, channel name, channel avatar, subscriber_count, channel_url in JSON format |
+| Methods         | Details                  |
+| --------------- | ------------------------ |
+| `.getDetails()` | Return the video details |
 
-## Scrape Channel
-
-### Scrape channel details with name, description, channel avatar, subscriber count, channel url, channel banner, total videos, total views, join date, country and links
+## Scrape Channel Details
 
 Create an instance of `Channel` class.
 
 ```python
-channel_data = Channel("channel_url")
+channel_data = Channel(channel_username="BeABetterDev")
 ```
 
-| Methods         | Details                                                                                                                                                                 |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.getAbout()` | Returns the channel details with name, description, channel avatar, subscriber count, channel url, channel banner, total videos, total views, join date, country and links in the about page in JSON format |
+| Methods       | Details                                                                |
+| ------------- | ---------------------------------------------------------------------- |
+| `.getAbout()` | Returns the channel details mentioned in the about page of the channel |
 
 ---
 

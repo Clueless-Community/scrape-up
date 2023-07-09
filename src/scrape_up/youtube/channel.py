@@ -5,29 +5,28 @@ import json
 
 class Channel:
     """
-    Class - `Channel`
-    Example:
+    Create an instance of `Channel` class.
+    ```python
+    channel_data = Channel(channel_username="BeABetterDev")
     ```
-    channel_data = Channel(channel_url = "url")
-    ```\n
-    Methods :\n
-    1. ``.getAbout() | Response - Channel details with name, description, channel avatar, 
-                                  subscriber count, channel url, channel banner, total videos,
-                                  total views, join date, country and links in the about page
+
+    | Methods       | Details                                                                |
+    | ------------- | ---------------------------------------------------------------------- |
+    | `.getAbout()` | Returns the channel details mentioned in the about page of the channel |
     """
 
-    def __init__(self, channel_url):
-        self.channel_url = channel_url
+    def __init__(self, channel_username):
+        self.channel_username = channel_username
 
     def getAbout(self):
         """
         Class - `Channel`
-        Example:
-        ```
-        channel_data = Channel("https://www.youtube.com/@GitHub/about")
+        ```py
+        channel_data = Channel(channel_username="BeABetterDev")
         channel_data.getAbout()
         ```
         Returns:
+        ```js
         {
             "name": Name of the channel
             "description": Description of the channel
@@ -41,13 +40,14 @@ class Channel:
             "country": Country of origin of the channel
             "links": Additional links provided from the channel
         }
+        ```
         """
-        url = self.channel_url
+        url = f"https://www.youtube.com/@{self.channel_username}/about"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
             channel_data = {"channel_data": []}
-            link_data = {"link_data":[]}
+            link_data = {"link_data": []}
             scripts = soup.find_all("script")
             req_script = scripts[35].text.strip()
             script = req_script[20:-1]
@@ -66,24 +66,30 @@ class Channel:
             baser = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"]
             for b in baser:
                 try:
-                    base = b["tabRenderer"]["content"]["sectionListRenderer"]["contents"][0]["itemSectionRenderer"]["contents"][0]["channelAboutFullMetadataRenderer"]
-                    
+                    base = b["tabRenderer"]["content"]["sectionListRenderer"][
+                        "contents"
+                    ][0]["itemSectionRenderer"]["contents"][0][
+                        "channelAboutFullMetadataRenderer"
+                    ]
+
                     total_views = base["viewCountText"]["simpleText"]
                     join_date = base["joinedDateText"]["runs"][1]["text"]
-                    country = base["country"]["simpleText"]   
+                    country = base["country"]["simpleText"]
 
                     links = base["primaryLinks"]
                     for i in links:
                         link_data["link_data"].append(
                             {
-                                "link_url": i["navigationEndpoint"]["urlEndpoint"]["url"],
+                                "link_url": i["navigationEndpoint"]["urlEndpoint"][
+                                    "url"
+                                ],
                                 "link_name": i["title"]["simpleText"],
-                                "link_icon": i["icon"]["thumbnails"][0]["url"]
+                                "link_icon": i["icon"]["thumbnails"][0]["url"],
                             }
                         )
                 except:
                     pass
-        
+
             channel_data["channel_data"].append(
                 {
                     "name": title,
@@ -96,12 +102,9 @@ class Channel:
                     "total_views": total_views,
                     "join_date": join_date,
                     "country": country,
-                    "links": link_data
+                    "links": link_data,
                 }
             )
-            res_json = json.dumps(channel_data)
-            return res_json
+            return channel_data["channel_data"][0]
         except:
-            error_message = {"message": "Can't fetch channel data from the url provided."}
-            ejson = json.dumps(error_message)
-            return ejson
+            return None
