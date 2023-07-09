@@ -4,6 +4,27 @@ import json
 
 
 class Organization:
+    """
+    Create an instance of class `Organization`
+    ```python
+    organization = github.Organization(organization_name="Clueless-Community")
+    ```
+    | Methods                     | Details                                                         |
+    | --------------------------- | --------------------------------------------------------------- |
+    | `.top_topics()`             | Returns a list of the most used topics in an organization.      |
+    | `.followers()`              | Returns the number of followers of an organization.             |
+    | `.top_languages()`          | Returns the top languages used in an organization.              |
+    | `.followers()`              | Returns the number of followers of an organization.             |
+    | `.avatar()`                 | Returns the avatar URL of an organization.                      |
+    | `.repositories()`           | Returns the list of repositories of an organization.            |
+    | `.people()`                 | Returns the list of people in an organization.                  |
+    | `.peoples() `               | Returns the number of people in an organization.                |
+    | `.get_location() `          | Returns the location of an organization.                        |
+    | `.repository_details()`     | Returns the list of repositories with their details.            |
+    | `.pinned_repository()`      | Returns the list of pinned repositories with their details.     |
+    | `.get_organization_links()` | Returns a dictionary of important website links of a community. |
+    """
+
     def __init__(self, organization_name: str):
         self.organization = organization_name
 
@@ -20,12 +41,6 @@ class Organization:
         repository = github.Organization(organization_name="Clueless-Community")
         top_languages = repository.top_languages()
         ```
-        Returns:
-        {
-            "data": languages,
-            "message": f"Found languages for {self.organization}",
-            }
-            
         """
         try:
             languages = []
@@ -35,16 +50,9 @@ class Organization:
             )
             for lang in lang_raw:
                 languages.append(lang.get_text().strip())
-            return {
-                "data": languages,
-                "message": f"Found languages for {self.organization}",
-            }
+            return languages
         except:
-            message = f"No languages found for {self.organization}"
-            return {
-                "data": languages,
-                "message": message,
-            }
+            return None
 
     def top_topics(self):
         """
@@ -54,11 +62,6 @@ class Organization:
         repository = github.Organization(organization_name="Clueless-Community")
         top_topics = repository.top_topics()
         ```
-        Returns:
-        {
-            "data": topics,
-            "message": f"Found topics for {self.organization}",
-        }   
         """
         page = self.__scrape_page()
         try:
@@ -66,16 +69,9 @@ class Organization:
             topics = []
             for topic in all_topics:
                 topics.append(topic.text.strip())
-            return {
-                "data": topics,
-                "message": f"Found topics for {self.organization}",
-            }
+            return topics
         except:
-            message = f"No topics found for {self.organization}"
-            return {
-                "data": topics,
-                "message": message,
-            }
+            return None
 
     def followers(self):
         """
@@ -85,11 +81,6 @@ class Organization:
         repository = github.Organization(organization_name="Clueless-Community")
         followers = repository.followers()
         ```
-        Returns:
-        {
-            "data": followers,
-            "message": f"Found {followers} followers for {self.organization}",
-        }   
         """
         page = self.__scrape_page()
         try:
@@ -97,19 +88,11 @@ class Organization:
                 "a", class_="Link--secondary no-underline no-wrap"
             )
             followers = followers_body.span.text.strip()
-            return {
-                "data": followers,
-                "message": f"Found {followers} followers for {self.organization}",
-            }
+            return followers
         except:
-            message = f"No followers found for {self.organization}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def avatar(self):
-    
         """
         Class - `Organisation`
         Example:
@@ -117,27 +100,14 @@ class Organization:
         repository = github.Organization(organization_name="Clueless-Community")
         avatar = repository.avatar()
         ```
-        Returns:
-        {
-            "data": url,
-            "message": f"Found avatar for {self.organization}",
-            
-        }   
         """
         page = self.__scrape_page()
         try:
             avatar = page.find("a", attrs={"itemprop": "url"})
-            url = avatar.text.strip()
-            return {
-                "data": url,
-                "message": f"Found avatar for {self.organization}",
-            }
+            avatar_url = avatar.text.strip()
+            return avatar_url
         except:
-            message = f"No avatar found for {self.organization}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def __scrape_repositories_page(self):
         """
@@ -164,12 +134,6 @@ class Organization:
         repository = github.Organization(organization_name="Clueless-Community")
         repositories = repository.repositories()
         ```
-        Returns:
-        {
-           "data": repositories,
-            "message": f"Found {len(repositories)} repositories for {organization}",
-
-        }   
         """
         organization = self.organization
         data = self.__scrape_repositories_page()
@@ -198,20 +162,13 @@ class Organization:
                 ):
                     repositories.append(repo.text.strip())
 
-            return {
-                "data": repositories,
-                "message": f"Found {len(repositories)} repositories for {organization}",
-            }
+            return repositories
         except:
-            message = f"No repositories found for {organization}"
-            return {
-                "data": repositories,
-                "message": message,
-            }
+            return None
 
     def __scrape_people_page(self):
         """
-         scrapes the head page of people of an organization
+        scrapes the head page of people of an organization
 
         """
         organization = self.organization
@@ -240,7 +197,7 @@ class Organization:
         {
            "data": people,
            "message": f"Found {len(people)} people for {organization}",
-        } 
+        }
         """
         organization = self.organization
         data = self.__scrape_people_page()
@@ -260,24 +217,17 @@ class Organization:
                         f"https://github.com/orgs/{organization}/people?page={i}"
                     )
 
-            people = []
+            peoples = []
             for page in pages:
                 page_data = self.__scrape_people(page)
                 people_body = page_data.find("div", id="org-members-table")
                 for person in people_body.find_all("li"):
                     person_username = person.find("a", class_="d-inline-block")
-                    people.append(person_username["href"][1:])
+                    peoples.append(person_username["href"][1:])
 
-            return {
-                "data": people,
-                "message": f"Found {len(people)} people for {organization}",
-            }
+            return peoples
         except:
-            message = f"No people found for {organization}"
-            return {
-                "data": people,
-                "message": message,
-            }
+            return None
 
     def peoples(self):
         """
@@ -287,11 +237,6 @@ class Organization:
         repository = github.Organization(organization_name="Clueless-Community")
         peoples = repository.peoples()
         ```
-        Returns:
-        {
-           "data": people_count,
-            "message": f"Found {people_count} people for {self.organization}",
-        } 
         """
         data = self.__scrape_people_page()
         try:
@@ -317,16 +262,9 @@ class Organization:
                 people_body = page_data.find("div", id="org-members-table")
                 people_count = len(people_body.find_all("li"))
 
-            return {
-                "data": people_count,
-                "message": f"Found {people_count} people for {self.organization}",
-            }
+            return people_count
         except:
-            message = f"No people found for {self.organization}"
-            return {
-                "data": people_count,
-                "message": message,
-            }
+            return None
 
     def get_location(self):
         """
@@ -336,25 +274,13 @@ class Organization:
         repository = github.Organization(organization_name="Clueless-Community")
         get_location = repository.get_location()
         ```
-        Returns:
-        {
-           "data": lc.text.strip(),
-            "message": f"Found location for {self.organization}",
-        }
         """
         page = self.__scrape_page()
         try:
             lc = page.find("span", itemprop="location")
-            return {
-                "data": lc.text.strip(),
-                "message": f"Found location for {self.organization}",
-            }
+            return lc.text.strip()
         except:
-            message = f"No location found for {self.organization}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def repository_stats(self, repo_url):
         """
@@ -364,16 +290,6 @@ class Organization:
         repository = github.Organization(organization_name="Clueless-Community")
         repository_stats = repository.repository_stats()
         ```
-        Returns:
-        {
-           "data": {
-                    "forks": forksCount,
-                    "stars": starCount,
-                    "issues": issuesCount,
-                    "pullRequests": pullRequests,
-                },
-                "message": f"Found stats for {repo_url}",
-        }
         """
         data = self.__scrape_repositories(repo_url)
         try:
@@ -387,22 +303,15 @@ class Organization:
             pullRequests = data.find(
                 "span", id="pull-requests-repo-tab-count"
             ).text.strip()
-
-            return {
-                "data": {
-                    "forks": forksCount,
-                    "stars": starCount,
-                    "issues": issuesCount,
-                    "pullRequests": pullRequests,
-                },
-                "message": f"Found stats for {repo_url}",
+            data = {
+                "forks": forksCount,
+                "stars": starCount,
+                "issues": issuesCount,
+                "pullRequests": pullRequests,
             }
+            return data
         except:
-            message = f"No stats found for {repo_url}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def repository_details(self):
         """
@@ -412,11 +321,6 @@ class Organization:
         repository = github.Organization(organization_name="Clueless-Community")
         repository_details = repository.repository_details()
         ```
-        Returns:
-        {
-           "data": repositories,
-            "message": f"Found {len(repositories)} repositories for {organization}",
-        }
         """
         organization = self.organization
         data = self.__scrape_repositories_page()
@@ -480,16 +384,9 @@ class Organization:
                         }
                     )
 
-            return {
-                "data": repositories,
-                "message": f"Found {len(repositories)} repositories for {organization}",
-            }
+            return repositories
         except:
-            message = f"No repositories found for {organization}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def pinned_repository(self):
         """
@@ -499,11 +396,6 @@ class Organization:
         repository = github.Organization(organization_name="Clueless-Community")
         pinned_repository = repository.pinned_repository()
         ```
-        Returns:
-        {
-           "data": json_data,
-            "message": f"Found pinned repositories for {organization}",
-        }
         """
         organization = self.organization
 
@@ -559,35 +451,18 @@ class Organization:
                     "forks": fork_count,
                 }
                 repo_info_list.append(repo_info)
-
-            json_data = json.dumps(repo_info_list)
-
-            return {
-                "data": json_data,
-                "message": f"Found pinned repositories for {organization}",
-            }
+            return repo_info_list
         except:
-            message = f"No pinned repositories found for {organization}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def get_organization_links(self):
-        """"
+        """ "
         Class - `Organisation`
         Example:
         ```
         repository = github.Organization(organization_name="Clueless-Community")
         get_organization_links = repository.get_organization_links()
         ```
-        Returns:
-        {
-            if name != self.organization or name.find(self.organization) == -1:
-                    if not name in links:
-                        links[name] = o["href"]
-            return links;
-        }
         """
         try:
             links = {}
@@ -612,4 +487,4 @@ class Organization:
                         links[name] = o["href"]
             return links
         except:
-            return "An exception occured, information cannot be printed"
+            return None
