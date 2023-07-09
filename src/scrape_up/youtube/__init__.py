@@ -1,3 +1,3 @@
-from scrape_up.youtube.video import YouTube
+from scrape_up.youtube.video import Video
 
-__all__ = ["YouTube"]
+__all__ = ["Video"]
