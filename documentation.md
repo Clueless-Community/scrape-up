@@ -655,7 +655,7 @@ vid = Video("video_url")
 Create an instance of `Channel` class.
 
 ```python
-vid = Channel("channel_url")
+channel_data = Channel("channel_url")
 ```
 
 | Methods         | Details                                                                                                                                                                 |
