@@ -4,13 +4,43 @@ import json
 
 
 class Channel:
-    
+    """
+    Class - `Channel`
+    Example:
+    ```
+    channel_data = Channel(channel_url = "url")
+    ```\n
+    Methods :\n
+    1. ``.getAbout() | Response - Channel details with title, descriptions, channel avatar, 
+                                  subscriber_count, channel_url, etc. in the about page
+    """
 
     def __init__(self, channel_url):
         self.channel_url = channel_url
 
     def getAbout(self):
-        
+        """
+        Class - `Channel`
+        Example:
+        ```
+        channel_data = Channel("https://www.youtube.com/@GitHub/about")
+        channel_data.getAbout()
+        ```
+        Returns:
+        {
+            "name": Name of the channel
+            "description": Description of the channel
+            "channel_url": Link to the channel
+            "channel_avatar": Channel avatar
+            "channel_banner": Channel banner
+            "subscriber_count": No. of subscribers of the channel
+            "toal_videos": Total videos uploaded in the channel
+            "total_views": Total views till date of the channel
+            "join_date": Date the channel joined YouTube
+            "country": Country of origin of the channel
+            "links": Additional links provided from the channel
+        }
+        """
         url = self.channel_url
         try:
             res = requests.get(url)
