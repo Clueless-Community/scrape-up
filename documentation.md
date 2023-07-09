@@ -630,6 +630,8 @@ articles = TechCrunch()
 | `.getArticles()` | Returns the articles with title, descriptions, images, author, date and link regarding a category in JSON format       |
 | `.search()`      | Returns the searched articles with title, descriptions, images, author, date and link regarding a topic in JSON format |
 
+---
+
 ## YouTube
 
 ## Scrape Video
@@ -660,6 +662,8 @@ vid = Channel("channel_url")
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.getAbout()` | Returns the channel details with name, description, channel avatar, subscriber count, channel url, channel banner, total videos, total views, join date, country and links in the about page in JSON format |
 
+---
+
 ## Google News
 
 ### Scrape articles with title, descriptions, news source, date and link regarding a topic
@@ -675,6 +679,8 @@ articles = GoogleNews("topic")
 | `.getArticles()` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
 | `.top_stories()` | Returns the list of top stories listed regarding the mentioned topic                             |
 
+---
+
 ## Hashnode
 
 ### Scrape blogs with title, descriptions, author, read time, like and comment count, date and link.
@@ -688,6 +694,8 @@ blogs = Hashnode()
 | Methods      | Details                                                                                                             |
 | ------------ | ------------------------------------------------------------------------------------------------------------------- |
 | `.getFeed()` | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link in JSON format |
+
+---
 
 ## TimesJobs
 
