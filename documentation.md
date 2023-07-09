@@ -648,17 +648,17 @@ vid = Video("video_url")
 
 ## Scrape Channel
 
-### Scrape Channel details with title, descriptions, channel avatar, subscriber_count, channel_url, etc.
+### Scrape channel details with title, descriptions, channel avatar, subscriber_count, channel_url, etc.
 
 Create an instance of `Channel` class.
 
 ```python
-vid = YouTube("video_url")
+vid = Channel("channel_url")
 ```
 
 | Methods         | Details                                                                                                                                                                 |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.getDetails()` | Returns the video details with title, descriptions, views count, upload date, comment count, channel name, channel avatar, subscriber_count, channel_url in JSON format |
+| `.getAbout()` | Returns the channel details with title, descriptions, channel avatar, subscriber_count, channel_url, etc. in JSON format |
 
 ## Google News
 
