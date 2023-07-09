@@ -11,8 +11,9 @@ class Channel:
     channel_data = Channel(channel_url = "url")
     ```\n
     Methods :\n
-    1. ``.getAbout() | Response - Channel details with title, descriptions, channel avatar, 
-                                  subscriber_count, channel_url, etc. in the about page
+    1. ``.getAbout() | Response - Channel details with name, description, channel avatar, 
+                                  subscriber count, channel url, channel banner, total videos,
+                                  total views, join date, country and links in the about page
     """
 
     def __init__(self, channel_url):
