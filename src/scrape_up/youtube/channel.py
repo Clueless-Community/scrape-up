@@ -102,6 +102,6 @@ class Channel:
             res_json = json.dumps(channel_data)
             return res_json
         except:
-            error_message = {"message": "Can't fetch video data from the url provided."}
+            error_message = {"message": "Can't fetch channel data from the url provided."}
             ejson = json.dumps(error_message)
             return ejson
