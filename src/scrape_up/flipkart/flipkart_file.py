@@ -5,7 +5,8 @@ import requests
 
 class Flipkart:
     """
-    Create an instance of `Flipkart` class.
+        Create an instance of `Flipkart` class.
+
     ```python
     item = Flipkart()
     ```
@@ -16,6 +17,7 @@ class Flipkart:
     | `.bestseller_books()` | Returns the list of bestselling books data listed on Flipkart.     |
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
+    | `.laptops()`          | Returns the list of laptop from flipkart.                          |
     """
 
     def __init__(self):
@@ -178,3 +180,39 @@ class Flipkart:
             print("Error:", str(e))
             return None
 
+    def laptops(self):
+        try:
+            """
+            Get the list of mobiles under 50K\n
+            Class - `Flipkart`\n
+            Example -\n
+            ```python
+            item = Flipkart()
+            item.mobiles()
+            """
+
+            link = "https://www.flipkart.com/search?q=laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("div", class_="_4rR01T")
+                price = data.find("div", class_="_30jeq3 _1_WHN1")
+                description = data.find("ul", class_="_1xgFaf")
+                review = data.find("div", class_="_3LWZlK")
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
