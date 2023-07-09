@@ -573,8 +573,6 @@ questions = AskUbuntu("topic")
 
 ---
 
-=======
-
 ## EazyDiner
 
 ### Scrape restaurants name, location, rating, cuisine and prices from eazydiner website for a given city
