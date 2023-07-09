@@ -3,12 +3,12 @@ from bs4 import BeautifulSoup
 import json
 
 
-class YouTube:
+class Video:
     """
-    Class - `YouTube`
+    Class - `Video`
     Example:
     ```
-    video_data = YouTube(video_url = "url")
+    video_data = Video(video_url = "url")
     ```\n
     Methods :\n
     1. ``.getDetails() | Response - Video details with title, descriptions, views count, upload date,
