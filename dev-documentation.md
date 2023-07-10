@@ -692,17 +692,17 @@ blogs = Hashnode()
 
 ## Reddit
 
-### Scrape blogs with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link.
+### Scrape posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link.
 
-Create an instance of `Hashnode` class.
+Create an instance of `Reddit` class.
 
 ```python
-blogs = Hashnode()
+posts = Reddit()
 ```
 
 | Methods      | Details                                                                                                             |
 | ------------ | ------------------------------------------------------------------------------------------------------------------- |
-| `.getFeed()` | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link in JSON format |
+| `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link in JSON format |
 
 ---
 
