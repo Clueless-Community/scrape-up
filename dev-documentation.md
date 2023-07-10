@@ -686,7 +686,7 @@ blogs = Hashnode()
 
 | Methods      | Details                                                                                                             |
 | ------------ | ------------------------------------------------------------------------------------------------------------------- |
-| `.getFeed()` | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link in JSON format |
+| `.getFeed()` | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link |
 
 ---
 
@@ -702,7 +702,7 @@ posts = Reddit()
 
 | Methods      | Details                                                                                                             |
 | ------------ | ------------------------------------------------------------------------------------------------------------------- |
-| `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link in JSON format |
+| `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
 
 ---
 
