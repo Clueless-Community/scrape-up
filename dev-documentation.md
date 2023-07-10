@@ -748,7 +748,7 @@ ___
 ## Import `Cricbuzz` class from `scrape_up.cricbuzz` module.
 
 ```python
-from scrape_up.cricbuzz import Cricbuzz
+    from scrape_up.cricbuzz import Cricbuzz
 ```
 
 ## Create an instance of `Cricubzz` class.
@@ -970,7 +970,7 @@ from scrape_up.cricbuzz import Cricbuzz
       for result in team_results:
           print(result["match_status"])
   ```
-  ### Output - \n
+  ### Output - 
   ```text
       {match_status}
       {match_status}
@@ -988,7 +988,7 @@ from scrape_up.cricbuzz import Cricbuzz
           print("PLAYER MATCHES", player["MATCHES"])
           print("\n\n")
   ```
-  ### Output - \n
+  ### Output - 
   ```text
       PLAYER NAME   {Player_Name}
       PLAYER RUNS   {Runs}
