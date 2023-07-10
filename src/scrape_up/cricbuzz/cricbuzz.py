@@ -4,23 +4,26 @@ from bs4 import BeautifulSoup
 
 class Cricbuzz:
     """
-    ## Cricbuzz class to get live matches, recent matches, upcoming matches, match stats and info, series info, series stats and info, team info, team stats and info, player info, player stats and info, etc.\n
-    ### Parameters - None\n
-    ### Methods - \n
-        get_live_matches(type) - Returns a list of live matches\n
-        get_recent_matches(type) - Returns a list of recent matches\n
-        get_upcoming_matches(type) - Returns a list of upcoming matches\n
-        get_series(type) - Returns a dictionary of series in month and year format\n
-        get_series_from_archive(year, type) - Returns a list of series from archive\n
-        get_matches_by_day(type) - Returns a dictionary of matches by day\n
-        get_series_matches(series_id) - Returns a list of matches in a series\n
-        get_series_stats(series_id, match_format, stat) - Returns a list of stats of players in a series\n
-        get_teams_list(type) - Returns a list of teams\n
-        get_team_schedule(team_id) - Returns a list of matches of a team\n
-        get_team_players(team_id) - Returns a list of players of a team\n
-        get_team_results(team_id) - Returns a list of past results of a team\n
-        get_team_stats(team_id, year, match_format, stat) - Returns a list of player stats of a team\n
-    #### Future Plans: Implement Player Stats, Series Squads, Series Venues
+    Create an instance of `Cricubzz` class.
+    ```python
+    cricbuzz = Cricubzz()
+    ```
+    Methods\n
+    | Methods                      | Details                                                                |
+    | ---------------------------- | ---------------------------------------------------------------------- |
+    | `.get_live_matches()`        | Returns a list of live matches from Cricbuzz.                          |
+    | `.get_recent_matches()`      | Returns a list of recent matches from Cricbuzz.                        |
+    | `.get_upcoming_matches()`    | Returns a list of upcoming matches from Cricbuzz.                      |
+    | `.get_series()`              | Returns a dictionary of series in month and year format from Cricbuzz. |
+    | `.get_series_from_archive()` | Returns a list of series from archive from Cricbuzz.                   |
+    | `.get_matches_by_day()`      | Returns a dictionary of matches by day from Cricbuzz.                  |
+    | `.get_series_matches()`      | Returns a list of matches in a series from Cricbuzz.                   |
+    | `.get_series_stats()`        | Returns a list of stats of players in a series from Cricbuzz.          |
+    | `.get_teams_list()`          | Returns a list of teams from Cricbuzz.                                 |
+    | `.get_team_schedule()`       | Returns a list of matches of a team from Cricbuzz.                     |
+    | `.get_team_players()`        | Returns a list of players of a team from Cricbuzz.                     |
+    | `.get_team_results()`        | Returns a list of past results of a team from Cricbuzz.                |
+    | `.get_team_stats()`          | Returns a list of player stats of a team from Cricbuzz.                |
     """
 
     BASE_URL = "https://www.cricbuzz.com/"
@@ -181,93 +184,54 @@ class Cricbuzz:
 
     def get_live_matches(self, type="all"):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_live_matches(type)\n
-        ## Parameters -
-                (optional) type (str) \t Available Paramaters -> ["all", "international", "domestic", "league", "women"]\n
-        ## Returns - list of live matches\n
-        ## Data Format - \n
-            ```python
-                [{"series_name": {series_name},"match_name": {match_name},"start_date_time": {start_date_time},"location": {location},"match_id": {match_id},"status": {status},"score": [{team_name: {team_name}, "scores": [{score1}, {score2}, ...]}, {team_name: {team_name}, "scores": [{score1}, {score2}, ...]}]},]
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                live_matches = cricbuzz.get_live_matches(type="international")
-                for match in live_matches:
-                    print(match["match_name"], end="\t")
-                    print(match["status"])
-            ```
-        ## Output - \n
-            ```text
-                {match_name}    {match_status}
-                {match_name}    {match_status}
-                {match_name}    {match_status}....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - TYPES = ["all", "international", "domestic", "league", "women"]\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_live_matches(type="all")
+        ```
         """
-        URL = self.BASE_URL + "cricket-match/live-scores"
-        return self.__scrape_match(url=URL, type=type)
+        try:
+            URL = self.BASE_URL + "cricket-match/live-scores"
+            response = self.__scrape_match(url=URL, type=type)
+            return response
+        except:
+            return None
 
     def get_recent_matches(self, type="all"):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_recent_matches(type)\n
-        ## Parameters -
-                (optional) type (str) \t Available Paramaters -> ["all", "international", "domestic", "league", "women"]\n
-        ## Returns - list of recent matches\n
-        ## Data Format - \n
-            ```python
-                [{"series_name": {series_name},"match_name": {match_name},"start_date_time": {start_date_time},"location": {location},"match_id": {match_id},"status": {status}, "score": [{team_name: {team_name}, "scores": [{score1}, {score2}, ...]}, {team_name: {team_name}, "scores": [{score1}, {score2}, ...]}]},]
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                recent_matches = cricbuzz.get_recent_matches(type="international")
-                for match in recent_matches:
-                    print(match["match_name"], end="\t")
-                    print(match["status"])
-            ```
-        ## Output - \n
-            ```text
-                {match_name}    {match_status}
-                {match_name}    {match_status}
-                {match_name}    {match_status}....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - TYPES = ["all", "international", "domestic", "league", "women"]\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_recent_matches(type="all")
+        ```
         """
-        URL = self.BASE_URL + "cricket-match/live-scores/recent-matches"
-        return self.__scrape_match(url=URL, type=type)
+        try:
+            URL = self.BASE_URL + "cricket-match/live-scores/recent-matches"
+            response = self.__scrape_match(url=URL, type=type)
+            return response
+        except:
+            return None
 
     def get_upcoming_matches(self, type="all"):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_upcoming_matches(type)\n
-        ## Parameters -
-                (optional) type (str) \t Available Paramaters -> ["all", "international", "domestic", "league", "women"]\n
-        ## Returns - list of recent matches\n
-        ## Data Format - \n
-            ```python
-                [{"series_name": {series_name},"match_name": {match_name},"start_date_time": {start_date_time},"location": {location},"match_id": {match_id}},]
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                upcoming_matches = cricbuzz.get_upcoming_matches(type="international")
-                for match in upcoming_matches:
-                    print(match["match_name"], end="\t")
-                    print(match["status"])
-            ```
-        ## Output - \n
-            ```text
-                {match_name}    {match_status}
-                {match_name}    {match_status}
-                {match_name}    {match_status}....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - TYPES = ["all", "international", "domestic", "league", "women"]\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_upcoming_matches(type="all")
+        ```
         """
-        URL = self.BASE_URL + "cricket-match/live-scores/upcoming-matches"
-        return self.__scrape_match(url=URL, type=type, isUpcoming=True)
+        try:
+            URL = self.BASE_URL + "cricket-match/live-scores/upcoming-matches"
+            response = self.__scrape_match(url=URL, type=type, isUpcoming=True)
+            return response
+        except:
+            return None
 
     def __scrape_series(self, url, type="all"):
         try:
@@ -340,39 +304,20 @@ class Cricbuzz:
 
     def get_series(self, type="all"):
         """
-        ## Class - Cricbuzz\n
-        ## get_series(type)\n
-        ## Parameters -
-                (optional) type (str) \t Available Paramaters -> ["all", "international", "domestic", "league", "women"]\n
-        ## Returns -  dictionary of series in month and year format\n
-        ## Data Format - \n
-            ```python
-                {"month year" : [{"series_name": {series_name},"series_id": {series_id},"series_dates": {series_dates}},]}
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                cric_series = cricbuzz.get_series(type="international")
-                for series in cric_series:
-                    print(series)
-                    for matches in cric_series[series]:
-                        print("\t", matches["series_name"], end="\t")
-                        print("\t", matches["series_dates"])
-            ```
-        ## Output - \n
-            ```text
-                {month} {year}
-                    {series_name}    {series_dates}
-                    {series_name}    {series_dates} ....
-                {month} {year}
-                    {series_name}    {series_dates}
-                    {series_name}    {series_dates} ....
-                {month} {year}....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - TYPES = ["all", "international", "domestic", "league", "women"]\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_series(type="all")
+        ```
         """
-        URL = self.BASE_URL + "cricket-schedule/series"
-        return self.__scrape_series(url=URL, type=type)
+        try:
+            URL = self.BASE_URL + "cricket-schedule/series"
+            response = self.__scrape_series(url=URL, type=type)
+            return response
+        except:
+            return None
 
     def __scrape_series_from_archive(self, url, type="all"):
         try:
@@ -422,36 +367,23 @@ class Cricbuzz:
 
     def get_series_from_archive(self, year, type="all"):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_series_from_archive(year, type)\n
-        ## Parameters -
-                (required) year (int) \n
-                (optional) type (str) \t Available Paramaters -> ["all", "international", "domestic", "league", "women"]\n
-        ## Returns -  list of series from archive\n
-        ## Data Format - \n
-            ```python
-                [{"series_name": {series_name},"series_id": {series_id},"series_dates": {series_dates}},]
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                cric_series = cricbuzz.get_series_from_archive(year=2023, type="international")
-                for series in cric_series:
-                    print(series["series_name"], end="\t")
-                    print(series["series_dates"])
-            ```
-        ## Output - \n
-            ```text
-                {series_name}    {series_dates}
-                {series_name}    {series_dates} ....
-                {series_name}    {series_dates} ....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - TYPES = ["all", "international", "domestic", "league", "women"]
+        - Year\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_series_from_archive(year, type="all")
+        ```
         """
-        URL = self.BASE_URL + f"cricket-scorecard-archives/{year}"
-        if type.lower() not in self.TYPES:
-            return [{"error": "Invalid type"}]
-        return self.__scrape_series_from_archive(url=URL, type=type)
+        try:
+            URL = self.BASE_URL + f"cricket-scorecard-archives/{year}"
+            if type.lower() not in self.TYPES:
+                return [{"error": "Invalid type"}]
+            response = self.__scrape_series_from_archive(url=URL, type=type)
+            return response
+        except:
+            return None
 
     def __scarpe_matches_by_day(self, url, type):
         try:
@@ -498,43 +430,24 @@ class Cricbuzz:
 
     def get_matches_by_day(self, type="all"):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_matches_by_day(type)\n
-        ## Parameters -
-                (optional) type (str) \t Available Paramaters -> ["all", "international", "domestic", "league", "women"]\n
-        ## Returns -  dictionary of matches by day\n
-        ## Data Format -\n
-            ```python
-                {"day" : [{"series_name": {series_name},"series_id": {series_id},"match_name": {match_name},"match_id": {match_id},"location": {location},"start_date_time": {start_date_time}},]}
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                cric_series = cricbuzz.get_matches_by_day(type="international")
-                for day in cric_series:
-                    print(day)
-                    for match in cric_series[day]:
-                        print("\t", match["match_name"], end="\t")
-                        print("\t", match["start_date_time"])
-            ```
-        ## Output - \n
-            ```text
-                {day}
-                    {match_name}    {start_date_time}
-                    {match_name}    {start_date_time} ....
-                {day}
-                    {match_name}    {start_date_time}
-                    {match_name}    {start_date_time} ....
-                {day}....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - TYPES = ["all", "international", "domestic", "league", "women"]\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_matches_by_day(type="all")
+        ```
         """
-        URL = self.BASE_URL + "cricket-schedule/upcoming-series"
-        if type.lower() not in self.TYPES:
-            return [{"error": "Invalid type"}]
-        else:
-            URL += f"/{type.lower()}"
-        return self.__scarpe_matches_by_day(url=URL, type=type)
+        try:
+            URL = self.BASE_URL + "cricket-schedule/upcoming-series"
+            if type.lower() not in self.TYPES:
+                return [{"error": "Invalid type"}]
+            else:
+                URL += f"/{type.lower()}"
+            response = self.__scarpe_matches_by_day(url=URL, type=type)
+            return response
+        except:
+            return None
 
     def __scrape_series_matches(self, url):
         try:
@@ -597,32 +510,19 @@ class Cricbuzz:
 
     def get_series_matches(self, series_id):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_series_matches(series_id)\n
-        ## Parameters -
-                (required) series_id (int)\n
-        ## Returns -  list of matches in a series\n
-        ## Data Format -\n
-            ```python
-                [{"match_start_data_time": {match_start_data_time},"match_title": {match_title},"match_location": {match_location},"match_status": {match_status},"match_id": {match_id}},]
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                cric_series_matches = cricbuzz.get_series_matches(6351)
-                for match in cric_series_matches:
-                    print(match["match_title"])
-            ```
-        ## Output - \n
-            ```text
-                {match_title}
-                {match_title}
-                {match_title}....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - `series_id` = Cricket mathc series Id(can be found on Cricbuzz Website)\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_series_matches(series_id="abc")
+        ```
         """
-        URL = self.BASE_URL + f"cricket-series/{series_id}/series/matches"
-        return self.__scrape_series_matches(url=URL)
+        try:
+            URL = self.BASE_URL + f"cricket-series/{series_id}/series/matches"
+            return self.__scrape_series_matches(url=URL)
+        except:
+            return None
 
     def __scrape_series_stats(self, series_id, match_format="Test", stat="most-runs"):
         try:
@@ -650,40 +550,44 @@ class Cricbuzz:
 
     def get_series_stats(self, series_id, match_format="Test", stat="most-runs"):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_series_stats(series_id, match_format, stat)\n
-        ## Parameters -\n
-                (required) series_id (int)\n
-                (optional) match_format (str) \t - Available Formats -> ["Test", "ODI", "T20I"]
-                (optional) stat (str) \t - Available Stats -> ["most-runs","highest-score","highest-avg","highest-sr","most-hundreds","most-fifties","most-fours","most-sixes","most-nineties","most-wickets","lowest-avg","best-bowling-innnings","most-five-wickets","lowest-econ","lowest-sr",]\n
-        ## Returns -  list of stats of players in a series\n
-        ## Data Format -\n
-            ```python
-                [{"":{S.No}, "Player": {Player_Name}, "Matches": {Matches}, "Innings": {Innings}, "PLAYER ID": {Player_ID}, ...(different stats)},]
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                player_stats = cricbuzz.get_series_stats(6351)
-                for player in player_stats:
-                    print(player["Player"], end="\t")
-                    print(player["Runs"])
-            ```
-        ## Output - \n
-            ```text
-                {Player_Name}    {Runs}
-                {Player_Name}    {Runs}
-                {Player_Name}    {Runs}....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - `series_id` = Cricket mathc series Id(can be found on Cricbuzz Website)\n
+        - `match_format` = ["Test", "ODI", "T20I"]\n
+        - `stat` = [
+            "most-runs",
+            "highest-score",
+            "highest-avg",
+            "highest-sr",
+            "most-hundreds",
+            "most-fifties",
+            "most-fours",
+            "most-sixes",
+            "most-nineties",
+            "most-wickets",
+            "lowest-avg",
+            "best-bowling-innnings",
+            "most-five-wickets",
+            "lowest-econ",
+            "lowest-sr",
+        ]\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_series_stats(series_id, match_format="Test", stat="most-runs")
+        ```
         """
-        if match_format not in self.FORMATS:
-            return [{"error": "Invalid match format", "valid_formats": self.FORMATS}]
-        if stat not in self.STATS:
-            return [{"error": "Invalid stat", "valid_stats": self.STATS}]
-        return self.__scrape_series_stats(
-            series_id=series_id, match_format=match_format, stat=stat
-        )
+        try:
+            if match_format not in self.FORMATS:
+                return [
+                    {"error": "Invalid match format", "valid_formats": self.FORMATS}
+                ]
+            if stat not in self.STATS:
+                return [{"error": "Invalid stat", "valid_stats": self.STATS}]
+            return self.__scrape_series_stats(
+                series_id=series_id, match_format=match_format, stat=stat
+            )
+        except:
+            return None
 
     def __scrape_team_data(self, url):
         try:
@@ -706,30 +610,13 @@ class Cricbuzz:
 
     def get_teams_list(self, type="all"):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_teams_list(type)\n
-        ## Parameters -\n
-                (optional) type (str) \t - Available Types -> ["all", "international", "domestic", "league", "women"]\n
-        ## Returns -  list of teams\n
-        ## Data Format -\n
-            ```python
-                [{"team_name": {team_name}, "team_code": {team_code}},]
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                teams = cricbuzz.get_teams_list(type="international")
-                for team in teams:
-                    print(team["team_name"], end="-")
-                    print(team["team_code"])
-            ```
-        ## Output - \n
-            ```text
-                {team_name}-{team_code}
-                {team_name}-{team_code}
-                {team_name}-{team_code}....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - `type` = ["all", "international", "domestic", "league", "women"]\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_teams_list(type="all")
+        ```
         """
         URL = self.BASE_URL + "cricket-team"
         if type.lower() not in self.TYPES:
@@ -809,29 +696,12 @@ class Cricbuzz:
 
     def get_team_schedule(self, team_id):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_team_schedule(team_id)\n
-        ## Parameters -\n
-                (required) team_id (int)
-        ## Returns -  list of matches of a team\n
-        ## Data Format -\n
-            ```python
-                [{"match_start_data_time": {match_start_data_time},"match_title": {match_title},"match_location": {match_location},"match_series_name": {match_series_name},"match_status": {match_status},"match_id": {match_id}},]
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                team_schedule = cricbuzz.get_team_schedule(2)
-                for match in team_schedule:
-                    print(match["match_title"])
-            ```
-        ## Output - \n
-            ```text
-                {match_title}
-                {match_title}
-                {match_title}....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - `team_id` = Can be extracted from Cricbuzz\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_team_schedule(team_id=" ")
         """
         URL = self.BASE_URL + f"cricket-team/team/{team_id}/schedule"
         return self.__scrape_team_schedule(url=URL)
@@ -859,32 +729,19 @@ class Cricbuzz:
 
     def get_team_players(self, team_id):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_team_players(team_id)\n
-        ## Parameters -\n
-                (required) team_id (int)
-        ## Returns -  list of players of a team\n
-        ## Data Format -\n
-            ```python
-                [{"player_name": {player_name},"player_id": {player_id}},]
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                team_players = cricbuzz.get_team_players(2)
-                for player in team_players:
-                    print(player["player_name"])
-            ```
-        ## Output - \n
-            ```text
-                {player_name}
-                {player_name}
-                {player_name}....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - `team_id` = Can be extracted from Cricbuzz\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_team_players(team_id=" ")
+        ```
         """
-        URL = self.BASE_URL + f"cricket-team/team/{team_id}/players"
-        return self.__scrape_team_players(url=URL)
+        try:
+            URL = self.BASE_URL + f"cricket-team/team/{team_id}/players"
+            return self.__scrape_team_players(url=URL)
+        except:
+            return None
 
     def __scrape_team_results(self, url):
         try:
@@ -955,32 +812,19 @@ class Cricbuzz:
 
     def get_team_results(self, team_id):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_team_results(team_id)\n
-        ## Parameters -\n
-                (required) team_id (int)
-        ## Returns -  list of past results of a team\n
-        ## Data Format -\n
-            ```python
-                [{"player_name": {player_name},"player_id": {player_id}},]
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                team_results = cricbuzz.get_team_results(2)
-                for result in team_results:
-                    print(result["match_status"])
-            ```
-        ## Output - \n
-            ```text
-                {match_status}
-                {match_status}
-                {match_status}....
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - `team_id` = Can be extracted from Cricbuzz\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_team_results(team_id=" ")
+        ```
         """
-        URL = self.BASE_URL + f"cricket-team/team/{team_id}/results"
-        return self.__scrape_team_results(url=URL)
+        try:
+            URL = self.BASE_URL + f"cricket-team/team/{team_id}/results"
+            return self.__scrape_team_results(url=URL)
+        except:
+            return None
 
     def __scrape_team_stats(self, team_id, year, match_format="Test", stat="most-runs"):
         try:
@@ -1010,51 +854,44 @@ class Cricbuzz:
         self, team_id, year="all", match_format="Test", stat="most-runs"
     ):
         """
-        ## Class - Cricbuzz\n
-        ## Method - get_team_stats(team_id, year, match_format, stat)\n
-        ## Parameters -\n
-                (required) team_id (int)
-                (optional) year (int) \t - Available Years -> ["all", 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014]
-                (optional) match_format (str) \t - Available Formats -> ["Test", "ODI", "T20I"]
-                (optional) stat (str) \t - Available Stats -> ["most-runs","highest-score","highest-avg","highest-sr","most-hundreds","most-fifties","most-fours","most-sixes","most-nineties","most-wickets","lowest-avg","best-bowling-innnings","most-five-wickets","lowest-econ","lowest-sr",]\n
-        ## Returns -  list of players stats of a team\n
-        ## Data Format -\n
-            ```python
-                [{"PLAYER": {Player_Name}, "MATCHES": {Matches}, "INNS": {Innings}, "PLAYER ID": {Player_ID}, ...(different stats)},]
-            ```
-        ## Example - \n
-            ```python
-                from scrape_up.cricbuzz import Cricbuzz
-                cricbuzz = Cricbuzz()
-                team_stats = cricbuzz.get_team_stats(2)
-                for player in team_stats:
-                    print("PLAYER NAME", player["PLAYER"])
-                    print("PLAYER RUNS", player["RUNS"])
-                    print("PLAYER MATCHES", player["MATCHES"])
-                    print("\n\n")
-            ```
-        ## Output - \n
-            ```text
-                PLAYER NAME   {Player_Name}
-                PLAYER RUNS   {Runs}
-                PLAYER MATCHES   {Matches}
-
-
-
-                PLAYER NAME   {Player_Name}
-                PLAYER RUNS   {Runs}
-                PLAYER MATCHES   {Matches}
-
-
-                PLAYER NAME   {Player_Name}
-                PLAYER RUNS   {Runs}
-                PLAYER MATCHES   {Matches}...
-            ```
+        Class - Cricbuzz\n
+        Params required
+        - `team_id` = Team Id(can be found on Cricbuzz Website)\n
+        - `match_format` = ["Test", "ODI", "T20I"]\n
+        - `stat` = [
+            "most-runs",
+            "highest-score",
+            "highest-avg",
+            "highest-sr",
+            "most-hundreds",
+            "most-fifties",
+            "most-fours",
+            "most-sixes",
+            "most-nineties",
+            "most-wickets",
+            "lowest-avg",
+            "best-bowling-innnings",
+            "most-five-wickets",
+            "lowest-econ",
+            "lowest-sr",
+        ]\n
+        ```python
+        cricbuzz = Cricubzz()
+        cricbuzz.get_team_stats(team_id, match_format="Test", stat="most-runs")
+        ```
         """
-        if match_format not in self.FORMATS:
-            return [{"error": "Invalid match format", "valid_formats": self.FORMATS}]
-        if stat not in self.STATS:
-            return [{"error": "Invalid stat", "valid_stats": self.STATS}]
-        return self.__scrape_team_stats(
-            team_id=team_id, year=year, match_format=match_format, stat=stat
-        )
+        try:
+            if match_format not in self.FORMATS:
+                return [
+                    {"error": "Invalid match format", "valid_formats": self.FORMATS}
+                ]
+            if stat not in self.STATS:
+                return [{"error": "Invalid stat", "valid_stats": self.STATS}]
+            return self.__scrape_team_stats(
+                team_id=team_id, year=year, match_format=match_format, stat=stat
+            )
+        except:
+            return None
+
+cric = Cricbuzz()
+print(cric.get_live_matches())
