@@ -3,10 +3,38 @@ from bs4 import BeautifulSoup
 
 
 class Reddit:
-   
+    """
+    Class - `Reddit`
+    Example:
+    ```
+    posts = Reddit()
+    ```\n
+    Methods :\n
+    1. ``.getFeed() | Response - Blogs with title, descriptions, subreddit, subreddit avatar, 
+                                 time, vote and comment count, image, category and link.
+    """
 
     def getFeed(self):
-        
+        """
+        Class - `Reddit`
+        Example:
+        ```
+        posts = Reddit()
+        posts.getFeed()
+        ```
+        Returns:
+        {
+            "title": Title of the post
+            "description": Description of the post
+            "subreddit": subreddit name,
+            "subreddit_avatar": subreddit avatar,
+            "time": Time the post was posted,
+            "vote_count": No. of votes of the post,
+            "comment_count": No. of comments of the post,
+            "img_url": URL of any image provided in the post,
+            "category": Category of the post,
+        }
+        """
         url = "https://www.reddit.com/"
         try:
             res = requests.get(url)
