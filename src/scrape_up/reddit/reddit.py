@@ -10,7 +10,7 @@ class Reddit:
     posts = Reddit()
     ```\n
     Methods :\n
-    1. ``.getFeed() | Response - Blogs with title, descriptions, subreddit, subreddit avatar, 
+    1. ``.getFeed() | Response - Posts with title, descriptions, subreddit, subreddit avatar, 
                                  time, vote and comment count, image, category and link.
     """
 
