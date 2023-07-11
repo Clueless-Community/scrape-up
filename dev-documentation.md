@@ -684,15 +684,13 @@ Create an instance of `Hashnode` class.
 blogs = Hashnode()
 ```
 
-| Methods      | Details                                                                                                             |
-| ------------ | ------------------------------------------------------------------------------------------------------------------- |
+| Methods      | Details                                                                                              |
+| ------------ | ---------------------------------------------------------------------------------------------------- |
 | `.getFeed()` | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link |
 
 ---
 
 ## Reddit
-
-### Scrape posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link.
 
 Create an instance of `Reddit` class.
 
@@ -700,8 +698,8 @@ Create an instance of `Reddit` class.
 posts = Reddit()
 ```
 
-| Methods      | Details                                                                                                             |
-| ------------ | ------------------------------------------------------------------------------------------------------------------- |
+| Methods      | Details                                                                                                                         |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
 
 ---
@@ -727,12 +725,6 @@ Job = TimesJobs('example')
 ---
 
 ## Dev Community
-
-### Scrape latest articles from home page
-
-### Scrape latest articles based on a tag
-
-### Scrape user data, all articles written by a user and pinned articles written by a user
 
 Create an instance of `DevCommunity` class.
 
