@@ -135,3 +135,5 @@ class Courses:
         
         except Exception as inst:
             return json.dumps({'data': None, 'message': 'No courses found for ' + self.keyword + ''})
+        finally:
+            driver.quit()

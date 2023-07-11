@@ -985,3 +985,31 @@ pprint(user_article)
 ```
 
 ---
+
+---
+
+## Udemy
+
+```python
+from scrape_up import Udemy
+```
+
+### Scrape top courses for a specific keyword
+
+First, create an object of class `Courses`
+
+```python
+topic = Udemy.courses(keyword="data science")
+```
+
+| Methods           | Details                                  |
+| ----------------- | ---------------------------------------- |
+| `.get_courses()`  | Returns the list of top courses.         |
+
+**Example**
+
+```python
+top_courses = json.loads(topic.get_courses().data) #user var taken from above
+for course in top_courses:
+    print(course) #For better visibility/readability
+```
