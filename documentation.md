@@ -1009,7 +1009,7 @@ topic = Udemy.courses(keyword="data science")
 **Example**
 
 ```python
-top_courses = json.loads(topic.get_courses().data) #user var taken from above
+top_courses = json.loads(topic.get_courses().data) #topic var taken from above
 for course in top_courses:
     print(course) #For better visibility/readability
 ```
