@@ -775,3 +775,16 @@ dev = DevCommunity('francescoxx')
 | `.get_team_stats()`          | Returns a list of player stats of a team from Cricbuzz.                |
 
 ---
+
+
+# Udemy
+
+First, create an object of class `Courses` for `Udemy` module
+
+```python
+topic = Udemy.courses(keyword="data science")
+```
+
+| Methods          | Details                          |
+| ---------------- | -------------------------------- |
+| `.get_courses()` | Returns the list of top courses. |
