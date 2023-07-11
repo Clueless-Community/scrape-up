@@ -1,3 +1,3 @@
-from scrape_up.Udemy.courses import Courses
+from courses import Courses
 
-__all__ = ['Courses']
+__all__ = ["Courses"]
