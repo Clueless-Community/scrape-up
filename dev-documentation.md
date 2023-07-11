@@ -776,6 +776,7 @@ dev = DevCommunity('francescoxx')
 
 ---
 
+
 # Udemy
 
 First, create an object of class `Courses` for `Udemy` module

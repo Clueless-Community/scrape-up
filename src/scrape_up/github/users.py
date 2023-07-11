@@ -1,14 +1,35 @@
 import requests
 from bs4 import BeautifulSoup
-import repository
-import asyncio
-import aiohttp
-from tqdm import tqdm
-
-# from github.repository import Repository
 
 
 class Users:
+    """
+    Create an instance of the class `Users`
+    ```python
+    user = github.Users(username="nikhil25803")
+    ```
+    | Methods                       | Details                                                                                            |
+    | ----------------------------- | -------------------------------------------------------------------------------------------------- |
+    | `.followers()`                | Returns the number of followers of a user.                                                         |
+    | `.following()`                | Returns the number of following of a user.                                                         |
+    | `.get_avatar()`               | Returns the avatar URL of a user.                                                                  |
+    | `.get_bio()`                  | Returns the bio of a user.                                                                         |
+    | `.get_repo()`                 | Returns the list of pinned repositories for a user.                                                |
+    | `.repo_count()`               | Returns the number of Repositories of a user.                                                      |
+    | `.star_count()`               | Returns the number of stars of a user.                                                             |
+    | `.get_yearly_contributions()` | Returns the number of contributions made in 365 days frame.                                        |
+    | `.get_repositories()`         | Returns the list of repositories of a user.                                                        |
+    | `.get_starred_repos()`        | Return the list of starred repositories of a user.                                                 |
+    | `.pul_requests()`             | Return the number of pull requests opened in a repository.                                         |
+    | `.get_followers()`            | Returns the list of followers of a user.                                                           |
+    | `.get_following_users()`      | Returns the list of users followed by a user.                                                      |
+    | `.get_achievements()`         | Returns the list of achievements of a user.                                                        |
+    | `.get_status()`               | Returns the status of a user.                                                                      |
+    | `.get_contribution_streak()`  | Returns the maximum contribution streak of a user in the past year starting from the current date. |
+    | `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
+    | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
+    """
+
     def __init__(self, username: str):
         self.username = username
 
@@ -23,58 +44,34 @@ class Users:
 
     def followers(self) -> str:
         """
-        Class - `Users`\n
-        Example -\n
+        Class - `Users`
         ```python
         user = github.User(username="nikhil25803")
         followers = user.followers()
-        ```
-        Return\n
-        ```python
-        return
-        {
-            "data": followers.text,
-            "message":f"Followers found for user {self.username}"
-        }
         ```
         """
         page = self.__scrape_page()
         try:
             followers = page.find(class_="text-bold color-fg-default")
-            return {
-                "data": followers.text,
-                "message": f"Followers found for user {self.username}",
-            }
+            return followers.text
         except:
-            message = f"{self.username} not found !"
-            return {"data": None, "message": message}
+            return None
 
     def following(self):
         """
         Class - `Users`\n
-        Example -\n
         ```python
         user = github.User(username="nikhil25803")
         following = user.following()
-        ```
-        Return\n
-        ```python
-        return
-        {
-            following = page.find_all(class_="text-bold color-fg-default")
-            # print(page.find_all("span"))
-            return following[1].text
-        }
         ```
         """
         page = self.__scrape_page()
         try:
             following = page.find_all(class_="text-bold color-fg-default")
-            # print(page.find_all("span"))
+
             return following[1].text
         except:
-            message = f"{self.username} not found !"
-            return message
+            return None
 
     def get_avatar(self):
         """
@@ -84,13 +81,6 @@ class Users:
         user = github.User(username="nikhil25803")
         get_avatar = user.get_avatar()
         ```
-        Return\n
-        ```python
-        return
-        {
-            return avatar["src"]
-        }
-        ```
         """
         page = self.__scrape_page()
         try:
@@ -99,8 +89,7 @@ class Users:
             )
             return avatar["src"]
         except:
-            message = f"Avatar not found for username {self.username}"
-            return message
+            return None
 
     def get_bio(self):
         """
@@ -110,13 +99,6 @@ class Users:
         user = github.User(username="nikhil25803")
         get_bio = user.get_bio()
         ```
-        Return\n
-        ```python
-        return
-        {
-            return bio.text
-        }
-        ```
         """
         page = self.__scrape_page()
         try:
@@ -125,8 +107,7 @@ class Users:
             )
             return bio.text
         except:
-            message = f"Bio not found for username {self.username}"
-            return message
+            return None
 
     def get_repo(self):
         """
@@ -135,13 +116,6 @@ class Users:
         ```python
         user = github.User(username="nikhil25803")
         get_repo = user.get_repo()
-        ```
-        Return\n
-        ```python
-        return
-        {
-            return titles
-        }
         ```
         """
         page = self.__scrape_page()
@@ -152,8 +126,7 @@ class Users:
             titles = [repo.find("span", class_="repo").text for repo in pinned_repos]
             return titles
         except:
-            message = f"pinned repositories not found for username {self.username}"
-            return message
+            return None
 
     def repo_count(self):
         """
@@ -162,13 +135,6 @@ class Users:
         ```python
         user = github.User(username="nikhil25803")
         repo_count = user.repo_count()
-        ```
-        Return\n
-        ```python
-        return
-        {
-           return count_repo_list[0]
-        }
         ```
         """
         page = self.__scrape_page()
@@ -180,8 +146,7 @@ class Users:
                 count_repo_list.append(find_all_example)
             return count_repo_list[0]
         except:
-            message = f"No. of Repos not found for username {self.username}"
-            return message
+            return None
 
     def star_count(self):
         """
@@ -190,13 +155,6 @@ class Users:
         ```python
         user = github.User(username="nikhil25803")
         star_count = user.star_count()
-        ```
-        Return\n
-        ```python
-        return
-        {
-            return count_star_list[3]
-        }
         ```
         """
         page = self.__scrape_page()
@@ -208,8 +166,7 @@ class Users:
                 count_star_list.append(find_all_example)
             return count_star_list[3]
         except:
-            message = f"Starred repo not found for username {self.username}"
-            return message
+            return None
 
     def get_yearly_contributions(self):
         """
@@ -219,21 +176,13 @@ class Users:
         user = github.User(username="nikhil25803")
         get_yearly_contributions = user.get_yearly_contributions()
         ```
-        Return\n
-        ```python
-        return
-        {
-           return " ".join(contributions.text.split())
-        }
-        ```
         """
         page = self.__scrape_page()
         try:
             contributions = page.find("h2", class_="f4 text-normal mb-2")
             return " ".join(contributions.text.split())
         except:
-            message = f"Yearly contributions not found for username {self.username}"
-            return message
+            return None
 
     def __get_repo_page(self):
         """
@@ -252,13 +201,6 @@ class Users:
         user = github.User(username="nikhil25803")
         get_repositories = user.get_repositories()
         ```
-        Return\n
-        ```python
-        return
-        {
-            return repositories
-        }
-        ```
         """
         page = self.__get_repo_page()
         try:
@@ -271,8 +213,7 @@ class Users:
                     repositories.append("https://github.com" + repo.a["href"])
             return repositories
         except:
-            message = f"Repositories not found for username {self.username}"
-            return message
+            return None
 
     def get_organizations(self):
         """
@@ -282,21 +223,13 @@ class Users:
         user = github.User(username="nikhil25803")
         get_organizations = user.get_organizations()
         ```
-        Return\n
-        ```python
-        return
-        {
-            return orgs
-        }
-        ```
         """
         page = self.__scrape_page()
         try:
             orgs = [org.login for org in page.get_orgs()]
             return orgs
         except:
-            message = f"No organizations found for the username {self.username}"
-            return message
+            return None
 
     def get_achievements(self):
         """
@@ -305,13 +238,6 @@ class Users:
         ```python
         user = github.User(username="nikhil25803")
         get_achievements = user.get_achievements()
-        ```
-        Return\n
-        ```python
-        return
-        {
-            return achievement
-        }
         ```
         """
         try:
@@ -325,7 +251,7 @@ class Users:
 
             return achievement
         except:
-            return "Achievements cannot be fetched"
+            return None
 
     def __get_starred_page(self):
         """
@@ -344,13 +270,6 @@ class Users:
         user = github.User(username="nikhil25803")
         get_starred_repos = user.get_starred_repos()
         ```
-        Return\n
-        ```python
-        return
-        {
-             return starred_repos
-        }
-        ```
         """
         page = self.__get_starred_page()
         try:
@@ -364,8 +283,7 @@ class Users:
                     starred_repos.append("https://github.com" + repo.a["href"])
             return starred_repos
         except:
-            message = f"Starred repositories not found for username {self.username}"
-            return message
+            return None
 
     def __scrape_followers_page(self):
         """
@@ -384,13 +302,6 @@ class Users:
         user = github.User(username="nikhil25803")
         get_followers = user.get_followers()
         ```
-        Return\n
-        ```python
-        return
-        {
-            return followers
-        }
-        ```
         """
         page = self.__scrape_followers_page()
         try:
@@ -401,8 +312,7 @@ class Users:
 
             return followers
         except:
-            message = f"Followers not found for username {self.username}"
-            return message
+            return None
 
     def __scrape_following_page(self):
         """
@@ -422,13 +332,6 @@ class Users:
         user = github.User(username="nikhil25803")
         get_following_users = user.get_following_users()
         ```
-        Return\n
-        ```python
-        return
-        {
-            return following
-        }
-        ```
         """
         page = self.__scrape_following_page()
         try:
@@ -439,19 +342,15 @@ class Users:
 
             return following
         except:
-            message = f"Following users not found for username {self.username}"
-            return message
+            return None
 
     def company(self):
         page = self.__scrape_following_page()
         try:
             cmp = page.find(class_="Link--primary")
-            print(cmp.text)
-            # print(page.find_all("a"))
+            return cmp.text
         except:
-            message = f"Following users not found for username {self.username}"
-            message = f"Following users not found for username {self.username}"
-            return message
+            return None
 
     def get_status(self):
         """Class - `Users`\n
@@ -460,13 +359,6 @@ class Users:
         user = github.User(username="nikhil25803")
         get_status = user.get_status()
         ```
-        Return\n
-        ```python
-        return
-        {
-            return t.text.strip().replace("\n", "")
-        }
-
         """
         try:
             data = self.__scrape_page()
@@ -475,8 +367,7 @@ class Users:
             )
             return t.text.strip().replace("\n", "")
         except:
-            message = f"Status not found for username {self.username}"
-            return message
+            return None
 
     def get_contribution_streak(self):
         """
@@ -486,13 +377,6 @@ class Users:
         user = github.User(username="nikhil25803")
         get_contribution_streak = user.get_contribution_streak()
         ```
-        Return\n
-        ```python
-        return
-        {
-             return int(result)
-        }
-
         """
         try:
             data = self.__scrape_page()
@@ -517,7 +401,7 @@ class Users:
                     result = max(result, count)
             return int(result)
         except:
-            return "contribution streak cannot be obtained"
+            return None
 
     def __get_page_details(self, link):
         """
@@ -535,23 +419,20 @@ class Users:
         user = github.User(username="nikhil25803")
         get_pages = user.get_pages()
         ```
-        Return\n
-        ```python
-        return
-        {
-            return pages_links
-        }
-        ```
         """
-        data = self.__get_page_details(curr_repo_link)
-        pages_body = data.find("div", class_="paginate-container")
-        if pages_body.find("a", class_="next_page") != None:
-            pages_links.append(
-                "https://github.com" + pages_body.find("a", class_="next_page")["href"]
-            )
-            self.get_pages(pages_links[-1], pages_links)
+        try:
+            data = self.__get_page_details(curr_repo_link)
+            pages_body = data.find("div", class_="paginate-container")
+            if pages_body.find("a", class_="next_page") != None:
+                pages_links.append(
+                    "https://github.com"
+                    + pages_body.find("a", class_="next_page")["href"]
+                )
+                self.get_pages(pages_links[-1], pages_links)
 
-        return pages_links
+            return pages_links
+        except:
+            return None
 
     def get_repository_details(self):
         """
@@ -560,13 +441,6 @@ class Users:
         ```python
         user = github.User(username="nikhil25803")
         get_repository_details = user.get_repository_details()
-        ```
-        Return\n
-        ```python
-        return
-        {
-            return repositories
-        }
         ```
         """
         username = self.username
@@ -624,67 +498,80 @@ class Users:
 
             return repositories
         except:
-            return "No repositories found"
+            return None
 
     def get_all_repo_details(self):
+        """
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_all_repo_details = user.get_all_repo_details()
+        ```
+        """
         page = self.__get_repo_page()
 
         repo_elements = page.select("#user-repositories-list ul li")
         repositories = []
 
-        for repo_element in tqdm(repo_elements):
-            link = repo_element.find("a")["href"]
-            repositories.append(f"https://github.com{link}")
+        try:
+            for repo_element in repo_elements:
+                link = repo_element.find("a")["href"]
+                repositories.append(f"https://github.com{link}")
 
-            name = repo_element.find("a").text.split("/")[-1]
-            repositories.append(name.replace("\n", ""))
+                name = repo_element.find("a").text.split("/")[-1]
+                repositories.append(name.replace("\n", ""))
 
-            description = (
-                repo_element.find("p").get_text(strip=True)
-                if repo_element.find("p")
-                else None
-            )
-            # description= description.replace('\n','')
-            repositories.append(description)
+                description = (
+                    repo_element.find("p").get_text(strip=True)
+                    if repo_element.find("p")
+                    else None
+                )
+                # description= description.replace('\n','')
+                repositories.append(description)
 
-            url1 = "https://github.com" + link
-            response1 = requests.get(url1)
-            soup = BeautifulSoup(response1.content, "html.parser")
-            li_elements = soup.find_all("li", class_="d-inline")
+                url1 = "https://github.com" + link
+                response1 = requests.get(url1)
+                soup = BeautifulSoup(response1.content, "html.parser")
+                li_elements = soup.find_all("li", class_="d-inline")
 
-            for li in li_elements:
-                language = li.text.strip()
-                repositories.append(language.replace("\n", ""))
+                for li in li_elements:
+                    language = li.text.strip()
+                    repositories.append(language.replace("\n", ""))
 
-                stars = soup.find("span", class_="text-bold")
-                num_of_stars = stars.text if stars else "N/A"
-                repositories.append(num_of_stars.replace("\n", ""))
+                    stars = soup.find("span", class_="text-bold")
+                    num_of_stars = stars.text if stars else "N/A"
+                    repositories.append(num_of_stars.replace("\n", ""))
 
-            pullurl = url1 + "/pulls"
-            issuesurl = url1 + "/issues"
-            pullresponse = requests.get(
-                pullurl
-            )  # getting the content of pull requests page
-            issueresponse = requests.get(
-                issuesurl
-            )  # getting the content of issues page
+                pullurl = url1 + "/pulls"
+                issuesurl = url1 + "/issues"
+                pullresponse = requests.get(
+                    pullurl
+                )  # getting the content of pull requests page
+                issueresponse = requests.get(
+                    issuesurl
+                )  # getting the content of issues page
 
-            p_soup = BeautifulSoup(
-                pullresponse.content, "html.parser"
-            )  # creating beautifulsoup object for pull requests page
-            i_soup = BeautifulSoup(
-                issueresponse.content, "html.parser"
-            )  # creating beautifulsoup object for issues page
+                p_soup = BeautifulSoup(
+                    pullresponse.content, "html.parser"
+                )  # creating beautifulsoup object for pull requests page
+                i_soup = BeautifulSoup(
+                    issueresponse.content, "html.parser"
+                )  # creating beautifulsoup object for issues page
 
-            # to find number of pull requests
-            pullrequests = p_soup.find(
-                "div", class_="table-list-header-toggle states flex-auto pl-0"
-            )
-            num_of_pull_requests = pullrequests.text.strip() if pullrequests else "N/A"
-            repositories.append(num_of_pull_requests.replace("\n", ""))
+                # to find number of pull requests
+                pullrequests = p_soup.find(
+                    "div", class_="table-list-header-toggle states flex-auto pl-0"
+                )
+                num_of_pull_requests = (
+                    pullrequests.text.strip() if pullrequests else "N/A"
+                )
+                repositories.append(num_of_pull_requests.replace("\n", ""))
 
-            issues = i_soup.select_one("span#issues-repo-tab-count")
-            num_of_issues = issues.text.strip() if issues else "N/A"
-            repositories.append(num_of_issues.replace("\n", ""))
+                issues = i_soup.select_one("span#issues-repo-tab-count")
+                num_of_issues = issues.text.strip() if issues else "N/A"
+                repositories.append(num_of_issues.replace("\n", ""))
 
-        return repositories
+            return repositories
+        except:
+            return None

@@ -3,6 +3,22 @@ from bs4 import BeautifulSoup
 
 
 class Issue:
+    """
+    Create an instance of the class `Issue`
+    ```python
+    repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
+    ```
+
+    | Methods           | Details                                                                            |
+    | ----------------- | ---------------------------------------------------------------------------------- |
+    | `.assignees()`    | Returns the assignees of an issue.                                                 |
+    | `.labels()`       | Returns the labels of an issue.                                                    |
+    | `.opened_by()`    | Returns the name of the user, who opened the issue.                                |
+    | `.title()`        | Returns the title of an issue.                                                     |
+    | `.is_milestone()` | Returns the milestone, if the issue is part of one or 'No milestone', if it's not. |
+    | `.opened_at()`    | Returns a string containing the time when the issue was opened in ISO format.      |
+    """
+
     def __init__(self, username: str, repository_name: str, issue_number: int):
         self.username = username
         self.repository = repository_name
@@ -23,13 +39,8 @@ class Issue:
         repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
         assignees = repository.assignees()
         ```
-        Returns:
-        {
-            return {
-                "data": assignees,
-                "message": f"Found assignees for {self.repository}",
-            }
-        }
+        Returns: Assignees | None
+        ```
         """
         data = self.__scrape_page()
         try:
@@ -39,16 +50,9 @@ class Issue:
                 "a", class_="assignee Link--primary css-truncate-target width-fit"
             ):
                 assignees.append(assignee.text.replace("\n", "").strip())
-            return {
-                "data": assignees,
-                "message": f"Found assignees for {self.repository}",
-            }
+            assignees
         except:
-            message = f"No assignees found for {self.repository}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            None
 
     def labels(self):
         """
@@ -58,13 +62,7 @@ class Issue:
         repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
         labels = repository.labels()
         ```
-        Returns:
-        {
-            return {
-                "data": allLabels,
-                "message": f"Found labels for {self.repository}", 
-            }
-        }
+        Returns: Labels | None
         """
         data = self.__scrape_page()
         try:
@@ -75,16 +73,9 @@ class Issue:
             allLabels = []
             for label in allLabelsHtml:
                 allLabels.append(label.text)
-            return {
-                "data": allLabels,
-                "message": f"Found labels for {self.repository}",
-            }
+            allLabels
         except:
-            message = f"No labels found for {self.repository}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def opened_by(self):
         """
@@ -94,27 +85,14 @@ class Issue:
         repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
         opened_by = repository.opened_by()
         ```
-        Returns:
-        {
-            return {
-                   "data": author_name,
-                "message": f"Found author for {self.repository}",
-            }
-        }
+        Returns: Author Name | None
         """
         data = self.__scrape_page()
         try:
             author_name = data.find("a", class_="author text-bold Link--secondary").text
-            return {
-                "data": author_name,
-                "message": f"Found author for {self.repository}",
-            }
+            author_name
         except:
-            message = f"No author found for {self.repository}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def title(self):
         """
@@ -124,29 +102,15 @@ class Issue:
         repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
         title = repository.title()
         ```
-        Returns:
-        {
-            return {
-               "data": title,
-                "message": f"Found title for {self.repository}",
-            }
-        }
-        
+        Returns: Title | None
         """
         data = self.__scrape_page()
         try:
             title_body = data.find("bdi", class_="js-issue-title markdown-title")
             title = title_body.text.strip()
-            return {
-                "data": title,
-                "message": f"Found title for {self.repository}",
-            }
+            return title
         except:
-            message = f"No title found for {self.repository}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def opened_at(self):
         """
@@ -156,26 +120,13 @@ class Issue:
         repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
         opened_at = repository.opened_at()
         ```
-        Returns:
-        {
-            return {
-               "data": data.find("relative-time").text,
-                "message": f"Found time for {self.repository}",
-            }
-        }
+        Returns: Opened at | None
         """
         try:
             data = self.__scrape_page()
-            return {
-                "data": data.find("relative-time").text,
-                "message": f"Found time for {self.repository}",
-            }
+            return data.find("relative-time").text
         except:
-            message = f"No time found for {self.repository}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def is_milestone(self):
         """
@@ -184,27 +135,14 @@ class Issue:
         ```
         repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
         is_milestone = repository.is_milestone()
-        ```
-        Returns:
-        {
-            return {
-               "data": milestone,
-                "message": f"Found milestone for {self.repository}",
-            }
-        }
+        ```js
+        Returns: Milestones | None
         """
         data = self.__scrape_page()
         try:
             milestone = data.find(
                 "a", class_="Link--secondary mt-1 d-block text-bold css-truncate"
             ).text.strip()
-            return {
-                "data": milestone,
-                "message": f"Found milestone for {self.repository}",
-            }
+            return milestone
         except:
-            message = f"No milestone found for {self.repository}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
