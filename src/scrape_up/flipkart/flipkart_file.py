@@ -216,3 +216,42 @@ class Flipkart:
 
         except Exception as e:
             return None
+        
+    def headphones():
+        try:
+            """
+            Get the list of mobiles under 50K\n
+            Class - `Flipkart`\n
+            Example -\n
+            ```python
+            item = Flipkart()
+            item.mobiles()
+            """
+
+            link = "https://www.flipkart.com/search?q=headphones+bluetooth&sid=0pm%2Cfcn%2Cgc3%2Cka8&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&as-pos=1&as-type=RECENT&suggestionId=headphones+bluetooth%7CWireless+Headphones&requestId=beefc9a9-55a8-4b64-b510-b9bc44ae6680&as-backfill=on&page=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("a", class_="s1Q9rs")
+                price = data.find("div", class_="_30jeq3")
+                description = data.find("div", class_="_3xFhiH")
+                review = data.find("div", class_="_3LWZlK")
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+a=Flipkart.headphones()
+print(a)
