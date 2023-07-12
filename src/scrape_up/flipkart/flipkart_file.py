@@ -5,12 +5,10 @@ import requests
 
 class Flipkart:
     """
-        Create an instance of `Flipkart` class.
-
+    Create an instance of `Flipkart` class\n
     ```python
     item = Flipkart()
     ```
-
     | Methods               | Details                                                            |
     | --------------------- | ------------------------------------------------------------------ |
     | `.TVs()`              | Returns the list of TV sets on flipkart                            |
@@ -18,6 +16,7 @@ class Flipkart:
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
     | `.laptops()`          | Returns the list of laptop from flipkart.                          |
+    | `.headphones()`          | Returns the list of headphones from flipkart.|
     """
 
     def __init__(self):
@@ -216,18 +215,15 @@ class Flipkart:
 
         except Exception as e:
             return None
-        
-    def headphones():
-        try:
-            """
-            Get the list of mobiles under 50K\n
-            Class - `Flipkart`\n
-            Example -\n
-            ```python
-            item = Flipkart()
-            item.mobiles()
-            """
 
+    def headphones():
+        """
+        Class - `Flipkart`\n
+        ```python
+        item = Flipkart()
+        item.headphones()
+        """
+        try:
             link = "https://www.flipkart.com/search?q=headphones+bluetooth&sid=0pm%2Cfcn%2Cgc3%2Cka8&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&as-pos=1&as-type=RECENT&suggestionId=headphones+bluetooth%7CWireless+Headphones&requestId=beefc9a9-55a8-4b64-b510-b9bc44ae6680&as-backfill=on&page=1"
             page = requests.get(link)
             soup = bs(page.content, "html.parser")
@@ -253,5 +249,3 @@ class Flipkart:
 
         except Exception as e:
             return None
-a=Flipkart.headphones()
-print(a)
