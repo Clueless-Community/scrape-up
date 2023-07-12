@@ -57,7 +57,6 @@ class CovidInfo:
   def sortbycases(self, rev):
     data = self.scrape()
     data.remove(['Country','Number of Cases', 'Deaths'])
-    print(data)
     data = sorted(data, key= lambda r:r[1],reverse=rev)
     return data
 
