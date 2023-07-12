@@ -5,12 +5,10 @@ import requests
 
 class Flipkart:
     """
-        Create an instance of `Flipkart` class.
-
+    Create an instance of `Flipkart` class\n
     ```python
     item = Flipkart()
     ```
-
     | Methods               | Details                                                            |
     | --------------------- | ------------------------------------------------------------------ |
     | `.TVs()`              | Returns the list of TV sets on flipkart                            |
@@ -18,6 +16,7 @@ class Flipkart:
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
     | `.laptops()`          | Returns the list of laptop from flipkart.                          |
+    | `.headphones()`          | Returns the list of headphones from flipkart.|
     """
 
     def __init__(self):
@@ -201,6 +200,40 @@ class Flipkart:
                 names = data.find("div", class_="_4rR01T")
                 price = data.find("div", class_="_30jeq3 _1_WHN1")
                 description = data.find("ul", class_="_1xgFaf")
+                review = data.find("div", class_="_3LWZlK")
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+
+    def headphones():
+        """
+        Class - `Flipkart`\n
+        ```python
+        item = Flipkart()
+        item.headphones()
+        """
+        try:
+            link = "https://www.flipkart.com/search?q=headphones+bluetooth&sid=0pm%2Cfcn%2Cgc3%2Cka8&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&as-pos=1&as-type=RECENT&suggestionId=headphones+bluetooth%7CWireless+Headphones&requestId=beefc9a9-55a8-4b64-b510-b9bc44ae6680&as-backfill=on&page=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("a", class_="s1Q9rs")
+                price = data.find("div", class_="_30jeq3")
+                description = data.find("div", class_="_3xFhiH")
                 review = data.find("div", class_="_3LWZlK")
 
                 item_details = {
