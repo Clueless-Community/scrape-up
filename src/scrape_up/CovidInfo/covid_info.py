@@ -16,10 +16,15 @@ from bs4 import BeautifulSoup
 """
 
 class CovidInfo:
+  """This class is used to get live covid-related data such as realtime worldwide cases, deaths, cases and related info by country, info of all the countries, and so on."""  
+
   def __init__(self):
         print(self)
 
   def scrape(self):
+    """Get the scraped data of all the countries"""
+
+
     url = 'https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/'
     page = requests.get(url)
     soup = BeautifulSoup(page.text, 'html.parser')
@@ -41,48 +46,76 @@ class CovidInfo:
 
       except StopIteration:
         break
-    return data
+    if data.length == 1:
+      return None
+    else:
+      return data  
 
 
   def findCountry(self, name):
-    data = self.scrape()
-    fc = [['Country','Number of Cases', 'Deaths']]
-    for i in data:
-      if i[0].lower() == name.lower():
-        fc.append([i[0],i[1],i[2]])
+    """Get the covid-data of any particular country.\n
+    Parameters info: \n
+    - "name": it is the full name of the country whose data is to be returned"""
 
-        return fc
-    return 'Data not aviliable for value entered'
+
+    try:
+
+      ata = self.scrape()
+      fc = [['Country','Number of Cases', 'Deaths']]
+      for i in data:
+        if i[0].lower() == name.lower():
+          fc.append([i[0],i[1],i[2]])
+
+          return fc
+      return 'Data not aviliable for value entered'
+    except:
+      return None
 
   def sortbycases(self, rev):
-    data = self.scrape()
-    data.remove(['Country','Number of Cases', 'Deaths'])
-    data = sorted(data, key= lambda r:r[1],reverse=rev)
-    return data
+    """Get the covid detail list of all the country sorted by total cases in that country"""
+    try:
+      data = self.scrape()
+      data.remove(['Country','Number of Cases', 'Deaths'])
+      data = sorted(data, key= lambda r:r[1],reverse=rev)
+      return data
+    except:
+      return None  
 
   def sortbydeaths(self, rev):
-    data = self.scrape()
-    data.remove(['Country','Number of Cases', 'Deaths'])
-    data = sorted(data, key= lambda r:r[2],reverse=rev)
-    return data
+    """Get the covid detail list of all the country sorted by total deaths in that country"""
+    try:
+      data = self.scrape()
+      data.remove(['Country','Number of Cases', 'Deaths'])
+      data = sorted(data, key= lambda r:r[2],reverse=rev)
+      return data
+    except:
+      return None  
 
   def totalcases(self):
-    url = 'https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/'
-    page = requests.get(url)
-    soup = BeautifulSoup(page.text, 'html.parser')
-    req = soup.find_all('span',{"class": "bold_number"})
+    """Get the total number of COVID cases in the world"""
+    try:
+      url = 'https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/'
+      page = requests.get(url)
+      soup = BeautifulSoup(page.text, 'html.parser')
+      req = soup.find_all('span',{"class": "bold_number"})
 
-    z = req[0].find_all('a')
-    fin = ''
-    for i in z:
-      fin = fin + i.contents[0]
-    sol = fin.split(' ')
-    return sol[0]
+      z = req[0].find_all('a')
+      fin = ''
+      for i in z:
+        fin = fin + i.contents[0]
+      sol = fin.split(' ')
+      return sol[0]
+    except:
+      return None  
 
   def totaldeaths(self):
-    url = 'https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/'
-    page = requests.get(url)
-    soup = BeautifulSoup(page.text, 'html.parser')
-    req = soup.find_all('a',{"href": "/coronavirus/coronavirus-death-toll/"})
-    k = req[0].find('strong').contents[0].split(' ')
-    return k[0]
+    """Get the total number of COVID-deaths in the world"""
+    try:
+      url = 'https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/'
+      page = requests.get(url)
+      soup = BeautifulSoup(page.text, 'html.parser')
+      req = soup.find_all('a',{"href": "/coronavirus/coronavirus-death-toll/"})
+      k = req[0].find('strong').contents[0].split(' ')
+      return k[0]
+    except:
+      return None  
