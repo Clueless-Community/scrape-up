@@ -5,7 +5,7 @@ import requests
 
 class Flipkart:
     """
-    Create an instance of `Flipkart` class\n
+    Create an instance of `Flipkart` class.
     ```python
     item = Flipkart()
     ```
@@ -16,7 +16,8 @@ class Flipkart:
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
     | `.laptops()`          | Returns the list of laptop from flipkart.                          |
-    | `.headphones()`          | Returns the list of headphones from flipkart.|
+    | `.camera()`          | Returns the list of camera from flipkart.                          |
+    | `.computer()`          | Returns the list of computer from flipkart.                          |
     """
 
     def __init__(self):
@@ -216,12 +217,13 @@ class Flipkart:
         except Exception as e:
             return None
 
-    def headphones():
+    def headphones(self):
         """
         Class - `Flipkart`\n
         ```python
         item = Flipkart()
         item.headphones()
+        ```
         """
         try:
             link = "https://www.flipkart.com/search?q=headphones+bluetooth&sid=0pm%2Cfcn%2Cgc3%2Cka8&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&as-pos=1&as-type=RECENT&suggestionId=headphones+bluetooth%7CWireless+Headphones&requestId=beefc9a9-55a8-4b64-b510-b9bc44ae6680&as-backfill=on&page=1"
@@ -249,13 +251,14 @@ class Flipkart:
 
         except Exception as e:
             return None
-        
-    def camera():
+
+    def camera(self):
         """
         Class - `Flipkart`\n
         ```python
         item = Flipkart()
         item.camera()
+        ```
         """
         try:
             link = "https://www.flipkart.com/search?q=camera&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
@@ -274,6 +277,41 @@ class Flipkart:
                     "Item_Name": names.text if names else None,
                     "Price": price.text if price else None,
                     "Description": description.text if description else None,
+                    "Review": review.text if review else None,
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+
+    def computer(self):
+        """
+        Class - `Flipkart`\n
+        ```python
+        item = Flipkart()
+        item.computer()
+        ```
+        """
+        try:
+            link = "https://www.flipkart.com/search?q=computer&sid=6bo%2Cnl4%2Cigk&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_2_8_na_na_na&otracker1=AS_QueryStore_OrganicAutoSuggest_2_8_na_na_na&as-pos=2&as-type=RECENT&suggestionId=computer%7CAll+In+One+PCs&requestId=a640e175-ccac-4757-81de-8580730de6ef&as-backfill=on&page=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("a", class_="s1Q9rs")
+                price = data.find("div", class_="_30jeq3")
+                delivery = data.find("div", class_="_2Tpdn3")
+                review = data.find("div", class_="_3LWZlK")
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "delivery": delivery.text if delivery else None,
                     "Review": review.text if review else None,
                 }
 
