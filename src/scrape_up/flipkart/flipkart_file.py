@@ -5,7 +5,7 @@ import requests
 
 class Flipkart:
     """
-    Create an instance of `Flipkart` class.
+    Create an instance of `Flipkart` class\n
     ```python
     item = Flipkart()
     ```
@@ -16,8 +16,7 @@ class Flipkart:
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
     | `.laptops()`          | Returns the list of laptop from flipkart.                          |
-    | `.camera()`          | Returns the list of camera from flipkart.                          |
-    | `.computer()`          | Returns the list of computer from flipkart.                          |
+    | `.headphones()`          | Returns the list of headphones from flipkart.|
     """
 
     def __init__(self):
@@ -188,7 +187,7 @@ class Flipkart:
             Example -\n
             ```python
             item = Flipkart()
-            item.laptops()
+            item.mobiles()
             """
 
             link = "https://www.flipkart.com/search?q=laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=1"
@@ -217,13 +216,12 @@ class Flipkart:
         except Exception as e:
             return None
 
-    def headphones(self):
+    def headphones():
         """
         Class - `Flipkart`\n
         ```python
         item = Flipkart()
         item.headphones()
-        ```
         """
         try:
             link = "https://www.flipkart.com/search?q=headphones+bluetooth&sid=0pm%2Cfcn%2Cgc3%2Cka8&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&as-pos=1&as-type=RECENT&suggestionId=headphones+bluetooth%7CWireless+Headphones&requestId=beefc9a9-55a8-4b64-b510-b9bc44ae6680&as-backfill=on&page=1"
@@ -252,72 +250,131 @@ class Flipkart:
         except Exception as e:
             return None
 
-    def camera(self):
-        """
-        Class - `Flipkart`\n
-        ```python
-        item = Flipkart()
-        item.camera()
-        ```
-        """
-        try:
-            link = "https://www.flipkart.com/search?q=camera&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
-            page = requests.get(link)
-            soup = bs(page.content, "html.parser")
 
-            all_items = []
 
-            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
-                names = data.find("div", class_="_4rR01T")
-                price = data.find("div", class_="_30jeq3")
-                description = data.find("ul", class_="_1xgFaf")
-                review = data.find("div", class_="_3LWZlK")
+"""
+        Create an instance of `FlipkartTees` class.
 
-                item_details = {
-                    "Item_Name": names.text if names else None,
-                    "Price": price.text if price else None,
-                    "Description": description.text if description else None,
-                    "Review": review.text if review else None,
-                }
+    ```python
+    cloth = FlipkartTees()
+    ```
 
-                all_items.append(item_details)
+    | Methods               | Details                                                            |
+    | --------------------- | ------------------------------------------------------------------ |
+    | `.scrape()`           | Returns the list of t-shirts with other relevant info              |
+    | `.range()`            | Returns the list of t-shirts between a particular price range.     |
+    | `.minrating()`        | Returns the list of t-shirts havinga minimum given rating.         |
+    | `.gendermale()`       | Returns the list of t-shirts which are for males.                  |
+    | `.genderfemale()`     | Returns the list of t-shirts which are there for females.          |
+    | `.size()`             | Returns the list of tshirts havning a particular size.             |
 
-            return all_items
+    """
 
-        except Exception as e:
-            return None
 
-    def computer(self):
-        """
-        Class - `Flipkart`\n
-        ```python
-        item = Flipkart()
-        item.computer()
-        ```
-        """
-        try:
-            link = "https://www.flipkart.com/search?q=computer&sid=6bo%2Cnl4%2Cigk&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_2_8_na_na_na&otracker1=AS_QueryStore_OrganicAutoSuggest_2_8_na_na_na&as-pos=2&as-type=RECENT&suggestionId=computer%7CAll+In+One+PCs&requestId=a640e175-ccac-4757-81de-8580730de6ef&as-backfill=on&page=1"
-            page = requests.get(link)
-            soup = bs(page.content, "html.parser")
 
-            all_items = []
+class FlipkartTees:
+  """This class returns the t-shirt query elements from flipkart web"""
 
-            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
-                names = data.find("a", class_="s1Q9rs")
-                price = data.find("div", class_="_30jeq3")
-                delivery = data.find("div", class_="_2Tpdn3")
-                review = data.find("div", class_="_3LWZlK")
+  def __init__(self):
+        print(self)
 
-                item_details = {
-                    "Item_Name": names.text if names else None,
-                    "Price": price.text if price else None,
-                    "delivery": delivery.text if delivery else None,
-                    "Review": review.text if review else None,
-                }
 
-                all_items.append(item_details)
+  def scrape(self, url = 'https://www.flipkart.com/search?q=tshirt&as=on&as-show=on&otracker=AS_Query_TrendingAutoSuggest_1_0_na_na_na&otracker1=AS_Query_TrendingAutoSuggest_1_0_na_na_na&as-pos=1&as-type=TRENDING&suggestionId=mobiles&requestId=fbbac901-d12f-4dc5-9a8c-b034cde11af9'):
+    
+    """It returns the t-shirt data of products from flipkart"""
+    try:
 
-            return all_items
+      content = requests.get(url)
 
-        except Exception as e:
-            return None
+      soup = BeautifulSoup(content.content, 'html.parser')
+
+      titl = soup.title
+
+      imgs = soup.find_all('img', attrs={'class':'_2r_T1I'})
+      names = soup.find_all('div',attrs={'class':'_2WkVRV'})
+      prices = soup.find_all('div',attrs={'class':'_30jeq3'})
+      desc = soup.find_all('a',attrs={'class':'IRpwTa'})
+
+      res = []
+      startlink = 'https://www.flipkart.com'
+
+      for i in range(len(imgs)):
+
+        nm = desc[i].attrs['href']
+        name = names[i].text
+        img = imgs[i].attrs['src']
+        des = desc[i].text
+        price = prices[i].text
+
+        res.append([name,price,des,img,startlink+nm])
+      return res
+    except:
+      return None  
+
+
+  def range(self, min, max):
+
+    """It returns the t-shirts in a particular price bracket(min-max). The information regarding parameters is as follows:\n
+    - min: Bottom range of price\n
+    - max: Max range of price """ 
+    try:
+
+      max = int(max)
+      min = int(min)
+      if min == max:
+        return None
+      url = 'https://www.flipkart.com/search?q=tshirt&as=on&as-show=on&otracker=AS_Query_TrendingAutoSuggest_1_0_na_na_na&otracker1=AS_Query_TrendingAutoSuggest_1_0_na_na_na&as-pos=1&as-type=TRENDING&suggestionId=mobiles&requestId=fbbac901-d12f-4dc5-9a8c-b034cde11af9&p%5B%5D=facets.price_range.from%3D{}&p%5B%5D=facets.price_range.to%3D{}'.format(min,max)
+      k = FlipkartTees().scrape(url)
+      return k
+    except:
+      return None  
+
+  def minrating(self,r):
+
+    """It returns the t-shirts having the user rating greater than or equal to the minimum passed rating(r)"""
+    try:
+
+      if int(r)<1 and int(r)>=5:
+        return None
+      url = 'https://www.flipkart.com/search?q=tshirt&as=on&as-show=on&otracker=AS_Query_TrendingAutoSuggest_1_0_na_na_na&otracker1=AS_Query_TrendingAutoSuggest_1_0_na_na_na&as-pos=1&as-type=TRENDING&suggestionId=mobiles&requestId=fbbac901-d12f-4dc5-9a8c-b034cde11af9&p%5B%5D=facets.price_range.from%3DMin&p%5B%5D=facets.price_range.to%3DMax&p%5B%5D=facets.rating%255B%255D%3D{}%25E2%2598%2585%2B%2526%2Babove'.format(int(r))
+      k = FlipkartTees().scrape(url)
+      return k
+    except:
+      return None  
+
+  def gendermale(self):
+    
+    """It returns all the t-shirts pertaining to males"""
+    try:
+
+      url = 'https://www.flipkart.com/clothing-and-accessories/topwear/tshirts/mens-tshirts/pr?sid=clo,ash,ank,edy&q=tshirt&otracker=categorytree'
+      k = FlipkartTees().scrape(url)
+      return k
+    except:
+      return None  
+
+
+  def genderfemale(self):
+    """It returns all the t-shirts pertaining to females"""
+    try:
+
+      url = 'https://www.flipkart.com/clothing-and-accessories/topwear/tshirts/womens-tshirts/pr?sid=clo,ash,ank,loi&q=tshirt&otracker=categorytree'
+      k = FlipkartTees().scrape(url)
+      return k
+    except:
+      return None
+
+  def size(self, m):
+    """It returns those t-shirts which are of a particular size"""
+    try:
+
+      m = m.upper()
+      curavl = ['XS,S,M,L,XL,2XL,3XL']
+      if m not in curval:
+        return None
+      url = 'https://www.flipkart.com/search?q=tshirt&as=on&as-show=on&otracker=AS_Query_TrendingAutoSuggest_1_0_na_na_na&otracker1=AS_Query_TrendingAutoSuggest_1_0_na_na_na&as-pos=1&as-type=TRENDING&suggestionId=mobiles&requestId=fbbac901-d12f-4dc5-9a8c-b034cde11af9&p%5B%5D=facets.size%255B%255D%3D{}'.format(m)
+      k = FlipkartTees().scrape(url)
+      return k
+    except:
+        return None
+            
