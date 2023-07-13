@@ -187,7 +187,7 @@ class Flipkart:
             Example -\n
             ```python
             item = Flipkart()
-            item.mobiles()
+            item.laptops()
             """
 
             link = "https://www.flipkart.com/search?q=laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=1"
@@ -234,6 +234,40 @@ class Flipkart:
                 names = data.find("a", class_="s1Q9rs")
                 price = data.find("div", class_="_30jeq3")
                 description = data.find("div", class_="_3xFhiH")
+                review = data.find("div", class_="_3LWZlK")
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+        
+    def camera():
+        """
+        Class - `Flipkart`\n
+        ```python
+        item = Flipkart()
+        item.camera()
+        """
+        try:
+            link = "https://www.flipkart.com/search?q=camera&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("div", class_="_4rR01T")
+                price = data.find("div", class_="_30jeq3")
+                description = data.find("ul", class_="_1xgFaf")
                 review = data.find("div", class_="_3LWZlK")
 
                 item_details = {
