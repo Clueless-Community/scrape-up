@@ -811,7 +811,7 @@ response = CovidInfo()
 
 
 ```python
-from flipkart_file import FlipkartTees
+from flipkart_clothing import FlipkartTees
 ```
 
 Create an instance of `FlipkartTees` class.
