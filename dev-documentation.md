@@ -531,6 +531,7 @@ item = Flipkart()
 | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
 | `.laptops()`          | Returns the list of laptop from flipkart.                          |
 | `.camera()`          | Returns the list of camera from flipkart.                          |
+| `.computer()`          | Returns the list of computer from flipkart.                          |
 
 ---
 
