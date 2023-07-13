@@ -807,5 +807,29 @@ response = CovidInfo()
 | `.totaldeaths()`            | Returns the total number of covid deaths as of yet in the form of a string of numbers                |
 
 
+# FlipkartTees
+
+
+```python
+from flipkart_file import FlipkartTees
+```
+
+Create an instance of `FlipkartTees` class.
+
+    ```python
+    cloth = FlipkartTees()
+    ```
+
+| Methods               | Details                                                            |
+| --------------------- | ------------------------------------------------------------------ |
+| `.scrape()`           | Returns the list of t-shirts with other relevant info              |
+| `.range()`            | Returns the list of t-shirts between a particular price range.     |
+| `.minrating()`        | Returns the list of t-shirts havinga minimum given rating.         |
+| `.gendermale()`       | Returns the list of t-shirts which are for males.                  |
+| `.genderfemale()`     | Returns the list of t-shirts which are there for females.          |
+| `.size()`             | Returns the list of tshirts havning a particular size.             |
+
+
+    
 
     
