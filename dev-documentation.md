@@ -789,3 +789,23 @@ topic = Udemy.courses(keyword="data science")
 | Methods          | Details                          |
 | ---------------- | -------------------------------- |
 | `.get_courses()` | Returns the list of top courses. |
+
+---
+
+
+# CovidInfo
+
+Create an instance of the `CovidInfo` class.
+
+```python
+response = CovidInfo()
+```
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.covid_data()`                 | Returns the scraped data from the target website of all the countries in the form of a list          |
+| `.totalcases()`             | Returns the total number of covid cases as of yet in the form of a string of numbers                 |
+| `.totaldeaths()`            | Returns the total number of covid deaths as of yet in the form of a string of numbers                |
+
+
+
+    
