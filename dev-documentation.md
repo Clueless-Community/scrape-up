@@ -794,17 +794,14 @@ topic = Udemy.courses(keyword="data science")
 
 # CovidInfo
 
-For running this project, first create an instance of the "CovidInfo" class.
+Create an instance of the `CovidInfo` class.
 
 ```python
-coviddata = CovidInfo()
+response = CovidInfo()
 ```
 | Methods                     | Details                                                                                              |
 | --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `.scrape()`                 | Returns the scraped data from the target website of all the countries in the form of a list          |
-| `.findCountry()`            | Returns the data related to the specific country passed as a parameter into the function             |
-| `.sortbycases()`            | Returns the list of datas of all the country, sorted according to the number of cases                |
-| `.sortbydeaths()`           | Returns the list of datas of all the country, sorted according to the number of deaths               |
+| `.covid_data()`                 | Returns the scraped data from the target website of all the countries in the form of a list          |
 | `.totalcases()`             | Returns the total number of covid cases as of yet in the form of a string of numbers                 |
 | `.totaldeaths()`            | Returns the total number of covid deaths as of yet in the form of a string of numbers                |
 
