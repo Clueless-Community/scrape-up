@@ -806,3 +806,18 @@ response = CovidInfo()
 | `.covid_data()`  | Returns the scraped data from the target website of all the countries in the form of a list |
 | `.totalcases()`  | Returns the total number of covid cases as of yet in the form of a string of numbers        |
 | `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
+
+
+# MediEncyclopedia
+
+Create an instance of `MediEncyclopedia` class.
+
+ ```python
+ ency = MediEncyclopedia()
+ ```
+
+| Methods               | Details                                                             |
+| --------------------- | ------------------------------------------------------------------- |
+| `.scrapebyurl()`      | Returns the medical dictation of associated topic url               |
+| `.byletter()`         | Returns the list of medical relics starting with a particular letter|
+    
