@@ -575,3 +575,25 @@ class Users:
             return repositories
         except:
             return None
+
+    def get_merged_pull_requests(self):
+        """
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_merged_pull_requests = user.get_merged_pull_requests()
+        ```
+        """
+
+        try:
+            url = f'https://api.github.com/search/issues?q=type:pr+author:{self.username}+is:merged'
+            results = requests.get(url).json()
+
+            pull_requests = []
+            for result in results['items']:
+                pull_requests.append({'pr_url': result['url'], 'repo_url': result['repository_url'],
+                                      'title': result['title']})
+            return pull_requests
+        except:
+            return None
