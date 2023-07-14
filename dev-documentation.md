@@ -65,6 +65,7 @@ user = github.Users(username="nikhil25803")
 | `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
 | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
 | `.get_merged_pull_requests()` | Returns the list of merged pull requests with details like url, repo link and title                |
+
 ### Scrape Repository details
 
 First, create an object of class `Repository`
@@ -792,7 +793,6 @@ topic = Udemy.courses(keyword="data science")
 
 ---
 
-
 # CovidInfo
 
 Create an instance of the `CovidInfo` class.
@@ -800,12 +800,9 @@ Create an instance of the `CovidInfo` class.
 ```python
 response = CovidInfo()
 ```
-| Methods                     | Details                                                                                              |
-| --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `.covid_data()`                 | Returns the scraped data from the target website of all the countries in the form of a list          |
-| `.totalcases()`             | Returns the total number of covid cases as of yet in the form of a string of numbers                 |
-| `.totaldeaths()`            | Returns the total number of covid deaths as of yet in the form of a string of numbers                |
 
-
-
-    
+| Methods          | Details                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------- |
+| `.covid_data()`  | Returns the scraped data from the target website of all the countries in the form of a list |
+| `.totalcases()`  | Returns the total number of covid cases as of yet in the form of a string of numbers        |
+| `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
