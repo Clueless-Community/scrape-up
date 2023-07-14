@@ -806,3 +806,28 @@ response = CovidInfo()
 | `.covid_data()`  | Returns the scraped data from the target website of all the countries in the form of a list |
 | `.totalcases()`  | Returns the total number of covid cases as of yet in the form of a string of numbers        |
 | `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
+
+# NewsCNN
+
+Create an instance of `NewsCNN` class.
+
+```python
+news = newsCNN()
+```
+
+| Methods               | Details                                                            |
+| --------------------- | ------------------------------------------------------------------ |
+| `.get()`              | Returns an article's headline, content, time, and author(s).       |
+| `.toparticles()`      | Returns the list of top trending articles with their urls          |
+| `.newsAsia()`         | Returns a list of articles pertaining to the Asia in CNN           |
+| `.newsAustralia()`    | Returns a list of articles pertaining to the Australia in CNN      | 
+| `.newsUS()`           | Returns a list of articles pertaining to the USA in CNN            |
+| `.newsAmericas()`     | Returns a list of articles pertaining to the Americas in CNN       |
+| `.newsUK()`           | Returns a list of articles pertaining to the UK in CNN             |
+| `.newsAfrica()`       | Returns a list of articles pertaining to the Africas in CNN        |
+| `.newsMiddleEast()`   | Returns a list of articles pertaining to the Middle East in CNN    |
+| `.newsChina()`        | Returns a list of articles pertaining to the China in CNN          |
+| `.newsEurope()`       | Returns a list of articles pertaining to the Europe in CNN         |
+| `.newsIndia()`        | Returns a list of articles pertaining to the India in CNN          |
+| `.newsbylocation()`   | Returns the list of articles by a specific location.               |
+
