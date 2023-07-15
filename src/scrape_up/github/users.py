@@ -28,6 +28,7 @@ class Users:
     | `.get_contribution_streak()`  | Returns the maximum contribution streak of a user in the past year starting from the current date. |
     | `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
     | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
+    | `.get_merged_pull_requests()` | Returns the list of merged pull requests with details like url, repo link and title                |
     """
 
     def __init__(self, username: str):
@@ -573,5 +574,32 @@ class Users:
                 repositories.append(num_of_issues.replace("\n", ""))
 
             return repositories
+        except:
+            return None
+
+    def get_merged_pull_requests(self):
+        """
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_merged_pull_requests = user.get_merged_pull_requests()
+        ```
+        """
+
+        try:
+            url = f"https://api.github.com/search/issues?q=type:pr+author:{self.username}+is:merged"
+            results = requests.get(url).json()
+
+            pull_requests = []
+            for result in results["items"]:
+                pull_requests.append(
+                    {
+                        "pr_url": result["url"],
+                        "repo_url": result["repository_url"],
+                        "title": result["title"],
+                    }
+                )
+            return pull_requests
         except:
             return None
