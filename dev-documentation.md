@@ -792,7 +792,6 @@ topic = Udemy.courses(keyword="data science")
 
 ---
 
-
 # CovidInfo
 
 Create an instance of the `CovidInfo` class.
@@ -800,36 +799,26 @@ Create an instance of the `CovidInfo` class.
 ```python
 response = CovidInfo()
 ```
-| Methods                     | Details                                                                                              |
-| --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `.covid_data()`                 | Returns the scraped data from the target website of all the countries in the form of a list          |
-| `.totalcases()`             | Returns the total number of covid cases as of yet in the form of a string of numbers                 |
-| `.totaldeaths()`            | Returns the total number of covid deaths as of yet in the form of a string of numbers                |
 
+| Methods          | Details                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------- |
+| `.covid_data()`  | Returns the scraped data from the target website of all the countries in the form of a list |
+| `.totalcases()`  | Returns the total number of covid cases as of yet in the form of a string of numbers        |
+| `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
 
 # FlipkartTees
 
+Create an instance of `FlipkartClothing` class.
 
 ```python
-from flipkart_clothing import FlipkartTees
+cloth = FlipkartClothing()
 ```
 
-Create an instance of `FlipkartTees` class.
-
-    ```python
-    cloth = FlipkartTees()
-    ```
-
-| Methods               | Details                                                            |
-| --------------------- | ------------------------------------------------------------------ |
-| `.scrape()`           | Returns the list of t-shirts with other relevant info              |
-| `.range()`            | Returns the list of t-shirts between a particular price range.     |
-| `.minrating()`        | Returns the list of t-shirts havinga minimum given rating.         |
-| `.gendermale()`       | Returns the list of t-shirts which are for males.                  |
-| `.genderfemale()`     | Returns the list of t-shirts which are there for females.          |
-| `.size()`             | Returns the list of tshirts havning a particular size.             |
-
-
-    
-
-    
+| Methods                     | Details                                                        |
+| --------------------------- | -------------------------------------------------------------- |
+| `.tshirts()`                | Returns the list of t-shirts with other relevant info          |
+| `.tshirts_by_price_range()` | Returns the list of t-shirts between a particular price range. |
+| `.tshirts_by_rating()`      | Returns the list of t-shirts havinga minimum given rating.     |
+| `.tshirts_for_male()`       | Returns the list of t-shirts which are for males.              |
+| `.tshirts_for_female()`     | Returns the list of t-shirts which are there for females.      |
+| `.tshirt_by_size()`         | Returns the list of tshirts havning a particular size.         |
