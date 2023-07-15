@@ -789,3 +789,20 @@ for r in restaurants:
 ```
 
 ---
+
+## Myntra 
+
+### Scrape product page
+
+Create an instance of `Product` class.
+    
+```python   
+    product = Product(product_name="watch")
+```
+
+| Methods               | Details                                          |
+| --------------------- | ------------------------------------------------ |
+| `.get_product`        |       Returns the list of brands and prices.     |
+| `.get_description()`  | Returns the description of a single product.     |
+
+---
