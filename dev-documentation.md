@@ -64,6 +64,7 @@ user = github.Users(username="nikhil25803")
 | `.get_contribution_streak()`  | Returns the maximum contribution streak of a user in the past year starting from the current date. |
 | `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
 | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
+| `.get_merged_pull_requests()` | Returns the list of merged pull requests with details like url, repo link and title                |
 
 ### Scrape Repository details
 
@@ -805,6 +806,18 @@ response = CovidInfo()
 | `.covid_data()`  | Returns the scraped data from the target website of all the countries in the form of a list |
 | `.totalcases()`  | Returns the total number of covid cases as of yet in the form of a string of numbers        |
 | `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
+
+# NewsCNN
+
+Create an instance of `NewsCNN` class.\n
+
+```python
+news = newsCNN()
+```
+
+| Methods | Details |
+| `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
+
 
 # FlipkartTees
 
