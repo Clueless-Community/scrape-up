@@ -64,6 +64,7 @@ user = github.Users(username="nikhil25803")
 | `.get_contribution_streak()`  | Returns the maximum contribution streak of a user in the past year starting from the current date. |
 | `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
 | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
+| `.get_merged_pull_requests()` | Returns the list of merged pull requests with details like url, repo link and title                |
 
 ### Scrape Repository details
 
@@ -530,6 +531,8 @@ item = Flipkart()
 | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
 | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
 | `.laptops()`          | Returns the list of laptop from flipkart.                          |
+| `.camera()`           | Returns the list of camera from flipkart.                          |
+| `.computer()`         | Returns the list of computer from flipkart.                        |
 
 ---
 
@@ -776,7 +779,6 @@ dev = DevCommunity('francescoxx')
 
 ---
 
-
 # Udemy
 
 First, create an object of class `Courses` for `Udemy` module
@@ -791,7 +793,6 @@ topic = Udemy.courses(keyword="data science")
 
 ---
 
-
 # CovidInfo
 
 Create an instance of the `CovidInfo` class.
@@ -799,11 +800,12 @@ Create an instance of the `CovidInfo` class.
 ```python
 response = CovidInfo()
 ```
-| Methods                     | Details                                                                                              |
-| --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `.covid_data()`                 | Returns the scraped data from the target website of all the countries in the form of a list          |
-| `.totalcases()`             | Returns the total number of covid cases as of yet in the form of a string of numbers                 |
-| `.totaldeaths()`            | Returns the total number of covid deaths as of yet in the form of a string of numbers                |
+
+| Methods          | Details                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------- |
+| `.covid_data()`  | Returns the scraped data from the target website of all the countries in the form of a list |
+| `.totalcases()`  | Returns the total number of covid cases as of yet in the form of a string of numbers        |
+| `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
 
 
 # FlipkartTees
@@ -829,4 +831,17 @@ Create an instance of `FlipkartTees` class.
 | `.size()`             | Returns the list of tshirts havning a particular size.             |
 
 
+# MediEncyclopedia
+
+
+Create an instance of `MediEncyclopedia` class.
+
+ ```python
+ ency = MediEncyclopedia()
+ ```
+
+| Methods               | Details                                                             |
+| --------------------- | ------------------------------------------------------------------- |
+| `.scrapebyurl()`      | Returns the medical dictation of associated topic url               |
+| `.byletter()`         | Returns the list of medical relics starting with a particular letter|
     

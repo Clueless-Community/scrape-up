@@ -79,6 +79,10 @@ class UserTest():
         branches = self.user.get_branch()
         return branches
 
+    def test_get_merged_pull_requests(self):
+        merged_pull_requests = self.user.get_merged_pull_requests()
+        return merged_pull_requests
+
 class RepositoryTest:
 
     def __init__(self, username, repo):
