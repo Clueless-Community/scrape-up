@@ -3,12 +3,37 @@ from bs4 import BeautifulSoup
 
 
 class Coursera:
-    
+    """
+    Class - `Coursera`
+    Example:
+    ```
+    courses = Coursera()
+    ```\n
+    Methods :\n
+    1. ``.getCourses() | Response - Courses with title, teached by, skills, rating, review count, img url and link.
+    """
     def __init__(self, topic):
         self.topic = topic
 
     def getCourses(self):
-        
+        """
+        Class - `Coursera`
+        Example:
+        ```
+        courses = Coursera()
+        courses.getCoursera()
+        ```
+        Returns:
+        {
+            "title": Title of the course
+            "teached_by": Organization which teaches the course
+            "skills": Skills learnt from the course
+            "rating": Rating of the course
+            "review_count": Np. of review of the course
+            "img_url": Image URL of the course
+            "link": Link to the course
+        }
+        """
         url = "https://www.coursera.org/search?query=" + self.topic
         try:
             res = requests.get(url)
