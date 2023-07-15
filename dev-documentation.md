@@ -443,23 +443,15 @@ scraper = IMDB()
 
 ## Coursera
 
-```python
-from scrape_up import Coursera
-```
-
-### Scrape Courses Details
-
-<br>
-
 Create an object of the 'Courses' class:
 
 ```python
-scraper = Courses("courses","page_count")
+scraper = Courses("topic")
 ```
 
-| Methods     | Details                       |
-| ----------- | ----------------------------- |
-| `.titles()` | Returns the titles of courses |
+| Methods         | Details                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------------ |
+| `.getCourses()` | Returns the courses with title, teached by, skills, rating, review count, img url and link |
 
 ## Wikipedia
 
@@ -840,11 +832,12 @@ Create an instance of `MediEncyclopedia` class.
  ency = MediEncyclopedia()
  ```
 
-| Methods               | Details                                                             |
-| --------------------- | ------------------------------------------------------------------- |
-| `.scrapebyurl()`      | Returns the medical dictation of associated topic url               |
-| `.byletter()`         | Returns the list of medical relics starting with a particular letter|
-    
+| Methods               | Details                                                                                      |
+| --------------------- | -------------------------------------------------------------------------------------------- |
+| `.scrapebyurl()`      | Returns the medical dictation of associated topic url                                        |
+| `.query()`            | It takes a user query parameter as an argument and returns all relevant terms related to it. |
+| `.byletter()`         | Returns the list of medical relics starting with a particular letter                         |
+
 
 # NewsCNN
 
@@ -856,4 +849,24 @@ news = newsCNN()
 
 | Methods | Details |
 | `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
+
+
+# FlipkartTees
+
+Create an instance of `FlipkartClothing` class.
+
+```python
+cloth = FlipkartClothing()
+```
+
+| Methods                     | Details                                                        |
+| --------------------------- | -------------------------------------------------------------- |
+| `.tshirts()`                | Returns the list of t-shirts with other relevant info          |
+| `.tshirts_by_price_range()` | Returns the list of t-shirts between a particular price range. |
+| `.tshirts_by_rating()`      | Returns the list of t-shirts havinga minimum given rating.     |
+| `.tshirts_for_male()`       | Returns the list of t-shirts which are for males.              |
+| `.tshirts_for_female()`     | Returns the list of t-shirts which are there for females.      |
+| `.tshirt_by_size()`         | Returns the list of tshirts havning a particular size.         |
+
+
 
