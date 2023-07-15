@@ -845,3 +845,15 @@ Create an instance of `MediEncyclopedia` class.
 | `.scrapebyurl()`      | Returns the medical dictation of associated topic url               |
 | `.byletter()`         | Returns the list of medical relics starting with a particular letter|
     
+
+# NewsCNN
+
+Create an instance of `NewsCNN` class.\n
+
+```python
+news = newsCNN()
+```
+
+| Methods | Details |
+| `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
+
