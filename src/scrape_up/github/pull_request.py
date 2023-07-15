@@ -3,6 +3,21 @@ from bs4 import BeautifulSoup
 
 
 class PullRequest:
+    """
+    Create an instance of the class `PullRequest`
+    ```python
+    pull_request = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
+    ```
+
+    | Methods            | Details                                                                    |
+    | ------------------ | -------------------------------------------------------------------------- |
+    | `.commits()`       | Returns the number of commits made in a pull request.                      |
+    | `.title()`         | Returns the title of a pull request.                                       |
+    | `.labels()`        | Returns all the labels of a pull request, empty list in case of no labels. |
+    | `.files_changed()` | Returns the number of files changed in a pull request.                     |
+    | `.reviewers()`     | Return the list of reviewers assigned in a pull request.                   |
+    """
+
     def __init__(self, username: str, repository_name: str, pull_request_number: int):
         self.username = username
         self.repository = repository_name
@@ -23,11 +38,6 @@ class PullRequest:
         repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
         labels = repository.labels()
         ```
-        Returns:
-        {
-        "data": labels_found,
-        "message": f"Found labels for {self.repository}",
-        } 
         """
         labels_found = []
         data = self.__scrape_page()
@@ -39,74 +49,42 @@ class PullRequest:
                 labels_found.append(d.get_text().strip())
             labels_found + 1
             # return labels_found
-            return {
-                "data": labels_found,
-                "message": f"Found labels for {self.repository}",
-            }
+            return labels_found
         except:
-            message = f"No labels found for {self.repository}"
-            return {
-                "data": labels_found,
-                "message": message,
-            }
+            return None
 
     def commits(self):
         """
         Class - `PullRequest`
         Example:
-        ```
+        ```python
         repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
         commits = repository.commits()
         ```
-        Returns:
-        {
-        "data": commits_count,
-        "message": f"Found {commits_count} commits for {self.pr_number}",
-        } 
         """
         data = self.__scrape_page()
         try:
             commits_count = data.find("span", id="commits_tab_counter").text.strip()
-            return {
-                "data": commits_count,
-                "message": f"Found {commits_count} commits for {self.pr_number}",
-            }
+            return commits_count
         except:
-            message = f"No commits found for {self.pr_number}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def title(self):
         """
-    
         Class - `PullRequest`
         Example:
-        ```
+        ```python
         repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
         title = repository.title()
         ```
-        Returns:
-        {
-        "data": title,
-        "message": f"Found title for {self.pr_number}",
-        } 
         """
         data = self.__scrape_page()
         try:
             title_body = data.find("bdi", class_="js-issue-title markdown-title")
             title = title_body.text.strip()
-            return {
-                "data": title,
-                "message": f"Found title for {self.pr_number}",
-            }
+            return title
         except:
-            message = f"No title found for {self.pr_number}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def __files_changed_body(self):
         """
@@ -119,47 +97,29 @@ class PullRequest:
 
     def files_changed(self):
         """
-        
         Class - `PullRequest`
         Example:
-        ```
+        ```python
         repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
         files_changed = repository.files_changed()
         ```
-        Returns:
-        {
-        "data": files_changed,
-        "message": f"Found {files_changed} files changed for {self.pr_number}",
-        } 
         """
         data = self.__files_changed_body()
         try:
             files_changed_body = data.find("span", id="files_tab_counter")
             files_changed = files_changed_body.text.strip()
-            return {
-                "data": files_changed,
-                "message": f"Found {files_changed} files changed for {self.pr_number}",
-            }
+            return files_changed
         except:
-            message = f"No files changed found for {self.pr_number}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def reviewers(self):
         """
         Class - `PullRequest`
         Example:
-        ```
+        ```python
         repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
         reviewers = repository.reviewers()
         ```
-        Returns:
-        {
-        "data": reviewerList,
-        "message": f"Found {len(reviewerList)} reviewers for {self.pr_number}",
-        } 
         """
         data = self.__scrape_page()
         try:
@@ -169,20 +129,10 @@ class PullRequest:
             )
             if len(reviewers) == 0:
                 message = f"No reviewers found for {self.pr_number}"
-                return {
-                    "data": reviewerList,
-                    "message": message,
-                }
+                return reviewerList
             else:
                 for reviewer in reviewers:
                     reviewerList.append(reviewer.text)
-                return {
-                    "data": reviewerList,
-                    "message": f"Found {len(reviewerList)} reviewers for {self.pr_number}",
-                }
+                return reviewerList
         except:
-            message = f"No reviewers found for {self.pr_number}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None

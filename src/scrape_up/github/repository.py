@@ -1,11 +1,36 @@
 import requests
 from bs4 import BeautifulSoup
-
 import requests_html
 import os
 
 
 class Repository:
+    """
+    Create an instance of the class `Repository`
+    ```python
+    repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+    ```
+
+    | Methods                    | Details                                                                                                                                                        |
+    | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `.fork_count()`            | Returns the number of forks of a repository.                                                                                                                   |
+    | `.get_contributors()`      | Returns the number of contributors of a repository.                                                                                                            |
+    | `.topics()`                | Returns the topics of a repository.                                                                                                                            |
+    | `.pull_requests()`         | Returns the number of pull requests opened in a repository.                                                                                                    |
+    | `.last_updated_at()`       | Returns the last updated date of a repository.                                                                                                                 |
+    | `.tags()`                  | Returns the last ten tags of a repository.                                                                                                                     |
+    | `.releases()`              | Returns the last ten releases of a repository.                                                                                                                 |
+    | `.issues_count()`          | Returns number of issues in a repository                                                                                                                       |
+    | `.readme`                  | Saves the readme.md file of the given user to the current working directory. To view the readme.md with a live server, change ".md" to ".html" in "readme.md". |
+    | `.get_pull_requests_ids()` | Returns all ids of opened pull requests in a repository.                                                                                                       |
+    | `.get_issues()`            | Returns the list of all open issues in a repository.                                                                                                           |
+    | `.commits()`               | Returns the number of commits in a repository.                                                                                                                 |
+    | `.get_readme()`            | Returns & saves README.md file of the special repository (if exists)                                                                                           |
+    | `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                                  |
+    | `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                 |
+    | `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                            |
+    """
+
     def __init__(self, username: str, repository_name: str):
         self.username = username
         self.repository = repository_name
@@ -57,15 +82,10 @@ class Repository:
         """
         Class - `Repository`
         Example:
-        ```
+        ```pyhon
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         languagesUsed = repository.languagesUsed()
         ```
-        Returns:
-        {
-        "data": allLanguages,
-        "message": f"Languages used in {self.repository} repository",
-        }
         """
         data = self.__scrape_page()
 
@@ -78,63 +98,36 @@ class Repository:
                 item = item[:-7]
                 allLanguages.append(item)
             # return allLanguages  # return list of languages
-            return {
-                "data": allLanguages,
-                "message": f"Languages used in {self.repository} repository",
-            }
+            return allLanguages
         except:
-            message = f"No languages found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def about(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         about = repository.about()
         ```
-        Returns:
-        {
-        "data": about,
-        "message": f"About {self.repository} repository",
-        }
         """
         data = self.__scrape_page()
 
         try:
             tag = data.find(class_="f4 mb-3")
             about = tag.get_text()
-            return {
-                "data": about,
-                "message": f"About {self.repository} repository",
-            }
+            return about
         except:
-            message = (
-                f"No details found in the about section of {self.repository} repository"
-            )
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def fork_count(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         fork_count = repository.fork_count()
         ```
-        Returns:
-        {
-        "data": fork_count,
-        "message": f"Number of forks of {self.repository} repository",
-
-        }
         """
         data = self.__scrape_page()
         try:
@@ -143,30 +136,18 @@ class Repository:
             )
             forks = stats_body.find("span", id="repo-network-counter")
             fork_count = forks.text.strip()
-            return {
-                "data": fork_count,
-                "message": f"Number of forks of {self.repository} repository",
-            }
+            return fork_count
         except:
-            message = f"No forks found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def topics(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         topics = repository.topics()
         ```
-        Returns:
-        {
-        "data": allTopics,
-        "message": f"Topics of {self.repository} repository",
-        }
         """
         data = self.__scrape_page()
 
@@ -176,30 +157,18 @@ class Repository:
             print(allTopics)
             for item in topics:
                 allTopics.append(item.text)
-            return {
-                "data": allTopics,
-                "message": f"Topics of {self.repository} repository",
-            }
+            return allTopics
         except:
-            message = f"No topics found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def star_count(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```pyhton
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         star_count = repository.star_count()
         ```
-        Returns:
-        {
-        "data": starCount,
-        "message": f"Star count of {self.repository} repository",
-        }
         """
         try:
             data = self.__scrape_page()
@@ -208,30 +177,18 @@ class Repository:
                 .find("span")
                 .text.strip()
             )
-            return {
-                "data": starCount,
-                "message": f"Star count of {self.repository} repository",
-            }
+            return starCount
         except:
-            message = f"No stars found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def pull_requests(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         pull_requests = repository.pull_requests()
         ```
-        Returns:
-        {
-        "data": pull_requests,
-        "message": f"Pull requests of {self.repository} repository",
-        }
         """
         data = self.__scrape_page()
         try:
@@ -240,30 +197,18 @@ class Repository:
                 .find_all("span")[1]
                 .text.strip()
             )
-            return {
-                "data": pull_requests,
-                "message": f"Pull requests of {self.repository} repository",
-            }
+            return pull_requests
         except:
-            message = f"No pull requests found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def tags(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         tags = repository.tags()
         ```
-        Returns:
-        {
-        "data": allTags,
-        "message": f"Tags of {self.repository} repository",
-        }
         """
         data = self.__scrape_tags_page()
         try:
@@ -271,30 +216,18 @@ class Repository:
             allTags = []
             for item in tags:
                 allTags.append(item.text)
-            return {
-                "data": allTags,
-                "message": f"Tags of {self.repository} repository",
-            }
+            return allTags
         except:
-            message = f"No tags found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def releases(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         releases = repository.releases()
         ```
-        Returns:
-        {
-        "data": allReleases,
-        "message": f"Releases of {self.repository} repository",
-        }
         """
         data = self.__scrape_tags_page()
         try:
@@ -302,16 +235,9 @@ class Repository:
             allReleases = []
             for item in releases:
                 allReleases.append(item.text)
-            return {
-                "data": allReleases,
-                "message": f"Releases of {self.repository} repository",
-            }
+            return allReleases
         except:
-            message = f"No releases found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def issues_count(self):
         """
@@ -321,38 +247,23 @@ class Repository:
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         issues_count = repository.issues_count()
         ```
-        Returns:
-        {
-        "data": issues,
-        "message": f"Total issues in {self.repository} repository",
-        }
         """
         data = self.__scrape_page()
         try:
             issues = data.find("span", {"id": "issues-repo-tab-count"}).text.strip()
-            return {
-                "data": issues,
-                "message": f"Total issues in {self.repository} repository",
-            }
+            return issues
         except:
-            message = f"No issues found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def readme(self):
         """
-        Class - `Repository`
+        Class - `Repository`\n
+        *This downloads the README.md in the root directory*\n
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         readme = repository.readme()
         ```
-        Returns:
-        {
-         message = f"No readme found in {self.repository} repository"
-        }
         """
         session = requests_html.HTMLSession()
         r = session.get(
@@ -364,25 +275,16 @@ class Repository:
             with open("out.md", "w", encoding="utf-8") as f:
                 f.write(markdown_content)
         except:
-            message = f"No readme found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def get_pull_requests_ids(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         get_pull_requests_ids = repository.get_pull_requests_ids()
         ```
-        Returns:
-        {
-        "data": pull_requests_ids,
-        "message": f"Pull requests of {self.repository} repository",
-        }
         """
         data = self.__scrape_pull_requests_page()
         try:
@@ -397,30 +299,18 @@ class Repository:
                 pr_id = each_pr["href"].split("/")[-1]
                 pull_requests_ids.append(pr_id)
 
-            return {
-                "data": pull_requests_ids,
-                "message": f"Pull requests of {self.repository} repository",
-            }
+            return pull_requests_ids
         except:
-            message = f"No pull requests found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def commits(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         commits = repository.commits()
         ```
-        Returns:
-        {
-        "data": commits,
-        "message": f"Commits of {self.repository} repository",
-        }
         """
         data = self.__scrape_page()
         try:
@@ -428,30 +318,18 @@ class Repository:
             s = commits.split("<strong>")
             s = s[1].split("</strong>")
             commits = int(s[0])
-            return {
-                "data": commits,
-                "message": f"Commits of {self.repository} repository",
-            }
+            return commits
         except:
-            message = f"No commits found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def get_issues(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         get_issues = repository.get_issues()
         ```
-        Returns:
-        {
-        "data": allIssues,
-        "message": f"Issues of {self.repository} repository",
-        }
         """
         data = self.__scrape_issues_page()
         try:
@@ -462,18 +340,19 @@ class Repository:
 
             for item in issues:
                 allIssues.append(item.text)
-            return {
-                "data": allIssues,
-                "message": f"Issues of {self.repository} repository",
-            }
+            return allIssues
         except:
-            message = f"No issues found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def get_contributors(self):
+        """
+        Class - `Repository`
+        Example:
+        ```python
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        get_contributors = repository.get_contributors()
+        ```
+        """
         data = self.__scrape_page()
 
         try:
@@ -483,45 +362,34 @@ class Repository:
             contributor = []
             for it in contributors:
                 contributor.append(it.get_text())
-            return {
-                "data": contributor[0].strip(),
-                "message": f"Contributors of {self.repository} repository",
-            }
+            return contributor[0].strip()
         except:
-            message = f"No contributors found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def last_update_at(self):
+        """
+        Class - `Repository`
+        Example:
+        ```python
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        last_update_at = repository.last_update_at()
+        ```
+        """
         data = self.__scrape_page()
         try:
             update = data.find_all("relative-time", class_="no-wrap")
-            return {
-                "data": update[0].get_text(),
-                "message": f" last Updated of {self.repository} repository",
-            }
+            return update[0].get_text()
         except:
-            message = f"No updation found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def get_readme(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         get_readme = repository.get_readme()
         ```
-        Returns:
-        {
-        "data": None,
-        "message": message,
-        }
         """
         data = requests.get(
             f"https://raw.githubusercontent.com/{self.username}/{self.username}/master/README.md"
@@ -541,7 +409,7 @@ class Repository:
             try:
                 os.mkdir(path)
             except OSError as error:
-                return error
+                return None
             data = data.text
             readmeFile = os.open(path + "/README.md", os.O_RDWR | os.O_CREAT)
             os.write(readmeFile, data.encode("utf-8"))
@@ -552,33 +420,29 @@ class Repository:
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         get_environment = repository.get_environment()
         ```
-        Returns:
-        {
-        "data": link,
-        "message": f"Latest enviornment link for {self.repository} is {link}",
-        }
         """
         try:
             data = self.__scrape_deployments_page()
             link = data.find(
                 "a", class_="btn btn-outline flex-self-start mt-2 mt-md-0"
             ).get("href")
-            return {
-                "data": link,
-                "message": f"Latest enviornment link for {self.repository} is {link}",
-            }
+            return link
         except:
-            message = f"No link found for {self.repository}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def get_branch(self):
+        """
+        Class - `Repository`
+        Example:
+        ```python
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        get_branch = repository.get_branch()
+        ```
+        """
         data = requests.get(
             f"https://github.com/{self.username}/{self.repository}/branches"
         )
@@ -590,30 +454,18 @@ class Repository:
             allBranches = []
             for branchNames in branch:
                 allBranches.append(branchNames.text.strip())
-            return {
-                "data": allBranches,
-                "message": f"The branches of {self.repository}/{self.username} is {allBranches}",
-            }
+            return allBranches
         except:
-            message = f"Failed to fetch branches of {self.username}/{self.repository}"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None
 
     def watch_count(self):
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         watch_count = repository.watch_count()
         ```
-        Returns:
-        {
-        "data": watches,
-        "message": f"Total watches in {self.repository} repository",
-        }
         """
         data = self.__scrape_watchers_page()
         try:
@@ -633,14 +485,10 @@ class Repository:
         """
         Class - `Repository`
         Example:
-        ```
+        ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         all_watchers = repository.all_watchers()
         ```
-        Returns:
-        {
-          return watchers
-        }
         """
         data = self.__scrape_watchers_page()
         try:
@@ -653,8 +501,4 @@ class Repository:
             return watchers
 
         except:
-            message = f"No watchers found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+            return None

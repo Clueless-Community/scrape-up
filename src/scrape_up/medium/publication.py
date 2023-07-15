@@ -16,7 +16,17 @@ class Publication:
         self.link = link
 
     def get_articles(self):
-        "Gets the articles of the publication which are arranged in the form of a list"
+        """
+        Class - `Publication`
+        Example
+        ```python
+        publication = medium.Publication("https://towardsdatascience.com")
+        articles = publication.get_articles()
+        for article in articles:
+            print(article) #For better readability/clarity
+        ```
+        Returns the articles of the publication which are arranged in the form of a list
+        """
         try:
             articles = []
             link = self.link

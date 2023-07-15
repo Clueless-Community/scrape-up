@@ -1,12 +1,12 @@
-from .imdb import Movie
+from .imdb import IMDB
 
-__all__ = ['Movie']
+__all__ = ['IMDB']
 
 """
 You can also use -
-from scrape_up.imdb.imdb import Movie
+from scrape_up.imdb.imdb import IMDB
 
-__all__ = ['Movie']
+__all__ = ['IMDB']
 
 
 """  

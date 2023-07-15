@@ -1,12 +1,14 @@
-# How to use this package? 👀
+# Documentation
 
-- Install the package from `pip`
+## Package Installation
 
 ```PowerShell
 pip install scrape-up
 ```
 
-- Scrape the required information, for example, one wants to extract the number of followers of a user.
+## Examples
+
+### Scrape the numbers of followers on GitHub
 
 ```python
 # Import the required module
@@ -15,23 +17,17 @@ from scrape_up import github
 # Instantiate an object with the username provided.
 user = github.Users(username="nikhil25803")
 
-# Call the followers function
-print(user.followers())
-
-# Output - '59'
+# Call the followers function - it will return the number of followers
+user.followers()
 ```
 
 ---
 
-# The platforms and methods we cover 💫
+## The platforms and methods we cover 💫
 
 - GitHub
-- Instagram
-- Internshala
-- GitHub
-- Internshala
 
-## GitHub
+### GitHub
 
 ```python
 from scrape_up import github
@@ -39,7 +35,7 @@ from scrape_up import github
 
 ### Scrape User details
 
-First, create an object of class `Users`
+Create an instance of the class `Users`
 
 ```python
 user = github.Users(username="nikhil25803")
@@ -65,19 +61,11 @@ user = github.Users(username="nikhil25803")
 | `.get_contribution_streak()`  | Returns the maximum contribution streak of a user in the past year starting from the current date. |
 | `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
 | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
-
-**Example:**
-
-```python
-bio = user.get_bio() #user var taken from above example
-print(bio)
-```
-
----
+| `.get_merged_pull_requests()` | Returns the list of merged pull requests with details like url, repo link and title                |
 
 ### Scrape Repository details
 
-First, create an object of class `Repository`
+Create an instance of the class `Repository`
 
 ```python
 repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
@@ -102,18 +90,9 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 | `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                 |
 | `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                            |
 
-**Example:**
+### Scrape details of an issue
 
-```python
-fork_count = repository.fork_count() #repository var taken from above example
-print(fork_count)
-```
-
----
-
-### Scrape an issue details
-
-First, create an object of class `Issue`
+Create an instance of the class `Issue`
 
 ```python
 repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
@@ -128,21 +107,12 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 | `.is_milestone()` | Returns the milestone, if the issue is part of one or 'No milestone', if it's not. |
 | `.opened_at()`    | Returns a string containing the time when the issue was opened in ISO format.      |
 
-**Example:**
-
-```python
-assigned = repository.assignees() #user var taken from above example
-print(assigned)
-```
-
----
-
 ### Scrape a pull request details
 
-First, create an object of class `PullRequest`
+Create an instance of the class `PullRequest`
 
 ```python
-repository = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
+pull_request = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
 ```
 
 | Methods            | Details                                                                    |
@@ -153,21 +123,12 @@ repository = github.PullRequest(username="nikhil25803", repository_name="scrape-
 | `.files_changed()` | Returns the number of files changed in a pull request.                     |
 | `.reviewers()`     | Return the list of reviewers assigned in a pull request.                   |
 
-**Example:**
-
-```python
-files_changed = repository.files_changed() #user var taken from above example
-print(files_changed)
-```
-
----
-
 ### Scrape the details of an organization
 
-First, create an object of class `Organization`
+Create an instance of class `Organization`
 
 ```python
-repository = github.Organization(organization_name="Clueless-Community")
+organization = github.Organization(organization_name="Clueless-Community")
 ```
 
 | Methods                     | Details                                                         |
@@ -787,6 +748,8 @@ for r in restaurants:
     print("Price: ", q["price\n"])
 
 ```
+
+
 
 ---
 

@@ -1,2 +1,2 @@
-from scrape_up.coursera.courses import Courses
-__all__=['Courses']
+from scrape_up.coursera.courses import Coursera
+__all__ = ['Coursera']
