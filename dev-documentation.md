@@ -443,22 +443,14 @@ scraper = IMDB()
 
 ## Coursera
 
-```python
-from scrape_up import Coursera
-```
-
-### Scrape Courses Details
-
-<br>
-
 Create an object of the 'Courses' class:
 
 ```python
 scraper = Courses("topic")
 ```
 
-| Methods     | Details                       |
-| ----------- | ----------------------------- |
+| Methods         | Details                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------------ |
 | `.getCourses()` | Returns the courses with title, teached by, skills, rating, review count, img url and link |
 
 ## Wikipedia
