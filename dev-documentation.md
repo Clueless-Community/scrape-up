@@ -806,3 +806,14 @@ response = CovidInfo()
 | `.covid_data()`  | Returns the scraped data from the target website of all the countries in the form of a list |
 | `.totalcases()`  | Returns the total number of covid cases as of yet in the form of a string of numbers        |
 | `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
+
+# NewsCNN
+
+Create an instance of `NewsCNN` class.\n
+
+```python
+news = newsCNN()
+```
+
+| Methods | Details |
+| `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
