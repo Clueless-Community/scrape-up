@@ -10,11 +10,12 @@ import requests
     ency = MediEncyclopedia()
     ```
 
-    | Methods               | Details                                                             |
-    | --------------------- | ------------------------------------------------------------------- |
-    | `.scrapebyurl()`      | Returns the medical dictation of associated topic url               |
-    | `.byletter()`         | Returns the list of medical relics starting with a particular letter|
-    
+    | Methods               | Details                                                                                      |
+    | --------------------- | -------------------------------------------------------------------------------------------- |
+    | `.scrapebyurl()`      | Returns the medical dictation of associated topic url                                        |
+    | `.query()`            | It takes a user query parameter as an argument and returns all relevant terms related to it. |
+    | `.byletter()`         | Returns the list of medical relics starting with a particular letter                         |
+
 
     """
 
@@ -25,7 +26,9 @@ class MediEncyclopedia:
     print(self)
 
   def scrapebyurl(self,url):
-    """Returns the medical data including references, review dates, content, topic-head and so on"""
+    """Returns the medical data including references, review dates, content, topic-head and so on.\n
+    Parameters:\n
+      - url: It is the url of the Mediline's encyclopedia page the information of whom is to be fetched."""
 
     try:
       content = requests.get(url)
@@ -39,13 +42,32 @@ class MediEncyclopedia:
 
       return [headline,text]
     except:
-      return None  
+      return None
+
+  def query(self, userquery):
+    """This function takes a query from the users and returns all the matching terms/responses from the encyclopedia matching the user's query. If there is no matching response, than it returns None\n
+    Parameters:\n
+      - userquery: String query input given by the user"""
+
+    fl = userquery[0].upper()
+    resq = []
+    vals = MediEncyclopedia().byletter(fl)
+    ls = userquery.split(' ')
+    for i in ls:
+      for j in vals:
+        if i in j[0]:
+          resq.append(j)
+    resq = list(resq)
+    return resq      
+
 
 
 
 
   def byletter(self, character):
-    """Returns the list of medical encyclopedia terms starting with a particular english character"""
+    """Returns the list of medical encyclopedia terms starting with a particular english character.\n
+    Paramters:\n
+     -- character: It is the single character input given by the user. The corresponding encyclopedia entries starting with this character are returned as a response then."""
     try:
       character = character.upper()
       chk = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -65,8 +87,6 @@ class MediEncyclopedia:
 
       return vals
     except:
-      return None  
-
-
+      return None
 
 
