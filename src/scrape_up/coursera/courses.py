@@ -57,7 +57,7 @@ class Coursera:
                     )
                     img = c.find("div", class_="css-1doy6bd")
                     img_url = img.find("img")["src"]
-                    link = c.find("a")["href"]
+                    link = "https://www.coursera.org/" + c.find("a")["href"]
                 except:
                     pass
 
