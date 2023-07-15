@@ -809,25 +809,11 @@ response = CovidInfo()
 
 # NewsCNN
 
-Create an instance of `NewsCNN` class.
+Create an instance of `NewsCNN` class.\n
 
 ```python
 news = newsCNN()
 ```
 
-| Methods               | Details                                                            |
-| --------------------- | ------------------------------------------------------------------ |
-| `.get()`              | Returns an article's headline, content, time, and author(s).       |
-| `.toparticles()`      | Returns the list of top trending articles with their urls          |
-| `.newsAsia()`         | Returns a list of articles pertaining to the Asia in CNN           |
-| `.newsAustralia()`    | Returns a list of articles pertaining to the Australia in CNN      | 
-| `.newsUS()`           | Returns a list of articles pertaining to the USA in CNN            |
-| `.newsAmericas()`     | Returns a list of articles pertaining to the Americas in CNN       |
-| `.newsUK()`           | Returns a list of articles pertaining to the UK in CNN             |
-| `.newsAfrica()`       | Returns a list of articles pertaining to the Africas in CNN        |
-| `.newsMiddleEast()`   | Returns a list of articles pertaining to the Middle East in CNN    |
-| `.newsChina()`        | Returns a list of articles pertaining to the China in CNN          |
-| `.newsEurope()`       | Returns a list of articles pertaining to the Europe in CNN         |
-| `.newsIndia()`        | Returns a list of articles pertaining to the India in CNN          |
-| `.newsbylocation()`   | Returns the list of articles by a specific location.               |
-
+| Methods | Details |
+| `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
