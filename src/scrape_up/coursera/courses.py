@@ -9,7 +9,6 @@ class Coursera:
 
     def getCourses(self):
         
-        """
         url = "https://www.coursera.org/search?query=" + self.topic
         try:
             res = requests.get(url)
