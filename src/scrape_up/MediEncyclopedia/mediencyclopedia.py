@@ -48,17 +48,21 @@ class MediEncyclopedia:
     """This function takes a query from the users and returns all the matching terms/responses from the encyclopedia matching the user's query. If there is no matching response, than it returns None\n
     Parameters:\n
       - userquery: String query input given by the user"""
+        
+    try:
 
-    fl = userquery[0].upper()
-    resq = []
-    vals = MediEncyclopedia().byletter(fl)
-    ls = userquery.split(' ')
-    for i in ls:
-      for j in vals:
-        if i in j[0]:
-          resq.append(j)
-    resq = list(resq)
-    return resq      
+      fl = userquery[0].upper()
+      resq = []
+      vals = MediEncyclopedia().byletter(fl)
+      ls = userquery.split(' ')
+      for i in ls:
+        for j in vals:
+          if i in j[0]:
+            resq.append(j)
+      resq = list(resq)
+      return resq
+    except:
+      return None      
 
 
 
