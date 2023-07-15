@@ -808,6 +808,7 @@ response = CovidInfo()
 | `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
 
 
+
 # MediEncyclopedia
 
 Create an instance of `MediEncyclopedia` class.
@@ -821,3 +822,15 @@ Create an instance of `MediEncyclopedia` class.
 | `.scrapebyurl()`      | Returns the medical dictation of associated topic url               |
 | `.byletter()`         | Returns the list of medical relics starting with a particular letter|
     
+
+# NewsCNN
+
+Create an instance of `NewsCNN` class.\n
+
+```python
+news = newsCNN()
+```
+
+| Methods | Details |
+| `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
+
