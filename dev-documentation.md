@@ -817,3 +817,21 @@ news = newsCNN()
 
 | Methods | Details |
 | `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
+
+
+# FlipkartTees
+
+Create an instance of `FlipkartClothing` class.
+
+```python
+cloth = FlipkartClothing()
+```
+
+| Methods                     | Details                                                        |
+| --------------------------- | -------------------------------------------------------------- |
+| `.tshirts()`                | Returns the list of t-shirts with other relevant info          |
+| `.tshirts_by_price_range()` | Returns the list of t-shirts between a particular price range. |
+| `.tshirts_by_rating()`      | Returns the list of t-shirts havinga minimum given rating.     |
+| `.tshirts_for_male()`       | Returns the list of t-shirts which are for males.              |
+| `.tshirts_for_female()`     | Returns the list of t-shirts which are there for females.      |
+| `.tshirt_by_size()`         | Returns the list of tshirts havning a particular size.         |
