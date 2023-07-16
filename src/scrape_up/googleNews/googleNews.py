@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import time
+import pprint
 
 
 class GoogleNews:
@@ -29,45 +30,28 @@ class GoogleNews:
         ```
         Returns:
         {
+            "link": Link to the article,
             "title": Tile of the article
-            "description": Description of the article
-            "news_source": News Source of the Article
-            "date": Date the article was posted
-            "link": Link to the article
+            "date": Date the article was posted         
         }
         """
-        url = "https://www.google.com/search?q=" + self.topic + "&tbm=nws"
+        url="https://news.google.com/rss/search?q="+self.topic
         try:
             res = requests.get(url)
-            soup = BeautifulSoup(res.text, "html.parser")
-
-            articles_data = {"articles": []}
-
-            articles = soup.find_all("a", jsname="ACyKwe")
-            for a in articles:
-                title = a.find("div", class_="BNeawe vvjwJb AP7Wnd").getText()
-                date = a.find("span", class_="r0bn4c rQMQod").getText()
-                desc = (
-                    a.find("div", class_="BNeawe s3v9rd AP7Wnd")
-                    .getText()
-                    .replace(date, "")
-                )
-                news_source = a.find(
-                    "div", class_="BNeawe UPmit AP7Wnd lRVwie"
-                ).getText()
-                link = a["href"].replace("/url?q=", "")
-                articles_data["articles"].append(
-                    {
-                        "title": title,
-                        "description": desc,
-                        "news_source": news_source,
-                        "date": date,
-                        "link": link,
-                    }
-                )
-            return articles_data
+            soup = BeautifulSoup(res.text, features="xml")
+             # find all li tags
+            lis = soup.find_all("item")
+            sub_articles = []
+            for li in lis:
+                sub_articles.append({   "link": li.link.text,
+                                         "title": li.title.text,
+                                         "Date & Time": li.pubDate.text
+                                    })
+            return sub_articles[:8]
         except:
             return None
+
+
 
     def top_stories(self):
         """
@@ -80,6 +64,7 @@ class GoogleNews:
         Returns:
         [
             {
+                "link": Link of the news,
                 "title": Title of the top story,
                 "date": Date of the top story
             },
@@ -90,17 +75,55 @@ class GoogleNews:
         try:
             page = requests.get(url)
             soup = BeautifulSoup(page.content, features="xml")
-            titles = soup.find_all("title")
-
-            top_stories_data = {"top_stories": []}
-
-            if len(titles) > 0:
-                for title in titles:
-                    top_stories_data["top_stories"].append(
-                        {"title": title.text.upper(), "date": time.ctime()}
-                    )
-                top_stories_data
-            else:
-                return None
-        except requests.exceptions.RequestException as e:
+            lis = soup.find_all("item")
+            sub_articles = []
+            for li in lis:
+                sub_articles.append({   "link": li.link.text,
+                                         "title": li.title.text,
+                                         "Date & Time": li.pubDate.text
+                                    })
+            return sub_articles
+        except:
             return None
+
+    def timed_articles(self, time=""):
+        """
+        Class - `GoogleNews`
+        Example:
+
+        articles = GoogleNews("github")
+        articles.timed_articles(time)
+        time format:
+        1h - within 1 hour
+        1d - within 24 hours
+        7d - within a week
+        1y - within a year
+
+
+        Returns:
+        [
+            {
+                "link": Link of the news,
+                "title": Title of the top story,
+                "date": Date of the top story
+            },
+            ...
+        ]
+        """
+        if time!="":
+            time=" when:"+time
+        url = "https://news.google.com/news/rss/search?q="+self.topic+time
+        try:
+            page = requests.get(url)
+            soup = BeautifulSoup(page.content, features="xml")
+            lis = soup.find_all("item")
+            sub_articles = []
+            for li in lis:
+                sub_articles.append({   "link": li.link.text,
+                                         "title": li.title.text,
+                                         "Date & Time": li.pubDate.text
+                                    })
+            return sub_articles
+        except:
+            return None
+        
