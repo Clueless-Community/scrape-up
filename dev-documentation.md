@@ -269,6 +269,7 @@ scraper = Internships()
 | Methods          | Details                                                              |
 | ---------------- | -------------------------------------------------------------------- |
 | `.internships()` | Scrapes and returns a list of dictionaries representing internships. |
+| `.jobs()`        | Scrapes and returns a list of dictionaries representing jobs.        |
 
 ## KooApp
 
