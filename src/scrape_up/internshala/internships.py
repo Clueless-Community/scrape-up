@@ -141,7 +141,6 @@ class Internshala:
         try:
             self.search_type = self.search_type.replace(" ", "%20")
             url = self.base_url + "jobs/" + "keywords-" + self.search_type
-            print(url)
             html = self.scrape_page(url)
             page = self.parse_page(html)
             jobs = []
