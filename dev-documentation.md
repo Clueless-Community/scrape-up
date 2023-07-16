@@ -439,6 +439,7 @@ scraper = IMDB()
 | ----------------------------- | -------------------------------------------------------------- |
 | `.top_rated()`                | Returns the top-rated movies listed on IMDB.                   |
 | `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
+| `.top_rated_shows()`          | Returns the top-rated shows listed on IMDB.                    |
 
 ---
 
