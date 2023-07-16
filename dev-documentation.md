@@ -662,10 +662,11 @@ Create an instance of `GoogleNews` class.
 articles = GoogleNews("topic")
 ```
 
-| Methods          | Details                                                                                          |
-| ---------------- | ------------------------------------------------------------------------------------------------ |
-| `.getArticles()` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
-| `.top_stories()` | Returns the list of top stories listed regarding the mentioned topic                             |
+| Methods                | Details                                                                                          |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| `.getArticles()`       | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
+| `.top_stories()`       | Returns the list of top stories listed regarding the mentioned topic                             |
+| `.timed_aticles(time)` | Returns the list of top stories listed regarding the mentioned topic and within that time frame  |
 
 ---
 
