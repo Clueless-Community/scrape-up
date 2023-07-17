@@ -255,21 +255,16 @@ user = instagram.User(username="nikhil25803")
 
 ## Internshala
 
-```python
-from scrape_up.internshala.internships import Internships
-```
-
-### Scrape Internship details
-
 Create an object for the 'Internships' class:
 
 ```python
-scraper = Internships()
+search = Internshala(search_type="machine learning")
 ```
 
 | Methods          | Details                                                              |
 | ---------------- | -------------------------------------------------------------------- |
 | `.internships()` | Scrapes and returns a list of dictionaries representing internships. |
+| `.jobs()`        | Scrapes and returns a list of dictionaries representing jobs.        |
 
 ## KooApp
 
@@ -660,13 +655,14 @@ channel_data = Channel(channel_username="BeABetterDev")
 Create an instance of `GoogleNews` class.
 
 ```python
-articles = GoogleNews("topic")
+articles = GoogleNews()
 ```
 
-| Methods          | Details                                                                                          |
-| ---------------- | ------------------------------------------------------------------------------------------------ |
-| `.getArticles()` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
-| `.top_stories()` | Returns the list of top stories listed regarding the mentioned topic                             |
+| Methods                        | Details                                                                                          |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `.getArticles(topic="github")` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
+| `.top_stories()`               | Returns the list of top stories listed regarding the mentioned topic                             |
+| `.timed_aticles(time)`         | Returns the list of top stories listed regarding the mentioned topic and within that time frame  |
 
 ---
 
@@ -810,7 +806,6 @@ news = newsCNN()
 
 | Methods | Details |
 | `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
-
 
 # FlipkartTees
 
