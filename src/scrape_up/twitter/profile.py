@@ -5,7 +5,15 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 class Profile:
-    
+    """
+    Class - `Profile`
+    Example:
+    ```
+    profile = Profile()
+    ```\n
+    Methods :\n
+    1. ``.getinfo() | Response - Title, description, avatar and banner image, user name, industry, location, join date and following, follower, subscriber and tweet count.
+    """
 
     def __init__(self, login_username, login_password, profile_username):
         self.login_username = login_username
@@ -13,7 +21,29 @@ class Profile:
         self.profile_username = profile_username
 
     def getInfo(self):
-        
+        """
+        Class - `Profile`
+        Example:
+        ```
+        elon = Profile(login_username, login_password, profile_username)
+        elon.getInfo()
+        ```
+        Returns:
+        {
+            "name": Name of the Profile
+            "avatar_url": Avatar image link of the Profile
+            "banner_url": Banner image link of the Profile
+            "description": Description of the Profile
+            "user_name": User name of the Profile
+            "industry": Industry of the Profile
+            "location": Location of the Profile
+            "join_date": Join date of the Profile
+            "following_count": No. of accounts following by the Profile
+            "follower_count": No. of follwers of the Profile
+            "subscriber_count": No. of subscribers of the Profile
+            "tweet_count": No. of tweets of the Profile
+        }
+        """
         driver = Chrome(ChromeDriverManager().install())
         try:
             driver.get('https://twitter.com/login')
