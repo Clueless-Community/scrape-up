@@ -12,14 +12,19 @@ class IMDB:
     | -------------- | -------------------------------------------- |
     | `.top_rated()` | Returns the top-rated movies listed on IMDB. |
     | `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
+    | `.top_rated_shows()` | Returns the top-rated shows listed on IMDB. |
     """
 
     def __init__(self):
-        pass
+        self.headers = headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
+        }
 
     def __scrape_page(self):
         try:
-            source = requests.get("https://www.imdb.com/chart/top/?ref_=nv_mv_250")
+            source = requests.get(
+                "https://www.imdb.com/chart/top/?ref_=nv_mv_250", headers=self.headers
+            )
             source.raise_for_status()
             soup = BeautifulSoup(source.text, "html.parser")
             movies = soup.find("tbody", class_="lister-list").find_all("tr")
@@ -101,8 +106,9 @@ class IMDB:
         try:
             url = "https://www.imdb.com/search/title/?genres={}&sort=user_rating,desc&title_type=feature&num_votes=25000,&pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=5aab685f-35eb-40f3-95f7-c53f09d542c3&pf_rd_r=N97GEQS6R7J9EV7V770D&pf_rd_s=right-6&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_gnr_16"
             formatted_url = url.format(genre)
+            print(formatted_url)
 
-            resp = requests.get(formatted_url, headers={"User-Agent": "Mozilla/5.0"})
+            resp = requests.get(formatted_url, headers=self.headers)
             content = BeautifulSoup(resp.content, "lxml")
             genres = [
                 "Adventure",
@@ -168,3 +174,65 @@ class IMDB:
         except requests.exceptions.RequestException as e:
             return None
 
+    def top_rated_shows(self):
+        """
+        Class: IMDB
+
+        Retrieves the top-rated TV shows listed on IMDb.
+
+        Example:
+            top_shows = IMDB()
+            result = top_shows.top_rated_shows()
+            print(result)
+
+        Returns:
+            dict: A dictionary containing the following keys:
+                - 'data' (list): A list of dictionaries, where each dictionary represents a top-rated TV show and contains the following information:
+                    - 'title' (str): The title of the TV show.
+                    - 'year' (str): The year when the TV show was released.
+                    - 'episode' (str): The number of episodes of the TV show.
+                    - 'rating' (str): The IMDb rating of the TV show.
+                - 'message' (str): A message indicating that the top-rated TV shows listed on IMDb have been fetched.
+
+            None: If there was an error while fetching the top-rated TV shows.
+        """
+        try:
+            url = "https://www.imdb.com/chart/toptv/?ref_=nv_tvv_250"
+            html_text = requests.get(url, headers=self.headers).text
+            soup = BeautifulSoup(html_text, "lxml")
+            shows_container = soup.find(
+                "ul",
+                {
+                    "class": "ipc-metadata-list ipc-metadata-list--dividers-between sc-3a353071-0 wTPeg compact-list-view ipc-metadata-list--base"
+                },
+            )
+            shows = []
+
+            for items in shows_container.find_all("li"):
+                title = items.find("h3").text
+                years = items.find(
+                    "span", {"class": "sc-14dd939d-6 kHVqMR cli-title-metadata-item"}
+                )
+                eps = years.next_sibling.text.split()[0]
+                rating = items.find(
+                    "span",
+                    {
+                        "class": "ipc-rating-star ipc-rating-star--base ipc-rating-star--imdb ratingGroup--imdb-rating"
+                    },
+                ).text
+
+                data = {
+                    "title": title,
+                    "year": years.text,
+                    "episode": eps,
+                    "rating": rating,
+                }
+
+                shows.append(data)
+
+            return {
+                "data":shows,
+                "message":"Top 250 TV shows are now fetched"
+            }
+        except requests.exceptions.RequestException as e:
+            return None
