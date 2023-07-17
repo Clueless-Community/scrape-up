@@ -254,16 +254,10 @@ user = instagram.User(username="nikhil25803")
 
 ## Internshala
 
-```python
-from scrape_up.internshala.internships import Internships
-```
-
-### Scrape Internship details
-
 Create an object for the 'Internships' class:
 
 ```python
-scraper = Internships()
+search = Internshala(search_type="machine learning")
 ```
 
 | Methods          | Details                                                              |
