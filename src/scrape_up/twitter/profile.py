@@ -13,7 +13,8 @@ class Profile:
     ```\n
     Methods :\n
     1. ``.getinfo() | Response - Title, description, avatar and banner image, user name, 
-                                 industry, location, join date and following, follower, subscriber and tweet count.
+                                 industry, location, join date and following, follower, 
+                                 subscriber and tweet count of a Profile.
         Note: For the arguments in calling getInfo() function:-
               login_username: apply your twitter account username not email only username,
               login_password: apply your twitter account password,

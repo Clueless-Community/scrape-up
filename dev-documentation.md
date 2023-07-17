@@ -369,6 +369,19 @@ twitter_scraper = TwitterScraper()
 | `.unametoid(username)`     | Returns the numerical_id on passing username. |
 | `.idtouname(numerical_id)` | Returns the username on passing numerical_id. |
 
+### Profile
+
+First, create an object of class `Profile`
+
+```python
+profile_scraper = Profile()
+```
+
+| Methods                    | Details                                       |
+| -------------------------- | --------------------------------------------- |
+| `.getInfo()`     | Returns the title, description, avatar and banner image, user name, 
+                                 industry, location, join date and following, follower, 
+                                 subscriber and tweet count of a Profile. |
 ---
 
 ## Leetcode
