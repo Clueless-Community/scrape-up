@@ -32,6 +32,8 @@ class Profile:
             sleep(5)
 
             name = driver.find_element("xpath", '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div/div/div/div[2]/div/div/div[1]/div/div/span/span[1]').text
+            avatar = driver.find_element("xpath", '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div/div/div/div[1]/div[1]/div[2]/div/div[2]/div/a').get_attribute('href')
+            banner = driver.find_element("xpath", '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div/div/a/div/div[2]/div/img').get_attribute('src')
             try:
                 desc = driver.find_element("xpath", '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div/div/div/div[3]/div/div/span').text
             except:
@@ -76,6 +78,8 @@ class Profile:
             profile_data["profile_data"].append(
                 {
                     "name": name,
+                    "avatar_url": avatar,
+                    "banner_url": banner,
                     "description": desc,
                     "user_name": user_name,
                     "industry": industry,
