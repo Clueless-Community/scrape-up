@@ -12,7 +12,12 @@ class Profile:
     profile = Profile()
     ```\n
     Methods :\n
-    1. ``.getinfo() | Response - Title, description, avatar and banner image, user name, industry, location, join date and following, follower, subscriber and tweet count.
+    1. ``.getinfo() | Response - Title, description, avatar and banner image, user name, 
+                                 industry, location, join date and following, follower, subscriber and tweet count.
+        Note: For the arguments in calling getInfo() function:-
+              login_username: apply your twitter account username not email only username,
+              login_password: apply your twitter account password,
+              profile_username: apply the twitter username for the account you want to scrape the data
     """
 
     def __init__(self, login_username, login_password, profile_username):
