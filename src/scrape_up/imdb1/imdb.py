@@ -8,11 +8,11 @@ class IMDB:
     ```python
     scraper = IMDB()
     ```
-    | Methods        | Details                                      |
-    | -------------- | -------------------------------------------- |
-    | `.top_rated()` | Returns the top-rated movies listed on IMDB. |
+    | Methods                       | Details                                                        |
+    | ----------------------------- | -------------------------------------------------------------- |
+    | `.top_rated()`                | Returns the top-rated movies listed on IMDB.                   |
     | `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
-    | `.top_rated_shows()` | Returns the top-rated shows listed on IMDB. |
+    | `.top_rated_shows()`          | Returns the top-rated shows listed on IMDB.                    |
     """
 
     def __init__(self):
@@ -51,6 +51,7 @@ class IMDB:
         """
         try:
             movies = self.__scrape_page()
+            print(movies)
             if movies is not None:
                 movie_data = []
                 for movie in movies:
@@ -67,15 +68,9 @@ class IMDB:
 
                     movie_data.append([rank, movie_name, year, rating])
 
-                return {
-                    "data": movie_data,
-                    "message": f"Top rated movie listed on IMDB has been fetched",
-                }
+                return movie_data
             else:
-                return {
-                    "data": None,
-                    "message": f"Unable to fetch top rate movie",
-                }
+                return None
 
         except requests.exceptions.RequestException as e:
             return {
@@ -91,22 +86,27 @@ class IMDB:
         scraper = IMDB()
         genre = "Adventure"
         genre_data = scraper.scrape_genre_movies(genre)
-
-        json_data = json.dumps(genre_data, indent=4)
-        print(json_data)
         ```
         Return\n
-        ```python
-        return
-        {
-            "data": movie_data,
-        }
+        ```js
+        [
+            {
+                "title":"The Dark Knight",
+                "year":"2008",
+                "certificate":"UA",
+                "time":"152 min",
+                "genre":"Action, Crime, Drama",
+                "rating":"9.0",
+                "simple_desc":"When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+                "votes":"2,739,920"
+            }
+            ...
+        ]
         ```
         """
         try:
             url = "https://www.imdb.com/search/title/?genres={}&sort=user_rating,desc&title_type=feature&num_votes=25000,&pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=5aab685f-35eb-40f3-95f7-c53f09d542c3&pf_rd_r=N97GEQS6R7J9EV7V770D&pf_rd_s=right-6&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_gnr_16"
             formatted_url = url.format(genre)
-            print(formatted_url)
 
             resp = requests.get(formatted_url, headers=self.headers)
             content = BeautifulSoup(resp.content, "lxml")
@@ -176,25 +176,25 @@ class IMDB:
 
     def top_rated_shows(self):
         """
-        Class: IMDB
-
-        Retrieves the top-rated TV shows listed on IMDb.
-
+        Class: IMDB\n
+        Retrieves the top-rated TV shows listed on IMDb.\n
         Example:
-            top_shows = IMDB()
-            result = top_shows.top_rated_shows()
-            print(result)
-
+        ```python
+        top_shows = IMDB()
+        result = top_shows.top_rated_shows()
+        ```
         Returns:
-            dict: A dictionary containing the following keys:
-                - 'data' (list): A list of dictionaries, where each dictionary represents a top-rated TV show and contains the following information:
-                    - 'title' (str): The title of the TV show.
-                    - 'year' (str): The year when the TV show was released.
-                    - 'episode' (str): The number of episodes of the TV show.
-                    - 'rating' (str): The IMDb rating of the TV show.
-                - 'message' (str): A message indicating that the top-rated TV shows listed on IMDb have been fetched.
-
-            None: If there was an error while fetching the top-rated TV shows.
+        ```js
+        [
+            {
+                "title":"233. Jujutsu Kaisen",
+                "year":"2020-",
+                "episode":"30",
+                "rating":"8.5"
+            }
+            ...
+        ]
+        ```
         """
         try:
             url = "https://www.imdb.com/chart/toptv/?ref_=nv_tvv_250"
@@ -230,9 +230,10 @@ class IMDB:
 
                 shows.append(data)
 
-            return {
-                "data":shows,
-                "message":"Top 250 TV shows are now fetched"
-            }
+            return shows
         except requests.exceptions.RequestException as e:
             return None
+
+
+shows = IMDB()
+print(shows.top_rated())
