@@ -45,7 +45,7 @@ user = github.Users(username="nikhil25803")
 ```
 
 | Methods                       | Details                                                                                            |
-|-------------------------------|----------------------------------------------------------------------------------------------------|
+| ----------------------------- | -------------------------------------------------------------------------------------------------- |
 | `.followers()`                | Returns the number of followers of a user.                                                         |
 | `.following()`                | Returns the number of following of a user.                                                         |
 | `.get_avatar()`               | Returns the avatar URL of a user.                                                                  |
@@ -75,7 +75,7 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 ```
 
 | Methods                    | Details                                                                                                                                                        |
-|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.fork_count()`            | Returns the number of forks of a repository.                                                                                                                   |
 | `.get_contributors()`      | Returns the number of contributors of a repository.                                                                                                            |
 | `.topics()`                | Returns the topics of a repository.                                                                                                                            |
@@ -102,7 +102,7 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 ```
 
 | Methods           | Details                                                                            |
-|-------------------|------------------------------------------------------------------------------------|
+| ----------------- | ---------------------------------------------------------------------------------- |
 | `.assignees()`    | Returns the assignees of an issue.                                                 |
 | `.labels()`       | Returns the labels of an issue.                                                    |
 | `.opened_by()`    | Returns the name of the user, who opened the issue.                                |
@@ -119,7 +119,7 @@ repository = github.PullRequest(username="nikhil25803", repository_name="scrape-
 ```
 
 | Methods            | Details                                                                    |
-|--------------------|----------------------------------------------------------------------------|
+| ------------------ | -------------------------------------------------------------------------- |
 | `.commits()`       | Returns the number of commits made in a pull request.                      |
 | `.title()`         | Returns the title of a pull request.                                       |
 | `.labels()`        | Returns all the labels of a pull request, empty list in case of no labels. |
@@ -135,7 +135,7 @@ repository = github.Organization(organization_name="Clueless-Community")
 ```
 
 | Methods                     | Details                                                         |
-|-----------------------------|-----------------------------------------------------------------|
+| --------------------------- | --------------------------------------------------------------- |
 | `.top_topics()`             | Returns a list of the most used topics in an organization.      |
 | `.followers()`              | Returns the number of followers of an organization.             |
 | `.top_languages()`          | Returns the top languages used in an organization.              |
@@ -164,7 +164,7 @@ user = gitlab.Users(username="example_user")
 ```
 
 | Methods                            | Details                                                      |
-|------------------------------------|--------------------------------------------------------------|
+| ---------------------------------- | ------------------------------------------------------------ |
 | `.get_name()`                      | Returns the name of the user.                                |
 | `.get_bio()`                       | Returns the bio of the user.                                 |
 | `.get_avatar_url()`                | Returns the avatar URL of the user.                          |
@@ -180,7 +180,7 @@ repository = gitlab.Repository(username="example_user", repository_name="example
 ```
 
 | Methods              | Details                                    |
-|----------------------|--------------------------------------------|
+| -------------------- | ------------------------------------------ |
 | `.get_name()`        | Returns the name of the repository.        |
 | `.get_description()` | Returns the description of the repository. |
 
@@ -193,14 +193,13 @@ organization = gitlab.Organization(organization_name="example_organization")
 ```
 
 | Methods          | Details                                                           |
-|------------------|-------------------------------------------------------------------|
+| ---------------- | ----------------------------------------------------------------- |
 | `.get_members()` | Returns a list of usernames of the members in the organization.   |
 | `get_projects()` | Returns a list of project names associated with the organization. |
 
 ### Scrape Issues
 
-To scrape information about an `issue` on GitLab, create an object of the `Issue` class by providing the following
-parameters:
+To scrape information about an `issue` on GitLab, create an object of the `Issue` class by providing the following parameters:
 
 - username: The GitLab username of the repository owner.
 - repository: The name of the repository.
@@ -214,7 +213,7 @@ issue = gitlab.Issue(username="example_user", repository="example_repository", i
 ```
 
 | Methods              | Details                               |
-|----------------------|---------------------------------------|
+| -------------------- | ------------------------------------- |
 | `.get_title()`       | Returns the title of the issue.       |
 | `.get_description()` | Returns the description of the issue. |
 | `.get_author()`      | Returns the author of the issue.      |
@@ -230,7 +229,7 @@ pull_request = gitlab.PullRequest(username="example_user", repository="example_r
 ```
 
 | Methods              | Details                                      |
-|----------------------|----------------------------------------------|
+| -------------------- | -------------------------------------------- |
 | `.get_title()`       | Returns the title of the pull request.       |
 | `.get_description()` | Returns the description of the pull request. |
 | `.get_author()`      | Returns the author of the pull request.      |
@@ -250,26 +249,21 @@ user = instagram.User(username="nikhil25803")
 ```
 
 | Methods           | Details                                    |
-|-------------------|--------------------------------------------|
+| ----------------- | ------------------------------------------ |
 | `.user_details()` | Returns the number of followers of a user. |
 
 ## Internshala
 
-```python
-from scrape_up.internshala.internships import Internships
-```
-
-### Scrape Internship details
-
 Create an object for the 'Internships' class:
 
 ```python
-scraper = Internships()
+search = Internshala(search_type="machine learning")
 ```
 
 | Methods          | Details                                                              |
-|------------------|----------------------------------------------------------------------|
+| ---------------- | -------------------------------------------------------------------- |
 | `.internships()` | Scrapes and returns a list of dictionaries representing internships. |
+| `.jobs()`        | Scrapes and returns a list of dictionaries representing jobs.        |
 
 ## KooApp
 
@@ -286,7 +280,7 @@ user = kooapp.KooUser('krvishal')
 ```
 
 | Methods                  | Details                                                      |
-|--------------------------|--------------------------------------------------------------|
+| ------------------------ | ------------------------------------------------------------ |
 | `.get_name()`            | Returns the name of the user.                                |
 | `.get_bio()`             | Returns the bio of the user.                                 |
 | `.get_avatar_url()`      | Returns the URL of the first avatar of the user.             |
@@ -310,13 +304,13 @@ user = medium.Users(username="nikhil25803")
 ```
 
 | Methods           | Details                                  |
-|-------------------|------------------------------------------|
+| ----------------- | ---------------------------------------- |
 | `.get_articles()` | Returns the article titles of the users. |
 
 ### Scrape trending articles
 
 | Methods           | Details                                    |
-|-------------------|--------------------------------------------|
+| ----------------- | ------------------------------------------ |
 | `.get_trending()` | Returns the trending titles of the medium. |
 
 ### Scrape publication details
@@ -328,7 +322,7 @@ publication = medium.Publication(link="https://....")
 ```
 
 | Methods           | Details                                              |
-|-------------------|------------------------------------------------------|
+| ----------------- | ---------------------------------------------------- |
 | `.get_articles()` | Returns a list of articles of the given publication. |
 
 ---
@@ -348,7 +342,7 @@ articles = hacker_news.Article()
 ```
 
 | Methods            | Details                                                            |
-|--------------------|--------------------------------------------------------------------|
+| ------------------ | ------------------------------------------------------------------ |
 | `.articles_list()` | Returns the latest articles along with their links in JSON format. |
 
 ## Twitter
@@ -366,7 +360,7 @@ twitter_scraper = TwitterScraper()
 ```
 
 | Methods                    | Details                                       |
-|----------------------------|-----------------------------------------------|
+| -------------------------- | --------------------------------------------- |
 | `.unametoid(username)`     | Returns the numerical_id on passing username. |
 | `.idtouname(numerical_id)` | Returns the username on passing numerical_id. |
 
@@ -389,7 +383,7 @@ leetcode_scraper = LeetCodeScraper(username="nikhil25803")
 **User Specific Methods - Require Username**
 
 | Methods                       | Details                                                               |
-|-------------------------------|-----------------------------------------------------------------------|
+| ----------------------------- | --------------------------------------------------------------------- |
 | `.scrape_rank()`              | Used to scrape the rank of a user on LeetCode.                        |
 | `.scrape_rating()`            | Used to scrape the rating of a user on LeetCode.                      |
 | `.get_problems_solved()`      | Used to scrape total problems solved by a user on LeetCode.           |
@@ -401,7 +395,7 @@ leetcode_scraper = LeetCodeScraper(username="nikhil25803")
 **General Purpose Methods - Does not Require Username**
 
 | Methods                                            | Details                                                                                                                                                                                                      |
-|----------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `.get_problems(difficulty, tags_list, search_key)` | Used to scrape top problems of LeetCode based on filters. Difficulty is string from ("easy", "medium", "hard"). Tags_list is list of tags. Search_key is string to search. All ther parameters are optional. |
 | `.get_contests()`                                  | Used to scrape the upcoming LeetCode Contests details.                                                                                                                                                       |
 | `.get_daily_challenge()`                           | Used to scrape LeetCode Daily Challenge details.                                                                                                                                                             |
@@ -417,11 +411,11 @@ from scrape_up import StockPrice
 First, create an instance of class `StockPrice` with stock name and index name.
 
 ```python
-infosys = StockPrice('infosys', 'nse')
+infosys = StockPrice('infosys','nse')
 ```
 
 | Methods                                   | Details                                                                                 |
-|-------------------------------------------|-----------------------------------------------------------------------------------------|
+| ----------------------------------------- | --------------------------------------------------------------------------------------- |
 | `.get_latest_price()`                     | Returns the latest stock price of the given stock name.                                 |
 | `.get_historical_data(from_date,to_date)` | Returns stock price from `from_date` to `to_date` in format (date in format dd-mm-yyyy) |
 
@@ -436,7 +430,7 @@ scraper = IMDB()
 ```
 
 | Methods                       | Details                                                        |
-|-------------------------------|----------------------------------------------------------------|
+| ----------------------------- | -------------------------------------------------------------- |
 | `.top_rated()`                | Returns the top-rated movies listed on IMDB.                   |
 | `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
 
@@ -451,7 +445,7 @@ scraper = Courses("topic")
 ```
 
 | Methods         | Details                                                                                    |
-|-----------------|--------------------------------------------------------------------------------------------|
+| --------------- | ------------------------------------------------------------------------------------------ |
 | `.getCourses()` | Returns the courses with title, teached by, skills, rating, review count, img url and link |
 
 ## Wikipedia
@@ -471,7 +465,7 @@ Scraper = WikipediaScraper(url)
 ```
 
 | Methods     | Details                                 |
-|-------------|-----------------------------------------|
+| ----------- | --------------------------------------- |
 | `.scrape()` | Returns the Scraped Data from Wikipedia |
 
 ---
@@ -487,7 +481,7 @@ product = Product(product_name="watch")
 ```
 
 | Methods                  | Details                      |
-|--------------------------|------------------------------|
+| ------------------------ | ---------------------------- |
 | `.get_product()`         | Returns product data(links). |
 | `.get_product_details()` | Returns product detail.      |
 | `.get_product_image()`   | Returns product image.       |
@@ -504,7 +498,7 @@ books = AmazonKindle()
 ```
 
 | Methods          | Details                                                |
-|------------------|--------------------------------------------------------|
+| ---------------- | ------------------------------------------------------ |
 | `.bestsellers()` | Returns the list of best seeling books on AmazonKindle |
 
 ## Flipkart
@@ -518,7 +512,7 @@ item = Flipkart()
 ```
 
 | Methods               | Details                                                            |
-|-----------------------|--------------------------------------------------------------------|
+| --------------------- | ------------------------------------------------------------------ |
 | `.TVs()`              | Returns the list of TV sets on flipkart                            |
 | `.bestseller_books()` | Returns the list of bestselling books data listed on Flipkart.     |
 | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
@@ -540,7 +534,7 @@ scraper = Spotify()
 ```
 
 | Methods                      | Details                                                   |
-|------------------------------|-----------------------------------------------------------|
+| ---------------------------- | --------------------------------------------------------- |
 | `.scrape_songs_by_keyword()` | Returns the list of songs that are related to the keyword |
 | `.scrape_homepage()`         | Returns the list of playlists on the homepage             |
 | `.close()`                   | To close the chrome tab that is showing results           |
@@ -558,7 +552,7 @@ questions = AskUbuntu("topic")
 ```
 
 | Methods                     | Details                                                                                              |
-|-----------------------------|------------------------------------------------------------------------------------------------------|
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format              |
 | `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format           |
 | `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format       |
@@ -579,7 +573,7 @@ restaurants = EazyDiner(location="city-name")
 ```
 
 | Methods             | Details                                                                                                                                                                       |
-|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.getRestaurants()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format. Check the cities which are accepted in the [eazydiner](https://www.eazydiner.com/) website |
 | `.getBreakfast()`   | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast.                                                                              |
 | `.getLunch()`       | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch.                                                                                  |
@@ -598,7 +592,7 @@ questions = StackOverflow("topic")
 ```
 
 | Methods                     | Details                                                                                              |
-|-----------------------------|------------------------------------------------------------------------------------------------------|
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format              |
 | `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format           |
 | `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format       |
@@ -619,7 +613,7 @@ articles = TechCrunch()
 ```
 
 | Methods          | Details                                                                                                                |
-|------------------|------------------------------------------------------------------------------------------------------------------------|
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `.getArticles()` | Returns the articles with title, descriptions, images, author, date and link regarding a category in JSON format       |
 | `.search()`      | Returns the searched articles with title, descriptions, images, author, date and link regarding a topic in JSON format |
 
@@ -636,7 +630,7 @@ video = Video(video_url="video_url")
 ```
 
 | Methods         | Details                  |
-|-----------------|--------------------------|
+| --------------- | ------------------------ |
 | `.getDetails()` | Return the video details |
 
 ## Scrape Channel Details
@@ -648,7 +642,7 @@ channel_data = Channel(channel_username="BeABetterDev")
 ```
 
 | Methods       | Details                                                                |
-|---------------|------------------------------------------------------------------------|
+| ------------- | ---------------------------------------------------------------------- |
 | `.getAbout()` | Returns the channel details mentioned in the about page of the channel |
 
 ---
@@ -660,13 +654,14 @@ channel_data = Channel(channel_username="BeABetterDev")
 Create an instance of `GoogleNews` class.
 
 ```python
-articles = GoogleNews("topic")
+articles = GoogleNews()
 ```
 
-| Methods          | Details                                                                                          |
-|------------------|--------------------------------------------------------------------------------------------------|
-| `.getArticles()` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
-| `.top_stories()` | Returns the list of top stories listed regarding the mentioned topic                             |
+| Methods                        | Details                                                                                          |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `.getArticles(topic="github")` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
+| `.top_stories()`               | Returns the list of top stories listed regarding the mentioned topic                             |
+| `.timed_aticles(time)`         | Returns the list of top stories listed regarding the mentioned topic and within that time frame  |
 
 ---
 
@@ -681,7 +676,7 @@ blogs = Hashnode()
 ```
 
 | Methods      | Details                                                                                              |
-|--------------|------------------------------------------------------------------------------------------------------|
+| ------------ | ---------------------------------------------------------------------------------------------------- |
 | `.getFeed()` | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link |
 
 ---
@@ -695,7 +690,7 @@ posts = Reddit()
 ```
 
 | Methods      | Details                                                                                                                         |
-|--------------|---------------------------------------------------------------------------------------------------------------------------------|
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
 
 ---
@@ -715,7 +710,7 @@ Job = TimesJobs('example')
 ```
 
 | Methods     | Details                                                                                 |
-|-------------|-----------------------------------------------------------------------------------------|
+| ----------- | --------------------------------------------------------------------------------------- |
 | `.scrape()` | Returns the various details regarding the companies based on the Job-role as JSON data. |
 
 ---
@@ -731,7 +726,7 @@ dev = DevCommunity('francescoxx')
 ```
 
 | Methods              | Details                                                               |
-|----------------------|-----------------------------------------------------------------------|
+| -------------------- | --------------------------------------------------------------------- |
 | `.all_articles()`    | Returns latest articles from the home page of DevCommunity.           |
 | `.__strTag__()`      | Returns name of the tag specified whose articles we want returned.    |
 | `.tag_articles()`    | Returns latest articles which have the specified tag in DevCommunity. |
@@ -749,13 +744,13 @@ dev = DevCommunity('francescoxx')
 ## Create an instance of `Cricubzz` class.
 
 ```python
-    cricbuzz = Cricubzz()
+	cricbuzz = Cricubzz()
 ```
 
 ## Available Methods
 
 | Methods                      | Details                                                                |
-|------------------------------|------------------------------------------------------------------------|
+| ---------------------------- | ---------------------------------------------------------------------- |
 | `.get_live_matches()`        | Returns a list of live matches from Cricbuzz.                          |
 | `.get_recent_matches()`      | Returns a list of recent matches from Cricbuzz.                        |
 | `.get_upcoming_matches()`    | Returns a list of upcoming matches from Cricbuzz.                      |
@@ -781,7 +776,7 @@ topic = Udemy.courses(keyword="data science")
 ```
 
 | Methods          | Details                          |
-|------------------|----------------------------------|
+| ---------------- | -------------------------------- |
 | `.get_courses()` | Returns the list of top courses. |
 
 ---
@@ -795,7 +790,7 @@ response = CovidInfo()
 ```
 
 | Methods          | Details                                                                                     |
-|------------------|---------------------------------------------------------------------------------------------|
+| ---------------- | ------------------------------------------------------------------------------------------- |
 | `.covid_data()`  | Returns the scraped data from the target website of all the countries in the form of a list |
 | `.totalcases()`  | Returns the total number of covid cases as of yet in the form of a string of numbers        |
 | `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
@@ -820,13 +815,14 @@ cloth = FlipkartClothing()
 ```
 
 | Methods                     | Details                                                        |
-|-----------------------------|----------------------------------------------------------------|
+| --------------------------- | -------------------------------------------------------------- |
 | `.tshirts()`                | Returns the list of t-shirts with other relevant info          |
 | `.tshirts_by_price_range()` | Returns the list of t-shirts between a particular price range. |
 | `.tshirts_by_rating()`      | Returns the list of t-shirts havinga minimum given rating.     |
 | `.tshirts_for_male()`       | Returns the list of t-shirts which are for males.              |
 | `.tshirts_for_female()`     | Returns the list of t-shirts which are there for females.      |
 | `.tshirt_by_size()`         | Returns the list of tshirts havning a particular size.         |
+
 
 # Flyrobu
 
