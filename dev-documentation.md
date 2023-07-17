@@ -29,6 +29,7 @@ user.followers()
 - GitHub
 - Internshala
 - TimesJobs
+- Myntra
 
 ## GitHub
 
@@ -827,3 +828,23 @@ cloth = FlipkartClothing()
 | `.tshirts_for_male()`       | Returns the list of t-shirts which are for males.              |
 | `.tshirts_for_female()`     | Returns the list of t-shirts which are there for females.      |
 | `.tshirt_by_size()`         | Returns the list of tshirts havning a particular size.         |
+
+
+
+## Myntra 
+
+### Scrape product page
+
+Create an instance of `Product` class.
+    
+```python   
+    product = Product(product_name="watch")
+```
+
+| Methods               | Details                                          |
+| --------------------- | ------------------------------------------------ |
+| `.get_product`        |       Returns the list of brands and prices.     |
+| `.get_description()`  | Returns the description of a single product.     |
+
+---
+
