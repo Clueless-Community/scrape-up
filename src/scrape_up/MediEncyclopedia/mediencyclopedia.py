@@ -26,10 +26,20 @@ class MediEncyclopedia:
     print(self)
 
   def scrapebyurl(self,url):
-    """Returns the medical data including references, review dates, content, topic-head and so on.\n
-    Parameters:\n
-      - url: It is the url of the Mediline's encyclopedia page the information of whom is to be fetched."""
-
+    """
+        Class - `MediEncyclopedia`
+        Example:
+        ```
+        ency = MediEncyclopedia()
+        ency.scrapebyurl('url goes here')
+        ```
+        Returns:
+        {
+            "headline": The name of the encyclopedia entry
+            "text": Link to the entry
+        }
+    """      
+   
     try:
       content = requests.get(url)
       soup = BeautifulSoup(content.content, 'html.parser')
@@ -45,10 +55,19 @@ class MediEncyclopedia:
       return None
 
   def query(self, userquery):
-    """This function takes a query from the users and returns all the matching terms/responses from the encyclopedia matching the user's query. If there is no matching response, than it returns None\n
-    Parameters:\n
-      - userquery: String query input given by the user"""
-        
+    """
+        Class - `MediEncyclopedia`
+        Example:
+        ```
+        ency = MediEncyclopedia()
+        ency.query('query goes here')
+        ```
+        Returns:
+        {
+            "headline": The name of the encyclopedia entry
+            "text": Link to the entry
+        }
+    """   
     try:
 
       fl = userquery[0].upper()
@@ -69,9 +88,19 @@ class MediEncyclopedia:
 
 
   def byletter(self, character):
-    """Returns the list of medical encyclopedia terms starting with a particular english character.\n
-    Paramters:\n
-     -- character: It is the single character input given by the user. The corresponding encyclopedia entries starting with this character are returned as a response then."""
+    """
+        Class - `MediEncyclopedia`
+        Example:
+        ```
+        ency = MediEncyclopedia()
+        ency.byletter('single english character goes here')
+        ```
+        Returns:
+        {
+            "headline": The name of the encyclopedia entry
+            "text": Link to the entry
+        }
+    """
     try:
       character = character.upper()
       chk = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
