@@ -115,13 +115,34 @@ class Flyrobu:
 
     def search(self, keyword):
         """
-        Returns all the search items from the FlyRobu site.
+        Class - `Flyrobu`\n
+        Example -\n
+        ```python
+        from flyrobu import Flyrobu
 
-        Args:
-            keyword (str): The keyword to search on the FlyRobu site.
-
-        Returns:
-            str: JSON string representing the search results.
+        flyrobu = Flyrobu()
+        results = flyrobu.search("arduino")
+        print(results)
+        ```
+        Return\n
+        ```python
+        return
+        [
+            {
+                "Total Items": 107,
+                "Result": [
+                {
+                    "title": "Arduino Uno R3 Compatible board + Cable for Arduino Uno",
+                    "price": "Rs. 777",
+                    "brand_name": "Arduino",
+                    "image": "https://www.flyrobo.in/image/cache/catalog/product/arduino-uno-r3-+-cable-for-arduino-uno-250x250.jpg",
+                    "description": "The Arduino Uno R3 Compatible board is an electronic hardware device used to build and program electronic circuits and projects. The board is based on the ATmega3:
+                    "rating": 4,
+                    "model_id": "FRC-01-401",
+                    "link": "https://www.flyrobo.io/productsn/arduino-uno-r3-compatible-board-plus-cable-for-arduino-uno-1?search-arduino&description=true"
+                },
+            }
+        ]
         """
         url = f"{self.base_url}/index.php?route=product/search&search={keyword}&description=true&limit=100"
 

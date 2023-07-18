@@ -118,7 +118,37 @@ class Robu:
 
     def search(self, search_item, number=-1, orderby="relevance"):
         """
-        Scrapes the Robu website for the given search item.
+        Class - `RobuSearch`\n
+        Example -\n
+        ```python\n
+        robu = Robu()\n
+        print(robu.search("arduino"))
+        ```
+        Return\n
+        ```python
+        return
+        [
+            {
+            "Total Items": 368,
+            "Result": [
+                {
+                    "title": "Arduino Uno R3 with Cable",
+                    "price": "Rs. 631.68",
+                    "link": "https://robu.in/product/arduino-uno-r3/",
+                    "img": "https://robu.in/wp-content/uploads/2015/11/SKU-6337-314x252.png",
+                    "rating": "Rated 5.00 out of 5 (25)",
+                    "short_description": [
+                        "Micro-controller : ATmega328.",
+                        "Operating Voltage : 5V.",
+                        "Input Voltage (recommended) : 7-12V.",
+                        "Digital I/O Pins : 14 (of which 6 provide PWM output).",
+                        "Analog Input Pins : 6."
+                    ],
+                    "product_id": "SKU: 6337"
+                },
+            }
+        ]
+
 
         Args:
             search_item (str): The search item to match.
