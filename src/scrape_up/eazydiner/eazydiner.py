@@ -5,19 +5,23 @@ import json
 
 class EazyDiner:
     """
-    Class - `EazyDiner`
-    Example:
+    Create an instance of `EazyDiner` class.\n
+    ```python
+    restaurants = EazyDiner(location="city-name")
     ```
-    hotels = EazyDiner(location="Delhi NCR")
-    ```\n
-    Methods :\n
-    1. ``.getRestaurants() | Response - List of restraunts and its details.
+    | Methods             | Details                                                                               |
+    | ------------------- | ------------------------------------------------------------------------------------- |
+    | `.get_restaurants()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format.  |
+    | `.get_breakfast()`   | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast.|
+    | `.get_lunch()`       | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch. |
+    | `.get_dinner()`      | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.|
+    | `.dinner_with_discount()`      | Returns list of resturant from the entered location with 50% offer.|
     """
 
     def __init__(self, location):
         self.location = location
 
-    def getRestaurants(self):
+    def get_restaurants(self):
         """
         Class - `EazyDiner`
         Example:
@@ -77,7 +81,7 @@ class EazyDiner:
             ejson = json.dumps(error_message)
             return ejson
 
-    def getBreakfast(self):
+    def get_breakfast(self):
         """
         Class - `EazyDiner`
         Example:
@@ -138,7 +142,7 @@ class EazyDiner:
             ejson = json.dumps(error_message)
             return ejson
 
-    def getLunch(self):
+    def get_lunch(self):
         """
         Class - `EazyDiner`
         Example:
@@ -199,7 +203,7 @@ class EazyDiner:
             ejson = json.dumps(error_message)
             return ejson
 
-    def getDinner(self):
+    def get_dinner(self):
         """
         Class - `EazyDiner`
         Example:
@@ -259,3 +263,60 @@ class EazyDiner:
             }
             ejson = json.dumps(error_message)
             return ejson
+
+    def dinner_with_discount(self):
+        """
+        Returns list of resturant from the entered location with 50% offer.\n
+        Class - `EazyDiner`
+        Example:
+        ```
+        deldiner = EazyDiner("Delhi NCR")
+        deldiner.dinner_with_discount()
+        ```
+        Returns:
+        {
+            "restaurant": restaurant name
+            "location": location of restaurant
+            "rating": rating
+            "cuisine": cuisines provided
+            "price": price for two people
+        }
+        """
+        url = (
+            "https://www.eazydiner.com/restaurants?location="
+            + self.location.replace(" ", "-").replace(",", "").lower()
+            + "&meal_period=dinner&buckets%5B%5D=fifty-percent-discounts"
+        )
+        try:
+            res = requests.get(url)
+            soup = BeautifulSoup(res.text, "html.parser")
+
+            restaurant_data = {"restaurants": []}
+
+            restaurants = soup.select(".restaurant")
+            for r in restaurants:
+                name = r.find("h3", class_="res_name").getText().strip()
+                location = r.find("h3", class_="res_loc").getText().strip()
+                rating = r.find("span", class_="critic").getText().strip()
+                cuisine = (
+                    r.find("div", class_="res_cuisine").getText().replace(",", ", ")
+                )
+                price = (
+                    r.find("span", class_="cost_for_two")
+                    .getText()
+                    .encode("ascii", "ignore")
+                    .decode()
+                    .strip()
+                )
+                restaurant_data["restaurants"].append(
+                    {
+                        "restaurant": name,
+                        "location": location,
+                        "rating": rating,
+                        "cuisine": cuisine,
+                        "price": "Rs. " + price + " for two",
+                    }
+                )
+            return restaurant_data["restaurants"]
+        except:
+            return None

@@ -67,6 +67,11 @@ Output:
 
 Happy scrapping! 🕸️
 
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Terms and conditions for use, reproduction and distribution are under the [MIT License](https://opensource.org/license/mit/).
+
 ## The goal 🎯
 
 In our project journey, we encountered several challenges, including requesting timeouts and rate limits. To overcome these limitations, we developed a powerful Python tool based on web scraping. Our goal is to provide an alternative to APIs for extracting data from various platforms, including GitHub, Twitter, Instagram, and any other website that contains valuable information. Here's what our project aims to achieve:

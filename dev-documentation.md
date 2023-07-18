@@ -254,21 +254,16 @@ user = instagram.User(username="nikhil25803")
 
 ## Internshala
 
-```python
-from scrape_up.internshala.internships import Internships
-```
-
-### Scrape Internship details
-
 Create an object for the 'Internships' class:
 
 ```python
-scraper = Internships()
+search = Internshala(search_type="machine learning")
 ```
 
 | Methods          | Details                                                              |
 | ---------------- | -------------------------------------------------------------------- |
 | `.internships()` | Scrapes and returns a list of dictionaries representing internships. |
+| `.jobs()`        | Scrapes and returns a list of dictionaries representing jobs.        |
 
 ## KooApp
 
@@ -438,6 +433,7 @@ scraper = IMDB()
 | ----------------------------- | -------------------------------------------------------------- |
 | `.top_rated()`                | Returns the top-rated movies listed on IMDB.                   |
 | `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
+| `.top_rated_shows()`          | Returns the top-rated shows listed on IMDB.                    |
 
 ---
 
@@ -569,26 +565,23 @@ questions = AskUbuntu("topic")
 
 ## EazyDiner
 
-### Scrape restaurants name, location, rating, cuisine and prices from eazydiner website for a given city
-
 Create an instance of `EazyDiner` class.
 
 ```python
 restaurants = EazyDiner(location="city-name")
 ```
 
-| Methods             | Details                                                                                                                                                                       |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.getRestaurants()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format. Check the cities which are accepted in the [eazydiner](https://www.eazydiner.com/) website |
-| `.getBreakfast()`   | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast.                                                                              |
-| `.getLunch()`       | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch.                                                                                  |
-| `.getDinner()`      | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.                                                                                 |
+| Methods                   | Details                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------ |
+| `.get_restaurants()`      | Returns the restaurants name, location, rating, cuisine and prices in JSON format.               |
+| `.get_breakfast()`        | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast. |
+| `.get_lunch()`            | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch.     |
+| `.get_dinner()`           | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.    |
+| `.dinner_with_discount()` | Returns list of resturant from the entered location with 50% offer.                              |
 
 ---
 
 ## Stack Overflow
-
-### Scrape questions, views, votes, answer counts, and descriptions from Stack Overflow website regarding a topic
 
 Create an instance of `StackOverflow` class.
 
@@ -659,13 +652,14 @@ channel_data = Channel(channel_username="BeABetterDev")
 Create an instance of `GoogleNews` class.
 
 ```python
-articles = GoogleNews("topic")
+articles = GoogleNews()
 ```
 
-| Methods          | Details                                                                                          |
-| ---------------- | ------------------------------------------------------------------------------------------------ |
-| `.getArticles()` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
-| `.top_stories()` | Returns the list of top stories listed regarding the mentioned topic                             |
+| Methods                        | Details                                                                                          |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `.getArticles(topic="github")` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
+| `.top_stories()`               | Returns the list of top stories listed regarding the mentioned topic                             |
+| `.timed_aticles(time)`         | Returns the list of top stories listed regarding the mentioned topic and within that time frame  |
 
 ---
 
@@ -850,7 +844,6 @@ news = newsCNN()
 | Methods | Details |
 | `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
 
-
 # FlipkartTees
 
 Create an instance of `FlipkartClothing` class.
@@ -869,4 +862,31 @@ cloth = FlipkartClothing()
 | `.tshirt_by_size()`         | Returns the list of tshirts havning a particular size.         |
 
 
+
+
+
+# Flyrobu
+
+Create an instance of `Flyrobu` class.
+
+```python
+flyrobu = Flyrobu()
+print(flyrobu.search("arduino"))
+```
+
+| Methods     | Details                                                                                                         |
+| ----------- | --------------------------------------------------------------------------------------------------------------- |
+| `.search()` | Returns the json data of all the details related to search with informing about the total amount of items found |
+
+# Robu
+
+Create a new instance of the `Robu` class.
+
+```python
+robu = Robu()
+```
+
+| Methods     | Details                                                                                                         |
+| ----------- | --------------------------------------------------------------------------------------------------------------- |
+| `.search()` | Returns the json data of all the details related to search with informing about the total amount of items found |
 
