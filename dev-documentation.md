@@ -44,27 +44,27 @@ First, create an object of class `Users`
 user = github.Users(username="nikhil25803")
 ```
 
-| Methods                       | Details                                                                                            |
-| ----------------------------- | -------------------------------------------------------------------------------------------------- |
-| `.followers()`                | Returns the number of followers of a user.                                                         |
-| `.following()`                | Returns the number of following of a user.                                                         |
-| `.get_avatar()`               | Returns the avatar URL of a user.                                                                  |
-| `.get_bio()`                  | Returns the bio of a user.                                                                         |
-| `.get_repo()`                 | Returns the list of pinned repositories for a user.                                                |
-| `.repo_count()`               | Returns the number of Repositories of a user.                                                      |
-| `.star_count()`               | Returns the number of stars of a user.                                                             |
-| `.get_yearly_contributions()` | Returns the number of contributions made in 365 days frame.                                        |
-| `.get_repositories()`         | Returns the list of repositories of a user.                                                        |
-| `.get_starred_repos()`        | Return the list of starred repositories of a user.                                                 |
-| `.pul_requests()`             | Return the number of pull requests opened in a repository.                                         |
-| `.get_followers()`            | Returns the list of followers of a user.                                                           |
-| `.get_following_users()`      | Returns the list of users followed by a user.                                                      |
-| `.get_achievements()`         | Returns the list of achievements of a user.                                                        |
-| `.get_status()`               | Returns the status of a user.                                                                      |
-| `.get_contribution_streak()`  | Returns the maximum contribution streak of a user in the past year starting from the current date. |
-| `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
-| `.get_branch()`               | Returns the list of branches in a repository.                                                      |
-| `.get_merged_pull_requests()` | Returns the list of merged pull requests with details like url, repo link and title                |
+| Methods                      | Details                                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------------------------- |
+| `.followers()`               | Returns the number of followers of a user.                                                        |
+| `.following()`               | Returns the number of following of a user.                                                        |
+| `.get_avatar()`              | Returns the avatar URL of a user.                                                                 |
+| `.get_bio()`                 | Returns the bio of a user.                                                                        |
+| `.get_repo()`                | Returns the list of pinned repositories for a user.                                               |
+| `.repo_count()`              | Returns the number of Repositories of a user.                                                     |
+| `.star_count()`              | Returns the number of stars of a user.                                                            |
+| `.get_yearly_contributions()` | Returns the number of contributions made in 365 days frame.                                       |
+| `.get_repositories()`        | Returns the list of repositories of a user.                                                       |
+| `.get_starred_repos()`       | Return the list of starred repositories of a user.                                                |
+| `.pul_requests()`            | Return the number of pull requests opened in a repository.                                        |
+| `.get_followers()`           | Returns the list of followers of a user.                                                          |
+| `.get_following_users()`     | Returns the list of users followed by a user.                                                     |
+| `.get_achievements()`        | Returns the list of achievements of a user.                                                       |
+| `.get_status()`              | Returns the status of a user.                                                                     |
+| `.get_contribution_streak()` | Returns the maximum contribution streak of a user in the past year starting from the current date. |
+| `.get_repository_details()`  | Returns the list of repositories with their details.                                              |
+| `.get_branch()`              | Returns the list of branches in a repository.                                                     |
+| `.get_merged_pull_requests()`| Returns the list of merged pull requests                                                          |
 
 ### Scrape Repository details
 

@@ -61,7 +61,7 @@ user = github.Users(username="nikhil25803")
 | `.get_contribution_streak()`  | Returns the maximum contribution streak of a user in the past year starting from the current date. |
 | `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
 | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
-| `.get_merged_pull_requests()` | Returns the list of merged pull requests with details like url, repo link and title                |
+| `.get_merged_pull_requests()` | Returns the list of merged pull requests                                                           |
 
 ### Scrape Repository details
 

@@ -28,7 +28,7 @@ class Users:
     | `.get_contribution_streak()`  | Returns the maximum contribution streak of a user in the past year starting from the current date. |
     | `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
     | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
-    | `.get_merged_pull_requests()` | Returns the list of merged pull requests with details like url, repo link and title                |
+    | `.get_merged_pull_requests()` | Returns the list of merged pull requests                                                           |
     """
 
     def __init__(self, username: str):
@@ -587,19 +587,29 @@ class Users:
         ```
         """
 
-        try:
-            url = f"https://api.github.com/search/issues?q=type:pr+author:{self.username}+is:merged"
-            results = requests.get(url).json()
+        page = self.__get_repo_page()
 
-            pull_requests = []
-            for result in results["items"]:
-                pull_requests.append(
-                    {
-                        "pr_url": result["url"],
-                        "repo_url": result["repository_url"],
-                        "title": result["title"],
-                    }
-                )
-            return pull_requests
+        repo_elements = page.select("#user-repositories-list ul li")
+        merged_pull_requests = []
+
+        try:
+            forked_repos = []
+            for repo_element in repo_elements:
+                forked_repo = repo_element.select_one('h3+span a')
+
+                if forked_repo:
+                    forked_repo = 'https://github.com' + forked_repo.get('href')
+                    forked_repos.append(forked_repo)
+
+            for repo in forked_repos:
+                closed_pr_url = repo + f'/pulls?q=is:pr+author:{self.username}+is:merged'
+
+                response = self.__get_page_details(closed_pr_url)
+                pr_links = response.select('a[data-hovercard-type="pull_request"]')
+                links = ['https://github.com' + link['href'] for link in pr_links]
+
+                merged_pull_requests.extend(links)
         except:
             return None
+
+        return merged_pull_requests
