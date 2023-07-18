@@ -65,7 +65,7 @@ user = github.Users(username="nikhil25803")
 | `.get_repository_details()`  | Returns the list of repositories with their details.                                              |
 | `.get_branch()`              | Returns the list of branches in a repository.                                                     |
 | `.get_merged_pull_requests()`| Returns the list of merged pull requests                                                          |
-
+| `.get_open_issues()`         | Returns the list of open issues                                                                   |
 ### Scrape Repository details
 
 First, create an object of class `Repository`

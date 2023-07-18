@@ -29,6 +29,7 @@ class Users:
     | `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
     | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
     | `.get_merged_pull_requests()` | Returns the list of merged pull requests                                                           |
+    | `.get_open_issues()`          | Returns the list of open issues                                                                    |
     """
 
     def __init__(self, username: str):
@@ -613,3 +614,42 @@ class Users:
             return None
 
         return merged_pull_requests
+
+    def get_open_issues(self):
+        """
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        get_open_issues = user.get_open_issues()
+        ```
+        """
+
+        page = self.__get_repo_page()
+
+        repo_elements = page.select("#user-repositories-list ul li")
+        open_issues = []
+
+        try:
+            forked_repos = []
+            for repo_element in repo_elements:
+                forked_repo = repo_element.select_one('h3+span a')
+
+                if forked_repo:
+                    forked_repo = 'https://github.com' + forked_repo.get('href')
+                    forked_repos.append(forked_repo)
+
+            for repo in forked_repos:
+                open_issues_url = repo + f'/issues/created_by/{self.username}'
+
+                response = self.__get_page_details(open_issues_url)
+                issues_list = response.select('div[aria-label="Issues"] div[data-pjax="#repo-content-pjax-container"]')
+                issue_links = ["https://github.com" + issue.select_one('a').get('href') for issue in issues_list]
+
+                open_issues.extend(issue_links)
+        except:
+            return None
+
+        return open_issues
+
+
