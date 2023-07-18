@@ -564,26 +564,24 @@ questions = AskUbuntu("topic")
 
 ## EazyDiner
 
-### Scrape restaurants name, location, rating, cuisine and prices from eazydiner website for a given city
-
 Create an instance of `EazyDiner` class.
 
 ```python
 restaurants = EazyDiner(location="city-name")
 ```
 
-| Methods             | Details                                                                                                                                                                       |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.getRestaurants()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format. Check the cities which are accepted in the [eazydiner](https://www.eazydiner.com/) website |
-| `.getBreakfast()`   | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast.                                                                              |
-| `.getLunch()`       | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch.                                                                                  |
-| `.getDinner()`      | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.                                                                                 |
+| Methods                   | Details                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------ |
+| `.get_restaurants()`      | Returns the restaurants name, location, rating, cuisine and prices in JSON format.               |
+| `.get_breakfast()`        | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast. |
+| `.get_lunch()`            | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch.     |
+| `.get_dinner()`           | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.    |
+| `.dinner_with_discount()` | Returns list of resturant from the entered location with 50% offer.                              |
 
 ---
 
 ## Stack Overflow
 
-### Scrape questions, views, votes, answer counts, and descriptions from Stack Overflow website regarding a topic
 
 Create an instance of `StackOverflow` class.
 

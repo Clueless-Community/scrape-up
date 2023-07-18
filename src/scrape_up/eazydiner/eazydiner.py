@@ -5,19 +5,23 @@ import json
 
 class EazyDiner:
     """
-    Class - `EazyDiner`
-    Example:
+    Create an instance of `EazyDiner` class.\n
+    ```python
+    restaurants = EazyDiner(location="city-name")
     ```
-    hotels = EazyDiner(location="Delhi NCR")
-    ```\n
-    Methods :\n
-    1. ``.getRestaurants() | Response - List of restraunts and its details.
+    | Methods             | Details                                                                               |
+    | ------------------- | ------------------------------------------------------------------------------------- |
+    | `.get_restaurants()` | Returns the restaurants name, location, rating, cuisine and prices in JSON format.  |
+    | `.get_breakfast()`   | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast.|
+    | `.get_lunch()`       | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch. |
+    | `.get_dinner()`      | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.|
+    | `.dinner_with_discount()`      | Returns list of resturant from the entered location with 50% offer.|
     """
 
     def __init__(self, location):
         self.location = location
 
-    def getRestaurants(self):
+    def get_restaurants(self):
         """
         Class - `EazyDiner`
         Example:
@@ -77,7 +81,7 @@ class EazyDiner:
             ejson = json.dumps(error_message)
             return ejson
 
-    def getBreakfast(self):
+    def get_breakfast(self):
         """
         Class - `EazyDiner`
         Example:
@@ -138,7 +142,7 @@ class EazyDiner:
             ejson = json.dumps(error_message)
             return ejson
 
-    def getLunch(self):
+    def get_lunch(self):
         """
         Class - `EazyDiner`
         Example:
@@ -199,7 +203,7 @@ class EazyDiner:
             ejson = json.dumps(error_message)
             return ejson
 
-    def getDinner(self):
+    def get_dinner(self):
         """
         Class - `EazyDiner`
         Example:
@@ -259,14 +263,15 @@ class EazyDiner:
             }
             ejson = json.dumps(error_message)
             return ejson
-          
-    def getDinnerWith50PercentOff(self):
+
+    def dinner_with_discount(self):
         """
+        Returns list of resturant from the entered location with 50% offer.\n
         Class - `EazyDiner`
         Example:
         ```
-        deldiner = EazyDiner("Delhi NCR") or deldiner = EazyDiner("delhi-ncr")
-        deldiner.getDinnerWith50PercentOff()
+        deldiner = EazyDiner("Delhi NCR")
+        deldiner.dinner_with_discount()
         ```
         Returns:
         {
@@ -312,16 +317,6 @@ class EazyDiner:
                         "price": "Rs. " + price + " for two",
                     }
                 )
-            res_json = json.dumps(restaurant_data)
-            return res_json
+            return restaurant_data["restaurants"]
         except:
-            error_message = {
-                "message": "There are no restaurants with 50% off in the given location."
-            }
-            ejson = json.dumps(error_message)
-            return ejson
-
-
-
-
-
+            return None
