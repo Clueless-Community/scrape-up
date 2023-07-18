@@ -583,7 +583,6 @@ restaurants = EazyDiner(location="city-name")
 
 ## Stack Overflow
 
-
 Create an instance of `StackOverflow` class.
 
 ```python
@@ -822,7 +821,6 @@ cloth = FlipkartClothing()
 | `.tshirts_for_female()`     | Returns the list of t-shirts which are there for females.      |
 | `.tshirt_by_size()`         | Returns the list of tshirts havning a particular size.         |
 
-
 # Flyrobu
 
 Create an instance of `Flyrobu` class.
@@ -833,7 +831,7 @@ print(flyrobu.search("arduino"))
 ```
 
 | Methods     | Details                                                                                                         |
-|-------------|-----------------------------------------------------------------------------------------------------------------|
+| ----------- | --------------------------------------------------------------------------------------------------------------- |
 | `.search()` | Returns the json data of all the details related to search with informing about the total amount of items found |
 
 # Robu
@@ -842,17 +840,8 @@ Create a new instance of the `Robu` class.
 
 ```python
 robu = Robu()
-print(robu.search("arduino"))
-print(robu.search("arduino", 20))
-print(robu.search("arduino", -1, "relevance"))
 ```
 
-#### Options
-
-- `Search Item` :  Search keyword  (**compulsory**)
-- `Items`       : 20 | 40 | 80 | 160 | 320 | -1 (**Defualt : -1 [all]**)
-- `OrderBy`     : relevance | popularity | rating | date | price | price-desc (**Defualt : relevance**)
-
 | Methods     | Details                                                                                                         |
-|-------------|-----------------------------------------------------------------------------------------------------------------|
+| ----------- | --------------------------------------------------------------------------------------------------------------- |
 | `.search()` | Returns the json data of all the details related to search with informing about the total amount of items found |

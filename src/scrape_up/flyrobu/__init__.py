@@ -1,3 +1,3 @@
 from flyrobu import Flyrobu
 
-__all__ = ['Flyrobu']
+__all__ = ["Flyrobu"]
