@@ -854,6 +854,6 @@ First, create an object of class `LibGen`
 Book = LibGen()
 ```
 
-| Methods                    | Details                                       |
-| -------------------------- | --------------------------------------------- |
-| `.getBooks(book_name)`     | Returns the books with name, author, size, format, book link, book cover link, language |
+| Methods                | Details                                                                                 |
+| ---------------------- | --------------------------------------------------------------------------------------- |
+| `.getBooks(book_name)` | Returns the books with name, author, size, format, book link, book cover link, language |
