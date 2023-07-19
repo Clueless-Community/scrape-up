@@ -845,3 +845,15 @@ robu = Robu()
 | Methods     | Details                                                                                                         |
 | ----------- | --------------------------------------------------------------------------------------------------------------- |
 | `.search()` | Returns the json data of all the details related to search with informing about the total amount of items found |
+
+# LibGen
+
+First, create an object of class `LibGen`
+
+```python
+Book = LibGen()
+```
+
+| Methods                | Details                                                                                 |
+| ---------------------- | --------------------------------------------------------------------------------------- |
+| `.getBooks(book_name)` | Returns the books with name, author, size, format, book link, book cover link, language |
