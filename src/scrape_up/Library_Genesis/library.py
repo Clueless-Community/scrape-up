@@ -121,7 +121,3 @@ class LibGen:
                 return "Error: no results found"
         except:
             return "Error"
-
-
-lib = LibGen()
-print(lib.getBooks(book_name="the silent patient"))
