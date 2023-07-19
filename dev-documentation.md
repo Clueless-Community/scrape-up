@@ -64,7 +64,8 @@ user = github.Users(username="nikhil25803")
 | `.get_contribution_streak()`  | Returns the maximum contribution streak of a user in the past year starting from the current date. |
 | `.get_repository_details()`   | Returns the list of repositories with their details.                                               |
 | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
-| `.get_merged_pull_requests()` | Returns the list of merged pull requests with details like url, repo link and title                |
+| `.get_merged_pull_requests()` | Returns the list of merged pull requests                                                           |
+| `.get_open_issues()`          | Returns the list of open issues                                                                    |
 
 ### Scrape Repository details
 
@@ -890,3 +891,15 @@ robu = Robu()
 | ----------- | --------------------------------------------------------------------------------------------------------------- |
 | `.search()` | Returns the json data of all the details related to search with informing about the total amount of items found |
 
+
+# LibGen
+
+First, create an object of class `LibGen`
+
+```python
+Book = LibGen()
+```
+
+| Methods                | Details                                                                                 |
+| ---------------------- | --------------------------------------------------------------------------------------- |
+| `.getBooks(book_name)` | Returns the books with name, author, size, format, book link, book cover link, language |
