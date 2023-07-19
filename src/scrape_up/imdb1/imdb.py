@@ -20,35 +20,38 @@ class IMDB:
             "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
         }
 
-
-
     def top_rated(self):
         """
-        Class: IMDB
-
-        Retrieves the top-rated movies listed on IMDb.
-
+        Class: `IMDB`\n
+        Retrieves the top-rated movies listed on IMDB.
         Example:
-            top_movies = IMDB()
-            result = top_movies.top_rated()
-            print(result)
-
+        ```python
+        top_movies = IMDB()
+        result = top_movies.top_rated()
+        ```
         Returns:
-            dict: A dictionary containing the following keys:
-                - 'data' (list): A list of dictionaries, where each dictionary represents a top-rated TV show and contains the following information:
-                    - 'title' (str): The title of the movie.
-                    - 'year' (str): The year when the movie was released.
-                    - 'duration' (str): The duration of movie.
-                    - 'rating' (str): The IMDb rating of the movie.
-                - 'message' (str): A message indicating that the top-rated movies listed on IMDb have been fetched.
-
-            None: If there was an error while fetching the top-rated movies.
+        ```js
+        [
+            {
+                "title":"1. The Shawshank Redemption",
+                "year":"1994",
+                "duration":"2h 22m",
+                "rating":"9.3"
+            }
+            ...
+        ]
+        ```
         """
         try:
             url = "https://www.imdb.com/chart/top/?ref_=nv_mv_250"
             html_text = requests.get(url, headers=self.headers).text
             soup = BeautifulSoup(html_text, "lxml")
-            movies_container = soup.find("ul",{"class":"ipc-metadata-list ipc-metadata-list--dividers-between sc-3a353071-0 wTPeg compact-list-view ipc-metadata-list--base"})
+            movies_container = soup.find(
+                "ul",
+                {
+                    "class": "ipc-metadata-list ipc-metadata-list--dividers-between sc-3a353071-0 wTPeg compact-list-view ipc-metadata-list--base"
+                },
+            )
             movies = []
 
             for items in movies_container.find_all("li"):
@@ -73,10 +76,7 @@ class IMDB:
 
                 movies.append(data)
 
-            return {
-                "data":movies,
-                "message":"Top 250 movies are now fetched"
-            }
+            return movies
         except requests.exceptions.RequestException as e:
             return None
 
@@ -173,25 +173,24 @@ class IMDB:
 
     def top_rated_shows(self):
         """
-        Class: IMDB
-
+        Class: `IMDB`\n
         Retrieves the top-rated TV shows listed on IMDb.
-
         Example:
-            top_shows = IMDB()
-            result = top_shows.top_rated_shows()
-            print(result)
-
+        ```python
+        top_shows = IMDB()
+        result = top_shows.top_rated_shows()
+        ```
         Returns:
-            dict: A dictionary containing the following keys:
-                - 'data' (list): A list of dictionaries, where each dictionary represents a top-rated TV show and contains the following information:
-                    - 'title' (str): The title of the TV show.
-                    - 'year' (str): The year when the TV show was released.
-                    - 'episode' (str): The number of episodes of the TV show.
-                    - 'rating' (str): The IMDb rating of the TV show.
-                - 'message' (str): A message indicating that the top-rated TV shows listed on IMDb have been fetched.
-
-            None: If there was an error while fetching the top-rated TV shows.
+        ```js
+        [
+            {
+                "title":"1. Breaking Bad",
+                "year":"2008-2013",
+                "episode":"62",
+                "rating":"9.5"
+            }
+        ]
+        ```
         """
         try:
             url = "https://www.imdb.com/chart/toptv/?ref_=nv_tvv_250"
@@ -227,9 +226,6 @@ class IMDB:
 
                 shows.append(data)
 
-            return {
-                "data":shows,
-                "message":"Top 250 TV shows are now fetched"
-            }
+            return shows
         except requests.exceptions.RequestException as e:
             return None
