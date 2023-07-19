@@ -580,6 +580,8 @@ class Users:
 
     def get_merged_pull_requests(self):
         """
+        Returns the list of all the merged PRs\n
+        Warning -This methods take longer time to run.\n
         Class - `Users`\n
         Example -\n
         ```python
@@ -596,18 +598,20 @@ class Users:
         try:
             forked_repos = []
             for repo_element in repo_elements:
-                forked_repo = repo_element.select_one('h3+span a')
+                forked_repo = repo_element.select_one("h3+span a")
 
                 if forked_repo:
-                    forked_repo = 'https://github.com' + forked_repo.get('href')
+                    forked_repo = "https://github.com" + forked_repo.get("href")
                     forked_repos.append(forked_repo)
 
             for repo in forked_repos:
-                closed_pr_url = repo + f'/pulls?q=is:pr+author:{self.username}+is:merged'
+                closed_pr_url = (
+                    repo + f"/pulls?q=is:pr+author:{self.username}+is:merged"
+                )
 
                 response = self.__get_page_details(closed_pr_url)
                 pr_links = response.select('a[data-hovercard-type="pull_request"]')
-                links = ['https://github.com' + link['href'] for link in pr_links]
+                links = ["https://github.com" + link["href"] for link in pr_links]
 
                 merged_pull_requests.extend(links)
         except:
@@ -617,6 +621,8 @@ class Users:
 
     def get_open_issues(self):
         """
+        Return the list of open issues.\n
+        Warning -This methods take longer time to run.\n
         Class - `Users`\n
         Example -\n
         ```python
@@ -633,18 +639,23 @@ class Users:
         try:
             forked_repos = []
             for repo_element in repo_elements:
-                forked_repo = repo_element.select_one('h3+span a')
+                forked_repo = repo_element.select_one("h3+span a")
 
                 if forked_repo:
-                    forked_repo = 'https://github.com' + forked_repo.get('href')
+                    forked_repo = "https://github.com" + forked_repo.get("href")
                     forked_repos.append(forked_repo)
 
             for repo in forked_repos:
-                open_issues_url = repo + f'/issues/created_by/{self.username}'
+                open_issues_url = repo + f"/issues/created_by/{self.username}"
 
                 response = self.__get_page_details(open_issues_url)
-                issues_list = response.select('div[aria-label="Issues"] div[data-pjax="#repo-content-pjax-container"]')
-                issue_links = ["https://github.com" + issue.select_one('a').get('href') for issue in issues_list]
+                issues_list = response.select(
+                    'div[aria-label="Issues"] div[data-pjax="#repo-content-pjax-container"]'
+                )
+                issue_links = [
+                    "https://github.com" + issue.select_one("a").get("href")
+                    for issue in issues_list
+                ]
 
                 open_issues.extend(issue_links)
         except:
@@ -653,3 +664,5 @@ class Users:
         return open_issues
 
 
+user = Users(username="nikhil25803")
+print(user.get_open_issues())
