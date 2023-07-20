@@ -491,8 +491,6 @@ product = Product(product_name="watch")
 
 ## Amazon-Kindle Bookstore
 
-### Scrape details of a book
-
 Create an instance of `Book` class.
 
 ```python
@@ -795,9 +793,7 @@ response = CovidInfo()
 | `.totalcases()`  | Returns the total number of covid cases as of yet in the form of a string of numbers        |
 | `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
 
-
 # FlipkartTees
-
 
 ```python
 from flipkart_file import FlipkartTees
@@ -809,31 +805,28 @@ Create an instance of `FlipkartTees` class.
     cloth = FlipkartTees()
     ```
 
-| Methods               | Details                                                            |
-| --------------------- | ------------------------------------------------------------------ |
-| `.scrape()`           | Returns the list of t-shirts with other relevant info              |
-| `.range()`            | Returns the list of t-shirts between a particular price range.     |
-| `.minrating()`        | Returns the list of t-shirts havinga minimum given rating.         |
-| `.gendermale()`       | Returns the list of t-shirts which are for males.                  |
-| `.genderfemale()`     | Returns the list of t-shirts which are there for females.          |
-| `.size()`             | Returns the list of tshirts havning a particular size.             |
-
+| Methods           | Details                                                        |
+| ----------------- | -------------------------------------------------------------- |
+| `.scrape()`       | Returns the list of t-shirts with other relevant info          |
+| `.range()`        | Returns the list of t-shirts between a particular price range. |
+| `.minrating()`    | Returns the list of t-shirts havinga minimum given rating.     |
+| `.gendermale()`   | Returns the list of t-shirts which are for males.              |
+| `.genderfemale()` | Returns the list of t-shirts which are there for females.      |
+| `.size()`         | Returns the list of tshirts havning a particular size.         |
 
 # MediEncyclopedia
 
-
 Create an instance of `MediEncyclopedia` class.
 
- ```python
- ency = MediEncyclopedia()
- ```
+```python
+ency = MediEncyclopedia()
+```
 
-| Methods               | Details                                                                                      |
-| --------------------- | -------------------------------------------------------------------------------------------- |
-| `.scrapebyurl()`      | Returns the medical dictation of associated topic url                                        |
-| `.query()`            | It takes a user query parameter as an argument and returns all relevant terms related to it. |
-| `.byletter()`         | Returns the list of medical relics starting with a particular letter                         |
-
+| Methods          | Details                                                                                      |
+| ---------------- | -------------------------------------------------------------------------------------------- |
+| `.scrapebyurl()` | Returns the medical dictation of associated topic url                                        |
+| `.query()`       | It takes a user query parameter as an argument and returns all relevant terms related to it. |
+| `.byletter()`    | Returns the list of medical relics starting with a particular letter                         |
 
 # NewsCNN
 
@@ -863,10 +856,6 @@ cloth = FlipkartClothing()
 | `.tshirts_for_female()`     | Returns the list of t-shirts which are there for females.      |
 | `.tshirt_by_size()`         | Returns the list of tshirts havning a particular size.         |
 
-
-
-
-
 # Flyrobu
 
 Create an instance of `Flyrobu` class.
@@ -891,7 +880,6 @@ robu = Robu()
 | Methods     | Details                                                                                                         |
 | ----------- | --------------------------------------------------------------------------------------------------------------- |
 | `.search()` | Returns the json data of all the details related to search with informing about the total amount of items found |
-
 
 # LibGen
 
