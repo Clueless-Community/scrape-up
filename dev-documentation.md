@@ -501,7 +501,8 @@ books = AmazonKindle()
 
 | Methods          | Details                                                |
 | ---------------- | ------------------------------------------------------ |
-| `.bestsellers()` | Returns the list of best seeling books on AmazonKindle |
+| `.bestsellers()` | Returns the list of best-selling books on AmazonKindle |
+| `.topbooks()`    | Returns the list of top books on AmazonKindle          |
 
 ## Flipkart
 
