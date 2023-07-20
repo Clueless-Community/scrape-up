@@ -44,32 +44,35 @@ class RottenTomatoes:
                 'runtime'(str): '1h 54m', 'distributor': 'WarnerBros.Pictures', 
                 'production_co'(str): 'NB/GGPictures,HeydayFilms,LuckyChapEntertainment,Mattel'}
         """
-        url=self.url+"m/"+movie_name
-        response = requests.get(url)
-        soup=BeautifulSoup(response.content,'html.parser')
-        movie_details = {}
-        # Extract the movie details from the <ul> element with id="info"
-        ul_element = soup.find('ul', id='info')
-        producers=[]
-        writers=[]
-        movie_details = ul_element.find_all('span', class_='info-item-value', attrs={'data-qa': 'movie-info-item-value'})
-        rating = movie_details[0].text.strip().replace('\n','').replace(' ','')
-        genre=movie_details[1].text.strip().replace('\n','').replace(' ','')
-        director=movie_details[2].text.strip()
-        producers_name=movie_details[4].find_all('a')
-        writers_name=movie_details[5].find_all('a')
-        release_date=movie_details[6].text.strip()
-        runtime=movie_details[7].text.strip()
-        distributor=movie_details[8].text.strip().replace('\n','').replace(' ','')
-        production_co=movie_details[9].text.strip().replace('\n','').replace(' ','')
+        try:
+            url=self.url+"m/"+movie_name
+            response = requests.get(url)
+            soup=BeautifulSoup(response.content,'html.parser')
+            movie_details = {}
+            # Extract the movie details from the <ul> element with id="info"
+            ul_element = soup.find('ul', id='info')
+            producers=[]
+            writers=[]
+            movie_details = ul_element.find_all('span', class_='info-item-value', attrs={'data-qa': 'movie-info-item-value'})
+            rating = movie_details[0].text.strip().replace('\n','').replace(' ','')
+            genre=movie_details[1].text.strip().replace('\n','').replace(' ','')
+            director=movie_details[2].text.strip()
+            producers_name=movie_details[4].find_all('a')
+            writers_name=movie_details[5].find_all('a')
+            release_date=movie_details[6].text.strip()
+            runtime=movie_details[7].text.strip()
+            distributor=movie_details[8].text.strip().replace('\n','').replace(' ','')
+            production_co=movie_details[9].text.strip().replace('\n','').replace(' ','')
 
-        for writer in writers_name:
-            writer=writer.text.strip()
-            writers.append(writer)
-        for producer in producers_name:
-            producer=producer.text.strip()
-            producers.append(producer)
-        
-        movie_details = { 'rating': rating, 'genre': genre, 'director': director, 'producers': producers, 'writers': writers, 'release_date': release_date, 'runtime': runtime, 'distributor': distributor, 'production_co': production_co }
-        
-        return movie_details
+            for writer in writers_name:
+                writer=writer.text.strip()
+                writers.append(writer)
+            for producer in producers_name:
+                producer=producer.text.strip()
+                producers.append(producer)
+            
+            movie_details = { 'rating': rating, 'genre': genre, 'director': director, 'producers': producers, 'writers': writers, 'release_date': release_date, 'runtime': runtime, 'distributor': distributor, 'production_co': production_co }
+            
+            return movie_details
+        except:
+            return "Movie not found"        
