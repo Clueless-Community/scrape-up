@@ -903,3 +903,17 @@ Book = LibGen()
 | Methods                | Details                                                                                 |
 | ---------------------- | --------------------------------------------------------------------------------------- |
 | `.getBooks(book_name)` | Returns the books with name, author, size, format, book link, book cover link, language |
+
+
+# Rotten Tomatoes
+
+Create an instance of `RottenTomatoes` class.
+
+```python
+scraper = RottenTomatoes()
+```
+
+| Method                       | Details                                                        |
+| ----------------------------- | -------------------------------------------------------------- |
+| `.top_rated()`                | Returns the top-rated movies listed on the Rotten Tomatoes website.                   |
+| `.movie_details(movie_name)`  | Fetches and returns detailed information about a specific movie.                         |
