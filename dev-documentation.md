@@ -449,6 +449,7 @@ scraper = Courses("topic")
 | Methods         | Details                                                                                    |
 | --------------- | ------------------------------------------------------------------------------------------ |
 | `.getCourses()` | Returns the courses with title, teached by, skills, rating, review count, img url and link |
+| `.fetchModules(course='Course Name')` | Returns the modules associated with the Coursera. |
 
 ## Wikipedia
 
