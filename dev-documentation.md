@@ -336,10 +336,10 @@ from scrape_up import hacker_news
 
 ### Scrap up Hacker News's latest articles
 
-Create an instance of `Article` class.
+Create an instance of `HackerNews` class.
 
 ```py
-articles = hacker_news.Article()
+articles = HackerNews()
 ```
 
 | Methods            | Details                                                            |
