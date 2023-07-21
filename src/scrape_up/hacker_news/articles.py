@@ -11,12 +11,6 @@ class HackerNews:
     ```
     """
 
-
-    def __scrap_page(self):
-        data = requests.get(self.url)
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
-
     def articles_list(self):
         """
         Class - `HackerNews`
@@ -26,15 +20,24 @@ class HackerNews:
         articles = hacker_news.articles_list()
         ```
         """
-        page = self.__scrap_page()
-        article_list = []
-        try:
-            articles = page.find_all("span", class_="titleline")
-            for article in articles:
-                link = article.find("a")
-                article_list.append({"Article": article.text, "Link": link["href"]})
-            return {"data": article_list, "message": "Successfully fetched data."}
+        url = "https://news.ycombinator.com/"
 
+        try:
+            res = requests.get(url)
+
+            soup = BeautifulSoup(res.text, "html.parser")
+
+            titles = soup.find_all("span", class_="titleline")
+            subs = soup.find_all("span", class_="subline")
+
+            for i, j in zip(titles, subs):
+                title = i.find("a").getText()
+                score = j.find("span", class_="score").getText()
+                author = j.find("a", class_="hnuser").getText()
+                author_url = j.find("a", class_="hnuser")["href"]
+                time = j.find("span", class_="age").find("a").getText()
+                comments_link = j.find_all("a")[-1]
+                comment_count = "0" if not comments_link else comments_link.text.split()[0]
+        
         except:
-            message = "An Error Occurred!"
-            return {"data": article_list, "message": message}
+            return None
