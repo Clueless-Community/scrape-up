@@ -918,3 +918,17 @@ quora = Quora()
 | `.fetch_answers()` | Returns the list of answers pertaining to a particular url gien by the user as parameter. |
 | `.getbyquery()`    | Returns the list of answers pertaining to a particular query given by the user.           |
 | `.getprofile()`    | Returns the list of the name of a user along with their quora profile link.               |
+
+
+# ICC Rankings
+
+"""
+Create an instance of `ICC` class.
+`python
+    scraper = ICC()
+    `
+| Method | Details |
+| ---------------------------- | ------------------------------------------------------------------- |
+| `.team_rankings(format)` | Returns the list of rankings of teams of desired format |
+|`.player_ranking(type,format)`| Returns the list of player ranking of desired type and format |
+"""
