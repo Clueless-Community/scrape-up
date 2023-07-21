@@ -910,14 +910,13 @@ scraper = RottenTomatoes()
 # Quora
 
 Create an instance of Quora class
+
 ```python
 quora = Quora()
 ```
 
-
-| Methods                     | Details                                                                                              |
-| --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `.fetch_answers()`          | Returns the list of answers pertaining to a particular url gien by the user as parameter.            |
-| `.getbyquery()`             | Returns the list of answers pertaining to a particular query given by the user.                      |
-| `.getprofile()`             | Returns the list of the name of a user along with their quora profile link.                          |
-
+| Methods            | Details                                                                                   |
+| ------------------ | ----------------------------------------------------------------------------------------- |
+| `.fetch_answers()` | Returns the list of answers pertaining to a particular url gien by the user as parameter. |
+| `.getbyquery()`    | Returns the list of answers pertaining to a particular query given by the user.           |
+| `.getprofile()`    | Returns the list of the name of a user along with their quora profile link.               |
