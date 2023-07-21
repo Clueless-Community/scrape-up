@@ -28,30 +28,6 @@ class HackerNews:
         hacker_news = HackerNews()
         articles = hacker_news.articles_list()
         ```
-        Return
-        ```python
-        return
-        {
-            "data": [
-                {
-                    "Article": "Article 1's title/text",
-                    "Link": "https://www.article1.com"
-                },
-                {
-                    "Article": "Article 2's title/text",
-                    "Link": "https://www.article2.com/"
-                },
-                ...
-                {
-                {
-                    "Article": "Article 30's title/text",
-                    "Link": "https://www.article30.com/"
-                }
-                }
-            ],
-            "message": "Successfully fetched data."
-        }
-        ```
         """
         page = self.__scrap_page()
         article_list = []
