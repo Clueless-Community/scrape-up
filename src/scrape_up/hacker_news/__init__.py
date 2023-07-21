@@ -1,3 +1,3 @@
-from hacker_news.articles import HackerNews
+from articles import HackerNews
 
 __all__ = ["HackerNews"]
