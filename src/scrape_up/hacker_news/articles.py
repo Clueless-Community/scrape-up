@@ -22,6 +22,8 @@ class HackerNews:
         """
         url = "https://news.ycombinator.com/"
 
+        articles_data = {"articles": []}
+
         try:
             res = requests.get(url)
 
@@ -38,6 +40,18 @@ class HackerNews:
                 time = j.find("span", class_="age").find("a").getText()
                 comments_link = j.find_all("a")[-1]
                 comment_count = "0" if not comments_link else comments_link.text.split()[0]
+
+                articles_data["articles"].append(
+                    {
+                        "title": title,
+                        "score": score,
+                        "author": author,
+                        "author_url": author_url,
+                        "time": time,
+                        "comment_count": comment_count
+                    }
+                )
+            return articles_data["articles"]
         
         except:
             return None
