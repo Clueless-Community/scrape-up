@@ -11,9 +11,6 @@ class HackerNews:
     ```
     """
 
-    def __init__(self, url="https://news.ycombinator.com/"):
-        self.url = url
-        self.help = "This scrapes articles"
 
     def __scrap_page(self):
         data = requests.get(self.url)
