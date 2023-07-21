@@ -40,6 +40,7 @@ class HackerNews:
                 time = j.find("span", class_="age").find("a").getText()
                 comments_link = j.find_all("a")[-1]
                 comment_count = "0" if not comments_link else comments_link.text.split()[0]
+                link = i.find("a")["href"]
 
                 articles_data["articles"].append(
                     {
@@ -48,7 +49,8 @@ class HackerNews:
                         "author": author,
                         "author_url": author_url,
                         "time": time,
-                        "comment_count": comment_count
+                        "comment_count": comment_count,
+                        "link": link
                     }
                 )
             return articles_data["articles"]
