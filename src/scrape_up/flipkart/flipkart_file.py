@@ -16,8 +16,9 @@ class Flipkart:
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
     | `.laptops()`          | Returns the list of laptop from flipkart.                          |
-    | `.camera()`          | Returns the list of camera from flipkart.                          |
-    | `.computer()`          | Returns the list of computer from flipkart.                          |
+    | `.camera()`           | Returns the list of camera from flipkart.                           |
+    | `.computer()`         | Returns the list of computer from flipkart.                       | 
+    | `.tablets()`          | Returns the list of tablets from flipkart.                         |
     """
 
     def __init__(self):
@@ -322,4 +323,45 @@ class Flipkart:
         except Exception as e:
             return None
 
+    def tablets():
+        try:
+            """
+            Get the list of mobiles under 50K\n
+            Class - `Flipkart`\n
+            Example -\n
+            ```python
+            item = Flipkart()
+            item.tablets()
+            """
+
+            link = "https://www.flipkart.com/search?q=tablet&sid=tyy%2Chry&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_5_na_na_na&otracker1=AS_QueryStore_OrganicAutoSuggest_1_5_na_na_na&as-pos=1&as-type=RECENT&suggestionId=tablet%7CTablets&requestId=07b434d5-21a5-48e0-9170-8d9f4a90928f&as-searchtext=tablet&page=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("div", class_="_4rR01T")
+                price = data.find("div", class_="_30jeq3 _1_WHN1")
+                description = data.find("ul", class_="_1xgFaf")
+                review = data.find("div", class_="gUuXy-")
+                offer_price = data.find("div", class_="_2ZdXDB")
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
+                    "Offer_Price": offer_price.text if review else None,
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+        
+item=Flipkart.tablets()
+print(item)
 
