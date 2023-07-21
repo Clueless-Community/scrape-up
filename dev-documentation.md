@@ -334,17 +334,15 @@ publication = medium.Publication(link="https://....")
 from scrape_up import hacker_news
 ```
 
-### Scrap up Hacker News's latest articles
-
-Create an instance of `Article` class.
+Create an instance of `HackerNews` class.
 
 ```py
-articles = hacker_news.Article()
+articles = HackerNews()
 ```
 
-| Methods            | Details                                                            |
-| ------------------ | ------------------------------------------------------------------ |
-| `.articles_list()` | Returns the latest articles along with their links in JSON format. |
+| Methods            | Details                                                                                                              |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `.articles_list()` | Returns the latest articles along with their score, author, author url, time, comment count and link in JSON format. |
 
 ## Twitter
 
