@@ -914,8 +914,8 @@ Create an instance of `ICC` class.
 `python
     scraper = ICC()
     `
-| Method                       | Details                                                             |
+| Method | Details |
 | ---------------------------- | ------------------------------------------------------------------- |
-| `.team_rankings(format)`     | Returns the list of rankings of teams of desired format             |
-|`.player_ranking(type,format)`| Returns the list of player ranking of desired type and format       |
+| `.team_rankings(format)` | Returns the list of rankings of teams of desired format |
+|`.player_ranking(type,format)`| Returns the list of player ranking of desired type and format |
 """
