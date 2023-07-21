@@ -344,7 +344,7 @@ articles = HackerNews()
 
 | Methods            | Details                                                            |
 | ------------------ | ------------------------------------------------------------------ |
-| `.articles_list()` | Returns the latest articles along with their links in JSON format. |
+| `.articles_list()` | Returns the latest articles along with their score, author, author url, time, comment count and link in JSON format. |
 
 ## Twitter
 
