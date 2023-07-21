@@ -30,11 +30,12 @@ class ICC:
             {
                 "rank":1,
                 "team":"Australia"
-            }   
+            }
         ]
         ```
         """
         try:
+            format = format.lower()
             obj_keys = ["rank", "team"]
             resposne_list = []
             url = self.url + "team-rankings/" + format
@@ -42,9 +43,8 @@ class ICC:
             soup = BeautifulSoup(response.content, "html.parser")
             teams = soup.find_all("span", class_="u-hide-phablet")
             for rank, team in enumerate(teams, 1):
-                obj_values = [rank,team.get_text()]
+                obj_values = [rank, team.get_text()]
                 resposne_list.append(dict(zip(obj_keys, obj_values)))
-
 
             return resposne_list
         except:
@@ -53,22 +53,29 @@ class ICC:
     def player_ranking(self, type, format):
         """
         Create an instance of `ICC` class.\n
-        Required Params - `format` - "ODI","T20" or "TEST"
-        `type` - "batting","bowling" or "all-rounder"
+        Required Params
+        - `format` - "ODI","T20" or "TEST"
+        - `type` - "batting","bowling" or "all-rounder"\n
         ```python
         icc = ICC()
-        icc.team_player(format="odi",type="batting")
+        icc.team_player(format="test",type="batting")
         ```
+        Returns \n
         ```js
         [
             {
                 "rank":1,
-                "team":"Babar Azam"
-            }   
+                "team":"Kane Williamson"
+            }
+            ...
         ]
         ```
         """
         try:
+            format = format.lower()
+            type = type.lower()
+            response_list = []
+            obj_keys = ["rank", "name"]
             url = self.url + f"/player-rankings/{format}/{type}"
             response = requests.get(url)
             soup = BeautifulSoup(response.content, "html.parser")
@@ -78,11 +85,11 @@ class ICC:
             rest_players = soup.find_all(
                 "td", class_="table-body__cell rankings-table__name name"
             )
-            players_list = {}
-            players_list[1] = top_player
+            response_list.append(dict(zip(obj_keys,[1,top_player])))
             for rank, player in enumerate(rest_players, 2):
-                players_list[rank] = player.get_text().replace("\n", "")
+                obj_values = [rank, player.get_text().replace("\n", "")]
+                response_list.append(dict(zip(obj_keys, obj_values)))
 
-            return players_list
+            return response_list
         except:
             return None
