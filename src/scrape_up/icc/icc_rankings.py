@@ -51,6 +51,23 @@ class ICC:
             return None
 
     def player_ranking(self, type, format):
+        """
+        Create an instance of `ICC` class.\n
+        Required Params - `format` - "ODI","T20" or "TEST"
+        `type` - "batting","bowling" or "all-rounder"
+        ```python
+        icc = ICC()
+        icc.team_player(format="odi",type="batting")
+        ```
+        ```js
+        [
+            {
+                "rank":1,
+                "team":"Babar Azam"
+            }   
+        ]
+        ```
+        """
         try:
             url = self.url + f"/player-rankings/{format}/{type}"
             response = requests.get(url)
