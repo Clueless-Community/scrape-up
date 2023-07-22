@@ -919,7 +919,6 @@ quora = Quora()
 | `.getbyquery()`    | Returns the list of answers pertaining to a particular query given by the user.           |
 | `.getprofile()`    | Returns the list of the name of a user along with their quora profile link.               |
 
-
 # ICC Rankings
 
 """
@@ -932,3 +931,17 @@ Create an instance of `ICC` class.
 | `.team_rankings(format)` | Returns the list of rankings of teams of desired format |
 |`.player_ranking(type,format)`| Returns the list of player ranking of desired type and format |
 """
+
+# eBay
+
+Create an instance of eBay class
+
+```python
+quora = eBay()
+```
+
+| Methods             | Details                             |
+| ------------------- | ----------------------------------- |
+| `.spotlights()`     | Returns spotlight deals on eBay.    |
+| `.featured()`       | Returns the featured deals on eBay. |
+| `.specific_deals()` | Returns the specific deals on eBay. |
