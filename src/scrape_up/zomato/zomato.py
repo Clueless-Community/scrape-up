@@ -13,7 +13,7 @@ class Zomato:
     """
 
     def __init__(self, page_url):
-        self.page_url = page_url
+        pass
 
     def get_restaurants_details(self):
         """
@@ -55,7 +55,7 @@ class Zomato:
             headers = {
                     "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
                 }
-            response = requests.get(self.page_url, headers = headers).text
+            response = requests.get(page_url, headers = headers).text
             soup = bs(response, "lxml")
             restaurant_data = []
             name = soup.find("h1", {"class": "sc-7kepeu-0 sc-iSDuPN fwzNdh"}).text.strip()
