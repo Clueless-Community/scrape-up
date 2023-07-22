@@ -942,3 +942,17 @@ store1 = Swiggy()
 | Methods         | Details                                                                  |
 | --------------- | ------------------------------------------------------------------------ |
 | `get_restraunt_details(restraunt_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+
+# eBay
+
+Create an instance of eBay class
+
+```python
+quora = eBay()
+```
+
+| Methods             | Details                             |
+| ------------------- | ----------------------------------- |
+| `.spotlights()`     | Returns spotlight deals on eBay.    |
+| `.featured()`       | Returns the featured deals on eBay. |
+| `.specific_deals()` | Returns the specific deals on eBay. |
