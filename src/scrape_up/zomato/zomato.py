@@ -12,10 +12,10 @@ class Zomato:
     | `.get_restaurants_details()` | Returns the restraunt data with name, cuisine, area, rating, offers, etc  |
     """
 
-    def __init__(self, page_url):
+    def __init__(self):
         pass
 
-    def get_restaurants_details(self):
+    def get_restaurants_details(self,page_url):
         """
         Create an object of the 'Zomato' class\n
         ```python
