@@ -16,23 +16,23 @@ class Flipkart:
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
     | `.laptops()`          | Returns the list of laptop from flipkart.                          |
-    | `.camera()`          | Returns the list of camera from flipkart.                          |
-    | `.computer()`          | Returns the list of computer from flipkart.                          |
+    | `.camera()`           | Returns the list of camera from flipkart.                           |
+    | `.computer()`         | Returns the list of computer from flipkart.                       |
+    | `.tablets()`          | Returns the list of tablets from flipkart.                         |
     """
 
     def __init__(self):
         pass
 
     def tvs(self):
+        """
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.tvs()
+        """
         try:
-            """
-            Class - `Flipkart`\n
-            Example -\n
-            ```python
-            item = Flipkart()
-            item.tvs()
-            """
-
             link = "https://www.flipkart.com/search?q=tv&as=on&as-show=on&otracker=AS_Query_TrendingAutoSuggest_8_0_na_na_na&otracker1=AS_Query_TrendingAutoSuggest_8_0_na_na_na&as-pos=8&as-type=TRENDING&suggestionId=tv&requestId=9c9fa553-b7e5-454b-a65b-bbb7a9c74a29"
             page = requests.get(link)
             soup = bs(page.content, "html.parser")
@@ -100,16 +100,15 @@ class Flipkart:
             return None
 
     def mobiles(self):
+        """
+        Get the list of mobiles under 50K\n
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.mobiles()
+        """
         try:
-            """
-            Get the list of mobiles under 50K\n
-            Class - `Flipkart`\n
-            Example -\n
-            ```python
-            item = Flipkart()
-            item.mobiles()
-            """
-
             link = "https://www.flipkart.com/search?q=MOBILE+PHONE+UNDER+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=3"
             page = requests.get(link)
             soup = bs(page.content, "html.parser")
@@ -137,15 +136,15 @@ class Flipkart:
             return None
 
     def sport_shoes(self):
+        """
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.BestsellersBooks()
+        item.sport_shoes()
+        """
         try:
-            """
-            Class - `Flipkart`\n
-            Example -\n
-            ```python
-            item = Flipkart()
-            item.BestsellersBooks()
-            item.sport_shoes()
-            """
             all_items = []
             url = "https://www.flipkart.com/mens-footwear/sports-shoes/pr?sid=osp,cil,1cu&otracker=nmenu_sub_Men_0_Sports%20Shoes"
             response = requests.get(url)
@@ -181,16 +180,15 @@ class Flipkart:
             return None
 
     def laptops(self):
+        """
+        Get the list of mobiles under 50K\n
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.laptops()
+        """
         try:
-            """
-            Get the list of mobiles under 50K\n
-            Class - `Flipkart`\n
-            Example -\n
-            ```python
-            item = Flipkart()
-            item.laptops()
-            """
-
             link = "https://www.flipkart.com/search?q=laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=1"
             page = requests.get(link)
             soup = bs(page.content, "html.parser")
@@ -322,4 +320,40 @@ class Flipkart:
         except Exception as e:
             return None
 
+    def tablets():
+        """
+        Get the list of mobiles under 50K\n
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.tablets()
+        """
+        try:
+            link = "https://www.flipkart.com/search?q=tablet&sid=tyy%2Chry&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_5_na_na_na&otracker1=AS_QueryStore_OrganicAutoSuggest_1_5_na_na_na&as-pos=1&as-type=RECENT&suggestionId=tablet%7CTablets&requestId=07b434d5-21a5-48e0-9170-8d9f4a90928f&as-searchtext=tablet&page=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
 
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("div", class_="_4rR01T")
+                price = data.find("div", class_="_30jeq3 _1_WHN1")
+                description = data.find("ul", class_="_1xgFaf")
+                review = data.find("div", class_="gUuXy-")
+                offer_price = data.find("div", class_="_2ZdXDB")
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
+                    "Offer_Price": offer_price.text if review else None,
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
