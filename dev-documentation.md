@@ -29,6 +29,8 @@ user.followers()
 - GitHub
 - Internshala
 - TimesJobs
+- Swiggy
+- Library Genesis
 
 ## GitHub
 
@@ -931,3 +933,33 @@ Create an instance of `ICC` class.
 | `.team_rankings(format)` | Returns the list of rankings of teams of desired format |
 |`.player_ranking(type,format)`| Returns the list of player ranking of desired type and format |
 """
+
+------
+
+# Swiggy
+
+First, create an object of class `Swiggy`
+
+```python
+store1 = Swiggy()
+```
+
+| Methods         | Details                                                                  |
+| --------------- | ------------------------------------------------------------------------ |
+| `get_restraunt_details(restraunt_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+
+------
+
+# eBay
+
+Create an instance of eBay class
+
+```python
+quora = eBay()
+```
+
+| Methods             | Details                             |
+| ------------------- | ----------------------------------- |
+| `.spotlights()`     | Returns spotlight deals on eBay.    |
+| `.featured()`       | Returns the featured deals on eBay. |
+| `.specific_deals()` | Returns the specific deals on eBay. |
