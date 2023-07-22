@@ -487,7 +487,6 @@ product = Product(product_name="watch")
 | `.get_product_details()` | Returns product detail.      |
 | `.get_product_image()`   | Returns product image.       |
 | `.customer_review()`     | Returns product review.      |
-| `.bestsellers()`         | Returns bestsellers.         |
 
 ## Amazon-Kindle Bookstore
 
