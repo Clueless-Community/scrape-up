@@ -666,16 +666,19 @@ articles = GoogleNews()
 
 ## Hashnode
 
-### Scrape blogs with title, descriptions, author, read time, like and comment count, date and link.
-
 Create an instance of `Hashnode` class.
 
 ```python
 blogs = Hashnode()
 ```
 
-| Methods | Details |
-| ------------ | -------------------| `.getDetails()` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+| Methods           | Details                                                                                              |
+| ----------------- | ---------------------------------------------------------------------------------------------------- |
+| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link |
+| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link   |
+| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link     |
+
+---
 
 ## Reddit
 
@@ -931,6 +934,8 @@ Create an instance of `ICC` class.
 |`.player_ranking(type,format)`| Returns the list of player ranking of desired type and format |
 """
 
+------
+
 # Swiggy
 
 First, create an object of class `Swiggy`
@@ -942,6 +947,8 @@ store1 = Swiggy()
 | Methods         | Details                                                                  |
 | --------------- | ------------------------------------------------------------------------ |
 | `get_restraunt_details(restraunt_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+
+------
 
 # eBay
 
