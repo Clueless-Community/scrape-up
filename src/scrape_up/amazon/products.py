@@ -191,3 +191,70 @@ class Product:
                 "data": None,
                 "message": f"Unable to fetch product review",
             }
+    #Get BestSeller Products
+    def bestsellers(self):
+        """
+        Class - `Product`\n
+        Example -\n
+        ```python
+        product = Product(product_type)
+        product_type = "baby"
+        product.bestsellers()
+        product_type = ["baby", "electronics", "luggage", "beauty", "books", "automotive", "computers", "garden", "gift-cards", "grocery".
+        "industrial", "jewelry", "musical-instruments", "office", "pet-supplies", "shoes", "sports", "toys", "watches"]   
+        ```
+        Return\n
+        ```python
+        return
+        {
+            "data": bestsellers_list,
+            "message": f"Bestsellers data has been fetched",
+        }
+        ```
+        """
+        try:
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Safari/537.36"
+            }
+            url = f"https://www.amazon.in/gp/bestsellers/{self.product_name}/ref=zg_bs_nav_0"
+            html_text = requests.get(url, headers=headers).text
+            soup = BeautifulSoup(html_text, "lxml")
+
+            bestsellers_list = []
+            container = soup.find("div", {"class": "p13n-gridRow _cDEzb_grid-row_3Cywl"})
+
+
+            for items in container.find_all("div", {"id": "gridItemRoot"}):
+                title = items.find("div", {"class": "_cDEzb_p13n-sc-css-line-clamp-4_2q2cc"})
+                price = items.find("span", {"class": "a-size-base a-color-price"})
+                if not title:
+                    title = items.find("div", {"class": "_cDEzb_p13n-sc-css-line-clamp-3_g3dy1"})
+                    price = items.find("span", {"class": "a-size-base"})
+                stars = items.find("span", {"class": "a-icon-alt"})
+                if stars is None:
+                    stars = "Rating not available"
+                else:
+                    stars = stars.text.split()[0]
+                link = items.find("a", {"class": "a-link-normal"}, href=True)
+                url = "https://www.amazon.in/" + link['href']
+                if not price:
+                    price = "Information not available"
+                else:
+                    price = price.text
+                products = {
+                    "Title": title.text,
+                    "Rating(out of 5)": stars,
+                    "Price(in rupees)": price,
+                    "Link": url,
+                }
+                bestsellers_list.append(products)
+
+            return {
+                "data": bestsellers_list,
+                "message": f"Bestsellers data has been fetched",
+            }
+        except:
+            return {
+                "data": None,
+                "message": f"Unable to fetch bestsellers data",
+            }
