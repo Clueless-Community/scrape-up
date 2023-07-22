@@ -1,3 +1,3 @@
 from swiggy import Swiggy
 
-__all__=["Swiggy"]
+__all__ = ["Swiggy"]

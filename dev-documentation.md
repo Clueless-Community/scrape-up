@@ -674,8 +674,9 @@ Create an instance of `Hashnode` class.
 blogs = Hashnode()
 ```
 
-| Methods      | Details                                                                                              |
-| ------------ | -------------------| `.getDetails()` | Returns the restraunt data with name, cuisine, area, rating, offers, etc  |
+| Methods | Details |
+| ------------ | -------------------| `.getDetails()` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+
 ## Reddit
 
 Create an instance of `Reddit` class.
@@ -917,7 +918,6 @@ quora = Quora()
 | `.getbyquery()`    | Returns the list of answers pertaining to a particular query given by the user.           |
 | `.getprofile()`    | Returns the list of the name of a user along with their quora profile link.               |
 
-
 # ICC Rankings
 
 """
@@ -931,7 +931,6 @@ Create an instance of `ICC` class.
 |`.player_ranking(type,format)`| Returns the list of player ranking of desired type and format |
 """
 
-
 # Swiggy
 
 First, create an object of class `Swiggy`
@@ -940,6 +939,6 @@ First, create an object of class `Swiggy`
 store1 = Swiggy()
 ```
 
-| Methods         | Details                                                                   |
-| --------------- | ------------------------------------------------------------------------- |
-| `.getDetails()` | Returns the restraunt data with name, cuisine, area, rating, offers, etc  |
+| Methods         | Details                                                                  |
+| --------------- | ------------------------------------------------------------------------ |
+| `get_restraunt_details(restraunt_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
