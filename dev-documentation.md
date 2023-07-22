@@ -664,19 +664,17 @@ articles = GoogleNews()
 
 ## Hashnode
 
-### Scrape blogs with title, descriptions, author, read time, like and comment count, date and link.
-
 Create an instance of `Hashnode` class.
 
 ```python
 blogs = Hashnode()
 ```
 
-| Methods      | Details                                                                                              |
-| ------------ | ---------------------------------------------------------------------------------------------------- |
-| `.getFeed()` | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link |
-| `.getFeatured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link |
-| `.getRecent()` | Returns the recent blogs with title, descriptions, author, like and comment count, date and link |
+| Methods           | Details                                                                                              |
+| ----------------- | ---------------------------------------------------------------------------------------------------- |
+| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link |
+| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link   |
+| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link     |
 
 ---
 
@@ -920,7 +918,6 @@ quora = Quora()
 | `.fetch_answers()` | Returns the list of answers pertaining to a particular url gien by the user as parameter. |
 | `.getbyquery()`    | Returns the list of answers pertaining to a particular query given by the user.           |
 | `.getprofile()`    | Returns the list of the name of a user along with their quora profile link.               |
-
 
 # ICC Rankings
 
