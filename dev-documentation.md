@@ -963,3 +963,19 @@ quora = eBay()
 | `.spotlights()`     | Returns spotlight deals on eBay.    |
 | `.featured()`       | Returns the featured deals on eBay. |
 | `.specific_deals()` | Returns the specific deals on eBay. |
+
+------
+
+# Zomato
+
+First, create an object of class `Zomato`
+
+```python
+store1 = Zomato()
+
+```
+| Methods                       | Details                                                                   |
+| ----------------------------- | ------------------------------------------------------------------------- |
+| `.get_restaurants_details(page_url = " ")`  | Returns the restraunt data with name, cuisine, area, rating, offers, etc  |
+
+------
