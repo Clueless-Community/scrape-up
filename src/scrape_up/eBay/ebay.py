@@ -1,9 +1,24 @@
 from bs4 import BeautifulSoup
 import requests
 
-class eBay:
+
+class EBAY:
+    """
+    Create an instance of EBAY class
+    ```python
+    quora = EBAY()
+    ```
+    | Methods             | Details                             |
+    | ------------------- | ----------------------------------- |
+    | `.spotlights()`     | Returns spotlight deals on EBAY.    |
+    | `.featured()`       | Returns the featured deals on EBAY. |
+    | `.specific_deals()` | Returns the specific deals on EBAY. |
+    """
+
     def __init__(self):
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Safari/537.36"}
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Safari/537.36"
+        }
         url = "https://www.ebay.com/globaldeals"
         html_text = requests.get(url, headers=headers).text
         soup = BeautifulSoup(html_text, "lxml")
@@ -13,20 +28,28 @@ class eBay:
     def spotlights(self):
         """
         Get the spotlight deal information.
-
         Example:
         ```python
-        ebay = eBay()
-        spotlight_data = ebay.spotlights()
-        print(spotlight_data)
+        ebay = EBAY()
+        spotlight_data = EBAY.spotlights()
         ```
-
         Returns:
-        A dictionary containing the spotlight deal information.
+        ```js
+        {
+            "Description":"Spotlight Deal",
+            "Product":"Apple iPhone 12 Pro 128GB Unlocked Smartphone - Very Good",
+            "Price":"US $524.95",
+            "Link":"https://www.ebay.com/itm/363490711983?_trkparms=5373%3A0%7C5374%3AFeatured"
+        }
+        ```
         """
         try:
-            deals = []
-            spotlight_deal = self.container.find("div", {"class": "ebayui-dne-summary-card card ebayui-dne-item-featured-card--topDeals"}).find("div", {"class": "dne-itemtile-detail"})
+            spotlight_deal = self.container.find(
+                "div",
+                {
+                    "class": "ebayui-dne-summary-card card ebayui-dne-item-featured-card--topDeals"
+                },
+            ).find("div", {"class": "dne-itemtile-detail"})
             title = spotlight_deal.find("h3").text
             price = spotlight_deal.find("span", {"class": "first"}).text
             url = spotlight_deal.find("a", href=True)
@@ -34,84 +57,90 @@ class eBay:
                 "Description": "Spotlight Deal",
                 "Product": title,
                 "Price": price,
-                "Link": url['href']
+                "Link": url["href"],
             }
-            deals.append(spotlight)
-            return {"data": deals, "message": "Information is now fetched"}
+            return spotlight
         except:
-            return "Unable to fetch data"
+            return None
 
     def featured(self):
         """
         Get the featured deals information.
-
         Example:
         ```python
         ebay = eBay()
         featured_data = ebay.featured()
-        print(featured_data)
         ```
-
         Returns:
-        A dictionary containing the featured deals information.
+        ```
+        [
+            {
+                "Product":"Intel Core i5-13600KF Unlocked Desktop Processor - 14 Cores (6P+8E) & 20 Threads",
+                "Price":"US $313.41",
+                "Link":"https://www.ebay.com/itm/295247209215?_trkparms=5373%3A0%7C5374%3AFeatured"
+            }
+            ...
+        ]
+        ```
         """
         try:
-            deals = []
-            featured_deal = self.container.find("div", {"class": "ebayui-dne-banner-text"}).next_sibling
+            featured_deal = self.container.find(
+                "div", {"class": "ebayui-dne-banner-text"}
+            ).next_sibling
             Featured_deal = []
             for cols in featured_deal.find_all("div", {"class", "col"}):
                 cols = cols.find("div", {"class": "dne-itemtile-detail"})
                 title = cols.find("h3").text
-                url = cols.find("a", href=True)['href']
+                url = cols.find("a", href=True)["href"]
                 price = cols.find("span", {"class": "first"}).text
-                featured = {
-                    "Product": title,
-                    "Price": price,
-                    "Link": url
-                }
+                featured = {"Product": title, "Price": price, "Link": url}
                 Featured_deal.append(featured)
-            deals.append({"Featured_deal": Featured_deal})
-            return {"data": deals, "message": "Information is now fetched"}
+            return Featured_deal
         except:
-            return "Unable to fetch data"
+            return None
 
     def specific_deals(self):
         """
         Get the specific deals information.
-
         Example:
         ```python
-        ebay = eBay()
-        specific_deals_data = ebay.specific_deals()
-        print(specific_deals_data)
+        ebay = EBAY()
+        specific_deals_data = EBAY.specific_deals()
         ```
 
         Returns:
-        A dictionary containing the specific deals information.
+        ```js
+        [
+            {
+                "Product":"STRAY KIDS MAXIDENT Album GO LIMITED Ver. CD+P.Book+Poster+2 Card+Pre-Order+GIFT",
+                "Price":"US $32.50",
+                "Link":"https://www.ebay.com/itm/165661661490?_trkparms=5373%3A0%7C5374%3AFeatured%7C5079%3A6000012162"
+            }
+            ...
+        ]
+        ``
         """
         try:
-            deals = []
-            for items in self.container.find_all("div", {"class": "ebayui-dne-item-pattern-card ebayui-dne-item-pattern-card-no-padding ebayui-dne-item-pattern-card--desktop"}):
-                description = items.find("h2").text
+            for items in self.container.find_all(
+                "div",
+                {
+                    "class": "ebayui-dne-item-pattern-card ebayui-dne-item-pattern-card-no-padding ebayui-dne-item-pattern-card--desktop"
+                },
+            ):
                 specific = []
                 i = 0
-                for cols in items.find("div", {"class": "row"}).find_all("div", {"class": "col"}):
+                for cols in items.find("div", {"class": "row"}).find_all(
+                    "div", {"class": "col"}
+                ):
                     for item in cols.find_all("div", {"class": "item"}):
                         if i == 4:
                             break
                         i += 1
                         title = item.find("h3").text
                         price = item.find("span", {"class": "first"}).text
-                        url = item.find("a", href=True)['href']
-                        deal = {
-                            "Product": title,
-                            "Price": price,
-                            "Link": url
-                        }
+                        url = item.find("a", href=True)["href"]
+                        deal = {"Product": title, "Price": price, "Link": url}
                         specific.append(deal)
-                deals.append({description: specific})
-            return {"data": deals, "message": "Information is now fetched"}
+            return specific
         except:
-            return "Unable to fetch data"
-
-
+            return None
