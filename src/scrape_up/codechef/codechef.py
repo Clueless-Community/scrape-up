@@ -9,8 +9,8 @@ class Codechef:
     user1 = Codechef(id="heltion")
     ```
     | Methods         | Details                                                                  |
-    | --------------- | ------------------------------------------------------------------------ |
-    | `get_profile()` | Returns  |
+    | --------------- | ---------------------------------------------------------------- |
+    | `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
     """
 
     def __init__(self, id):
