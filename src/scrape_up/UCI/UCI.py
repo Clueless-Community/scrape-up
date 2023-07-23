@@ -23,37 +23,36 @@ class UCI():
         A list of dictionaries containing the information for the requested number of UCI datasets.
         Each dictionary contains the following keys:
         - "Name": The name of the dataset.
-        - "Link": The link to the dataset's page on UCI website.
+        - "Link": The link to the dataset's page on the UCI website.
         - "Description": Description of the dataset.
         - "Extra Info": Additional information about the dataset.
         """
-        end_loop = number // 10
-        number+=1
-        dataset = []
-        for i in range(0, end_loop+1):
-            url = "https://archive.ics.uci.edu/datasets?skip={}&take=10&sort=desc&orderBy=NumHits&search=s".format(i * 10)
-            html_text = requests.get(url, headers=self.headers).text
-            soup = BeautifulSoup(html_text, "lxml")
+        try:
+            number = number // 10
+            dataset = []
+            for i in range(0, number):
+                url = "https://archive.ics.uci.edu/datasets?skip={}&take=10&sort=desc&orderBy=NumHits&search=s".format(i * 10)
+                html_text = requests.get(url, headers=self.headers).text
+                soup = BeautifulSoup(html_text, "lxml")
 
-            container = soup.find("div", {"class": "flex flex-col gap-1"})
+                container = soup.find("div", {"class": "flex flex-col gap-1"})
 
-            for items in container.find_all("div", {"class": "rounded-box bg-base-100"}):
-                number -= 1
-                if not number:
-                    break
-                title = items.find("h2").text
-                link = "https://archive.ics.uci.edu/" + items.find("a", href=True)['href']
-                description = items.find("p").text
-                extra_info = ""
-                for item in items.find_all("div", {"class": "col-span-3 flex items-center gap-2"}):
-                    extra_info = extra_info + item.text + " "
-                data = {
-                    "Name": title,
-                    "Link": link,
-                    "Description": description,
-                    "Extra Info": extra_info
-                }
-                dataset.append(data)
-        return dataset
+                for items in container.find_all("div", {"class": "rounded-box bg-base-100"}):
+                    title = items.find("h2").text
+                    link = "https://archive.ics.uci.edu/" + items.find("a", href=True)['href']
+                    description = items.find("p").text
+                    extra_info = ""
+                    for item in items.find_all("div", {"class": "col-span-3 flex items-center gap-2"}):
+                        extra_info = extra_info + item.text + " "
+                    data = {
+                        "Name": title,
+                        "Link": link,
+                        "Description": description,
+                        "Extra Info": extra_info
+                    }
+                    dataset.append(data)
+            return dataset
+        except Exception as e:
+            return {"data": None, "message": f"An error occurred: {str(e)}"}
 
 
