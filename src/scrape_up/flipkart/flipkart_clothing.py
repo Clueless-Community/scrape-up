@@ -162,3 +162,23 @@ class FlipkartClothing:
             return k
         except:
             return None
+        
+    def Formal_shirts_for_male():
+        """
+        It returns all the t-shirts pertaining to females\n
+        Class - `FlipkartClothing()`\n
+        ```python
+        tees = FlipkartClothing()
+        tees.tshirts_for_female()
+        ```
+        """
+        try:
+            url = "https://www.flipkart.com/search?q=formal+shirts+for+men&sid=clo%2Cash%2Caxc%2Cmmk%2Cbk1&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_11_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_11_na_na_ps&as-pos=1&as-type=RECENT&suggestionId=formal+shirts+for+men%7CFormal+Shirts&requestId=2d7ee0f8-6dd3-4857-9a84-6e8b378e7767&as-backfill=on&page=1"
+            k = FlipkartClothing().tshirts(url)
+            return k
+        except:
+            return None
+
+    
+a=FlipkartClothing.Formal_shirts_for_male()
+print(a)

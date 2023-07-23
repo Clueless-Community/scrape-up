@@ -856,6 +856,7 @@ cloth = FlipkartClothing()
 | `.tshirts_for_male()`       | Returns the list of t-shirts which are for males.              |
 | `.tshirts_for_female()`     | Returns the list of t-shirts which are there for females.      |
 | `.tshirt_by_size()`         | Returns the list of tshirts havning a particular size.         |
+| `.Formal_shirts_for_male`   | Returns the list of formal shirts for mens.                    |
 
 # Flyrobu
 
