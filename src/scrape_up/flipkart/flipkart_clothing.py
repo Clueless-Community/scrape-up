@@ -5,19 +5,19 @@ import requests
 
 class FlipkartClothing:
     """
-    Create an instance of `FlipkartClothing` class\n
+    Create an instance of `FlipkartTees` class.
     ```python
-    cloth = FlipkartClothing()
+    cloth = FlipkartTees()
     ```
-    \n
-    | Methods               | Details                                                            |
-    | --------------------- | ------------------------------------------------------------------ |
-    | `.tshirts()`           | Returns the list of t-shirts with other relevant info              |
-    | `.tshirts_by_price_range()`            | Returns the list of t-shirts between a particular price range.     |
-    | `.tshirts_by_rating()`        | Returns the list of t-shirts havinga minimum given rating.         |
-    | `.tshirts_for_male()`       | Returns the list of t-shirts which are for males.                  |
-    | `.tshirts_for_female()`     | Returns the list of t-shirts which are there for females.          |
-    | `.tshirt_by_size()`             | Returns the list of tshirts havning a particular size.|
+    | Methods                    | Details                                                        |
+    | -------------------------- | -------------------------------------------------------------- |
+    | `.scrape()`                | Returns the list of t-shirts with other relevant info          |
+    | `.range()`                 | Returns the list of t-shirts between a particular price range. |
+    | `.minrating()`             | Returns the list of t-shirts havinga minimum given rating.     |
+    | `.gendermale()`            | Returns the list of t-shirts which are for males.              |
+    | `.genderfemale()`          | Returns the list of t-shirts which are there for females.      |
+    | `.size()`                  | Returns the list of tshirts havning a particular size.         |
+    | `formal_shirts_for_male()` | It returns those t-shirts which are of a particular size       |
     """
 
     def __init__(self):
@@ -141,17 +141,18 @@ class FlipkartClothing:
         except:
             return None
 
-    def tshirt_by_size(self, m):
+    def tshirt_by_size(self, size="M"):
         """
         It returns those t-shirts which are of a particular size\n
-        Class - `FlipkartClothing()`\n
+        Required parameter = `size` - `["XS", "S", "M", "L", "XL", "2XL", "3XL"]`\n
+        Class - `FlipkartClothing()`
         ```python
         tees = FlipkartClothing()
-        tees.tshirts_for_female()
+        tees.tshirt_by_size()
         ```
         """
         try:
-            m = m.upper()
+            m = size.upper()
             curavl = ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
             if m not in curavl:
                 return None
@@ -162,14 +163,27 @@ class FlipkartClothing:
             return k
         except:
             return None
-        
-    def Formal_shirts_for_male():
+
+    def formal_shirts_for_male():
         """
         It returns all the t-shirts pertaining to females\n
         Class - `FlipkartClothing()`\n
         ```python
         tees = FlipkartClothing()
-        tees.tshirts_for_female()
+        tees.formal_shirts_for_male()
+        ```
+        Return\n
+        ```js
+        [
+            {
+                "name":"FIBERMILL",
+                "price":"₹389",
+                "description":"Men Regular Fit Solid Spread Collar Formal Shirt",
+                "image":"https://rukminim2.flixcart.com/image/612/612/xif0q/shirt/k/g/1/l-fbrml-r-fibermill-original-imagjfk6ytwytyg3.jpeg?q=70",
+                "link":"..."
+            }
+            ...
+        ]
         ```
         """
         try:
@@ -178,7 +192,3 @@ class FlipkartClothing:
             return k
         except:
             return None
-
-    
-a=FlipkartClothing.Formal_shirts_for_male()
-print(a)
