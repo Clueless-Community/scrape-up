@@ -19,6 +19,7 @@ class Flipkart:
     | `.camera()`           | Returns the list of camera from flipkart.                           |
     | `.computer()`         | Returns the list of computer from flipkart.                       |
     | `.tablets()`          | Returns the list of tablets from flipkart.                         |
+    | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
     """
 
     def __init__(self):
@@ -357,3 +358,47 @@ class Flipkart:
 
         except Exception as e:
             return None
+
+
+    def cycle():
+        try:
+            """
+            Get the list of mobiles under 50K\n
+            Class - `Flipkart`\n
+            Example -\n
+            ```python
+            item = Flipkart()
+            item.tablets()
+            """
+
+            link = "https://www.flipkart.com/search?q=bicycle&sid=abc%2Culv%2Cixt&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&as-pos=1&as-type=RECENT&suggestionId=bicycle%7CCycles&requestId=05fd446d-fd05-4abe-8bcc-445937cc6fb1&as-searchtext=bicy&page=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("a", class_="s1Q9rs")
+                price = data.find("div", class_="_25b18c")
+                description = data.find("div", class_="_3Djpdu")
+                review = data.find("div", class_="gUuXy- _2D5lwg")
+                deals = data.find("div", class_="_3xFhiH")
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
+                    "Deals": deals.text if review else None,
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+        
+
+item=Flipkart.cycle()
+print(item)
