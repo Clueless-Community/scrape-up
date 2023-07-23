@@ -1,7 +1,6 @@
-import json
-import time
 import requests
 from bs4 import BeautifulSoup
+import re
 
 
 class Flyrobu:
@@ -13,9 +12,10 @@ class Flyrobu:
     print(flyrobu.search("arduino"))
     ```
 
-    | Methods     | Details                                                                                                         |
-    | ----------- | --------------------------------------------------------------------------------------------------------------- |
-    | `.search()` | Returns the json data of all the details related to search with informing about the total amount of items found |
+    | Methods             | Details                                                                                                         |
+    | ------------------- | --------------------------------------------------------------------------------------------------------------- |
+    | `.search(keyword)`  | Returns the json data of all the details related to search with informing about the total amount of items found |
+    | `.get_product_details(product_name)` | Returns the json data of the product details based on the given `product_name` |
     """
 
     def __init__(self):
@@ -157,3 +157,125 @@ class Flyrobu:
 
         result = self.outputs
         return result
+
+    def get_product_details(self, product_name):
+        """
+        Retrieve Detailed Product Description and Specification based on the given `product_name`.\n
+        Parameters required: \n
+        `product_name: str`: The name of the product to fetch details for.
+        Example Usage:
+        ```python
+        flyrobu = Flyrobu()
+        product_name = input("Enter the product name: ")
+        product_details = flyrobu.get_product_details(product_name)
+        ```
+        Output:
+        ```json
+        {
+            "Description": "E-Bike Power Lock Ignition Key Switch is brand new and unused and comes with 2 keys. E-Bike Power Lock Ignition Key Switch has 2 Female Pin, Plastic Make.\nIt is Suitable for MY1016 controllers.\n\n \nFeatures:\n     \n\nEasy installation\nProtect the security\nDesigned with a reliable ignition switch locking mechanism\nDurable, convenient to use",
+            "Features": [
+                "Easy installation",
+                "Protect the security",
+                "Designed with a reliable ignition switch locking mechanism",
+                "Durable, convenient to use"
+            ],
+            "Technical Details": {
+                "Cable Length": "27 cm",
+                "Connector": "2 Pin Female"
+            },
+            "Current Price": 349,
+            "Original Price": 399,
+            "Image": "https://www.flyrobo.in/image/cache/catalog/e-bile-power-lock-ignition-key-switch/e-bile-power-lock-ignition-key-switch-2-550x550.jpeg",
+            "Package Includes": "1 x E-Bike Power Lock Ignition Key Switch"
+        }
+        ```
+        """
+        try:
+            product_url = f"{self.base_url}/{product_name}"
+
+            soup = self.__get_soup(product_url)
+            product_details = {}
+
+            # Extract the product description and features
+            description = (
+                soup.find("div", class_="product_extra-242").find("div").text.strip()
+            )
+            features_list = (
+                soup.find("div", class_="product_extra-242").find("ul").find_all("li")
+            )
+            features = [feature.text.strip() for feature in features_list]
+
+            product_details["Description"] = description
+            product_details["Features"] = features
+
+            # Extract the technical specifications
+            technical_details_table = soup.find("table", class_="table-bordered")
+            technical_details = {}
+            if technical_details_table:
+                rows = technical_details_table.find_all("tr")
+                for row in rows[1:]:
+                    attribute_name = row.find(
+                        "td", class_="attribute_name"
+                    ).b.text.strip()
+                    attribute_value = row.find(
+                        "td", class_="attribute_value"
+                    ).p.text.strip()
+                    technical_details[attribute_name] = attribute_value
+
+            product_details["Technical Details"] = technical_details
+
+            # Extract the price details
+            price_section = soup.find("div", class_="price-group")
+            current_price_elem = price_section.find("div", class_="product-price-new")
+            original_price_elem = price_section.find("div", class_="product-price-old")
+
+            # Check if both current_price_elem and original_price_elem are None, then try to find the "product-price" element
+            if current_price_elem is None and original_price_elem is None:
+                fallback_price_elem = price_section.find("div", class_="product-price")
+                if fallback_price_elem:
+                    current_price = fallback_price_elem.text.strip()
+                    original_price = None
+                else:
+                    current_price = None
+                    original_price = None
+            else:
+                current_price = (
+                    current_price_elem.text.strip() if current_price_elem else None
+                )
+                original_price = (
+                    original_price_elem.text.strip() if original_price_elem else None
+                )
+
+            # Remove the Rupee symbol and convert the prices to integers
+            if current_price:
+                current_price = int(current_price.replace("₹", "").replace(",", ""))
+                product_details["Current Price"] = current_price
+
+            if original_price:
+                original_price = int(original_price.replace("₹", "").replace(",", ""))
+                product_details["Original Price"] = original_price
+
+            # Extract the image URL
+            image_div = soup.find("div", class_="swiper-wrapper")
+            image_url = image_div.find("img")["src"]
+            product_details["Image"] = image_url
+
+            # Extract the "Package Includes" details from the description using regular expression
+            package_includes_pattern = r"Package Includes:\s*(.*)"
+            match = re.search(package_includes_pattern, description)
+            if match:
+                package_includes_text = match.group(1).strip()
+                product_details["Package Includes"] = package_includes_text
+
+                # Remove the "Package Includes" part from the description
+                description = re.sub(package_includes_pattern, "", description).strip()
+                product_details["Description"] = description
+
+            return product_details
+
+        except requests.exceptions.RequestException as e:
+            return None
+        except AttributeError as e:
+            return None
+        except Exception as e:
+            return None

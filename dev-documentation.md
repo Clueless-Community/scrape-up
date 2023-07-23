@@ -865,12 +865,12 @@ Create an instance of `Flyrobu` class.
 
 ```python
 flyrobu = Flyrobu()
-print(flyrobu.search("arduino"))
 ```
 
-| Methods     | Details                                                                                                         |
-| ----------- | --------------------------------------------------------------------------------------------------------------- |
-| `.search()` | Returns the json data of all the details related to search with informing about the total amount of items found |
+| Methods                              | Details                                                                                                         |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| `.search(keyword)`                   | Returns the json data of all the details related to search with informing about the total amount of items found |
+| `.get_product_details(product_name)` | Returns the json data of the product details based on the given `product_name`                                  |
 
 # Robu
 
