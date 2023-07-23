@@ -16,10 +16,11 @@ class Flipkart:
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
     | `.laptops()`          | Returns the list of laptop from flipkart.                          |
-    | `.camera()`           | Returns the list of camera from flipkart.                           |
-    | `.computer()`         | Returns the list of computer from flipkart.                       |
+    | `.camera()`           | Returns the list of camera from flipkart.                          |
+    | `.computer()`         | Returns the list of computer from flipkart.                        |
     | `.tablets()`          | Returns the list of tablets from flipkart.                         |
     | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
+
     """
 
     def __init__(self):
@@ -400,5 +401,3 @@ class Flipkart:
             return None
         
 
-item=Flipkart.cycle()
-print(item)
