@@ -1,4 +1,3 @@
 from UCI import UCI
 
-__all__ = ['UCI']
-
+__all__ = ["UCI"]

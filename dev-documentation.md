@@ -934,7 +934,7 @@ Create an instance of `ICC` class.
 |`.player_ranking(type,format)`| Returns the list of player ranking of desired type and format |
 """
 
-------
+---
 
 # Swiggy
 
@@ -944,11 +944,11 @@ First, create an object of class `Swiggy`
 store1 = Swiggy()
 ```
 
-| Methods         | Details                                                                  |
-| --------------- | ------------------------------------------------------------------------ |
+| Methods                                      | Details                                                                  |
+| -------------------------------------------- | ------------------------------------------------------------------------ |
 | `get_restraunt_details(restraunt_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
 
-------
+---
 
 # eBay
 
@@ -972,6 +972,6 @@ Create an instance of UCI class
 uci = UCI()
 ```
 
-| Methods             | Details                                  |
-| ------------------- | ---------------------------------------- |
-| `.datasets()`       | Fetches datasets information from UCI    |
+| Methods       | Details                               |
+| ------------- | ------------------------------------- |
+| `.datasets()` | Fetches datasets information from UCI |
