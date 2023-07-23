@@ -8,7 +8,7 @@ class Codechef:
     ```python
     user1 = Codechef(id="heltion")
     ```
-    | Methods         | Details                                                                  |
+    | Methods         | Details                                                          |
     | --------------- | ---------------------------------------------------------------- |
     | `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
     """
