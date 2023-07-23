@@ -993,3 +993,17 @@ uci = UCI()
 | Methods       | Details                               |
 | ------------- | ------------------------------------- |
 | `.datasets()` | Fetches datasets information from UCI |
+
+------
+
+# CodeChef
+
+First, create an object of class `Codechef`
+
+```python
+user1 = Codechef(id="username")
+
+```
+| Methods         | Details                                                          |
+| --------------- | ---------------------------------------------------------------- |
+| `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
