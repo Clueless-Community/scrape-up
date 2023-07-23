@@ -965,3 +965,15 @@ quora = eBay()
 | `.spotlights()`     | Returns spotlight deals on eBay.    |
 | `.featured()`       | Returns the featured deals on eBay. |
 | `.specific_deals()` | Returns the specific deals on eBay. |
+
+# UCI
+
+Create an instance of UCI class
+
+```python
+uci = UCI()
+```
+
+| Methods       | Details                               |
+| ------------- | ------------------------------------- |
+| `.datasets()` | Fetches datasets information from UCI |
