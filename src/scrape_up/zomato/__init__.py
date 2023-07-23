@@ -1,3 +1,3 @@
 from zomato import Zomato
 
-__all__=["Zomato"]
+__all__ = ["Zomato"]
