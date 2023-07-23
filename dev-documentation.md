@@ -802,18 +802,19 @@ from flipkart_file import FlipkartTees
 
 Create an instance of `FlipkartTees` class.
 
-    ```python
-    cloth = FlipkartTees()
-    ```
+```python
+cloth = FlipkartTees()
+```
 
-| Methods           | Details                                                        |
-| ----------------- | -------------------------------------------------------------- |
-| `.scrape()`       | Returns the list of t-shirts with other relevant info          |
-| `.range()`        | Returns the list of t-shirts between a particular price range. |
-| `.minrating()`    | Returns the list of t-shirts havinga minimum given rating.     |
-| `.gendermale()`   | Returns the list of t-shirts which are for males.              |
-| `.genderfemale()` | Returns the list of t-shirts which are there for females.      |
-| `.size()`         | Returns the list of tshirts havning a particular size.         |
+| Methods                    | Details                                                        |
+| -------------------------- | -------------------------------------------------------------- |
+| `.scrape()`                | Returns the list of t-shirts with other relevant info          |
+| `.range()`                 | Returns the list of t-shirts between a particular price range. |
+| `.minrating()`             | Returns the list of t-shirts havinga minimum given rating.     |
+| `.gendermale()`            | Returns the list of t-shirts which are for males.              |
+| `.genderfemale()`          | Returns the list of t-shirts which are there for females.      |
+| `.size()`                  | Returns the list of tshirts havning a particular size.         |
+| `formal_shirts_for_male()` | It returns those t-shirts which are of a particular size       |
 
 # MediEncyclopedia
 
@@ -856,6 +857,7 @@ cloth = FlipkartClothing()
 | `.tshirts_for_male()`       | Returns the list of t-shirts which are for males.              |
 | `.tshirts_for_female()`     | Returns the list of t-shirts which are there for females.      |
 | `.tshirt_by_size()`         | Returns the list of tshirts havning a particular size.         |
+| `.Formal_shirts_for_male`   | Returns the list of formal shirts for mens.                    |
 
 # Flyrobu
 
@@ -934,7 +936,7 @@ Create an instance of `ICC` class.
 |`.player_ranking(type,format)`| Returns the list of player ranking of desired type and format |
 """
 
-------
+---
 
 # Swiggy
 
@@ -944,11 +946,11 @@ First, create an object of class `Swiggy`
 store1 = Swiggy()
 ```
 
-| Methods         | Details                                                                  |
-| --------------- | ------------------------------------------------------------------------ |
+| Methods                                      | Details                                                                  |
+| -------------------------------------------- | ------------------------------------------------------------------------ |
 | `get_restraunt_details(restraunt_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
 
-------
+---
 
 # eBay
 
