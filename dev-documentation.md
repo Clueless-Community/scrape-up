@@ -966,7 +966,7 @@ quora = eBay()
 | `.featured()`       | Returns the featured deals on eBay. |
 | `.specific_deals()` | Returns the specific deals on eBay. |
 
-------
+---
 
 # Zomato
 
@@ -976,11 +976,12 @@ First, create an object of class `Zomato`
 store1 = Zomato()
 
 ```
-| Methods                       | Details                                                                   |
-| ----------------------------- | ------------------------------------------------------------------------- |
-| `.get_restaurants_details(page_url = " ")`  | Returns the restraunt data with name, cuisine, area, rating, offers, etc  |
 
-------
+| Methods                                    | Details                                                                  |
+| ------------------------------------------ | ------------------------------------------------------------------------ |
+| `.get_restaurants_details(page_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+
+---
 
 # UCI
 
@@ -993,3 +994,20 @@ uci = UCI()
 | Methods       | Details                               |
 | ------------- | ------------------------------------- |
 | `.datasets()` | Fetches datasets information from UCI |
+
+---
+
+# HackerRank
+
+First, create an object of class `HackerRank`
+
+```python
+user1 = HackerRank(id="username")
+
+```
+
+| Methods         | Details                                                                                   |
+| --------------- | ----------------------------------------------------------------------------------------- |
+| `get_profile()` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
+
+---
