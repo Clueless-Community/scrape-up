@@ -997,6 +997,7 @@ uci = UCI()
 
 ---
 
+
 # CodeChef
 
 First, create an object of class `Codechef`
@@ -1009,3 +1010,18 @@ user1 = Codechef(id="username")
 | Methods         | Details                                                          |
 | --------------- | ---------------------------------------------------------------- |
 | `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
+
+# HackerRank
+
+First, create an object of class `HackerRank`
+
+```python
+user1 = HackerRank(id="username")
+
+```
+
+| Methods         | Details                                                                                   |
+| --------------- | ----------------------------------------------------------------------------------------- |
+| `get_profile()` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
+
+---
