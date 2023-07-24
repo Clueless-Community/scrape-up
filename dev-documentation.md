@@ -993,3 +993,19 @@ uci = UCI()
 | Methods       | Details                               |
 | ------------- | ------------------------------------- |
 | `.datasets()` | Fetches datasets information from UCI |
+
+------
+
+# HackerRank
+
+First, create an object of class `HackerRank`
+
+```python
+user1 = HackerRank(id="username")
+
+```
+| Methods         | Details                                                                                   |
+| --------------- | ----------------------------------------------------------------------------------------- |
+| `get_profile()` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
+
+------
