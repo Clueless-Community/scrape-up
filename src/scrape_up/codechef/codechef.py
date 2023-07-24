@@ -18,7 +18,7 @@ class Codechef:
 
     def get_profile(self):
         """
-        Create an object of the 'Swiggy' class\n
+        Create an object of the 'Codechef' class\n
         ```python
         user1 = Codechef(id="heltion")
         user1.get_profile()
