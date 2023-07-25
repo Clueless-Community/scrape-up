@@ -8,10 +8,11 @@ class Internshala:
     ```python
     scraper = Internships()
     ```
-    | Methods          | Details                                                              |
-    | ---------------- | -------------------------------------------------------------------- |
-    | `.internships()` | Scrapes and returns a list of dictionaries representing internships. |
-    | `.jobs()`        | Scrapes and returns a list of dictionaries representing jobs.        |
+    | Methods                  | Details                                                                 |
+    | ------------------------ | ----------------------------------------------------------------------- |
+    | `.internships()`         | Scrapes and returns a list of dictionaries representing internships.    |
+    | `.jobs()`                | Scrapes and returns a list of dictionaries representing jobs.           |
+    | `.certification_courses()`| Scrapes and returns a list of dictionaries representing certification courses.|
     """
 
     def __init__(self, search_type):
@@ -173,6 +174,57 @@ class Internshala:
         except Exception as e:
             raise Exception(f"An error occurred while scraping jobs: {str(e)}")
 
+    def certification_courses(self):
+        """
+        Fetches the certification courses data.
+        Example:
+        ```
+        search = Internshala(search_type="web development")
+        search.certification_courses()
+        ```
+        Returns:
+        A list of dictionaries representing certification courses, where each dictionary contains:
+        - "Title": Title of the certification course
+        - "Duration": Duration of the certification course
+        - "Rating": Rating of the certification course
+        - "Learners": Number of learners enrolled in the course
+        - "Link": Link to the certification course page
+        """
+        try:
+            url = self.base_url 
+            html = self.__scrape_page(url)
+            page = self.__parse_page(html)
+            certification_courses = []
 
-internship = Internshala(search_type="machine learning")
-print(internship.internships())
+            certification_section = page.find("div", class_="certification-trainings-section")
+            if certification_section:
+                certification_cards = certification_section.find_all("div", class_="card")
+                for card in certification_cards:
+                    title_element = card.find("h6")
+                    duration_element = card.find("span", class_="duration")
+                    rating_element = card.find("span", class_="rating")
+                    learners_element = card.find("span", class_="learners")
+                    link_element = card.find("a")
+
+                    title = title_element.text.strip() if title_element else None
+                    duration = duration_element.text.strip() if duration_element else None
+                    rating = rating_element.text.strip() if rating_element else None
+                    learners = learners_element.text.strip() if learners_element else None
+                    link = link_element["href"] if link_element else None
+
+                    if all((title, duration, rating, learners, link)):
+                        certification_data = {
+                            "Title": title,
+                            "Duration": duration,
+                            "Rating": rating,
+                            "Learners": learners,
+                            "Link": link
+                        }
+                        certification_courses.append(certification_data)
+
+                return certification_courses
+            else:
+                return {"message": "Certification section not found."}
+        except Exception as e:
+            raise Exception(f"An error occurred while scraping certification courses: {str(e)}")
+
