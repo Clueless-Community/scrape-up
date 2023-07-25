@@ -1,12 +1,12 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
 
-class IMDB:
+class Movie:
 
     '''
-    Create an instance of IMDB class
+    Create an instance of Movie class
     ```python
-    imdb = IMDB(movie_name)
+    mov = Movie(movie_name)
     ```
 
     | Methods       | Details                                                 |
