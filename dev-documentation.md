@@ -1035,3 +1035,17 @@ user1 = HackerRank(id="username")
 | `get_profile()` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
 
 ---
+
+# Yahoo Finance
+
+Create an instance of YahooFinance class
+
+```python
+yf = YahooFinance()
+```
+
+| Methods       | Details                             |
+| ------------- | ----------------------------------- |
+| `.headline()` | Fetches headlines from yahooFinance |
+
+---
