@@ -424,7 +424,7 @@ infosys = StockPrice('infosys','nse')
 
 ## IMDb
 
-Create an instance of the `Movie` class.
+Create an instance of the `IMDB` class.
 
 ```python
 scraper = IMDB()
@@ -435,6 +435,17 @@ scraper = IMDB()
 | `.top_rated()`                | Returns the top-rated movies listed on IMDB.                   |
 | `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
 | `.top_rated_shows()`          | Returns the top-rated shows listed on IMDB.                    |
+
+Create an instance of Movie class with the name of the movie
+
+```python
+mov = Movie(movie_name)
+```
+
+| Methods          | Details                                                 |
+| ---------------- | ------------------------------------------------------- |
+| `.rating()`      | Returns the IMDB rating of the movie                    |
+| `.description()` | Returns the description, cast and director of the movie |
 
 ---
 
@@ -996,7 +1007,6 @@ uci = UCI()
 | `.datasets()` | Fetches datasets information from UCI |
 
 ---
-
 
 # CodeChef
 
