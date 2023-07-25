@@ -997,7 +997,6 @@ uci = UCI()
 
 ---
 
-
 # CodeChef
 
 First, create an object of class `Codechef`
@@ -1034,8 +1033,8 @@ Create an instance of YahooFinance class
 yf = YahooFinance()
 ```
 
-| Methods       | Details                               |
-| ------------- | ------------------------------------- |
-| `.headline()` | Fetches headlines from yahooFinance   |
+| Methods       | Details                             |
+| ------------- | ----------------------------------- |
+| `.headline()` | Fetches headlines from yahooFinance |
 
 ---
