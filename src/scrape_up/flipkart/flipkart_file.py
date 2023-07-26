@@ -360,7 +360,6 @@ class Flipkart:
         except Exception as e:
             return None
 
-
     def cycle(self):
         try:
             """
@@ -397,7 +396,5 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
-        
-
