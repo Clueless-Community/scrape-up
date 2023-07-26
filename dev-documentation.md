@@ -1026,8 +1026,7 @@ user1 = Codechef(id="username")
 First, create an object of class `HackerRank`
 
 ```python
-user1 = HackerRank(id="username")
-
+hackerank = HackerRank()
 ```
 
 | Methods                      | Details                                                                                   |

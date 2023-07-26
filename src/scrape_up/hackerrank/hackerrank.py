@@ -4,21 +4,19 @@ from bs4 import BeautifulSoup as bs
 
 class HackerRank:
     """
-    Class to interact with HackerRank website and retrieve user profile information and contest details.
+    First, create an object of class `HackerRank`
 
-    Usage:
     ```python
-    hr = HackerRank()
-    profile_data = hr.get_profile(id="helloguys289")
-    active_contests = hr.active_contests()
-    archived_contests = hr.archived_contests()
+    hackerank = HackerRank()
     ```
 
-    Methods:
-    - `get_profile(id: str)`: Get the profile information of a user by providing their username.
-    - `active_contests()`: Get the details of active contests on HackerRank.
-    - `archived_contests()`: Get the details of archived contests on HackerRank.
+    | Methods                      | Details                                                                                   |
+    | ---------------------------- | ----------------------------------------------------------------------------------------- |
+    | `get_profile(id="username")` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
+    | `active_contests()`          | Returns information on active contests like title, status, and link                       |
+    | `archived_contests()`        | Returns information regarding archived contests                                           |
     """
+
     def __init__(self):
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
@@ -165,18 +163,22 @@ class HackerRank:
 
     def active_contests(self):
         """
-        Get the details of active contests on HackerRank.
-
+        Get the details of active contests on HackerRank.\n
+        First, create an object of class `HackerRank`\n
+        ```python
+        hrank = HackerRank()
+        hrank.active_contests()
+        ```
         Returns:
-        A dictionary containing the list of active contests:
-        {
-            "data": list[dict],
-            "message": str
-        }
-        Each dictionary in the list contains the following keys:
-        - "Title": str (The title of the contest)
-        - "Status": str (The status of the contest)
-        - "Link": str (The link to the contest page on HackerRank)
+        ```js
+        [
+            {
+                "Title":"ProjectEuler+",
+                "Status":"Open Indefinitely",
+                "Link":"https://www.hackerrank.com/contests/projecteuler"
+            }
+        ]
+        ```
         """
         try:
             url = "https://www.hackerrank.com/contests"
@@ -184,33 +186,39 @@ class HackerRank:
             soup = bs(html_text, "lxml")
             container = soup.find("div", {"class": "theme-m contest-list left-pane"})
             actives = []
-            active_contest = container.find("div", {"class": "active_contests active-contest-container"})
+            active_contest = container.find(
+                "div", {"class": "active_contests active-contest-container"}
+            )
             for items in active_contest.find_all("li"):
                 title = items.find("h4").text
                 status = items.find("span", {"class": "contest-status"}).text
-                link = "https://www.hackerrank.com" + items.find("a", {"class": "text-link"}, href=True)['href']
-                data = {
-                    "Title": title,
-                    "Status": status,
-                    "Link": link
-                }
+                link = (
+                    "https://www.hackerrank.com"
+                    + items.find("a", {"class": "text-link"}, href=True)["href"]
+                )
+                data = {"Title": title, "Status": status, "Link": link}
                 actives.append(data)
-            return {"data": actives, "message": "data successfully fetched"}
-        except Exception as e:
-            return {'data': None, "message": "Unable to fetch data currently"}
+            return actives
+        except:
+            return None
 
     def archived_contests(self):
         """
-        Get the details of archived contests on HackerRank.
-
+        Get the details of active contests on HackerRank.\n
+        First, create an object of class `HackerRank`\n
+        ```python
+        hrank = HackerRank()
+        hrank.archived_contests()
+        ```
         Returns:
-        A dictionary containing the list of archived contests:
-        {
-            "data": list[dict],
-            "message": str
-        }
-        Each dictionary in the list contains the following key:
-        - "Title": str (The title of the contest)
+        ```js
+        [
+            {
+                "title":"Cisco Hack to Secure Challenge 2023"
+            }
+            ...
+        ]
+        ```
         """
         try:
             url = "https://www.hackerrank.com/contests"
@@ -218,14 +226,14 @@ class HackerRank:
             soup = bs(html_text, "lxml")
             container = soup.find("div", {"class": "theme-m contest-list left-pane"})
             archives = []
-            archived_contest = container.find("div", {"class": "active_contests archived-contest-container"})
+            archived_contest = container.find(
+                "div", {"class": "active_contests archived-contest-container"}
+            )
             for items in archived_contest.find_all("li"):
                 title = items.find("h4").text
-                data = {
-                    "Title": title
-                }
+                data = {"title": title}
                 archives.append(data)
-            return {"data": archives, "message": "data successfully fetched"}
-        except Exception as e:
-            return {'data': None, "message": "Unable to fetch data currently"}
+            return archives
+        except Exception:
+            return None
 
