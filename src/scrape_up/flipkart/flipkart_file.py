@@ -321,7 +321,7 @@ class Flipkart:
         except Exception as e:
             return None
 
-    def tablets():
+    def tablets(self):
         """
         Get the list of mobiles under 50K\n
         Class - `Flipkart`\n
@@ -358,8 +358,8 @@ class Flipkart:
 
         except Exception as e:
             return None
-        
-    def printers():
+
+    def printers(self):
         """
         Get the list of printers\n
         Class - `Flipkart`\n
@@ -367,6 +367,21 @@ class Flipkart:
         ```python
         item = Flipkart()
         item.printers()
+        ```
+        Return
+        ```js
+        [
+            {
+                "item_name":"Canon ImageCLASS MF3010 Multi-function Monochrome Laser...",
+                "price":"₹17,680",
+                "description":"Black, Toner Cartridge",
+                "review":"4.3",
+                "delivery":"Free delivery",
+                "exchange_upto":"Upto ₹400 Off on Exchange"
+            }
+            ...
+        ]
+        ```
         """
         try:
             link = "https://www.flipkart.com/search?q=printer&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
@@ -382,15 +397,14 @@ class Flipkart:
                 review = data.find("div", class_="_3LWZlK")
                 delivery = data.find("div", class_="_3tcB5a _2hu4Aw")
                 Exchange_Up_To = data.find("div", class_="_3xFhiH")
-                
 
                 item_details = {
-                    "Item_Name": names.text if names else None,
-                    "Price": price.text if price else None,
-                    "Description": description.text if description else None,
-                    "Review": review.text if review else None,
-                    "Delivery": delivery.text if review else None,
-                    "Exchange_Up_To": Exchange_Up_To.text if Exchange_Up_To else None,
+                    "item_name": names.text if names else None,
+                    "price": price.text if price else None,
+                    "description": description.text if description else None,
+                    "review": review.text if review else None,
+                    "delivery": delivery.text if review else None,
+                    "exchange_upto": Exchange_Up_To.text if Exchange_Up_To else None,
                 }
 
                 all_items.append(item_details)
@@ -399,6 +413,3 @@ class Flipkart:
 
         except Exception as e:
             return None
-        
-a=Flipkart.printers()
-print(a)   
