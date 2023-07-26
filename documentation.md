@@ -132,7 +132,6 @@ Create an instance of class `Organization`
 organization = github.Organization(organization_name="Clueless-Community")
 ```
 
-
 | Methods                     | Details                                                         |
 | --------------------------- | --------------------------------------------------------------- |
 | `.top_topics()`             | Returns a list of the most used topics in an organization.      |

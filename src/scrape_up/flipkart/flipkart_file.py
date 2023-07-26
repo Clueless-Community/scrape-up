@@ -322,7 +322,7 @@ class Flipkart:
         except Exception as e:
             return None
 
-    def tablets():
+    def tablets(self):
         """
         Get the list of mobiles under 50K\n
         Class - `Flipkart`\n
@@ -361,7 +361,7 @@ class Flipkart:
             return None
 
 
-    def cycle():
+    def cycle(self):
         try:
             """
             Get the list of mobiles under 50K\n
@@ -369,7 +369,7 @@ class Flipkart:
             Example -\n
             ```python
             item = Flipkart()
-            item.tablets()
+            item.cycle()
             """
 
             link = "https://www.flipkart.com/search?q=bicycle&sid=abc%2Culv%2Cixt&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&as-pos=1&as-type=RECENT&suggestionId=bicycle%7CCycles&requestId=05fd446d-fd05-4abe-8bcc-445937cc6fb1&as-searchtext=bicy&page=1"
