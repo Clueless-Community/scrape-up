@@ -1027,13 +1027,14 @@ user1 = Codechef(id="username")
 First, create an object of class `HackerRank`
 
 ```python
-user1 = HackerRank(id="username")
-
+hackerank = HackerRank()
 ```
 
-| Methods         | Details                                                                                   |
-| --------------- | ----------------------------------------------------------------------------------------- |
-| `get_profile()` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
+| Methods                      | Details                                                                                   |
+| ---------------------------- | ----------------------------------------------------------------------------------------- |
+| `get_profile(id="username")` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
+| `active_contests()`          | Returns information on active contests like title, status, and link                       |
+| `archived_contests()`        | Returns information regarding archived contests                                           |
 
 ---
 
