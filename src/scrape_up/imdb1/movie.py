@@ -3,20 +3,16 @@ from bs4 import BeautifulSoup as soup
 
 
 class Movie:
-
     """
-    Create an instance of Movie class
+    Create an instance of `Movie` class.
     ```python
     movie = Movie(movie_name)
     ```
-
-    | Methods       | Details                                                 |
-    | ------------- | --------------------------------------------------------|
-    | `.rating()`   | Returns the IMDB rating of the movie                    |
-    | `.description()`     | Returns the description, cast and director of the movie |
-    | `.more_movies()`     | Returns similar movies recommended by IMDB       |
-    
-
+    | Methods          | Details                                                 |
+    | ---------------- | ------------------------------------------------------- |
+    | `.rating()`      | Returns the IMDB rating of the movie                    |
+    | `.description()` | Returns the description, cast and director of the movie |
+    | `.more_movies()` | Returns similar movies recommended by IMDB              |
     """
 
     def __init__(self, movie_name):
@@ -97,34 +93,28 @@ class Movie:
             return dict(zip(obj_keys, obj_values))
         except:
             return None
-    
-    def more_movies(self):
+
+    def such_movies(self):
         """
         Create an instance of Movie class
         ```python
         movie = Movie(movie_name)
-        movie.more_movies()
+        movie.such_movies()
         ```
         Return\n
         ```js
-        
         {
-            "title": "Avengers: Endgame (2019) - IMDb", 
+            "title": "Avengers: Endgame (2019) - IMDb",
             "more_like_this": ["Avengers: Infinity War", "Spider-Man: No Way Home", "The Avengers", "Avengers: Age of Ultron", "Joker", "Thor: Ragnarok", "Captain America: Civil War", "The Dark Knight Rises", "Doctor Strange", "The Dark Knight", "Spider-Man: Far from Home", "Guardians of the Galaxy"]
         }
-         ```
+        ```
         """
-       
+
         obj_keys = ["title", "more_like_this"]
         try:
-            more = self.page_soup.find_all("span", {"data-testid" : "title"})
+            more = self.page_soup.find_all("span", {"data-testid": "title"})
             lst = [m.get_text() for m in more]
             obj_values = [self.title, lst]
             return dict(zip(obj_keys, obj_values))
         except:
             return None
-
-
-mov = Movie(movie_name="avengers")
-print(mov.description())
-print(mov.more_movies())

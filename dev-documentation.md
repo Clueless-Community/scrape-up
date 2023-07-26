@@ -436,10 +436,10 @@ scraper = IMDB()
 | `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
 | `.top_rated_shows()`          | Returns the top-rated shows listed on IMDB.                    |
 
-Create an instance of Movie class with the name of the movie
+Create an instance of `Movie` class.
 
 ```python
-mov = Movie(movie_name)
+movie = Movie(movie_name)
 ```
 
 | Methods          | Details                                                 |
