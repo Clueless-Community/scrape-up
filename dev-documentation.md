@@ -1049,3 +1049,16 @@ yf = YahooFinance()
 | `.headline()` | Fetches headlines from yahooFinance |
 
 ---
+
+# BBC News
+
+First create an object of class `User`
+
+```python
+user = instagram.Users(username="nikhil25803")
+```
+
+| Methods            | Details                                                  |
+| ------------------ | -------------------------------------------------------- |
+| `.get_headlines()` | Returns the list of object containig the headlines       |
+| `get_article()`    | Returns an object with proper details about the articles |

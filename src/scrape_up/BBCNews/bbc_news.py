@@ -4,13 +4,14 @@ from bs4 import BeautifulSoup
 
 class BBCNews:
     """
-    First create an object of class `User`\n
+    First create an object of class `User`
     ```python
     user = instagram.Users(username="nikhil25803")
     ```
-    | Methods        | Details                                             |
-    | -------------- | --------------------------------------------------- |
-    | `.get_headlines()` | Returns the list of object containig the headlines          |
+    | Methods            | Details                                                  |
+    | ------------------ | -------------------------------------------------------- |
+    | `.get_headlines()` | Returns the list of object containig the headlines       |
+    | `get_article()`    | Returns an object with proper details about the articles |
     """
 
     def __init__(self):
@@ -42,8 +43,8 @@ class BBCNews:
                 index += 1
 
         return news_list
-    
-    def get_article(self,url):
+
+    def get_article(self, url):
         """
         Create an instance of the class - `BBCNews`\n
         ```python
@@ -64,12 +65,8 @@ class BBCNews:
             text_content = soup.find_all("div", {"data-component": "text-block"})
             Text = ""
             for text in text_content:
-                Text += text.text.strip()+" "
-            Data = {
-                "main_heading": main_heading,
-                "time": time,
-                "text": Text
-            }
-            return Data
+                Text += text.text.strip() + " "
+            data = {"main_heading": main_heading, "time": time, "text": Text}
+            return data
         except:
             return None
