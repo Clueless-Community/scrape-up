@@ -19,6 +19,7 @@ class Flipkart:
     | `.camera()`           | Returns the list of camera from flipkart.                           |
     | `.computer()`         | Returns the list of computer from flipkart.                       |
     | `.tablets()`          | Returns the list of tablets from flipkart.                         |
+    | `.printers()`         | Returns the list of printers from flipkart.                         |
     """
 
     def __init__(self):
@@ -357,3 +358,47 @@ class Flipkart:
 
         except Exception as e:
             return None
+        
+    def printers():
+        """
+        Get the list of printers\n
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.printers()
+        """
+        try:
+            link = "https://www.flipkart.com/search?q=printer&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_13oc-S"):
+                names = data.find("a", class_="s1Q9rs")
+                price = data.find("div", class_="_30jeq3")
+                description = data.find("div", class_="_3Djpdu")
+                review = data.find("div", class_="_3LWZlK")
+                delivery = data.find("div", class_="_3tcB5a _2hu4Aw")
+                Exchange_Up_To = data.find("div", class_="_3xFhiH")
+                
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
+                    "Delivery": delivery.text if review else None,
+                    "Exchange_Up_To": Exchange_Up_To.text if Exchange_Up_To else None,
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+        
+a=Flipkart.printers()
+print(a)   
