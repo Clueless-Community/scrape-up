@@ -21,6 +21,7 @@ class Flipkart:
     | `.tablets()`          | Returns the list of tablets from flipkart.                         |
     | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
 
+    | `.printers()`         | Returns the list of printers from flipkart.                         |
     """
 
     def __init__(self):
@@ -361,6 +362,7 @@ class Flipkart:
             return None
 
 
+
     def cycle(self):
         try:
             """
@@ -399,5 +401,60 @@ class Flipkart:
 
         except Exception as e:
             return None
-        
+          
+          
+    def printers(self):
+        """
+        Get the list of printers\n
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.printers()
+        ```
+        Return
+        ```js
+        [
+            {
+                "item_name":"Canon ImageCLASS MF3010 Multi-function Monochrome Laser...",
+                "price":"₹17,680",
+                "description":"Black, Toner Cartridge",
+                "review":"4.3",
+                "delivery":"Free delivery",
+                "exchange_upto":"Upto ₹400 Off on Exchange"
+            }
+            ...
+        ]
+        ```
+        """
+        try:
+            link = "https://www.flipkart.com/search?q=printer&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
 
+            all_items = []
+
+            for data in soup.findAll("div", class_="_13oc-S"):
+                names = data.find("a", class_="s1Q9rs")
+                price = data.find("div", class_="_30jeq3")
+                description = data.find("div", class_="_3Djpdu")
+                review = data.find("div", class_="_3LWZlK")
+                delivery = data.find("div", class_="_3tcB5a _2hu4Aw")
+                Exchange_Up_To = data.find("div", class_="_3xFhiH")
+
+                item_details = {
+                    "item_name": names.text if names else None,
+                    "price": price.text if price else None,
+                    "description": description.text if description else None,
+                    "review": review.text if review else None,
+                    "delivery": delivery.text if review else None,
+                    "exchange_upto": Exchange_Up_To.text if Exchange_Up_To else None,
+
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None

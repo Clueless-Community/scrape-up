@@ -257,16 +257,17 @@ user = instagram.User(username="nikhil25803")
 
 ## Internshala
 
-Create an object for the 'Internships' class:
+Create an object for the 'Internshala' class:
 
 ```python
 search = Internshala(search_type="machine learning")
 ```
 
-| Methods          | Details                                                              |
-| ---------------- | -------------------------------------------------------------------- |
-| `.internships()` | Scrapes and returns a list of dictionaries representing internships. |
-| `.jobs()`        | Scrapes and returns a list of dictionaries representing jobs.        |
+| Methods                    | Details                                                                        |
+| -------------------------- | ------------------------------------------------------------------------------ |
+| `.internships()`           | Scrapes and returns a list of dictionaries representing internships.           |
+| `.jobs()`                  | Scrapes and returns a list of dictionaries representing jobs.                  |
+| `.certification_courses()` | Scrapes and returns a list of dictionaries representing certification courses. |
 
 ## KooApp
 
@@ -424,7 +425,7 @@ infosys = StockPrice('infosys','nse')
 
 ## IMDb
 
-Create an instance of the `Movie` class.
+Create an instance of the `IMDB` class.
 
 ```python
 scraper = IMDB()
@@ -435,6 +436,18 @@ scraper = IMDB()
 | `.top_rated()`                | Returns the top-rated movies listed on IMDB.                   |
 | `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
 | `.top_rated_shows()`          | Returns the top-rated shows listed on IMDB.                    |
+
+Create an instance of `Movie` class.
+
+```python
+movie = Movie(movie_name)
+```
+
+| Methods          | Details                                                 |
+| ---------------- | ------------------------------------------------------- |
+| `.rating()`      | Returns the IMDB rating of the movie                    |
+| `.description()` | Returns the description, cast and director of the movie |
+| `.more_movies()` | Returns similar movies recommended by IMDB              |
 
 ---
 
@@ -524,6 +537,8 @@ item = Flipkart()
 | `.computer()`         | Returns the list of computer from flipkart.                        |
 | `.tablets()`          | Returns the list of tablets from flipkart.                         |
 | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
+| `.printers()`         | Returns the list of printers from flipkart.                        |
+
 
 ---
 
@@ -968,7 +983,7 @@ quora = eBay()
 | `.featured()`       | Returns the featured deals on eBay. |
 | `.specific_deals()` | Returns the specific deals on eBay. |
 
-------
+---
 
 # Zomato
 
@@ -978,11 +993,12 @@ First, create an object of class `Zomato`
 store1 = Zomato()
 
 ```
-| Methods                       | Details                                                                   |
-| ----------------------------- | ------------------------------------------------------------------------- |
-| `.get_restaurants_details(page_url = " ")`  | Returns the restraunt data with name, cuisine, area, rating, offers, etc  |
 
-------
+| Methods                                    | Details                                                                  |
+| ------------------------------------------ | ------------------------------------------------------------------------ |
+| `.get_restaurants_details(page_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+
+---
 
 # UCI
 
@@ -995,3 +1011,61 @@ uci = UCI()
 | Methods       | Details                               |
 | ------------- | ------------------------------------- |
 | `.datasets()` | Fetches datasets information from UCI |
+
+---
+
+# CodeChef
+
+First, create an object of class `Codechef`
+
+```python
+user1 = Codechef(id="username")
+
+```
+
+| Methods         | Details                                                          |
+| --------------- | ---------------------------------------------------------------- |
+| `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
+
+# HackerRank
+
+First, create an object of class `HackerRank`
+
+```python
+hackerank = HackerRank()
+```
+
+| Methods                      | Details                                                                                   |
+| ---------------------------- | ----------------------------------------------------------------------------------------- |
+| `get_profile(id="username")` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
+| `active_contests()`          | Returns information on active contests like title, status, and link                       |
+| `archived_contests()`        | Returns information regarding archived contests                                           |
+
+---
+
+# Yahoo Finance
+
+Create an instance of YahooFinance class
+
+```python
+yf = YahooFinance()
+```
+
+| Methods       | Details                             |
+| ------------- | ----------------------------------- |
+| `.headline()` | Fetches headlines from yahooFinance |
+
+---
+
+# BBC News
+
+First create an object of class `User`
+
+```python
+user = instagram.Users(username="nikhil25803")
+```
+
+| Methods            | Details                                                  |
+| ------------------ | -------------------------------------------------------- |
+| `.get_headlines()` | Returns the list of object containig the headlines       |
+| `get_article()`    | Returns an object with proper details about the articles |
