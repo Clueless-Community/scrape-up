@@ -446,6 +446,7 @@ mov = Movie(movie_name)
 | ---------------- | ------------------------------------------------------- |
 | `.rating()`      | Returns the IMDB rating of the movie                    |
 | `.description()` | Returns the description, cast and director of the movie |
+| `.more_movies()` | Returns similar movies recommended by IMDB              |
 
 ---
 
