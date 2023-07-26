@@ -313,7 +313,27 @@ class Hashnode:
             return None
         
     def search(self, topic):
-        
+        """
+        Class - `Hashnode`
+        Example:
+        ```python
+        blogs = Hashnode()
+        blogs.search("github")
+        ```
+        Returns:
+        ```js
+        [
+            {
+                "title": Title of the blog
+                "author": Author of the blog
+                "like_count": No. of likes of the blog
+                "comment_count": No. of comments of the blog
+                "date": Date the blog was posted
+                "link": Link to the blog
+            }
+            ...
+        ]
+        """
         url = "https://hashnode.com/search?q="+topic
         
         try:
