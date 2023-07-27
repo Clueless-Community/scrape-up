@@ -134,4 +134,4 @@ class Pixabay():
                 with open(f'photo_pixabay_{i+1:02d}.jpg', 'wb') as f:
                     f.write(response.content)
 
-Pixabay().get_photo('computer')                    
+                  
