@@ -539,7 +539,6 @@ item = Flipkart()
 | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
 | `.printers()`         | Returns the list of printers from flipkart.                        |
 
-
 ---
 
 ## Spotify
@@ -1070,24 +1069,19 @@ user = instagram.Users(username="nikhil25803")
 | `.get_headlines()` | Returns the list of object containig the headlines       |
 | `get_article()`    | Returns an object with proper details about the articles |
 
-___
+---
 
 # Billionaires
 
 Create an instance of `Billionaires` class.
 
-    ```python
-    billionaires = Billionaires()
-    ```
+```python
+billionaires = Billionaires()
+```
 
-| Methods               | Details                                                                                      |
-| --------------------- | -------------------------------------------------------------------------------------------- |
-| `.storeascsv()`       | Stores as local CSV files of all categories in user's local storage.                         |
-| `.realtime()`         | It takes a user query parameter as an argument and returns all relevant terms related to it. |
-| `.americanrealtime()` | Returns the JSON list of American realtime billionaires.                                     |
-| `.worldrichest()`     | Returns the JSON list of the world's richest people.                                         |
-| `.hedgefund()`        | Returns the JSON list of world's biggest hedge fund capitalists.                             |
-| `.powerfulwomen()`    | Returns as JSON the list of Forbes most powerful women in the world.                         |
-| `.powerfulpeople()`   | Returns as JSON a list of Forbes Porweful people.                                            |
-| `.bylocation()`       | Returns as JSON the billionaires of a particular nation.                                     |
-
+| Methods             | Details                                                                                      |
+| ------------------- | -------------------------------------------------------------------------------------------- |
+| `.realtime()`       | It takes a user query parameter as an argument and returns all relevant terms related to it. |
+| `.powerfulwomen()`  | Returns as JSON the list of Forbes most powerful women in the world.                         |
+| `.powerfulpeople()` | Returns as JSON a list of Forbes Porweful people.                                            |
+| `.bylocation()`     | Returns as JSON the billionaires of a particular nation.                                     |
