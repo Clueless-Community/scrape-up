@@ -1069,3 +1069,19 @@ user = instagram.Users(username="nikhil25803")
 | ------------------ | -------------------------------------------------------- |
 | `.get_headlines()` | Returns the list of object containig the headlines       |
 | `get_article()`    | Returns an object with proper details about the articles |
+
+# Hackerearth
+
+First, create an object of class `Hackerearth`
+
+```python
+hackerearth = Hackerearth()
+```
+
+| Methods                | Details                                                |
+| ---------------------- | ------------------------------------------------------ |
+| `get_upcoming()`       | Get the details of upcoming challenges on Hackerearth. |
+| `get_ongoing()`        | Get the details of ongoing challenges on Hackerearth.  |
+
+---
+
