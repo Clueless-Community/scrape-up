@@ -538,7 +538,7 @@ item = Flipkart()
 | `.tablets()`          | Returns the list of tablets from flipkart.                         |
 | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
 | `.printers()`         | Returns the list of printers from flipkart.                        |
-
+| `.monitor()`          | Returns the list of monitors from flipkart.                        |
 
 ---
 
