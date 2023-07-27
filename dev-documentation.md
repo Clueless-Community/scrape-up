@@ -449,6 +449,19 @@ movie = Movie(movie_name)
 | `.description()` | Returns the description, cast and director of the movie |
 | `.more_movies()` | Returns similar movies recommended by IMDB              |
 
+
+Create an instance of `Actor` class.
+```python
+actor = Actor(actor_name)
+```
+
+| Methods            | Details                                                 |
+| -------------------| --------------------------------------------------------|
+| `.popular_movies()`| Returns the popular movies in which the actor has acted |
+| `.all_movies()`    | Returns all movies acted in and upcoming movies         |
+| `.awards()`        | Returns the number of awards and nominations            |
+
+
 ---
 
 ## Coursera
