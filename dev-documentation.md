@@ -539,7 +539,6 @@ item = Flipkart()
 | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
 | `.printers()`         | Returns the list of printers from flipkart.                        |
 
-
 ---
 
 ## Spotify
@@ -1078,10 +1077,9 @@ First, create an object of class `Hackerearth`
 hackerearth = Hackerearth()
 ```
 
-| Methods                | Details                                                |
-| ---------------------- | ------------------------------------------------------ |
-| `get_upcoming()`       | Get the details of upcoming challenges on Hackerearth. |
-| `get_ongoing()`        | Get the details of ongoing challenges on Hackerearth.  |
+| Methods          | Details                                                |
+| ---------------- | ------------------------------------------------------ |
+| `get_upcoming()` | Get the details of upcoming challenges on Hackerearth. |
+| `get_ongoing()`  | Get the details of ongoing challenges on Hackerearth.  |
 
 ---
-
