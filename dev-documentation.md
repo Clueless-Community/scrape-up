@@ -540,8 +540,6 @@ item = Flipkart()
 | `.printers()`         | Returns the list of printers from flipkart.                        |
 | `.monitor()`          | Returns the list of monitors from flipkart.                        |
 
-
-
 ---
 
 ## Spotify

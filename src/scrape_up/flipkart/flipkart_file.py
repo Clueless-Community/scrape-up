@@ -455,19 +455,30 @@ class Flipkart:
         except Exception as e:
             return None
 
-
-
     def monitor(self):
+        """
+        Get the list of mobiles under 50K\n
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.monitor()
+        ```
+        Return
+        ```js
+        [
+            {
+                "Item_Name":"Acer 27 inch Full HD LED Backlit IPS Panel White Colour Monitor (HA270)",
+                "Price":"₹10,550",
+                "Description":"Panel Type: IPS PanelScreen Resolution Type: Full HDBrightness: 250 nitsResponse Time: 4 ms | Refresh Rate: 75 HzHDMI Ports - 13 Years on Site",
+                "Review":"4.48,788 Ratings\\xa0&\\xa01,484 Reviews",
+                "Deals":"44% off"
+            }
+            ...
+        ]
+        ```
+        """
         try:
-            """
-            Get the list of mobiles under 50K\n
-            Class - `Flipkart`\n
-            Example -\n
-            ```python
-            item = Flipkart()
-            item.monitor()
-            """
-
             link = "https://www.flipkart.com/search?q=monitors&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
             page = requests.get(link)
             soup = bs(page.content, "html.parser")
@@ -481,20 +492,18 @@ class Flipkart:
                 review = data.find("div", class_="gUuXy-")
                 deals = data.find("div", class_="_3Ay6Sb")
 
-                item_details = {
-                    "Item_Name": names.text if names else None,
-                    "Price": price.text if price else None,
-                    "Description": description.text if description else None,
-                    "Review": review.text if review else None,
-                    "Deals": deals.text if deals else None,
-                }
+                if names and price and description and review and deals:
+                    item_details = {
+                        "Item_Name": names.text if names else None,
+                        "Price": price.text if price else None,
+                        "Description": description.text if description else None,
+                        "Review": review.text if review else None,
+                        "Deals": deals.text if deals else None,
+                    }
 
-                all_items.append(item_details)
+                    all_items.append(item_details)
 
             return all_items
 
         except Exception as e:
-            return None    
-        
-item=Flipkart.monitor()
-print(item)
+            return None
