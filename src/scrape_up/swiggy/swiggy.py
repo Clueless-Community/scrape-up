@@ -4,15 +4,19 @@ from bs4 import BeautifulSoup as bs
 
 class Swiggy:
     """
-    First, create an object of class `Swiggy`
-    ```python
-    store1 = Swiggy()
-    ```
-    | Methods         | Details                                                                  |
-    | --------------- | ------------------------------------------------------------------------ |
-    | `get_restraunt_details(restraunt_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
-    """
+    Class to interact with Swiggy website and retrieve restaurant details.
 
+    Usage:
+    ```python
+    swiggy = Swiggy()
+    restaurant_data = swiggy.get_restraunt_details(restraunt_url="https://www.swiggy.com/restaurants/pizza-hut-western-extension-area-karol-bagh-delhi-435678")
+    city_restaurants = swiggy.get_restaurants(city="delhi")
+    ```
+
+    Methods:
+    - `get_restraunt_details(restraunt_url)`: Get the details of a restaurant from its URL.
+    - `get_restaurants(city)`: Get a list of restaurants in the given city.
+    """
     def __init__(self):
         pass
 
@@ -94,3 +98,45 @@ class Swiggy:
             return restaurant_data
         except:
             return None
+
+    def get_restaurants(self, city):
+        """
+        Get a list of restaurants in the given city.
+
+        Parameters:
+        - city (str): The name of the city.
+
+        Returns:
+        A dictionary containing the list of restaurants in the city:
+        {
+            "data": list[dict] (List of restaurants, each dictionary contains restaurant details),
+            "message": str (Status message)
+        }
+        """
+        try:
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"}
+            url = "https://www.swiggy.com/city/" + city.lower()
+            html_text = requests.get(url, headers=headers).text
+            soup = bs(html_text, "lxml")
+
+            container = soup.find("div", {"class": "sc-iBdmCd hPntbc"})
+            restaurants = []
+            for items in container.find_all("a", {"class": "RestaurantList__RestaurantAnchor-sc-1d3nl43-3 jrDRCS"},
+                                            href=True):
+                name = items.find("div", {"class": "sc-dmyDGi bJRtXU"})
+                rating = items.find("span", {"class": "sc-dmyDGi flXrCy"})
+                cusine = items.find("div", {"class": "sc-dmyDGi jHWzLy"})
+                location = cusine.next_sibling
+                data = {
+                    "Name": name.text,
+                    "Rating": rating.text,
+                    "Cusine": cusine.text,
+                    "Location": location.text,
+                    "Link": items['href']
+                }
+                restaurants.append(data)
+            return {"data": restaurants, "message": "Details are now fetched"}
+        except:
+            return {"data": None, "message": "Unable to fetch data"}
+
