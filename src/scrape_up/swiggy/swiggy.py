@@ -4,19 +4,20 @@ from bs4 import BeautifulSoup as bs
 
 class Swiggy:
     """
-    First, create an object of class `Swiggy`
+    First, create an object of class `Swiggy`.\n
     ```python
     store1 = Swiggy()
     ```
-    | Methods         | Details                                                                  |
-    | --------------- | ------------------------------------------------------------------------ |
-    | `get_restraunt_details(restraunt_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+    | Methods                   | Details                                                                   |
+    | ------------------------- | ------------------------------------------------------------------------- |
+    | `get_restraunt_details()` | Returns the restaurant data with name, cuisine, area, rating, offers, etc |
+    | `get_restaurants()`       | Returns the restaurant names as per given city                            |
     """
 
     def __init__(self):
         pass
 
-    def get_restraunt_details(self,restraunt_url):
+    def get_restraunt_details(self, restraunt_url):
         """
         Create an object of the 'Swiggy' class\n
         ```python
@@ -92,5 +93,57 @@ class Swiggy:
                 "offers": offers,
             }
             return restaurant_data
+        except:
+            return None
+
+    def get_restaurants(self, city):
+        """
+        Get a list of restaurants in the given city.
+
+        Parameters:
+        - city (str): The name of the city.
+
+        Returns:
+        ```js
+        [
+            {
+                "Name":"Domino's Pizza",
+                "Rating":"4.2",
+                "Cusine":"Pizzas, Italian, Pastas, Desserts",
+                "Location":"Punjabi Bagh",
+                "Link":"https://www.swiggy.com/restaurants/dominos-pizza-sm-arya-secondary-school-punjabi-bagh-delhi-24152"
+            }
+            ...
+        ]
+        ```
+        """
+        try:
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
+            }
+            url = "https://www.swiggy.com/city/" + city.lower()
+            html_text = requests.get(url, headers=headers).text
+            soup = bs(html_text, "lxml")
+
+            container = soup.find("div", {"class": "sc-iBdmCd hPntbc"})
+            restaurants = []
+            for items in container.find_all(
+                "a",
+                {"class": "RestaurantList__RestaurantAnchor-sc-1d3nl43-3 jrDRCS"},
+                href=True,
+            ):
+                name = items.find("div", {"class": "sc-dmyDGi bJRtXU"})
+                rating = items.find("span", {"class": "sc-dmyDGi flXrCy"})
+                cusine = items.find("div", {"class": "sc-dmyDGi jHWzLy"})
+                location = cusine.next_sibling
+                data = {
+                    "Name": name.text,
+                    "Rating": rating.text,
+                    "Cusine": cusine.text,
+                    "Location": location.text,
+                    "Link": items["href"],
+                }
+                restaurants.append(data)
+            return restaurants
         except:
             return None

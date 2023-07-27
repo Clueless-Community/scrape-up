@@ -552,6 +552,7 @@ item = Flipkart()
 | `.printers()`         | Returns the list of printers from flipkart.                        |
 | `.monitor()`          | Returns the list of monitors from flipkart.                        |
 
+
 ---
 
 ## Spotify
@@ -978,9 +979,10 @@ First, create an object of class `Swiggy`
 store1 = Swiggy()
 ```
 
-| Methods                                      | Details                                                                  |
-| -------------------------------------------- | ------------------------------------------------------------------------ |
-| `get_restraunt_details(restraunt_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+| Methods                   | Details                                                                   |
+| ------------------------- | ------------------------------------------------------------------------- |
+| `get_restraunt_details()` | Returns the restaurant data with name, cuisine, area, rating, offers, etc |
+| `get_restaurants()`       | Returns the restaurant names as per given city                            |
 
 ---
 
