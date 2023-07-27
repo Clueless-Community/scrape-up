@@ -1086,6 +1086,25 @@ user = instagram.Users(username="nikhil25803")
 | `.get_headlines()` | Returns the list of object containig the headlines       |
 | `get_article()`    | Returns an object with proper details about the articles |
 
+-----
+
+# Billionaires
+
+Create an instance of `Billionaires` class.
+
+```python
+billionaires = Billionaires()
+```
+
+| Methods             | Details                                                                                      |
+| ------------------- | -------------------------------------------------------------------------------------------- |
+| `.realtime()`       | It takes a user query parameter as an argument and returns all relevant terms related to it. |
+| `.powerfulwomen()`  | Returns as JSON the list of Forbes most powerful women in the world.                         |
+| `.powerfulpeople()` | Returns as JSON a list of Forbes Porweful people.                                            |
+| `.bylocation()`     | Returns as JSON the billionaires of a particular nation.                                     |
+
+--------
+
 # Hackerearth
 
 First, create an object of class `Hackerearth`
