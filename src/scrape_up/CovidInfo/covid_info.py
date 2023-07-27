@@ -3,16 +3,21 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import date
 
+
 class CovidInfo:
     """
+    Create an instance of the `CovidInfo` class\n
+    ```python
+    response = CovidInfo()
+    ```
     Class - `CovidInfo`\n
-    | Methods                     | Details                                                                                              |
+    | Methods | Details |
     | --------------------------- | ---------------------------------------------------------------------------------------------------- |
-    | `.covid_data()`             | Returns the list of all the covid data scraped from the website                                      |
-    | `.total_cases()`            | Returns the count of total covid cases all over the world                                            |
-    | `.total_deaths()`           | Returns the count of deaths covid cases all over the world                                           |
-    | `.total_recovered()`        | Returns the count of recovered covid cases all over the world                                        |
-    | `.latest_news()`            | Return the lastest news of the day                                                                   |
+    | `.covid_data()` | Returns the list of all the covid data scraped from the website |
+    | `.total_cases()` | Returns the count of total covid cases all over the world |
+    | `.total_deaths()` | Returns the count of deaths covid cases all over the world |
+    | `.total_recovered()` | Returns the count of recovered covid cases all over the world |
+    | `.latest_news()` | Return the lastest news of the day |
     """
 
     def __init__(self):
@@ -99,7 +104,7 @@ class CovidInfo:
             return k[0]
         except:
             return None
-    
+
     def total_recovered(self):
         """
         Get the total number of COVID-recovered in the world\n
@@ -115,10 +120,10 @@ class CovidInfo:
             soup = BeautifulSoup(page.text, "html.parser")
             req = soup.find_all("div", {"id": "maincounter-wrap"})
             recovered_count = req[-1].find("span").text.strip()
-            return recovered_count
+            return {"recovered": recovered_count}
         except:
             return None
-    
+
     def latest_news(self):
         """
         Get the latest news from all over the world\n
@@ -126,6 +131,17 @@ class CovidInfo:
         ```python
         response = CovidInfo()
         response.latest_news()
+        ```
+        Return\n
+        ```js
+        [
+            {
+                "news":"10 new cases in Denmark\\xa0[source]",
+                "source":"https://www.worldometers.info/coronavirus/country/denmark/"
+            }
+            ...
+        ]
+        ```
         """
         try:
             url = "https://www.worldometers.info/coronavirus/"
@@ -134,18 +150,18 @@ class CovidInfo:
             soup = BeautifulSoup(page.text, "html.parser")
             news_block = soup.find("div", {"id": "news_block"})
             date_ = date.today()
-            id = "newsdate"+str(date_)
-            news_s = news_block.find("div", {"id" : id })
-            news = news_s.find_all("div", {"class" : "news_post"})
+            id = "newsdate" + str(date_)
+            news_s = news_block.find("div", {"id": id})
+            news = news_s.find_all("div", {"class": "news_post"})
             for news_ in news:
                 news_text = news_.text.strip()
-                news_source = "https://www.worldometers.info"+news_.find("a")["href"]
-                data = {
-                    "news" : news_text,
-                    "source" : news_source
-                }
+                news_source = "https://www.worldometers.info" + news_.find("a")["href"]
+                data = {"news": news_text, "source": news_source}
                 news_data.append(data)
             return news_data
         except:
             return None
-    
+
+
+cov = CovidInfo()
+print(cov.latest_news())

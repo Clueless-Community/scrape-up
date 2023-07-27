@@ -539,7 +539,6 @@ item = Flipkart()
 | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
 | `.printers()`         | Returns the list of printers from flipkart.                        |
 
-
 ---
 
 ## Spotify
@@ -806,13 +805,13 @@ response = CovidInfo()
 ```
 
 Class - `CovidInfo`\n
-| Methods                     | Details                                                                                              |
+| Methods | Details |
 | --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `.covid_data()`             | Returns the list of all the covid data scraped from the website                                      |
-| `.total_cases()`            | Returns the count of total covid cases all over the world                                            |
-| `.total_deaths()`           | Returns the count of deaths covid cases all over the world                                           |
-| `.total_recovered()`        | Returns the count of recovered covid cases all over the world                                        |
-| `.latest_news()`            | Return the lastest news of the day                                                                   |
+| `.covid_data()` | Returns the list of all the covid data scraped from the website |
+| `.total_cases()` | Returns the count of total covid cases all over the world |
+| `.total_deaths()` | Returns the count of deaths covid cases all over the world |
+| `.total_recovered()` | Returns the count of recovered covid cases all over the world |
+| `.latest_news()` | Return the lastest news of the day |
 
 # FlipkartTees
 
