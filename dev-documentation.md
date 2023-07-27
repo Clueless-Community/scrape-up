@@ -449,6 +449,18 @@ movie = Movie(movie_name)
 | `.description()` | Returns the description, cast and director of the movie |
 | `.more_movies()` | Returns similar movies recommended by IMDB              |
 
+Create an instance of `Actor` class.
+
+```python
+actor = Actor(actor_name)
+```
+
+| Methods             | Details                                                 |
+| ------------------- | ------------------------------------------------------- |
+| `.popular_movies()` | Returns the popular movies in which the actor has acted |
+| `.all_movies()`     | Returns all movies acted in and upcoming movies         |
+| `.awards()`         | Returns the number of awards and nominations            |
+
 ---
 
 ## Coursera
@@ -538,6 +550,7 @@ item = Flipkart()
 | `.tablets()`          | Returns the list of tablets from flipkart.                         |
 | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
 | `.printers()`         | Returns the list of printers from flipkart.                        |
+| `.monitor()`          | Returns the list of monitors from flipkart.                        |
 
 ---
 
@@ -804,11 +817,14 @@ Create an instance of the `CovidInfo` class.
 response = CovidInfo()
 ```
 
-| Methods          | Details                                                                                     |
-| ---------------- | ------------------------------------------------------------------------------------------- |
-| `.covid_data()`  | Returns the scraped data from the target website of all the countries in the form of a list |
-| `.totalcases()`  | Returns the total number of covid cases as of yet in the form of a string of numbers        |
-| `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
+Class - `CovidInfo`\n
+| Methods | Details |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.covid_data()` | Returns the list of all the covid data scraped from the website |
+| `.total_cases()` | Returns the count of total covid cases all over the world |
+| `.total_deaths()` | Returns the count of deaths covid cases all over the world |
+| `.total_recovered()` | Returns the count of recovered covid cases all over the world |
+| `.latest_news()` | Return the lastest news of the day |
 
 # FlipkartTees
 
@@ -962,9 +978,10 @@ First, create an object of class `Swiggy`
 store1 = Swiggy()
 ```
 
-| Methods                                      | Details                                                                  |
-| -------------------------------------------- | ------------------------------------------------------------------------ |
-| `get_restraunt_details(restraunt_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+| Methods                   | Details                                                                   |
+| ------------------------- | ------------------------------------------------------------------------- |
+| `get_restraunt_details()` | Returns the restaurant data with name, cuisine, area, rating, offers, etc |
+| `get_restaurants()`       | Returns the restaurant names as per given city                            |
 
 ---
 
@@ -1069,7 +1086,7 @@ user = instagram.Users(username="nikhil25803")
 | `.get_headlines()` | Returns the list of object containig the headlines       |
 | `get_article()`    | Returns an object with proper details about the articles |
 
----
+-----
 
 # Billionaires
 
@@ -1085,3 +1102,20 @@ billionaires = Billionaires()
 | `.powerfulwomen()`  | Returns as JSON the list of Forbes most powerful women in the world.                         |
 | `.powerfulpeople()` | Returns as JSON a list of Forbes Porweful people.                                            |
 | `.bylocation()`     | Returns as JSON the billionaires of a particular nation.                                     |
+
+--------
+
+# Hackerearth
+
+First, create an object of class `Hackerearth`
+
+```python
+hackerearth = Hackerearth()
+```
+
+| Methods          | Details                                                |
+| ---------------- | ------------------------------------------------------ |
+| `get_upcoming()` | Get the details of upcoming challenges on Hackerearth. |
+| `get_ongoing()`  | Get the details of ongoing challenges on Hackerearth.  |
+
+---
