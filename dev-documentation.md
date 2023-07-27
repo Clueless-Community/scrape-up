@@ -1119,3 +1119,22 @@ hackerearth = Hackerearth()
 | `get_ongoing()`  | Get the details of ongoing challenges on Hackerearth.  |
 
 ---
+
+# Pixabay
+
+First, we create an object of `Pixabay`:
+```
+ Class - `Pixabay`\n
+
+ pix = Pixabay()
+
+```
+
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.get_params_video()`       | Returns the list of parameters required to load the videos from Pixaby.                              |
+| `.get_video()`              | Downloads the videos from pixaby to the local storage.                                               |
+| `.get_params_photo()`       | Returns the list of parameters required to load pics from Pixaby.                                    |
+| `.get_photo()`              | Downloads the photos from pixaby to local storage.                                                   |
+
+___
