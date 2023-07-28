@@ -29,7 +29,6 @@ class Hashnode:
             "title": Title of the blog
             "description": Description of the blog
             "author": Author of the blog
-            "read_time": Time required to read the blog
             "like_count": No. of likes of the blog
             "comment_count": No. of comments of the blog
             "date": Date the blog was posted
@@ -37,52 +36,79 @@ class Hashnode:
         }
         ```
         """
-        url = "https://hashnode.com/community"
+        url = "https://hashnode.com/community/"
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
 
             blogs_data = {"blogs": []}
 
-            blogs = soup.find_all("div", class_="css-1s8wn94")
+            blogs = soup.find_all(
+                "div",
+                class_="w-full first-of-type:border-t-0 border-t lg:!border border-slate-200 dark:border-slate-800/80 rounded-none lg:rounded-2xl pt-5 md:pt-8 lg:p-6 lg:pb-5 bg-white dark:bg-slate-950 flex flex-col gap-2 sm:gap-4",
+            )
 
             for b in blogs:
-                title = b.find("a", class_="css-4zleql").getText()
-                desc = (
-                    b.find("p", class_="css-1m4ptby")
+                title = (
+                    b.find("div", class_="flex flex-col gap-1")
+                    .find("div")
+                    .find("a")
                     .getText()
-                    .strip()
-                    .encode("ascii", "ignore")
-                    .decode()
                 )
-                author = b.find("a", class_="css-9ssaz8").getText()
-                read_time = b.find("span", class_="css-1r5gb7q").getText()
+                author = b.find(
+                    "span",
+                    class_="font-semibold text-slate-700 dark:text-slate-200 cursor-pointer",
+                ).getText()
+                date = b.find(
+                    "p", class_="text-sm text-slate-500 dark:text-slate-400 font-normal"
+                ).getText()
+
                 try:
-                    like_section = b.find("button", class_="css-a0cwys")
-                    like_count = like_section.find("span").getText()
+                    try:
+                        desc = b.find(
+                            "span",
+                            class_="text-base hidden font-normal text-slate-500 dark:text-slate-400 hn-break-words cursor-pointer md:line-clamp-2",
+                        ).getText()
+                    except:
+                        desc = b.find(
+                            "span",
+                            class_="text-base hidden font-normal text-slate-500 dark:text-slate-400 hn-break-words cursor-pointer md:line-clamp-3",
+                        ).getText()
                 except:
-                    like_count = "0"
+                    desc = ""
+
+                link = (
+                    b.find("div", class_="flex flex-col gap-1")
+                    .find("div")
+                    .find("a")["href"]
+                )
+
                 try:
-                    comment_section = b.find("a", class_="css-q5e5vl")
-                    comment_count = comment_section.find("span").getText()
+                    like_count = b.find(
+                        "button", attrs={"aria-label": "Like reaction"}
+                    ).getText()
                 except:
-                    comment_count = "0"
-                date = b.find("a", class_="css-15gyiyx").getText()
-                link = b.find("a", class_="css-4zleql", href=True)["href"]
+                    like_count = 0
+
+                try:
+                    comment_count = b.find(
+                        "button", attrs={"aria-label": "Comment"}
+                    ).getText()
+                except:
+                    comment_count = 0
 
                 blogs_data["blogs"].append(
                     {
                         "title": title,
                         "description": desc,
                         "author": author,
-                        "read_time": read_time,
                         "like_count": like_count,
                         "comment_count": comment_count,
                         "date": date,
                         "link": link,
                     }
                 )
-            return blogs_data
+            return blogs_data["blogs"]
         except:
             return None
 
@@ -119,7 +145,7 @@ class Hashnode:
 
             blogs = soup.find_all(
                 "div",
-                class_="w-full first-of-type:border-t-0 border-t lg:!border border-slate-200 dark:border-slate-800 rounded-none lg:rounded-2xl pt-5 md:pt-8 lg:p-6 lg:pb-5 bg-white dark:bg-slate-950 flex flex-col gap-2 sm:gap-4",
+                class_="w-full first-of-type:border-t-0 border-t lg:!border border-slate-200 dark:border-slate-800/80 rounded-none lg:rounded-2xl pt-5 md:pt-8 lg:p-6 lg:pb-5 bg-white dark:bg-slate-950 flex flex-col gap-2 sm:gap-4",
             )
 
             for b in blogs:
@@ -218,7 +244,7 @@ class Hashnode:
 
             blogs = soup.find_all(
                 "div",
-                class_="w-full first-of-type:border-t-0 border-t lg:!border border-slate-200 dark:border-slate-800 rounded-none lg:rounded-2xl pt-5 md:pt-8 lg:p-6 lg:pb-5 bg-white dark:bg-slate-950 flex flex-col gap-2 sm:gap-4",
+                class_="w-full first-of-type:border-t-0 border-t lg:!border border-slate-200 dark:border-slate-800/80 rounded-none lg:rounded-2xl pt-5 md:pt-8 lg:p-6 lg:pb-5 bg-white dark:bg-slate-950 flex flex-col gap-2 sm:gap-4",
             )
 
             for b in blogs:
