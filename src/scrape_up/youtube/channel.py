@@ -110,7 +110,25 @@ class Channel:
             return None
         
     def getVideos(self):
-        
+        """
+        Class - `Channel`
+        ```py
+        channel_data = Channel(channel_username="BeABetterDev")
+        channel_data.getVideos()
+        ```
+        Returns:
+        ```js
+        {
+            "title": Title of the video
+            "description": Description of the video
+            "thumbnail_url": Link of the thumbnail image
+            "views_count": Total views till date of the video
+            "publishedAt": Date the video was published
+            "video_length": Time length of the video
+            "link": Link to the video
+        }
+        ```
+        """
         url = f"https://www.youtube.com/@{self.channel_username}/videos"
         try:
             res = requests.get(url)
