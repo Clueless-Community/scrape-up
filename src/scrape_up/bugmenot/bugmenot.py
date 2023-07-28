@@ -1,43 +1,18 @@
-'''
-Web Scraper Module for website https://bugmenot.com
 
-Author: github.com/hashfx
-
-This module provides a class: Bugmenot, that allows you to scrape account data from https://bugmenot.com for a given website
-'''
-
-# import required libraries
 import requests
 from bs4 import BeautifulSoup
-import json
 
 class Bugmenot:
     """
-    Methods:
-    --------
+    Create an instance of the class `Bugmenot`
+
+    ```python
+    website = Bugmenot()
+    ```
 
     | Method                 | Description                                                                                |
     | :--------------------- | :----------------------------------------------------------------------------------------- |
-    | `__init__(self, website: str)` | Initializes the Bugmenot object with the specified website to scrape.                        |
-    | `bugmenot(self) -> Union[List[Dict[str, str]], None]`     | Scrapes account data from Bugmenot.com for the given website and returns a list of dictionaries with account details. Returns `None` if no accounts are found.|
-
-
-
-    Example:
-    
-    ```python
-    from bugmenot import Bugmenot
-    import json
- 
-    website = 'canva.com'
-    scraper = Bugmenot(website)  # object
-    accounts_json = scraper.Bugmenot()
-
-    if accounts_json:
-        # Convert the list of dictionaries to JSON format
-        json_output = json.dumps(accounts_json, indent=4)
-        print(json_output)
-    ```
+    | `generate_credentials()` | Scrapes account data from Bugmenot.com for the given website and returns a list of dictionaries with account details. Returns `None` if no accounts are found.|
 
     """
 
@@ -48,7 +23,26 @@ class Bugmenot:
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
         }
 
-    def Bugmenot(self):
+    def generate_credentials(self):
+        """
+        Create an instance of the class `Bugmenot`\n
+
+        ```python
+        website = 'canva.com'
+        scraper = Bugmenot(website)
+        ```
+        ```js
+        [
+            {
+                "Username":"Premium accounts here:",
+                "Password":"https://cuty.io/NDFkAmiS3q0",
+                "Success Rate":"99% success rate",
+                "Age":"6 months old"
+            }
+            ...
+        ]
+        ```
+        """
         # Send a GET request to the website with headers
         response = requests.get(self.url, headers=self.headers)
 
@@ -87,3 +81,6 @@ class Bugmenot:
 
         return accounts_data
 
+website = 'canva.com'
+scraper = Bugmenot(website)
+print(scraper.generate_credentials())
