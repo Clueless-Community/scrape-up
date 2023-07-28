@@ -552,7 +552,7 @@ class Flipkart:
         
 
 
-    def refrigerator():
+    def refrigerator(self):
         """
         Get the list of mobiles under 50K\n
         Class - `Flipkart`\n
