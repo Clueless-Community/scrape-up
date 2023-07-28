@@ -1118,4 +1118,18 @@ hackerearth = Hackerearth()
 | `get_upcoming()` | Get the details of upcoming challenges on Hackerearth. |
 | `get_ongoing()`  | Get the details of ongoing challenges on Hackerearth.  |
 
+# TripAdvisor
+
+First, create an object of class `TripAdvisor`
+
+```python
+hotel = TripAdvisor()
+
+```
+
+| Methods                  | Details                                                          |
+| ------------------------ | ---------------------------------------------------------------- |
+| `get_details(hotel_url)` | Get the details of a hotel from its TripAdvisor URL.             |
+
+
 ---
