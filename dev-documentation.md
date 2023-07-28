@@ -1086,7 +1086,7 @@ user = instagram.Users(username="nikhil25803")
 | `.get_headlines()` | Returns the list of object containig the headlines       |
 | `get_article()`    | Returns an object with proper details about the articles |
 
------
+---
 
 # Billionaires
 
@@ -1103,7 +1103,7 @@ billionaires = Billionaires()
 | `.powerfulpeople()` | Returns as JSON a list of Forbes Porweful people.                                            |
 | `.bylocation()`     | Returns as JSON the billionaires of a particular nation.                                     |
 
---------
+---
 
 # Hackerearth
 
@@ -1127,9 +1127,8 @@ hotel = TripAdvisor()
 
 ```
 
-| Methods                  | Details                                                          |
-| ------------------------ | ---------------------------------------------------------------- |
-| `get_details(hotel_url)` | Get the details of a hotel from its TripAdvisor URL.             |
-
+| Methods                  | Details                                              |
+| ------------------------ | ---------------------------------------------------- |
+| `get_details(hotel_url)` | Get the details of a hotel from its TripAdvisor URL. |
 
 ---
