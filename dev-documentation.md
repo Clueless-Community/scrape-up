@@ -1086,7 +1086,7 @@ user = instagram.Users(username="nikhil25803")
 | `.get_headlines()` | Returns the list of object containig the headlines       |
 | `get_article()`    | Returns an object with proper details about the articles |
 
------
+---
 
 # Billionaires
 
@@ -1103,7 +1103,7 @@ billionaires = Billionaires()
 | `.powerfulpeople()` | Returns as JSON a list of Forbes Porweful people.                                            |
 | `.bylocation()`     | Returns as JSON the billionaires of a particular nation.                                     |
 
---------
+---
 
 # Hackerearth
 
@@ -1130,7 +1130,6 @@ who = WHO()
 
 | Methods                        | Details                                     |
 | ------------------------------ | ------------------------------------------- |
-| `get_disease_outbreak(number)` | Get Disease Outbreak News from WHO website. |
+| `get_disease_outbreak()` | Get Disease Outbreak News from WHO website. |
 
 ---
-
