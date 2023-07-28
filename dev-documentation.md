@@ -1120,6 +1120,7 @@ hackerearth = Hackerearth()
 
 ---
 
+
 # WHO
 
 Create an instance of WHO class
@@ -1133,3 +1134,16 @@ who = WHO()
 | `get_disease_outbreak()` | Get Disease Outbreak News from WHO website. |
 
 ---
+
+# Bugmenot
+
+Create an instance of the class `Bugmenot`
+
+```python
+website = 'canva.com'
+```
+
+| Methods          | Details                                                                                                                                                        |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_upcoming()` | Scrapes account data from Bugmenot.com for the given website and returns a list of dictionaries with account details. Returns `None` if no accounts are found. |
+
