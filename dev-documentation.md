@@ -539,7 +539,6 @@ item = Flipkart()
 | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
 | `.printers()`         | Returns the list of printers from flipkart.                        |
 
-
 ---
 
 ## Spotify
@@ -689,12 +688,12 @@ Create an instance of `Hashnode` class.
 blogs = Hashnode()
 ```
 
-| Methods           | Details                                                                                              |
-| ----------------- | ---------------------------------------------------------------------------------------------------- |
-| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link |
-| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link   |
-| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link     |
-| `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date and link for a topic|
+| Methods           | Details                                                                                               |
+| ----------------- | ----------------------------------------------------------------------------------------------------- |
+| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link  |
+| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link    |
+| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link      |
+| `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date and link for a topic |
 
 ---
 

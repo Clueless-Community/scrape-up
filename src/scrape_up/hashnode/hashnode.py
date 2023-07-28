@@ -47,7 +47,7 @@ class Hashnode:
             blogs = soup.find_all(
                 "div",
                 class_="w-full first-of-type:border-t-0 border-t lg:!border border-slate-200 dark:border-slate-800 rounded-none lg:rounded-2xl pt-5 md:pt-8 lg:p-6 lg:pb-5 bg-white dark:bg-slate-950 flex flex-col gap-2 sm:gap-4",
-)
+            )
 
             for b in blogs:
                 title = (
@@ -112,7 +112,6 @@ class Hashnode:
             return blogs_data["blogs"]
         except:
             return None
-
 
     def get_featured(self):
         """
@@ -312,7 +311,7 @@ class Hashnode:
             return blogs_data["blogs"]
         except:
             return None
-        
+
     def search(self, topic):
         """
         Class - `Hashnode`
@@ -335,8 +334,8 @@ class Hashnode:
             ...
         ]
         """
-        url = "https://hashnode.com/search?q="+topic
-        
+        url = "https://hashnode.com/search?q=" + topic
+
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -347,33 +346,29 @@ class Hashnode:
 
             for b in blogs:
                 try:
-                    title = (
-                        b.find(
-                        "h3", 
-                        class_="mb-6 text-lg font-semibold leading-tight tracking-tight text-slate-700 break-words lg:text-xl dark:text-slate-200")
-                        .getText()
-                    )
+                    title = b.find(
+                        "h3",
+                        class_="mb-6 text-lg font-semibold leading-tight tracking-tight text-slate-700 break-words lg:text-xl dark:text-slate-200",
+                    ).getText()
 
                     author = b.find("span", class_="mr-1.5").getText()
 
                     date = (
                         b.find(
-                        "div", 
-                        class_="flex flex-wrap sm:flex-nowrap items-center text-slate-500 dark:text-slate-400"
-                    )
-                    .find_all("span")[2]
-                    .getText()
+                            "div",
+                            class_="flex flex-wrap sm:flex-nowrap items-center text-slate-500 dark:text-slate-400",
+                        )
+                        .find_all("span")[2]
+                        .getText()
                     )
 
                     link = b["href"]
 
                     try:
                         like_count = (
-                            b.find(
-                            "span", class_="px-1 py-1.5 flex flex-row gap-1.5"
-                        )
-                        .find("span")
-                        .getText()
+                            b.find("span", class_="px-1 py-1.5 flex flex-row gap-1.5")
+                            .find("span")
+                            .getText()
                         )
                     except:
                         like_count = 0
@@ -381,10 +376,10 @@ class Hashnode:
                     try:
                         comment_count = (
                             b.find_all(
-                            "span", class_="px-1 py-1.5 flex flex-row gap-1.5"
-                        )[1]
-                        .find("span")
-                        .getText()
+                                "span", class_="px-1 py-1.5 flex flex-row gap-1.5"
+                            )[1]
+                            .find("span")
+                            .getText()
                         )
                     except:
                         comment_count = 0
@@ -404,3 +399,6 @@ class Hashnode:
             return blogs_data["blogs"]
         except:
             return None
+
+hash=Hashnode()
+print(hash.get_feed())
