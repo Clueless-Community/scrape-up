@@ -1119,3 +1119,18 @@ hackerearth = Hackerearth()
 | `get_ongoing()`  | Get the details of ongoing challenges on Hackerearth.  |
 
 ---
+
+# WHO
+
+Create an instance of WHO class
+
+```python
+who = WHO()
+```
+
+| Methods                        | Details                                     |
+| ------------------------------ | ------------------------------------------- |
+| `get_disease_outbreak(number)` | Get Disease Outbreak News from WHO website. |
+
+---
+
