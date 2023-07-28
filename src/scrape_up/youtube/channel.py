@@ -108,3 +108,44 @@ class Channel:
             return channel_data["channel_data"][0]
         except:
             return None
+        
+    def getVideos(self):
+        
+        url = f"https://www.youtube.com/@{self.channel_username}/videos"
+        try:
+            res = requests.get(url)
+            soup = BeautifulSoup(res.text, "html.parser")
+            videos_data = {"videos": []}
+            scripts = soup.find_all("script")
+            req_script = scripts[35].text.strip()
+            script = req_script[20:-1]
+            data = json.loads(script)
+
+            vids = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][1]["tabRenderer"]["content"]["richGridRenderer"]["contents"]
+            for v in vids:
+                try:
+                    base = v["richItemRenderer"]["content"]["videoRenderer"]
+                    title = base["title"]["runs"][0]["text"]
+                    thumbnail_url = base["thumbnail"]["thumbnails"][-1]["url"]
+                    desc = base["descriptionSnippet"]["runs"][0]["text"]
+                    publishedAt = base["publishedTimeText"]["simpleText"]
+                    length = base["lengthText"]["accessibility"]["accessibilityData"]["label"]
+                    views = base["viewCountText"]["simpleText"]
+                    link = "https://www.youtube.com/" + base["navigationEndpoint"]["commandMetadata"]["webCommandMetadata"]["url"]
+                except:
+                    pass
+
+                videos_data["videos"].append(
+                    {
+                        "title": title,
+                        "description": desc,
+                        "thumbnail_url": thumbnail_url,
+                        "views_count": views,
+                        "publishedAt": publishedAt,
+                        "video_length": length,
+                        "link": link 
+                    }
+                )
+            return videos_data["videos"]
+        except:
+            return None
