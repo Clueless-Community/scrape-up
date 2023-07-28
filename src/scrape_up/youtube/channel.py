@@ -13,6 +13,7 @@ class Channel:
     | Methods       | Details                                                                |
     | ------------- | ---------------------------------------------------------------------- |
     | `.getAbout()` | Returns the channel details mentioned in the about page of the channel |
+    | `.getVideos()` | Returns all the video details in the videos page of the channel |
     """
 
     def __init__(self, channel_username):
