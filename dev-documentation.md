@@ -1086,7 +1086,7 @@ user = instagram.Users(username="nikhil25803")
 | `.get_headlines()` | Returns the list of object containig the headlines       |
 | `get_article()`    | Returns an object with proper details about the articles |
 
------
+---
 
 # Billionaires
 
@@ -1103,7 +1103,7 @@ billionaires = Billionaires()
 | `.powerfulpeople()` | Returns as JSON a list of Forbes Porweful people.                                            |
 | `.bylocation()`     | Returns as JSON the billionaires of a particular nation.                                     |
 
---------
+---
 
 # Hackerearth
 
@@ -1119,6 +1119,7 @@ hackerearth = Hackerearth()
 | `get_ongoing()`  | Get the details of ongoing challenges on Hackerearth.  |
 
 ---
+
 
 # Pixabay
 
@@ -1138,3 +1139,16 @@ First, we create an object of `Pixabay`:
 | `.get_photo()`              | Downloads the photos from pixaby to local storage.                                                   |
 
 ___
+
+# Bugmenot
+
+Create an instance of the class `Bugmenot`
+
+```python
+website = 'canva.com'
+```
+
+| Methods          | Details                                                                                                                                                        |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_upcoming()` | Scrapes account data from Bugmenot.com for the given website and returns a list of dictionaries with account details. Returns `None` if no accounts are found. |
+
