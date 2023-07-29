@@ -12,19 +12,19 @@ class Channel:
 
     | Methods       | Details                                                                |
     | ------------- | ---------------------------------------------------------------------- |
-    | `.getAbout()` | Returns the channel details mentioned in the about page of the channel |
-    | `.getVideos()`| Returns all the video details in the videos page of the channel |
+    | `.get_about()` | Returns the channel details mentioned in the about page of the channel |
+    | `.get_videos()`| Returns all the video details in the videos page of the channel |
     """
 
     def __init__(self, channel_username):
         self.channel_username = channel_username
 
-    def getAbout(self):
+    def get_about(self):
         """
         Class - `Channel`
         ```py
         channel_data = Channel(channel_username="BeABetterDev")
-        channel_data.getAbout()
+        channel_data.get_about()
         ```
         Returns:
         ```js
@@ -110,24 +110,27 @@ class Channel:
         except:
             return None
         
-    def getVideos(self):
+    def get_videos(self):
         """
         Class - `Channel`
         ```py
         channel_data = Channel(channel_username="BeABetterDev")
-        channel_data.getVideos()
+        channel_data.get_videos()
         ```
         Returns:
         ```js
-        {
-            "title": Title of the video
-            "description": Description of the video
-            "thumbnail_url": Link of the thumbnail image
-            "views_count": Total views till date of the video
-            "publishedAt": Date the video was published
-            "video_length": Time length of the video
-            "link": Link to the video
-        }
+        [
+            {
+                "title": Title of the video
+                "description": Description of the video
+                "thumbnail_url": Link of the thumbnail image
+                "views_count": Total views till date of the video
+                "publishedAt": Date the video was published
+                "video_length": Time length of the video
+                "link": Link to the video
+            }
+            ...
+        ]
         ```
         """
         url = f"https://www.youtube.com/@{self.channel_username}/videos"

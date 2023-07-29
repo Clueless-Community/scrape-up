@@ -552,7 +552,6 @@ item = Flipkart()
 | `.printers()`         | Returns the list of printers from flipkart.                        |
 | `.monitor()`          | Returns the list of monitors from flipkart.                        |
 
-
 ---
 
 ## Spotify
@@ -670,10 +669,10 @@ Create an instance of `Channel` class.
 channel_data = Channel(channel_username="BeABetterDev")
 ```
 
-| Methods       | Details                                                                |
-| ------------- | ---------------------------------------------------------------------- |
-| `.getAbout()` | Returns the channel details mentioned in the about page of the channel |
-| `.getVideos()`| Returns all the video details in the videos page of the channel |
+| Methods        | Details                                                                |
+| -------------- | ---------------------------------------------------------------------- |
+| `.getAbout()`  | Returns the channel details mentioned in the about page of the channel |
+| `.getVideos()` | Returns all the video details in the videos page of the channel        |
 
 ---
 
@@ -1135,7 +1134,6 @@ hotel = TripAdvisor()
 
 ---
 
-
 # WHO
 
 Create an instance of WHO class
@@ -1144,8 +1142,8 @@ Create an instance of WHO class
 who = WHO()
 ```
 
-| Methods                        | Details                                     |
-| ------------------------------ | ------------------------------------------- |
+| Methods                  | Details                                     |
+| ------------------------ | ------------------------------------------- |
 | `get_disease_outbreak()` | Get Disease Outbreak News from WHO website. |
 
 ---
@@ -1161,4 +1159,3 @@ website = 'canva.com'
 | Methods          | Details                                                                                                                                                        |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `get_upcoming()` | Scrapes account data from Bugmenot.com for the given website and returns a list of dictionaries with account details. Returns `None` if no accounts are found. |
-
