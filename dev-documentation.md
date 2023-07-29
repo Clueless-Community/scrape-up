@@ -1135,7 +1135,6 @@ hotel = TripAdvisor()
 
 ---
 
-
 # WHO
 
 Create an instance of WHO class
@@ -1144,8 +1143,8 @@ Create an instance of WHO class
 who = WHO()
 ```
 
-| Methods                        | Details                                     |
-| ------------------------------ | ------------------------------------------- |
+| Methods                  | Details                                     |
+| ------------------------ | ------------------------------------------- |
 | `get_disease_outbreak()` | Get Disease Outbreak News from WHO website. |
 
 ---
@@ -1161,4 +1160,3 @@ website = 'canva.com'
 | Methods          | Details                                                                                                                                                        |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `get_upcoming()` | Scrapes account data from Bugmenot.com for the given website and returns a list of dictionaries with account details. Returns `None` if no accounts are found. |
-

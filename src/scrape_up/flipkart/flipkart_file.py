@@ -519,6 +519,20 @@ class Flipkart:
         ```python
         item = Flipkart()
         item.ac()
+        ```
+        Return
+        ```js
+        [
+            {
+                "name":"Voltas 1.5 Ton 3 Star Split Inverter AC...",
+                "price":"₹31,990",
+                "description":"Annual Electricity Consumption: ....",
+                "reviews":"218,092",
+                "deals":"49% off"
+            }
+            ...
+        ]
+        ```
         """
         try:
             link = "https://www.flipkart.com/search?q=ac&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
@@ -536,11 +550,11 @@ class Flipkart:
 
                 if names and price and description and review and deals:
                     item_details = {
-                        "Item_Name": names.text if names else None,
-                        "Price": price.text if price else None,
-                        "Description": description.text if description else None,
-                        "Review": review.text if review else None,
-                        "Deals": deals.text if deals else None,
+                        "name": names.text if names else None,
+                        "price": price.text if price else None,
+                        "description": description.text if description else None,
+                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "deals": deals.text if deals else None,
                     }
 
                     all_items.append(item_details)
@@ -560,6 +574,20 @@ class Flipkart:
         ```python
         item = Flipkart()
         item.refrigerator()
+        ```
+        Return
+        ```js
+        [
+            {
+                "name":"realme TechLife 564 L Frost Free Side by Side Refrigerator",
+                "price":"₹47,990",
+                "description":"Advanced Inverter CompressorBuilt-in ...",
+                "reviews":"3229",
+                "deals":"46% off"
+            }
+            ...
+        ]
+        ```
         """
         try:
             link = "https://www.flipkart.com/search?q=refrigerator&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
@@ -577,11 +605,11 @@ class Flipkart:
 
                 if names and price and description and review and deals:
                     item_details = {
-                        "Item_Name": names.text if names else None,
-                        "Price": price.text if price else None,
-                        "Description": description.text if description else None,
-                        "Review": review.text if review else None,
-                        "Deals": deals.text if deals else None,
+                        "name": names.text if names else None,
+                        "price": price.text if price else None,
+                        "description": description.text if description else None,
+                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "deals": deals.text if deals else None,
                     }
 
                     all_items.append(item_details)
@@ -590,6 +618,4 @@ class Flipkart:
 
         except Exception as e:
             return None
-            
-item=Flipkart.refrigerator()
-print(item)        
+             
