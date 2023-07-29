@@ -12,6 +12,7 @@ class Reddit:
     | Methods      | Details                                                                                                                         |
     | ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
     | `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
+    | `.getBest()` | Returns the best posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
     """
 
     def getFeed(self):
