@@ -12,13 +12,10 @@ class Pixabay():
 
 
     """
-    def __init__(self, api_key='', verbose=True):
-        self.api_key = api_key
+    def __init__(self, verbose=True):
+        self.__api_key = '38504833-19606430bd8fde504120d1630'
         self.name = 'Pixabay'
-        self.verbose = verbose
-
-    def setkey(self,key):
-      self.key = key    
+        self.verbose = verbose  
 
     def __get_params_video(self, query, num, update_params={}):
 
@@ -42,7 +39,7 @@ class Pixabay():
          ```
         """
         params = {
-            'key': self.api_key,
+            'key': self.__api_key,
             'q': query,
             'video_type': 'film',
             'orientation': 'horizontal',
@@ -102,7 +99,7 @@ class Pixabay():
          ```
         """
         params = {
-            'key': self.api_key,
+            'key': self.__api_key,
             'q': query,
             'image_type': 'photo',
             'orientation': 'horizontal',
@@ -139,4 +136,7 @@ class Pixabay():
             if response is not None:
                 with open(f'photo_pixabay_{i+1:02d}.jpg', 'wb') as f:
                     f.write(response.content)
+
+
+
 
