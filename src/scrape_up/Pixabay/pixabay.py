@@ -7,19 +7,20 @@ class Pixabay():
 
     | Methods                     | Details                                                                                              |
     | --------------------------- | ---------------------------------------------------------------------------------------------------- |
-    | `.get_params_video()`       | Returns the list of parameters required to load the videos from Pixaby.                              |
     | `.get_video()`              | Downloads the videos from pixaby to the local storage.                                               |
-    | `.get_params_photo()`       | Returns the list of parameters required to load pics from Pixaby.                                    |
     | `.get_photo()`              | Downloads the photos from pixaby to local storage.                                                   |
 
 
     """
-    def __init__(self, api_key='38504833-19606430bd8fde504120d1630', verbose=True):
+    def __init__(self, api_key='', verbose=True):
         self.api_key = api_key
         self.name = 'Pixabay'
         self.verbose = verbose
 
-    def _get_params_video(self, query, num, update_params={}):
+    def setkey(self,key):
+      self.key = key    
+
+    def __get_params_video(self, query, num, update_params={}):
 
         """
          Class - `Pixabay`
@@ -52,6 +53,7 @@ class Pixabay():
         return params
 
     def get_video(self, query, num=10, params={}):
+      
         """
          Class - `Pixabay`
          Example:
@@ -60,10 +62,12 @@ class Pixabay():
          quora.get_video(query,num)
          ```
          Returns: Downloads num number of videos into local storage.
-         
+
         """
+        if self.key == '':
+          return 'Call setkey(key) method to set up the key first before using the scraper.'
         BASE_URL = 'https://pixabay.com/api/videos/'
-        _params = self._get_params_video(query, num, params)
+        _params = self.__get_params_video(query, num, params)
         response = requests.get(BASE_URL, params=_params)
 
         data = response.json()
@@ -77,7 +81,7 @@ class Pixabay():
                 with open(f'video_pixabay_{i+1:02d}.mp4', 'wb') as f:
                     f.write(response.content)
 
-    def _get_params_photo(self, query, num, update_params={}):
+    def __get_params_photo(self, query, num, update_params={}):
         """
          Class - `Pixabay`
          Example:
@@ -117,10 +121,12 @@ class Pixabay():
          quora.get_photo(query,num)
          ```
          Returns: Downloads num number of photos into local storage.
-         
+
         """
+        if self.key == '':
+          return 'Call setkey(key) method to set up the key first before using the scraper.'
         BASE_URL = 'https://pixabay.com/api/'
-        _params = self._get_params_photo(query, num, params)
+        _params = self.__get_params_photo(query, num, params)
         response = requests.get(BASE_URL, params=_params)
 
         data = response.json()
@@ -134,4 +140,3 @@ class Pixabay():
                 with open(f'photo_pixabay_{i+1:02d}.jpg', 'wb') as f:
                     f.write(response.content)
 
-                  
