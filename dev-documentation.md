@@ -1133,9 +1133,7 @@ First, we create an object of `Pixabay`:
 
 | Methods                     | Details                                                                                              |
 | --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `.get_params_video()`       | Returns the list of parameters required to load the videos from Pixaby.                              |
 | `.get_video()`              | Downloads the videos from pixaby to the local storage.                                               |
-| `.get_params_photo()`       | Returns the list of parameters required to load pics from Pixaby.                                    |
 | `.get_photo()`              | Downloads the photos from pixaby to local storage.                                                   |
 
 ___
