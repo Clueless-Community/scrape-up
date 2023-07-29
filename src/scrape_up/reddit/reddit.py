@@ -174,7 +174,28 @@ class Reddit:
             return None
     
     def getHot(self):
-        
+        """
+        Class - `Reddit`
+        Example:
+        ```python
+        posts = Reddit()
+        posts.getHot()
+        ```
+        Returns:
+        ```js
+        {
+            "title": Title of the post
+            "description": Description of the post
+            "subreddit": subreddit name,
+            "subreddit_avatar": subreddit avatar,
+            "time": Time the post was posted,
+            "vote_count": No. of votes of the post,
+            "comment_count": No. of comments of the post,
+            "img_url": URL of any image provided in the post,
+            "category": Category of the post,
+        }
+        ```
+        """
         url = "https://www.reddit.com/r/popular/hot/?feedViewType=cardView"
         try:
             res = requests.get(url)
