@@ -109,7 +109,7 @@ class RottenTomatoes:
         ```
         """
         try:
-            movie_name = movie_name.replace(" ","_")
+            movie_name = movie_name.replace(" ", "_")
             url = self.url + "m/" + movie_name
             response = requests.get(url)
             soup = BeautifulSoup(response.content, "html.parser")
@@ -163,17 +163,21 @@ class RottenTomatoes:
     def best_shows(self):
         """
         Returns the best TV shows listed on the Rotten Tomatoes website.
-
+        ```python
+        scraper = RottenTomatoes()
+        scraper.movie_details(movie_name="iron man")
+        ```
         Returns:
-        A list of dictionaries containing information about the best TV shows:
+        ```js
         [
             {
-                "Title": str (Title of the TV show),
-                "Link": str (URL of the TV show),
-                "Latest Episode": str or None (Latest episode details or None if not available),
+                "Title":"Secret Invasion",
+                "Link":"https://www.rottentomatoes.com//tv/secret_invasion",
+                "Latest Episode":"Latest Episode: Jul 26"
             },
             ...
         ]
+        ```
         """
         try:
             url = "https://www.rottentomatoes.com/browse/tv_series_browse/sort:popular"
@@ -183,20 +187,18 @@ class RottenTomatoes:
             movies = []
             container = soup.find("div", {"class": "discovery-tiles__wrap"})
             for items in container.find_all("div", {"class": "js-tile-link"}):
-                link = "https://www.rottentomatoes.com/" + items.find("a", href=True)['href']
+                link = (
+                    "https://www.rottentomatoes.com/"
+                    + items.find("a", href=True)["href"]
+                )
                 title = items.find("span", {"class": "p--small"}).text.strip()
                 latest = items.find("span", {"class": "smaller"})
                 if latest:
                     latest = latest.text.strip()
                 else:
                     latest = None
-                data = {
-                    "Title": title,
-                    "Link": link,
-                    "Latest Episode": latest
-                }
+                data = {"Title": title, "Link": link, "Latest Episode": latest}
                 movies.append(data)
             return movies
         except:
             return None
-

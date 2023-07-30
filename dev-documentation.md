@@ -553,7 +553,6 @@ item = Flipkart()
 | `.ac()`               | Returns the list of acs from flipkart.                             |
 | `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
 
-
 ---
 
 ## Spotify
