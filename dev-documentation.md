@@ -720,9 +720,9 @@ Create an instance of `Reddit` class.
 posts = Reddit()
 ```
 
-| Methods      | Details                                                                                                                              |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link      |
+| Methods       | Details                                                                                                                              |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `.getFeed()`  | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link      |
 | `.get_best()` | Returns the best posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
 | `.get_hot()`  | Returns the hot posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
 | `.get_top()`  | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
@@ -1170,11 +1170,11 @@ website = 'canva.com'
 # Moneycontrol
 
 Create an instance of Index class
+
 ```python
-index = Index()
+index = MoneyControl()
 ```
 
-| Methods          | Details                                                                                    |
-| -----------------| -------------------------------------------------------------------------------------------|
-| `.contribution()`| Returns the stocks are driving the Sensex and the Nifty up or down and by how many points. |
-
+| Methods           | Details                                                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| `.contribution()` | Returns the stocks are driving the Sensex and the Nifty up or down and by how many points. |
