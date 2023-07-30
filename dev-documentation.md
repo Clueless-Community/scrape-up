@@ -552,7 +552,6 @@ item = Flipkart()
 | `.printers()`         | Returns the list of printers from flipkart.                        |
 | `.monitor()`          | Returns the list of monitors from flipkart.                        |
 
-
 ---
 
 ## Spotify
@@ -702,12 +701,12 @@ Create an instance of `Hashnode` class.
 blogs = Hashnode()
 ```
 
-| Methods           | Details                                                                                              |
-| ----------------- | ---------------------------------------------------------------------------------------------------- |
-| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link |
-| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link   |
-| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link     |
-| `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date and link for a topic|
+| Methods           | Details                                                                                               |
+| ----------------- | ----------------------------------------------------------------------------------------------------- |
+| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link  |
+| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link    |
+| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link      |
+| `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date and link for a topic |
 
 ---
 
@@ -1135,7 +1134,6 @@ hotel = TripAdvisor()
 
 ---
 
-
 # WHO
 
 Create an instance of WHO class
@@ -1144,8 +1142,8 @@ Create an instance of WHO class
 who = WHO()
 ```
 
-| Methods                        | Details                                     |
-| ------------------------------ | ------------------------------------------- |
+| Methods                  | Details                                     |
+| ------------------------ | ------------------------------------------- |
 | `get_disease_outbreak()` | Get Disease Outbreak News from WHO website. |
 
 ---
@@ -1161,4 +1159,3 @@ website = 'canva.com'
 | Methods          | Details                                                                                                                                                        |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `get_upcoming()` | Scrapes account data from Bugmenot.com for the given website and returns a list of dictionaries with account details. Returns `None` if no accounts are found. |
-

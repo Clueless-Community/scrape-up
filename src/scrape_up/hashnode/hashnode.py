@@ -311,7 +311,7 @@ class Hashnode:
             return blogs_data["blogs"]
         except:
             return None
-        
+
     def search(self, topic):
         """
         Class - `Hashnode`
@@ -324,18 +324,18 @@ class Hashnode:
         ```js
         [
             {
-                "title": Title of the blog
-                "author": Author of the blog
-                "like_count": No. of likes of the blog
-                "comment_count": No. of comments of the blog
-                "date": Date the blog was posted
-                "link": Link to the blog
+                "title":"Building and Publishing Packages in Python",
+                "author":"Oluwaseun Fashina",
+                "like_count":"25",
+                "comment_count":"3",
+                "date":"28th Jul 2023",
+                "link":"https://seunfashina.hashnode.dev/building-and-publishing-packages-in-python"
             }
             ...
         ]
         """
-        url = "https://hashnode.com/search?q="+topic
-        
+        url = "https://hashnode.com/search?q=" + topic
+
         try:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
@@ -346,33 +346,29 @@ class Hashnode:
 
             for b in blogs:
                 try:
-                    title = (
-                        b.find(
-                        "h3", 
-                        class_="mb-6 text-lg font-semibold leading-tight tracking-tight text-slate-700 break-words lg:text-xl dark:text-slate-200")
-                        .getText()
-                    )
+                    title = b.find(
+                        "h3",
+                        class_="mb-6 text-lg font-semibold leading-tight tracking-tight text-slate-700 break-words lg:text-xl dark:text-slate-200",
+                    ).getText()
 
                     author = b.find("span", class_="mr-1.5").getText()
 
                     date = (
                         b.find(
-                        "div", 
-                        class_="flex flex-wrap sm:flex-nowrap items-center text-slate-500 dark:text-slate-400"
-                    )
-                    .find_all("span")[2]
-                    .getText()
+                            "div",
+                            class_="flex flex-wrap sm:flex-nowrap items-center text-slate-500 dark:text-slate-400",
+                        )
+                        .find_all("span")[2]
+                        .getText()
                     )
 
                     link = b["href"]
 
                     try:
                         like_count = (
-                            b.find(
-                            "span", class_="px-1 py-1.5 flex flex-row gap-1.5"
-                        )
-                        .find("span")
-                        .getText()
+                            b.find("span", class_="px-1 py-1.5 flex flex-row gap-1.5")
+                            .find("span")
+                            .getText()
                         )
                     except:
                         like_count = 0
@@ -380,10 +376,10 @@ class Hashnode:
                     try:
                         comment_count = (
                             b.find_all(
-                            "span", class_="px-1 py-1.5 flex flex-row gap-1.5"
-                        )[1]
-                        .find("span")
-                        .getText()
+                                "span", class_="px-1 py-1.5 flex flex-row gap-1.5"
+                            )[1]
+                            .find("span")
+                            .getText()
                         )
                     except:
                         comment_count = 0
