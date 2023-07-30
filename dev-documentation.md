@@ -1164,3 +1164,17 @@ website = 'canva.com'
 | Methods          | Details                                                                                                                                                        |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `get_upcoming()` | Scrapes account data from Bugmenot.com for the given website and returns a list of dictionaries with account details. Returns `None` if no accounts are found. |
+
+---
+
+# Moneycontrol
+
+Create an instance of Index class
+```python
+index = Index()
+```
+
+| Methods          | Details                                                                                    |
+| -----------------| -------------------------------------------------------------------------------------------|
+| `.contribution()`| Returns the stocks are driving the Sensex and the Nifty up or down and by how many points. |
+
