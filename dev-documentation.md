@@ -482,19 +482,18 @@ scraper = Courses(topic="topic")
 from scrape_up import Wikipedia
 ```
 
-### Scrape Wikipedia Details
-
-<br>
+## Scrape Wikipedia Details
 
 Create an object of the 'WikipediaScrapper' class:
 
 ```python
-Scraper = WikipediaScraper(url)
+Scraper = WikipediaScraper()
 ```
 
-| Methods     | Details                                 |
-| ----------- | --------------------------------------- |
-| `.scrape()` | Returns the Scraped Data from Wikipedia |
+| Methods           | Details                                                 |
+| ----------------- | ------------------------------------------------------- |
+| `.scrape(url)`    | Returns the Scraped Data from Wikipedia                 |
+| `.get_featured()` | Returns the featured article for the day from Wikipedia |
 
 ---
 
