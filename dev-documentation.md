@@ -1170,7 +1170,7 @@ website = 'canva.com'
 
 # Moneycontrol
 
-Create an instance of Index class
+Create an instance of `Index` class
 
 ```python
 index = MoneyControl()
@@ -1179,3 +1179,14 @@ index = MoneyControl()
 | Methods           | Details                                                                                    |
 | ----------------- | ------------------------------------------------------------------------------------------ |
 | `.contribution()` | Returns the stocks are driving the Sensex and the Nifty up or down and by how many points. |
+
+Create an instance of `GoldPrice` class
+
+```python
+goldprice = GoldPrice()
+
+```
+| Methods      | Details                                       |
+| -------------| ----------------------------------------------|
+| `.price_22_carat()`| Returns the price of 22k gold prices citywise |
+| `.price_24_carat()`| Returns the price of 22k gold prices citywise |
