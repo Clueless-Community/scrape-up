@@ -1,3 +1,3 @@
-from scrape_up.wikipedia.wikipedia import wikipedia
+from wikipedia import wikipedia
 
 __all__ = ["wikipedia"]
