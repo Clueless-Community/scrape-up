@@ -102,7 +102,7 @@ class ICC:
         Required Params - `format` - "ODI","T20"
         ```python
         icc = ICC()
-        icc.team_rankings(format="odi")
+        icc.team_rankings_women(format="odi")
         ```
         ```js
         [
@@ -137,7 +137,7 @@ class ICC:
         - `type` - "batting","bowling" or "all-rounder"\n
         ```python
         icc = ICC()
-        icc.team_player(format="test",type="batting")
+        icc.player_ranking_women(format="test",type="batting")
         ```
         Returns \n
         ```js
