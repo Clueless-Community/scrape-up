@@ -482,19 +482,18 @@ scraper = Courses(topic="topic")
 from scrape_up import Wikipedia
 ```
 
-### Scrape Wikipedia Details
-
-<br>
+## Scrape Wikipedia Details
 
 Create an object of the 'WikipediaScrapper' class:
 
 ```python
-Scraper = WikipediaScraper(url)
+Scraper = WikipediaScraper()
 ```
 
-| Methods     | Details                                 |
-| ----------- | --------------------------------------- |
-| `.scrape()` | Returns the Scraped Data from Wikipedia |
+| Methods           | Details                                                 |
+| ----------------- | ------------------------------------------------------- |
+| `.scrape(url)`    | Returns the Scraped Data from Wikipedia                 |
+| `.get_featured()` | Returns the featured article for the day from Wikipedia |
 
 ---
 
@@ -551,6 +550,9 @@ item = Flipkart()
 | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
 | `.printers()`         | Returns the list of printers from flipkart.                        |
 | `.monitor()`          | Returns the list of monitors from flipkart.                        |
+| `.ac()`               | Returns the list of acs from flipkart.                             |
+| `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
+
 
 ---
 
@@ -669,9 +671,10 @@ Create an instance of `Channel` class.
 channel_data = Channel(channel_username="BeABetterDev")
 ```
 
-| Methods       | Details                                                                |
-| ------------- | ---------------------------------------------------------------------- |
-| `.getAbout()` | Returns the channel details mentioned in the about page of the channel |
+| Methods        | Details                                                                |
+| -------------- | ---------------------------------------------------------------------- |
+| `.getAbout()`  | Returns the channel details mentioned in the about page of the channel |
+| `.getVideos()` | Returns all the video details in the videos page of the channel        |
 
 ---
 
@@ -718,9 +721,12 @@ Create an instance of `Reddit` class.
 posts = Reddit()
 ```
 
-| Methods      | Details                                                                                                                         |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
+| Methods      | Details                                                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link      |
+| `.get_best()` | Returns the best posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
+| `.get_hot()`  | Returns the hot posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
+| `.get_top()`  | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
 
 ---
 

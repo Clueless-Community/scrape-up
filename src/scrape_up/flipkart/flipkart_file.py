@@ -22,6 +22,8 @@ class Flipkart:
     | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
     | `.printers()`         | Returns the list of printers from flipkart.                        |
     | `.monitor()`          | Returns the list of monitors from flipkart.                        |
+    | `.ac()`               | Returns the list of acs from flipkart.                             |
+    | `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
     """
 
     def __init__(self):
@@ -507,3 +509,113 @@ class Flipkart:
 
         except Exception as e:
             return None
+
+
+    def ac(self):
+        """
+        Get the list of mobiles under 50K\n
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.ac()
+        ```
+        Return
+        ```js
+        [
+            {
+                "name":"Voltas 1.5 Ton 3 Star Split Inverter AC...",
+                "price":"₹31,990",
+                "description":"Annual Electricity Consumption: ....",
+                "reviews":"218,092",
+                "deals":"49% off"
+            }
+            ...
+        ]
+        ```
+        """
+        try:
+            link = "https://www.flipkart.com/search?q=ac&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("div", class_="_4rR01T")
+                price = data.find("div", class_="_30jeq3 _1_WHN1")
+                description = data.find("ul", class_="_1xgFaf")
+                review = data.find("div", class_="gUuXy-")
+                deals = data.find("div", class_="_3Ay6Sb")
+
+                if names and price and description and review and deals:
+                    item_details = {
+                        "name": names.text if names else None,
+                        "price": price.text if price else None,
+                        "description": description.text if description else None,
+                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "deals": deals.text if deals else None,
+                    }
+
+                    all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+        
+
+
+    def refrigerator(self):
+        """
+        Get the list of mobiles under 50K\n
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.refrigerator()
+        ```
+        Return
+        ```js
+        [
+            {
+                "name":"realme TechLife 564 L Frost Free Side by Side Refrigerator",
+                "price":"₹47,990",
+                "description":"Advanced Inverter CompressorBuilt-in ...",
+                "reviews":"3229",
+                "deals":"46% off"
+            }
+            ...
+        ]
+        ```
+        """
+        try:
+            link = "https://www.flipkart.com/search?q=refrigerator&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("div", class_="_4rR01T")
+                price = data.find("div", class_="_30jeq3 _1_WHN1")
+                description = data.find("ul", class_="_1xgFaf")
+                review = data.find("div", class_="gUuXy-")
+                deals = data.find("div", class_="_3Ay6Sb")
+
+                if names and price and description and review and deals:
+                    item_details = {
+                        "name": names.text if names else None,
+                        "price": price.text if price else None,
+                        "description": description.text if description else None,
+                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "deals": deals.text if deals else None,
+                    }
+
+                    all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+             
