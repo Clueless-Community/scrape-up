@@ -553,7 +553,6 @@ item = Flipkart()
 | `.ac()`               | Returns the list of acs from flipkart.                             |
 | `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
 
-
 ---
 
 ## Spotify
@@ -1170,7 +1169,7 @@ website = 'canva.com'
 
 # Moneycontrol
 
-Create an instance of Index class
+Create an instance of `Index` class
 
 ```python
 index = MoneyControl()
@@ -1180,16 +1179,13 @@ index = MoneyControl()
 | ----------------- | ------------------------------------------------------------------------------------------ |
 | `.contribution()` | Returns the stocks are driving the Sensex and the Nifty up or down and by how many points. |
 
+Create an instance of `GoldPrice` class
 
-Create an instance of GoldPrice class
 ```python
 goldprice = GoldPrice()
-```
 
+```
 | Methods      | Details                                       |
 | -------------| ----------------------------------------------|
-| `.price_22()`| Returns the price of 22k gold prices citywise |
-| `.price_24()`| Returns the price of 22k gold prices citywise |
-
-
-
+| `.price_22_carat()`| Returns the price of 22k gold prices citywise |
+| `.price_24_carat()`| Returns the price of 22k gold prices citywise |
