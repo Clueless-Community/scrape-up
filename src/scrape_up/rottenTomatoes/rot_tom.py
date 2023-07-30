@@ -109,6 +109,7 @@ class RottenTomatoes:
         ```
         """
         try:
+            movie_name = movie_name.replace(" ","_")
             url = self.url + "m/" + movie_name
             response = requests.get(url)
             soup = BeautifulSoup(response.content, "html.parser")
