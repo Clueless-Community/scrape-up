@@ -947,6 +947,7 @@ scraper = RottenTomatoes()
 | ---------------------------- | ------------------------------------------------------------------- |
 | `.top_rated()`               | Returns the top-rated movies listed on the Rotten Tomatoes website. |
 | `.movie_details(movie_name)` | Fetches and returns detailed information about a specific movie.    |
+| `.best_shows()`              | Returns the best TV shows listed on the Rotten Tomatoes website.    |
 
 # Quora
 
