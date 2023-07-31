@@ -14,6 +14,7 @@ class Channel:
     | ------------- | ---------------------------------------------------------------------- |
     | `.get_about()` | Returns the channel details mentioned in the about page of the channel |
     | `.get_videos()`| Returns all the video details in the videos page of the channel |
+    | `.get_videos()`| Returns all the post details in the community page of the channel |
     """
 
     def __init__(self, channel_username):
