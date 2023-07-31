@@ -171,3 +171,62 @@ class Channel:
             return videos_data["videos"]
         except:
             return None
+        
+    def get_community(self):
+        
+        url = f"https://www.youtube.com/@{self.channel_username}/community"
+        try:
+            res = requests.get(url)
+            soup = BeautifulSoup(res.text, "html.parser")
+            posts_data = {"posts": []}
+            scripts = soup.find_all("script")
+            req_script = scripts[35].text.strip()
+            script = req_script[20:-1]
+            data = json.loads(script)
+
+            try:
+                posts = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][6]["tabRenderer"]["content"]["sectionListRenderer"]["contents"][0]["itemSectionRenderer"]["contents"]
+            except:
+                posts = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][5]["tabRenderer"]["content"]["sectionListRenderer"]["contents"][0]["itemSectionRenderer"]["contents"]
+
+            for p in posts:
+                images = {"images": []}
+                try:
+                    base = p["backstagePostThreadRenderer"]["post"]["backstagePostRenderer"]
+                    try:
+                        title = base["contentText"]["runs"][0]["text"]
+                    except:
+                        title = ""
+                    try:
+                        try:
+                            imagebloc = base["backstageAttachment"]["postMultiImageRenderer"]["images"]
+                            for i in imagebloc:
+                                images["images"].append(i["backstageImageRenderer"]["image"]["thumbnails"][-1]["url"])
+                        except:
+                            images["images"].append(base["backstageAttachment"]["backstageImageRenderer"]["image"]["thumbnails"][-1]["url"])
+                    except:
+                        images["images"] = []
+                    date = base["publishedTimeText"]["runs"][0]["text"]
+                    try:
+                        likes = base["voteCount"]["simpleText"]
+                    except:
+                        likes = 0
+                    try:
+                        comment_count = base["actionButtons"]["commentActionButtonsRenderer"]["replyButton"]["buttonRenderer"]["text"]["simpleText"]
+                    except:
+                        comment_count = 0
+                except:
+                    pass
+
+                posts_data["posts"].append(
+                    {
+                        "title": title,
+                        "images": images["images"],
+                        "likes_count": likes,
+                        "comment_count": comment_count,
+                        "publishedAt": date
+                    }
+                )
+            return posts_data["posts"]
+        except:
+            return None
