@@ -115,6 +115,8 @@ class ICC:
         """
         try:
             format = format.lower()
+            if format=="t20":
+                format="t20i"
             obj_keys = ["rank", "team"]
             resposne_list = []
             url = self.url_women + "team-rankings/" + format
@@ -144,7 +146,7 @@ class ICC:
         [
             {
                 "rank":1,
-                "team":"Kane Williamson"
+                "team":"Natalie Sciver-Brunt"
             }
             ...
         ]
@@ -153,6 +155,9 @@ class ICC:
         try:
             format = format.lower()
             type = type.lower()
+            type = type.replace(" ","-")
+            if format=="t20":
+                format="t20i"
             response_list = []
             obj_keys = ["rank", "name"]
             url = self.url_women + f"/player-rankings/{format}/{type}"
