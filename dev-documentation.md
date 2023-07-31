@@ -674,6 +674,7 @@ channel_data = Channel(channel_username="BeABetterDev")
 | -------------- | ---------------------------------------------------------------------- |
 | `.getAbout()`  | Returns the channel details mentioned in the about page of the channel |
 | `.getVideos()` | Returns all the video details in the videos page of the channel        |
+| `.get_community()`| Returns all the post details in the community page of the channel   |
 
 ---
 
