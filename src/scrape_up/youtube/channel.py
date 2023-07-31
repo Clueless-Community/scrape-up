@@ -173,7 +173,27 @@ class Channel:
             return None
         
     def get_community(self):
-        
+        """
+        Class - `Channel`
+        ```py
+        channel_data = Channel(channel_username="BeABetterDev")
+        channel_data.get_community()
+        ```
+        Returns:
+        ```js
+        [
+            {
+                "title": Title of the post
+                "images": List of images if any present in the post
+                "likes_count": Total likes of the post
+                "comment_count": Total comments on the post
+                "publishedAt": Date the post was published
+                
+            }
+            ...
+        ]
+        ```
+        """
         url = f"https://www.youtube.com/@{self.channel_username}/community"
         try:
             res = requests.get(url)
