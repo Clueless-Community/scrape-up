@@ -230,11 +230,11 @@ class Channel:
                     try:
                         likes = base["voteCount"]["simpleText"]
                     except:
-                        likes = 0
+                        likes = '0'
                     try:
                         comment_count = base["actionButtons"]["commentActionButtonsRenderer"]["replyButton"]["buttonRenderer"]["text"]["simpleText"]
                     except:
-                        comment_count = 0
+                        comment_count = '0'
                 except:
                     pass
 
