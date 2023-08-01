@@ -19,6 +19,7 @@ class ICC:
     def __init__(self):
         self.url = "https://www.icc-cricket.com/rankings/mens/"
         self.url_women = "https://www.icc-cricket.com/rankings/womens/"
+
     def team_rankings(self, format):
         """
         Create an instance of `ICC` class.\n
@@ -87,7 +88,7 @@ class ICC:
             rest_players = soup.find_all(
                 "td", class_="table-body__cell rankings-table__name name"
             )
-            response_list.append(dict(zip(obj_keys,[1,top_player])))
+            response_list.append(dict(zip(obj_keys, [1, top_player])))
             for rank, player in enumerate(rest_players, 2):
                 obj_values = [rank, player.get_text().replace("\n", "")]
                 response_list.append(dict(zip(obj_keys, obj_values)))
@@ -115,8 +116,8 @@ class ICC:
         """
         try:
             format = format.lower()
-            if format=="t20":
-                format="t20i"
+            if format == "t20":
+                format = "t20i"
             obj_keys = ["rank", "team"]
             resposne_list = []
             url = self.url_women + "team-rankings/" + format
@@ -139,7 +140,7 @@ class ICC:
         - `type` - "batting","bowling" or "all-rounder"\n
         ```python
         icc = ICC()
-        icc.player_ranking_women(format="test",type="batting")
+        icc.player_ranking_women(type="batting", format="odi")
         ```
         Returns \n
         ```js
@@ -155,9 +156,9 @@ class ICC:
         try:
             format = format.lower()
             type = type.lower()
-            type = type.replace(" ","-")
-            if format=="t20":
-                format="t20i"
+            type = type.replace(" ", "-")
+            if format == "t20":
+                format = "t20i"
             response_list = []
             obj_keys = ["rank", "name"]
             url = self.url_women + f"/player-rankings/{format}/{type}"
@@ -169,7 +170,7 @@ class ICC:
             rest_players = soup.find_all(
                 "td", class_="table-body__cell rankings-table__name name"
             )
-            response_list.append(dict(zip(obj_keys,[1,top_player])))
+            response_list.append(dict(zip(obj_keys, [1, top_player])))
             for rank, player in enumerate(rest_players, 2):
                 obj_values = [rank, player.get_text().replace("\n", "")]
                 response_list.append(dict(zip(obj_keys, obj_values)))
@@ -177,6 +178,3 @@ class ICC:
             return response_list
         except:
             return None
-
-
-
