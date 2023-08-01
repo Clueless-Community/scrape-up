@@ -1192,3 +1192,18 @@ goldprice = GoldPrice()
 | ------------------- | --------------------------------------------- |
 | `.price_22_carat()` | Returns the price of 22k gold prices citywise |
 | `.price_24_carat()` | Returns the price of 22k gold prices citywise |
+
+
+
+# ESPN
+
+Create an instance of `ESPN` class
+
+```python
+espn = ESPN()
+```
+
+| Method             | Details                                                        |
+| ------------------ | -------------------------------------------------------------- |
+| `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
+
