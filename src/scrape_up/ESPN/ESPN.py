@@ -12,9 +12,9 @@ class ESPN:
     print(scores)
     ```
 
-    | Method              | Details                                                      |
-    | ------------------- | ------------------------------------------------------------ |
-    | `get_scoreboard()`  | Fetches and returns the football scoreboards for a given date.
+    | Method              | Details                                                       |
+    | ------------------- | ------------------------------------------------------------  |
+    | `get_scoreboard()`  | Fetches and returns the football scoreboards for a given date.|
 
     """
     def __init__(self):
@@ -92,5 +92,3 @@ class ESPN:
         except:
             return None
 
-x = ESPN()
-print(x.get_scoreboard("20230601"))
