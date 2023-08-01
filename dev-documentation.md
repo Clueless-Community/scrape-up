@@ -670,10 +670,11 @@ Create an instance of `Channel` class.
 channel_data = Channel(channel_username="BeABetterDev")
 ```
 
-| Methods        | Details                                                                |
-| -------------- | ---------------------------------------------------------------------- |
-| `.getAbout()`  | Returns the channel details mentioned in the about page of the channel |
-| `.getVideos()` | Returns all the video details in the videos page of the channel        |
+| Methods            | Details                                                                |
+| ------------------ | ---------------------------------------------------------------------- |
+| `.getAbout()`      | Returns the channel details mentioned in the about page of the channel |
+| `.getVideos()`     | Returns all the video details in the videos page of the channel        |
+| `.get_community()` | Returns all the post details in the community page of the channel      |
 
 ---
 
@@ -1192,6 +1193,7 @@ goldprice = GoldPrice()
 | `.price_22_carat()` | Returns the price of 22k gold prices citywise |
 | `.price_24_carat()` | Returns the price of 22k gold prices citywise |
 
+
 Create an instance of `IndianIndex` class
 
 ```python
@@ -1202,3 +1204,18 @@ indianindex = IndianIndex()
 | ------------ | ------------------------------------------------------- |
 | `.current()` | Returns the Indian Indices and their current value      |
 | `.change()`  | Returns the Indian Indices and their change and %change |
+
+
+
+# ESPN
+
+Create an instance of `ESPN` class
+
+```python
+espn = ESPN()
+```
+
+| Method             | Details                                                        |
+| ------------------ | -------------------------------------------------------------- |
+| `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
+
