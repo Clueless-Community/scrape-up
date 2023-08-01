@@ -1221,3 +1221,15 @@ espn = ESPN()
 | ------------------ | -------------------------------------------------------------- |
 | `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
 
+
+# Magic Bricks
+
+Create an instance of `MagicBricks` class
+
+```python
+magicbricks = MagicBricks()
+```
+
+| Method                           | Details                                                                      |
+| -------------------------------- | ---------------------------------------------------------------------------  |
+| `get_ready_to_move(city)`        | Fetches and returns the details of ready-to-move flats in the specified city.|
