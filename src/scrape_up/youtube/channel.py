@@ -110,7 +110,7 @@ class Channel:
             return channel_data["channel_data"][0]
         except:
             return None
-        
+
     def get_videos(self):
         """
         Class - `Channel`
@@ -144,7 +144,9 @@ class Channel:
             script = req_script[20:-1]
             data = json.loads(script)
 
-            vids = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][1]["tabRenderer"]["content"]["richGridRenderer"]["contents"]
+            vids = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][1][
+                "tabRenderer"
+            ]["content"]["richGridRenderer"]["contents"]
             for v in vids:
                 try:
                     base = v["richItemRenderer"]["content"]["videoRenderer"]
@@ -152,9 +154,16 @@ class Channel:
                     thumbnail_url = base["thumbnail"]["thumbnails"][-1]["url"]
                     desc = base["descriptionSnippet"]["runs"][0]["text"]
                     publishedAt = base["publishedTimeText"]["simpleText"]
-                    length = base["lengthText"]["accessibility"]["accessibilityData"]["label"]
+                    length = base["lengthText"]["accessibility"]["accessibilityData"][
+                        "label"
+                    ]
                     views = base["viewCountText"]["simpleText"]
-                    link = "https://www.youtube.com/" + base["navigationEndpoint"]["commandMetadata"]["webCommandMetadata"]["url"]
+                    link = (
+                        "https://www.youtube.com/"
+                        + base["navigationEndpoint"]["commandMetadata"][
+                            "webCommandMetadata"
+                        ]["url"]
+                    )
                 except:
                     pass
 
@@ -166,13 +175,13 @@ class Channel:
                         "views_count": views,
                         "publishedAt": publishedAt,
                         "video_length": length,
-                        "link": link 
+                        "link": link,
                     }
                 )
             return videos_data["videos"]
         except:
             return None
-        
+
     def get_community(self):
         """
         Class - `Channel`
@@ -184,13 +193,14 @@ class Channel:
         ```js
         [
             {
-                "title": Title of the post
-                "images": List of images if any present in the post
-                "likes_count": Total likes of the post
-                "comment_count": Total comments on the post
-                "publishedAt": Date the post was published
-                
-            }
+                "title":"Over the past few weeks, this channel crossed 10,000,000 total views and 150,000 subscribers. It's incredible to think how far its come and how many people this channel has managed to help. Thank you for your support!",
+                "images":[
+                    
+                ],
+                "likes_count":"157",
+                "comment_count":"10",
+                "publishedAt":"4 months ago"
+            },
             ...
         ]
         ```
@@ -206,36 +216,62 @@ class Channel:
             data = json.loads(script)
 
             try:
-                posts = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][6]["tabRenderer"]["content"]["sectionListRenderer"]["contents"][0]["itemSectionRenderer"]["contents"]
+                posts = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][6][
+                    "tabRenderer"
+                ]["content"]["sectionListRenderer"]["contents"][0][
+                    "itemSectionRenderer"
+                ][
+                    "contents"
+                ]
             except:
-                posts = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][5]["tabRenderer"]["content"]["sectionListRenderer"]["contents"][0]["itemSectionRenderer"]["contents"]
+                posts = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][5][
+                    "tabRenderer"
+                ]["content"]["sectionListRenderer"]["contents"][0][
+                    "itemSectionRenderer"
+                ][
+                    "contents"
+                ]
 
             for p in posts:
                 images = {"images": []}
                 try:
-                    base = p["backstagePostThreadRenderer"]["post"]["backstagePostRenderer"]
+                    base = p["backstagePostThreadRenderer"]["post"][
+                        "backstagePostRenderer"
+                    ]
                     try:
                         title = base["contentText"]["runs"][0]["text"]
                     except:
                         title = ""
                     try:
                         try:
-                            imagebloc = base["backstageAttachment"]["postMultiImageRenderer"]["images"]
+                            imagebloc = base["backstageAttachment"][
+                                "postMultiImageRenderer"
+                            ]["images"]
                             for i in imagebloc:
-                                images["images"].append(i["backstageImageRenderer"]["image"]["thumbnails"][-1]["url"])
+                                images["images"].append(
+                                    i["backstageImageRenderer"]["image"]["thumbnails"][
+                                        -1
+                                    ]["url"]
+                                )
                         except:
-                            images["images"].append(base["backstageAttachment"]["backstageImageRenderer"]["image"]["thumbnails"][-1]["url"])
+                            images["images"].append(
+                                base["backstageAttachment"]["backstageImageRenderer"][
+                                    "image"
+                                ]["thumbnails"][-1]["url"]
+                            )
                     except:
                         images["images"] = []
                     date = base["publishedTimeText"]["runs"][0]["text"]
                     try:
                         likes = base["voteCount"]["simpleText"]
                     except:
-                        likes = '0'
+                        likes = "0"
                     try:
-                        comment_count = base["actionButtons"]["commentActionButtonsRenderer"]["replyButton"]["buttonRenderer"]["text"]["simpleText"]
+                        comment_count = base["actionButtons"][
+                            "commentActionButtonsRenderer"
+                        ]["replyButton"]["buttonRenderer"]["text"]["simpleText"]
                     except:
-                        comment_count = '0'
+                        comment_count = "0"
                 except:
                     pass
 
@@ -245,7 +281,7 @@ class Channel:
                         "images": images["images"],
                         "likes_count": likes,
                         "comment_count": comment_count,
-                        "publishedAt": date
+                        "publishedAt": date,
                     }
                 )
             return posts_data["posts"]
