@@ -1186,21 +1186,19 @@ Create an instance of `GoldPrice` class
 goldprice = GoldPrice()
 
 ```
-| Methods      | Details                                       |
-| -------------| ----------------------------------------------|
-| `.price_22_carat()`| Returns the price of 22k gold prices citywise |
-| `.price_24_carat()`| Returns the price of 22k gold prices citywise |
 
-
+| Methods             | Details                                       |
+| ------------------- | --------------------------------------------- |
+| `.price_22_carat()` | Returns the price of 22k gold prices citywise |
+| `.price_24_carat()` | Returns the price of 22k gold prices citywise |
 
 Create an instance of `IndianIndex` class
-
 
 ```python
 indianindex = IndianIndex()
 ```
 
-| Methods     | Details                                                |
-| ----- ------| -------------------------------------------------------|
-| `.current()`| Returns the Indian Indices and their current value     |
-| `.change()` | Returns the Indian Indices and their change and %change|
+| Methods      | Details                                                 |
+| ------------ | ------------------------------------------------------- |
+| `.current()` | Returns the Indian Indices and their current value      |
+| `.change()`  | Returns the Indian Indices and their change and %change |
