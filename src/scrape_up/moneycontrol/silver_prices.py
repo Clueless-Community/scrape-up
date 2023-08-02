@@ -1,6 +1,7 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
 
+
 class SilverPrice:
 
     """
@@ -30,7 +31,6 @@ class SilverPrice:
         except:
             return None
 
-
     def citywise_price(self):
         """
         Create an instance of `SilverPrice` class
@@ -42,10 +42,10 @@ class SilverPrice:
         Return\n
         ```js
         {
-            'Agra': '81', 
-            'Ahmedabad': '81', 
-            'Bangalore': '81', 
-            'Bhilai': '81', 
+            'Agra': '81',
+            'Ahmedabad': '81',
+            'Bangalore': '81',
+            'Bhilai': '81',
             'Bhopal': '81'
         }
         ```
@@ -62,7 +62,7 @@ class SilverPrice:
 
         except:
             return None
-    
+
     def last_10_days(self):
         """
         Create an instance of `SilverPrice` class
@@ -74,22 +74,22 @@ class SilverPrice:
         Return\n
         ```js
         {
-            'Aug 01, 2023': '810', 
-            'Jul 31, 2023': '800', 
-            'Jul 30, 2023': '800', 
-            'Jul 29, 2023': '800', 
-            'Jul 28, 2023': '795', 
-            'Jul 26, 2023': '804', 
-            'Jul 25, 2023': '800', 
-            'Jul 24, 2023': '805', 
-            'Jul 23, 2023': '805', 
+            'Aug 01, 2023': '810',
+            'Jul 31, 2023': '800',
+            'Jul 30, 2023': '800',
+            'Jul 29, 2023': '800',
+            'Jul 28, 2023': '795',
+            'Jul 26, 2023': '804',
+            'Jul 25, 2023': '800',
+            'Jul 24, 2023': '805',
+            'Jul 23, 2023': '805',
             'Jul 22, 2023': '805'
         }
         ```
         """
         try:
             x = self.page_soup.find_all("tr")
-            x = x[-10 : ]
+            x = x[-10:]
 
             x = [(y.get_text()).split("₹ ") for y in x]
             keys = [y[0] for y in x]
