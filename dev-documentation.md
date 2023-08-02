@@ -1195,7 +1195,6 @@ goldprice = GoldPrice()
 | `.price_22_carat()` | Returns the price of 22k gold prices citywise |
 | `.price_24_carat()` | Returns the price of 22k gold prices citywise |
 
-
 Create an instance of `IndianIndex` class
 
 ```python
@@ -1206,8 +1205,6 @@ indianindex = IndianIndex()
 | ------------ | ------------------------------------------------------- |
 | `.current()` | Returns the Indian Indices and their current value      |
 | `.change()`  | Returns the Indian Indices and their change and %change |
-
-
 
 # ESPN
 
@@ -1221,7 +1218,6 @@ espn = ESPN()
 | ------------------ | -------------------------------------------------------------- |
 | `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
 
-
 # Magic Bricks
 
 Create an instance of `MagicBricks` class
@@ -1230,6 +1226,6 @@ Create an instance of `MagicBricks` class
 magicbricks = MagicBricks()
 ```
 
-| Method                           | Details                                                                      |
-| -------------------------------- | ---------------------------------------------------------------------------  |
-| `get_ready_to_move(city)`        | Fetches and returns the details of ready-to-move flats in the specified city.|
+| Method                    | Details                                                                       |
+| ------------------------- | ----------------------------------------------------------------------------- |
+| `get_ready_to_move(city)` | Fetches and returns the details of ready-to-move flats in the specified city. |

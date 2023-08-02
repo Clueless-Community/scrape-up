@@ -1,4 +1,3 @@
 from MagicBricks import MagicBricks
 
-__all__ = ['MagicBricks']
-
+__all__ = ["MagicBricks"]
