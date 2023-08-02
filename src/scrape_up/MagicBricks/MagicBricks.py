@@ -58,6 +58,7 @@ class MagicBricks:
         ```
         """
         try:
+            city = city.replace(" ","-") 
             city = city.lower()
             url = f"https://www.magicbricks.com/ready-to-move-flats-in-{city}-pppfs"
             html_text = requests.get(url, headers=self.headers).text
@@ -78,6 +79,10 @@ class MagicBricks:
                     else:
                         break
                 description = items.find("div",{"class":"mb-srp__card--desc--text"})
+                if description:
+                    description = description.text
+                else:
+                    description = None
                 amount = items.find("div",{"class":"mb-srp__card__price--amount"})
                 price_per_sqft = items.find("div",{"class":"mb-srp__card__price--size"})
                 if price_per_sqft:
@@ -87,7 +92,7 @@ class MagicBricks:
                 data = {
                     "Title":title.text,
                     "Details":labels,
-                    "Description":description.text,
+                    "Description":description,
                     "Amount":amount.text,
                     "Price Per SQFT":price_per_sqft
                 }
