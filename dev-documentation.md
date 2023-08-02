@@ -257,16 +257,17 @@ user = instagram.User(username="nikhil25803")
 
 ## Internshala
 
-Create an object for the 'Internships' class:
+Create an object for the 'Internshala' class:
 
 ```python
 search = Internshala(search_type="machine learning")
 ```
 
-| Methods          | Details                                                              |
-| ---------------- | -------------------------------------------------------------------- |
-| `.internships()` | Scrapes and returns a list of dictionaries representing internships. |
-| `.jobs()`        | Scrapes and returns a list of dictionaries representing jobs.        |
+| Methods                    | Details                                                                        |
+| -------------------------- | ------------------------------------------------------------------------------ |
+| `.internships()`           | Scrapes and returns a list of dictionaries representing internships.           |
+| `.jobs()`                  | Scrapes and returns a list of dictionaries representing jobs.                  |
+| `.certification_courses()` | Scrapes and returns a list of dictionaries representing certification courses. |
 
 ## KooApp
 
@@ -436,16 +437,29 @@ scraper = IMDB()
 | `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
 | `.top_rated_shows()`          | Returns the top-rated shows listed on IMDB.                    |
 
-Create an instance of Movie class with the name of the movie
+Create an instance of `Movie` class.
 
 ```python
-mov = Movie(movie_name)
+movie = Movie(movie_name)
 ```
 
 | Methods          | Details                                                 |
 | ---------------- | ------------------------------------------------------- |
 | `.rating()`      | Returns the IMDB rating of the movie                    |
 | `.description()` | Returns the description, cast and director of the movie |
+| `.more_movies()` | Returns similar movies recommended by IMDB              |
+
+Create an instance of `Actor` class.
+
+```python
+actor = Actor(actor_name)
+```
+
+| Methods             | Details                                                 |
+| ------------------- | ------------------------------------------------------- |
+| `.popular_movies()` | Returns the popular movies in which the actor has acted |
+| `.all_movies()`     | Returns all movies acted in and upcoming movies         |
+| `.awards()`         | Returns the number of awards and nominations            |
 
 ---
 
@@ -468,19 +482,18 @@ scraper = Courses(topic="topic")
 from scrape_up import Wikipedia
 ```
 
-### Scrape Wikipedia Details
-
-<br>
+## Scrape Wikipedia Details
 
 Create an object of the 'WikipediaScrapper' class:
 
 ```python
-Scraper = WikipediaScraper(url)
+Scraper = WikipediaScraper()
 ```
 
-| Methods     | Details                                 |
-| ----------- | --------------------------------------- |
-| `.scrape()` | Returns the Scraped Data from Wikipedia |
+| Methods           | Details                                                 |
+| ----------------- | ------------------------------------------------------- |
+| `.scrape(url)`    | Returns the Scraped Data from Wikipedia                 |
+| `.get_featured()` | Returns the featured article for the day from Wikipedia |
 
 ---
 
@@ -533,8 +546,13 @@ item = Flipkart()
 | `.laptops()`          | Returns the list of laptop from flipkart.                          |
 | `.camera()`           | Returns the list of camera from flipkart.                          |
 | `.computer()`         | Returns the list of computer from flipkart.                        |
+| `.tablets()`          | Returns the list of tablets from flipkart.                         |
+| `.cycle()`            | Returns the list of bicycles from flipkart.                        |
 | `.printers()`         | Returns the list of printers from flipkart.                        |
 | `.vrbox()`            | Returns the list of vrbox from flipkart.                        |
+| `.monitor()`          | Returns the list of monitors from flipkart.                        |
+| `.ac()`               | Returns the list of acs from flipkart.                             |
+| `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
 
 ---
 
@@ -653,9 +671,11 @@ Create an instance of `Channel` class.
 channel_data = Channel(channel_username="BeABetterDev")
 ```
 
-| Methods       | Details                                                                |
-| ------------- | ---------------------------------------------------------------------- |
-| `.getAbout()` | Returns the channel details mentioned in the about page of the channel |
+| Methods            | Details                                                                |
+| ------------------ | ---------------------------------------------------------------------- |
+| `.getAbout()`      | Returns the channel details mentioned in the about page of the channel |
+| `.getVideos()`     | Returns all the video details in the videos page of the channel        |
+| `.get_community()` | Returns all the post details in the community page of the channel      |
 
 ---
 
@@ -685,11 +705,12 @@ Create an instance of `Hashnode` class.
 blogs = Hashnode()
 ```
 
-| Methods           | Details                                                                                              |
-| ----------------- | ---------------------------------------------------------------------------------------------------- |
-| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link |
-| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link   |
-| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link     |
+| Methods           | Details                                                                                               |
+| ----------------- | ----------------------------------------------------------------------------------------------------- |
+| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link  |
+| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link    |
+| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link      |
+| `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date and link for a topic |
 
 ---
 
@@ -701,9 +722,12 @@ Create an instance of `Reddit` class.
 posts = Reddit()
 ```
 
-| Methods      | Details                                                                                                                         |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
+| Methods       | Details                                                                                                                              |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `.getFeed()`  | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link      |
+| `.get_best()` | Returns the best posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
+| `.get_hot()`  | Returns the hot posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
+| `.get_top()`  | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
 
 ---
 
@@ -801,11 +825,14 @@ Create an instance of the `CovidInfo` class.
 response = CovidInfo()
 ```
 
-| Methods          | Details                                                                                     |
-| ---------------- | ------------------------------------------------------------------------------------------- |
-| `.covid_data()`  | Returns the scraped data from the target website of all the countries in the form of a list |
-| `.totalcases()`  | Returns the total number of covid cases as of yet in the form of a string of numbers        |
-| `.totaldeaths()` | Returns the total number of covid deaths as of yet in the form of a string of numbers       |
+Class - `CovidInfo`\n
+| Methods | Details |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.covid_data()` | Returns the list of all the covid data scraped from the website |
+| `.total_cases()` | Returns the count of total covid cases all over the world |
+| `.total_deaths()` | Returns the count of deaths covid cases all over the world |
+| `.total_recovered()` | Returns the count of recovered covid cases all over the world |
+| `.latest_news()` | Return the lastest news of the day |
 
 # FlipkartTees
 
@@ -921,6 +948,7 @@ scraper = RottenTomatoes()
 | ---------------------------- | ------------------------------------------------------------------- |
 | `.top_rated()`               | Returns the top-rated movies listed on the Rotten Tomatoes website. |
 | `.movie_details(movie_name)` | Fetches and returns detailed information about a specific movie.    |
+| `.best_shows()`              | Returns the best TV shows listed on the Rotten Tomatoes website.    |
 
 # Quora
 
@@ -938,16 +966,18 @@ quora = Quora()
 
 # ICC Rankings
 
-"""
 Create an instance of `ICC` class.
-`python
+
+```python
     scraper = ICC()
-    `
-| Method | Details |
-| ---------------------------- | ------------------------------------------------------------------- |
-| `.team_rankings(format)` | Returns the list of rankings of teams of desired format |
-|`.player_ranking(type,format)`| Returns the list of player ranking of desired type and format |
-"""
+```
+
+| Method                               | Details                                                             |
+| ------------------------------------ | ------------------------------------------------------------------- |
+| `.team_rankings(format)`             | Returns the list of rankings of teams of the desired format         |
+| `.player_ranking(type,format)`       | Returns the list of player ranking of desired type and format       |
+| `.team_rankings_women(format)`       | Returns the list of rankings of teams of the desired format         |
+| `.player_ranking_women(type,format)` | Returns the list of women player ranking of desired type and format |
 
 ---
 
@@ -959,9 +989,10 @@ First, create an object of class `Swiggy`
 store1 = Swiggy()
 ```
 
-| Methods                                      | Details                                                                  |
-| -------------------------------------------- | ------------------------------------------------------------------------ |
-| `get_restraunt_details(restraunt_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+| Methods                   | Details                                                                   |
+| ------------------------- | ------------------------------------------------------------------------- |
+| `get_restraunt_details()` | Returns the restaurant data with name, cuisine, area, rating, offers, etc |
+| `get_restaurants()`       | Returns the restaurant names as per given city                            |
 
 ---
 
@@ -1028,13 +1059,14 @@ user1 = Codechef(id="username")
 First, create an object of class `HackerRank`
 
 ```python
-user1 = HackerRank(id="username")
-
+hackerank = HackerRank()
 ```
 
-| Methods         | Details                                                                                   |
-| --------------- | ----------------------------------------------------------------------------------------- |
-| `get_profile()` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
+| Methods                      | Details                                                                                   |
+| ---------------------------- | ----------------------------------------------------------------------------------------- |
+| `get_profile(id="username")` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
+| `active_contests()`          | Returns information on active contests like title, status, and link                       |
+| `archived_contests()`        | Returns information regarding archived contests                                           |
 
 ---
 
@@ -1051,3 +1083,150 @@ yf = YahooFinance()
 | `.headline()` | Fetches headlines from yahooFinance |
 
 ---
+
+# BBC News
+
+First create an object of class `User`
+
+```python
+user = instagram.Users(username="nikhil25803")
+```
+
+| Methods            | Details                                                  |
+| ------------------ | -------------------------------------------------------- |
+| `.get_headlines()` | Returns the list of object containig the headlines       |
+| `get_article()`    | Returns an object with proper details about the articles |
+
+---
+
+# Billionaires
+
+Create an instance of `Billionaires` class.
+
+```python
+billionaires = Billionaires()
+```
+
+| Methods             | Details                                                                                      |
+| ------------------- | -------------------------------------------------------------------------------------------- |
+| `.realtime()`       | It takes a user query parameter as an argument and returns all relevant terms related to it. |
+| `.powerfulwomen()`  | Returns as JSON the list of Forbes most powerful women in the world.                         |
+| `.powerfulpeople()` | Returns as JSON a list of Forbes Porweful people.                                            |
+| `.bylocation()`     | Returns as JSON the billionaires of a particular nation.                                     |
+
+---
+
+# Hackerearth
+
+First, create an object of class `Hackerearth`
+
+```python
+hackerearth = Hackerearth()
+```
+
+| Methods          | Details                                                |
+| ---------------- | ------------------------------------------------------ |
+| `get_upcoming()` | Get the details of upcoming challenges on Hackerearth. |
+| `get_ongoing()`  | Get the details of ongoing challenges on Hackerearth.  |
+
+# TripAdvisor
+
+First, create an object of class `TripAdvisor`
+
+```python
+hotel = TripAdvisor()
+
+```
+
+| Methods                  | Details                                              |
+| ------------------------ | ---------------------------------------------------- |
+| `get_details(hotel_url)` | Get the details of a hotel from its TripAdvisor URL. |
+
+---
+
+# WHO
+
+Create an instance of WHO class
+
+```python
+who = WHO()
+```
+
+| Methods                  | Details                                     |
+| ------------------------ | ------------------------------------------- |
+| `get_disease_outbreak()` | Get Disease Outbreak News from WHO website. |
+
+---
+
+# Bugmenot
+
+Create an instance of the class `Bugmenot`
+
+```python
+website = 'canva.com'
+```
+
+| Methods          | Details                                                                                                                                                        |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_upcoming()` | Scrapes account data from Bugmenot.com for the given website and returns a list of dictionaries with account details. Returns `None` if no accounts are found. |
+
+---
+
+# Moneycontrol
+
+Create an instance of `Index` class
+
+```python
+index = MoneyControl()
+```
+
+| Methods           | Details                                                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| `.contribution()` | Returns the stocks are driving the Sensex and the Nifty up or down and by how many points. |
+
+Create an instance of `GoldPrice` class
+
+```python
+goldprice = GoldPrice()
+
+```
+
+| Methods             | Details                                       |
+| ------------------- | --------------------------------------------- |
+| `.price_22_carat()` | Returns the price of 22k gold prices citywise |
+| `.price_24_carat()` | Returns the price of 22k gold prices citywise |
+
+Create an instance of `IndianIndex` class
+
+```python
+indianindex = IndianIndex()
+```
+
+| Methods      | Details                                                 |
+| ------------ | ------------------------------------------------------- |
+| `.current()` | Returns the Indian Indices and their current value      |
+| `.change()`  | Returns the Indian Indices and their change and %change |
+
+# ESPN
+
+Create an instance of `ESPN` class
+
+```python
+espn = ESPN()
+```
+
+| Method             | Details                                                        |
+| ------------------ | -------------------------------------------------------------- |
+| `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
+
+# Magic Bricks
+
+Create an instance of `MagicBricks` class
+
+```python
+magicbricks = MagicBricks()
+```
+
+| Method                    | Details                                                                       |
+| ------------------------- | ----------------------------------------------------------------------------- |
+| `get_ready_to_move(city)` | Fetches and returns the details of ready-to-move flats in the specified city. |
