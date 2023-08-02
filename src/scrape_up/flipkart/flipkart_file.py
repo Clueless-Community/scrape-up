@@ -422,7 +422,7 @@ class Flipkart:
         Example -\n
         ```python
         item = Flipkart()
-        item.tablets()
+        item.vrbox()
         """
         try:
             link = "https://www.flipkart.com/search?q=vr+box&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=2"
