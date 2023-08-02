@@ -1206,6 +1206,17 @@ indianindex = IndianIndex()
 | `.current()` | Returns the Indian Indices and their current value      |
 | `.change()`  | Returns the Indian Indices and their change and %change |
 
+Create an instance of `SilverPrice` class
+
+```python
+silverprice = SilverPrice()
+```
+
+| Methods             | Details                                                             |
+| ------------------- | ------------------------------------------------------------------- |
+| `.citywise_price()` | Returns the price of silver citywise in rupees                      |
+| `.last_10_days()`   | Returns the price of 10 grams silver for the last 10 days in rupees |
+
 # ESPN
 
 Create an instance of `ESPN` class
@@ -1217,6 +1228,7 @@ espn = ESPN()
 | Method             | Details                                                        |
 | ------------------ | -------------------------------------------------------------- |
 | `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
+
 
 # Magic Bricks
 
