@@ -20,6 +20,7 @@ class Flipkart:
     | `.computer()`         | Returns the list of computer from flipkart.                       |
     | `.tablets()`          | Returns the list of tablets from flipkart.                         |
     | `.printers()`         | Returns the list of printers from flipkart.                         |
+    | `.vrbox()`            | Returns the list of vrbox from flipkart.                         |
     """
 
     def __init__(self):
@@ -413,3 +414,41 @@ class Flipkart:
 
         except Exception as e:
             return None
+        
+    def vrbox():
+        """
+        Get the list of mobiles under 50K\n
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.tablets()
+        """
+        try:
+            link = "https://www.flipkart.com/search?q=vr+box&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=2"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("a", class_="s1Q9rs")
+                price = data.find("div", class_="_30jeq3")
+                review = data.find("div", class_="_3LWZlK _32lA32")
+                delivery = data.find("div", class_="_2Tpdn3")
+
+                item_details = {
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Review": review.text if review else None,
+                    "delivery": delivery.text if review else None, 
+                }
+
+                all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+a=Flipkart.vrbox()
+print(a)
