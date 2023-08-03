@@ -448,6 +448,7 @@ movie = Movie(movie_name)
 | `.rating()`      | Returns the IMDB rating of the movie                    |
 | `.description()` | Returns the description, cast and director of the movie |
 | `.more_movies()` | Returns similar movies recommended by IMDB              |
+| `.box_office()`  | Returns budget, gross worldwide collections of the movie|
 
 Create an instance of `Actor` class.
 
