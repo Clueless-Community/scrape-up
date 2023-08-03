@@ -338,3 +338,43 @@ class Reddit:
             return posts_data["posts"]
         except:
             return None
+    
+    def search(self, topic):
+       
+        url = "https://www.reddit.com/search/?q=" + topic
+        try:
+            res = requests.get(url)
+            soup = BeautifulSoup(res.text, "html.parser")
+
+            posts_data = {"posts": []}
+
+            posts = soup.find_all("div", class_="pb-xl")
+            for p in posts:
+                try:
+                    title = p.find("a", attrs={"data-testid":"post-title"}).getText().strip()
+                    subreddit = p.find("a").getText().strip()
+                    date = p.find("faceplate-timeago")["ts"][0:10]
+                    base = p.find("div", class_="text-neutral-content-weak text-12").find_all("span")
+                    upvotes = base[0].find("faceplate-number")["number"]
+                    comment_count = base[2].find("faceplate-number")["number"]
+                    try:
+                        subreddit_img = p.find("faceplate-img")["src"]
+                    except:
+                        subreddit_img = ""
+                    link = p.find("a", attrs={"data-testid":"post-title"})["href"]
+                except:
+                    pass
+                posts_data["posts"].append(
+                    {
+                        "title": title,
+                        "subreddit": subreddit,
+                        "subreddit_avatar": subreddit_img,
+                        "date": date,
+                        "vote_count": upvotes,
+                        "comment_count": comment_count,
+                        "link": "https://www.reddit.com" + link,
+                    }
+                )
+            return posts_data["posts"]
+        except:
+            return None
