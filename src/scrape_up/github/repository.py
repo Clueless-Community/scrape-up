@@ -511,6 +511,14 @@ class Repository:
             return None
         
     def get_insights(self):
+        """
+        Class - `Repository`
+        Example:
+        ```python
+        repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+        insights = repository.get_insights()
+        ```
+        """
         data = self.__scrape_insights_page()
         try:
             overview = {"overview": []}
