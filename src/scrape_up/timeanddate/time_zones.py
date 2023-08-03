@@ -34,6 +34,7 @@ class Timezones:
         Create an instance of `Timezones` class
         ```python
         timezones = Timezones()
+        timezones.city_timezones()
         ```
 
         Return\n
