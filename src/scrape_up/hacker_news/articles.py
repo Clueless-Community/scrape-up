@@ -336,3 +336,34 @@ class HackerNews:
 
         except:
             return None
+        
+    def jobs(self):
+        
+        url = "https://news.ycombinator.com/jobs"
+
+        articles_data = {"articles": []}
+
+        try:
+            res = requests.get(url)
+
+            soup = BeautifulSoup(res.text, "html.parser")
+
+            titles = soup.find_all("span", class_="titleline")
+            subs = soup.find_all("td", class_="subtext")
+
+            for i, j in zip(titles, subs):
+                title = i.find("a").getText()
+                time = j.find("span", class_="age").find("a").getText()
+                link = i.find("a")["href"]
+
+                articles_data["articles"].append(
+                    {
+                        "title": title,
+                        "time": time,
+                        "link": link,
+                    }
+                )
+            return articles_data["articles"]
+
+        except:
+            return None
