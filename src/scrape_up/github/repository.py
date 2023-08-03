@@ -77,6 +77,13 @@ class Repository:
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
+    
+    def __scrape_insights_page(self):
+        data = requests.get(
+            f"https://github.com/{self.username}/{self.repository}/pulse"
+            )
+        data = BeautifulSoup(data.text, "html.parser")
+        return data
 
     def languagesUsed(self):
         """
