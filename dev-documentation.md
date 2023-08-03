@@ -444,11 +444,12 @@ Create an instance of `Movie` class.
 movie = Movie(movie_name)
 ```
 
-| Methods          | Details                                                 |
-| ---------------- | ------------------------------------------------------- |
-| `.rating()`      | Returns the IMDB rating of the movie                    |
-| `.description()` | Returns the description, cast and director of the movie |
-| `.more_movies()` | Returns similar movies recommended by IMDB              |
+| Methods          | Details                                                  |
+| ---------------- | -------------------------------------------------------- |
+| `.rating()`      | Returns the IMDB rating of the movie                     |
+| `.description()` | Returns the description, cast and director of the movie  |
+| `.more_movies()` | Returns similar movies recommended by IMDB               |
+| `.box_office()`  | Returns budget, gross worldwide collections of the movie |
 
 Create an instance of `Actor` class.
 
@@ -553,6 +554,7 @@ item = Flipkart()
 | `.monitor()`          | Returns the list of monitors from flipkart.                        |
 | `.ac()`               | Returns the list of acs from flipkart.                             |
 | `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
+| `.VRbox()`            | Returns the list of VRbox from flipkart.                           |
 
 ---
 
@@ -722,12 +724,13 @@ Create an instance of `Reddit` class.
 posts = Reddit()
 ```
 
-| Methods       | Details                                                                                                                              |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `.getFeed()`  | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link      |
-| `.get_best()` | Returns the best posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
-| `.get_hot()`  | Returns the hot posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
-| `.get_top()`  | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
+| Methods          | Details                                                                                                                              |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `.getFeed()`     | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link      |
+| `.get_best()`    | Returns the best posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
+| `.get_hot()`     | Returns the hot posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
+| `.get_top()`     | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
+| `.search(topic)` | Returns the top posts with title, subreddit, subreddit avatar, date, vote and comment count and link for a searched topic            |
 
 ---
 
@@ -1229,7 +1232,6 @@ espn = ESPN()
 | Method             | Details                                                        |
 | ------------------ | -------------------------------------------------------------- |
 | `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
-
 
 # Magic Bricks
 

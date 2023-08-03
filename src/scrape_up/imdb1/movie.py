@@ -13,6 +13,8 @@ class Movie:
     | `.rating()`      | Returns the IMDB rating of the movie                    |
     | `.description()` | Returns the description, cast and director of the movie |
     | `.more_movies()` | Returns similar movies recommended by IMDB              |
+    | `.box_office()`  | Returns budget, gross worldwide collections of the movie|
+
     """
 
     def __init__(self, movie_name):
@@ -115,6 +117,43 @@ class Movie:
             more = self.page_soup.find_all("span", {"data-testid": "title"})
             lst = [m.get_text() for m in more]
             obj_values = [self.title, lst]
+            return dict(zip(obj_keys, obj_values))
+        except:
+            return None
+
+    def box_office(self):
+        """
+        Create an instance of Movie class
+        ```python
+        movie = Movie(movie_name="Avengers")
+        movie.box_office()
+        ```
+        Return\n
+        ```js
+        {
+            "title": "Avengers: Endgame (2019) - IMDb",
+            "box_office": {"Budget": "$356,000,000 (estimated)", "Gross worldwide": "$2,799,439,100"}
+        }
+        ```
+        """
+
+        obj_keys = ["title", "box_office"]
+        try:
+            x = self.page_soup.find(
+                "ul",
+                {
+                    "class": "ipc-metadata-list ipc-metadata-list--dividers-none ipc-metadata-list--compact sc-6d4f3f8c-0 VdkJY ipc-metadata-list--base"
+                },
+            )
+            results = {}
+
+            for y in x:
+                text = y.get_text()
+                if "Budget" in text:
+                    results["Budget"] = text[6:]
+                elif "Gross worldwide" in text:
+                    results["Gross worldwide"] = text[15:]
+            obj_values = [self.title, results]
             return dict(zip(obj_keys, obj_values))
         except:
             return None
