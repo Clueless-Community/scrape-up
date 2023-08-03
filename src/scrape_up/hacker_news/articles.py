@@ -12,6 +12,7 @@ class HackerNews:
     | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
     | `.articles_list()` | Returns the latest articles along with their score, author, author url, time, comment count and link in JSON format. |
     | `.new_articles()` | Returns the latest new articles along with their score, author, author url, time, comment count and link in JSON format. |
+    | `.past_articles()` | Returns the past articles along with their score, author, author url, time, comment count and link in JSON format. |
     """
 
     def articles_list(self):
