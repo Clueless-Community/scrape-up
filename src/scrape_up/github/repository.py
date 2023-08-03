@@ -510,7 +510,7 @@ class Repository:
         except:
             return None
         
-    def insights(self):
+    def get_insights(self):
         data = self.__scrape_insights_page()
         try:
             overview = {"overview": []}
