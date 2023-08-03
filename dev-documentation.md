@@ -443,12 +443,12 @@ Create an instance of `Movie` class.
 movie = Movie(movie_name)
 ```
 
-| Methods          | Details                                                 |
-| ---------------- | ------------------------------------------------------- |
-| `.rating()`      | Returns the IMDB rating of the movie                    |
-| `.description()` | Returns the description, cast and director of the movie |
-| `.more_movies()` | Returns similar movies recommended by IMDB              |
-| `.box_office()`  | Returns budget, gross worldwide collections of the movie|
+| Methods          | Details                                                  |
+| ---------------- | -------------------------------------------------------- |
+| `.rating()`      | Returns the IMDB rating of the movie                     |
+| `.description()` | Returns the description, cast and director of the movie  |
+| `.more_movies()` | Returns similar movies recommended by IMDB               |
+| `.box_office()`  | Returns budget, gross worldwide collections of the movie |
 
 Create an instance of `Actor` class.
 
@@ -1229,7 +1229,6 @@ espn = ESPN()
 | Method             | Details                                                        |
 | ------------------ | -------------------------------------------------------------- |
 | `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
-
 
 # Magic Bricks
 
