@@ -81,7 +81,7 @@ class Repository:
     def __scrape_insights_page(self):
         data = requests.get(
             f"https://github.com/{self.username}/{self.repository}/pulse"
-            )
+        )
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
@@ -507,5 +507,41 @@ class Repository:
                 watchers.append(watcher.text.strip())
             return watchers
 
+        except:
+            return None
+        
+    def insights(self):
+        data = self.__scrape_insights_page()
+        try:
+            overview = {"overview": []}
+            one = data.find_all("div", class_="mt-2")
+            active_pr_count = one[0].find("span").getText()
+            active_issue_count = one[1].find("span").getText()
+            two = data.find_all("span", class_="d-block h4 color-fg-default")
+            merged_pr_count = two[0].getText().strip()
+            open_pr_count = two[1].getText().strip()
+            closed_issue_count = two[2].getText().strip()
+            new_issue_count = two[3].getText().strip()
+            base = data.find_all("ul", class_="list-style-none my-4")
+            recent_merged_prs = base[0].find_all("li", class_="clearfix")
+            for pr in recent_merged_prs:
+                pr_title = pr.find("a").getText()
+                pr_no = pr.find("p").find("span").getText()
+                pr_date = pr.find("relative-time").getText()
+            recent_open_prs = base[1].find_all("li", class_="clearfix")
+            for pr in recent_open_prs:
+                pr_title = pr.find("a").getText()
+                pr_no = pr.find("p").find("span").getText()
+                pr_date = pr.find("relative-time").getText()
+            recent_closed_issues = base[2].find_all("li", class_="clearfix")
+            for issue in recent_closed_issues:
+                issue_title = issue.find("a").getText()
+                issue_no = issue.find("p").find("span").getText()
+                issue_date = issue.find("relative-time").getText()
+            recent_open_issues = base[3].find_all("li", class_="clearfix")
+            for issue in recent_open_issues:
+                issue_title = issue.find("a").getText()
+                issue_no = issue.find("p").find("span").getText()
+                issue_date = issue.find("relative-time").getText()
         except:
             return None
