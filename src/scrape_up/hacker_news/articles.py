@@ -338,7 +338,25 @@ class HackerNews:
             return None
         
     def jobs(self):
-        
+        """
+        Class - `HackerNews`
+        Example -
+        ```python
+        hacker_news = HackerNews()
+        articles = hacker_news.jobs()
+        ```
+        Return
+        ```js
+        [
+            {
+                "title":"PropelAuth (YC W22) Is Hiring Engineers",
+                "time":"37 minutes ago",
+                "link":"https://www.ycombinator.com/companies/propelauth/jobs"
+            }
+            ...
+        ]
+        ```
+        """
         url = "https://news.ycombinator.com/jobs"
 
         articles_data = {"articles": []}
