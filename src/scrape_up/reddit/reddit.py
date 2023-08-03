@@ -4,17 +4,17 @@ from bs4 import BeautifulSoup
 
 class Reddit:
     """
-    Create an instance of `Reddit` class.
+    Create an instance of `Reddit` class.\n
     ```python
     posts = Reddit()
     ```
-
-    | Methods      | Details                                                                                                                         |
-    | ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-    | `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
-    | `.get_best()` | Returns the best posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
-    | `.get_hot()` | Returns the hot posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
-    | `.get_top()` | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
+    | Methods          | Details                                                                                                                              |
+    | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+    | `.getFeed()`     | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link      |
+    | `.get_best()`    | Returns the best posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
+    | `.get_hot()`     | Returns the hot posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
+    | `.get_top()`     | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
+    | `.search(topic)` | Returns the top posts with title, subreddit, subreddit avatar, date, vote and comment count and link for a searched topic            |
     """
 
     def getFeed(self):
@@ -338,3 +338,73 @@ class Reddit:
             return posts_data["posts"]
         except:
             return None
+
+    def search(self, topic):
+        """
+        Class - `Reddit`
+        Example:
+        ```python
+        posts = Reddit()
+        posts.search("github")
+        ```
+        Returns:
+        ```js
+        [
+            {
+                "title":"What is the best self-hosted Github alternative?",
+                "subreddit":"r/selfhosted",
+                "subreddit_avatar":"https://styles.redditmedia.com/t5_32hch/styles/communityIcon_b2t5inv46z331.png",
+                "date":"2023-07-26",
+                "vote_count":"32",
+                "comment_count":"62",
+                "link":"https://www.reddit.com/r/selfhosted/comments/15a0lic/what_is_the_best_selfhosted_github_alternative/"
+            }
+            ...
+        ]
+        ```
+        """
+        url = "https://www.reddit.com/search/?q=" + topic
+        try:
+            res = requests.get(url)
+            soup = BeautifulSoup(res.text, "html.parser")
+
+            posts_data = {"posts": []}
+
+            posts = soup.find_all("div", class_="pb-xl")
+            for p in posts:
+                try:
+                    title = (
+                        p.find("a", attrs={"data-testid": "post-title"})
+                        .getText()
+                        .strip()
+                    )
+                    subreddit = p.find("a").getText().strip()
+                    date = p.find("faceplate-timeago")["ts"][0:10]
+                    base = p.find(
+                        "div", class_="text-neutral-content-weak text-12"
+                    ).find_all("span")
+                    upvotes = base[0].find("faceplate-number")["number"]
+                    comment_count = base[2].find("faceplate-number")["number"]
+                    try:
+                        subreddit_img = p.find("faceplate-img")["src"]
+                    except:
+                        subreddit_img = ""
+                    link = p.find("a", attrs={"data-testid": "post-title"})["href"]
+                except:
+                    pass
+                posts_data["posts"].append(
+                    {
+                        "title": title,
+                        "subreddit": subreddit,
+                        "subreddit_avatar": subreddit_img,
+                        "date": date,
+                        "vote_count": upvotes,
+                        "comment_count": comment_count,
+                        "link": "https://www.reddit.com" + link,
+                    }
+                )
+            return posts_data["posts"]
+        except:
+            return None
+posts = Reddit()
+print(posts.search("github"))
