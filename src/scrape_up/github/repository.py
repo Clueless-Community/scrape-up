@@ -29,7 +29,7 @@ class Repository:
     | `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                                  |
     | `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                 |
     | `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                            |
-    | `.get_insights()`          | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs, 
+    | `.get_insights()`          | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs,
                                    list of recent open prs, list of recent closed issues, list of recent open issues                                                                               |
     """
 
@@ -79,7 +79,7 @@ class Repository:
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
-    
+
     def __scrape_insights_page(self):
         data = requests.get(
             f"https://github.com/{self.username}/{self.repository}/pulse"
@@ -511,14 +511,29 @@ class Repository:
 
         except:
             return None
-        
+
     def get_insights(self):
         """
-        Class - `Repository`
+        Class - `Repository`.\n
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         insights = repository.get_insights()
+        ```
+        Return\n
+        ```js
+        {
+            "active_pr_count": active_pr_count,
+            "active_issue_count": active_issue_count,
+            "merged_pr_count": merged_pr_count,
+            "open_pr_count": open_pr_count,
+            "closed_issue_count": closed_issue_count,
+            "new_issue_count": new_issue_count,
+            "recent_merged_prs": recent_merged_prs_list,
+            "recent_open_prs": recent_open_prs_list,
+            "recent_closed_issues": recent_closed_issues_list,
+            "recent_open_issues": recent_open_issues_list,
+        }
         ```
         """
         data = self.__scrape_insights_page()
@@ -549,7 +564,7 @@ class Repository:
                             "pr_title": pr_title,
                             "pr_no": pr_no,
                             "pr_date": pr_date,
-                            "pr_link": "https://github.com" + pr_link
+                            "pr_link": "https://github.com" + pr_link,
                         }
                     )
                 except:
@@ -566,7 +581,7 @@ class Repository:
                             "pr_title": pr_title,
                             "pr_no": pr_no,
                             "pr_date": pr_date,
-                            "pr_link": "https://github.com" + pr_link
+                            "pr_link": "https://github.com" + pr_link,
                         }
                     )
                 except:
@@ -583,7 +598,7 @@ class Repository:
                             "issue_title": issue_title,
                             "issue_no": issue_no,
                             "issue_date": issue_date,
-                            "issue_link": "https://github.com" + issue_link
+                            "issue_link": "https://github.com" + issue_link,
                         }
                     )
                 except:
@@ -600,7 +615,7 @@ class Repository:
                             "issue_title": issue_title,
                             "issue_no": issue_no,
                             "issue_date": issue_date,
-                            "issue_link": "https://github.com" + issue_link
+                            "issue_link": "https://github.com" + issue_link,
                         }
                     )
                 except:
@@ -616,7 +631,7 @@ class Repository:
                     "recent_merged_prs": recent_merged_prs_list,
                     "recent_open_prs": recent_open_prs_list,
                     "recent_closed_issues": recent_closed_issues_list,
-                    "recent_open_issues": recent_open_issues_list
+                    "recent_open_issues": recent_open_issues_list,
                 }
             )
             return overview["overview"]
