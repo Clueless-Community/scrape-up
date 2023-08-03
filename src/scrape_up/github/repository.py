@@ -529,82 +529,103 @@ class Repository:
             recent_closed_issues_list = []
             recent_open_issues_list = []
             one = data.find_all("div", class_="mt-2")
-            active_pr_count = one[0].find("span").getText()
-            active_issue_count = one[1].find("span").getText()
+            try:
+                active_pr_count = one[0].find("span").getText()
+            except:
+                active_pr_count = ''
+            try:
+                active_issue_count = one[1].find("span").getText()
+            except:
+                active_issue_count = ''
             two = data.find_all("span", class_="d-block h4 color-fg-default")
-            merged_pr_count = two[0].getText().strip()
-            open_pr_count = two[1].getText().strip()
-            closed_issue_count = two[2].getText().strip()
-            new_issue_count = two[3].getText().strip()
-            base = data.find_all("ul", class_="list-style-none my-4")
-            recent_merged_prs = base[0].find_all("li", class_="clearfix")
-            for pr in recent_merged_prs:
-                try:
-                    pr_title = pr.find("a").getText()
-                    pr_no = pr.find("p").find("span").getText()
-                    pr_date = pr.find("relative-time").getText()
-                    pr_link = pr.find("a")["href"]
-                    recent_merged_prs_list.append(
-                        {
-                            "pr_title": pr_title,
-                            "pr_no": pr_no,
-                            "pr_date": pr_date,
-                            "pr_link": "https://github.com" + pr_link
-                        }
-                    )
-                except:
-                    recent_merged_prs_list = []
-            recent_open_prs = base[1].find_all("li", class_="clearfix")
-            for pr in recent_open_prs:
-                try:
-                    pr_title = pr.find("a").getText()
-                    pr_no = pr.find("p").find("span").getText()
-                    pr_date = pr.find("relative-time").getText()
-                    pr_link = pr.find("a")["href"]
-                    recent_open_prs_list.append(
-                        {
-                            "pr_title": pr_title,
-                            "pr_no": pr_no,
-                            "pr_date": pr_date,
-                            "pr_link": "https://github.com" + pr_link
-                        }
-                    )
-                except:
-                    recent_open_prs_list = []
-            recent_closed_issues = base[2].find_all("li", class_="clearfix")
-            for issue in recent_closed_issues:
-                try:
-                    issue_title = issue.find("a").getText()
-                    issue_no = issue.find("p").find("span").getText()
-                    issue_date = issue.find("relative-time").getText()
-                    issue_link = issue.find("a")["href"]
-                    recent_closed_issues_list.append(
-                        {
-                            "issue_title": issue_title,
-                            "issue_no": issue_no,
-                            "issue_date": issue_date,
-                            "issue_link": "https://github.com" + issue_link
-                        }
-                    )
-                except:
-                    recent_closed_issues_list = []
-            recent_open_issues = base[3].find_all("li", class_="clearfix")
-            for issue in recent_open_issues:
-                try:
-                    issue_title = issue.find("a").getText()
-                    issue_no = issue.find("p").find("span").getText()
-                    issue_date = issue.find("relative-time").getText()
-                    issue_link = issue.find("a")["href"]
-                    recent_open_issues_list.append(
-                        {
-                            "issue_title": issue_title,
-                            "issue_no": issue_no,
-                            "issue_date": issue_date,
-                            "issue_link": "https://github.com" + issue_link
-                        }
-                    )
-                except:
-                    recent_open_issues_list = []
+            try:
+                merged_pr_count = two[0].getText().strip()
+            except:
+                merged_pr_count = ''
+            try:
+                open_pr_count = two[1].getText().strip()
+            except:
+                open_pr_count = ''
+            try:
+                closed_issue_count = two[2].getText().strip()
+            except:
+                closed_issue_count = ''
+            try:
+                new_issue_count = two[3].getText().strip()
+            except:
+                new_issue_count = ''
+            try:
+                base = data.find_all("ul", class_="list-style-none my-4")
+                recent_merged_prs = base[0].find_all("li", class_="clearfix")
+                for pr in recent_merged_prs:
+                    try:
+                        pr_title = pr.find("a").getText()
+                        pr_no = pr.find("p").find("span").getText()
+                        pr_date = pr.find("relative-time").getText()
+                        pr_link = pr.find("a")["href"]
+                        recent_merged_prs_list.append(
+                            {
+                                "pr_title": pr_title,
+                                "pr_no": pr_no,
+                                "pr_date": pr_date,
+                                "pr_link": "https://github.com" + pr_link
+                            }
+                        )
+                    except:
+                        recent_merged_prs_list = []
+                recent_open_prs = base[1].find_all("li", class_="clearfix")
+                for pr in recent_open_prs:
+                    try:
+                        pr_title = pr.find("a").getText()
+                        pr_no = pr.find("p").find("span").getText()
+                        pr_date = pr.find("relative-time").getText()
+                        pr_link = pr.find("a")["href"]
+                        recent_open_prs_list.append(
+                            {
+                                "pr_title": pr_title,
+                                "pr_no": pr_no,
+                                "pr_date": pr_date,
+                                "pr_link": "https://github.com" + pr_link
+                            }
+                        )
+                    except:
+                        recent_open_prs_list = []
+                recent_closed_issues = base[2].find_all("li", class_="clearfix")
+                for issue in recent_closed_issues:
+                    try:
+                        issue_title = issue.find("a").getText()
+                        issue_no = issue.find("p").find("span").getText()
+                        issue_date = issue.find("relative-time").getText()
+                        issue_link = issue.find("a")["href"]
+                        recent_closed_issues_list.append(
+                            {
+                                "issue_title": issue_title,
+                                "issue_no": issue_no,
+                                "issue_date": issue_date,
+                                "issue_link": "https://github.com" + issue_link
+                            }
+                        )
+                    except:
+                        recent_closed_issues_list = []
+                recent_open_issues = base[3].find_all("li", class_="clearfix")
+                for issue in recent_open_issues:
+                    try:
+                        issue_title = issue.find("a").getText()
+                        issue_no = issue.find("p").find("span").getText()
+                        issue_date = issue.find("relative-time").getText()
+                        issue_link = issue.find("a")["href"]
+                        recent_open_issues_list.append(
+                            {
+                                "issue_title": issue_title,
+                                "issue_no": issue_no,
+                                "issue_date": issue_date,
+                                "issue_link": "https://github.com" + issue_link
+                            }
+                        )
+                    except:
+                        recent_open_issues_list = []
+            except:
+                pass
             overview["overview"].append(
                 {
                     "active_pr_count": active_pr_count,
