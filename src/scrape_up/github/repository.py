@@ -543,5 +543,19 @@ class Repository:
                 issue_title = issue.find("a").getText()
                 issue_no = issue.find("p").find("span").getText()
                 issue_date = issue.find("relative-time").getText()
+            overview["overview"].append(
+                {
+                    "active_pr_count": active_pr_count,
+                    "active_issue_count": active_issue_count,
+                    "merged_pr_count": merged_pr_count,
+                    "open_pr_count": open_pr_count,
+                    "closed_issue_count": closed_issue_count,
+                    "new_issue_count": new_issue_count,
+                }
+            )
+            return overview["overview"]
         except:
             return None
+
+git = Repository("Clueless-Community", "scrape-up")
+print(git.get_insights())
