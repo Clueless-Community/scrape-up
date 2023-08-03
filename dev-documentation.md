@@ -552,8 +552,8 @@ item = Flipkart()
 | `.monitor()`          | Returns the list of monitors from flipkart.                        |
 | `.ac()`               | Returns the list of acs from flipkart.                             |
 | `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
-| `.VRbox()`            | Returns the list of VRbox from flipkart.                   |
-  
+| `.VRbox()`            | Returns the list of VRbox from flipkart.                           |
+
 ---
 
 ## Spotify
@@ -1229,7 +1229,6 @@ espn = ESPN()
 | Method             | Details                                                        |
 | ------------------ | -------------------------------------------------------------- |
 | `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
-
 
 # Magic Bricks
 

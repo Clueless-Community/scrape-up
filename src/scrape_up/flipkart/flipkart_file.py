@@ -511,7 +511,6 @@ class Flipkart:
         except Exception as e:
             return None
 
-
     def ac(self):
         """
         Get the list of mobiles under 50K\n
@@ -554,7 +553,9 @@ class Flipkart:
                         "name": names.text if names else None,
                         "price": price.text if price else None,
                         "description": description.text if description else None,
-                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:])
+                        if review
+                        else None,
                         "deals": deals.text if deals else None,
                     }
 
@@ -564,8 +565,6 @@ class Flipkart:
 
         except Exception as e:
             return None
-        
-
 
     def refrigerator(self):
         """
@@ -609,7 +608,9 @@ class Flipkart:
                         "name": names.text if names else None,
                         "price": price.text if price else None,
                         "description": description.text if description else None,
-                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:])
+                        if review
+                        else None,
                         "deals": deals.text if deals else None,
                     }
 
@@ -619,15 +620,15 @@ class Flipkart:
 
         except Exception as e:
             return None
-        
-    def VRbox():
+
+    def vrbox(self):
         """
-        Get the list of mobiles under VRbox\n
+        Get the list of mobiles under `VRbox`\n
         Class - `Flipkart`\n
         Example -\n
         ```python
         item = Flipkart()
-        item.VRbox()
+        item.vrbox()
         ```
         Return
         ```js
@@ -659,7 +660,9 @@ class Flipkart:
                     item_details = {
                         "name": names.text if names else None,
                         "price": price.text if price else None,
-                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:])
+                        if review
+                        else None,
                         "delivery": delivery.text if delivery else None,
                     }
 
@@ -669,4 +672,3 @@ class Flipkart:
 
         except Exception as e:
             return None
-             
