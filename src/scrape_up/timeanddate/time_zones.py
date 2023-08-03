@@ -1,14 +1,13 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
 
-class Timezones:
 
+class Timezones:
     """
-    Create an instance of `Timezones` class
+    Create an instance of `Timezones` class.\n
     ```python
     timezones = Timezones()
     ```
-
     | Methods            | Details                                          |
     | -------------------|--------------------------------------------------|
     | `.city_timezones()`| Returns the timezones of cites around the world  |
@@ -60,7 +59,7 @@ class Timezones:
                     key = y.get_text()
                 else:
                     timezones_dict[key] = (y.get_text())[5:]
-                p = not(p)
+                p = not (p)
 
             return timezones_dict
 

@@ -1244,14 +1244,14 @@ magicbricks = MagicBricks()
 | ------------------------- | ----------------------------------------------------------------------------- |
 | `get_ready_to_move(city)` | Fetches and returns the details of ready-to-move flats in the specified city. |
 
-
 # Timeanddate
 
 Create an instance of `Timezones` class
+
 ```python
 timezones = Timezones()
 ```
 
-| Methods            | Details                                          |
-| -------------------|--------------------------------------------------|
-| `.city_timezones()`| Returns the timezones of cites around the world  |
+| Methods             | Details                                         |
+| ------------------- | ----------------------------------------------- |
+| `.city_timezones()` | Returns the timezones of cites around the world |
