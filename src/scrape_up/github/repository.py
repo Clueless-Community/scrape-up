@@ -514,6 +514,10 @@ class Repository:
         data = self.__scrape_insights_page()
         try:
             overview = {"overview": []}
+            recent_merged_prs_list = []
+            recent_open_prs_list = []
+            recent_closed_issues_list = []
+            recent_open_issues_list = []
             one = data.find_all("div", class_="mt-2")
             active_pr_count = one[0].find("span").getText()
             active_issue_count = one[1].find("span").getText()
@@ -525,24 +529,64 @@ class Repository:
             base = data.find_all("ul", class_="list-style-none my-4")
             recent_merged_prs = base[0].find_all("li", class_="clearfix")
             for pr in recent_merged_prs:
-                pr_title = pr.find("a").getText()
-                pr_no = pr.find("p").find("span").getText()
-                pr_date = pr.find("relative-time").getText()
+                try:
+                    pr_title = pr.find("a").getText()
+                    pr_no = pr.find("p").find("span").getText()
+                    pr_date = pr.find("relative-time").getText()
+                    recent_merged_prs_list.append(
+                        {
+                            "pr_title": pr_title,
+                            "pr_no": pr_no,
+                            "pr_date": pr_date
+                        }
+                    )
+                except:
+                    recent_merged_prs_list = []
             recent_open_prs = base[1].find_all("li", class_="clearfix")
             for pr in recent_open_prs:
-                pr_title = pr.find("a").getText()
-                pr_no = pr.find("p").find("span").getText()
-                pr_date = pr.find("relative-time").getText()
+                try:
+                    pr_title = pr.find("a").getText()
+                    pr_no = pr.find("p").find("span").getText()
+                    pr_date = pr.find("relative-time").getText()
+                    recent_open_prs_list.append(
+                        {
+                            "pr_title": pr_title,
+                            "pr_no": pr_no,
+                            "pr_date": pr_date
+                        }
+                    )
+                except:
+                    recent_open_prs_list = []
             recent_closed_issues = base[2].find_all("li", class_="clearfix")
             for issue in recent_closed_issues:
-                issue_title = issue.find("a").getText()
-                issue_no = issue.find("p").find("span").getText()
-                issue_date = issue.find("relative-time").getText()
+                try:
+                    issue_title = issue.find("a").getText()
+                    issue_no = issue.find("p").find("span").getText()
+                    issue_date = issue.find("relative-time").getText()
+                    recent_closed_issues_list.append(
+                        {
+                            "issue_title": issue_title,
+                            "issue_no": issue_no,
+                            "issue_date": issue_date
+                        }
+                    )
+                except:
+                    recent_closed_issues_list = []
             recent_open_issues = base[3].find_all("li", class_="clearfix")
             for issue in recent_open_issues:
-                issue_title = issue.find("a").getText()
-                issue_no = issue.find("p").find("span").getText()
-                issue_date = issue.find("relative-time").getText()
+                try:
+                    issue_title = issue.find("a").getText()
+                    issue_no = issue.find("p").find("span").getText()
+                    issue_date = issue.find("relative-time").getText()
+                    recent_open_issues_list.append(
+                        {
+                            "issue_title": issue_title,
+                            "issue_no": issue_no,
+                            "issue_date": issue_date
+                        }
+                    )
+                except:
+                    recent_open_issues_list = []
             overview["overview"].append(
                 {
                     "active_pr_count": active_pr_count,
@@ -551,11 +595,12 @@ class Repository:
                     "open_pr_count": open_pr_count,
                     "closed_issue_count": closed_issue_count,
                     "new_issue_count": new_issue_count,
+                    "recent_merged_prs": recent_merged_prs_list,
+                    "recent_open_prs": recent_open_prs_list,
+                    "recent_closed_issues": recent_closed_issues_list,
+                    "recent_open_issues": recent_open_issues_list
                 }
             )
             return overview["overview"]
         except:
             return None
-
-git = Repository("Clueless-Community", "scrape-up")
-print(git.get_insights())
