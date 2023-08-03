@@ -533,11 +533,13 @@ class Repository:
                     pr_title = pr.find("a").getText()
                     pr_no = pr.find("p").find("span").getText()
                     pr_date = pr.find("relative-time").getText()
+                    pr_link = pr.find("a")["href"]
                     recent_merged_prs_list.append(
                         {
                             "pr_title": pr_title,
                             "pr_no": pr_no,
-                            "pr_date": pr_date
+                            "pr_date": pr_date,
+                            "pr_link": "https://github.com" + pr_link
                         }
                     )
                 except:
@@ -548,11 +550,13 @@ class Repository:
                     pr_title = pr.find("a").getText()
                     pr_no = pr.find("p").find("span").getText()
                     pr_date = pr.find("relative-time").getText()
+                    pr_link = pr.find("a")["href"]
                     recent_open_prs_list.append(
                         {
                             "pr_title": pr_title,
                             "pr_no": pr_no,
-                            "pr_date": pr_date
+                            "pr_date": pr_date,
+                            "pr_link": "https://github.com" + pr_link
                         }
                     )
                 except:
@@ -563,11 +567,13 @@ class Repository:
                     issue_title = issue.find("a").getText()
                     issue_no = issue.find("p").find("span").getText()
                     issue_date = issue.find("relative-time").getText()
+                    issue_link = issue.find("a")["href"]
                     recent_closed_issues_list.append(
                         {
                             "issue_title": issue_title,
                             "issue_no": issue_no,
-                            "issue_date": issue_date
+                            "issue_date": issue_date,
+                            "issue_link": "https://github.com" + issue_link
                         }
                     )
                 except:
@@ -578,11 +584,13 @@ class Repository:
                     issue_title = issue.find("a").getText()
                     issue_no = issue.find("p").find("span").getText()
                     issue_date = issue.find("relative-time").getText()
+                    issue_link = issue.find("a")["href"]
                     recent_open_issues_list.append(
                         {
                             "issue_title": issue_title,
                             "issue_no": issue_no,
-                            "issue_date": issue_date
+                            "issue_date": issue_date,
+                            "issue_link": "https://github.com" + issue_link
                         }
                     )
                 except:
