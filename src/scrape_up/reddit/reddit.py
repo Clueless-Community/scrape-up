@@ -340,7 +340,26 @@ class Reddit:
             return None
     
     def search(self, topic):
-       
+        """
+        Class - `Reddit`
+        Example:
+        ```python
+        posts = Reddit()
+        posts.search("github")
+        ```
+        Returns:
+        ```js
+        {
+            "title": Title of the post,
+            "subreddit": subreddit name,
+            "subreddit_avatar": subreddit avatar,
+            "date": Date the post was posted,
+            "vote_count": No. of votes of the post,
+            "comment_count": No. of comments of the post,
+            "link": Link to the post
+        }
+        ```
+        """
         url = "https://www.reddit.com/search/?q=" + topic
         try:
             res = requests.get(url)
