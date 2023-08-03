@@ -132,7 +132,7 @@ class HackerNews:
                         "title": title,
                         "score": score,
                         "author": author,
-                        "author_url": author_url,
+                        "author_url": "https://news.ycombinator.com/" + author_url,
                         "time": time,
                         "comment_count": comment_count,
                         "link": link,
@@ -196,10 +196,52 @@ class HackerNews:
                         "title": title,
                         "score": score,
                         "author": author,
-                        "author_url": author_url,
+                        "author_url": "https://news.ycombinator.com/" + author_url,
                         "time": time,
                         "comment_count": comment_count,
                         "link": link,
+                    }
+                )
+            return articles_data["articles"]
+
+        except:
+            return None
+        
+    def ask_articles(self):
+        
+        url = "https://news.ycombinator.com/ask"
+
+        articles_data = {"articles": []}
+
+        try:
+            res = requests.get(url)
+
+            soup = BeautifulSoup(res.text, "html.parser")
+
+            titles = soup.find_all("span", class_="titleline")
+            subs = soup.find_all("span", class_="subline")
+
+            for i, j in zip(titles, subs):
+                title = i.find("a").getText()
+                score = j.find("span", class_="score").getText()
+                author = j.find("a", class_="hnuser").getText()
+                author_url = j.find("a", class_="hnuser")["href"]
+                time = j.find("span", class_="age").find("a").getText()
+                comments_link = j.find_all("a")[-1]
+                comment_count = (
+                    "0" if not comments_link else comments_link.text.split()[0]
+                )
+                link = i.find("a")["href"]
+
+                articles_data["articles"].append(
+                    {
+                        "title": title,
+                        "score": score,
+                        "author": author,
+                        "author_url": "https://news.ycombinator.com/" + author_url,
+                        "time": time,
+                        "comment_count": comment_count,
+                        "link": "https://news.ycombinator.com/" + link,
                     }
                 )
             return articles_data["articles"]
