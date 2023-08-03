@@ -78,7 +78,29 @@ class HackerNews:
             return None
         
     def new_articles(self):
-        
+        """
+        Class - `HackerNews`
+        Example -
+        ```python
+        hacker_news = HackerNews()
+        articles = hacker_news.new_articles()
+        ```
+        Return
+        ```js
+        [
+            {
+                "title":"I have written a JVM in Rust",
+                "score":"507 points",
+                "author":"lukastyrychtr",
+                "author_url":"user?id=lukastyrychtr",
+                "time":"9 hours ago",
+                "comment_count":"79",
+                "link":"https://andreabergia.com/blog/2023/07/i-have-written-a-jvm-in-rust/"
+            }
+            ...
+        ]
+        ```
+        """
         url = "https://news.ycombinator.com/newest"
 
         articles_data = {"articles": []}
