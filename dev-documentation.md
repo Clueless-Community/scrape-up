@@ -1256,3 +1256,18 @@ timezones = Timezones()
 | Methods             | Details                                         |
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
+
+
+# HealthGrades
+
+Create an instance of `HealthGrades` class
+
+```python
+hc = HealthGrades()
+```
+
+| Method                         | Details                                                               |
+| ------------------------------ | --------------------------------------------------------------------- |
+| `get_best_hospitals(state)`    | Fetches and returns information about the best hospitals in a state.  |
+
+
