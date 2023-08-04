@@ -1256,3 +1256,20 @@ timezones = Timezones()
 | Methods             | Details                                         |
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
+
+
+Create an instance of `IndianCity` class with the name of the city
+```python
+indiancity = IndianCity("bengaluru")
+```
+
+| Methods              | Details                                         |
+| ---------------------|-------------------------------------------------|
+| `.state()`           | Returns the state of the c                      |
+| `.lat_long()`        | Returns the latitude and longitude of the city  |
+| `.elevation()`       | Returns the elevation of the city from sea level|
+| `.language()`        | Returns the language spoken in the city         |
+| `.weather()`         | Returns the weather in the city                 |
+| `.local_time()`      | Returns the local time in the city              |
+| `.nearby_airports()` | Returns a list of nearby airports in the city   |
+
