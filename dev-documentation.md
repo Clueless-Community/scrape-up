@@ -555,6 +555,7 @@ item = Flipkart()
 | `.ac()`               | Returns the list of acs from flipkart.                             |
 | `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
 | `.VRbox()`            | Returns the list of VRbox from flipkart.                           |
+| `.Speakers()`         | Returns the list of Speakers from flipkart.                        |
 
 ---
 
@@ -1257,6 +1258,8 @@ timezones = Timezones()
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
 
+-------------------
+
 # Academia
 
 Create an instance of `Academia` class
@@ -1269,3 +1272,38 @@ academia = Academia()
 | ----------------------------- | --------------------------------------------------------------------- |
 | `get_research_topics(letter)` | Fetches and returns research topics starting with the given letter.   |
 | `get_research_papers(search)` | Fetches and returns research papers related to the given search term. |
+
+-----------------
+
+# HealthGrades
+
+Create an instance of `HealthGrades` class
+
+```python
+hc = HealthGrades()
+```
+
+| Method                      | Details                                                              |
+| --------------------------- | -------------------------------------------------------------------- |
+| `get_best_hospitals(state)` | Fetches and returns information about the best hospitals in a state. |
+
+----------------
+
+# Indian City
+
+
+Create an instance of `IndianCity` class with the name of the city
+
+```python
+indiancity = IndianCity("bengaluru")
+```
+
+| Methods              | Details                                          |
+| -------------------- | ------------------------------------------------ |
+| `.state()`           | Returns the state of the city                       |
+| `.lat_long()`        | Returns the latitude and longitude of the city   |
+| `.elevation()`       | Returns the elevation of the city from sea level |
+| `.language()`        | Returns the language spoken in the city          |
+| `.weather()`         | Returns the weather in the city                  |
+| `.local_time()`      | Returns the local time in the city               |
+| `.nearby_airports()` | Returns a list of nearby airports in the city    |
