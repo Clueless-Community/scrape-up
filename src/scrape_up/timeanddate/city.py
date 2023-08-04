@@ -1,6 +1,7 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
 
+
 class IndianCity:
 
     """
@@ -38,7 +39,7 @@ class IndianCity:
 
         except:
             return None
-        
+
     def __get_details(self):
         try:
             x = self.page_soup.find_all("td")
@@ -60,7 +61,7 @@ class IndianCity:
         Return\n
         ```js
         {
-            'City': 'bengaluru', 
+            'City': 'bengaluru',
             'State': 'Karnataka'
         }
         ```
@@ -81,8 +82,8 @@ class IndianCity:
 
         Return\n
         ```js
-        {   
-            'City': 'bengaluru', 
+        {
+            'City': 'bengaluru',
             'Latitude and Longitude': "12°58'N / 77°34'E"
         }
         ```
@@ -104,8 +105,8 @@ class IndianCity:
 
         Return\n
         ```js
-        {   
-            'City': 'bengaluru', 
+        {
+            'City': 'bengaluru',
             'Elevation': '876 m'
         }
         ```
@@ -116,7 +117,7 @@ class IndianCity:
             return dict(zip(obj_keys, [self.city, self.details[3]]))
         except:
             return None
-    
+
     def language(self):
         """
         Create an instance of `IndianCity` class with the name of the city
@@ -127,20 +128,19 @@ class IndianCity:
 
         Return\n
         ```js
-        {   
-            'City': 'bengaluru', 
+        {
+            'City': 'bengaluru',
             'Language': 'Kannada'
         }
         ```
         """
-
 
         obj_keys = ["City", "Language"]
         try:
             return dict(zip(obj_keys, [self.city, self.details[5]]))
         except:
             return None
-    
+
     def weather(self):
         """
         Create an instance of `IndianCity` class with the name of the city
@@ -151,8 +151,8 @@ class IndianCity:
 
         Return\n
         ```js
-        {   
-            'City': 'bengaluru', 
+        {
+            'City': 'bengaluru',
             'Weather': '30 °C'
         }
         ```
@@ -160,12 +160,12 @@ class IndianCity:
 
         obj_keys = ["City", "Weather"]
         try:
-            temp = self.page_soup.find("div", {"id":"wt-tp"})
+            temp = self.page_soup.find("div", {"id": "wt-tp"})
             temp = " ".join(temp.get_text().split("\xa0"))
             return dict(zip(obj_keys, [self.city, temp]))
         except:
             return None
-    
+
     def local_time(self):
         """
         Create an instance of `IndianCity` class with the name of the city
@@ -177,7 +177,7 @@ class IndianCity:
         Return\n
         ```js
         {
-            'City': 'bengaluru', 
+            'City': 'bengaluru',
             'Time': '15:46:05'
         }
         ```
@@ -185,7 +185,7 @@ class IndianCity:
 
         obj_keys = ["City", "Time"]
         try:
-            temp = self.page_soup.find("span", {"id":"ct"})
+            temp = self.page_soup.find("span", {"id": "ct"})
             temp = temp.get_text()
             return dict(zip(obj_keys, [self.city, temp]))
         except:
@@ -201,10 +201,10 @@ class IndianCity:
 
         Return\n
         ```js
-        {   
-            'City': 'bengaluru', 
-            'Airports': ['Kempegowda International Airport, BLR', 
-                        'Calicut International Airport, CCJ', 
+        {
+            'City': 'bengaluru',
+            'Airports': ['Kempegowda International Airport, BLR',
+                        'Calicut International Airport, CCJ',
                         'Chennai International Airport, MAA']
         }
         ```
@@ -212,7 +212,7 @@ class IndianCity:
 
         obj_keys = ["City", "Airports"]
         try:
-            temp = self.page_soup.find_all("div", {"class" : "four columns"})
+            temp = self.page_soup.find_all("div", {"class": "four columns"})
             temp = temp[4:]
             temp = str(temp[0]).split("<li>")
             temp_list = []
@@ -222,5 +222,3 @@ class IndianCity:
             return dict(zip(obj_keys, [self.city, temp_list]))
         except:
             return None
-
-        
