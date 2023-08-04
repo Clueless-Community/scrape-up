@@ -25,6 +25,7 @@ class Flipkart:
     | `.ac()`               | Returns the list of acs from flipkart.                             |
     | `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
     | `.VRbox()`            | Returns the list of VRbox from flipkart.                           |
+    | `.Speakers()`         | Returns the list of Speakers from flipkart.                           |
     """
 
     def __init__(self):
@@ -664,6 +665,64 @@ class Flipkart:
                         if review
                         else None,
                         "delivery": delivery.text if delivery else None,
+                    }
+
+                    all_items.append(item_details)
+
+            return all_items
+
+        except Exception as e:
+            return None
+        
+    def Speakers():
+        """
+        Get the list of Speakers `Speakers`\n
+        Class - `Flipkart`\n
+        Example -\n
+        ```python
+        item = Flipkart()
+        item.Speakers()
+        ```
+        Return
+        ```js
+        [
+            {
+                "name":"Intex IT-2616 BT 55 W Bluetooth Home Theatre",
+                "price":"₹1,599",
+                "color":"Black, 4.1 Channel"
+                "reviews":"2",
+                "delivery":"Free delivery",
+                "offpercentage":"46%off"
+            }
+            ...
+        ]
+        ```
+        """
+        try:
+            link = "https://www.flipkart.com/search?q=speaker&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=2"
+            page = requests.get(link)
+            soup = bs(page.content, "html.parser")
+
+            all_items = []
+
+            for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
+                names = data.find("a", class_="s1Q9rs")
+                price = data.find("div", class_="_30jeq3")
+                color=  data.find("div",class_="_3Djpdu") 
+                review = data.find("div", class_="_3LWZlK")
+                delivery = data.find("div", class_="_2Tpdn3")
+                offpercentage=data.find("div",class_="_3Ay6Sb")
+
+                if names and price and review and delivery:
+                    item_details = {
+                        "name": names.text if names else None,
+                        "price": price.text if price else None,
+                        "color": color.text if color else None,
+                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:])
+                        if review
+                        else None,
+                        "delivery": delivery.text if delivery else None,
+                        "offpercentage":offpercentage.text if offpercentage else None
                     }
 
                     all_items.append(item_details)
