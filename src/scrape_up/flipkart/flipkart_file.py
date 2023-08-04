@@ -25,7 +25,7 @@ class Flipkart:
     | `.ac()`               | Returns the list of acs from flipkart.                             |
     | `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
     | `.VRbox()`            | Returns the list of VRbox from flipkart.                           |
-    | `.Speakers()`         | Returns the list of Speakers from flipkart.                           |
+    | `.speakers()`         | Returns the list of speakers from flipkart.                           |
     """
 
     def __init__(self):
@@ -673,15 +673,15 @@ class Flipkart:
 
         except Exception as e:
             return None
-        
-    def Speakers():
+
+    def speakers():
         """
-        Get the list of Speakers `Speakers`\n
+        Get the list of speakers.\n
         Class - `Flipkart`\n
-        Example -\n
+        Example 
         ```python
         item = Flipkart()
-        item.Speakers()
+        item.speakers()
         ```
         Return
         ```js
@@ -708,10 +708,10 @@ class Flipkart:
             for data in soup.findAll("div", class_="_1AtVbE col-12-12"):
                 names = data.find("a", class_="s1Q9rs")
                 price = data.find("div", class_="_30jeq3")
-                color=  data.find("div",class_="_3Djpdu") 
+                color = data.find("div", class_="_3Djpdu")
                 review = data.find("div", class_="_3LWZlK")
                 delivery = data.find("div", class_="_2Tpdn3")
-                offpercentage=data.find("div",class_="_3Ay6Sb")
+                offpercentage = data.find("div", class_="_3Ay6Sb")
 
                 if names and price and review and delivery:
                     item_details = {
@@ -722,7 +722,7 @@ class Flipkart:
                         if review
                         else None,
                         "delivery": delivery.text if delivery else None,
-                        "offpercentage":offpercentage.text if offpercentage else None
+                        "offpercentage": offpercentage.text if offpercentage else None,
                     }
 
                     all_items.append(item_details)

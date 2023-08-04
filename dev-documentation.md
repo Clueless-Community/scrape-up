@@ -555,7 +555,7 @@ item = Flipkart()
 | `.ac()`               | Returns the list of acs from flipkart.                             |
 | `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
 | `.VRbox()`            | Returns the list of VRbox from flipkart.                           |
-| `.Speakers()`          | Returns the list of Speakers from flipkart.                           |
+| `.Speakers()`         | Returns the list of Speakers from flipkart.                        |
 
 ---
 
