@@ -1257,6 +1257,8 @@ timezones = Timezones()
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
 
+-----------------
+
 # HealthGrades
 
 Create an instance of `HealthGrades` class
@@ -1268,3 +1270,25 @@ hc = HealthGrades()
 | Method                      | Details                                                              |
 | --------------------------- | -------------------------------------------------------------------- |
 | `get_best_hospitals(state)` | Fetches and returns information about the best hospitals in a state. |
+
+----------------
+
+# Indian City
+
+
+Create an instance of `IndianCity` class with the name of the city
+
+```python
+indiancity = IndianCity("bengaluru")
+```
+
+| Methods              | Details                                          |
+| -------------------- | ------------------------------------------------ |
+| `.state()`           | Returns the state of the city                       |
+| `.lat_long()`        | Returns the latitude and longitude of the city   |
+| `.elevation()`       | Returns the elevation of the city from sea level |
+| `.language()`        | Returns the language spoken in the city          |
+| `.weather()`         | Returns the weather in the city                  |
+| `.local_time()`      | Returns the local time in the city               |
+| `.nearby_airports()` | Returns a list of nearby airports in the city    |
+
