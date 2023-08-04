@@ -1,4 +1,3 @@
 from Academia import Academia
 
-__all__ = ['Academia']
-
+__all__ = ["Academia"]
