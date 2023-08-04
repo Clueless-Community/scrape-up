@@ -81,7 +81,7 @@ class HackerNews:
 
         except:
             return None
-        
+
     def new_articles(self):
         """
         Class - `HackerNews`
@@ -145,7 +145,7 @@ class HackerNews:
 
         except:
             return None
-        
+
     def past_articles(self):
         """
         Class - `HackerNews`
@@ -209,7 +209,7 @@ class HackerNews:
 
         except:
             return None
-        
+
     def ask_articles(self):
         """
         Class - `HackerNews`
@@ -273,7 +273,7 @@ class HackerNews:
 
         except:
             return None
-        
+
     def show_articles(self):
         """
         Class - `HackerNews`
@@ -337,7 +337,7 @@ class HackerNews:
 
         except:
             return None
-        
+
     def jobs(self):
         """
         Class - `HackerNews`
