@@ -8,9 +8,9 @@ class TheHindu:
     ```python
     scraper = TheHindu()
     ```
-    | Methods       | Details                                                                   |
-    | --------------| ------------------------------------------------------------------------- |
-    | `.get_news()` |  gets heading, subheading, time, and news content                         |
+    | Methods               | Details                                                                   |
+    | --------------------- | ------------------------------------------------------------------------- |
+    | `.get_news(page_url)` |  gets heading, subheading, time, and news content                         |
     """
 
     def __init__(self):

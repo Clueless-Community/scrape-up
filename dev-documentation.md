@@ -1256,3 +1256,15 @@ timezones = Timezones()
 | Methods             | Details                                         |
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
+
+# TheHindu
+
+First, create an object of class `TheHindu`
+
+```python
+scraper = TheHindu()
+```
+
+| Methods               | Details                                                                   |
+| --------------------- | ------------------------------------------------------------------------- |
+| `.get_news(page_url)` |  gets heading, subheading, time, and news content                         |
