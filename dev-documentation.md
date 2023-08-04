@@ -1258,6 +1258,21 @@ timezones = Timezones()
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
 
+-------------------
+
+# Academia
+
+Create an instance of `Academia` class
+
+```python
+academia = Academia()
+```
+
+| Method                        | Details                                                               |
+| ----------------------------- | --------------------------------------------------------------------- |
+| `get_research_topics(letter)` | Fetches and returns research topics starting with the given letter.   |
+| `get_research_papers(search)` | Fetches and returns research papers related to the given search term. |
+
 -----------------
 
 # HealthGrades
@@ -1292,4 +1307,3 @@ indiancity = IndianCity("bengaluru")
 | `.weather()`         | Returns the weather in the city                  |
 | `.local_time()`      | Returns the local time in the city               |
 | `.nearby_airports()` | Returns a list of nearby airports in the city    |
-
