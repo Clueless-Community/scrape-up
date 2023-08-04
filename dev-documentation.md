@@ -1222,6 +1222,34 @@ silverprice = SilverPrice()
 | `.citywise_price()` | Returns the price of silver citywise in rupees                      |
 | `.last_10_days()`   | Returns the price of 10 grams silver for the last 10 days in rupees |
 
+Create an instance of `TopGainers` class
+
+```python
+topgainers = TopGainers()
+```
+
+| Methods         | Details                                               |
+| --------------- | ----------------------------------------------------- |
+| `.high()`       | Returns the highest value the top gainer was sold for |
+| `.low()`        | Returns the lowest value the top gainer was sold for  |
+| `.last_price()` | Returns the last price top gainer was sold for        |
+| `.prev_close()` | Returns the prev close value of the top gainer        |
+| `.change()`     | Returns the change and gain % of top gainer stocks    |
+
+Create an instance of `TopLosers` class
+
+```python
+toplosers = TopLosers()
+```
+
+| Methods         | Details                                              |
+| --------------- | ---------------------------------------------------- |
+| `.high()`       | Returns the highest value the top loser was sold for |
+| `.low()`        | Returns the lowest value the top loser was sold for  |
+| `.last_price()` | Returns the last price top loser was sold for        |
+| `.prev_close()` | Returns the prev close value of the top loser        |
+| `.change()`     | Returns the change and loss % of top loser stocks    |
+
 # ESPN
 
 Create an instance of `ESPN` class
@@ -1258,6 +1286,7 @@ timezones = Timezones()
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
 
+
 -------------------
 
 # Academia
@@ -1275,6 +1304,7 @@ academia = Academia()
 
 -----------------
 
+
 # HealthGrades
 
 Create an instance of `HealthGrades` class
@@ -1287,10 +1317,9 @@ hc = HealthGrades()
 | --------------------------- | -------------------------------------------------------------------- |
 | `get_best_hospitals(state)` | Fetches and returns information about the best hospitals in a state. |
 
-----------------
+---
 
 # Indian City
-
 
 Create an instance of `IndianCity` class with the name of the city
 
@@ -1300,7 +1329,7 @@ indiancity = IndianCity("bengaluru")
 
 | Methods              | Details                                          |
 | -------------------- | ------------------------------------------------ |
-| `.state()`           | Returns the state of the city                       |
+| `.state()`           | Returns the state of the city                    |
 | `.lat_long()`        | Returns the latitude and longitude of the city   |
 | `.elevation()`       | Returns the elevation of the city from sea level |
 | `.language()`        | Returns the language spoken in the city          |
