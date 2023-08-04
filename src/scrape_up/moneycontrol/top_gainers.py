@@ -1,6 +1,7 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
 
+
 class TopGainers:
 
     """
@@ -38,34 +39,33 @@ class TopGainers:
     def __stock_names(self):
         try:
             self.keys = []
-            x = self.page_soup.find_all("a", {"style" : "color:#333"})
+            x = self.page_soup.find_all("a", {"style": "color:#333"})
             for y in x:
                 self.keys.append(y.get_text())
         except:
             return None
-    
+
     def high(self):
         """
-        Create an instance of `TopGainers` class
+        Create an instance of `TopGainers` class.\n
         ```python
         topgainers = TopGainers()
         topgainers.high()
         ```
-
         Return\n
         ```js
-        {   
-            "Cipla": "1,238.70", 
-            "IndusInd Bank": "1,414.90", 
-            "Tech Mahindra": "1,181.85", 
-            "Wipro": "410.00", 
-            "Bharti Airtel": "892.95", 
+        {
+            "Cipla": "1,238.70",
+            "IndusInd Bank": "1,414.90",
+            "Tech Mahindra": "1,181.85",
+            "Wipro": "410.00",
+            "Bharti Airtel": "892.95",
             "Axis Bank": "954.85"
         }
         ```
         """
         try:
-            z = self.page_soup.find_all("td", {"width" : "75"})
+            z = self.page_soup.find_all("td", {"width": "75"})
             values = []
             for y in z:
                 values.append(y.get_text())
@@ -73,10 +73,10 @@ class TopGainers:
 
         except:
             return None
-    
+
     def low(self):
         """
-        Create an instance of `TopGainers` class
+        Create an instance of `TopGainers` class.\n
         ```python
         topgainers = TopGainers()
         topgainers.low()
@@ -84,7 +84,7 @@ class TopGainers:
 
         Return\n
         ```js
-        {   
+        {
             "Cipla": "1,171.00",
             "IndusInd Bank": "1,366.30",
             "Tech Mahindra": "1,142.80",
@@ -95,21 +95,21 @@ class TopGainers:
         ```
         """
         try:
-            z = self.page_soup.find_all("td", {"width" : "80"})
+            z = self.page_soup.find_all("td", {"width": "80"})
             values = []
             x = True
             for y in z:
                 if x:
                     values.append(y.get_text())
-                x = not(x)
+                x = not (x)
             return dict(zip(self.keys, values))
 
         except:
             return None
-    
+
     def last_price(self):
         """
-        Create an instance of `TopGainers` class
+        Create an instance of `TopGainers` class.\n
         ```python
         topgainers = TopGainers()
         topgainers.last_price()
@@ -117,7 +117,7 @@ class TopGainers:
 
         Return\n
         ```js
-        {   
+        {
             "Cipla": "1,209.75",
             "IndusInd Bank": "1,409.60",
             "Tech Mahindra": "1,175.20",
@@ -128,7 +128,7 @@ class TopGainers:
         ```
         """
         try:
-            z = self.page_soup.find_all("td", {"width" : "85"})
+            z = self.page_soup.find_all("td", {"width": "85"})
             values = []
             for y in z:
                 values.append(y.get_text())
@@ -136,10 +136,10 @@ class TopGainers:
 
         except:
             return None
-    
+
     def prev_close(self):
         """
-        Create an instance of `TopGainers` class
+        Create an instance of `TopGainers` class.\n
         ```python
         topgainers = TopGainers()
         topgainers.prev_close()
@@ -147,7 +147,7 @@ class TopGainers:
 
         Return\n
         ```js
-        {   
+        {
             "Cipla": "1,165.85",
             "IndusInd Bank": "1,364.50",
             "Tech Mahindra": "1,142.80",
@@ -158,13 +158,13 @@ class TopGainers:
         ```
         """
         try:
-            z = self.page_soup.find_all("td", {"width" : "80"})
+            z = self.page_soup.find_all("td", {"width": "80"})
             values = []
             x = False
             for y in z:
                 if x:
                     values.append(y.get_text())
-                x = not(x)
+                x = not (x)
             return dict(zip(self.keys, values))
 
         except:
@@ -172,7 +172,7 @@ class TopGainers:
 
     def change(self):
         """
-        Create an instance of `TopGainers` class
+        Create an instance of `TopGainers` class.\n
         ```python
         topgainers = TopGainers()
         topgainers.change()
@@ -180,7 +180,7 @@ class TopGainers:
 
         Return\n
         ```js
-        {   
+        {
             "Cipla": {"Change": "43.90", "Gain": "3.77"},
             "IndusInd Bank": {"Change": "45.10", "Gain": "3.31"},
             "Tech Mahindra": {"Change": "32.40", "Gain": "2.84"},
@@ -191,8 +191,7 @@ class TopGainers:
         ```
         """
         try:
-
-            z = self.page_soup.find_all("td", {"width":"45"})
+            z = self.page_soup.find_all("td", {"width": "45"})
             z = [y.get_text() for y in z]
 
             values = []
@@ -205,4 +204,3 @@ class TopGainers:
 
         except:
             return None
-
