@@ -1,3 +1,3 @@
 from HealthGrades import HealthGrades
 
-__all__ = ['HealthGrades']
+__all__ = ["HealthGrades"]

@@ -1257,7 +1257,6 @@ timezones = Timezones()
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
 
-
 # HealthGrades
 
 Create an instance of `HealthGrades` class
@@ -1266,8 +1265,6 @@ Create an instance of `HealthGrades` class
 hc = HealthGrades()
 ```
 
-| Method                         | Details                                                               |
-| ------------------------------ | --------------------------------------------------------------------- |
-| `get_best_hospitals(state)`    | Fetches and returns information about the best hospitals in a state.  |
-
-
+| Method                      | Details                                                              |
+| --------------------------- | -------------------------------------------------------------------- |
+| `get_best_hospitals(state)` | Fetches and returns information about the best hospitals in a state. |
