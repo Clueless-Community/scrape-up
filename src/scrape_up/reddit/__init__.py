@@ -1,2 +1,3 @@
-from scrape_up.reddit.reddit import Reddit
+from reddit import Reddit
+
 __all__ = ["Reddit"]

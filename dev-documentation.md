@@ -77,24 +77,25 @@ First, create an object of class `Repository`
 repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
 ```
 
-| Methods                    | Details                                                                                                                                                        |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.fork_count()`            | Returns the number of forks of a repository.                                                                                                                   |
-| `.get_contributors()`      | Returns the number of contributors of a repository.                                                                                                            |
-| `.topics()`                | Returns the topics of a repository.                                                                                                                            |
-| `.pull_requests()`         | Returns the number of pull requests opened in a repository.                                                                                                    |
-| `.last_updated_at()`       | Returns the last updated date of a repository.                                                                                                                 |
-| `.tags()`                  | Returns the last ten tags of a repository.                                                                                                                     |
-| `.releases()`              | Returns the last ten releases of a repository.                                                                                                                 |
-| `.issues_count()`          | Returns number of issues in a repository                                                                                                                       |
-| `.readme`                  | Saves the readme.md file of the given user to the current working directory. To view the readme.md with a live server, change ".md" to ".html" in "readme.md". |
-| `.get_pull_requests_ids()` | Returns all ids of opened pull requests in a repository.                                                                                                       |
-| `.get_issues()`            | Returns the list of all open issues in a repository.                                                                                                           |
-| `.commits()`               | Returns the number of commits in a repository.                                                                                                                 |
-| `.get_readme()`            | Returns & saves README.md file of the special repository (if exists)                                                                                           |
-| `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                                  |
-| `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                 |
-| `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                            |
+| Methods                    | Details                                                                                                                                                                                                                            |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.fork_count()`            | Returns the number of forks of a repository.                                                                                                                                                                                       |
+| `.get_contributors()`      | Returns the number of contributors of a repository.                                                                                                                                                                                |
+| `.topics()`                | Returns the topics of a repository.                                                                                                                                                                                                |
+| `.pull_requests()`         | Returns the number of pull requests opened in a repository.                                                                                                                                                                        |
+| `.last_updated_at()`       | Returns the last updated date of a repository.                                                                                                                                                                                     |
+| `.tags()`                  | Returns the last ten tags of a repository.                                                                                                                                                                                         |
+| `.releases()`              | Returns the last ten releases of a repository.                                                                                                                                                                                     |
+| `.issues_count()`          | Returns number of issues in a repository                                                                                                                                                                                           |
+| `.readme`                  | Saves the readme.md file of the given user to the current working directory. To view the readme.md with a live server, change ".md" to ".html" in "readme.md".                                                                     |
+| `.get_pull_requests_ids()` | Returns all ids of opened pull requests in a repository.                                                                                                                                                                           |
+| `.get_issues()`            | Returns the list of all open issues in a repository.                                                                                                                                                                               |
+| `.commits()`               | Returns the number of commits in a repository.                                                                                                                                                                                     |
+| `.get_readme()`            | Returns & saves README.md file of the special repository (if exists)                                                                                                                                                               |
+| `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                                                                                                      |
+| `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                                                                                     |
+| `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                                                                                                |
+| `.get_insights()`          | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs, list of recent open prs, list of recent closed issues, list of recent open issues |
 
 ### Scrape an issue details
 
@@ -343,9 +344,14 @@ Create an instance of `HackerNews` class.
 articles = HackerNews()
 ```
 
-| Methods            | Details                                                                                                              |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| `.articles_list()` | Returns the latest articles along with their score, author, author url, time, comment count and link in JSON format. |
+| Methods            | Details                                                                                                                  |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `.articles_list()` | Returns the latest articles along with their score, author, author url, time, comment count and link in JSON format.     |
+| `.new_articles()`  | Returns the latest new articles along with their score, author, author url, time, comment count and link in JSON format. |
+| `.past_articles()` | Returns the past articles along with their score, author, author url, time, comment count and link in JSON format.       |
+| `.ask_articles()`  | Returns the ask articles along with their score, author, author url, time, comment count and link in JSON format.        |
+| `.show_articles()` | Returns the show articles along with their score, author, author url, time, comment count and link in JSON format.       |
+| `.jobs()`          | Returns the jobs along with their time and link in JSON format.                                                          |
 
 ## Twitter
 
@@ -443,11 +449,12 @@ Create an instance of `Movie` class.
 movie = Movie(movie_name)
 ```
 
-| Methods          | Details                                                 |
-| ---------------- | ------------------------------------------------------- |
-| `.rating()`      | Returns the IMDB rating of the movie                    |
-| `.description()` | Returns the description, cast and director of the movie |
-| `.more_movies()` | Returns similar movies recommended by IMDB              |
+| Methods          | Details                                                  |
+| ---------------- | -------------------------------------------------------- |
+| `.rating()`      | Returns the IMDB rating of the movie                     |
+| `.description()` | Returns the description, cast and director of the movie  |
+| `.more_movies()` | Returns similar movies recommended by IMDB               |
+| `.box_office()`  | Returns budget, gross worldwide collections of the movie |
 
 Create an instance of `Actor` class.
 
@@ -482,19 +489,18 @@ scraper = Courses(topic="topic")
 from scrape_up import Wikipedia
 ```
 
-### Scrape Wikipedia Details
-
-<br>
+## Scrape Wikipedia Details
 
 Create an object of the 'WikipediaScrapper' class:
 
 ```python
-Scraper = WikipediaScraper(url)
+Scraper = WikipediaScraper()
 ```
 
-| Methods     | Details                                 |
-| ----------- | --------------------------------------- |
-| `.scrape()` | Returns the Scraped Data from Wikipedia |
+| Methods           | Details                                                 |
+| ----------------- | ------------------------------------------------------- |
+| `.scrape(url)`    | Returns the Scraped Data from Wikipedia                 |
+| `.get_featured()` | Returns the featured article for the day from Wikipedia |
 
 ---
 
@@ -551,7 +557,10 @@ item = Flipkart()
 | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
 | `.printers()`         | Returns the list of printers from flipkart.                        |
 | `.monitor()`          | Returns the list of monitors from flipkart.                        |
-
+| `.ac()`               | Returns the list of acs from flipkart.                             |
+| `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
+| `.VRbox()`            | Returns the list of VRbox from flipkart.                           |
+| `.Speakers()`         | Returns the list of Speakers from flipkart.                        |
 
 ---
 
@@ -670,9 +679,11 @@ Create an instance of `Channel` class.
 channel_data = Channel(channel_username="BeABetterDev")
 ```
 
-| Methods       | Details                                                                |
-| ------------- | ---------------------------------------------------------------------- |
-| `.getAbout()` | Returns the channel details mentioned in the about page of the channel |
+| Methods            | Details                                                                |
+| ------------------ | ---------------------------------------------------------------------- |
+| `.getAbout()`      | Returns the channel details mentioned in the about page of the channel |
+| `.getVideos()`     | Returns all the video details in the videos page of the channel        |
+| `.get_community()` | Returns all the post details in the community page of the channel      |
 
 ---
 
@@ -702,11 +713,12 @@ Create an instance of `Hashnode` class.
 blogs = Hashnode()
 ```
 
-| Methods           | Details                                                                                              |
-| ----------------- | ---------------------------------------------------------------------------------------------------- |
-| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link |
-| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link   |
-| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link     |
+| Methods           | Details                                                                                               |
+| ----------------- | ----------------------------------------------------------------------------------------------------- |
+| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link  |
+| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link    |
+| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link      |
+| `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date and link for a topic |
 
 ---
 
@@ -718,9 +730,13 @@ Create an instance of `Reddit` class.
 posts = Reddit()
 ```
 
-| Methods      | Details                                                                                                                         |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| `.getFeed()` | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
+| Methods          | Details                                                                                                                              |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `.getFeed()`     | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link      |
+| `.get_best()`    | Returns the best posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
+| `.get_hot()`     | Returns the hot posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
+| `.get_top()`     | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
+| `.search(topic)` | Returns the top posts with title, subreddit, subreddit avatar, date, vote and comment count and link for a searched topic            |
 
 ---
 
@@ -941,6 +957,7 @@ scraper = RottenTomatoes()
 | ---------------------------- | ------------------------------------------------------------------- |
 | `.top_rated()`               | Returns the top-rated movies listed on the Rotten Tomatoes website. |
 | `.movie_details(movie_name)` | Fetches and returns detailed information about a specific movie.    |
+| `.best_shows()`              | Returns the best TV shows listed on the Rotten Tomatoes website.    |
 
 # Quora
 
@@ -958,16 +975,18 @@ quora = Quora()
 
 # ICC Rankings
 
-"""
 Create an instance of `ICC` class.
-`python
+
+```python
     scraper = ICC()
-    `
-| Method | Details |
-| ---------------------------- | ------------------------------------------------------------------- |
-| `.team_rankings(format)` | Returns the list of rankings of teams of desired format |
-|`.player_ranking(type,format)`| Returns the list of player ranking of desired type and format |
-"""
+```
+
+| Method                               | Details                                                             |
+| ------------------------------------ | ------------------------------------------------------------------- |
+| `.team_rankings(format)`             | Returns the list of rankings of teams of the desired format         |
+| `.player_ranking(type,format)`       | Returns the list of player ranking of desired type and format       |
+| `.team_rankings_women(format)`       | Returns the list of rankings of teams of the desired format         |
+| `.player_ranking_women(type,format)` | Returns the list of women player ranking of desired type and format |
 
 ---
 
@@ -1134,7 +1153,6 @@ hotel = TripAdvisor()
 
 ---
 
-
 # WHO
 
 Create an instance of WHO class
@@ -1143,8 +1161,8 @@ Create an instance of WHO class
 who = WHO()
 ```
 
-| Methods                        | Details                                     |
-| ------------------------------ | ------------------------------------------- |
+| Methods                  | Details                                     |
+| ------------------------ | ------------------------------------------- |
 | `get_disease_outbreak()` | Get Disease Outbreak News from WHO website. |
 
 ---
@@ -1179,3 +1197,165 @@ website = 'canva.com'
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `get_upcoming()` | Scrapes account data from Bugmenot.com for the given website and returns a list of dictionaries with account details. Returns `None` if no accounts are found. |
 
+---
+
+# Moneycontrol
+
+Create an instance of `Index` class
+
+```python
+index = MoneyControl()
+```
+
+| Methods           | Details                                                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| `.contribution()` | Returns the stocks are driving the Sensex and the Nifty up or down and by how many points. |
+
+Create an instance of `GoldPrice` class
+
+```python
+goldprice = GoldPrice()
+
+```
+
+| Methods             | Details                                       |
+| ------------------- | --------------------------------------------- |
+| `.price_22_carat()` | Returns the price of 22k gold prices citywise |
+| `.price_24_carat()` | Returns the price of 22k gold prices citywise |
+
+Create an instance of `IndianIndex` class
+
+```python
+indianindex = IndianIndex()
+```
+
+| Methods      | Details                                                 |
+| ------------ | ------------------------------------------------------- |
+| `.current()` | Returns the Indian Indices and their current value      |
+| `.change()`  | Returns the Indian Indices and their change and %change |
+
+Create an instance of `SilverPrice` class
+
+```python
+silverprice = SilverPrice()
+```
+
+| Methods             | Details                                                             |
+| ------------------- | ------------------------------------------------------------------- |
+| `.citywise_price()` | Returns the price of silver citywise in rupees                      |
+| `.last_10_days()`   | Returns the price of 10 grams silver for the last 10 days in rupees |
+
+Create an instance of `TopGainers` class
+
+```python
+topgainers = TopGainers()
+```
+
+| Methods         | Details                                               |
+| --------------- | ----------------------------------------------------- |
+| `.high()`       | Returns the highest value the top gainer was sold for |
+| `.low()`        | Returns the lowest value the top gainer was sold for  |
+| `.last_price()` | Returns the last price top gainer was sold for        |
+| `.prev_close()` | Returns the prev close value of the top gainer        |
+| `.change()`     | Returns the change and gain % of top gainer stocks    |
+
+Create an instance of `TopLosers` class
+
+```python
+toplosers = TopLosers()
+```
+
+| Methods         | Details                                              |
+| --------------- | ---------------------------------------------------- |
+| `.high()`       | Returns the highest value the top loser was sold for |
+| `.low()`        | Returns the lowest value the top loser was sold for  |
+| `.last_price()` | Returns the last price top loser was sold for        |
+| `.prev_close()` | Returns the prev close value of the top loser        |
+| `.change()`     | Returns the change and loss % of top loser stocks    |
+
+# ESPN
+
+Create an instance of `ESPN` class
+
+```python
+espn = ESPN()
+```
+
+| Method             | Details                                                        |
+| ------------------ | -------------------------------------------------------------- |
+| `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
+
+# Magic Bricks
+
+Create an instance of `MagicBricks` class
+
+```python
+magicbricks = MagicBricks()
+```
+
+| Method                    | Details                                                                       |
+| ------------------------- | ----------------------------------------------------------------------------- |
+| `get_ready_to_move(city)` | Fetches and returns the details of ready-to-move flats in the specified city. |
+
+# Timeanddate
+
+Create an instance of `Timezones` class
+
+```python
+timezones = Timezones()
+```
+
+| Methods             | Details                                         |
+| ------------------- | ----------------------------------------------- |
+| `.city_timezones()` | Returns the timezones of cites around the world |
+
+
+-------------------
+
+# Academia
+
+Create an instance of `Academia` class
+
+```python
+academia = Academia()
+```
+
+| Method                        | Details                                                               |
+| ----------------------------- | --------------------------------------------------------------------- |
+| `get_research_topics(letter)` | Fetches and returns research topics starting with the given letter.   |
+| `get_research_papers(search)` | Fetches and returns research papers related to the given search term. |
+
+-----------------
+
+
+# HealthGrades
+
+Create an instance of `HealthGrades` class
+
+```python
+hc = HealthGrades()
+```
+
+| Method                      | Details                                                              |
+| --------------------------- | -------------------------------------------------------------------- |
+| `get_best_hospitals(state)` | Fetches and returns information about the best hospitals in a state. |
+
+---
+
+# Indian City
+
+Create an instance of `IndianCity` class with the name of the city
+
+```python
+indiancity = IndianCity("bengaluru")
+```
+
+| Methods              | Details                                          |
+| -------------------- | ------------------------------------------------ |
+| `.state()`           | Returns the state of the city                    |
+| `.lat_long()`        | Returns the latitude and longitude of the city   |
+| `.elevation()`       | Returns the elevation of the city from sea level |
+| `.language()`        | Returns the language spoken in the city          |
+| `.weather()`         | Returns the weather in the city                  |
+| `.local_time()`      | Returns the local time in the city               |
+| `.nearby_airports()` | Returns a list of nearby airports in the city    |

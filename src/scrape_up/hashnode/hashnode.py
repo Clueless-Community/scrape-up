@@ -13,6 +13,7 @@ class Hashnode:
     | `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link |
     | `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link   |
     | `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link     |
+    | `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date and link for a topic|
     """
 
     def get_feed(self):
@@ -300,6 +301,94 @@ class Hashnode:
                     {
                         "title": title,
                         "description": desc,
+                        "author": author,
+                        "like_count": like_count,
+                        "comment_count": comment_count,
+                        "date": date,
+                        "link": link,
+                    }
+                )
+            return blogs_data["blogs"]
+        except:
+            return None
+
+    def search(self, topic):
+        """
+        Class - `Hashnode`
+        Example:
+        ```python
+        blogs = Hashnode()
+        blogs.search("github")
+        ```
+        Returns:
+        ```js
+        [
+            {
+                "title":"Building and Publishing Packages in Python",
+                "author":"Oluwaseun Fashina",
+                "like_count":"25",
+                "comment_count":"3",
+                "date":"28th Jul 2023",
+                "link":"https://seunfashina.hashnode.dev/building-and-publishing-packages-in-python"
+            }
+            ...
+        ]
+        """
+        url = "https://hashnode.com/search?q=" + topic
+
+        try:
+            res = requests.get(url)
+            soup = BeautifulSoup(res.text, "html.parser")
+
+            blogs_data = {"blogs": []}
+
+            blogs = soup.find_all("a", rel="noopener")
+
+            for b in blogs:
+                try:
+                    title = b.find(
+                        "h3",
+                        class_="mb-6 text-lg font-semibold leading-tight tracking-tight text-slate-700 break-words lg:text-xl dark:text-slate-200",
+                    ).getText()
+
+                    author = b.find("span", class_="mr-1.5").getText()
+
+                    date = (
+                        b.find(
+                            "div",
+                            class_="flex flex-wrap sm:flex-nowrap items-center text-slate-500 dark:text-slate-400",
+                        )
+                        .find_all("span")[2]
+                        .getText()
+                    )
+
+                    link = b["href"]
+
+                    try:
+                        like_count = (
+                            b.find("span", class_="px-1 py-1.5 flex flex-row gap-1.5")
+                            .find("span")
+                            .getText()
+                        )
+                    except:
+                        like_count = 0
+
+                    try:
+                        comment_count = (
+                            b.find_all(
+                                "span", class_="px-1 py-1.5 flex flex-row gap-1.5"
+                            )[1]
+                            .find("span")
+                            .getText()
+                        )
+                    except:
+                        comment_count = 0
+                except:
+                    pass
+
+                blogs_data["blogs"].append(
+                    {
+                        "title": title,
                         "author": author,
                         "like_count": like_count,
                         "comment_count": comment_count,
