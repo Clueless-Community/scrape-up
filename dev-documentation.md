@@ -1265,6 +1265,6 @@ First, create an object of class `TheHindu`
 scraper = TheHindu()
 ```
 
-| Methods               | Details                                                                   |
-| --------------------- | ------------------------------------------------------------------------- |
-| `.get_news(page_url)` |  gets heading, subheading, time, and news content                         |
+| Methods               | Details                                          |
+| --------------------- | ------------------------------------------------ |
+| `.get_news(page_url)` | gets heading, subheading, time, and news content |
