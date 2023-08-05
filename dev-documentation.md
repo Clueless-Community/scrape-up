@@ -1291,6 +1291,20 @@ timezones = Timezones()
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
 
+-------------------
+
+# TheHindu
+
+First, create an object of class `TheHindu`
+
+```python
+scraper = TheHindu()
+```
+
+| Methods               | Details                                          |
+| --------------------- | ------------------------------------------------ |
+| `.get_news(page_url)` | gets heading, subheading, time, and news content |
+
 
 -------------------
 
@@ -1341,3 +1355,4 @@ indiancity = IndianCity("bengaluru")
 | `.weather()`         | Returns the weather in the city                  |
 | `.local_time()`      | Returns the local time in the city               |
 | `.nearby_airports()` | Returns a list of nearby airports in the city    |
+
