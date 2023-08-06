@@ -12,6 +12,7 @@ class RottenTomatoes:
     | ---------------------------- | ------------------------------------------------------------------- |
     | `.top_rated()`               | Returns the top-rated movies listed on the Rotten Tomatoes website. |
     | `.movie_details(movie_name)` | Fetches and returns detailed information about a specific movie.    |
+    | `.best_shows()`              | Returns the best TV shows listed on the Rotten Tomatoes website.    |
     """
 
     def __init__(self):
@@ -25,7 +26,7 @@ class RottenTomatoes:
         Create an instance of `RottenTomatoes` class.
         ```python
         scraper = RottenTomatoes()
-        scrpaer.top_rated()
+        scraper.top_rated()
         ```
         ```js
         [
@@ -82,7 +83,7 @@ class RottenTomatoes:
         Create an instance of `RottenTomatoes` class.
         ```python
         scraper = RottenTomatoes()
-        scrpaer.movie_details(movie_name="iron man")
+        scraper.movie_details(movie_name="iron man")
         ```
         Returns\n
         ```js
@@ -108,6 +109,7 @@ class RottenTomatoes:
         ```
         """
         try:
+            movie_name = movie_name.replace(" ", "_")
             url = self.url + "m/" + movie_name
             response = requests.get(url)
             soup = BeautifulSoup(response.content, "html.parser")
@@ -157,3 +159,46 @@ class RottenTomatoes:
             return movie_details
         except:
             return "Movie not found"
+
+    def best_shows(self):
+        """
+        Returns the best TV shows listed on the Rotten Tomatoes website.
+        ```python
+        scraper = RottenTomatoes()
+        scraper.movie_details(movie_name="iron man")
+        ```
+        Returns:
+        ```js
+        [
+            {
+                "Title":"Secret Invasion",
+                "Link":"https://www.rottentomatoes.com//tv/secret_invasion",
+                "Latest Episode":"Latest Episode: Jul 26"
+            },
+            ...
+        ]
+        ```
+        """
+        try:
+            url = "https://www.rottentomatoes.com/browse/tv_series_browse/sort:popular"
+            html_text = requests.get(url, headers=self.headers).text
+            soup = BeautifulSoup(html_text, "lxml")
+
+            movies = []
+            container = soup.find("div", {"class": "discovery-tiles__wrap"})
+            for items in container.find_all("div", {"class": "js-tile-link"}):
+                link = (
+                    "https://www.rottentomatoes.com/"
+                    + items.find("a", href=True)["href"]
+                )
+                title = items.find("span", {"class": "p--small"}).text.strip()
+                latest = items.find("span", {"class": "smaller"})
+                if latest:
+                    latest = latest.text.strip()
+                else:
+                    latest = None
+                data = {"Title": title, "Link": link, "Latest Episode": latest}
+                movies.append(data)
+            return movies
+        except:
+            return None

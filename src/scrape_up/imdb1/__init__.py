@@ -1,3 +1,5 @@
-from .imdb import IMDB
+from imdb import IMDB
+from movie import Movie
+from actor import Actor
 
-__all__ = ["IMDB"]
+__all__ = ["IMDB", "Movie", "Actor"]

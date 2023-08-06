@@ -10,7 +10,7 @@ class BBCNews:
     ```
     | Methods            | Details                                                  |
     | ------------------ | -------------------------------------------------------- |
-    | `.get_headlines()` | Returns the list of objects containing the headlines    |
+    | `.get_headlines()` | Returns the list of object containig the headlines       |
     | `get_article()`    | Returns an object with proper details about the articles |
     """
 
@@ -49,13 +49,12 @@ class BBCNews:
 
     def get_article(self, url):
         """
-        Retrieves the details of a specific article from BBC News website.\n
-        Parameters:
-        url (str): The URL of the article.
-        
-        Returns:
-        A dictionary containing the main heading, time, and text of the article.
-        Example: {'main_heading': 'Article Title', 'time': '2023-08-06 12:34', 'text': 'Article content...'}
+        Create an instance of the class - `BBCNews`\n
+        ```python
+        scraper = BBCNews()
+        article = scraper.get_article()
+        print(article)
+        ```
         """
         try:
             headers = {
