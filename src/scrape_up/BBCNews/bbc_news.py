@@ -8,9 +8,10 @@ class BBCNews:
     ```python
     scraper = BBCNews()
     ```
-    | Methods        | Details                                             |
-    | -------------- | --------------------------------------------------- |
-    | `.get_headlines()` | Returns a list of objects containing the headlines          |
+    | Methods            | Details                                                  |
+    | ------------------ | -------------------------------------------------------- |
+    | `.get_headlines()` | Returns the list of objects containing the headlines    |
+    | `get_article()`    | Returns an object with proper details about the articles |
     """
 
     def __init__(self):
@@ -33,7 +34,6 @@ class BBCNews:
 
         soup = BeautifulSoup(response.content, "html.parser")
         headlines = soup.find_all("h3", class_="gs-c-promo-heading__title")
-
         news_set = set()
         news_list = []
         index = 1
@@ -46,3 +46,31 @@ class BBCNews:
                 index += 1
 
         return news_list
+
+    def get_article(self, url):
+        """
+        Retrieves the details of a specific article from BBC News website.\n
+        Parameters:
+        url (str): The URL of the article.
+        
+        Returns:
+        A dictionary containing the main heading, time, and text of the article.
+        Example: {'main_heading': 'Article Title', 'time': '2023-08-06 12:34', 'text': 'Article content...'}
+        """
+        try:
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
+            }
+            response = requests.get(url, headers=headers).text
+            soup = BeautifulSoup(response, "lxml")
+
+            main_heading = soup.find("h1", {"id": "main-heading"}).text.strip()
+            time = soup.find("time").text.strip()
+            text_content = soup.find_all("div", {"data-component": "text-block"})
+            Text = ""
+            for text in text_content:
+                Text += text.text.strip() + " "
+            data = {"main_heading": main_heading, "time": time, "text": Text}
+            return data
+        except:
+            return None
