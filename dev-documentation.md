@@ -702,10 +702,9 @@ articles = GoogleNews()
 | `.getArticles(topic="github")` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
 | `.top_stories()`               | Returns the list of top stories listed regarding the mentioned topic                             |
 | `.timed_aticles(time)`         | Returns the list of top stories listed regarding the mentioned topic and within that time frame  |
-| `.bylanguage(lang)`    | Returns the list of top stories listed regarding the mentioned topic in the specified language   	    |
-| `.bynumerofdaysback(number)`   | Returns the list of stories listed by given number of days back from the current day  	    |
-| `.bylocation(countryname)` 	 | Returns the list of top stories listed of the specified country or geolocation                   |
-
+| `.bylanguage(lang)`            | Returns the list of top stories listed regarding the mentioned topic in the specified language   |
+| `.bynumerofdaysback(number)`   | Returns the list of stories listed by given number of days back from the current day             |
+| `.bylocation(countryname)`     | Returns the list of top stories listed of the specified country or geolocation                   |
 
 ---
 
@@ -1295,7 +1294,7 @@ timezones = Timezones()
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
 
--------------------
+---
 
 # TheHindu
 
@@ -1309,8 +1308,7 @@ scraper = TheHindu()
 | --------------------- | ------------------------------------------------ |
 | `.get_news(page_url)` | gets heading, subheading, time, and news content |
 
-
--------------------
+---
 
 # Academia
 
@@ -1325,8 +1323,7 @@ academia = Academia()
 | `get_research_topics(letter)` | Fetches and returns research topics starting with the given letter.   |
 | `get_research_papers(search)` | Fetches and returns research papers related to the given search term. |
 
------------------
-
+---
 
 # HealthGrades
 
@@ -1359,4 +1356,3 @@ indiancity = IndianCity("bengaluru")
 | `.weather()`         | Returns the weather in the city                  |
 | `.local_time()`      | Returns the local time in the city               |
 | `.nearby_airports()` | Returns a list of nearby airports in the city    |
-
