@@ -1294,6 +1294,23 @@ timezones = Timezones()
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
 
+
+
+Create an instance of `DayInHistory` class.
+
+```python
+dayinhistory = DayInHistory()
+
+```
+| Methods              | Details                                          |
+| ---------------------|--------------------------------------------------|
+| `.important_events()`| Returns the timezones of cites around the world  |
+| `.holidays()`        | Returns the holidays on the specific day         |
+| `.births()`          | Returns the important birthdays on that day      |
+| `.deaths()`          | Returns the important deaths on that day         |
+
+
+
 ---
 
 # TheHindu
