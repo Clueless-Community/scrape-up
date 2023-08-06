@@ -61,9 +61,27 @@ class Unsplash:
         return image_links
 
     def get_image_quality(self):
+        """
+           Class - `Unsplash`
+           Example:
+           ```
+           unsplash = unsplash.Unsplash(search_query="Tech wallpaper")
+           quality = unsplash.get_image_quality()
+           ```
+           Returns: List of quality | None
+       """
         return list(self.all_images.keys())
 
     def get_image_links(self, quality):
+        """
+           Class - `Unsplash`
+           Example:
+           ```
+           unsplash = unsplash.Unsplash(search_query="Tech wallpaper")
+           links = unsplash.get_image_links(quality="2000w")
+           ```
+           Returns: List of image links of quality 2000w | None
+        """
         if not self.all_images.get(quality):
             print("No images for the given quality")
             return
@@ -71,6 +89,15 @@ class Unsplash:
         return self.all_images[quality]
 
     def get_non_premium_links(self, quality):
+        """
+           Class - `Unsplash`
+           Example:
+           ```
+           unsplash = unsplash.Unsplash(search_query="Tech wallpaper")
+           links = unsplash.get_non_premium_links(quality="2000w")
+           ```
+           Returns: List of non-premium image links of quality 2000w | None
+        """
         if not self.non_premium_images.get(quality):
             print("No images for the given quality")
             return
