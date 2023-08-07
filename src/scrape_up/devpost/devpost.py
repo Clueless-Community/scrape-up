@@ -2,6 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 
 class Devpost:
+    """
+    Create an instance of `Devpost` class.
+    ```py
+    posts = Devpost()
+    ```
+    | Methods            | Details                                                                                                              |
+    | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
+    | `.get_projects()` | Returns the latest projects along with their decription, like and commment count, image and member details. |
+    """
 
     def get_projects(self):
         
