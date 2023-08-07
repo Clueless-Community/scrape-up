@@ -468,6 +468,16 @@ actor = Actor(actor_name)
 | `.all_movies()`     | Returns all movies acted in and upcoming movies         |
 | `.awards()`         | Returns the number of awards and nominations            |
 
+
+Create an instance of `BoxOffice` class.
+```python
+boxoffice = BoxOffice()
+```
+| Methods            | Details                                                                       |
+| -------------------|-------------------------------------------------------------------------------|
+| `.top_movies()`    | Returns the top box office movies, weekend and total gross and weeks released |
+
+
 ---
 
 ## Coursera
