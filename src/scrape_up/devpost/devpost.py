@@ -13,7 +13,34 @@ class Devpost:
     """
 
     def get_projects(self):
-        
+        """
+        Class - `Devpost`
+        Example -
+        ```python
+        devpost = Devpost()
+        posts = devpost.get_articles()
+        ```
+        Return
+        ```js
+        [
+            {
+                'title': 'Multiple templates - Quarkus quickstarts & sample 3-tier app', 
+                'description': 'Learning a new technology requires lot of research & development. There are templates spanning multiple middleware and databases for learning Quarkus with hot reloading & bunnyshell rdev feature.', 
+                'like_count': '31', 
+                'comment_count': '9', 
+                'img_url': 'https://d112y698adiu2z.cloudfront.net/photos/production/software_thumbnail_photos/002/532/156/datas/medium.png', 
+                'members': [
+                    {
+                        'name': 'Himanshu Gupta', 
+                        'avatar_url': 'https://lh3.googleusercontent.com/a-/AOh14GjwWZyRHT67sf0URtiep3OjOzNV1lpLcxHvbHs7?type=square', 
+                        'link': 'https://devpost.com/himanshu_mps'
+                    }
+                ]
+            }
+            ...
+        ]
+        ```
+        """
         url = "https://devpost.com/software"
         projects_data = {"projects": []}
         try:
