@@ -4,6 +4,7 @@ from indian_index import IndianIndex
 from silver_prices import SilverPrice
 from top_gainers import TopGainers
 from top_losers import TopLosers
+from equity_mutual_funds import EquityMutualFunds
 
 __all__ = [
     "Index",
@@ -12,4 +13,5 @@ __all__ = [
     "SilverPrice",
     "TopGainers",
     "TopLosers",
+    "EquityMutualFunds"
 ]
