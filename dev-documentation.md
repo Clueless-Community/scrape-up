@@ -468,6 +468,16 @@ actor = Actor(actor_name)
 | `.all_movies()`     | Returns all movies acted in and upcoming movies         |
 | `.awards()`         | Returns the number of awards and nominations            |
 
+
+Create an instance of `Celeb` class.
+```python
+celeb = Celeb()
+```
+| Methods            | Details                                            |
+| -------------------|----------------------------------------------------|
+| `.top_celebs()`    | Returns the name, roles, famous movie of the celeb |
+
+
 ---
 
 ## Coursera
