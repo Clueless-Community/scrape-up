@@ -1294,6 +1294,19 @@ timezones = Timezones()
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
 
+
+
+Create an instance of `UTC` class.
+```python
+utc = UTC()
+```
+| Methods             | Details                                      |
+| --------------------|----------------------------------------------|
+| `.time_now`         | Returns UTC time now                         |
+| `.get_abbreviations`| Returns abbreviations of each time zone      |
+| `.get_location`     | Returns location of each time zone           |
+| `.get_offset`       | Returns offset of each time zone from UTC    |
+
 ---
 
 # TheHindu
