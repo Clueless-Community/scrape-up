@@ -95,7 +95,7 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 | `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                                                                                                      |
 | `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                                                                                     |
 | `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                                                                                                |
-| `.get_insights()`          | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs, list of recent open prs, list of recent closed issues, list of recent open issues |
+| `.get_insights()`          | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recently merged PRs, list of recent open PRs, list of recently closed issues, list of recent open issues |
 
 ### Scrape an issue details
 
@@ -302,7 +302,7 @@ from scrape_up import medium
 
 ### Scrape user details
 
-First, create an object of class `User`
+First, create an object of the class `User`
 
 ```python
 user = medium.Users(username="nikhil25803")
@@ -346,17 +346,17 @@ articles = HackerNews()
 
 | Methods            | Details                                                                                                                  |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `.articles_list()` | Returns the latest articles along with their score, author, author url, time, comment count and link in JSON format.     |
-| `.new_articles()`  | Returns the latest new articles along with their score, author, author url, time, comment count and link in JSON format. |
-| `.past_articles()` | Returns the past articles along with their score, author, author url, time, comment count and link in JSON format.       |
-| `.ask_articles()`  | Returns the ask articles along with their score, author, author url, time, comment count and link in JSON format.        |
-| `.show_articles()` | Returns the show articles along with their score, author, author url, time, comment count and link in JSON format.       |
+| `.articles_list()` | Returns the latest articles along with their score, author, author URL, time, comment count, and link in JSON format.     |
+| `.new_articles()`  | Returns the latest new articles along with their score, author, author URL, time, comment count, and link in JSON format. |
+| `.past_articles()` | Returns the past articles along with their score, author, author URL, time, comment count, and link in JSON format.       |
+| `.ask_articles()`  | Returns the ask articles along with their score, author, author URL, time, comment count, and link in JSON format.        |
+| `.show_articles()` | Returns the show articles along with their score, author, author URL, time, comment count, and link in JSON format.       |
 | `.jobs()`          | Returns the jobs along with their time and link in JSON format.                                                          |
 
 ## Twitter
 
 ```python
-from scrape_up import twitter
+from scrape_up import Twitter
 ```
 
 ### Scrape
@@ -395,16 +395,16 @@ leetcode_scraper = LeetCodeScraper(username="nikhil25803")
 | `.scrape_rank()`              | Used to scrape the rank of a user on LeetCode.                        |
 | `.scrape_rating()`            | Used to scrape the rating of a user on LeetCode.                      |
 | `.get_problems_solved()`      | Used to scrape total problems solved by a user on LeetCode.           |
-| `.get_solved_by_difficulty()` | Used to scrape difficulty wise problems solved by a user on LeetCode. |
-| `.get_github_link()`          | Used to scrape github link of a user on LeetCode.                     |
-| `.get_linkedin_link()`        | Used to scrape linkedin link of a user on LeetCode.                   |
-| `.get_community_stats()`      | Used to scrape community stats of a user on LeetCode.                 |
+| `.get_solved_by_difficulty()` | Used to scrape difficulty-wise problems solved by a user on LeetCode. |
+| `.get_github_link()`          | Used to scrape the GitHub link of a user on LeetCode.                     |
+| `.get_linkedin_link()`        | Used to scrape the LinkedIn link of a user on LeetCode.                   |
+| `.get_community_stats()`      | Used to scrape the community stats of a user on LeetCode.                 |
 
 **General Purpose Methods - Does not Require Username**
 
 | Methods                                            | Details                                                                                                                                                                                                      |
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `.get_problems(difficulty, tags_list, search_key)` | Used to scrape top problems of LeetCode based on filters. Difficulty is string from ("easy", "medium", "hard"). Tags_list is list of tags. Search_key is string to search. All ther parameters are optional. |
+| `.get_problems(difficulty, tags_list, search_key)` | Used to scrape top problems of LeetCode based on filters. The difficulty is string from ("easy", "medium", "hard"). Tags_list is list of tags. Search_key is string to search. All the parameters are optional. |
 | `.get_contests()`                                  | Used to scrape the upcoming LeetCode Contests details.                                                                                                                                                       |
 | `.get_daily_challenge()`                           | Used to scrape LeetCode Daily Challenge details.                                                                                                                                                             |
 
@@ -452,7 +452,7 @@ movie = Movie(movie_name)
 | Methods          | Details                                                  |
 | ---------------- | -------------------------------------------------------- |
 | `.rating()`      | Returns the IMDB rating of the movie                     |
-| `.description()` | Returns the description, cast and director of the movie  |
+| `.description()` | Returns the description, cast, and director of the movie  |
 | `.more_movies()` | Returns similar movies recommended by IMDB               |
 | `.box_office()`  | Returns budget, gross worldwide collections of the movie |
 
@@ -465,7 +465,7 @@ actor = Actor(actor_name)
 | Methods             | Details                                                 |
 | ------------------- | ------------------------------------------------------- |
 | `.popular_movies()` | Returns the popular movies in which the actor has acted |
-| `.all_movies()`     | Returns all movies acted in and upcoming movies         |
+| `.all_movies()`     | Returns all movies acted in an upcoming movies         |
 | `.awards()`         | Returns the number of awards and nominations            |
 
 ---
@@ -480,7 +480,7 @@ scraper = Courses(topic="topic")
 
 | Methods                                | Details                                                                                    |
 | -------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `.get_courses()`                       | Returns the courses with title, teached by, skills, rating, review count, img url and link |
+| `.get_courses()`                       | Returns the courses with title, taught by, skills, rating, review count, image URL and link |
 | `.fetch_modules(course='Course Name')` | Returns the modules associated with the Coursera.                                          |
 
 ## Wikipedia
@@ -508,7 +508,7 @@ Scraper = WikipediaScraper()
 
 ### Scrape details about a product
 
-Create an instance of `Product` class with a `product_name` propertiese.
+Create an instance of `Product` class with a `product_name` properties.
 
 ```python
 product = Product(product_name="watch")
@@ -546,21 +546,21 @@ item = Flipkart()
 
 | Methods               | Details                                                            |
 | --------------------- | ------------------------------------------------------------------ |
-| `.TVs()`              | Returns the list of TV sets on flipkart                            |
-| `.bestseller_books()` | Returns the list of bestselling books data listed on Flipkart.     |
+| `.TVs()`              | Returns the list of TV sets on Flipkart                            |
+| `.bestseller_books()` | Returns the list of bestselling book data listed on Flipkart.     |
 | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
-| `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
-| `.laptops()`          | Returns the list of laptop from flipkart.                          |
-| `.camera()`           | Returns the list of camera from flipkart.                          |
-| `.computer()`         | Returns the list of computer from flipkart.                        |
-| `.tablets()`          | Returns the list of tablets from flipkart.                         |
-| `.cycle()`            | Returns the list of bicycles from flipkart.                        |
-| `.printers()`         | Returns the list of printers from flipkart.                        |
-| `.monitor()`          | Returns the list of monitors from flipkart.                        |
-| `.ac()`               | Returns the list of acs from flipkart.                             |
-| `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
-| `.VRbox()`            | Returns the list of VRbox from flipkart.                           |
-| `.Speakers()`         | Returns the list of Speakers from flipkart.                        |
+| `.sport_shoes()`      | Returns the list of trending sports shoes data.                     |
+| `.laptops()`          | Returns the list of laptops from Flipkart.                          |
+| `.camera()`           | Returns the list of cameras from Flipkart.                          |
+| `.computer()`         | Returns the list of computers from Flipkart.                        |
+| `.tablets()`          | Returns the list of tablets from Flipkart.                         |
+| `.cycle()`            | Returns the list of bicycles from Flipkart.                        |
+| `.printers()`         | Returns the list of printers from Flipkart.                        |
+| `.monitor()`          | Returns the list of monitors from Flipkart.                        |
+| `.ac()`               | Returns the list of air conditioners from Flipkart.                             |
+| `.refrigerator()`     | Returns the list of refrigerators from Flipkart.                   |
+| `.VRbox()`            | Returns the list of VRbox from Flipkart.                           |
+| `.Speakers()`         | Returns the list of Speakers from Flipkart.                        |
 
 ---
 
@@ -613,11 +613,11 @@ restaurants = EazyDiner(location="city-name")
 
 | Methods                   | Details                                                                                          |
 | ------------------------- | ------------------------------------------------------------------------------------------------ |
-| `.get_restaurants()`      | Returns the restaurants name, location, rating, cuisine and prices in JSON format.               |
-| `.get_breakfast()`        | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast. |
-| `.get_lunch()`            | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch.     |
-| `.get_dinner()`           | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.    |
-| `.dinner_with_discount()` | Returns list of resturant from the entered location with 50% offer.                              |
+| `.get_restaurants()`      | Returns the restaurant's name, location, rating, cuisine, and prices in JSON format.               |
+| `.get_breakfast()`        | Returns the restaurant's name, location, rating, cuisine, and prices in JSON format for Breakfast. |
+| `.get_lunch()`            | Returns the restaurant's name, location, rating, cuisine, and prices in JSON format for Lunch.     |
+| `.get_dinner()`           | Returns the restaurant's name, location, rating, cuisine, and prices in JSON format for Dinner.    |
+| `.dinner_with_discount()` | Returns the list of restaurants from the entered location with a 50% offer.                              |
 
 ---
 
@@ -682,8 +682,8 @@ channel_data = Channel(channel_username="BeABetterDev")
 | Methods            | Details                                                                |
 | ------------------ | ---------------------------------------------------------------------- |
 | `.getAbout()`      | Returns the channel details mentioned in the about page of the channel |
-| `.getVideos()`     | Returns all the video details in the videos page of the channel        |
-| `.get_community()` | Returns all the post details in the community page of the channel      |
+| `.getVideos()`     | Returns all the video details on the videos page of the channel        |
+| `.get_community()` | Returns all the post details on the community page of the channel      |
 
 ---
 
@@ -699,11 +699,11 @@ articles = GoogleNews()
 
 | Methods                        | Details                                                                                          |
 | ------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `.getArticles(topic="github")` | Returns the list of articles with title, descriptions, news source, date and link in JSON format |
+| `.getArticles(topic="github")` | Returns the list of articles with title, descriptions, news source, date, and link in JSON format |
 | `.top_stories()`               | Returns the list of top stories listed regarding the mentioned topic                             |
 | `.timed_aticles(time)`         | Returns the list of top stories listed regarding the mentioned topic and within that time frame  |
 | `.bylanguage(lang)`            | Returns the list of top stories listed regarding the mentioned topic in the specified language   |
-| `.bynumerofdaysback(number)`   | Returns the list of stories listed by given number of days back from the current day             |
+| `.bynumerofdaysback(number)`   | Returns the list of stories listed by a given number of days back from the current day             |
 | `.bylocation(countryname)`     | Returns the list of top stories listed of the specified country or geolocation                   |
 
 ---
@@ -718,10 +718,10 @@ blogs = Hashnode()
 
 | Methods           | Details                                                                                               |
 | ----------------- | ----------------------------------------------------------------------------------------------------- |
-| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link  |
-| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link    |
-| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link      |
-| `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date and link for a topic |
+| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date, and link  |
+| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date, and link    |
+| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date, and link      |
+| `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date, and link for a topic |
 
 ---
 
@@ -735,11 +735,11 @@ posts = Reddit()
 
 | Methods          | Details                                                                                                                              |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `.getFeed()`     | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link      |
-| `.get_best()`    | Returns the best posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link |
-| `.get_hot()`     | Returns the hot posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
-| `.get_top()`     | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
-| `.search(topic)` | Returns the top posts with title, subreddit, subreddit avatar, date, vote and comment count and link for a searched topic            |
+| `.getFeed()`     | Returns the posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category, and link      |
+| `.get_best()`    | Returns the best posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category, and link |
+| `.get_hot()`     | Returns the hot posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category, and link  |
+| `.get_top()`     | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category, and link  |
+| `.search(topic)` | Returns the top posts with title, subreddit, subreddit avatar, date, vote and comment count, and link for a searched topic            |
 
 ---
 
@@ -775,13 +775,13 @@ dev = DevCommunity('francescoxx')
 
 | Methods              | Details                                                               |
 | -------------------- | --------------------------------------------------------------------- |
-| `.all_articles()`    | Returns latest articles from the home page of DevCommunity.           |
-| `.__strTag__()`      | Returns name of the tag specified whose articles we want returned.    |
-| `.tag_articles()`    | Returns latest articles which have the specified tag in DevCommunity. |
-| `.__strUser__()`     | Returns username of the user.                                         |
-| `.user_details()`    | Returns the user details.                                             |
-| `.pinned_articles()` | Returns all pinned articles which have been written by the user.      |
-| `.user_articles()`   | Returns all articles written by the user.                             |
+| `.all_articles()`    | Returns the latest articles from the home page of DevCommunity.                 |
+| `.__strTag__()`      | Returns the name of the tag specified whose articles we want to be returned.    |
+| `.tag_articles()`    | Returns the latest articles which have the specified tag in DevCommunity.       |
+| `.__strUser__()`     | Returns username of the user.                                                   |
+| `.user_details()`    | Returns the user details.                                                       |
+| `.pinned_articles()` | Returns all pinned articles which have been written by the user.                |
+| `.user_articles()`   | Returns all articles written by the user.                                       |
 
 ---
 
@@ -803,7 +803,7 @@ dev = DevCommunity('francescoxx')
 | `.get_recent_matches()`      | Returns a list of recent matches from Cricbuzz.                        |
 | `.get_upcoming_matches()`    | Returns a list of upcoming matches from Cricbuzz.                      |
 | `.get_series()`              | Returns a dictionary of series in month and year format from Cricbuzz. |
-| `.get_series_from_archive()` | Returns a list of series from archive from Cricbuzz.                   |
+| `.get_series_from_archive()` | Returns a list of series from the archive from Cricbuzz.                   |
 | `.get_matches_by_day()`      | Returns a dictionary of matches by day from Cricbuzz.                  |
 | `.get_series_matches()`      | Returns a list of matches in a series from Cricbuzz.                   |
 | `.get_series_stats()`        | Returns a list of stats of players in a series from Cricbuzz.          |
@@ -862,10 +862,10 @@ cloth = FlipkartTees()
 | -------------------------- | -------------------------------------------------------------- |
 | `.scrape()`                | Returns the list of t-shirts with other relevant info          |
 | `.range()`                 | Returns the list of t-shirts between a particular price range. |
-| `.minrating()`             | Returns the list of t-shirts havinga minimum given rating.     |
-| `.gendermale()`            | Returns the list of t-shirts which are for males.              |
-| `.genderfemale()`          | Returns the list of t-shirts which are there for females.      |
-| `.size()`                  | Returns the list of tshirts havning a particular size.         |
+| `.minrating()`             | Returns the list of t-shirts having a minimum given rating.     |
+| `.gendermale()`            | Returns the list of t-shirts that are for males.              |
+| `.genderfemale()`          | Returns the list of t-shirts that are there for females.      |
+| `.size()`                  | Returns the list of t-shirts having a particular size.         |
 | `formal_shirts_for_male()` | It returns those t-shirts which are of a particular size       |
 
 # MediEncyclopedia
@@ -878,7 +878,7 @@ ency = MediEncyclopedia()
 
 | Methods          | Details                                                                                      |
 | ---------------- | -------------------------------------------------------------------------------------------- |
-| `.scrapebyurl()` | Returns the medical dictation of associated topic url                                        |
+| `.scrapebyurl()` | Returns the medical dictation of the associated topic url                                        |
 | `.query()`       | It takes a user query parameter as an argument and returns all relevant terms related to it. |
 | `.byletter()`    | Returns the list of medical relics starting with a particular letter                         |
 
@@ -905,11 +905,11 @@ cloth = FlipkartClothing()
 | --------------------------- | -------------------------------------------------------------- |
 | `.tshirts()`                | Returns the list of t-shirts with other relevant info          |
 | `.tshirts_by_price_range()` | Returns the list of t-shirts between a particular price range. |
-| `.tshirts_by_rating()`      | Returns the list of t-shirts havinga minimum given rating.     |
+| `.tshirts_by_rating()`      | Returns the list of t-shirts having a minimum given rating.     |
 | `.tshirts_for_male()`       | Returns the list of t-shirts which are for males.              |
-| `.tshirts_for_female()`     | Returns the list of t-shirts which are there for females.      |
-| `.tshirt_by_size()`         | Returns the list of tshirts havning a particular size.         |
-| `.Formal_shirts_for_male`   | Returns the list of formal shirts for mens.                    |
+| `.tshirts_for_female()`     | Returns the list of t-shirts that are there for females.      |
+| `.tshirt_by_size()`         | Returns the list of t-shirts having a particular size.         |
+| `.Formal_shirts_for_male`   | Returns the list of formal shirts for men.                    |
 
 # Flyrobu
 
@@ -972,9 +972,9 @@ quora = Quora()
 
 | Methods            | Details                                                                                   |
 | ------------------ | ----------------------------------------------------------------------------------------- |
-| `.fetch_answers()` | Returns the list of answers pertaining to a particular url gien by the user as parameter. |
+| `.fetch_answers()` | Returns the list of answers pertaining to a particular URL given by the user as a parameter. |
 | `.getbyquery()`    | Returns the list of answers pertaining to a particular query given by the user.           |
-| `.getprofile()`    | Returns the list of the name of a user along with their quora profile link.               |
+| `.getprofile()`    | Returns the list of the name of a user along with their Quora profile link.               |
 
 # ICC Rankings
 
@@ -1004,7 +1004,7 @@ store1 = Swiggy()
 | Methods                   | Details                                                                   |
 | ------------------------- | ------------------------------------------------------------------------- |
 | `get_restraunt_details()` | Returns the restaurant data with name, cuisine, area, rating, offers, etc |
-| `get_restaurants()`       | Returns the restaurant names as per given city                            |
+| `get_restaurants()`       | Returns the restaurant names as per the given city                            |
 
 ---
 
@@ -1035,7 +1035,7 @@ store1 = Zomato()
 
 | Methods                                    | Details                                                                  |
 | ------------------------------------------ | ------------------------------------------------------------------------ |
-| `.get_restaurants_details(page_url = " ")` | Returns the restraunt data with name, cuisine, area, rating, offers, etc |
+| `.get_restaurants_details(page_url = " ")` | Returns the restaurant data with name, cuisine, area, rating, offers, etc |
 
 ---
 
@@ -1106,7 +1106,7 @@ user = instagram.Users(username="nikhil25803")
 
 | Methods            | Details                                                  |
 | ------------------ | -------------------------------------------------------- |
-| `.get_headlines()` | Returns the list of object containig the headlines       |
+| `.get_headlines()` | Returns the list of objects containing the headlines       |
 | `get_article()`    | Returns an object with proper details about the articles |
 
 ---
@@ -1228,7 +1228,7 @@ silverprice = SilverPrice()
 | Methods             | Details                                                             |
 | ------------------- | ------------------------------------------------------------------- |
 | `.citywise_price()` | Returns the price of silver citywise in rupees                      |
-| `.last_10_days()`   | Returns the price of 10 grams silver for the last 10 days in rupees |
+| `.last_10_days()`   | Returns the price of 10 grams of silver for the last 10 days in rupees |
 
 Create an instance of `TopGainers` class
 
@@ -1240,7 +1240,7 @@ topgainers = TopGainers()
 | --------------- | ----------------------------------------------------- |
 | `.high()`       | Returns the highest value the top gainer was sold for |
 | `.low()`        | Returns the lowest value the top gainer was sold for  |
-| `.last_price()` | Returns the last price top gainer was sold for        |
+| `.last_price()` | Returns the last price the top gainer was sold for        |
 | `.prev_close()` | Returns the prev close value of the top gainer        |
 | `.change()`     | Returns the change and gain % of top gainer stocks    |
 
@@ -1254,7 +1254,7 @@ toplosers = TopLosers()
 | --------------- | ---------------------------------------------------- |
 | `.high()`       | Returns the highest value the top loser was sold for |
 | `.low()`        | Returns the lowest value the top loser was sold for  |
-| `.last_price()` | Returns the last price top loser was sold for        |
+| `.last_price()` | Returns the last price the top loser was sold for        |
 | `.prev_close()` | Returns the prev close value of the top loser        |
 | `.change()`     | Returns the change and loss % of top loser stocks    |
 
@@ -1292,7 +1292,7 @@ timezones = Timezones()
 
 | Methods             | Details                                         |
 | ------------------- | ----------------------------------------------- |
-| `.city_timezones()` | Returns the timezones of cites around the world |
+| `.city_timezones()` | Returns the timezones of cities around the world |
 
 ---
 
