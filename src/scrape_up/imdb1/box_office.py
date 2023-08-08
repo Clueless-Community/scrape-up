@@ -48,60 +48,7 @@ class BoxOffice:
                 "Total Gross": "$459M", 
                 "Weeks released": "3"
             }, 
-            {
-                "Movie Name": "The Meg 2: The Trench", 
-                "Weekend Gross": "$30M", 
-                "Total Gross": "$30M", 
-                "Weeks released": "1"
-            }, 
-            {
-                "Movie Name": "Oppenheimer", 
-                "Weekend Gross": "$29M", 
-                "Total Gross": "$229M", 
-                "Weeks released": "3"
-            }, 
-            {
-                "Movie Name": "Teenage Mutant Ninja Turtles: Mutant Mayhem", 
-                "Weekend Gross": "$28M", 
-                "Total Gross": "$43M", 
-                "Weeks released": "1"
-            }, 
-            {
-                "Movie Name": "The Haunted Mansion", 
-                "Weekend Gross": "$9M", 
-                "Total Gross": "$42M", 
-                "Weeks released": "2"
-            }, 
-            {
-                "Movie Name": "Sound of Freedom", 
-                "Weekend Gross": "$7M", 
-                "Total Gross": "$163M", 
-                "Weeks released": "5"
-            }, 
-            {
-                "Movie Name": "Mission: Impossible - Dead Reckoning Part One", 
-                "Weekend Gross": "$6.5M", "
-                Total Gross": "$151M", 
-                "Weeks released": "4"
-            }, 
-            {
-                "Movie Name": "Talk to Me", 
-                "Weekend Gross": "$6.3M", 
-                "Total Gross": "$22M", 
-                "Weeks released": "2"
-            }, 
-            {
-                "Movie Name": "Indiana Jones and the Dial of Destiny", 
-                "Weekend Gross": "$1.5M", 
-                "Total Gross": "$171M", 
-                "Weeks released": "6"
-            }, 
-            {
-                "Movie Name": "Elemental", 
-                "Weekend Gross": "$1.2M", 
-                "Total Gross": "$148M", 
-                "Weeks released": "8"
-            }
+            ...
         ]
         
         ```
