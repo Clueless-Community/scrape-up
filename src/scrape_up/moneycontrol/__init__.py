@@ -13,5 +13,5 @@ __all__ = [
     "SilverPrice",
     "TopGainers",
     "TopLosers",
-    "EquityMutualFunds"
+    "EquityMutualFunds",
 ]

@@ -1258,15 +1258,15 @@ toplosers = TopLosers()
 | `.prev_close()` | Returns the prev close value of the top loser        |
 | `.change()`     | Returns the change and loss % of top loser stocks    |
 
-
 Create an instance of `EquityMutualFunds` class.
+
 ```python
 equitymutualfunds = EquityMutualFunds()
 ```
-| Methods                  | Details                                         |
-| -------------------------|-------------------------------------------------|
-| `.historical_returns`    | Returns mutual funds based on historic returns  |
 
+| Methods               | Details                                        |
+| --------------------- | ---------------------------------------------- |
+| `.historical_returns` | Returns mutual funds based on historic returns |
 
 # ESPN
 

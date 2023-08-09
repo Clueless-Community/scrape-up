@@ -18,11 +18,8 @@ class EquityMutualFunds:
     def __init__(self):
         self.__scrape_page()
 
-
     def __scrape_page(self):
-
         try:
-
             url = "https://www.moneycontrol.com/mutual-funds/best-funds/equity.html"
             req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
 
@@ -33,7 +30,6 @@ class EquityMutualFunds:
             return None
 
     def historical_returns(self):
-
         """
         Create an instance of `EquityMutualFunds` class.
 
@@ -44,43 +40,23 @@ class EquityMutualFunds:
         ```
         Return\n
         ```js
-
         [
-            'Motilal Oswal Midcap Fund', 
-            'Quant Small Cap Fund', 
-            'UTI Flexi Cap Fund', 
-            'Nippon India Small Cap Fund', 
-            'WhiteOak Capital Mid Cap Fund', 
-            'Bank of India Manufacturing & Infrastructure Fund', 
-            'Nippon India Multicap Fund', 'JM Flexi Cap Fund', 
-            'DSP Equity Opportunities Fund', 
-            'ICICI Prudential Large & Mid Cap Fund- Direct Plan', 
-            'DSP India T.I.G.E.R. Fund', 
-            'ICICI Prudential Large & Mid Cap Fund- GrowthLarge & Mid Cap Fund', 
-            'UTI S&P BSE Low Volatility Index Fund', 
-            'UTI Value Opportunities Fund', 
-            'WhiteOak Capital Tax Saver Fund', 
-            'DSP Tax Saver Fund', 
-            'WhiteOak Capital Flexi Cap Fund', 
-            'Parag Parikh Tax Saver Fund',
-            'Bandhan Tax Advantage (ELSS) Fund',
-            'Invesco India Infrastructure Fund', 
-            'DSP Focus Fund', 
-            'HDFC Large and Mid Cap Fund'
+            'Motilal Oswal Midcap Fund',
+            'Quant Small Cap Fund',
+            'UTI Flexi Cap Fund',
+            ....
         ]
-
         ```
         """
 
         try:
             L = []
-            for x in self.page_soup.find_all("a",{"class":"robo_medium"}):
-                temp = x.get_text().split(' - ')[0]
+            for x in self.page_soup.find_all("a", {"class": "robo_medium"}):
+                temp = x.get_text().split(" - ")[0]
                 if temp not in L:
                     L.append(temp)
 
             return L
-        
-        except:
 
+        except:
             return None
