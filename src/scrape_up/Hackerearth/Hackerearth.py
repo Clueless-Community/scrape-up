@@ -12,16 +12,13 @@ class Hackerearth:
     | ---------------- | ------------------------------------------------------ |
     | `get_upcoming()` | Get the details of upcoming challenges on Hackerearth. |
     | `get_ongoing()`  | Get the details of ongoing challenges on Hackerearth.  |
+    | `get_hiring()`  | Get the details of hiring challenges on Hackerearth.  |
     """
 
     def __init__(self):
-        headers = {
+        self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
         }
-        url = "https://www.hackerearth.com/challenges/"
-        html_text = requests.get(url, headers=headers).text
-        soup = BeautifulSoup(html_text, "lxml")
-        self.container = soup.find("div", {"class": "left border-right"})
 
     def get_ongoing(self):
         """
@@ -44,8 +41,12 @@ class Hackerearth:
         ```
         """
         try:
+            url = "https://www.hackerearth.com/challenges/"
+            html_text = requests.get(url, headers=self.headers).text
+            soup = BeautifulSoup(html_text, "lxml")
+            container = soup.find("div", {"class": "left border-right"})
             challenge = []
-            ongoing = self.container.find("div", {"class": "ongoing challenge-list"})
+            ongoing = container.find("div", {"class": "ongoing challenge-list"})
             for items in ongoing.find_all("div", {"class": "challenge-card-modern"}):
                 title = items.find(
                     "span", {"class": "challenge-list-title challenge-card-wrapper"}
@@ -87,8 +88,12 @@ class Hackerearth:
         ```
         """
         try:
+            url = "https://www.hackerearth.com/challenges/"
+            html_text = requests.get(url, headers=self.headers).text
+            soup = BeautifulSoup(html_text, "lxml")
+            container = soup.find("div", {"class": "left border-right"})
             challenge = []
-            upcoming = self.container.find("div", {"class": "upcoming challenge-list"})
+            upcoming = container.find("div", {"class": "upcoming challenge-list"})
             for items in upcoming.find_all("div", {"class": "challenge-card-modern"}):
                 title = items.find(
                     "span", {"class": "challenge-list-title challenge-card-wrapper"}
@@ -108,3 +113,60 @@ class Hackerearth:
             return challenge
         except:
             return None
+
+    def get_hiring(self):
+        """
+        Fetches and returns information about ongoing job opportunities from HackerEarth's jobs page.
+
+        :return: A dictionary containing hiring information.
+        :rtype: dict
+
+        The dictionary contains two keys:
+        - "data": A list of dictionaries, each containing information about a job opportunity.
+          - "Title": The title of the job opportunity.
+          - "Description": Information about registrations or other details.
+          - "Link": The link to the job opportunity.
+        - "message": A message indicating the status of the operation ("Information fetched" or "Error occurred").
+
+        Example output:
+        ```python
+        {
+            "data": [
+                {
+                    "Title": "Software Engineer",
+                    "Description": "50 registrations",
+                    "Link": "https://www.hackerearth.com/job/software-engineer/"
+                },
+                ...
+            ],
+            "message": "Information fetched"
+        }
+        ```
+        """
+
+        try:
+            url = "https://www.hackerearth.com/jobs/"
+            html_text = requests.get(url, headers=self.headers).text
+            soup = BeautifulSoup(html_text, "lxml")
+            container = soup.find("div", {"class": "left border-right"})
+            challenge = []
+            upcoming = container.find("div", {"class": "ongoing challenge-list"})
+            for items in upcoming.find_all("div", {"class": "challenge-card-modern"}):
+                title = items.find(
+                    "span", {"class": "challenge-list-title challenge-card-wrapper"}
+                ).text
+                registrations = items.find(
+                    "div", {"class": "registrations tool-tip align-left"}
+                ).text.strip()
+                link = items.find("a", href=True)["href"]
+                if link[:5] != "https":
+                    link = "https://www.hackerearth.com" + link
+                data = {"Title": title, "Description": registrations, "Link": link}
+                challenge.append(data)
+            return challenge
+        except:
+            return None
+
+
+x = Hackerearth()
+print(x.get_hiring())
