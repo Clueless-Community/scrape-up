@@ -147,24 +147,5 @@ organization = github.Organization(organization_name="Clueless-Community")
 | `.pinned_repository()`      | Returns the list of pinned repositories with their details.     |
 | `.get_organization_links()` | Returns a dictionary of important website links of a community. |
 
-- Unsplash
-
-### Unsplash
-
-```python
-from scrape_up import unsplash
-```
-
-
-Create an instance of the class `Unsplash`
-
-```python
-unsplash = unsplash.Unsplash(search_query="nature images")
-```
-
-| Methods                                    | Details                                              |
-| ------------------------------------------ | -----------------------------------------------------|
-| `.get_image_quality()`                     | Return list of available image quality               |
-| `.get_image_links(quality="2000w")`        | Return image links of quality 2000w                  |
-| `.get_non_premium_links(quality="2000w")`  | Returns non-premium links of quality 2000w           |
+------------------------
 

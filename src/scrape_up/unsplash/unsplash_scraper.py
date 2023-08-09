@@ -4,18 +4,19 @@ from bs4 import BeautifulSoup
 
 class Unsplash:
     """
-      Create an instance of the class `Unsplash`
-      ```python
-      unsplash = unsplash.Unsplash(search_query="nature images")
-      ```
+    Create an instance of `Unsplash` class with search query as argument.
 
-      | Methods                                    | Details                                              |
-      | ------------------------------------------ | -----------------------------------------------------|
-      | `.get_image_quality()`                     | Return list of available image quality               |
-      | `.get_image_links(quality="2000w")`        | Return image links of quality 2000w                  |
-      | `.get_non_premium_links(quality="2000w")`  | Returns non-premium links of quality 2000w           |
+    ```python
+    from scrape_up import unsplash
+    ```
 
-      """
+    | Methods                                   | Details                                    |
+    | ----------------------------------------- | ------------------------------------------ |
+    | `.get_image_quality()`                    | Return list of available image quality     |
+    | `.get_image_links(quality="2000w")`       | Return image links of quality 2000w        |
+    | `.get_non_premium_links(quality="2000w")` | Returns non-premium links of quality 2000w |
+
+    """
 
     BASE_URL = "https://unsplash.com/s/photos/"
 
@@ -32,11 +33,11 @@ class Unsplash:
         url = self.__get_url()
         response = requests.get(url).text
 
-        soup = BeautifulSoup(response, 'html.parser')
+        soup = BeautifulSoup(response, "html.parser")
         img_data = []
         try:
             img_tags = soup.select("figure div.zmDAx a div.MorZF img")
-            img_data = [img.get('srcset') for img in img_tags]
+            img_data = [img.get("srcset") for img in img_tags]
         except:
             pass
 
@@ -46,14 +47,15 @@ class Unsplash:
             # print(data)
             for d in data:
                 d = d.split(" ")
-                if len(d) > 2: d = d[1:]
+                if len(d) > 2:
+                    d = d[1:]
 
                 link, quality = d
                 if not image_links.get(quality):
                     image_links[quality] = []
                 image_links[quality].append(link)
 
-                if 'plus.unsplash' not in link:
+                if "plus.unsplash" not in link:
                     if not self.non_premium_images.get(quality):
                         self.non_premium_images[quality] = []
                     self.non_premium_images[quality].append(link)
@@ -62,44 +64,53 @@ class Unsplash:
 
     def get_image_quality(self):
         """
-           Class - `Unsplash`
-           Example:
-           ```
-           unsplash = unsplash.Unsplash(search_query="Tech wallpaper")
-           quality = unsplash.get_image_quality()
-           ```
-           Returns: List of quality | None
-       """
-        return list(self.all_images.keys())
+        Class - `Unsplash`
+        Example:
+        ```
+        unsplash = unsplash.Unsplash(search_query="Tech wallpaper")
+        quality = unsplash.get_image_quality()
+        ```
+        Returns: List of quality | None
+        """
+        try:
+            response =  list(self.all_images.keys())
+            return response
+        except:
+            return None
 
     def get_image_links(self, quality):
         """
-           Class - `Unsplash`
-           Example:
-           ```
-           unsplash = unsplash.Unsplash(search_query="Tech wallpaper")
-           links = unsplash.get_image_links(quality="2000w")
-           ```
-           Returns: List of image links of quality 2000w | None
+        Class - `Unsplash`
+        Example:
+        ```
+        unsplash = unsplash.Unsplash(search_query="Tech wallpaper")
+        links = unsplash.get_image_links(quality="2000w")
+        ```
+        Returns: List of image links of quality 2000w | None
         """
-        if not self.all_images.get(quality):
-            print("No images for the given quality")
-            return
-
-        return self.all_images[quality]
+        try:
+            if not self.all_images.get(quality):
+                return None
+            response = self.all_images[quality]
+            return response
+        except:
+            return None
 
     def get_non_premium_links(self, quality):
         """
-           Class - `Unsplash`
-           Example:
-           ```
-           unsplash = unsplash.Unsplash(search_query="Tech wallpaper")
-           links = unsplash.get_non_premium_links(quality="2000w")
-           ```
-           Returns: List of non-premium image links of quality 2000w | None
+        Class - `Unsplash`
+        Example:
+        ```
+        unsplash = unsplash.Unsplash(search_query="Tech wallpaper")
+        links = unsplash.get_non_premium_links(quality="2000w")
+        ```
+        Returns: List of non-premium image links of quality 2000w | None
         """
-        if not self.non_premium_images.get(quality):
-            print("No images for the given quality")
-            return
+        try:
+            if not self.non_premium_images.get(quality):
+                return None
 
-        return self.non_premium_images[quality]
+            response = self.non_premium_images[quality]
+            return response
+        except:
+            return None

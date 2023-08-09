@@ -1359,39 +1359,16 @@ indiancity = IndianCity("bengaluru")
 
 ---
 
-## Unsplash
+# Unsplash
+
+Create an instance of `Unsplash` class with search query as argument.
 
 ```python
 from scrape_up import unsplash
 ```
 
-Create an instance of 'Unsplash' class with search query as argument.
-
-```python
-scraper = unsplash.Unsplash(search_query="tech wallpaper")
-```
-
-### Get available image quality
-
-```python
-quality = scraper.get_image_quality()
-```
-
-### Get all image links
-
-```python
-links = scraper.get_image_links(quality="2000w")
-```
-
-### Get only non-premium image links
-
-```python
-links = scraper.get_non_premium_links(quality="2000w")
-```
-
-| Methods                                    | Details                                              |
-| ------------------------------------------ | -----------------------------------------------------|
-| `.get_image_quality()`                     | Return list of available image quality               |
-| `.get_image_links(quality="2000w")`        | Return image links of quality 2000w                  |
-| `.get_non_premium_links(quality="2000w")`  | Returns non-premium links of quality 2000w           |
-
+| Methods                                   | Details                                    |
+| ----------------------------------------- | ------------------------------------------ |
+| `.get_image_quality()`                    | Return list of available image quality     |
+| `.get_image_links(quality="2000w")`       | Return image links of quality 2000w        |
+| `.get_non_premium_links(quality="2000w")` | Returns non-premium links of quality 2000w |
