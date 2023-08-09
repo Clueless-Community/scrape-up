@@ -1,116 +1,139 @@
 from bs4 import BeautifulSoup
 import requests
 
-
 class Academia:
     """
-    Create an instance of `Academia` class
+    A class to interact with the Academia website for research topics and papers.
 
-    ```python
-    academia = Academia()
-    ```
+    ...
 
-    | Method                        | Details                                                               |
-    | ----------------------------- | --------------------------------------------------------------------- |
-    | `get_research_topics(letter)` | Fetches and returns research topics starting with the given letter.   |
-    | `get_research_papers(search)` | Fetches and returns research papers related to the given search term. |
+    Attributes:
+    -----------
+    headers : dict
+        A dictionary containing User-Agent header for making HTTP requests.
 
+    Methods:
+    --------
+    get_research_topics(topic="None"):
+        Fetches and returns research topics starting with the given letter.
+
+    get_research_papers(search):
+        Fetches and returns research papers related to the given search term.
     """
 
     def __init__(self):
+        """Initialize the Academia class with the necessary attributes."""
         self.headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
+            "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Safari/537.36"
         }
+
+    def _get_soup(self, url):
+        """
+        Send an HTTP request to the provided URL and parse the response as BeautifulSoup.
+
+        Parameters:
+        -----------
+        url : str
+            The URL to send the request to.
+
+        Returns:
+        --------
+        BeautifulSoup
+            A BeautifulSoup object representing the parsed HTML content.
+        None
+            If an error occurs during the request or parsing.
+        """
+        try:
+            response = requests.get(url, headers=self.headers)
+            response.raise_for_status()
+            return BeautifulSoup(response.text, "lxml")
+        except requests.exceptions.RequestException as e:
+            print(f"Request error: {e}")
+            return None
 
     def get_research_topics(self, topic="None"):
         """
-        Fetches and returns research topics starting with the given letter.\n
-        Param `letter`: The letter to filter research topics (default is "None" to get all topics).\n
-        Class - `Academia`\n
-        ```python
-        ac = Academia()
-        ac.get_research_topics(topic="machine learning")
-        ```
-        Example output:
-        ```python
-        [
-            {
-                "Title": "Artificial Intelligence",
-                "Link": "https://www.academia.edu/topics/artificial_intelligence",
-                "Number of Articles": "20,000",
-                "Followers": "5,000"
-            },
-            ...
-        ]
-        ```
+        Fetches and returns research topics starting with the given letter.
+
+        Parameters:
+        -----------
+        topic : str, optional
+            The letter to filter research topics (default is "None" to get all topics).
+
+        Returns:
+        --------
+        list of dict
+            A list of dictionaries containing information about research topics.
+        None
+            If an error occurs during fetching or parsing.
         """
         try:
             letter = topic.capitalize()
             url = f"https://www.academia.edu/topics/{letter}"
-            html_text = requests.get(url, headers=self.headers).text
-            soup = BeautifulSoup(html_text, "lxml")
+            soup = self._get_soup(url)
+            if not soup:
+                return None
 
             topics = []
             container = soup.find("div", {"class": "topic-list-container"})
-            for items in container:
-                link = items.find("a", href=True)["href"]
-                title = items.find("a").text
-                articles = items.find("p")
-                followers = articles.next_sibling.next_sibling
-                data = {
-                    "Title": title,
-                    "Link": link,
-                    "Number of Articles": articles.text,
-                    "Followers": followers.text,
-                }
-                topics.append(data)
-            return topics
-        except:
+            if container:
+                for item in container.find_all("div", {"class": "topic-list-item"}):
+                    link = item.find("a", href=True)["href"]
+                    title = item.find("a").text
+                    articles = item.find("p")
+                    followers = articles.find_next_sibling("p")
+
+                    data = {
+                        "Title": title,
+                        "Link": link,
+                        "Number of Articles": articles.text if articles else "N/A",
+                        "Followers": followers.text if followers else "N/A",
+                    }
+                    topics.append(data)
+            else:
+                print("Container not found")
+                return None
+        except Exception as e:
+            print(f"An error occurred: {e}")
             return None
+
+        return topics
 
     def get_research_papers(self, search):
         """
-        Fetches and returns research papers related to the given search term.\n
-        Param `search`: The search term to find research papers.\n
-        Class - `Academia`\n
-        ```python
-        ac = Academia()
-        ac.get_research_papers(search="machine learning")
-        ```
-        Example output:
-        ```python
-        [
-            {
-                "Title": "Artificial Neural Networks: A Comprehensive Guide",
-                "Summary": "This paper provides an overview of artificial neural networks...",
-                "Link": "https://www.academia.edu/Documents/in/Artifical_Neural_Network"
-            },
-            ...
-        ]
-        ```
+        Fetches and returns research papers related to the given search term.
+
+        Parameters:
+        -----------
+        search : str
+            The search term to find research papers.
+
+        Returns:
+        --------
+        list of dict
+            A list of dictionaries containing information about research papers.
+        None
+            If an error occurs during fetching or parsing.
         """
         try:
-            search = search.title()
-            search = search.replace(" ", "_")
+            search = search.title().replace(" ", "_")
             url = f"https://www.academia.edu/Documents/in/{search}"
-            html_text = requests.get(url, headers=self.headers).text
-            soup = BeautifulSoup(html_text, "lxml")
+            soup = self._get_soup(url)
+            if not soup:
+                return None
 
             papers = []
             container = soup.find("div", {"class": "works"})
-            for items in container:
-                title = items.find("div", {"class": "header"}).text
-                summary = items.find("div", {"class": "complete hidden"})
-                if summary:
-                    summary = summary.text
-                else:
-                    summary = None
-                link = items.find("a", href=True)["href"]
-                data = {"Title": title, "Summary": summary, "Link": link}
-                papers.append(data)
+            if container:
+                for item in container.find_all("div", {"class": "item"}):
+                    title = item.find("div", {"class": "header"}).text
+                    summary = item.find("div", {"class": "description"})
+                    summary = summary.text if summary else None
+                    link = item.find("a", href=True)["href"]
+                    data = {"Title": title, "Summary": summary, "Link": link}
+                    papers.append(data)
             return papers
-        except:
+        except Exception as e:
+            print(f"An error occurred: {e}")
             return None
-
-
 
