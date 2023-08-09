@@ -12,6 +12,8 @@ class Devpost:
     | Methods            | Details                                                                                                              |
     | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
     | `.get_projects()` | Returns the latest projects along with their decription, like and commment count, image and member details. |
+    | `.search(topic)` | Returns the searched projects along with their decription, like and commment count, image and member details. |
+    
     """
 
     def get_projects(self):
