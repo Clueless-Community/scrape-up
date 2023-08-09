@@ -1403,3 +1403,17 @@ indiancity = IndianCity("bengaluru")
 | `.weather()`         | Returns the weather in the city                  |
 | `.local_time()`      | Returns the local time in the city               |
 | `.nearby_airports()` | Returns a list of nearby airports in the city    |
+
+# CoinMarketCap
+
+Create an instance of `CoinMarketCap` class
+
+```python
+crypto = CoinMarketCap()
+```
+
+| Method                       | Details                                                  |
+| ---------------------------- | -------------------------------------------------------- |
+| `get_top_cryptocurrencies()` | Fetches and returns data about the top cryptocurrencies. |
+
+---
