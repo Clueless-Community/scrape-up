@@ -1341,6 +1341,15 @@ utc = UTC()
 | `.get_location`      | Returns location of each time zone        |
 | `.get_offset`        | Returns offset of each time zone from UTC |
 
+
+Create an instance of `Forecast` class with the name of the city
+```python
+forecast = Forecast("bengaluru")
+```
+| Methods            | Details                                                                                                                   |
+| -------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `.full_forecast()` | Returns datewise the Temperature, Weather, Wind, Humidity, Precipitation chance and Amount, UV, Sunrise, Sunset of a city.|
+
 ---
 
 # TheHindu
