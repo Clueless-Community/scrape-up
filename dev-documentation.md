@@ -468,6 +468,16 @@ actor = Actor(actor_name)
 | `.all_movies()`     | Returns all movies acted in and upcoming movies         |
 | `.awards()`         | Returns the number of awards and nominations            |
 
+Create an instance of `BoxOffice` class.
+
+```python
+boxoffice = BoxOffice()
+```
+
+| Methods         | Details                                                                       |
+| --------------- | ----------------------------------------------------------------------------- |
+| `.top_movies()` | Returns the top box office movies, weekend and total gross and weeks released |
+
 ---
 
 ## Coursera
@@ -740,6 +750,20 @@ posts = Reddit()
 | `.get_hot()`     | Returns the hot posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
 | `.get_top()`     | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
 | `.search(topic)` | Returns the top posts with title, subreddit, subreddit avatar, date, vote and comment count and link for a searched topic            |
+
+---
+
+## Devpost
+
+Create an instance of `Devpost` class.
+
+```python
+posts = Devpost()
+```
+
+| Methods           | Details                                                                                                     |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
+| `.get_articles()` | Returns the latest projects along with their decription, like and commment count, image and member details. |
 
 ---
 
@@ -1258,6 +1282,16 @@ toplosers = TopLosers()
 | `.prev_close()` | Returns the prev close value of the top loser        |
 | `.change()`     | Returns the change and loss % of top loser stocks    |
 
+Create an instance of `EquityMutualFunds` class.
+
+```python
+equitymutualfunds = EquityMutualFunds()
+```
+
+| Methods               | Details                                        |
+| --------------------- | ---------------------------------------------- |
+| `.historical_returns` | Returns mutual funds based on historic returns |
+
 # ESPN
 
 Create an instance of `ESPN` class
@@ -1293,6 +1327,19 @@ timezones = Timezones()
 | Methods             | Details                                         |
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
+
+Create an instance of `UTC` class.
+
+```python
+utc = UTC()
+```
+
+| Methods              | Details                                   |
+| -------------------- | ----------------------------------------- |
+| `.time_now`          | Returns UTC time now                      |
+| `.get_abbreviations` | Returns abbreviations of each time zone   |
+| `.get_location`      | Returns location of each time zone        |
+| `.get_offset`        | Returns offset of each time zone from UTC |
 
 ---
 
@@ -1357,7 +1404,7 @@ indiancity = IndianCity("bengaluru")
 | `.local_time()`      | Returns the local time in the city               |
 | `.nearby_airports()` | Returns a list of nearby airports in the city    |
 
----
+--------------
 
 # Unsplash
 
@@ -1372,3 +1419,19 @@ from scrape_up import unsplash
 | `.get_image_quality()`                    | Return list of available image quality     |
 | `.get_image_links(quality="2000w")`       | Return image links of quality 2000w        |
 | `.get_non_premium_links(quality="2000w")` | Returns non-premium links of quality 2000w |
+
+------------------
+
+# CoinMarketCap
+
+Create an instance of `CoinMarketCap` class
+
+```python
+crypto = CoinMarketCap()
+```
+
+| Method                       | Details                                                  |
+| ---------------------------- | -------------------------------------------------------- |
+| `get_top_cryptocurrencies()` | Fetches and returns data about the top cryptocurrencies. |
+
+---
