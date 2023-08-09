@@ -3,7 +3,15 @@ from bs4 import BeautifulSoup
 
 
 class Events:
-    
+    """
+    Create an instance of `Events` class.
+    ```py
+    events = Events()
+    ```
+    | Methods            | Details                                                                                                              |
+    | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
+    | `.get_events()` | Returns the latest events along with their organizer, location, image url, price and link. |
+    """
 
     def get_events(self):
         """
