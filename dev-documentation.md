@@ -751,9 +751,9 @@ Create an instance of `Devpost` class.
 posts = Devpost()
 ```
 
-| Methods           | Details                                                                                               |
-| ----------------- | ----------------------------------------------------------------------------------------------------- |
-| `.get_articles()` | Returns the latest projects along with their decription, like and commment count, image and member details.  |
+| Methods           | Details                                                                                                     |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
+| `.get_articles()` | Returns the latest projects along with their decription, like and commment count, image and member details. |
 
 ---
 
