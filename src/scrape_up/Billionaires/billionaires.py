@@ -158,13 +158,28 @@ class Billionaires:
         ]
         ```
         """
+        # try:
+        #     url = "http://www.forbes.com/ajax/list/data"
+        #     response = requests.get(url, params=self.lists[20])
+        #     k = response.json()
+        #     return k
+        # except:
+        #     return None
         try:
-            url = "http://www.forbes.com/ajax/list/data"
             response = requests.get(url, params=self.lists[20])
-            k = response.json()
-            return k
-        except:
+            if response.status_code == 200:
+                k = response.json()
+                return k
+            else:   
+                print("Request failed with status code:", response.status_code)
+                return None
+        except requests.exceptions.RequestException as e:
+            print("Request error:", e)
             return None
+        except json.JSONDecodeError as e:
+            print("JSON decode error:", e)  
+            return None     
+       
 
     def powerfulwomen(self):
         """
