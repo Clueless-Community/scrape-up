@@ -29,8 +29,8 @@ class Repository:
     | `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                                  |
     | `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                 |
     | `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                            |
-    | `.get_insights()`          | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs,
-                                   list of recent open prs, list of recent closed issues, list of recent open issues                                                                               |
+    | `.get_insights(period)`    | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs,
+                                   list of recent open prs, list of recent closed issues, list of recent open issues for a defined period                                                                           |
     """
 
     def __init__(self, username: str, repository_name: str):
