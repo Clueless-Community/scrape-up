@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 
 
 class Devpost:
@@ -79,5 +80,19 @@ class Devpost:
                     }
                 )
             return projects_data["projects"]
+        except:
+            return None
+        
+    def search(self, topic):
+        self.topic = topic
+        
+        url = "https://devpost.com/software/search?query=" + self.topic
+        try:
+            page = requests.get(url)
+            soup = BeautifulSoup(page.content, "html.parser")
+            data = str(soup)
+            projects = json.loads(data)
+            return projects["software"]
+
         except:
             return None
