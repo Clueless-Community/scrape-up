@@ -80,9 +80,9 @@ class Repository:
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
-    def __scrape_insights_page(self):
+    def __scrape_insights_page(self, period):
         data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/pulse"
+            f"https://github.com/{self.username}/{self.repository}/pulse/" + period
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
@@ -512,7 +512,8 @@ class Repository:
         except:
             return None
 
-    def get_insights(self):
+    def get_insights(self, period):
+        self.period = period
         """
         Class - `Repository`.\n
         Example:
@@ -536,7 +537,7 @@ class Repository:
         }
         ```
         """
-        data = self.__scrape_insights_page()
+        data = self.__scrape_insights_page(self.period)
         try:
             overview = {"overview": []}
             recent_merged_prs_list = []
