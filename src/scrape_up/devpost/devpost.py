@@ -12,6 +12,9 @@ class Devpost:
     | Methods            | Details                                                                                                              |
     | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
     | `.get_projects()` | Returns the latest projects along with their decription, like and commment count, image and member details. |
+    | `.get_featured()` | Returns the latest featured projects along with their decription, like and commment count, image and member details. |
+    | `.get_winner()` | Returns the latest winning projects along with their decription, like and commment count, image and member details. |
+
     """
 
     def get_projects(self):
