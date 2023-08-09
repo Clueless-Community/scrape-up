@@ -22,11 +22,8 @@ class UTC:
     def __init__(self):
         self.__scrape_page()
 
-        
     def __scrape_page(self):
-
         try:
-
             url = "https://www.timeanddate.com/time/zones/"
             req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
 
@@ -37,23 +34,19 @@ class UTC:
             return None
 
     def __get_timezones(self):
-
         x = self.x
         for y in x.find_all("a"):
             y.decompose()
 
         x = [y.get_text() for y in x.find_all("td")]
-        x = [''.join(z for z in y if z not in '\t\n') for y in x]
-        x = [y for y in x if y != '']
+        x = ["".join(z for z in y if z not in "\t\n") for y in x]
+        x = [y for y in x if y != ""]
 
         self.t_list = []
-        for y in range(0,len(x),3):
+        for y in range(0, len(x), 3):
             self.t_list.append([x[y], x[y + 1], x[y + 2]])
-    
- 
 
     def time_now(self):
-
         """
         Create an instance of `UTC` class
         ```python
@@ -70,19 +63,15 @@ class UTC:
         """
 
         try:
-
-            x = self.page_soup.find("div", {"class":"ctm-clock"})
+            x = self.page_soup.find("div", {"class": "ctm-clock"})
             dic = {}
-            dic["utc time now"] = x.get_text()[12 : 20]
+            dic["utc time now"] = x.get_text()[12:20]
             return dic
 
         except:
-
             return None
-        	
 
     def get_abbreviations(self):
-
         """
         Create an instance of `UTC` class
         ```python
@@ -94,39 +83,16 @@ class UTC:
         ```js
         [
             {
-                'timezone': 'Alfa Time Zone', 
+                'timezone': 'Alfa Time Zone',
                 'abbreviation': 'A'
-            }, 
-            {
-                'timezone': 'Australian Central Daylight Time',
-                'abbreviation': 'ACDT
-            '}, 
-            {
-                'timezone': 'Australian Central Standard Time', 
-                'abbreviation': 'ACST'
-            }, 
-            {
-                'timezone': 'Acre Time', 
-                'abbreviation': 'ACT'
-            }, 
-            {
-                'timezone': 'Australian Central Time', 
-                'abbreviation': 'ACT'
-            }, 
-            {
-                'timezone': 'Australian Central Western Standard Time', 
-                'abbreviation': 'ACWST'
-            }, 
-            {
-                'timezone': 'Arabia Daylight Time', 
-                'abbreviation': 'ADT'
-            }
-        ] 
+            },
+            ...
+        ]
         ```
         """
         try:
             self.x = self.page_soup.find("tbody")
-            for span in self.x.find_all("span", {"class":"smaller abb-other"}): 
+            for span in self.x.find_all("span", {"class": "smaller abb-other"}):
                 span.decompose()
 
             self.abbr = []
@@ -147,10 +113,8 @@ class UTC:
 
         except:
             return None
-    
 
     def get_offset(self):
-
         """
         Create an instance of `UTC` class
         ```python
@@ -162,40 +126,17 @@ class UTC:
         ```js
         [
             {
-                'timezone': 'Alfa Time Zone', 
+                'timezone': 'Alfa Time Zone',
                 'offset': 'UTC +1'
-            }, 
-            {
-                'timezone': 'Australian Central Daylight Time', 
-                'offset': 'UTC +10:30'
-            }, 
-            {   
-                'timezone': 'Australian Central Standard Time', 
-                'offset': 'UTC +9:30'
-            }, 
-            {
-                'timezone': 'Acre Time', 
-                'offset': 'UTC -5'
-            }, 
-            {
-                'timezone': 'Australian Central Time', 
-                'offset': 'UTC +9:30 / +10:30'
-            }, 
-            {
-                'timezone': 'Australian Central Western Standard Time', 
-                'offset': 'UTC +8:45'
-            }, 
-            {
-                'timezone': 'Arabia Daylight Time', 
-                'offset': 'UTC +4'
-            }
-        ] 
+            },
+            ...
+        ]
         ```
         """
 
         try:
             self.x = self.page_soup.find("tbody")
-            for span in self.x.find_all("span", {"class":"smaller abb-other"}): 
+            for span in self.x.find_all("span", {"class": "smaller abb-other"}):
                 span.decompose()
 
             self.__get_timezones()
@@ -212,7 +153,6 @@ class UTC:
 
         except:
             return None
-    
 
     def get_locations(self):
         """
@@ -226,42 +166,18 @@ class UTC:
         ```js
         [
             {
-                'timezone': 'Alfa Time Zone', 
+                'timezone': 'Alfa Time Zone',
                 'location': 'Military'
-            }, 
-            {
-                'timezone': 'Australian Central Daylight Time', 
-                'location': 'Australia'
-            }, 
-            {
-                
-                'timezone': 'Australian Central Standard Time', 
-                'location': 'Australia'
-            }, 
-            {
-                'timezone': 'Acre Time', 
-                'location': 'South America'
-            }, 
-            {
-                'timezone': 'Australian Central Time', 
-                'location': 'Australia'
-            }, 
-            {
-                'timezone': 'Australian Central Western Standard Time', 
-                'location': 'Australia'
-            }, 
-            {
-                'timezone': 'Arabia Daylight Time', 
-                'location': 'Asia'
-            }
-        ] 
+            },
+            ...
+        ]
 
         ```
         """
 
         try:
             self.x = self.page_soup.find("tbody")
-            for span in self.x.find_all("span", {"class":"smaller abb-other"}): 
+            for span in self.x.find_all("span", {"class": "smaller abb-other"}):
                 span.decompose()
 
             self.__get_timezones()
@@ -278,5 +194,3 @@ class UTC:
 
         except:
             return None
-    
-
