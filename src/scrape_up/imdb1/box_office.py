@@ -30,7 +30,6 @@ class BoxOffice:
             return None
 
     def top_movies(self):
-
         """
         Create an instance of `BoxOffice` class
 
@@ -43,39 +42,38 @@ class BoxOffice:
         ```js
         [
             {
-                "Movie Name": "Barbie", 
-                "Weekend Gross": "$53M", 
-                "Total Gross": "$459M", 
+                "Movie Name": "Barbie",
+                "Weekend Gross": "$53M",
+                "Total Gross": "$459M",
                 "Weeks released": "3"
-            }, 
+            },
             ...
         ]
-        
+
         ```
         """
         try:
-
-            x = self.page_soup.find_all("h3",{"class":"ipc-title__text"})
+            x = self.page_soup.find_all("h3", {"class": "ipc-title__text"})
             x = x[1:11]
             movie_names = []
 
             for y in x:
                 movie_names.append(" ".join(y.get_text().split()[1:]))
 
-            x = self.page_soup.find_all("li", {"class":"sc-ee64acb1-1 lkUVhM"})
+            x = self.page_soup.find_all("li", {"class": "sc-ee64acb1-1 lkUVhM"})
             x = [y.get_text() for y in x]
 
             lis = []
 
             for y in range(0, len(x), 3):
                 dic = {}
-                dic["Movie Name"] = movie_names[y//3]
+                dic["Movie Name"] = movie_names[y // 3]
                 dic["Weekend Gross"] = x[y].split()[2]
                 dic["Total Gross"] = x[y + 1].split()[2]
-                dic["Weeks released"] = x[y+ 2].split()[2]
+                dic["Weeks released"] = x[y + 2].split()[2]
                 lis.append(dic)
 
             return lis
-        
+
         except:
             return None
