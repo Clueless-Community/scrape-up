@@ -743,6 +743,20 @@ posts = Reddit()
 
 ---
 
+## Devpost
+
+Create an instance of `Devpost` class.
+
+```python
+posts = Devpost()
+```
+
+| Methods           | Details                                                                                                     |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
+| `.get_articles()` | Returns the latest projects along with their decription, like and commment count, image and member details. |
+
+---
+
 ## TimesJobs
 
 ```python
