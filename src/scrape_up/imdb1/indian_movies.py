@@ -45,28 +45,7 @@ class IndianMovies:
             'Nayakan', 
             'Gol Maal', 
             'Anbe Sivam', 
-            '777 Charlie', 
-            'Manichitrathazhu', 
-            'Pariyerum Perumal', 
-            '3 Idiots', 
-            '0Apur Sansar', 
-            'Jai Bhim', 
-            '#Home', 
-            'Soorarai Pottru', 
-            'Black Friday', 
-            'Kumbalangi Nights', 
-            'C/O Kancharapalem', 
-            'Kireedam', 
-            'Taare Zameen Par', 
-            'Dangal', 
-            'Jersey', 
-            '96', 
-            'Kaithi', 
-            'Natsamrat', 
-            'Maya Bazaar', 
-            'Sita Ramam', 
-            'Drishyam 2', 
-            'Asuran'
+            ...
         ]
         ```
         """
