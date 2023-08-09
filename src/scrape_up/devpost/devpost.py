@@ -85,7 +85,33 @@ class Devpost:
         
     def search(self, topic):
         self.topic = topic
-        
+        """
+        Class - `Devpost`
+        Example -
+        ```python
+        devpost = Devpost()
+        posts = devpost.search("github")
+        ```
+        Return
+        ```js
+        [
+            {
+                'class_name': 'Software', 
+                'name': 'Electron-Cash-SLP', 
+                'tagline': 'Electron Cash for SLP Tokens', 
+                'slug': 'electron-cash-slp', 
+                'url': 'https://devpost.com/software/electron-cash-slp', 
+                'members': None, 
+                'tags': ['python', 'objective-c', 'c', 'kotlin', 'shell', 'java', 'nsis', 'dockerfile', 'ruby'], 
+                'winner': False, 
+                'photo': 'https://d112y698adiu2z.cloudfront.net/photos/production/software_thumbnail_photos/002/558/403/datas/small.jpg', 
+                'has_video': True, 
+                'like_count': 1, 
+                'comment_count': 0}
+            ...
+        ]
+        ```
+        """
         url = "https://devpost.com/software/search?query=" + self.topic
         try:
             page = requests.get(url)
