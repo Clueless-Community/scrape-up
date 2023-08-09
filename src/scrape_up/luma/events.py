@@ -6,7 +6,28 @@ class Events:
     
 
     def get_events(self):
-        
+        """
+        Class - `Events`
+        Example -
+        ```python
+        luma = Events()
+        events = luma.get_events()
+        ```
+        Return
+        ```js
+        [
+            {
+                'title': 'Brexfast Club',
+                'organizer': 'By Shai Goldman & Alexandra Settlemyer',
+                'location': 'Register to See Location',
+                'img_url': 'https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,quality=75,width=200,height=100/event-covers/gd/45c21ae7-67f6-40c7-8820-1cb57ea14705',
+                'price': 'Sold Out',
+                'link': 'https://lu.ma//nycaug9'
+            }
+            ...
+        ]
+        ```
+        """
         url = "https://lu.ma/nyc"
         events_data = {"events": []}
         try:
