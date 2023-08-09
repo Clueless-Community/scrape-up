@@ -121,3 +121,15 @@ class Devpost:
             return data["software"]
         except:
             return None
+        
+    def get_winner(self):
+        
+        url = "https://devpost.com/software/search?query=is%3Awinner"
+        try:
+            page = requests.get(url)
+            soup = BeautifulSoup(page.content, "html.parser")
+            str_data = str(soup)
+            data = json.loads(str_data)
+            return data["software"]
+        except:
+            return None
