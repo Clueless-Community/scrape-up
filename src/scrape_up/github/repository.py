@@ -519,7 +519,8 @@ class Repository:
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
-        insights = repository.get_insights()
+        insights = repository.get_insights(period)
+        period parameter accepts: "daily", "halfweekly", "weekly", "monthly" or ""
         ```
         Return\n
         ```js
