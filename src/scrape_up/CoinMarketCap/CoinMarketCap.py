@@ -1,13 +1,18 @@
 from bs4 import BeautifulSoup
 import requests
 
+
 class CoinMarketCap:
     """
-    Create an instance of the `CoinMarketCap` class to fetch top cryptocurrency data from the CoinMarketCap website.
-
-    | Method                        | Details                                                         |
-    | ----------------------------- | --------------------------------------------------------------- |
-    | `get_top_cryptocurrencies()`  | Fetches and returns data about the top cryptocurrencies.       |
+    Create an instance of `CoinMarketCap` class
+    
+    ```python
+    crypto = CoinMarketCap()
+    ```
+    
+    | Method                       | Details                                                  |
+    | ---------------------------- | -------------------------------------------------------- |
+    | `get_top_cryptocurrencies()` | Fetches and returns data about the top cryptocurrencies. |
     """
 
     def __init__(self):
@@ -23,23 +28,10 @@ class CoinMarketCap:
 
     def get_top_cryptocurrencies(self):
         """
-        Fetches and returns data about the top cryptocurrencies.
-
-        :return: A list of dictionaries containing details of the top cryptocurrencies.
-        :rtype: list
-
-        Each dictionary contains the following information:
-        - Name
-        - Symbol
-        - Link
-        - Price
-        - 1h% Change
-        - 24h% Change
-        - 7d% Change
-        - MarketCap
-        - Volume (24h)
-        - Circulating Supply
-
+        A list of dictionaries containing details of the top cryptocurrencies.\n
+         ```python
+        crypto = CoinMarketCap()
+        ```
         Example output:
         ```python
         [
@@ -60,48 +52,57 @@ class CoinMarketCap:
         """
         try:
             cryptocurrency = []
-            container = self.soup.find("div",{"class":"sc-4c520df-2 kGWYlx"})
-            i=0
+            container = self.soup.find("div", {"class": "sc-4c520df-2 kGWYlx"})
+            i = 0
             tbody = container.find("tbody")
             for items in tbody.find_all("tr"):
-                i+=1
-                if i==11:
+                i += 1
+                if i == 11:
                     break
                 j = 0
                 for item in items.find_all("td"):
-                    j+=1
-                    if j==1 or j==2:
+                    j += 1
+                    if j == 1 or j == 2:
                         continue
-                    elif j==3:
-                        name = item.find("p",{"class":"sc-4984dd93-0 kKpPOn"}).text
-                        symbol = item.find("p",{"class":"sc-4984dd93-0 iqdbQL coin-item-symbol"}).text
-                        link = "https://coinmarketcap.com/" +item.find("a",href=True)['href']
-                    elif j==4:
+                    elif j == 3:
+                        name = item.find("p", {"class": "sc-4984dd93-0 kKpPOn"}).text
+                        symbol = item.find(
+                            "p", {"class": "sc-4984dd93-0 iqdbQL coin-item-symbol"}
+                        ).text
+                        link = (
+                            "https://coinmarketcap.com/"
+                            + item.find("a", href=True)["href"]
+                        )
+                    elif j == 4:
                         price = item.text
-                    elif j==5:
-                        if item.find("span",{"class":"icon-Caret-down"}) is not None:
+                    elif j == 5:
+                        if item.find("span", {"class": "icon-Caret-down"}) is not None:
                             market = "Down"
                         else:
                             market = "Up"
                         hour = item.text + f" ({market})"
-                    elif j==6:
-                        if item.find("span",{"class":"icon-Caret-down"}) is not None:
+                    elif j == 6:
+                        if item.find("span", {"class": "icon-Caret-down"}) is not None:
                             market = "Down"
                         else:
                             market = "Up"
-                        hour_24 = item.text+ f" ({market})"
-                    elif j==7:
-                        if item.find("span",{"class":"icon-Caret-down"}) is not None:
+                        hour_24 = item.text + f" ({market})"
+                    elif j == 7:
+                        if item.find("span", {"class": "icon-Caret-down"}) is not None:
                             market = "Down"
                         else:
                             market = "Up"
-                        day = item.text+ f" ({market})"
-                    elif j==8:
-                        marketcap = item.find("span",{'class':"sc-f8982b1f-1 bOsKfy"}).text
-                    elif j==9:
-                        volume =item.find("p",{"class":"sc-4984dd93-0 jZrMxO font_weight_500"}).text
-                    elif j==10:
-                        supply = item.find("p",{"class":"sc-4984dd93-0 WfVLk"}).text
+                        day = item.text + f" ({market})"
+                    elif j == 8:
+                        marketcap = item.find(
+                            "span", {"class": "sc-f8982b1f-1 bOsKfy"}
+                        ).text
+                    elif j == 9:
+                        volume = item.find(
+                            "p", {"class": "sc-4984dd93-0 jZrMxO font_weight_500"}
+                        ).text
+                    elif j == 10:
+                        supply = item.find("p", {"class": "sc-4984dd93-0 WfVLk"}).text
                 data = {
                     "Name": name,
                     "Symbol": symbol,
@@ -112,10 +113,9 @@ class CoinMarketCap:
                     "7d%": day,
                     "MarketCap": marketcap,
                     "Volume(24h)": volume,
-                    "Circulating Supply": supply
+                    "Circulating Supply": supply,
                 }
                 cryptocurrency.append(data)
             return cryptocurrency
         except:
             return None
-

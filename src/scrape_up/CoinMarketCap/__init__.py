@@ -1,4 +1,3 @@
 from CoinMarketCap import CoinMarketCap
 
-__all__ = ['CoinMarketCap']
-
+__all__ = ["CoinMarketCap"]
