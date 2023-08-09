@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 
 
 class Devpost:
@@ -79,5 +80,17 @@ class Devpost:
                     }
                 )
             return projects_data["projects"]
+        except:
+            return None
+        
+    def get_featured(self):
+        
+        url = "https://devpost.com/software/search?query=is%3Afeatured"
+        try:
+            page = requests.get(url)
+            soup = BeautifulSoup(page.content, "html.parser")
+            str_data = str(soup)
+            data = json.loads(str_data)
+            return data["software"]
         except:
             return None
