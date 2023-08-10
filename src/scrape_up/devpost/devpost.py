@@ -85,7 +85,7 @@ class Devpost:
             return projects_data["projects"]
         except:
             return None
-        
+
     def get_featured(self):
         """
         Class - `Devpost`
@@ -124,7 +124,7 @@ class Devpost:
             return data["software"]
         except:
             return None
-        
+
     def get_winner(self):
         """
         Class - `Devpost`
@@ -163,3 +163,5 @@ class Devpost:
             return data["software"]
         except:
             return None
+devpost = Devpost()
+print(devpost.get_winner())
