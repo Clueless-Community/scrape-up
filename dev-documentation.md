@@ -761,9 +761,11 @@ Create an instance of `Devpost` class.
 posts = Devpost()
 ```
 
-| Methods           | Details                                                                                                     |
-| ----------------- | ----------------------------------------------------------------------------------------------------------- |
-| `.get_articles()` | Returns the latest projects along with their decription, like and commment count, image and member details. |
+| Methods           | Details                                                                                                              |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `.get_articles()` | Returns the latest projects along with their decription, like and commment count, image and member details.          |
+| `.get_featured()` | Returns the latest featured projects along with their decription, like and commment count, image and member details. |
+| `.get_winner()`   | Returns the latest winning projects along with their decription, like and commment count, image and member details.  |
 
 ---
 
@@ -1359,6 +1361,28 @@ utc = UTC()
 | `.get_location`      | Returns location of each time zone        |
 | `.get_offset`        | Returns offset of each time zone from UTC |
 
+
+Create an instance of `FunHolidays` class.
+
+```python
+funholidays = FunHolidays()
+```
+
+| Methods    | Details                                                   |
+| ---------- | --------------------------------------------------------- |
+| `.dates()` | Returns a list of fun holidays on each date of each month |
+
+Create an instance of `Forecast` class with the name of the city
+
+```python
+forecast = Forecast(city="bengaluru")
+```
+
+| Methods            | Details                                                                                                                    |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `.full_forecast()` | Returns datewise the Temperature, Weather, Wind, Humidity, Precipitation chance and Amount, UV, Sunrise, Sunset of a city. |
+
+
 ---
 
 # TheHindu
@@ -1422,7 +1446,7 @@ indiancity = IndianCity("bengaluru")
 | `.local_time()`      | Returns the local time in the city               |
 | `.nearby_airports()` | Returns a list of nearby airports in the city    |
 
---------------
+---
 
 # Unsplash
 
@@ -1438,7 +1462,7 @@ from scrape_up import unsplash
 | `.get_image_links(quality="2000w")`       | Return image links of quality 2000w        |
 | `.get_non_premium_links(quality="2000w")` | Returns non-premium links of quality 2000w |
 
-------------------
+---
 
 # CoinMarketCap
 
