@@ -466,6 +466,16 @@ actor = Actor(actor_name)
 | `.all_movies()`     | Returns all movies acted in and upcoming movies         |
 | `.awards()`         | Returns the number of awards and nominations            |
 
+Create an instance of `IndianMovies` class.
+
+```python
+indianmovies = IndianMovies()
+```
+
+| Methods                | Details                                       |
+| ---------------------- | --------------------------------------------- |
+| `.top_indian_movies()` | Returns the current list of top Indian movies |
+
 Create an instance of `BoxOffice` class.
 
 ```python
