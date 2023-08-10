@@ -11,6 +11,7 @@ class Dribbble:
     | Methods            | Details                                                                                                              |
     | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
     | `.get_shots()` | Returns the latest shots along with their title, designer and designer url like and view count and link. |
+    | `.search(topic)` | Returns the latest shots along with their title, designer and designer url like and view count and link for the searched topic. |
     """
 
     def get_shots(self):
