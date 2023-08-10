@@ -997,7 +997,6 @@ uci = UCI()
 
 ---
 
-
 # CodeChef
 
 First, create an object of class `Codechef`

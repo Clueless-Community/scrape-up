@@ -64,6 +64,13 @@ class FlipkartClothing:
             return None
 
     def tshirts_by_price_range(self, min_price, max_price):
+        """
+        Class - `FlipkartClothing()`
+        ```python
+        tees = FlipkartClothing()
+        tees.tshirts_by_price_range(min_price, max_price)
+        ```
+        """
         try:
             min_price = int(min_price)
             max_price = int(max_price)
