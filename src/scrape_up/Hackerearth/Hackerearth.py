@@ -116,18 +116,12 @@ class Hackerearth:
 
     def get_hiring(self):
         """
-        Fetches and returns information about ongoing job opportunities from HackerEarth's jobs page.
-
-        :return: A dictionary containing hiring information.
-        :rtype: dict
-
-        The dictionary contains two keys:
-        - "data": A list of dictionaries, each containing information about a job opportunity.
-          - "Title": The title of the job opportunity.
-          - "Description": Information about registrations or other details.
-          - "Link": The link to the job opportunity.
-        - "message": A message indicating the status of the operation ("Information fetched" or "Error occurred").
-
+        Fetches and returns information about ongoing job opportunities from HackerEarth's jobs page.\n
+        Example
+        ```python
+        hacker = Hackerearth()
+        hacker.get_hiring()
+        ```
         Example output:
         ```python
         {
@@ -166,7 +160,3 @@ class Hackerearth:
             return challenge
         except:
             return None
-
-
-x = Hackerearth()
-print(x.get_hiring())
