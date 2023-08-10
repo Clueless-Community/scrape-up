@@ -95,7 +95,29 @@ class Dribbble:
             return None
         
     def search(self, topic):
-        
+        """
+        Class - `Dribbble`
+        Example -
+        ```python
+        dribbble = Dribbble()
+        shots = dribbble.search(topic)
+        ```
+        Return
+        ```js
+        [
+            {
+                'title': 'The full case study of Zelt project',
+                'image_url': 'https://cdn.dribbble.com/userupload/9134517/file/still-85ff8d3aba6c58f20730e158a2afdd34.png?resize=400x0',
+                'designer': 'Cuberto',
+                'designer_url': 'https://www.dribbble.com//cuberto',
+                'like_count': '152',
+                'views_count': '10.2k',
+                'link': 'https://www.dribbble.com//shots/22210785-The-full-case-study-of-Zelt-project'
+            }
+            ...
+        ]
+        ```
+        """
         url = "https://dribbble.com/search/" + topic
         shots_data = {"shots": []}
         try:
