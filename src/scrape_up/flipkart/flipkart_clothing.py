@@ -63,29 +63,24 @@ class FlipkartClothing:
         except:
             return None
 
-    def tshirts_by_price_range(self, min, max):
+    def tshirts_by_price_range(self, min_price, max_price):
         """
-        It returns the t-shirts in a particular price bracket(min-max). The information regarding parameters is as follows:\n
-        - min: Bottom range of price\n
-        - max: Max range of price\n
         Class - `FlipkartClothing()`
         ```python
-        clothes = FlipkartClothing()
-        clothes.tshirts_by_price_range(min=500,max=2000)
+        tees = FlipkartClothing()
+        tees.tshirts_by_price_range(min_price, max_price)
         ```
         """
         try:
-            max = int(max)
-            min = int(min)
-            if min == max:
-                return None
-            url = "https://www.flipkart.com/search?q=tshirt&as=on&as-show=on&otracker=AS_Query_TrendingAutoSuggest_1_0_na_na_na&otracker1=AS_Query_TrendingAutoSuggest_1_0_na_na_na&as-pos=1&as-type=TRENDING&suggestionId=mobiles&requestId=fbbac901-d12f-4dc5-9a8c-b034cde11af9&p%5B%5D=facets.price_range.from%3D{}&p%5B%5D=facets.price_range.to%3D{}".format(
-                min, max
-            )
-            k = FlipkartClothing().tshirts(url)
-            return k
-        except:
-            return None
+            min_price = int(min_price)
+            max_price = int(max_price)
+            if min_price == max_price:
+                return "Min and max prices are the same."
+            url = f"https://www.flipkart.com/search?q=tshirt&as=on&as-show=on&otracker=AS_Query_TrendingAutoSuggest_1_0_na_na_na&otracker1=AS_Query_TrendingAutoSuggest_1_0_na_na_na&as-pos=1&as-type=TRENDING&suggestionId=mobiles&requestId=fbbac901-d12f-4dc5-9a8c-b034cde11af9&p%5B%5D=facets.price_range.from%3D{min_price}&p%5B%5D=facets.price_range.to%3D{max_price}"
+            tshirts_list = self.tshirts(url)  # Assuming tshirts method is defined
+            return tshirts_list
+        except ValueError:
+            return "Invalid price values. Please provide valid integers for min and max prices."
 
     def tshirts_by_rating(self, rating):
         """
