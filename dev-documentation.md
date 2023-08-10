@@ -1360,9 +1360,11 @@ Create an instance of `ESPN` class
 espn = ESPN()
 ```
 
-| Method             | Details                                                        |
-| ------------------ | -------------------------------------------------------------- |
-| `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
+| Method              | Details                                                        |
+| ------------------- | -------------------------------------------------------------- |
+| `get_scoreboard()`  | Fetches and returns the football scoreboards for a given date. |
+| `get_tournaments()` | Fetches and returns information about football tournaments.    |
+| `get_teams()`       | Fetches and returns information about football teams.          |
 
 # Magic Bricks
 

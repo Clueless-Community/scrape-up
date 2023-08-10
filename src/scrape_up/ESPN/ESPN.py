@@ -4,17 +4,24 @@ import requests
 
 class ESPN:
     """
-    Create an instance of the `ESPN` class to fetch football scoreboards.
+    Create an instance of the `ESPN` class to fetch football scoreboards, tournaments, and teams.
 
-    Example:
+    :Example:
     ```python
     espn = ESPN()
+    scores = espn.get_scoreboard(date="20230721")
+    tournaments = espn.get_tournaments()
+    teams = espn.get_teams()
+    print(scores)
+    print(tournaments)
+    print(teams)
     ```
 
-    | Method              | Details                                                       |
-    | ------------------- | ------------------------------------------------------------  |
-    | `get_scoreboard()`  | Fetches and returns the football scoreboards for a given date.|
-
+    | Method              | Details                                                           |
+    | ------------------- | ----------------------------------------------------------------- |
+    | `get_scoreboard()`  | Fetches and returns the football scoreboards for a given date.   |
+    | `get_tournaments()` | Fetches and returns information about ongoing football tournaments. |
+    | `get_teams()`       | Fetches and returns information about football teams.            |
     """
 
     def __init__(self):
@@ -116,5 +123,86 @@ class ESPN:
                         }
                     scores.append(data)
             return scores
+        except:
+            return None
+
+    def get_tournaments(self):
+        """
+        Fetches and returns information about ongoing football tournaments.
+
+        :return: A list of dictionaries containing tournament data.
+        :rtype: list
+
+        Each dictionary in the list contains the following information:
+        - Tournament Name (e.g., "Premier League", "Champions League")
+        - List of tuples containing (Link, Title) for each competition.
+
+        Example output:
+        ```python
+        [
+            {
+                "Premier League": [
+                    ["https://www.espn.in/football/competition/_/id/eng.1", "English Premier League"]
+                ]
+            },
+            ...
+        ]
+        ```
+        """
+        try:
+            url = "https://www.espn.in/football/competitions"
+            html_text = requests.get(url, headers=self.headers).text
+            soup = BeautifulSoup(html_text, "lxml")
+
+            container = soup.find("div", {"class": "Wrapper bg-clr-white br-5 mb3 pa5"})
+            data = []
+            for items in container.find_all("h3"):
+                heading = items.text
+                div = items.next_sibling
+                li = []
+                for item in div.find_all("div", {"class": "ContentList__Item"}):
+                    link = item.find("a", href=True)["href"]
+                    title = item.find("h2")
+                    li.append([link, title.text])
+                data.append({heading: li})
+            return data
+        except:
+            return None
+
+    def get_teams(self):
+        """
+        Fetches and returns information about football teams.
+
+        :return: A list of dictionaries containing team data.
+        :rtype: list
+
+        Each dictionary in the list contains the following information:
+        - "Name": The name of the team.
+        - "Link": The link to the team's details.
+
+        Example output:
+        ```python
+        [
+            {
+                "Name": "Manchester United",
+                "Link": "https://www.espn.in/football/team/_/id/360/manchester-united"
+            },
+            ...
+        ]
+        ```
+        """
+        try:
+            url = "https://www.espn.in/football/teams"
+            html_text = requests.get(url, headers=self.headers).text
+            soup = BeautifulSoup(html_text, "lxml")
+
+            container = soup.find("div", {"class": "Wrapper TeamsWrapper br-5 mb3 pa5"})
+            teams = []
+            for items in container.find_all("div", {"class": "ContentList__Item"}):
+                title = items.find("h2")
+                link = items.find("a", href=True)["href"]
+                data = {"Name": title.text, "Link": "https://www.espn.in" + link}
+                teams.append(data)
+            return teams
         except:
             return None
