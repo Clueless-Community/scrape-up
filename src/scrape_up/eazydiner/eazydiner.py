@@ -15,7 +15,8 @@ class EazyDiner:
     | `.get_breakfast()`   | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast.|
     | `.get_lunch()`       | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch. |
     | `.get_dinner()`      | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.|
-    | `.dinner_with_discount()`      | Returns list of resturant from the entered location with 50% offer.|
+    | `.dinner_with_discount()` | Returns list of restaurant from the entered location with 50% offer.|
+    | `.get_top10()`      | Returns list of top 10 restaurants from given city|
     """
 
     def __init__(self, location):
@@ -320,3 +321,57 @@ class EazyDiner:
             return restaurant_data["restaurants"]
         except:
             return None
+
+    def get_top10(self):
+        """
+        Returns list of top 10 restaurants from given city.\n
+        Class - `EazyDiner`
+        Example:
+        ```
+        deldiner = EazyDiner("Delhi NCR")
+        deldiner.get_top10()
+        ```
+        Returns:
+        {
+            "restaurant": restaurant name
+            "location": location of restaurant
+            "rating": rating
+            "cuisine": cuisines provided
+            "price": price for two people
+        }
+        """
+        try:
+            url = f"https://www.eazydiner.com/{self.location}/restaurants"
+            res = requests.get(url)
+            soup = BeautifulSoup(res.text, "html.parser")
+
+            restaurant_data = {"restaurants": []}
+
+            restaurants = soup.select(".restaurant")
+            for r in restaurants:
+                name = r.find("h3", class_="res_name").getText().strip()
+                location = r.find("h3", class_="res_loc").getText().strip()
+                rating = r.find("span", class_="critic").getText().strip()
+                cuisine = (
+                    r.find("div", class_="res_cuisine").getText().replace(",", ", ")
+                )
+                price = (
+                    r.find("span", class_="cost_for_two")
+                    .getText()
+                    .encode("ascii", "ignore")
+                    .decode()
+                    .strip()
+                )
+                restaurant_data["restaurants"].append(
+                    {
+                        "Restaurant": name,
+                        "Location": location,
+                        "Rating": rating,
+                        "Cuisine": cuisine,
+                        "Price": "Rs. " + price + " for two",
+                    }
+                )
+            return restaurant_data
+        except:
+            return None
+
