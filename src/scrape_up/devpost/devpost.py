@@ -90,20 +90,13 @@ class Devpost:
         except:
             return None
 
-
     def get_hackathons(self):
-
-    def get_featured(self):
-
         """
         Class - `Devpost`
         Example -
         ```python
         devpost = Devpost()
-        hackathons = devpost.hackathons()
-
-        posts = devpost.get_featured()
-
+        hackathons = devpost.get_hackathons()
         ```
         Return
         ```js
@@ -200,7 +193,16 @@ class Devpost:
         except:
             return None
         return hackathons_data
-=
+
+    def get_featured(self):
+        """
+        Class - `Devpost`
+        Example -
+        ```python
+        devpost = Devpost()
+        posts = devpost.get_featured()
+        ```
+        """
         url = "https://devpost.com/software/search?query=is%3Afeatured"
         try:
             page = requests.get(url)
