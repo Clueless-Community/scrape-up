@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class Events:
     """
     Create an instance of `Events` class.
@@ -24,13 +25,13 @@ class Events:
         ```js
         [
             {
-                'title': 'GirlScript Summer of Code 2023', 
-                'image_url': '/assets/global_campus/global-campus-event-3-38fbf275c678987e40b27daf5f00f2c70ab984fc34da98a93b351e13df77eeac.jpg', 
-                'description': 'GirlScript Summer Of Code is a three-month-long Open-Source Program conducted every summer by the Girlscript...\n        See more', 
-                'date': 'Aug 10, 2023', 
-                'location': 'India', 
-                'language': 'English', 
-                'tags': ['Online', 'Coding Competition'], 
+                'title': 'GirlScript Summer of Code 2023',
+                'image_url': '/assets/global_campus/global-campus-event-3-38fbf275c678987e40b27daf5f00f2c70ab984fc34da98a93b351e13df77eeac.jpg',
+                'description': 'GirlScript Summer Of Code is a three-month-long Open-Source Program conducted every summer by the Girlscript...\n        See more',
+                'date': 'Aug 10, 2023',
+                'location': 'India',
+                'language': 'English',
+                'tags': ['Online', 'Coding Competition'],
                 'link': 'https://gssoc.girlscript.tech/'
             }
             ...
@@ -48,11 +49,7 @@ class Events:
 
             for e in events:
                 tags_list = []
-                title = (
-                    e.find("h3", class_="h5")
-                    .getText()
-                    .strip()
-                )
+                title = e.find("h3", class_="h5").getText().strip()
                 img = e.find("img")["src"]
                 try:
                     desc = (
@@ -63,27 +60,18 @@ class Events:
                 except:
                     desc = ""
                 base = e.find_all("p", class_="color-fg-muted text-small")
-                date = (
-                    base[0]
+                date = base[0].getText().strip()
+                loc = base[1].getText().strip()
+                lang = (
+                    e.find("p", class_="color-fg-muted text-small mb-3")
                     .getText()
                     .strip()
                 )
-                loc = (
-                    base[1]
-                    .getText()
-                    .strip()
+                labels = e.find_all(
+                    "span", class_="Label--small Label--blue-standard mr-2"
                 )
-                lang = (e.find("p", class_="color-fg-muted text-small mb-3")
-                        .getText()
-                        .strip()
-                )
-                labels = e.find_all("span", class_="Label--small Label--blue-standard mr-2")
                 for l in labels:
-                    tags_list.append(
-                        l
-                        .getText()
-                        .strip()
-                        )
+                    tags_list.append(l.getText().strip())
                 link = e["href"]
 
                 events_data["events"].append(
@@ -95,7 +83,7 @@ class Events:
                         "location": loc,
                         "language": lang,
                         "tags": tags_list,
-                        "link": link
+                        "link": link,
                     }
                 )
             return events_data["events"]
