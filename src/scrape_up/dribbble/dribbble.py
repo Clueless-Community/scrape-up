@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class Dribbble:
     """
     Create an instance of `Dribbble` class.
@@ -24,12 +25,12 @@ class Dribbble:
         ```js
         [
             {
-                'title': 'The full case study of Zelt project', 
-                'image_url': 'https://cdn.dribbble.com/userupload/9134517/file/still-85ff8d3aba6c58f20730e158a2afdd34.png?resize=400x0', 
-                'designer': 'Cuberto', 
-                'designer_url': 'https://www.dribbble.com//cuberto', 
-                'like_count': '152', 
-                'views_count': '10.2k', 
+                'title': 'The full case study of Zelt project',
+                'image_url': 'https://cdn.dribbble.com/userupload/9134517/file/still-85ff8d3aba6c58f20730e158a2afdd34.png?resize=400x0',
+                'designer': 'Cuberto',
+                'designer_url': 'https://www.dribbble.com//cuberto',
+                'like_count': '152',
+                'views_count': '10.2k',
                 'link': 'https://www.dribbble.com//shots/22210785-The-full-case-study-of-Zelt-project'
             }
             ...
@@ -43,35 +44,40 @@ class Dribbble:
 
             soup = BeautifulSoup(res.text, "html.parser")
 
-            shots = soup.find_all("li", class_="shot-thumbnail js-thumbnail shot-thumbnail-container")
+            shots = soup.find_all(
+                "li", class_="shot-thumbnail js-thumbnail shot-thumbnail-container"
+            )
 
             for s in shots:
-
-                title = (
-                    s.find("div", class_="shot-title")
-                    .getText()
-                    .strip()
-                )
+                title = s.find("div", class_="shot-title").getText().strip()
                 img = s.find("img")["src"]
                 designer = s.find("span", class_="display-name").getText()
                 designer_url = s.find("a", rel="contact")["href"]
                 try:
                     like = (
-                        s.find("span", class_="js-shot-likes-count color-deep-blue-sea-light-20 font-weight-500")
+                        s.find(
+                            "span",
+                            class_="js-shot-likes-count color-deep-blue-sea-light-20 font-weight-500",
+                        )
                         .getText()
                         .strip()
                     )
                 except:
-                    like = '0'
+                    like = "0"
                 try:
                     views = (
-                        s.find("span", class_="js-shot-views-count color-deep-blue-sea-light-20 font-weight-500")
+                        s.find(
+                            "span",
+                            class_="js-shot-views-count color-deep-blue-sea-light-20 font-weight-500",
+                        )
                         .getText()
                         .strip()
                     )
                 except:
-                    views = '0'
-                link = s.find("a", class_="shot-thumbnail-link dribbble-link js-shot-link")["href"]
+                    views = "0"
+                link = s.find(
+                    "a", class_="shot-thumbnail-link dribbble-link js-shot-link"
+                )["href"]
 
                 shots_data["shots"].append(
                     {
@@ -81,7 +87,7 @@ class Dribbble:
                         "designer_url": "https://www.dribbble.com/" + designer_url,
                         "like_count": like,
                         "views_count": views,
-                        "link": "https://www.dribbble.com/" + link
+                        "link": "https://www.dribbble.com/" + link,
                     }
                 )
             return shots_data["shots"]

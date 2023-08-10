@@ -1,3 +1,3 @@
-from scrape_up.dribbble.dribbble import Dribbble
+from dribbble import Dribbble
 
 __all__ = ["Dribbble"]
