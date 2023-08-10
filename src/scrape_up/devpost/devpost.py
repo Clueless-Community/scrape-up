@@ -6,6 +6,7 @@ import undetected_chromedriver as uc
 import re
 import json
 
+
 class Devpost:
     """
     Create an instance of `Devpost` class.
@@ -126,41 +127,49 @@ class Devpost:
             return None
 
         head_tags = wait.until(
-            lambda d: driver.find_elements(By.CLASS_NAME, 'hackathon-tile')
+            lambda d: driver.find_elements(By.CLASS_NAME, "hackathon-tile")
         )
         hackathons_data = {"hackathons": []}
         try:
             for tag in head_tags:
-                main_content = tag.find_element(By.CLASS_NAME, 'main-content')
-                side_content = tag.find_element(By.CLASS_NAME, 'side-info')
+                main_content = tag.find_element(By.CLASS_NAME, "main-content")
+                side_content = tag.find_element(By.CLASS_NAME, "side-info")
 
-                img = main_content.find_element(By.TAG_NAME, 'img').get_attribute('src')
+                img = main_content.find_element(By.TAG_NAME, "img").get_attribute("src")
 
-                title = main_content.find_element(By.CSS_SELECTOR, '.content h3').text
+                title = main_content.find_element(By.CSS_SELECTOR, ".content h3").text
 
-                status = main_content.find_element(By.CLASS_NAME, 'hackathon-status').text
+                status = main_content.find_element(
+                    By.CLASS_NAME, "hackathon-status"
+                ).text
 
-                prize = main_content.find_element(By.CSS_SELECTOR, '.prize-amount span').text
+                prize = main_content.find_element(
+                    By.CSS_SELECTOR, ".prize-amount span"
+                ).text
 
-                participants = main_content.find_element(By.CSS_SELECTOR, '.participants strong').text
+                participants = main_content.find_element(
+                    By.CSS_SELECTOR, ".participants strong"
+                ).text
 
-                host = side_content.find_element(By.CLASS_NAME, 'host-label').text
-                submission = side_content.find_element(By.CLASS_NAME, 'submission-period').text
+                host = side_content.find_element(By.CLASS_NAME, "host-label").text
+                submission = side_content.find_element(
+                    By.CLASS_NAME, "submission-period"
+                ).text
 
-                theme_labels = side_content.find_elements(By.CLASS_NAME, 'theme-label')
-                theme = ''
+                theme_labels = side_content.find_elements(By.CLASS_NAME, "theme-label")
+                theme = ""
                 for label in theme_labels:
-                    theme = theme + label.text + ', '
+                    theme = theme + label.text + ", "
 
                 hackathon = {
-                    'title': title,
-                    'status': status,
-                    'prize': prize,
-                    'total participants': participants,
-                    'host': host,
-                    'submission-period': submission,
-                    'labels': theme,
-                    'hackathon-image': img
+                    "title": title,
+                    "status": status,
+                    "prize": prize,
+                    "total participants": participants,
+                    "host": host,
+                    "submission-period": submission,
+                    "labels": theme,
+                    "hackathon-image": img,
                 }
 
                 hackathons_data["hackathons"].append(hackathon)
