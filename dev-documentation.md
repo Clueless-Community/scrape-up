@@ -468,14 +468,15 @@ actor = Actor(actor_name)
 | `.all_movies()`     | Returns all movies acted in and upcoming movies         |
 | `.awards()`         | Returns the number of awards and nominations            |
 
-
 Create an instance of `Celeb` class.
+
 ```python
 celeb = Celeb()
 ```
-| Methods            | Details                                            |
-| -------------------|----------------------------------------------------|
-| `.top_celebs()`    | Returns the name, roles, famous movie of the celeb |
+
+| Methods         | Details                                            |
+| --------------- | -------------------------------------------------- |
+| `.top_celebs()` | Returns the name, roles, famous movie of the celeb |
 
 Create an instance of `BoxOffice` class.
 
@@ -1413,7 +1414,7 @@ indiancity = IndianCity("bengaluru")
 | `.local_time()`      | Returns the local time in the city               |
 | `.nearby_airports()` | Returns a list of nearby airports in the city    |
 
---------------
+---
 
 # Unsplash
 
@@ -1429,7 +1430,7 @@ from scrape_up import unsplash
 | `.get_image_links(quality="2000w")`       | Return image links of quality 2000w        |
 | `.get_non_premium_links(quality="2000w")` | Returns non-premium links of quality 2000w |
 
-------------------
+---
 
 # CoinMarketCap
 

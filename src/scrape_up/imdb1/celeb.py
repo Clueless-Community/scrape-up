@@ -30,79 +30,46 @@ class Celeb:
             return None
 
     def top_celebs(self):
-
         """
-        Create an instance of `Celeb` class
-
+        Create an instance of `Celeb` class.\n
         ```python
         celeb = Celeb()
         celeb.top_celebs()
         ```
-
         Return\n
         ```js
         [
             {
-                'Name': 'Paul Reubens', 
-                'Roles': ['Actor', 'Writer', 'Director'], 
+                'Name': 'Paul Reubens',
+                'Roles': ['Actor', 'Writer', 'Director'],
                 'Famous Movie': "Pee-wee's Playhouse"
-            }, 
-            {
-                'Name': 'Margot Robbie', 
-                'Roles': ['Actress', 'Producer', 'Executive'], 
-                'Famous Movie': 'Suicide Squad'
-            }, 
-            {
-                'Name': 'Cillian Murphy',
-                'Roles': ['Actor', 'Producer', 'Writer'],
-                'Famous Movie': '28 Days Later...'
-            }, 
-            {
-                'Name': 'Angus Cloud', 
-                'Roles': ['Actor'], 
-                'Famous Movie': 'Euphoria'
-            }, 
-            {
-                'Name': 'Florence Pugh', 
-                'Roles': ['Actress', 'Producer', 'Soundtrack'], 
-                'Famous Movie': 'The Falling'
-            }, 
-            {
-                'Name': 'Christopher Nolan', 
-                'Roles': ['Producer', 'Writer', 'Director'], 
-                'Famous Movie': 'Tenet'
             },
-            {
-                'Name': 'Greta Gerwig', 
-                'Roles': ['Actress', 'Writer', 'Director'], 
-                'Famous Movie': 'Lady Bird'
-            }, 
-            {
-                'Name': 'Freya Allan', 
-                'Roles': ['Actress'], 
-                'Famous Movie': 'Kingdom of the Planet of the Apes'
-            }
-        ] 
+            ...
+        ]
         ```
         """
-        try:             
-            x = self.page_soup.find_all("div" ,{"class":"sc-89c756a0-4 euZqVD"}) 
-            celeb_list = []         
+        try:
+            x = self.page_soup.find_all("div", {"class": "sc-89c756a0-4 euZqVD"})
+            celeb_list = []
             for y in x:
                 dic = {}
-                dic["Name"]= y.find("h3",{"class":"ipc-title__text"}).get_text()
+                dic["Name"] = y.find("h3", {"class": "ipc-title__text"}).get_text()
 
                 lis = []
-                for z in y.find_all("li" ,{"class":"ipc-inline-list__item sc-89c756a0-6 jpNWoI"}):
+                for z in y.find_all(
+                    "li", {"class": "ipc-inline-list__item sc-89c756a0-6 jpNWoI"}
+                ):
                     lis.append(z.get_text())
-                
+
                 dic["Roles"] = lis
 
-                dic["Famous Movie"] = y.find("span", {"class":"sc-1c8554ae-1 cKAFFg"}).get_text()
+                dic["Famous Movie"] = y.find(
+                    "span", {"class": "sc-1c8554ae-1 cKAFFg"}
+                ).get_text()
 
                 celeb_list.append(dic)
-            
+
             return celeb_list
-        
+
         except:
             return None
