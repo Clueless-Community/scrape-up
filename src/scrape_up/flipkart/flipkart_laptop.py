@@ -50,18 +50,42 @@ class flipkart_laptop:
                 names = data.find("div", class_="_4rR01T")
                 rating = data.find("div", class_="_3LWZlK")
                 description = data.find("ul", class_="_1xgFaf")
+                if description:
+                    Processor=description.find_all("li")[0]
+                    RAM = description.find_all("li")[1]
+                    OS = description.find_all("li")[2]
+                    storage = description.find_all("li")[3]
+                    Screen = description.find_all("li")[4]
+                    Warranty = description.find_all("li")[-1]
+                else:
+                    Processor=None
+                    RAM = None
+                    OS = None
+                    storage = None
+                    Screen = None
+                    Warranty = None
+
                 price = data.find("div", class_="_30jeq3 _1_WHN1")
+                EMI = data.find("div", class_="_2Tpdn3 _18hQoS")
 
                 item_details = {
                     "Item_Name": names.text if names else None,
                     "rating": rating.text if rating else None,
-                    "Description": description.text if description else None,
-                    "price": price.text if price else None,
-                }
+                    "Processor": Processor.text if Processor else None,
+                    "RAM": RAM.text if RAM else None,
+                    "Operating system": OS.text if OS else None,
+                    "Storage": storage.text if storage else None,
+                    "Screen Size": Screen.text if Screen else None,
+                    "Warranty": Warranty.text if Warranty else None,
+                    "Price": price.text if price else None,
+                    "EMI": EMI.text if EMI else None
 
+                    }
+                
                 details.append(item_details)
 
             return details
             
         except Exception as e:
             return None
+    
