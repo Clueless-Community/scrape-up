@@ -26,8 +26,6 @@ user.followers()
 - GitHub
 - Instagram
 - Internshala
-- GitHub
-- Internshala
 - TimesJobs
 - Swiggy
 - Library Genesis
@@ -95,7 +93,7 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 | `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                                                                                                      |
 | `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                                                                                     |
 | `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                                                                                                |
-| `.get_insights()`          | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs, list of recent open prs, list of recent closed issues, list of recent open issues |
+| `.get_insights(period)`          | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs, list of recent open prs, list of recent closed issues, list of recent open issues for a specified period|
 
 ### Scrape an issue details
 
@@ -468,6 +466,16 @@ actor = Actor(actor_name)
 | `.all_movies()`     | Returns all movies acted in and upcoming movies         |
 | `.awards()`         | Returns the number of awards and nominations            |
 
+Create an instance of `IndianMovies` class.
+
+```python
+indianmovies = IndianMovies()
+```
+
+| Methods                | Details                                       |
+| ---------------------- | --------------------------------------------- |
+| `.top_indian_movies()` | Returns the current list of top Indian movies |
+
 Create an instance of `BoxOffice` class.
 
 ```python
@@ -627,7 +635,8 @@ restaurants = EazyDiner(location="city-name")
 | `.get_breakfast()`        | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast. |
 | `.get_lunch()`            | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch.     |
 | `.get_dinner()`           | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.    |
-| `.dinner_with_discount()` | Returns list of resturant from the entered location with 50% offer.                              |
+| `.dinner_with_discount()` | Returns a list of restaurants from the entered location with a 50% offer.                        |
+| `.get_top10()`            | Returns a list of the top 10 restaurants from a given city.                                      |
 
 ---
 
@@ -765,6 +774,23 @@ posts = Devpost()
 | ----------------- | ------------------------------------------------------------------------------------------------------------- |
 | `.get_articles()` | Returns the latest projects along with their decription, like and commment count, image and member details.   |
 | `.search(topic)`  | Returns the searched projects along with their decription, like and commment count, image and member details. |
+| `.get_featured()` | Returns the latest featured projects along with their decription, like and commment count, image and member details. |
+| `.get_winner()`   | Returns the latest winning projects along with their decription, like and commment count, image and member details.  |
+
+---
+
+## Luma
+
+Create an instance of `Luma` class.
+
+```python
+events = Luma()
+```
+
+| Methods         | Details                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------------ |
+| `.get_events()` | Returns the latest events along with their organizer, location, image url, price and link. |
+
 
 ---
 
@@ -915,8 +941,10 @@ Create an instance of `NewsCNN` class.\n
 news = newsCNN()
 ```
 
-| Methods | Details |
-| `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
+| Methods                           | Details                                              |
+| --------------------------------- | ---------------------------------------------------- |
+| `.newsbylocation(country="india)` | Returns the list of articles by a specific country.  |
+| `.news_by_category(type)`         | Returns the list of articles by a specific category. |
 
 # FlipkartTees
 
@@ -1104,6 +1132,7 @@ hackerank = HackerRank()
 | `get_profile(id="username")` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
 | `active_contests()`          | Returns information on active contests like title, status, and link                       |
 | `archived_contests()`        | Returns information regarding archived contests                                           |
+| `get_skills()`               | Returns a list of verified skills and their links                                         |
 
 ---
 
@@ -1342,6 +1371,26 @@ utc = UTC()
 | `.get_location`      | Returns location of each time zone        |
 | `.get_offset`        | Returns offset of each time zone from UTC |
 
+Create an instance of `FunHolidays` class.
+
+```python
+funholidays = FunHolidays()
+```
+
+| Methods    | Details                                                   |
+| ---------- | --------------------------------------------------------- |
+| `.dates()` | Returns a list of fun holidays on each date of each month |
+
+Create an instance of `Forecast` class with the name of the city
+
+```python
+forecast = Forecast(city="bengaluru")
+```
+
+| Methods            | Details                                                                                                                    |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `.full_forecast()` | Returns datewise the Temperature, Weather, Wind, Humidity, Precipitation chance and Amount, UV, Sunrise, Sunset of a city. |
+
 ---
 
 # TheHindu
@@ -1436,3 +1485,34 @@ crypto = CoinMarketCap()
 | `get_top_cryptocurrencies()` | Fetches and returns data about the top cryptocurrencies. |
 
 ---
+
+
+# Flipkart laptops
+
+Create an instance of `flipkart_laptop` class.
+
+```python
+item = flipkart_laptop()
+```
+
+| Methods      | Details                                  |
+| ------------ | ---------------------------------------- |
+| `.laptops()` | Returns the list of laptops with details |
+
+------------------
+
+## Olympics
+
+Create an instance of `Olympics` class
+
+```python
+olympics = Olympics()
+```
+
+| Methods            | Details                                                                                 |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| `.allcountries()`  | returns the list of all the countries participated yet in olympics.                     |
+| `.allsports()`     | returns the list of all the sports being currently played in olympics.                  |
+| `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
+| `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
+

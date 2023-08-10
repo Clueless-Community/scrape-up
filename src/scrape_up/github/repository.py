@@ -29,8 +29,8 @@ class Repository:
     | `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                                  |
     | `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                 |
     | `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                            |
-    | `.get_insights()`          | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs,
-                                   list of recent open prs, list of recent closed issues, list of recent open issues                                                                               |
+    | `.get_insights(period)`    | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs,
+                                   list of recent open prs, list of recent closed issues, list of recent open issues for a specified period                                                                           |
     """
 
     def __init__(self, username: str, repository_name: str):
@@ -80,9 +80,9 @@ class Repository:
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
-    def __scrape_insights_page(self):
+    def __scrape_insights_page(self, period):
         data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/pulse"
+            f"https://github.com/{self.username}/{self.repository}/pulse/" + period
         )
         data = BeautifulSoup(data.text, "html.parser")
         return data
@@ -512,13 +512,15 @@ class Repository:
         except:
             return None
 
-    def get_insights(self):
+    def get_insights(self, period):
+        self.period = period
         """
         Class - `Repository`.\n
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
-        insights = repository.get_insights()
+        insights = repository.get_insights(period)
+        period parameter accepts: "daily", "halfweekly", "weekly", "monthly" or ""
         ```
         Return\n
         ```js
@@ -536,7 +538,7 @@ class Repository:
         }
         ```
         """
-        data = self.__scrape_insights_page()
+        data = self.__scrape_insights_page(self.period)
         try:
             overview = {"overview": []}
             recent_merged_prs_list = []
