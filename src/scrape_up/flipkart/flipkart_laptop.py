@@ -54,14 +54,14 @@ class flipkart_laptop:
                     Processor=description.find_all("li")[0]
                     RAM = description.find_all("li")[1]
                     OS = description.find_all("li")[2]
-                    storage = description.find_all("li")[3]
+                    Storage = description.find_all("li")[3]
                     Screen = description.find_all("li")[4]
                     Warranty = description.find_all("li")[-1]
                 else:
                     Processor=None
                     RAM = None
                     OS = None
-                    storage = None
+                    Storage = None
                     Screen = None
                     Warranty = None
 
@@ -74,7 +74,7 @@ class flipkart_laptop:
                     "Processor": Processor.text if Processor else None,
                     "RAM": RAM.text if RAM else None,
                     "Operating system": OS.text if OS else None,
-                    "Storage": storage.text if storage else None,
+                    "Storage": Storage.text if Storage else None,
                     "Screen Size": Screen.text if Screen else None,
                     "Warranty": Warranty.text if Warranty else None,
                     "Price": price.text if price else None,
