@@ -793,6 +793,22 @@ events = Luma()
 
 ---
 
+## Github Education
+
+## Events
+
+Create an instance of `Events` class.
+
+```python
+events = Events()
+```
+
+| Methods         | Details                                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `.get_events()` | Returns the latest events along with their title, image url, description, date, location, language, tags and link |
+
+---
+
 ## TimesJobs
 
 ```python
