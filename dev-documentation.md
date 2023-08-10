@@ -809,6 +809,20 @@ events = Events()
 
 ---
 
+## Dribbble
+
+Create an instance of `Dribbble` class.
+
+```python
+shots = Dribbble()
+```
+
+| Methods        | Details                                                                                                  |
+| -------------- | -------------------------------------------------------------------------------------------------------- |
+| `.get_shots()` | Returns the latest shots along with their title, designer and designer url like and view count and link. |
+
+---
+
 ## TimesJobs
 
 ```python
