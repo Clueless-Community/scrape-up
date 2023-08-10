@@ -1,2 +1,3 @@
-from scrape_up.eazydiner.eazydiner import EazyDiner
+from eazydiner import EazyDiner
+
 __all__ = ["EazyDiner"]
