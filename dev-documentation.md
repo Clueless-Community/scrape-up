@@ -1300,11 +1300,11 @@ Create an instance of `ESPN` class
 espn = ESPN()
 ```
 
-| Method             | Details                                                        |
-| ------------------ | -------------------------------------------------------------- |
-| `get_scoreboard()` | Fetches and returns the football scoreboards for a given date. |
-| `get_tournaments()`| Fetches and returns information about football tournaments.    |
-| `get_teams()`      | Fetches and returns information about football teams.          |
+| Method              | Details                                                        |
+| ------------------- | -------------------------------------------------------------- |
+| `get_scoreboard()`  | Fetches and returns the football scoreboards for a given date. |
+| `get_tournaments()` | Fetches and returns information about football tournaments.    |
+| `get_teams()`       | Fetches and returns information about football teams.          |
 
 # Magic Bricks
 
@@ -1406,7 +1406,7 @@ indiancity = IndianCity("bengaluru")
 | `.local_time()`      | Returns the local time in the city               |
 | `.nearby_airports()` | Returns a list of nearby airports in the city    |
 
---------------
+---
 
 # Unsplash
 
@@ -1422,7 +1422,7 @@ from scrape_up import unsplash
 | `.get_image_links(quality="2000w")`       | Return image links of quality 2000w        |
 | `.get_non_premium_links(quality="2000w")` | Returns non-premium links of quality 2000w |
 
-------------------
+---
 
 # CoinMarketCap
 

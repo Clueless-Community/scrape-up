@@ -30,7 +30,7 @@ class ESPN:
         }
 
     def get_scoreboard(self, date):
-         """
+        """
         Create an instance of the `ESPN` class to fetch football scoreboards.\n
         Example:
         ```python
