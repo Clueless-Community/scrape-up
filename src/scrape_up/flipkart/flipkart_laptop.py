@@ -30,9 +30,9 @@ class flipkart_laptop:
         ```js
         [
             {
-                'Item_Name': 'CHUWI Core i3 10th Gen - (8 GB/512 GB SSD/Windows 11 Home) CoreBook X Grey Laptop', 
-                'rating': '4.3', 
-                'Description': 'Intel Core i3 Processor (10th Gen)8 GB DDR4 RAM64 bit Windows 11 Operating System512 GB SSD35.56 cm (14 inch) DisplayWPS Office, Operating System Software1 Year Onsite Warranty', 
+                'Item_Name': 'CHUWI Core i3 10th Gen - (8 GB/512 GB SSD/Windows 11 Home) CoreBook X Grey Laptop',
+                'rating': '4.3',
+                'Description': 'Intel Core i3 Processor (10th Gen)8 GB DDR4 RAM64 bit Windows 11 Operating System512 GB SSD35.56 cm (14 inch) DisplayWPS Office, Operating System Software1 Year Onsite Warranty',
                 'price': '₹24,990'
             }
             ...
@@ -51,14 +51,14 @@ class flipkart_laptop:
                 rating = data.find("div", class_="_3LWZlK")
                 description = data.find("ul", class_="_1xgFaf")
                 if description:
-                    Processor=description.find_all("li")[0]
+                    Processor = description.find_all("li")[0]
                     RAM = description.find_all("li")[1]
                     OS = description.find_all("li")[2]
                     Storage = description.find_all("li")[3]
                     Screen = description.find_all("li")[4]
                     Warranty = description.find_all("li")[-1]
                 else:
-                    Processor=None
+                    Processor = None
                     RAM = None
                     OS = None
                     Storage = None
@@ -78,14 +78,12 @@ class flipkart_laptop:
                     "Screen Size": Screen.text if Screen else None,
                     "Warranty": Warranty.text if Warranty else None,
                     "Price": price.text if price else None,
-                    "EMI": EMI.text if EMI else None
+                    "EMI": EMI.text if EMI else None,
+                }
 
-                    }
-                
                 details.append(item_details)
 
             return details
-            
+
         except Exception as e:
             return None
-    
