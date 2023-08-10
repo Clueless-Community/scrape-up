@@ -1130,6 +1130,7 @@ hackerank = HackerRank()
 | `get_profile(id="username")` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
 | `active_contests()`          | Returns information on active contests like title, status, and link                       |
 | `archived_contests()`        | Returns information regarding archived contests                                           |
+| `get_skills()`               | Returns a list of verified skills and their links                                         |
 
 ---
 

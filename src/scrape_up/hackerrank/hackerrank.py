@@ -15,6 +15,7 @@ class HackerRank:
     | `get_profile(id="username")` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
     | `active_contests()`          | Returns information on active contests like title, status, and link                       |
     | `archived_contests()`        | Returns information regarding archived contests                                           |
+    | `get_skills()`               | Returns a list of verified skills and their links                                         |
     """
 
     def __init__(self):
@@ -237,3 +238,37 @@ class HackerRank:
         except Exception:
             return None
 
+    def get_skills(self):
+        """
+        Get the list of verified skills and their links on HackerRank.\n
+        First, create an object of class `HackerRank`\n
+        ```python
+        hrank = HackerRank()
+        hrank.get_skills()
+        ```
+        Returns:
+        ```js
+        [
+            {
+                "Name": "Python (Basic)",
+                "Link": "https://www.hackerrank.com/skills-directory/python_basic"
+            },
+            ...
+        ]
+        ```
+        """
+        try:
+            url = "https://www.hackerrank.com/skills-verification"
+            html_text = requests.get(url, headers=self.headers).text
+            soup = bs(html_text, "lxml")
+
+            container = soup.find("div", {"class": "skills-grid"})
+            skills = []
+            for items in container.find_all("a"):
+                link = "https://www.hackerrank.com" + items["href"]
+                title = items.find("h3")
+                data = {"Name": title.text, "Link": link}
+                skills.append(data)
+            return skills
+        except:
+            return None
