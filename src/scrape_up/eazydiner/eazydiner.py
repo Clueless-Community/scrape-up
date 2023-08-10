@@ -374,4 +374,3 @@ class EazyDiner:
             return restaurant_data
         except:
             return None
-
