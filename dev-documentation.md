@@ -26,8 +26,6 @@ user.followers()
 - GitHub
 - Instagram
 - Internshala
-- GitHub
-- Internshala
 - TimesJobs
 - Swiggy
 - Library Genesis
@@ -627,7 +625,8 @@ restaurants = EazyDiner(location="city-name")
 | `.get_breakfast()`        | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Breakfast. |
 | `.get_lunch()`            | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Lunch.     |
 | `.get_dinner()`           | Returns the restaurants name, location, rating, cuisine and prices in JSON format for Dinner.    |
-| `.dinner_with_discount()` | Returns list of resturant from the entered location with 50% offer.                              |
+| `.dinner_with_discount()` | Returns a list of restaurants from the entered location with a 50% offer.                        |
+| `.get_top10()`            | Returns a list of the top 10 restaurants from a given city.                                      |
 
 ---
 
@@ -761,9 +760,11 @@ Create an instance of `Devpost` class.
 posts = Devpost()
 ```
 
-| Methods           | Details                                                                                                     |
-| ----------------- | ----------------------------------------------------------------------------------------------------------- |
-| `.get_articles()` | Returns the latest projects along with their decription, like and commment count, image and member details. |
+| Methods           | Details                                                                                                              |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `.get_articles()` | Returns the latest projects along with their decription, like and commment count, image and member details.          |
+| `.get_featured()` | Returns the latest featured projects along with their decription, like and commment count, image and member details. |
+| `.get_winner()`   | Returns the latest winning projects along with their decription, like and commment count, image and member details.  |
 
 ---
 
@@ -914,8 +915,10 @@ Create an instance of `NewsCNN` class.\n
 news = newsCNN()
 ```
 
-| Methods | Details |
-| `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
+| Methods                           | Details                                              |
+| --------------------------------- | ---------------------------------------------------- |
+| `.newsbylocation(country="india)` | Returns the list of articles by a specific country.  |
+| `.news_by_category(type)`         | Returns the list of articles by a specific category. |
 
 # FlipkartTees
 
@@ -1341,6 +1344,26 @@ utc = UTC()
 | `.get_location`      | Returns location of each time zone        |
 | `.get_offset`        | Returns offset of each time zone from UTC |
 
+Create an instance of `FunHolidays` class.
+
+```python
+funholidays = FunHolidays()
+```
+
+| Methods    | Details                                                   |
+| ---------- | --------------------------------------------------------- |
+| `.dates()` | Returns a list of fun holidays on each date of each month |
+
+Create an instance of `Forecast` class with the name of the city
+
+```python
+forecast = Forecast(city="bengaluru")
+```
+
+| Methods            | Details                                                                                                                    |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `.full_forecast()` | Returns datewise the Temperature, Weather, Wind, Humidity, Precipitation chance and Amount, UV, Sunrise, Sunset of a city. |
+
 ---
 
 # TheHindu
@@ -1435,3 +1458,34 @@ crypto = CoinMarketCap()
 | `get_top_cryptocurrencies()` | Fetches and returns data about the top cryptocurrencies. |
 
 ---
+
+
+# Flipkart laptops
+
+Create an instance of `flipkart_laptop` class.
+
+```python
+item = flipkart_laptop()
+```
+
+| Methods      | Details                                  |
+| ------------ | ---------------------------------------- |
+| `.laptops()` | Returns the list of laptops with details |
+
+------------------
+
+## Olympics
+
+Create an instance of `Olympics` class
+
+```python
+olympics = Olympics()
+```
+
+| Methods            | Details                                                                                 |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| `.allcountries()`  | returns the list of all the countries participated yet in olympics.                     |
+| `.allsports()`     | returns the list of all the sports being currently played in olympics.                  |
+| `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
+| `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
+
