@@ -6,11 +6,11 @@ class Forecast:
     """
     Create an instance of `Forecast` class with the name of the city
     ```python
-    forecast = Forecast("bengaluru")
+    forecast = Forecast(city="bengaluru")
     ```
     | Methods            | Details                                                                                                                   |
     | -------------------|---------------------------------------------------------------------------------------------------------------------------|
-    | `.full_forecast()` | Returns datewise the Temperature, Weather, Wind, Humidity, Precipitation chance and Amount, UV, Sunrise, Sunset of a city.|
+    | `.full_forecast(city)` | Returns datewise the Temperature, Weather, Wind, Humidity, Precipitation chance and Amount, UV, Sunrise, Sunset of a city.|
 
     """
 
@@ -20,7 +20,11 @@ class Forecast:
 
     def __scrape_page(self):
         try:
-            url = "https://www.timeanddate.com/weather/india/" + '-'.join(self.city.lower().split(' ')) + "/ext"
+            url = (
+                "https://www.timeanddate.com/weather/india/"
+                + "-".join(self.city.lower().split(" "))
+                + "/ext"
+            )
             req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
 
             webpage = urlopen(req).read()
@@ -31,50 +35,61 @@ class Forecast:
 
     def full_forecast(self):
         """
-        Create an instance of `Forecast` class with the name of the city
+        Return the list of forecast details of next few days of a city.\n
         ```python
-        forecast = Forecast("bengaluru")
+        forecast = Forecast(city="bengaluru")
+        forecast.full_forecast()
         ```
 
         Return\n
         ```js
-        {
-            '9': {
-                    'Temperature': '30 / 22°C', 
-                    'Weather': 'Showers late. Overcast.', 
-                    'Feels like': '30°C', 
-                    'Wind': '12 km/h', 
-                    'Humidity': '51%', 
-                    'Precipitation chance': '64%', 
-                    'Precipitation Amount': '3.1  mm', 
-                    'UV': '7 (High)', 
-                    'Sunrise': '06.06', 
-                    'Sunset': '18.43'
-                }, 
-
-            '10': {'Temperature': '29 / 22°C', 
-                    ...
-                }
+        [
+            {
+                "Temperature":"29 / 21°C",
+                "Weather":"Passing showers. Overcast.",
+                "Feels like":"30°C",
+                "Wind":"12 km/h",
+                "Humidity":"53%",
+                "Precipitation chance":"58%",
+                "Precipitation Amount":"5.3  mm",
+                "UV":"3 (Moderate)",
+                "Sunrise":"06.06",
+                "Sunset":"18.43",
+                "Date":"10"
+            }
             ...
-        }
+        ]
         ```
         """
         try:
             x = self.page_soup.find("tbody")
-            dic = {}
+            response = []
 
             for y in x.find_all("tr"):
-                date = ''.join(w for w in y.find("th").get_text() if w.isnumeric())
+                date = "".join(w for w in y.find("th").get_text() if w.isnumeric())
                 params = []
                 for z in y.find_all("td"):
                     params.append(z.get_text())
                 params.pop(0)
                 params.pop(4)
-                params[0] = ''.join(params[0].split('\xa0'))
-                params[2] = ''.join(params[2].split('\xa0'))
-                params_list = ["Temperature", "Weather", "Feels like", "Wind", "Humidity", "Precipitation chance", "Precipitation Amount", "UV", "Sunrise", "Sunset"]
-                dic[date] = dict(zip(params_list, params))
+                params[0] = "".join(params[0].split("\xa0"))
+                params[2] = "".join(params[2].split("\xa0"))
+                params_list = [
+                    "Temperature",
+                    "Weather",
+                    "Feels like",
+                    "Wind",
+                    "Humidity",
+                    "Precipitation chance",
+                    "Precipitation Amount",
+                    "UV",
+                    "Sunrise",
+                    "Sunset",
+                    "Date"
+                ]
+                params.append(date)
+                response.append(dict(zip(params_list, params)))
 
-            return dic
+            return response
         except:
             return None
