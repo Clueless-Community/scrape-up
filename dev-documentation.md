@@ -1330,21 +1330,19 @@ timezones = Timezones()
 | ------------------- | ----------------------------------------------- |
 | `.city_timezones()` | Returns the timezones of cites around the world |
 
-
-
 Create an instance of `DayInHistory` class.
 
 ```python
 dayinhistory = DayInHistory()
 
 ```
-| Methods              | Details                                          |
-| ---------------------|--------------------------------------------------|
-| `.important_events()`| Returns the timezones of cites around the world  |
-| `.holidays()`        | Returns the holidays on the specific day         |
-| `.births()`          | Returns the important birthdays on that day      |
-| `.deaths()`          | Returns the important deaths on that day         |
 
+| Methods               | Details                                         |
+| --------------------- | ----------------------------------------------- |
+| `.important_events()` | Returns the timezones of cites around the world |
+| `.holidays()`         | Returns the holidays on the specific day        |
+| `.births()`           | Returns the important birthdays on that day     |
+| `.deaths()`           | Returns the important deaths on that day        |
 
 Create an instance of `UTC` class.
 
@@ -1358,7 +1356,6 @@ utc = UTC()
 | `.get_abbreviations` | Returns abbreviations of each time zone   |
 | `.get_location`      | Returns location of each time zone        |
 | `.get_offset`        | Returns offset of each time zone from UTC |
-
 
 Create an instance of `FunHolidays` class.
 
@@ -1379,7 +1376,6 @@ forecast = Forecast(city="bengaluru")
 | Methods            | Details                                                                                                                    |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
 | `.full_forecast()` | Returns datewise the Temperature, Weather, Wind, Humidity, Precipitation chance and Amount, UV, Sunrise, Sunset of a city. |
-
 
 ---
 

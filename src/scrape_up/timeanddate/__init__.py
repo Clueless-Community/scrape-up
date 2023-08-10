@@ -6,4 +6,3 @@ from extended_forecast import Forecast
 from fun_holidays import FunHolidays
 
 __all__ = ["Timezones", "IndianCity", "UTC", "FunHolidays", "Forecast", "DayInHistory"]
-
