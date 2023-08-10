@@ -1435,3 +1435,17 @@ crypto = CoinMarketCap()
 | `get_top_cryptocurrencies()` | Fetches and returns data about the top cryptocurrencies. |
 
 ---
+
+# Flipkart laptops
+
+Create an instance of `flipkart_laptop` class.
+
+
+```python
+item = flipkart_laptop()
+```
+
+| Methods                    | Details                                                        |
+| -------------------------- | -------------------------------------------------------------- |
+| `.laptops()`               | Returns the list of laptops with details                       |
+
