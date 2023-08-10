@@ -13,7 +13,7 @@ class Devpost:
     | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
     | `.get_projects()` | Returns the latest projects along with their decription, like and commment count, image and member details. |
     | `.search(topic)` | Returns the searched projects along with their decription, like and commment count, image and member details. |
-    
+
     """
 
     def get_projects(self):
@@ -84,7 +84,7 @@ class Devpost:
             return projects_data["projects"]
         except:
             return None
-        
+
     def search(self, topic):
         self.topic = topic
         """
