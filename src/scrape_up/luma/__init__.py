@@ -1,3 +1,3 @@
-from scrape_up.luma.events import Events
+from events import Events
 
 __all__ = ["Events"]
