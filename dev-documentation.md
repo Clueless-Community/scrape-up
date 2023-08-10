@@ -1459,6 +1459,21 @@ crypto = CoinMarketCap()
 
 ---
 
+
+# Flipkart laptops
+
+Create an instance of `flipkart_laptop` class.
+
+```python
+item = flipkart_laptop()
+```
+
+| Methods      | Details                                  |
+| ------------ | ---------------------------------------- |
+| `.laptops()` | Returns the list of laptops with details |
+
+------------------
+
 ## Olympics
 
 Create an instance of `Olympics` class
@@ -1473,3 +1488,4 @@ olympics = Olympics()
 | `.allsports()`     | returns the list of all the sports being currently played in olympics.                  |
 | `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
 | `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
+

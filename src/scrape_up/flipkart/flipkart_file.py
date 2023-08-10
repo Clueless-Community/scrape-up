@@ -678,7 +678,7 @@ class Flipkart:
         """
         Get the list of speakers.\n
         Class - `Flipkart`\n
-        Example 
+        Example
         ```python
         item = Flipkart()
         item.speakers()
