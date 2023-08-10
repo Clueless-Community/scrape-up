@@ -1459,3 +1459,20 @@ crypto = CoinMarketCap()
 | `get_top_cryptocurrencies()` | Fetches and returns data about the top cryptocurrencies. |
 
 ---
+
+## Olympics 
+
+Create an instance of `Olympics` class
+
+```python
+olympics = Olympics()
+```
+
+| Methods                | Details                                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------------------ |
+| `.allcountries()`      |  returns the list of all the countries participated yet in olympics.                       |
+| `.allsports()`         |  returns the list of all the sports being currently played in olympics.                    |
+| `.alldeceased()`       |  Returns the list of all recently deceased olympians along with their death date.          |
+| `.alltimemedals()`     |  Returns list of all countries with their total numbers of medals yet in all categories.   |
+
+
