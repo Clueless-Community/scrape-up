@@ -1,3 +1,3 @@
-from olympics import Olympics
+from olympic import Olympics
 
 __all__ = ["Olympics"]

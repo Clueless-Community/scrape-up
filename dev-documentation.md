@@ -1343,7 +1343,6 @@ utc = UTC()
 | `.get_location`      | Returns location of each time zone        |
 | `.get_offset`        | Returns offset of each time zone from UTC |
 
-
 Create an instance of `FunHolidays` class.
 
 ```python
@@ -1363,7 +1362,6 @@ forecast = Forecast(city="bengaluru")
 | Methods            | Details                                                                                                                    |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
 | `.full_forecast()` | Returns datewise the Temperature, Weather, Wind, Humidity, Precipitation chance and Amount, UV, Sunrise, Sunset of a city. |
-
 
 ---
 
@@ -1460,7 +1458,7 @@ crypto = CoinMarketCap()
 
 ---
 
-## Olympics 
+## Olympics
 
 Create an instance of `Olympics` class
 
@@ -1468,11 +1466,9 @@ Create an instance of `Olympics` class
 olympics = Olympics()
 ```
 
-| Methods                | Details                                                                                    |
-| ---------------------- | ------------------------------------------------------------------------------------------ |
-| `.allcountries()`      |  returns the list of all the countries participated yet in olympics.                       |
-| `.allsports()`         |  returns the list of all the sports being currently played in olympics.                    |
-| `.alldeceased()`       |  Returns the list of all recently deceased olympians along with their death date.          |
-| `.alltimemedals()`     |  Returns list of all countries with their total numbers of medals yet in all categories.   |
-
-
+| Methods            | Details                                                                                 |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| `.allcountries()`  | returns the list of all the countries participated yet in olympics.                     |
+| `.allsports()`     | returns the list of all the sports being currently played in olympics.                  |
+| `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
+| `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
