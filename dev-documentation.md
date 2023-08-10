@@ -916,10 +916,10 @@ Create an instance of `NewsCNN` class.\n
 news = newsCNN()
 ```
 
-| Methods                     | Details                                                        |
-| --------------------------- | -------------------------------------------------------------- |
-| `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
-| `.news_by_category(type)`           | Returns the list of articles by a specific category. |
+| Methods                           | Details                                              |
+| --------------------------------- | ---------------------------------------------------- |
+| `.newsbylocation(country="india)` | Returns the list of articles by a specific country.  |
+| `.news_by_category(type)`         | Returns the list of articles by a specific category. |
 
 # FlipkartTees
 
@@ -1345,7 +1345,6 @@ utc = UTC()
 | `.get_location`      | Returns location of each time zone        |
 | `.get_offset`        | Returns offset of each time zone from UTC |
 
-
 Create an instance of `FunHolidays` class.
 
 ```python
@@ -1365,7 +1364,6 @@ forecast = Forecast(city="bengaluru")
 | Methods            | Details                                                                                                                    |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
 | `.full_forecast()` | Returns datewise the Temperature, Weather, Wind, Humidity, Precipitation chance and Amount, UV, Sunrise, Sunset of a city. |
-
 
 ---
 

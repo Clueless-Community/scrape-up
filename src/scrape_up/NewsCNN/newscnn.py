@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
+
 class NewsCNN:
     """
     Create an instance of `NewsCNN` class.\n
@@ -32,7 +33,7 @@ class NewsCNN:
 
         try:
             sol = []
-            obj_keys = ['news', 'link']
+            obj_keys = ["news", "link"]
             location = country.lower()
             URL = f"https://edition.cnn.com/world/{location}"
             page = requests.get(URL)
@@ -96,19 +97,15 @@ class NewsCNN:
             url = f"https://edition.cnn.com/{type}"
             page = requests.get(url, headers=self.headers)
             parse = BeautifulSoup(page.content, "html.parser")
-            articles = parse.find_all("a", {"class": "container__link container_lead-plus-headlines__link"})
+            articles = parse.find_all(
+                "a", {"class": "container__link container_lead-plus-headlines__link"}
+            )
             for article in articles:
-                text = article.find("span",{"data-editable":"headline"})
+                text = article.find("span", {"data-editable": "headline"})
                 if text:
-                    link = "https://edition.cnn.com"+article['href']
-                    data = {
-                        "Title":text.text,
-                        "Link":link
-                    }
+                    link = "https://edition.cnn.com" + article["href"]
+                    data = {"Title": text.text, "Link": link}
                     sol.append(data)
             return sol
         except Exception as e:
             return e
-
-
-
