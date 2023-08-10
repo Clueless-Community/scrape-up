@@ -915,8 +915,10 @@ Create an instance of `NewsCNN` class.\n
 news = newsCNN()
 ```
 
-| Methods | Details |
-| `.newsbylocation(country="india)` | Returns the list of articles by a specific country. |
+| Methods                           | Details                                              |
+| --------------------------------- | ---------------------------------------------------- |
+| `.newsbylocation(country="india)` | Returns the list of articles by a specific country.  |
+| `.news_by_category(type)`         | Returns the list of articles by a specific category. |
 
 # FlipkartTees
 
