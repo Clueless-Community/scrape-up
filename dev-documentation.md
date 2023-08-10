@@ -75,25 +75,25 @@ First, create an object of class `Repository`
 repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
 ```
 
-| Methods                    | Details                                                                                                                                                                                                                            |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.fork_count()`            | Returns the number of forks of a repository.                                                                                                                                                                                       |
-| `.get_contributors()`      | Returns the number of contributors of a repository.                                                                                                                                                                                |
-| `.topics()`                | Returns the topics of a repository.                                                                                                                                                                                                |
-| `.pull_requests()`         | Returns the number of pull requests opened in a repository.                                                                                                                                                                        |
-| `.last_updated_at()`       | Returns the last updated date of a repository.                                                                                                                                                                                     |
-| `.tags()`                  | Returns the last ten tags of a repository.                                                                                                                                                                                         |
-| `.releases()`              | Returns the last ten releases of a repository.                                                                                                                                                                                     |
-| `.issues_count()`          | Returns number of issues in a repository                                                                                                                                                                                           |
-| `.readme`                  | Saves the readme.md file of the given user to the current working directory. To view the readme.md with a live server, change ".md" to ".html" in "readme.md".                                                                     |
-| `.get_pull_requests_ids()` | Returns all ids of opened pull requests in a repository.                                                                                                                                                                           |
-| `.get_issues()`            | Returns the list of all open issues in a repository.                                                                                                                                                                               |
-| `.commits()`               | Returns the number of commits in a repository.                                                                                                                                                                                     |
-| `.get_readme()`            | Returns & saves README.md file of the special repository (if exists)                                                                                                                                                               |
-| `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                                                                                                      |
-| `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                                                                                     |
-| `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                                                                                                |
-| `.get_insights(period)`          | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs, list of recent open prs, list of recent closed issues, list of recent open issues for a specified period|
+| Methods                    | Details                                                                                                                                                                                                                                                   |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.fork_count()`            | Returns the number of forks of a repository.                                                                                                                                                                                                              |
+| `.get_contributors()`      | Returns the number of contributors of a repository.                                                                                                                                                                                                       |
+| `.topics()`                | Returns the topics of a repository.                                                                                                                                                                                                                       |
+| `.pull_requests()`         | Returns the number of pull requests opened in a repository.                                                                                                                                                                                               |
+| `.last_updated_at()`       | Returns the last updated date of a repository.                                                                                                                                                                                                            |
+| `.tags()`                  | Returns the last ten tags of a repository.                                                                                                                                                                                                                |
+| `.releases()`              | Returns the last ten releases of a repository.                                                                                                                                                                                                            |
+| `.issues_count()`          | Returns number of issues in a repository                                                                                                                                                                                                                  |
+| `.readme`                  | Saves the readme.md file of the given user to the current working directory. To view the readme.md with a live server, change ".md" to ".html" in "readme.md".                                                                                            |
+| `.get_pull_requests_ids()` | Returns all ids of opened pull requests in a repository.                                                                                                                                                                                                  |
+| `.get_issues()`            | Returns the list of all open issues in a repository.                                                                                                                                                                                                      |
+| `.commits()`               | Returns the number of commits in a repository.                                                                                                                                                                                                            |
+| `.get_readme()`            | Returns & saves README.md file of the special repository (if exists)                                                                                                                                                                                      |
+| `.get_environment()`       | Returns the latest deployed link of a repository (if exists).                                                                                                                                                                                             |
+| `.watch_count()`           | Returns the number of watchers of a repository                                                                                                                                                                                                            |
+| `.all_watchers()`          | Returns the username of all watches of a repository                                                                                                                                                                                                       |
+| `.get_insights(period)`    | Returns the active pr count, active issue count, merged pr count, open pr count, closed issue count, new issue count, list of recent merged prs, list of recent open prs, list of recent closed issues, list of recent open issues for a specified period |
 
 ### Scrape an issue details
 
@@ -773,6 +773,7 @@ posts = Devpost()
 | Methods           | Details                                                                                                              |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `.get_articles()` | Returns the latest projects along with their decription, like and commment count, image and member details.          |
+| `.search(topic)`  | Returns the searched projects along with their decription, like and commment count, image and member details.        |
 | `.get_featured()` | Returns the latest featured projects along with their decription, like and commment count, image and member details. |
 | `.get_winner()`   | Returns the latest winning projects along with their decription, like and commment count, image and member details.  |
 
@@ -1484,7 +1485,6 @@ crypto = CoinMarketCap()
 
 ---
 
-
 # Flipkart laptops
 
 Create an instance of `flipkart_laptop` class.
@@ -1497,7 +1497,7 @@ item = flipkart_laptop()
 | ------------ | ---------------------------------------- |
 | `.laptops()` | Returns the list of laptops with details |
 
-------------------
+---
 
 ## Olympics
 
@@ -1513,4 +1513,3 @@ olympics = Olympics()
 | `.allsports()`     | returns the list of all the sports being currently played in olympics.                  |
 | `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
 | `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
-

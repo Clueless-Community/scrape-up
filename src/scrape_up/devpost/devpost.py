@@ -16,6 +16,7 @@ class Devpost:
     | Methods            | Details                                                                                                              |
     | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
     | `.get_projects()` | Returns the latest projects along with their decription, like and commment count, image and member details. |
+    | `.search(topic)` | Returns the searched projects along with their decription, like and commment count, image and member details. |
     | `.get_hackathons()` | Returns the latest hackathons along with their title, participants, prizes, deadlines.          |
     | `.get_featured()` | Returns the latest featured projects along with their decription, like and commment count, image and member details. |
     | `.get_winner()` | Returns the latest winning projects along with their decription, like and commment count, image and member details. |
@@ -90,6 +91,25 @@ class Devpost:
         except:
             return None
 
+    def search(self, topic):
+        """
+        Class - `Devpost`
+        Example -
+        ```python
+        devpost = Devpost()
+        hackathons = devpost.search()
+        ```
+        """
+        url = "https://devpost.com/software/search?query=" + topic
+        try:
+            page = requests.get(url)
+            soup = BeautifulSoup(page.content, "html.parser")
+            data = str(soup)
+            projects = json.loads(data)
+            return projects["software"]
+        except:
+            return None
+
     def get_hackathons(self):
         """
         Class - `Devpost`
@@ -103,6 +123,18 @@ class Devpost:
         [
             {
 
+                'class_name': 'Software',
+                'name': 'Electron-Cash-SLP',
+                'tagline': 'Electron Cash for SLP Tokens',
+                'slug': 'electron-cash-slp',
+                'url': 'https://devpost.com/software/electron-cash-slp',
+                'members': None,
+                'tags': ['python', 'objective-c', 'c', 'kotlin', 'shell', 'java', 'nsis', 'dockerfile', 'ruby'],
+                'winner': False,
+                'photo': 'https://d112y698adiu2z.cloudfront.net/photos/production/software_thumbnail_photos/002/558/403/datas/small.jpg',
+                'has_video': True,
+                'like_count': 1,
+                'comment_count': 0}
                 'title': 'Ripple CBDC Innovate',
                 'status': '9 days left',
                 'prize': '200,000',
@@ -111,26 +143,11 @@ class Devpost:
                 'submission-period': 'May 15 - Aug 18, 2023',
                 'labels': 'Blockchain, Fintech, Social Good, ',
                 'hackathon-image': 'https://d112y698adiu2z.cloudfront.net/photos/production/challenge_thumbnails/002/459/630/datas/medium_square.png'
-
-                'class_name': 'Software',
-                'name': 'Smart Fridge',
-                'tagline': 'A Smart Fridge that uses Computer Vision to log in food, keeps user updated by SMS, and provide recommendations. ',
-                'slug': 'smart-fridge-9d8qyv',
-                'url': 'https://devpost.com/software/smart-fridge-9d8qyv',
-                'members': ['yeling7', 'jjpprrrr', 'yuelunyang', 'cloudwaysx'],
-                'tags': ['python', 'c++', 'google-cloud-vision', 'google-ml', 'google-app-engine', 'google-cloud', 'google-cloud-datastore', 'google-knowledgegraph', 'twilio', 'kinect', 'arduino', 'wolfram-technologies'],
-                'winner': True,
-                'photo': 'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/000/485/920/datas/small.jpg',
-                'has_video': True,
-                'like_count': 67,
-                'comment_count': 9
-
             }
             ...
         ]
         ```
         """
-
         url = "https://devpost.com/hackathons"
 
         try:
