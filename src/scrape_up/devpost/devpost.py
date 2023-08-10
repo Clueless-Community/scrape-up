@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 
 
 class Devpost:
@@ -11,6 +12,9 @@ class Devpost:
     | Methods            | Details                                                                                                              |
     | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
     | `.get_projects()` | Returns the latest projects along with their decription, like and commment count, image and member details. |
+    | `.get_featured()` | Returns the latest featured projects along with their decription, like and commment count, image and member details. |
+    | `.get_winner()` | Returns the latest winning projects along with their decription, like and commment count, image and member details. |
+
     """
 
     def get_projects(self):
@@ -81,3 +85,83 @@ class Devpost:
             return projects_data["projects"]
         except:
             return None
+
+    def get_featured(self):
+        """
+        Class - `Devpost`
+        Example -
+        ```python
+        devpost = Devpost()
+        posts = devpost.get_featured()
+        ```
+        Return
+        ```js
+        [
+            {
+                'class_name': 'Software',
+                'name': 'Smart Fridge',
+                'tagline': 'A Smart Fridge that uses Computer Vision to log in food, keeps user updated by SMS, and provide recommendations. ',
+                'slug': 'smart-fridge-9d8qyv',
+                'url': 'https://devpost.com/software/smart-fridge-9d8qyv',
+                'members': ['yeling7', 'jjpprrrr', 'yuelunyang', 'cloudwaysx'],
+                'tags': ['python', 'c++', 'google-cloud-vision', 'google-ml', 'google-app-engine', 'google-cloud', 'google-cloud-datastore', 'google-knowledgegraph', 'twilio', 'kinect', 'arduino', 'wolfram-technologies'],
+                'winner': True,
+                'photo': 'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/000/485/920/datas/small.jpg',
+                'has_video': True,
+                'like_count': 67,
+                'comment_count': 9
+            }
+            ...
+        ]
+        ```
+        """
+        url = "https://devpost.com/software/search?query=is%3Afeatured"
+        try:
+            page = requests.get(url)
+            soup = BeautifulSoup(page.content, "html.parser")
+            str_data = str(soup)
+            data = json.loads(str_data)
+            return data["software"]
+        except:
+            return None
+
+    def get_winner(self):
+        """
+        Class - `Devpost`
+        Example -
+        ```python
+        devpost = Devpost()
+        posts = devpost.get_winner()
+        ```
+        Return
+        ```js
+        [
+            {
+                'class_name': 'Software',
+                'name': 'Smart Fridge',
+                'tagline': 'A Smart Fridge that uses Computer Vision to log in food, keeps user updated by SMS, and provide recommendations. ',
+                'slug': 'smart-fridge-9d8qyv',
+                'url': 'https://devpost.com/software/smart-fridge-9d8qyv',
+                'members': ['yeling7', 'jjpprrrr', 'yuelunyang', 'cloudwaysx'],
+                'tags': ['python', 'c++', 'google-cloud-vision', 'google-ml', 'google-app-engine', 'google-cloud', 'google-cloud-datastore', 'google-knowledgegraph', 'twilio', 'kinect', 'arduino', 'wolfram-technologies'],
+                'winner': True,
+                'photo': 'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/000/485/920/datas/small.jpg',
+                'has_video': True,
+                'like_count': 67,
+                'comment_count': 9
+            }
+            ...
+        ]
+        ```
+        """
+        url = "https://devpost.com/software/search?query=is%3Awinner"
+        try:
+            page = requests.get(url)
+            soup = BeautifulSoup(page.content, "html.parser")
+            str_data = str(soup)
+            data = json.loads(str_data)
+            return data["software"]
+        except:
+            return None
+devpost = Devpost()
+print(devpost.get_winner())
