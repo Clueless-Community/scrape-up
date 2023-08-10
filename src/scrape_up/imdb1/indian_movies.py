@@ -30,33 +30,32 @@ class IndianMovies:
             return None
 
     def top_movies(self):
-
         """
         Create an instance of `IndianMovies` class.
         ```python
         indianmovies = IndianMovies()
+        movies = indianmovies.top_movies()
         ```
 
         Return\n
         ```js
         [
-            'Ramayana: The Legend of Prince Rama', 
-            'Rocketry: The Nambi Effect', 
-            'Nayakan', 
-            'Gol Maal', 
-            'Anbe Sivam', 
+            'Ramayana: The Legend of Prince Rama',
+            'Rocketry: The Nambi Effect',
+            'Nayakan',
+            'Gol Maal',
+            'Anbe Sivam',
             ...
         ]
         ```
         """
         try:
-
-            x = self.page_soup.find_all("span", {"data-testid":"rank-list-item-title"})
+            x = self.page_soup.find_all("span", {"data-testid": "rank-list-item-title"})
 
             lis = []
             for i in range(len(x)):
-                lis.append(x[i].get_text()[len(str(i)):])
-            
+                lis.append(x[i].get_text()[len(str(i)) :])
+
             return lis
 
         except:

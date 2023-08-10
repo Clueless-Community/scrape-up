@@ -468,15 +468,15 @@ actor = Actor(actor_name)
 | `.all_movies()`     | Returns all movies acted in and upcoming movies         |
 | `.awards()`         | Returns the number of awards and nominations            |
 
-
 Create an instance of `IndianMovies` class.
+
 ```python
 indianmovies = IndianMovies()
 ```
-| Methods                | Details                                       |
-| -----------------------|-----------------------------------------------|
-| `.top_indian_movies()` | Returns the current list of top Indian movies |
 
+| Methods                | Details                                       |
+| ---------------------- | --------------------------------------------- |
+| `.top_indian_movies()` | Returns the current list of top Indian movies |
 
 Create an instance of `BoxOffice` class.
 
@@ -487,7 +487,6 @@ boxoffice = BoxOffice()
 | Methods         | Details                                                                       |
 | --------------- | ----------------------------------------------------------------------------- |
 | `.top_movies()` | Returns the top box office movies, weekend and total gross and weeks released |
-
 
 ---
 
@@ -1415,7 +1414,7 @@ indiancity = IndianCity("bengaluru")
 | `.local_time()`      | Returns the local time in the city               |
 | `.nearby_airports()` | Returns a list of nearby airports in the city    |
 
---------------
+---
 
 # Unsplash
 
@@ -1431,7 +1430,7 @@ from scrape_up import unsplash
 | `.get_image_links(quality="2000w")`       | Return image links of quality 2000w        |
 | `.get_non_premium_links(quality="2000w")` | Returns non-premium links of quality 2000w |
 
-------------------
+---
 
 # CoinMarketCap
 
