@@ -1223,6 +1223,7 @@ hackerearth = Hackerearth()
 | ---------------- | ------------------------------------------------------ |
 | `get_upcoming()` | Get the details of upcoming challenges on Hackerearth. |
 | `get_ongoing()`  | Get the details of ongoing challenges on Hackerearth.  |
+| `get_hiring()`   | Get the details of hiring challenges on Hackerearth.   |
 
 # TripAdvisor
 
