@@ -1405,7 +1405,7 @@ indiancity = IndianCity("bengaluru")
 | `.local_time()`      | Returns the local time in the city               |
 | `.nearby_airports()` | Returns a list of nearby airports in the city    |
 
---------------
+---
 
 # Unsplash
 
@@ -1421,7 +1421,7 @@ from scrape_up import unsplash
 | `.get_image_links(quality="2000w")`       | Return image links of quality 2000w        |
 | `.get_non_premium_links(quality="2000w")` | Returns non-premium links of quality 2000w |
 
-------------------
+---
 
 # CoinMarketCap
 

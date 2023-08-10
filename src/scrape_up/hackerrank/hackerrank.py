@@ -237,8 +237,8 @@ class HackerRank:
             return archives
         except Exception:
             return None
-            
-     def get_skills(self):
+
+    def get_skills(self):
         """
         Get the list of verified skills and their links on HackerRank.\n
         First, create an object of class `HackerRank`\n
@@ -260,20 +260,15 @@ class HackerRank:
         try:
             url = "https://www.hackerrank.com/skills-verification"
             html_text = requests.get(url, headers=self.headers).text
-            soup = BeautifulSoup(html_text, "lxml")
+            soup = bs(html_text, "lxml")
 
-            container = soup.find("div",{"class":"skills-grid"})
+            container = soup.find("div", {"class": "skills-grid"})
             skills = []
             for items in container.find_all("a"):
-                link = "https://www.hackerrank.com"+items['href']
+                link = "https://www.hackerrank.com" + items["href"]
                 title = items.find("h3")
-                data ={
-                    "Name":title.text,
-                    "Link":link
-                }
+                data = {"Name": title.text, "Link": link}
                 skills.append(data)
             return skills
         except:
             return None
-
-
