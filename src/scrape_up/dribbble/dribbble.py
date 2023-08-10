@@ -93,3 +93,65 @@ class Dribbble:
             return shots_data["shots"]
         except:
             return None
+        
+    def search(self, topic):
+        
+        url = "https://dribbble.com/search/" + topic
+        shots_data = {"shots": []}
+        try:
+            res = requests.get(url)
+
+            soup = BeautifulSoup(res.text, "html.parser")
+
+            shots = soup.find_all(
+                "li", class_="shot-thumbnail js-thumbnail shot-thumbnail-container"
+            )
+
+            for s in shots:
+                title = s.find("div", class_="shot-title").getText().strip()
+                img = s.find("img")["src"]
+                designer = s.find("span", class_="display-name").getText()
+                designer_url = s.find("a", rel="contact")["href"]
+                try:
+                    like = (
+                        s.find(
+                            "span",
+                            class_="js-shot-likes-count color-deep-blue-sea-light-20 font-weight-500",
+                        )
+                        .getText()
+                        .strip()
+                    )
+                except:
+                    like = "0"
+                try:
+                    views = (
+                        s.find(
+                            "span",
+                            class_="js-shot-views-count color-deep-blue-sea-light-20 font-weight-500",
+                        )
+                        .getText()
+                        .strip()
+                    )
+                except:
+                    views = "0"
+                try:
+                    link = s.find(
+                        "a", class_="shot-thumbnail-link dribbble-link js-shot-link"
+                    )["href"]
+                except:
+                    link = ""
+
+                shots_data["shots"].append(
+                    {
+                        "title": title,
+                        "image_url": img,
+                        "designer": designer,
+                        "designer_url": "https://www.dribbble.com/" + designer_url,
+                        "like_count": like,
+                        "views_count": views,
+                        "link": "https://www.dribbble.com/" + link,
+                    }
+                )
+            return shots_data["shots"]
+        except:
+            return None
