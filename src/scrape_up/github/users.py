@@ -30,6 +30,7 @@ class Users:
     | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
     | `.get_merged_pull_requests()` | Returns the list of merged pull requests                                                           |
     | `.get_open_issues()`          | Returns the list of open issues                                                                    |
+    | `.get_years_active()`         | Returns the number of years that user have been active on github.                                  |
     """
 
     def __init__(self, username: str):
@@ -662,7 +663,26 @@ class Users:
             return None
 
         return open_issues
+    
+    def get_years_active(self): 
+        """
+        Class - `Users`\n
+        Example -\n
+        ```python
+        user = github.User(username="nikhil25803")
+        years_active = user.get_years_active()
+        ```
+        """
+        page = self.__scrape_page()
+        try:
+            ul_element = page.find("ul", class_="filter-list small")
+            li_element = ul_element.find_all("li")
 
+            years_active = len(li_element)
+
+            return years_active 
+        except:
+            return None
 
 user = Users(username="nikhil25803")
 print(user.get_open_issues())
