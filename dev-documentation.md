@@ -342,6 +342,8 @@ articles = HackerNews()
 | `.show_articles()` | Returns the show articles along with their score, author, author url, time, comment count and link in JSON format.       |
 | `.jobs()`          | Returns the jobs along with their time and link in JSON format.                                                          |
 
+---
+
 ## Twitter
 
 ```python
@@ -1147,7 +1149,7 @@ uci = UCI()
 First, create an object of class `Codechef`
 
 ```python
-user1 = Codechef(id="username")
+user = Codechef(id="username")
 
 ```
 

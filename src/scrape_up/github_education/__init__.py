@@ -1,3 +1,3 @@
-from github_education import Events
+from events import Events
 
 __all__ = ["Events"]
