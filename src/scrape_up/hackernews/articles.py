@@ -2,11 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class HackerNews:
+class Articles:
     """
     Create an instance of `HackerNews` class.
     ```py
-    articles = HackerNews()
+    articles = hackernews.Articles()
     ```
     | Methods            | Details                                                                                                                   |
     | ------------------ | ------------------------------------------------------------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.articles_list()
         ```
         Return
@@ -87,7 +87,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.new_articles()
         ```
         Return
@@ -151,7 +151,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.past_articles()
         ```
         Return
@@ -215,7 +215,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.ask_articles()
         ```
         Return
@@ -279,7 +279,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.show_articles()
         ```
         Return
@@ -343,7 +343,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.jobs()
         ```
         Return
