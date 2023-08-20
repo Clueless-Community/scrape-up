@@ -156,7 +156,7 @@ organization = github.Organization(organization_name="Clueless-Community")
 from scrape_up import github_education
 ```
 
-### Scrape User details
+### Scrape user details
 
 Create an instance of the `Events` class.
 
@@ -176,7 +176,9 @@ events = github_education.Events()
 from scrape_up import codechef
 ```
 
-First, create an object of class `Codechef`
+### Scrape user details
+
+Create an object of class `Codechef`
 
 ```python
 user1 = codechef.User(id="username")
@@ -189,16 +191,18 @@ user1 = codechef.User(id="username")
 
 ---
 
-## Hacker News
+### Hacker News
 
 ```py
-from scrape_up import hacker_news
+from scrape_up import hackernews
 ```
 
-Create an instance of the `HackerNews` class.
+### Scrape article details
+
+Create an instance of the `Articles` class.
 
 ```py
-articles = HackerNews()
+articles = hackernews.Articles()
 ```
 
 | Methods            | Details                                                                                                    |
@@ -209,5 +213,59 @@ articles = HackerNews()
 | `.ask_articles()`  | Returns the asked articles along with their score, author, author URL, time, comment count, and link.      |
 | `.show_articles()` | Returns the show articles along with their score, author, author URL, time, comment count, and link.       |
 | `.jobs()`          | Returns the jobs along with their time and link.                                                           |
+
+---
+
+### HackerEarth
+
+```py
+from scrape_up import hackerearth
+```
+
+Create an object of class `Hackerearth`
+
+```python
+hackerearth = hackerearth.Hackerearth()
+```
+
+| Methods          | Details                                                |
+| ---------------- | ------------------------------------------------------ |
+| `get_upcoming()` | Get the details of upcoming challenges on Hackerearth. |
+| `get_ongoing()`  | Get the details of ongoing challenges on Hackerearth.  |
+| `get_hiring()`   | Get the details of hiring challenges on Hackerearth.   |
+
+---
+
+### HackerRank
+
+```py
+from scrape_up import hackerearth
+```
+
+### Scrape user details
+
+Create an object of class `User`.
+
+```python
+hackerank = User()
+```
+
+| Methods                      | Details                                                                                   |
+| ---------------------------- | ----------------------------------------------------------------------------------------- |
+| `get_profile(id="username")` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
+| `get_skills()`               | Returns a list of verified skills and their links                                         |
+
+### Scrape contest details
+
+Create an object of class `Contest`.
+
+```python
+hackerank = Contest()
+```
+
+| Methods               | Details                                                             |
+| --------------------- | ------------------------------------------------------------------- |
+| `active_contests()`   | Returns information on active contests like title, status, and link |
+| `archived_contests()` | Returns information regarding archived contests                     |
 
 ---
