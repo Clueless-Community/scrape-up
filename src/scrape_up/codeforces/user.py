@@ -7,7 +7,7 @@ class USER:
     Fetches user data from CodeForces Competitive Platform
     """
 
-    user_url = "https://codeforces.com/profile/{}"
+    user_url = "https://codeforces.com/api/user.info?handles={}"
 
     def __init__(self, username):
         self.username = username
