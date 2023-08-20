@@ -13,8 +13,6 @@ class HackerRank:
     | Methods                      | Details                                                                                   |
     | ---------------------------- | ----------------------------------------------------------------------------------------- |
     | `get_profile(id="username")` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
-    | `active_contests()`          | Returns information on active contests like title, status, and link                       |
-    | `archived_contests()`        | Returns information regarding archived contests                                           |
     | `get_skills()`               | Returns a list of verified skills and their links                                         |
     """
 
@@ -27,8 +25,8 @@ class HackerRank:
         """
          Create an object of the 'HackerRank' class\n
          ```python
-         user1 = HackerRank()
-         user1.get_profile(id="helloguys289")
+         user = HackerRank()
+         user.get_profile(id="helloguys289")
          ```
          Response
          ```js
@@ -160,82 +158,6 @@ class HackerRank:
             }
             return profile_data
         except:
-            return None
-
-    def active_contests(self):
-        """
-        Get the details of active contests on HackerRank.\n
-        First, create an object of class `HackerRank`\n
-        ```python
-        hrank = HackerRank()
-        hrank.active_contests()
-        ```
-        Returns:
-        ```js
-        [
-            {
-                "Title":"ProjectEuler+",
-                "Status":"Open Indefinitely",
-                "Link":"https://www.hackerrank.com/contests/projecteuler"
-            }
-        ]
-        ```
-        """
-        try:
-            url = "https://www.hackerrank.com/contests"
-            html_text = requests.get(url, headers=self.headers).text
-            soup = bs(html_text, "lxml")
-            container = soup.find("div", {"class": "theme-m contest-list left-pane"})
-            actives = []
-            active_contest = container.find(
-                "div", {"class": "active_contests active-contest-container"}
-            )
-            for items in active_contest.find_all("li"):
-                title = items.find("h4").text
-                status = items.find("span", {"class": "contest-status"}).text
-                link = (
-                    "https://www.hackerrank.com"
-                    + items.find("a", {"class": "text-link"}, href=True)["href"]
-                )
-                data = {"Title": title, "Status": status, "Link": link}
-                actives.append(data)
-            return actives
-        except:
-            return None
-
-    def archived_contests(self):
-        """
-        Get the details of active contests on HackerRank.\n
-        First, create an object of class `HackerRank`\n
-        ```python
-        hrank = HackerRank()
-        hrank.archived_contests()
-        ```
-        Returns:
-        ```js
-        [
-            {
-                "title":"Cisco Hack to Secure Challenge 2023"
-            }
-            ...
-        ]
-        ```
-        """
-        try:
-            url = "https://www.hackerrank.com/contests"
-            html_text = requests.get(url, headers=self.headers).text
-            soup = bs(html_text, "lxml")
-            container = soup.find("div", {"class": "theme-m contest-list left-pane"})
-            archives = []
-            archived_contest = container.find(
-                "div", {"class": "active_contests archived-contest-container"}
-            )
-            for items in archived_contest.find_all("li"):
-                title = items.find("h4").text
-                data = {"title": title}
-                archives.append(data)
-            return archives
-        except Exception:
             return None
 
     def get_skills(self):

@@ -1,3 +1,3 @@
-from hackerrank import HackerRank
+from user import HackerRank
 
 __all__ = ["HackerRank"]
