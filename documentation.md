@@ -188,3 +188,26 @@ user1 = codechef.User(id="username")
 | `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
 
 ---
+
+## Hacker News
+
+```py
+from scrape_up import hacker_news
+```
+
+Create an instance of the `HackerNews` class.
+
+```py
+articles = HackerNews()
+```
+
+| Methods            | Details                                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `.articles_list()` | Returns the latest articles along with their score, author, author URL, time, comment count, and link.     |
+| `.new_articles()`  | Returns the latest new articles along with their score, author, author URL, time, comment count, and link. |
+| `.past_articles()` | Returns the past articles along with their score, author, author URL, time, comment count, and link.       |
+| `.ask_articles()`  | Returns the asked articles along with their score, author, author URL, time, comment count, and link.      |
+| `.show_articles()` | Returns the show articles along with their score, author, author URL, time, comment count, and link.       |
+| `.jobs()`          | Returns the jobs along with their time and link.                                                           |
+
+---
