@@ -1,3 +1,4 @@
-from user import HackerRank
+from user import User
+from contest import Contest
 
-__all__ = ["HackerRank"]
+__all__ = ["HackerRank", "Contest"]

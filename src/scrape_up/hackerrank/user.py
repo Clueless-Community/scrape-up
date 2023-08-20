@@ -2,12 +2,12 @@ import requests
 from bs4 import BeautifulSoup as bs
 
 
-class HackerRank:
+class User:
     """
-    First, create an object of class `HackerRank`
+    First, create an object of class `User`
 
     ```python
-    hackerank = HackerRank()
+    hackerank = User()
     ```
 
     | Methods                      | Details                                                                                   |
@@ -23,9 +23,9 @@ class HackerRank:
 
     def get_profile(self, id):
         """
-         Create an object of the 'HackerRank' class\n
+         Create an object of the 'User' class\n
          ```python
-         user = HackerRank()
+         user = User()
          user.get_profile(id="helloguys289")
          ```
          Response
@@ -162,10 +162,9 @@ class HackerRank:
 
     def get_skills(self):
         """
-        Get the list of verified skills and their links on HackerRank.\n
-        First, create an object of class `HackerRank`\n
+        Create an object of class `User`\n
         ```python
-        hrank = HackerRank()
+        hrank = User()
         hrank.get_skills()
         ```
         Returns:
