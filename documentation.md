@@ -18,14 +18,15 @@ from scrape_up import github
 user = github.Users(username="nikhil25803")
 
 # Call the followers function - it will return the number of followers
-user.followers()
+per user.followers()
 ```
 
 ---
 
-## The platforms and methods we cover 💫
+## The platforms we cover.
 
 - GitHub
+- GitHub Education
 
 ### GitHub
 
@@ -35,7 +36,7 @@ from scrape_up import github
 
 ### Scrape User details
 
-Create an instance of the class `Users`
+Create an instance of the class `Users`.
 
 ```python
 user = github.Users(username="nikhil25803")
@@ -66,7 +67,7 @@ user = github.Users(username="nikhil25803")
 
 ### Scrape Repository details
 
-Create an instance of the class `Repository`
+Create an instance of the class `Repository`.
 
 ```python
 repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
@@ -147,5 +148,24 @@ organization = github.Organization(organization_name="Clueless-Community")
 | `.pinned_repository()`      | Returns the list of pinned repositories with their details.     |
 | `.get_organization_links()` | Returns a dictionary of important website links of a community. |
 
-------------------------
+---
 
+### GitHub Education
+
+```python
+from scrape_up import github_education
+```
+
+### Scrape User details
+
+Create an instance of the `Events` class.
+
+```py
+events = github_education.Events()
+```
+
+| Methods         | Details                                                                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `.get_events()` | Returns the latest events along with their title, image_url, description, date, location, language, tags, and link. |
+
+---
