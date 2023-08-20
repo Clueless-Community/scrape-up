@@ -1,3 +1,3 @@
-from Hackerearth import Hackerearth
+from hackerearth import Hackerearth
 
 __all__ = ["Hackerearth"]
