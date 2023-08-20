@@ -25,8 +25,12 @@ per user.followers()
 
 ## The platforms we cover.
 
-- GitHub
-- GitHub Education
+- [GitHub](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#github) 
+- [GitHub Education](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#github-education)
+- [Codechef](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#codechef)
+- [Hacker News](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hacker-news)
+- [HackerEarth](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hackerearth)
+- [HackerRank](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hackerrank)
 
 ### GitHub
 
