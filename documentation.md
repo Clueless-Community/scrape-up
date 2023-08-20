@@ -169,3 +169,22 @@ events = github_education.Events()
 | `.get_events()` | Returns the latest events along with their title, image_url, description, date, location, language, tags, and link. |
 
 ---
+
+### CodeChef
+
+```python
+from scrape_up import codechef
+```
+
+First, create an object of class `Codechef`
+
+```python
+user1 = codechef.User(id="username")
+
+```
+
+| Methods         | Details                                                          |
+| --------------- | ---------------------------------------------------------------- |
+| `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
+
+---
