@@ -25,7 +25,7 @@ per user.followers()
 
 ## The platforms we cover.
 
-- [GitHub](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#github) 
+- [GitHub](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#github)
 - [GitHub Education](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#github-education)
 - [Codechef](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#codechef)
 - [Hacker News](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hacker-news)
@@ -226,10 +226,10 @@ articles = hackernews.Articles()
 from scrape_up import hackerearth
 ```
 
-Create an object of class `Hackerearth`
+Create an object of class `Challanges`
 
 ```python
-hackerearth = hackerearth.Hackerearth()
+hackerearth = hackerearth.Challanges()
 ```
 
 | Methods          | Details                                                |
@@ -243,7 +243,7 @@ hackerearth = hackerearth.Hackerearth()
 ### HackerRank
 
 ```py
-from scrape_up import hackerearth
+from scrape_up import hackerrank
 ```
 
 ### Scrape user details
@@ -251,7 +251,7 @@ from scrape_up import hackerearth
 Create an object of class `User`.
 
 ```python
-hackerank = User()
+hackerank = hackerrank.User()
 ```
 
 | Methods                      | Details                                                                                   |
@@ -264,7 +264,7 @@ hackerank = User()
 Create an object of class `Contest`.
 
 ```python
-hackerank = Contest()
+hackerank = hackerrank.Contest()
 ```
 
 | Methods               | Details                                                             |
