@@ -2,11 +2,11 @@ from bs4 import BeautifulSoup
 import requests
 
 
-class Hackerearth:
+class Challenges:
     """
-    First, create an object of class `Hackerearth`
+    First, create an object of class `Challenges`
     ```python
-    hackerearth = Hackerearth()
+    hackerearth = Challenges()
     ```
     | Methods          | Details                                                |
     | ---------------- | ------------------------------------------------------ |
@@ -25,7 +25,7 @@ class Hackerearth:
         Get the details of ongoing challenges on Hackerearth.\n
         Example
         ```python
-        hacker = Hackerearth()
+        hacker = Challenges()
         hacker.get_ongoing()
         ```
         Returns:
@@ -72,7 +72,7 @@ class Hackerearth:
         Get the details of ongoing challenges on Hackerearth.\n
         Example
         ```python
-        hacker = Hackerearth()
+        hacker = Challenges()
         hacker.get_upcoming()
         ```
         Returns:
@@ -119,7 +119,7 @@ class Hackerearth:
         Fetches and returns information about ongoing job opportunities from HackerEarth's jobs page.\n
         Example
         ```python
-        hacker = Hackerearth()
+        hacker = Challenges()
         hacker.get_hiring()
         ```
         Example output:
