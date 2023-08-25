@@ -662,7 +662,3 @@ class Users:
             return None
 
         return open_issues
-
-
-user = Users(username="nikhil25803")
-print(user.get_open_issues())

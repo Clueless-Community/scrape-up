@@ -1,3 +1,3 @@
-from articles import Articles
+from .articles import Articles
 
 __all__ = ["Articles"]

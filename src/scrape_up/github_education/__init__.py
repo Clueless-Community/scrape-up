@@ -1,3 +1,3 @@
-from events import Events
+from .events import Events
 
 __all__ = ["Events"]

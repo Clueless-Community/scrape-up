@@ -1,3 +1,3 @@
-from codechef import User
+from .codechef import User
 
 __all__ = ["User"]
