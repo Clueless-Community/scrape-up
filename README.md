@@ -46,10 +46,10 @@ pip install scrape-up --upgrade
 
 ```python
 # Import the required module
-from scrape_up import GitHub
+from scrape_up import github
 
 # Instantiate an object with the username
-user = GitHub.Users(username="nikhil25803")
+user = github.Users(username="nikhil25803")
 ```
 
 3. Call the desired method to scrape the required information. For example, to extract the number of followers of a user:
