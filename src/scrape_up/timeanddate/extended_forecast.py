@@ -1,6 +1,8 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
-
+USER_AGENT = {
+    "User-Agent": "Mozilla/5.0"
+}
 
 class Forecast:
     """
@@ -25,7 +27,7 @@ class Forecast:
                 + "-".join(self.city.lower().split(" "))
                 + "/ext"
             )
-            req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            req = Request(url, headers= USER_AGENT)
 
             webpage = urlopen(req).read()
             self.page_soup = soup(webpage, "html.parser")

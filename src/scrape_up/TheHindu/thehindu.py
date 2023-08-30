@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup as bs
-
+USER_AGENT = "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
 
 class TheHindu:
     """
@@ -35,7 +35,7 @@ class TheHindu:
         """
         try:
             headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
+                "User-Agent": USER_AGENT
             }
             page_url = "https://www.thehindu.com/news/cities/Delhi/sc-appoints-former-delhi-hc-judge-justice-jayant-nath-as-interim-chairperson-of-power-regulator-derc/article67157713.ece"
             response = requests.get(page_url, headers=headers).text

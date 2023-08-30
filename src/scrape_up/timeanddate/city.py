@@ -1,6 +1,8 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
-
+USER_AGENT = {
+    "User-Agent": "Mozilla/5.0"
+}
 
 class IndianCity:
 
@@ -32,7 +34,7 @@ class IndianCity:
     def __scrape_page(self):
         try:
             url = "https://www.timeanddate.com/worldclock/india/" + self.city
-            req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            req = Request(url, headers= USER_AGENT)
 
             webpage = urlopen(req).read()
             self.page_soup = soup(webpage, "html.parser")

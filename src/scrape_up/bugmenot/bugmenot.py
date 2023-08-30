@@ -1,7 +1,6 @@
-
 import requests
 from bs4 import BeautifulSoup
-
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
 class Bugmenot:
     """
     Create an instance of the class `Bugmenot`
@@ -20,7 +19,7 @@ class Bugmenot:
         self.website = website
         self.url = f'https://bugmenot.com/view/{website}'
         self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+            'User-Agent': USER_AGENT
         }
 
     def generate_credentials(self):

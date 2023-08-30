@@ -1,6 +1,8 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
-
+USER_AGENT = {
+    "User-Agent": "Mozilla/5.0"
+}
 
 class BoxOffice:
 
@@ -21,7 +23,7 @@ class BoxOffice:
     def __scrape_page(self):
         try:
             url = "https://www.imdb.com/chart/boxoffice/?ref_=hm_cht_sm"
-            req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            req = Request(url, headers= USER_AGENT)
 
             webpage = urlopen(req).read()
             self.page_soup = soup(webpage, "html.parser")

@@ -1,7 +1,7 @@
 import json
 import requests
 from bs4 import BeautifulSoup
-
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 
 class Robu:
     """
@@ -21,7 +21,7 @@ class Robu:
     def __get_html_content(self, url, headers=None):
         if headers is None:
             headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+                "User-Agent": USER_AGENT
             }
 
         session = requests.Session()

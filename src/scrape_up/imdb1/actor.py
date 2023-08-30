@@ -1,6 +1,8 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
-
+USER_AGENT = {
+    "User-Agent": "Mozilla/5.0"
+}
 
 class Actor:
     """
@@ -25,7 +27,7 @@ class Actor:
             actor_name = "%20".join(self.actor_name.split())
             base_url = "https://www.imdb.com/find/?q="
             url = base_url + actor_name + "&ref_=nv_sr_sm"
-            req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            req = Request(url, headers= USER_AGENT)
 
             webpage = urlopen(req).read()
             page_soup = soup(webpage, "html.parser")
@@ -38,7 +40,7 @@ class Actor:
 
     def __scrape_page(self):
         try:
-            req = Request(self.url, headers={"User-Agent": "Mozilla/5.0"})
+            req = Request(self.url, headers= USER_AGENT)
 
             webpage = urlopen(req).read()
             self.page_soup = soup(webpage, "html.parser")
