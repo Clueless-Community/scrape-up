@@ -661,8 +661,9 @@ class Users:
                 open_issues.extend(issue_links)
         except:
             return None
-
+          
         return open_issues
+      
     
     def get_years_active(self): 
         """
@@ -684,3 +685,5 @@ class Users:
             return years_active 
         except:
             return None
+          
+        return open_issues

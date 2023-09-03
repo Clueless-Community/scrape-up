@@ -18,14 +18,19 @@ from scrape_up import github
 user = github.Users(username="nikhil25803")
 
 # Call the followers function - it will return the number of followers
-user.followers()
+per user.followers()
 ```
 
 ---
 
-## The platforms and methods we cover 💫
+## The platforms we cover.
 
-- GitHub
+- [GitHub](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#github)
+- [GitHub Education](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#github-education)
+- [Codechef](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#codechef)
+- [Hacker News](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hacker-news)
+- [HackerEarth](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hackerearth)
+- [HackerRank](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hackerrank)
 
 ### GitHub
 
@@ -35,7 +40,7 @@ from scrape_up import github
 
 ### Scrape User details
 
-Create an instance of the class `Users`
+Create an instance of the class `Users`.
 
 ```python
 user = github.Users(username="nikhil25803")
@@ -67,7 +72,7 @@ user = github.Users(username="nikhil25803")
 
 ### Scrape Repository details
 
-Create an instance of the class `Repository`
+Create an instance of the class `Repository`.
 
 ```python
 repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
@@ -148,5 +153,145 @@ organization = github.Organization(organization_name="Clueless-Community")
 | `.pinned_repository()`      | Returns the list of pinned repositories with their details.     |
 | `.get_organization_links()` | Returns a dictionary of important website links of a community. |
 
-------------------------
+---
 
+### GitHub Education
+
+```python
+from scrape_up import github_education
+```
+
+### Scrape user details
+
+Create an instance of the `Events` class.
+
+```py
+events = github_education.Events()
+```
+
+| Methods         | Details                                                                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `.get_events()` | Returns the latest events along with their title, image_url, description, date, location, language, tags, and link. |
+
+---
+
+### CodeChef
+
+```python
+from scrape_up import codechef
+```
+
+### Scrape user details
+
+Create an object of class `Codechef`
+
+```python
+user1 = codechef.User(id="username")
+
+```
+
+| Methods         | Details                                                          |
+| --------------- | ---------------------------------------------------------------- |
+| `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
+
+---
+
+### Hacker News
+
+```py
+from scrape_up import hackernews
+```
+
+### Scrape article details
+
+Create an instance of the `Articles` class.
+
+```py
+articles = hackernews.Articles()
+```
+
+| Methods            | Details                                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `.articles_list()` | Returns the latest articles along with their score, author, author URL, time, comment count, and link.     |
+| `.new_articles()`  | Returns the latest new articles along with their score, author, author URL, time, comment count, and link. |
+| `.past_articles()` | Returns the past articles along with their score, author, author URL, time, comment count, and link.       |
+| `.ask_articles()`  | Returns the asked articles along with their score, author, author URL, time, comment count, and link.      |
+| `.show_articles()` | Returns the show articles along with their score, author, author URL, time, comment count, and link.       |
+| `.jobs()`          | Returns the jobs along with their time and link.                                                           |
+
+---
+
+### HackerEarth
+
+```py
+from scrape_up import hackerearth
+```
+
+Create an object of class `Challanges`
+
+```python
+hackerearth = hackerearth.Challanges()
+```
+
+| Methods          | Details                                                |
+| ---------------- | ------------------------------------------------------ |
+| `get_upcoming()` | Get the details of upcoming challenges on Hackerearth. |
+| `get_ongoing()`  | Get the details of ongoing challenges on Hackerearth.  |
+| `get_hiring()`   | Get the details of hiring challenges on Hackerearth.   |
+
+---
+
+### HackerRank
+
+```py
+from scrape_up import hackerrank
+```
+
+### Scrape user details
+
+Create an object of class `User`.
+
+```python
+hackerank = hackerrank.User()
+```
+
+| Methods                      | Details                                                                                   |
+| ---------------------------- | ----------------------------------------------------------------------------------------- |
+| `get_profile(id="username")` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
+| `get_skills()`               | Returns a list of verified skills and their links                                         |
+
+### Scrape contest details
+
+Create an object of class `Contest`.
+
+```python
+hackerank = hackerrank.Contest()
+```
+
+| Methods               | Details                                                             |
+| --------------------- | ------------------------------------------------------------------- |
+| `active_contests()`   | Returns information on active contests like title, status, and link |
+| `archived_contests()` | Returns information regarding archived contests                     |
+
+---
+
+### Hashnode
+
+```py
+from scrape_up import hashnode
+```
+
+Create an instance of `Hashnode` class.
+
+```python
+blogs = hashnode.Hashnode()
+```
+
+| Methods           | Details                                                                                               |
+| ----------------- | ----------------------------------------------------------------------------------------------------- |
+| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link  |
+| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link    |
+| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link      |
+| `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date and link for a topic |
+
+---

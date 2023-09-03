@@ -21,15 +21,6 @@ user.followers()
 
 ---
 
-# The platforms and methods we cover 💫
-
-- GitHub
-- Instagram
-- Internshala
-- TimesJobs
-- Swiggy
-- Library Genesis
-
 ## GitHub
 
 ```python
@@ -350,6 +341,8 @@ articles = HackerNews()
 | `.ask_articles()`  | Returns the ask articles along with their score, author, author url, time, comment count and link in JSON format.        |
 | `.show_articles()` | Returns the show articles along with their score, author, author url, time, comment count and link in JSON format.       |
 | `.jobs()`          | Returns the jobs along with their time and link in JSON format.                                                          |
+
+---
 
 ## Twitter
 
@@ -1156,13 +1149,15 @@ uci = UCI()
 First, create an object of class `Codechef`
 
 ```python
-user1 = Codechef(id="username")
+user = Codechef(id="username")
 
 ```
 
 | Methods         | Details                                                          |
 | --------------- | ---------------------------------------------------------------- |
 | `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
+
+---
 
 # HackerRank
 

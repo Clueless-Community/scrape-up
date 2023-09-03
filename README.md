@@ -18,7 +18,12 @@ An alternative to APIs, Scrape Up is a Python package for web scraping. It allow
 
 ---
 
-## ![image](https://github.com/Clueless-Community/scrape-up/assets/93156825/7f10b5c9-b998-4924-965c-01cfea5c71d0)
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Terms and conditions for use, reproduction, and distribution are under the [MIT License](https://opensource.org/license/mit/).
+
+----
 
 ## ✨ Features
 
@@ -41,10 +46,10 @@ pip install scrape-up --upgrade
 
 ```python
 # Import the required module
-from scrape_up import GitHub
+from scrape_up import github
 
 # Instantiate an object with the username
-user = GitHub.Users(username="nikhil25803")
+user = github.Users(username="nikhil25803")
 ```
 
 3. Call the desired method to scrape the required information. For example, to extract the number of followers of a user:
@@ -63,24 +68,13 @@ Output:
 59
 ```
 
-4. Explore all the available methods provided by Scrape Up on different platforms [here](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#the-platforms-and-methods-we-cover-).
+4. Explore all the available methods provided by Scrape Up on different platforms [here](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md).
 
 Happy scrapping! 🕸️
-
-## License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-Terms and conditions for use, reproduction and distribution are under the [MIT License](https://opensource.org/license/mit/).
 
 ## The goal 🎯
 
 In our project journey, we encountered several challenges, including requesting timeouts and rate limits. To overcome these limitations, we developed a powerful Python tool based on web scraping. Our goal is to provide an alternative to APIs for extracting data from various platforms, including GitHub, Twitter, Instagram, and any other website that contains valuable information. Here's what our project aims to achieve:
-
-- **Flexibility**: Our tool offers a flexible approach to data extraction, allowing you to scrape information from diverse sources according to your specific needs.
-- **Avoiding API limitations**: By leveraging web scraping techniques, you can bypass the limitations imposed by traditional APIs, such as request timeouts and rate limits.
-- **Wide range of platforms**: Whether you need data from GitHub, Twitter, Instagram, or any other useful website, our tool is designed to support scraping from various platforms.
-- **Ease of use**: We strive to make the process of web scraping as simple as possible, providing an intuitive and user-friendly interface for extracting the desired data.
-- **Enhanced data accessibility**: With our tool, you can access and gather data from websites that might not provide APIs or have limited API functionality, expanding the scope of information available to you.
 
 With our web-scraping-based Python tool, you can unlock a world of data and overcome the limitations often encountered when relying solely on APIs.
 
@@ -92,11 +86,10 @@ With our web-scraping-based Python tool, you can unlock a world of data and over
   </a>
 </div>
 
-🙏 Thank you for your interest in contributing to our project! We appreciate any contributions, whether it's bug fixes, new features, or documentation improvements. Your contributions help make our tool more robust and valuable to the community.
 
 🌟 We value the time and effort you put into contributing, and we look forward to reviewing and merging your contributions. Together, let's make web scraping a powerful and accessible tool for extracting data from various platforms.
 
-✨ Once again, thank you for your contribution!
+✨ Thank you for your contribution!
 
 ---
 

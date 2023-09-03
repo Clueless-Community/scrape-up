@@ -1,3 +1,3 @@
-from Hackerearth import Hackerearth
+from .challenges import Challenges
 
-__all__ = ["Hackerearth"]
+__all__ = ["Challenges"]

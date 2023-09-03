@@ -2,11 +2,11 @@ import requests
 from bs4 import BeautifulSoup as bs
 
 
-class Codechef:
+class User:
     """
-    First, create an object of class `Codechef`
+    First, create an object of class `User`
     ```python
-    user1 = Codechef(id="heltion")
+    user1 = User(id="heltion")
     ```
     | Methods         | Details                                                          |
     | --------------- | ---------------------------------------------------------------- |
@@ -18,31 +18,33 @@ class Codechef:
 
     def get_profile(self):
         """
-         Create an object of the 'Codechef' class\n
+         Create an object of the 'User' class\n
          ```python
-         user1 = Codechef(id="heltion")
+         user1 = User(id="heltion")
          user1.get_profile()
          ```
          Response
          ```js
         {
-         'name': 'Yaowei Lyu',
-         'username': 'heltion',
-         'profile_image_link': 'https://cdn.codechef.com/sites/all/themes/abessive/images/user_default_thumb.jpg',
-         'rating': {
-             'star': '7★',
-             'current_rating': '2555',
-             'division': '1',
-             'highest_rating': '2555',
-             'global_rank': '72',
-             'country_rank': '8'
-             },
-         'details': {
-             'country_flag_link': 'https://cdn.codechef.com/download/flags/24/cn.png',
-             'country_name': 'China',
-             'user_type': 'Student',
-             'institution': 'Zhejiang University China'
-             }
+            'name': 'Yaowei Lyu',
+            'username': 'heltion',
+            'profile_image_link': 'https://cdn.codechef.com/sites/all/themes/abessive/images/user_default_thumb.jpg',
+            'rating':
+                {
+                    'star': '7★',
+                    'current_rating': '2555',
+                    'division': '1',
+                    'highest_rating': '2555',
+                    'global_rank': '72',
+                    'country_rank': '8'
+                },
+            'details':
+                {
+                    'country_flag_link': 'https://cdn.codechef.com/download/flags/24/cn.png',
+                    'country_name': 'China',
+                    'user_type': 'Student',
+                    'institution': 'Zhejiang University China'
+                }
          }
          ```
         """

@@ -2,20 +2,20 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class HackerNews:
+class Articles:
     """
     Create an instance of `HackerNews` class.
     ```py
-    articles = HackerNews()
+    articles = hackernews.Articles()
     ```
-    | Methods            | Details                                                                                                              |
-    | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
-    | `.articles_list()` | Returns the latest articles along with their score, author, author url, time, comment count and link in JSON format. |
-    | `.new_articles()` | Returns the latest new articles along with their score, author, author url, time, comment count and link in JSON format. |
-    | `.past_articles()` | Returns the past articles along with their score, author, author url, time, comment count and link in JSON format. |
-    | `.ask_articles()` | Returns the ask articles along with their score, author, author url, time, comment count and link in JSON format. |
-    | `.show_articles()` | Returns the show articles along with their score, author, author url, time, comment count and link in JSON format. |
-    | `.jobs()` | Returns the jobs along with their time and link in JSON format. |
+    | Methods            | Details                                                                                                                   |
+    | ------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+    | `.articles_list()` | Returns the latest articles along with their score, author, author URL, time, comment count, and link.     |
+    | `.new_articles()`  | Returns the latest new articles along with their score, author, author URL, time, comment count, and link. |
+    | `.past_articles()` | Returns the past articles along with their score, author, author URL, time, comment count, and link.       |
+    | `.ask_articles()`  | Returns the asked articles along with their score, author, author URL, time, comment count, and link.      |
+    | `.show_articles()` | Returns the show articles along with their score, author, author URL, time, comment count, and link.       |
+    | `.jobs()`          | Returns the jobs along with their time and link.                                                           |
     """
 
     def articles_list(self):
@@ -23,7 +23,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.articles_list()
         ```
         Return
@@ -87,7 +87,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.new_articles()
         ```
         Return
@@ -151,7 +151,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.past_articles()
         ```
         Return
@@ -215,7 +215,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.ask_articles()
         ```
         Return
@@ -279,7 +279,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.show_articles()
         ```
         Return
@@ -343,7 +343,7 @@ class HackerNews:
         Class - `HackerNews`
         Example -
         ```python
-        hacker_news = HackerNews()
+        hacker_news = hackernews.Articles()
         articles = hacker_news.jobs()
         ```
         Return

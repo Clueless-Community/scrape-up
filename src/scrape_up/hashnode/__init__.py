@@ -1,3 +1,3 @@
-from hashnode import Hashnode
+from .hashnode import Hashnode
 
 __all__ = ["Hashnode"]
