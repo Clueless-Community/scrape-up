@@ -672,6 +672,7 @@ class Users:
         user = github.User(username="nikhil25803")
         years_active = user.get_years_active()
         ```
+        Return `int` - Number of year(s) you have been active on GitHub.
         """
         page = self.__scrape_page()
         try:
@@ -683,6 +684,3 @@ class Users:
             return years_active 
         except:
             return None
-
-user = Users(username="nikhil25803")
-print(user.get_open_issues())
