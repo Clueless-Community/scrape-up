@@ -8,7 +8,7 @@ class Wiki:
     Create an object of the 'WikipediaScrapper' class:
 
     ```python
-    Scraper = WikipediaScraper()
+    Scraper = Wiki(query)
     ```
 
     | Methods            | Details                                                                          |
