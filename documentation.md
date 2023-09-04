@@ -68,6 +68,7 @@ user = github.Users(username="nikhil25803")
 | `.get_branch()`               | Returns the list of branches in a repository.                                                      |
 | `.get_merged_pull_requests()` | Returns the list of merged pull requests                                                           |
 | `.get_open_issues()`          | Returns the list of open issues                                                                    |
+| `.get_years_active()`         | Returns the number of years that user have been active on github.                                  |
 
 ### Scrape Repository details
 
