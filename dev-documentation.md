@@ -1072,7 +1072,7 @@ quora = Quora()
 Create an instance of `ICC` class.
 
 ```python
-    scraper = ICC()
+scraper = ICC()
 ```
 
 | Method                               | Details                                                             |
