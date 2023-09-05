@@ -5,7 +5,7 @@ import re
 
 class Wiki:
     """
-    Create an object of the 'WikipediaScrapper' class:
+    Create an object of the 'Wiki' class:
 
     ```python
     Scraper = Wiki(query)
@@ -34,13 +34,15 @@ class Wiki:
             soup = BeautifulSoup(response.text, "html.parser")
 
             return soup
+            
         except Exception as e:
             print(f"Error: {e}")
             return None
 
     def define(self):
         """
-        Returns the definition of the query from Wikipedia
+        Uses regex and BeautifulSoup to get the definition of the query from Wikipedia 
+        Returns the definition of the query from Wikipedia, as string
         """
 
         try:
@@ -57,12 +59,7 @@ class Wiki:
                     definition = definition.split(".")[0]
 
                     return definition
-
-        
-                # get first paragraph
-                definition = self.soup.find("p").text
-
-                return definition
+                    
         except Exception as e:
             print(f".define() failed : {e}")
             return None
@@ -93,8 +90,8 @@ if __name__ == "__main__":
             os.system("cls")
 
         wiki = Wiki(query)
-        print(wiki.define())
-        time.sleep(4)
+        print(f"{query} : {wiki.define()}")
+        time.sleep(3)
         # The dog (Canis familiaris or Canis lupus familiaris) is a domesticated descendant of the wolf
         # In mathematics, graph theory is the study of graphs, which are mathematical structures used to model pairwise relations between objects
         # Stanford University (officially Leland Stanford Junior University) is a private research university in Stanford, California
