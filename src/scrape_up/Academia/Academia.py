@@ -111,6 +111,3 @@ class Academia:
             return papers
         except:
             return None
-
-
-

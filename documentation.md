@@ -31,6 +31,9 @@ per user.followers()
 - [Hacker News](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hacker-news)
 - [HackerEarth](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hackerearth)
 - [HackerRank](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hackerrank)
+- [Hashnode](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hashnode)
+- [ICC Rankings](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#icc-rankings)
+- [Academia](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#academia)
 
 ### GitHub
 
@@ -314,5 +317,24 @@ scraper = icc.ICC()
 | `.player_ranking(type,format)`       | Returns the list of player ranking of desired type and format       |
 | `.team_rankings_women(format)`       | Returns the list of rankings of teams of the desired format         |
 | `.player_ranking_women(type,format)` | Returns the list of women player ranking of desired type and format |
+
+---
+
+### Academia
+
+```py
+from scrape_up import academia
+```
+
+Create an instance of `Academia` class
+
+```python
+academia = academia.Academia()
+```
+
+| Method                        | Details                                                               |
+| ----------------------------- | --------------------------------------------------------------------- |
+| `get_research_topics(letter)` | Fetches and returns research topics starting with the given letter.   |
+| `get_research_papers(search)` | Fetches and returns research papers related to the given search term. |
 
 ---
