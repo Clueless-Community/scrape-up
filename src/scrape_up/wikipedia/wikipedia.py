@@ -20,7 +20,7 @@ class Wiki:
 
     """
 
-    def __init__(self, query):
+    def __init__(self, query: str = ""):
         self.query = query
 
     def __scrape(self) -> BeautifulSoup:
@@ -123,6 +123,9 @@ class Wiki:
 
 
 if __name__ == "__main__":
+    wiki = Wiki()
+    print(f"public scraper returns the page in the proper format :\n\n {wiki.scrape('dog')}") 
+
     # test
     import os
     import time
