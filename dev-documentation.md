@@ -607,10 +607,10 @@ scraper = Spotify()
 
 ### Scrape questions, views, votes, answer counts, and descriptions from Ask Ubuntu website regarding a topic
 
-Create an instance of `AskUbuntu` class.
+Create an instance of `Questions` class.
 
 ```python
-questions = AskUbuntu("topic")
+questions = Questions("topic")
 ```
 
 | Methods                     | Details                                                                                              |
