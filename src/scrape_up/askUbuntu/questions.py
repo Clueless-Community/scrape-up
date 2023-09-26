@@ -3,12 +3,12 @@ import requests
 import json
 
 
-class AskUbuntu:
+class Questions:
     """
-    Create an instance of `AskUbuntu` class.
+    Create an instance of `Questions` class.
 
     ```python
-    questions = AskUbuntu("topic")
+    questions = Questions("topic")
     ```
 
     | Methods                     | Details                                                                                              |
@@ -26,13 +26,15 @@ class AskUbuntu:
 
     def getNewQuestions(self):
         """
-        Class - `AskUbuntu`
+
+        Class - `Questions`
         Example:
         ```
-        que = AskUbuntu("github")
+        que = Questions("github")
         scrape = que.getNewQuestions()
         ```
         Returns:
+        ```js
         {
             "question": question title
             "views": view count of question
@@ -40,6 +42,7 @@ class AskUbuntu:
             "answer_count": no. of answers to the question
             "description": description of the question
         }
+        ```
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Newest"
         try:
@@ -81,13 +84,14 @@ class AskUbuntu:
 
     def getActiveQuestions(self):
         """
-        Class - `AskUbuntu`
+        Class - `Questions`
         Example:
         ```
-        que = AskUbuntu("github")
+        que = Questions("github")
         scrape = que.getActiveQuestions()
         ```
         Returns:
+        ```js
         {
             "question": question title
             "views": view count of question
@@ -95,6 +99,7 @@ class AskUbuntu:
             "answer_count": no. of answers to the question
             "description": description of the question
         }
+        ```
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Active"
         try:
@@ -136,13 +141,14 @@ class AskUbuntu:
 
     def getUnansweredQuestions(self):
         """
-        Class - `AskUbuntu`
+        Class - `Questions`
         Example:
         ```
-        que = AskUbuntu("github")
+        que = Questions("github")
         scrape = que.getUnansweredQuestions()
         ```
         Returns:
+        ```js
         {
             "question": question title
             "views": view count of question
@@ -150,6 +156,7 @@ class AskUbuntu:
             "answer_count": no. of answers to the question
             "description": description of the question
         }
+        ```
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Unanswered"
         try:
@@ -191,13 +198,14 @@ class AskUbuntu:
 
     def getBountiedQuestions(self):
         """
-        Class - `AskUbuntu`
+        Class - `Questions`
         Example:
         ```
-        que = AskUbuntu("github")
+        que = Questions("github")
         scrape = que.getBountiedQuestions()
         ```
         Returns:
+        ```js
         {
             "question": question title
             "views": view count of question
@@ -205,6 +213,7 @@ class AskUbuntu:
             "answer_count": no. of answers to the question
             "description": description of the question
         }
+        ```
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Bountied"
         try:
@@ -246,13 +255,14 @@ class AskUbuntu:
 
     def getFrequentQuestions(self):
         """
-        Class - `AskUbuntu`
+        Class - `Questions`
         Example:
         ```
-        que = AskUbuntu("github")
+        que = Questions("github")
         scrape = que.getFrequentQuestions()
         ```
         Returns:
+        ```js
         {
             "question": question title
             "views": view count of question
@@ -260,6 +270,7 @@ class AskUbuntu:
             "answer_count": no. of answers to the question
             "description": description of the question
         }
+        ```
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Frequent"
         try:
@@ -301,13 +312,14 @@ class AskUbuntu:
 
     def getHighScoredQuestions(self):
         """
-        Class - `AskUbuntu`
+        Class - `Questions`
         Example:
         ```
-        que = AskUbuntu("github")
+        que = Questions("github")
         scrape = que.getHighScoredQuestions()
         ```
         Returns:
+        ```js
         {
             "question": question title
             "views": view count of question
@@ -315,6 +327,7 @@ class AskUbuntu:
             "answer_count": no. of answers to the question
             "description": description of the question
         }
+        ```
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Votes"
         try:
@@ -353,6 +366,3 @@ class AskUbuntu:
 
             ejson = json.dumps(error_message)
             return ejson
-
-ask = AskUbuntu(topic="Python")
-print(ask.getActiveQuestions())
