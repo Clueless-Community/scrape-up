@@ -22,7 +22,7 @@ class Wiki:
         self.query = query
         self.soup = self.__scrape(query)
 
-    def __scrape(self, query):
+    def __scrape(self, query) -> BeautifulSoup:
         """ 
         private method to scrape the data from wikipedia, returns a BeautifulSoup object
         """
