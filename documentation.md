@@ -359,3 +359,22 @@ questions = askubuntu.Questions("topic")
 | `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format         |
 | `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
 | `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
+
+---
+
+### BBC News
+
+```py
+from scrape_up import bbcnews
+```
+
+First create an object of class `BBCNews`
+
+```python
+user = bbcnews.BBCNews()
+```
+
+| Methods            | Details                                                  |
+| ------------------ | -------------------------------------------------------- |
+| `.get_headlines()` | Returns the list of object containig the headlines       |
+| `get_article()`    | Returns an object with proper details about the articles |
