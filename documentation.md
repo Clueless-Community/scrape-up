@@ -34,6 +34,8 @@ per user.followers()
 - [Hashnode](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#hashnode)
 - [ICC Rankings](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#icc-rankings)
 - [Academia](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#academia)
+- [BBC News](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#bbc-news)
+- [Coin Market Cap](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#coinmarketcap)
 
 ### GitHub
 
@@ -378,3 +380,23 @@ user = bbcnews.BBCNews()
 | ------------------ | -------------------------------------------------------- |
 | `.get_headlines()` | Returns the list of object containig the headlines       |
 | `get_article()`    | Returns an object with proper details about the articles |
+
+---
+
+### CoinMarketCap
+
+```py
+from scrape_up import coinmarketcap
+```
+
+Create an instance of `Crypto` class
+
+```python
+crypto = coinmarketcap.Crypto()
+```
+
+| Method                       | Details                                                  |
+| ---------------------------- | -------------------------------------------------------- |
+| `get_top_cryptocurrencies()` | Fetches and returns data about the top cryptocurrencies. |
+
+---

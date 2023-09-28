@@ -2,14 +2,14 @@ from bs4 import BeautifulSoup
 import requests
 
 
-class CoinMarketCap:
+class Crypto:
     """
-    Create an instance of `CoinMarketCap` class
-    
+    Create an instance of `Crypto` class
+
     ```python
-    crypto = CoinMarketCap()
+    crypto = Crypto()
     ```
-    
+
     | Method                       | Details                                                  |
     | ---------------------------- | -------------------------------------------------------- |
     | `get_top_cryptocurrencies()` | Fetches and returns data about the top cryptocurrencies. |
@@ -30,7 +30,7 @@ class CoinMarketCap:
         """
         A list of dictionaries containing details of the top cryptocurrencies.\n
          ```python
-        crypto = CoinMarketCap()
+        crypto = Crypto()
         ```
         Example output:
         ```python
