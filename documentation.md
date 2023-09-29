@@ -36,6 +36,7 @@ per user.followers()
 - [Academia](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#academia)
 - [BBC News](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#bbc-news)
 - [Coin Market Cap](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#coinmarketcap)
+- [Covid Info](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#covidinfo)
 
 ### GitHub
 
@@ -400,3 +401,23 @@ crypto = coinmarketcap.Crypto()
 | `get_top_cryptocurrencies()` | Fetches and returns data about the top cryptocurrencies. |
 
 ---
+
+### CovidInfo
+
+```py
+from scrape_up import covidinfo
+```
+
+Create an instance of the `CovidInfo` class.
+
+```python
+response = covidinfo.CovidInfo()
+```
+
+| Methods              | Details                                                         |
+| -------------------- | --------------------------------------------------------------- |
+| `.covid_data()`      | Returns the list of all the covid data scraped from the website |
+| `.total_cases()`     | Returns the count of total covid cases all over the world       |
+| `.total_deaths()`    | Returns the count of deaths covid cases all over the world      |
+| `.total_recovered()` | Returns the count of recovered covid cases all over the world   |
+| `.latest_news()`     | Return the lastest news of the day                              |
