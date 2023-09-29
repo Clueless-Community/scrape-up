@@ -37,6 +37,7 @@ per user.followers()
 - [BBC News](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#bbc-news)
 - [Coin Market Cap](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#coinmarketcap)
 - [Covid Info](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#covidinfo)
+- [Cricbuzz](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#cricbuzz)
 
 ### GitHub
 
