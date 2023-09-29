@@ -1,4 +1,3 @@
-import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from datetime import date
@@ -19,9 +18,6 @@ class CovidInfo:
     | `.total_recovered()` | Returns the count of recovered covid cases all over the world |
     | `.latest_news()` | Return the lastest news of the day |
     """
-
-    def __init__(self):
-        pass
 
     def covid_data(self):
         """
@@ -161,7 +157,3 @@ class CovidInfo:
             return news_data
         except:
             return None
-
-
-cov = CovidInfo()
-print(cov.latest_news())
