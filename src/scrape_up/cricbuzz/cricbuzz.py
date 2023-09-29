@@ -892,6 +892,3 @@ class Cricbuzz:
             )
         except:
             return None
-
-cric = Cricbuzz()
-print(cric.get_live_matches())
