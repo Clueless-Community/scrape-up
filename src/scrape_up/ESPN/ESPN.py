@@ -4,19 +4,11 @@ import requests
 
 class ESPN:
     """
-    Create an instance of the `ESPN` class to fetch football scoreboards, tournaments, and teams.
-
-    :Example:
+    Create an instance of `ESPN` class
     ```python
-    espn = ESPN()
-    scores = espn.get_scoreboard(date="20230721")
-    tournaments = espn.get_tournaments()
-    teams = espn.get_teams()
-    print(scores)
-    print(tournaments)
-    print(teams)
+    espn = espn.ESPN()
     ```
-
+    
     | Method              | Details                                                           |
     | ------------------- | ----------------------------------------------------------------- |
     | `get_scoreboard()`  | Fetches and returns the football scoreboards for a given date.   |
@@ -36,7 +28,6 @@ class ESPN:
         ```python
         espn = ESPN()
         scores = espn.get_scoreboard(date="20230721")
-        print(scores)
         ```
         Example output:
         ```python
@@ -129,14 +120,10 @@ class ESPN:
     def get_tournaments(self):
         """
         Fetches and returns information about ongoing football tournaments.
-
-        :return: A list of dictionaries containing tournament data.
-        :rtype: list
-
-        Each dictionary in the list contains the following information:
-        - Tournament Name (e.g., "Premier League", "Champions League")
-        - List of tuples containing (Link, Title) for each competition.
-
+        ```py
+        espn = ESPN()
+        tournaments = espn.get_tournaments()
+        ```
         Example output:
         ```python
         [
@@ -172,13 +159,10 @@ class ESPN:
     def get_teams(self):
         """
         Fetches and returns information about football teams.
-
-        :return: A list of dictionaries containing team data.
-        :rtype: list
-
-        Each dictionary in the list contains the following information:
-        - "Name": The name of the team.
-        - "Link": The link to the team's details.
+        ```py
+        espn = ESPN()
+        teams = espn.get_teams()
+        ```
 
         Example output:
         ```python
