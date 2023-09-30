@@ -23,16 +23,27 @@ An alternative to APIs, Scrape Up is a Python package for web scraping. It allow
 
 Terms and conditions for use, reproduction, and distribution are under the [MIT License](https://opensource.org/license/mit/).
 
+
 ----
 
-## ✨ Features
+## Contribute to this project under Hacktoberfest 2023
+![image](https://github.com/Clueless-Community/scrape-up/assets/93156825/0da5aa25-06db-465b-9d31-cafe48a02ffa)
 
-- Flexible Scraping: Customize and define the specific data you want to extract from different platforms.
-- Easy-to-Use: Intuitive Python package interface for both beginners and experienced developers.
-- Multiple Platforms: Scrape data from various platforms, including GitHub, Twitter, Instagram, and more.
-- Customizable Data Extraction: Tailor the scraping process to extract the exact information you need.
-- Dynamic Web Scraping: Handle dynamic web pages and AJAX-loaded content.
-- Efficient and Fast: Designed for efficient and reliable scraping of data from multiple sources.
+### What is Hacktoberfest? 🤔 
+
+  Every year, DigitalOcean hosts Hacktoberfest to encourage individuals to contribute to open source **throughout October**. The main goals of Hacktoberfest are to support open-source projects, improve skills, and 
+  celebrate all that is **open-source**, especially the people who make it so wonderful.
+
+  Learn more about it [here](https://hacktoberfest.com/)
+  
+----
+
+## Why Scrape Up? 👀
+
+- **Flexible Scraping**: Customize and define the specific data you want to extract from different platforms.
+- **Easy-to-Use**: Intuitive Python package interface for both beginners and experienced developers.
+- **Multiple Platforms**: Scrape data from various platforms, including GitHub, Twitter, Instagram, and more.
+- **Efficient and Fast**: Designed for efficient and reliable scraping of data from multiple sources.
 
 ## How to use it? ✨
 
@@ -65,7 +76,7 @@ print(followers_count)
 Output:
 
 ```
-59
+83
 ```
 
 4. Explore all the available methods provided by Scrape Up on different platforms [here](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md).
