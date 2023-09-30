@@ -99,7 +99,7 @@ class Dribbble:
             return shots_data["shots"]
         except:
             return None
-        
+
     def search(self, topic):
         """
         Class - `Dribbble`
@@ -183,7 +183,7 @@ class Dribbble:
             return shots_data["shots"]
         except:
             return None
-        
+
     def get_animations(self):
         """
         Class - `Dribbble`
@@ -267,7 +267,7 @@ class Dribbble:
             return shots_data["shots"]
         except:
             return None
-        
+
     def get_branding(self):
         """
         Class - `Dribbble`
@@ -351,7 +351,7 @@ class Dribbble:
             return shots_data["shots"]
         except:
             return None
-        
+
     def get_illustration(self):
         """
         Class - `Dribbble`
@@ -435,7 +435,7 @@ class Dribbble:
             return shots_data["shots"]
         except:
             return None
-    
+
     def get_mobile(self):
         """
         Class - `Dribbble`
@@ -519,7 +519,7 @@ class Dribbble:
             return shots_data["shots"]
         except:
             return None
-        
+
     def get_webdesign(self):
         """
         Class - `Dribbble`
