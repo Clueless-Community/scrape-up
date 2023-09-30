@@ -38,6 +38,7 @@ per user.followers()
 - [Coin Market Cap](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#coinmarketcap)
 - [Covid Info](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#covidinfo)
 - [Cricbuzz](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#cricbuzz)
+- [Dribbble](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#dribbble)
 
 ### GitHub
 
@@ -431,6 +432,8 @@ response = covidinfo.CovidInfo()
 from scrape_up import cricbuzz
 ```
 
+Create an instance of `Cricubzz` class.
+
 ```python
 	cricbuzz = cricbuzz.Cricubzz()
 ```
@@ -450,5 +453,52 @@ from scrape_up import cricbuzz
 | `.get_team_players()`        | Returns a list of players of a team from Cricbuzz.                     |
 | `.get_team_results()`        | Returns a list of past results of a team from Cricbuzz.                |
 | `.get_team_stats()`          | Returns a list of player stats of a team from Cricbuzz.                |
+
+---
+
+### Dribbble
+
+```py
+from scrape_up import dribbble
+```
+
+Create an instance of `Dribbble` class.
+
+```python
+shots = dribbble.Dribbble()
+```
+
+| Methods               | Details                                                                                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `.get_shots()`        | Returns the latest shots along with their title, designer and designer url like and view count and link.                        |
+| `.search(topic)`      | Returns the latest shots along with their title, designer and designer url like and view count and link for the searched topic. |
+| `.get_animation()`    | Returns the latest animation along with their title, designer and designer url like and view count and link.                    |
+| `.get_branding()`     | Returns the latest branding along with their title, designer and designer url like and view count and link.                     |
+| `.get_illustration()` | Returns the latest illustration along with their title, designer and designer url like and view count and link.                 |
+| `.get_mobile()`       | Returns the latest mobile shots along with their title, designer and designer url like and view count and link.                 |
+| `.get_webdesign()`    | Returns the latest web-design shots along with their title, designer and designer url like and view count and link.             |
+
+---
+
+### EazyDiner
+
+```py
+from scrape_up import eazydiner
+```
+
+Create an instance of `EazyDiner` class.
+
+```python
+restaurants = eazydiner.EazyDiner(location="city-name")
+```
+
+| Methods                   | Details                                                                           |
+| ------------------------- | --------------------------------------------------------------------------------- |
+| `.get_restaurants()`      | Returns the restaurants name, location, rating, cuisine and prices.               |
+| `.get_breakfast()`        | Returns the restaurants name, location, rating, cuisine and prices for Breakfast. |
+| `.get_lunch()`            | Returns the restaurants name, location, rating, cuisine and prices for Lunch.     |
+| `.get_dinner()`           | Returns the restaurants name, location, rating, cuisine and prices for Dinner.    |
+| `.dinner_with_discount()` | Returns a list of restaurants from the entered location with a 50% offer.         |
+| `.get_top10()`            | Returns a list of the top 10 restaurants from a given city.                       |
 
 ---
