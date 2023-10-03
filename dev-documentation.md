@@ -935,16 +935,12 @@ Class - `CovidInfo`\n
 | `.total_recovered()` | Returns the count of recovered covid cases all over the world |
 | `.latest_news()` | Return the lastest news of the day |
 
-# FlipkartTees
+# FlipkartClothing
+
+Create an instance of `FlipkartClothing` class.
 
 ```python
-from flipkart_file import FlipkartTees
-```
-
-Create an instance of `FlipkartTees` class.
-
-```python
-cloth = FlipkartTees()
+cloth = FlipkartClothing()
 ```
 
 | Methods                    | Details                                                        |
@@ -1545,10 +1541,10 @@ crypto = CoinMarketCap()
 
 # Flipkart laptops
 
-Create an instance of `flipkart_laptop` class.
+Create an instance of `FlipkartLaptops` class.
 
 ```python
-item = flipkart_laptop()
+item = FlipkartLaptops()
 ```
 
 | Methods      | Details                                  |
