@@ -26,7 +26,7 @@ class HealthGrades:
         Fetches and returns information about the best hospitals in a state.\n
         ```python
         hc = HealthGrades()
-        hc.get_best_hospitals(state="...")
+        hc.get_best_hospitals(state="bihar")
         ```
 
         Example output:
@@ -76,4 +76,3 @@ class HealthGrades:
             return hospitals
         except:
             return None
-        

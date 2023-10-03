@@ -42,6 +42,7 @@ per user.followers()
 - [Ebay](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#ebay)
 - [Flipkart](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#flipkart)
 - [Flyrobu](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#flyrobu)
+- [HealthGrades](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#healthgrades)
 
 ### GitHub
 
@@ -628,3 +629,21 @@ flyrobu = flyrobu.Flyrobu()
 | ------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
 | `.search(keyword)`                   | Returns the json data of all the details related to search with informing about the total amount of items found |
 | `.get_product_details(product_name)` | Returns the json data of the product details based on the given `product_name`                                  |
+
+---
+
+### HealthGrades
+
+```py
+from scrape_up import healthgrades
+```
+
+Create an instance of `HealthGrades` class
+
+```python
+hc = healthgrades.HealthGrades()
+```
+
+| Method                      | Details                                                              |
+| --------------------------- | -------------------------------------------------------------------- |
+| `get_best_hospitals(state)` | Fetches and returns information about the best hospitals in a state. |
