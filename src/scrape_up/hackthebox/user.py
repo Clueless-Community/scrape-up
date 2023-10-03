@@ -1,19 +1,31 @@
 import requests
 
 def get_user_profile(profile_number):
-    url = f"https://www.hackthebox.com/api/v4/profile/{profile_number}"
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        # Add any other headers if needed
-    }
-    
-    response = requests.get(url, headers=headers)
+    try:
+        url = f"https://www.hackthebox.com/api/v4/profile/{profile_number}"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            # Add any other headers if needed
+        }
+        
+        response = requests.get(url, headers=headers)
 
-    if response.status_code == 200:
-        profile_data = response.json().get('profile')  # Access 'profile' key in the response
-        return profile_data
-    else:
-        return None
+        response.raise_for_status()  # Raise HTTPError for bad requests (4xx and 5xx status codes)
+
+        if response.status_code == 200:
+            profile_data = response.json().get('profile')  # Access 'profile' key in the response
+            return profile_data
+        else:
+            return None
+    except requests.exceptions.HTTPError as errh:
+        print(f"HTTP Error: {errh}")
+    except requests.exceptions.ConnectionError as errc:
+        print(f"Error Connecting: {errc}")
+    except requests.exceptions.Timeout as errt:
+        print(f"Timeout Error: {errt}")
+    except requests.exceptions.RequestException as err:
+        print(f"Request Exception: {err}")
+    return None
 
 def main():
     profile_number = input("Enter your Hack The Box profile number: ")
@@ -35,6 +47,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
