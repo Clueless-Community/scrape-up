@@ -41,6 +41,7 @@ per user.followers()
 - [Dribbble](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#dribbble)
 - [Ebay](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#ebay)
 - [Flipkart](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#flipkart)
+- [Flyrobu](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#flyrobu)
 
 ### GitHub
 
@@ -610,3 +611,20 @@ item = flipkart.FlipkartLaptops()
 | `.laptops()` | Returns the list of laptops with details |
 
 ---
+
+### Flyrobu
+
+```py
+from scrape_up import flyrobu
+```
+
+Create an instance of `Flyrobu` class.
+
+```python
+flyrobu = flyrobu.Flyrobu()
+```
+
+| Methods                              | Details                                                                                                         |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| `.search(keyword)`                   | Returns the json data of all the details related to search with informing about the total amount of items found |
+| `.get_product_details(product_name)` | Returns the json data of the product details based on the given `product_name`                                  |
