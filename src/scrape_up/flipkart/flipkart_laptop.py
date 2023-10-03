@@ -1,13 +1,12 @@
 import requests
-import bs4
 from bs4 import BeautifulSoup as b
 
 
-class flipkart_laptop:
+class FlipkartLaptops:
     """
-    Create an instance of `flipkart_laptop` class.
+    Create an instance of `FlipkartLaptops` class.
     ```python
-    item = flipkart_laptops
+    item = FlipkartLaptops()
     ```
     | Methods               | Details                                                            |
     | --------------------- | ------------------------------------------------------------------ |
@@ -23,7 +22,7 @@ class flipkart_laptop:
         Class - `flipkart_laptops`\n
         Example -\n
         ```python
-        item = flipkart_laptop()
+        item = FlipkartLaptops()
         item.laptops()
         ```
         Return
@@ -85,5 +84,5 @@ class flipkart_laptop:
 
             return details
 
-        except Exception as e:
+        except:
             return None

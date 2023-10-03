@@ -1,4 +1,3 @@
-import bs4
 from bs4 import BeautifulSoup as bs
 import requests
 
@@ -67,7 +66,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def bestseller_books(self):
@@ -103,7 +102,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def mobiles(self):
@@ -139,7 +138,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def sport_shoes(self):
@@ -182,8 +181,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
-            print("Error:", str(e))
+        except:
             return None
 
     def laptops(self):
@@ -219,7 +217,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def headphones(self):
@@ -254,7 +252,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def camera(self):
@@ -289,7 +287,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def computer(self):
@@ -324,7 +322,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def tablets(self):
@@ -362,7 +360,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def cycle(self):
@@ -456,7 +454,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def monitor(self):
@@ -509,7 +507,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def ac(self):
@@ -564,7 +562,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def refrigerator(self):
@@ -619,7 +617,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def vrbox(self):
@@ -671,7 +669,7 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
 
     def speakers():
@@ -729,5 +727,5 @@ class Flipkart:
 
             return all_items
 
-        except Exception as e:
+        except:
             return None
