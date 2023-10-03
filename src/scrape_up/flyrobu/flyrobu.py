@@ -103,15 +103,13 @@ class Flyrobu:
                     )
 
             except Exception as e:
-                print(f"Error scraping result: {str(e)}")
+                return None
 
     def search(self, keyword):
         """
         Class - `Flyrobu`\n
         Example -\n
         ```python
-        from flyrobu import Flyrobu
-
         flyrobu = Flyrobu()
         results = flyrobu.search("arduino")
         print(results)
@@ -134,43 +132,42 @@ class Flyrobu:
         ```
         """
         url = f"{self.base_url}/index.php?route=product/search&search={keyword}&description=true&limit=100"
+        try:
+            while True:
+                try:
+                    soup = self.__get_soup(url)
+                    self.__scrape_results(soup, keyword)
 
-        while True:
-            try:
-                soup = self.__get_soup(url)
-                self.__scrape_results(soup, keyword)
+                    next_page = soup.find("ul", class_="pagination").find(
+                        "a", class_="next"
+                    )
+                    if next_page:
+                        url = next_page["href"]
+                    else:
+                        break
+                except:
+                    return None
 
-                next_page = soup.find("ul", class_="pagination").find(
-                    "a", class_="next"
-                )
-                if next_page:
-                    url = next_page["href"]
-                else:
-                    break
-
-            except requests.exceptions.RequestException as e:
-                return None
-            except AttributeError as e:
-                return None
-            except Exception as e:
-                return None
-
-        result = self.outputs
-        return result
+            result = self.outputs
+            return result
+        except:
+            return None
 
     def get_product_details(self, product_name):
         """
-        Retrieve Detailed Product Description and Specification based on the given `product_name`.\n
+        Retrieve Detailed Product Description and Specification based on the given `product_name`.
+
         Parameters required: \n
         `product_name: str`: The name of the product to fetch details for.
-        Example Usage:
+
+        Example:
         ```python
         flyrobu = Flyrobu()
-        product_name = input("Enter the product name: ")
         product_details = flyrobu.get_product_details(product_name)
         ```
+
         Output:
-        ```json
+        ```js
         {
             "Description": "E-Bike Power Lock Ignition Key Switch is brand new and unused and comes with 2 keys. E-Bike Power Lock Ignition Key Switch has 2 Female Pin, Plastic Make.\nIt is Suitable for MY1016 controllers.\n\n \nFeatures:\n     \n\nEasy installation\nProtect the security\nDesigned with a reliable ignition switch locking mechanism\nDurable, convenient to use",
             "Features": [
@@ -272,10 +269,5 @@ class Flyrobu:
                 product_details["Description"] = description
 
             return product_details
-
-        except requests.exceptions.RequestException as e:
-            return None
-        except AttributeError as e:
-            return None
-        except Exception as e:
+        except:
             return None
