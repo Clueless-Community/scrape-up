@@ -39,6 +39,7 @@ per user.followers()
 - [Covid Info](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#covidinfo)
 - [Cricbuzz](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#cricbuzz)
 - [Dribbble](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#dribbble)
+- [Ebay](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#ebay)
 
 ### GitHub
 
@@ -503,7 +504,6 @@ restaurants = eazydiner.EazyDiner(location="city-name")
 
 ---
 
-
 ### ESPN
 
 ```py
@@ -521,3 +521,23 @@ espn = espn.ESPN()
 | `get_scoreboard()`  | Fetches and returns the football scoreboards for a given date. |
 | `get_tournaments()` | Fetches and returns information about football tournaments.    |
 | `get_teams()`       | Fetches and returns information about football teams.          |
+
+---
+
+### eBay
+
+```py
+from scrape_up import ebay
+```
+
+Create an instance of `EBAY` class
+
+```python
+quora = ebay.eBay()
+```
+
+| Methods             | Details                             |
+| ------------------- | ----------------------------------- |
+| `.spotlights()`     | Returns spotlight deals on eBay.    |
+| `.featured()`       | Returns the featured deals on eBay. |
+| `.specific_deals()` | Returns the specific deals on eBay. |
