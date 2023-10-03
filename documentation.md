@@ -676,3 +676,88 @@ hc = healthgrades.HealthGrades()
 | Method                      | Details                                                              |
 | --------------------------- | -------------------------------------------------------------------- |
 | `get_best_hospitals(state)` | Fetches and returns information about the best hospitals in a state. |
+
+---
+
+### IMDB
+
+```py
+from scrape_up import imdb
+```
+
+Create an instance of the `IMDB` class.
+
+```python
+scraper = imdb.IMDB()
+```
+
+| Methods                       | Details                                                        |
+| ----------------------------- | -------------------------------------------------------------- |
+| `.top_rated()`                | Returns the top-rated movies listed on IMDB.                   |
+| `.scrape_genre_movies(genre)` | Returns the list of movies related to the genre you mentioned. |
+| `.top_rated_shows()`          | Returns the top-rated shows listed on IMDB.                    |
+
+#### IMDB - Movies
+
+Create an instance of `Movie` class.
+
+```python
+movie = imdb.Movie(movie_name)
+```
+
+| Methods          | Details                                                  |
+| ---------------- | -------------------------------------------------------- |
+| `.rating()`      | Returns the IMDB rating of the movie                     |
+| `.description()` | Returns the description, cast and director of the movie  |
+| `.more_movies()` | Returns similar movies recommended by IMDB               |
+| `.box_office()`  | Returns budget, gross worldwide collections of the movie |
+
+#### IMDB - Actor
+
+Create an instance of `Actor` class.
+
+```python
+actor = imdb.Actor(actor_name)
+```
+
+| Methods             | Details                                                 |
+| ------------------- | ------------------------------------------------------- |
+| `.popular_movies()` | Returns the popular movies in which the actor has acted |
+| `.all_movies()`     | Returns all movies acted in and upcoming movies         |
+| `.awards()`         | Returns the number of awards and nominations            |
+
+#### IMDB - Celeb
+
+Create an instance of `Celeb` class.
+
+```python
+celeb = imdb.Celeb()
+```
+
+| Methods         | Details                                            |
+| --------------- | -------------------------------------------------- |
+| `.top_celebs()` | Returns the name, roles, famous movie of the celeb |
+
+#### IMDB - Indian Movies
+
+Create an instance of `IndianMovies` class.
+
+```python
+indianmovies = imdb.IndianMovies()
+```
+
+| Methods                | Details                                       |
+| ---------------------- | --------------------------------------------- |
+| `.top_indian_movies()` | Returns the current list of top Indian movies |
+
+#### IMDB - Box Office
+
+Create an instance of `BoxOffice` class.
+
+```python
+boxoffice = imdb.BoxOffice()
+```
+
+| Methods         | Details                                                                       |
+| --------------- | ----------------------------------------------------------------------------- |
+| `.top_movies()` | Returns the top box office movies, weekend and total gross and weeks released |
