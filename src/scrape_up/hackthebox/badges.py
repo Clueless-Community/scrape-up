@@ -3,7 +3,7 @@ import requests
 def get_user_badges(profile_number):
     api_url = f"https://www.hackthebox.com/api/v4/profile/badges/{profile_number}"
     headers = {
-        "User-Agent": "Mozilla/5.0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
         "Accept": "application/json",
     }
 
