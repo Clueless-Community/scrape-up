@@ -5,15 +5,14 @@ def get_user_profile(profile_number):
         url = f"https://www.hackthebox.com/api/v4/profile/{profile_number}"
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-            # Add any other headers if needed
         }
         
         response = requests.get(url, headers=headers)
 
-        response.raise_for_status()  # Raise HTTPError for bad requests (4xx and 5xx status codes)
+        response.raise_for_status() 
 
         if response.status_code == 200:
-            profile_data = response.json().get('profile')  # Access 'profile' key in the response
+            profile_data = response.json().get('profile')  
             return profile_data
         else:
             return None
