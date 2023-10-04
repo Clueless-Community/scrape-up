@@ -38,7 +38,7 @@ class Scraper88x31:
         Returns:
         Returns the list of all available 88x31 banners
         """
-	img_alt = []
+        img_alt = []
         for url in self.urls_to_scrape:
             try:
                 response = requests.get(url)
@@ -46,10 +46,7 @@ class Scraper88x31:
                 source = response.content
                 soup = bs4.BeautifulSoup(source, 'lxml')
                 for img_tag in soup.find_all('img'):
-                    img_alt.append(img_tag.get('alt'))
+                    img_alt.append("https://cyber.dabamos.de/88x31/" + img_tag.get('alt') + ".gif")
             except requests.RequestException as e:
                 print(f"Error fetching content from {url}: {e}")
         return img_alt
-
-
-
