@@ -7,7 +7,7 @@ class USER:
     Fetches user data from CodeForces Competitive Platform
     """
 
-    user_url = "https://codeforces.com/profile/{}"
+    api_base_url = "https://codeforces.com/api/"
 
     def __init__(self, username):
         self.username = username
@@ -62,24 +62,28 @@ class USER:
         ```
         """
         try:
-            url = self.user_url.format(self.username)
-            info = requests.get(url)
-            soup = BeautifulSoup(info.content)
-            user_info_set = info.json()
-            user_info_data = user_info_set["result"][0]
-            for data in user_info_data:
-                print(f"{data} → {user_info_data[data]}")
-            return (
-                "Data Fetching Successful"
-                if user_info_set["status"] == "OK"
-                else "Failed"
-            )
-        except IndexError:
-            raise Exception("Invalid User Name.")
-        except TypeError:
-            raise Exception("Invalid User Name")
-        except requests.exceptions.ConnectionError:
-            raise Exception("Connection Error, Please try again.")
+            # Defining the API method and parameters
+            method = "user.info"
+            params = {"handles": self.username}
+
+            # Making the API request
+            response = requests.get(f"{self.api_base_url}{method}", params=params)
+            data = response.json()
+
+            if data["status"] == "OK":
+                user_info = data["result"][0]
+                
+                # Extracting and printing the detailed user information
+                for key, value in user_info.items():
+                    print(f"{key} → {value}")
+
+                return "Data Fetching Successful"
+            else:
+                raise Exception(f"API Request Failed: {data.get('comment', 'No comment')}")
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"Request Error: {e}")
+        except Exception as e:
+            raise Exception(f"Error: {e}")
 
 
 if __name__ == "__main__":
