@@ -60,7 +60,7 @@ env\scripts\activate
 > For Linux
 
 ```bash
-source env/scripts/activate
+source env/bin/activate
 ```
 
 ## Install the dependencies
@@ -90,7 +90,7 @@ class Users:
 ```
 
 - The `__scrape_page` is a private function defined to scrape any page.
-- Now we have to create a function with an appropriate name, in this case, `get_avatar`.
+- Now we have to create a function with an appropriate name, in this case, `followers`.
 
 ```python
 def followers(self):
