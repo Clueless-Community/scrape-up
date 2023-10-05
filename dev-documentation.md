@@ -1567,3 +1567,14 @@ olympics = Olympics()
 | `.allsports()`     | returns the list of all the sports being currently played in olympics.                  |
 | `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
 | `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
+
+## 88x31 Banners
+
+First create an object of class `Scraper88x31`\n
+```python
+scraper = Scraper88x31()
+```
+| Methods            | Details                                                  |
+| ------------------ | -------------------------------------------------------- |
+| `.get_all()`        | Returns the list of all available 88x31 banners          |
+
