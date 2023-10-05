@@ -1571,10 +1571,11 @@ olympics = Olympics()
 ## 88x31 Banners
 
 First create an object of class `Scraper88x31`\n
+
 ```python
 scraper = Scraper88x31()
 ```
-| Methods            | Details                                                  |
-| ------------------ | -------------------------------------------------------- |
-| `.get_all()`        | Returns the list of all available 88x31 banners          |
 
+| Methods      | Details                                         |
+| ------------ | ----------------------------------------------- |
+| `.get_all()` | Returns the list of all available 88x31 banners |
