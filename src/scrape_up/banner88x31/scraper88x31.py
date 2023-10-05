@@ -8,8 +8,6 @@ scraper = Scraper88x31()
 
 # Call the get_all method on the instance
 img_alt_list = scraper.get_all()
-# Print the result
-print(img_alt_list)
 """
 
 class Scraper88x31:
@@ -47,6 +45,4 @@ class Scraper88x31:
                 soup = bs4.BeautifulSoup(source, 'lxml')
                 for img_tag in soup.find_all('img'):
                     img_alt.append("https://cyber.dabamos.de/88x31/" + img_tag.get('alt') + ".gif")
-            except requests.RequestException as e:
-                print(f"Error fetching content from {url}: {e}")
         return img_alt
