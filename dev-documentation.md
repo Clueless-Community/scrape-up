@@ -344,6 +344,37 @@ articles = HackerNews()
 
 ---
 
+## Hackthebox
+
+```python
+from scrape_up import hackthebox
+```
+
+### Scrape User Details
+
+First, create an object of class `User`
+
+```python
+hackthebox_user = hackthebox.User()
+```
+
+| Methods                                | Details                                       |
+| -------------------------------------- | --------------------------------------------- |
+| `.get_profile(profile_number="12345")` | Returns name, username, country, user_type, details, badges, verified_skills, social, etc. for the specified profile number. |
+| `.get_activity(profile_number="12345")` | Returns a list of recent user activities, including machines rooted, fortresses conquered, and challenges solved. |
+
+### Scrape Badge Details
+
+```python
+hackthebox_badges = hackthebox.Badges()
+```
+
+| Methods                                | Details                                       |
+| -------------------------------------- | --------------------------------------------- |
+| `.get_badges(profile_number="12345")`  | Returns a list of user badges, including ID, name, description, etc., for the specified profile number. |
+
+---
+
 ## Twitter
 
 ```python
