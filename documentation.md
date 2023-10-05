@@ -253,35 +253,6 @@ hackerearth = hackerearth.Challanges()
 
 ---
 
-### Hackthebox
-
-```py
-from scrape_up import hackthebox
-```
-
-Create an object of class `User`
-
-```python
-hackthebox_user = hackthebox.User()
-```
-
-| Methods          | Details                                                          |
-| ---------------- | ---------------------------------------------------------------- |
-|  `get_profile(profile_number="12345")` | Get the details of user profile info.      |
-| `get_activity(profile_number="12345")` | Get the details of recent user activities. |
-
-Create an object of class `Badges`
-
-```python
-hackthebox_badges = hackthebox.Badges()
-```
-
-| Methods          | Details                                                         |
-| ---------------- | --------------------------------------------------------------- |
-| `get_badges(profile_number="12345")` | Returns a list of user badges including ID, name, description, etc.             |
-
----
-
 ### HackerRank
 
 ```py
