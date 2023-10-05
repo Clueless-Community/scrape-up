@@ -365,6 +365,8 @@ hackthebox_user = hackthebox.User()
 
 ### Scrape Badge Details
 
+First, create an object of class `Badges`
+
 ```python
 hackthebox_badges = hackthebox.Badges()
 ```
