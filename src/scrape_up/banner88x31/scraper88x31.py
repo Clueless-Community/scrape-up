@@ -1,18 +1,9 @@
 import requests
 import bs4
 
-"""how2use:
-from scrape_up.banner88x31.scraper88x31 import Scraper88x31
-
-scraper = Scraper88x31()
-
-# Call the get_all method on the instance
-img_alt_list = scraper.get_all()
-"""
-
 class Scraper88x31:
     """
-    First create an object of class `Scraper88x31`\n
+    Create an instance of the `Scraper88x31` class.
     ```python
     scraper = Scraper88x31()
     ```
@@ -31,10 +22,21 @@ class Scraper88x31:
         ]
 
     def get_all(self):
+
+        
         """
-        Fetches all 88x31 banners
-        Returns:
+        Class: Scraper88x31
         Returns the list of all available 88x31 banners
+        Example:
+        ```python
+        banners = Scraper88x31()
+        result = banners.get_all()
+        ```
+
+        Returns:
+        ```json
+        ["https://cyber.dabamos.de/88x31/000010.gif", "https://cyber.dabamos.de/88x31/007button.gif", "..."]
+        ```
         """
         img_alt = []
         for url in self.urls_to_scrape:
