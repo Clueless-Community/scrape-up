@@ -6,7 +6,7 @@ body:
   - type: textarea
     attributes:
       label: "What's wrong with the existing documentation"
-      description: "Which things we need to add or delete"
+      description: "Which things do we need to add or delete"
     validations:
       required: true
   - type: textarea
