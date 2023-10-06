@@ -1579,3 +1579,15 @@ scraper = Scraper88x31()
 | Methods      | Details                                         |
 | ------------ | ----------------------------------------------- |
 | `.get_all()` | Returns the list of all available 88x31 banners |
+
+# GoodRead Quotes
+
+Create an instance of `Quotes` class
+
+```python
+quotes = Quotes()
+```
+
+| Method                       | Details                                                  |
+| ---------------------------- | -------------------------------------------------------- |
+| `.quotes_by_author()` | Fetches and returns the list of quotes data by author |
