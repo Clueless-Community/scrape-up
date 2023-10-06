@@ -1,18 +1,18 @@
 ## GoodRead Quotes Scraper
 
-Description : 
+### Description : 
 
 This quote scraper gets the quote text, title, author, tags, and number of likes. If you enter the author name, with number of pages of 
 quotes as an optional argument, the scraper will both print the results in the Terminal and return them as a list. If you don't specify 
 a page number, the scraper will get quotes from all the pages available on Goodreads.
 
 
-Command : 
+### Command : 
 
 >>> quotes_by_author(author, page_num=None):
 
 
-Result Snippets :
+### Result Snippets :
 
 Run main.py to get the quotes list according to input -
 
