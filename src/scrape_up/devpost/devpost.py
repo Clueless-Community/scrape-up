@@ -150,8 +150,7 @@ class Devpost:
                 }
 
                 hackathons_data["hackathons"].append(hackathon_data)
-        except Exception as e:
-            print(e)
+        except:
             return None
         return hackathons_data
 
