@@ -66,7 +66,7 @@ class Internshala:
             internships_container = page.find_all("div", class_="individual_internship")
 
             if not internships_container:
-                return {"message": "No internships found"}
+                return None
 
             else:
                 for internship in internships_container:
@@ -96,12 +96,9 @@ class Internshala:
 
                     internships.append(internship_data)
 
-                return {
-                    "data": internships,
-                    "message": "Internships are now fetched",
-                }
-        except Exception as e:
-            raise Exception(f"An error occurred while scraping internships: {str(e)}")
+                return internships["data"]
+        except:
+            return None
 
     def jobs(self):
         """
@@ -135,7 +132,7 @@ class Internshala:
             jobs_container = page.find("div", {"id": "internship_list_container_1"})
 
             if not jobs_container.text:
-                return {"message": "No jobs found"}
+                return None
             else:
                 for item in jobs_container.find_all(
                     "div",
@@ -167,12 +164,9 @@ class Internshala:
 
                     jobs.append(job_data)
 
-                return {
-                    "data": jobs,
-                    "message": "Jobs are now fetched",
-                }
-        except Exception as e:
-            raise Exception(f"An error occurred while scraping jobs: {str(e)}")
+                return jobs
+        except:
+            return None
 
     def certification_courses(self):
         """
