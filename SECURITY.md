@@ -9,12 +9,7 @@ currently being supported with security updates.
 | -------------------- | ----------- |
 | `beautifulsoup4`     | 4.11.1      |
 | `bs4`                | 0.0.1       |
-| `certifi`            | 2022.12.7   |
-| `charset-normalizer` | 3.0.1       |
-| `idna`               | 3.4         |
 | `requests`           | 2.28.2      |
-| `soupsieve`          | 2.3.2.post1 |
-| `urllib3`            | 1.26.14     |
 | `requests-html`      | 0.10.0      |
 | `selenium`           | 4.9.1       |
 | `webdriver_manager`  | `latest`    |
