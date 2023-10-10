@@ -1569,6 +1569,30 @@ olympics = Olympics()
 | `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
 | `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
 
+
+---
+
+## Codeforces
+
+Create an instance of `Users` class
+
+```python
+from scrape_up import codeforces
+
+codeforces_user = codeforces.Users(username="tourist")
+codeforces_user.get_user_data()
+```
+
+Methods
+
+```md
+| Methods                    | Details                            |
+| -------------------------- | ---------------------------------- |
+| `.get_user_data(username)` | Fetches user data from CodeForces. |
+```
+
+--------------------
+
 ## 88x31 Banners
 
 First create an object of class `Scraper88x31`\n
