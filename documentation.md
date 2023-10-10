@@ -43,6 +43,7 @@ per user.followers()
 - [Flipkart](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#flipkart)
 - [Flyrobu](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#flyrobu)
 - [HealthGrades](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#healthgrades)
+- [IMDB](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#imdb)
 
 ### GitHub
 
