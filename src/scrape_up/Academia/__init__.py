@@ -1,3 +1,3 @@
-from .academia import Academia
+from .Academia import Academia
 
 __all__ = ["Academia"]
