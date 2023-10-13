@@ -1,3 +1,3 @@
-from .healthgrades import HealthGrades
+from .healthgradesmodule import HealthGrades
 
 __all__ = ["HealthGrades"]
