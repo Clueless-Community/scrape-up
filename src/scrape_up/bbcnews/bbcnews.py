@@ -28,9 +28,8 @@ class BBCNews:
         try:
             response = requests.get(self.headlines_url)
             response.raise_for_status()  # Raise an exception for HTTP errors (4xx or 5xx)
-        except requests.RequestException as e:
-            print(f"Error fetching headlines: {e}")
-            return []
+        except:
+            return None
 
         soup = BeautifulSoup(response.content, "html.parser")
         headlines = soup.find_all("h3", class_="gs-c-promo-heading__title")
