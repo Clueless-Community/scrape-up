@@ -1,3 +1,3 @@
-from .coinmarketcap import Crypto
+from .crypto import Crypto
 
 __all__ = ["Crypto"]
