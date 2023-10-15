@@ -1,5 +1,5 @@
 import unittest
-from scrape_up.healthgrades import HealthGrades # Import your original module
+from scrape_up.healthgrades import HealthGrades
 
 class TestHealthGrades(unittest.TestCase):
 
