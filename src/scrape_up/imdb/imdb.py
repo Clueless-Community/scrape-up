@@ -49,7 +49,7 @@ class IMDB:
             movies_container = soup.find(
                 "ul",
                 {
-                    "class": "ipc-metadata-list ipc-metadata-list--dividers-between sc-3a353071-0 wTPeg compact-list-view ipc-metadata-list--base"
+                    "class": "ipc-metadata-list ipc-metadata-list--dividers-between sc-3f13560f-0 sTTRj compact-list-view ipc-metadata-list--base"
                 },
             )
             movies = []
@@ -57,7 +57,7 @@ class IMDB:
             for items in movies_container.find_all("li"):
                 title = items.find("h3").text
                 years = items.find(
-                    "span", {"class": "sc-14dd939d-6 kHVqMR cli-title-metadata-item"}
+                    "span", {"class": "sc-c7e5f54-8 hgjcbi cli-title-metadata-item"}
                 )
                 duration = years.next_sibling.text
                 rating = items.find(
@@ -199,7 +199,7 @@ class IMDB:
             shows_container = soup.find(
                 "ul",
                 {
-                    "class": "ipc-metadata-list ipc-metadata-list--dividers-between sc-3a353071-0 wTPeg compact-list-view ipc-metadata-list--base"
+                    "class": "ipc-metadata-list ipc-metadata-list--dividers-between sc-3f13560f-0 sTTRj compact-list-view ipc-metadata-list--base"
                 },
             )
             shows = []
@@ -207,7 +207,7 @@ class IMDB:
             for items in shows_container.find_all("li"):
                 title = items.find("h3").text
                 years = items.find(
-                    "span", {"class": "sc-14dd939d-6 kHVqMR cli-title-metadata-item"}
+                    "span", {"class": "sc-c7e5f54-8 hgjcbi cli-title-metadata-item"}
                 )
                 eps = years.next_sibling.text.split()[0]
                 rating = items.find(
