@@ -11,7 +11,7 @@ class FlipKartTest(unittest.TestCase):
     | `test_get_mobiles()`          | Returns Item_Name, Price, Rating, Specifications.                |
     | `test_get_sport_shoes()`      | Returns Item_Name, Price, Rating, Specifications.                |
     | `test_get_laptops()`          | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_headphones()`          | Returns Item_Name, Price, Rating, Specifications.                |
+    | `test_get_headphones()`       | Returns Item_Name, Price, Rating, Specifications.                |
     | `test_get_camera()`           | Returns Item_Name, Price, Rating, Specifications.                |
     | `test_get_computer()`         | Returns Item_Name, Price, Rating, Specifications.                |
     | `test_get_tablets()`          | Returns Item_Name, Price, Rating, Specifications.                |
