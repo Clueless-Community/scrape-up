@@ -15,6 +15,7 @@ class Flipkart:
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
     | `.laptops()`          | Returns the list of laptop from flipkart.                          |
+    | `.headphones()`        | Returns the list of headphone from flipkart.                       |
     | `.camera()`           | Returns the list of camera from flipkart.                          |
     | `.computer()`         | Returns the list of computer from flipkart.                        |
     | `.tablets()`          | Returns the list of tablets from flipkart.                         |
@@ -24,7 +25,7 @@ class Flipkart:
     | `.ac()`               | Returns the list of acs from flipkart.                             |
     | `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
     | `.VRbox()`            | Returns the list of VRbox from flipkart.                           |
-    | `.speakers()`         | Returns the list of speakers from flipkart.                           |
+    | `.speakers()`         | Returns the list of speakers from flipkart.                        |
     """
 
     def __init__(self):
@@ -173,7 +174,7 @@ class Flipkart:
 
                 item_details = {
                     "Name": name,
-                    "Image URL": image_url,
+                    "Image_URL": image_url,
                     "Details": details,
                 }
 
@@ -314,7 +315,7 @@ class Flipkart:
                 item_details = {
                     "Item_Name": names.text if names else None,
                     "Price": price.text if price else None,
-                    "delivery": delivery.text if delivery else None,
+                    "Delivery": delivery.text if delivery else None,
                     "Review": review.text if review else None,
                 }
 
@@ -442,12 +443,12 @@ class Flipkart:
                 Exchange_Up_To = data.find("div", class_="_3xFhiH")
 
                 item_details = {
-                    "item_name": names.text if names else None,
-                    "price": price.text if price else None,
-                    "description": description.text if description else None,
-                    "review": review.text if review else None,
-                    "delivery": delivery.text if review else None,
-                    "exchange_upto": Exchange_Up_To.text if Exchange_Up_To else None,
+                    "Item_Name": names.text if names else None,
+                    "Price": price.text if price else None,
+                    "Description": description.text if description else None,
+                    "Review": review.text if review else None,
+                    "Delivery": delivery.text if review else None,
+                    "Exchange_Upto": Exchange_Up_To.text if Exchange_Up_To else None,
                 }
 
                 all_items.append(item_details)
@@ -549,13 +550,11 @@ class Flipkart:
 
                 if names and price and description and review and deals:
                     item_details = {
-                        "name": names.text if names else None,
-                        "price": price.text if price else None,
-                        "description": description.text if description else None,
-                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:])
-                        if review
-                        else None,
-                        "deals": deals.text if deals else None,
+                        "Item_Name": names.text if names else None,
+                        "Price": price.text if price else None,
+                        "Description": description.text if description else None,
+                        "Reviews":  "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "Deals": deals.text if deals else None,
                     }
 
                     all_items.append(item_details)
@@ -604,13 +603,11 @@ class Flipkart:
 
                 if names and price and description and review and deals:
                     item_details = {
-                        "name": names.text if names else None,
-                        "price": price.text if price else None,
-                        "description": description.text if description else None,
-                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:])
-                        if review
-                        else None,
-                        "deals": deals.text if deals else None,
+                        "Item_Name": names.text if names else None,
+                        "Price": price.text if price else None,
+                        "Description": description.text if description else None,
+                        "Reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "Deals": deals.text if deals else None,
                     }
 
                     all_items.append(item_details)
@@ -657,12 +654,10 @@ class Flipkart:
 
                 if names and price and review and delivery:
                     item_details = {
-                        "name": names.text if names else None,
-                        "price": price.text if price else None,
-                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:])
-                        if review
-                        else None,
-                        "delivery": delivery.text if delivery else None,
+                        "Item_Name": names.text if names else None,
+                        "Price": price.text if price else None,
+                        "Reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "Delivery": delivery.text if delivery else None,
                     }
 
                     all_items.append(item_details)
@@ -713,14 +708,12 @@ class Flipkart:
 
                 if names and price and review and delivery:
                     item_details = {
-                        "name": names.text if names else None,
-                        "price": price.text if price else None,
-                        "color": color.text if color else None,
-                        "reviews": "".join(list(str(review.text).split(" ")[0])[2:])
-                        if review
-                        else None,
-                        "delivery": delivery.text if delivery else None,
-                        "offpercentage": offpercentage.text if offpercentage else None,
+                        "Item_Name": names.text if names else None,
+                        "Price": price.text if price else None,
+                        "Color": color.text if color else None,
+                        "Reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "Delivery": delivery.text if delivery else None,
+                        "Off_Percentage": offpercentage.text if offpercentage else None,
                     }
 
                     all_items.append(item_details)
