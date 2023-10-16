@@ -1,6 +1,6 @@
 import unittest
 
-from scrape_up import healthgrades
+from scrape_up.healthgrades import HealthGrades
 
 
 class HealthGradesTest(unittest.TestCase):
@@ -15,13 +15,13 @@ class HealthGradesTest(unittest.TestCase):
         """
         setup instance for HealthGrades class
         """
-        self.instance = healthgrades.HealthGrades()
+        self.instance = HealthGrades()
 
     def test_get_best_hospitals(self):
         """
         Test get_best_hospitals for state 'bihar'
         """
-        best_hospitals = self.instance.get_best_hospitals('bihar')
+        best_hospitals = self.instance.get_best_hospitals("bihar")
         first_hospital = best_hospitals[0]
 
         # assert statements
