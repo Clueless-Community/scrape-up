@@ -12,9 +12,15 @@ class HealthGradesTest(unittest.TestCase):
     """
 
     def setUp(self):
+        """
+        setup instance for HealthGrades class
+        """
         self.instance = healthgrades.HealthGrades()
 
     def test_get_best_hospitals(self):
+        """
+        Test get_best_hospitals for state 'bihar'
+        """
         best_hospitals = self.instance.get_best_hospitals('bihar')
         first_hospital = best_hospitals[0]
 
