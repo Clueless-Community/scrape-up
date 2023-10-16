@@ -15,7 +15,7 @@ class Flipkart:
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
     | `.laptops()`          | Returns the list of laptop from flipkart.                          |
-    | `.headphones()`        | Returns the list of headphone from flipkart.                       |
+    | `.headphones()`       | Returns the list of headphone from flipkart.                       |
     | `.camera()`           | Returns the list of camera from flipkart.                          |
     | `.computer()`         | Returns the list of computer from flipkart.                        |
     | `.tablets()`          | Returns the list of tablets from flipkart.                         |
@@ -24,7 +24,7 @@ class Flipkart:
     | `.monitor()`          | Returns the list of monitors from flipkart.                        |
     | `.ac()`               | Returns the list of acs from flipkart.                             |
     | `.refrigerator()`     | Returns the list of refrigerators from flipkart.                   |
-    | `.VRbox()`            | Returns the list of VRbox from flipkart.                           |
+    | `.vrbox()`            | Returns the list of vrbox from flipkart.                           |
     | `.speakers()`         | Returns the list of speakers from flipkart.                        |
     """
 
@@ -173,7 +173,7 @@ class Flipkart:
                 details = details_element.text.strip() if details_element else ""
 
                 item_details = {
-                    "Name": name,
+                    "Item_Name": name,
                     "Image_URL": image_url,
                     "Details": details,
                 }
@@ -606,7 +606,7 @@ class Flipkart:
                         "Item_Name": names.text if names else None,
                         "Price": price.text if price else None,
                         "Description": description.text if description else None,
-                        "Reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "Review": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
                         "Deals": deals.text if deals else None,
                     }
 
@@ -656,7 +656,7 @@ class Flipkart:
                     item_details = {
                         "Item_Name": names.text if names else None,
                         "Price": price.text if price else None,
-                        "Reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "Review": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
                         "Delivery": delivery.text if delivery else None,
                     }
 
@@ -711,7 +711,7 @@ class Flipkart:
                         "Item_Name": names.text if names else None,
                         "Price": price.text if price else None,
                         "Color": color.text if color else None,
-                        "Reviews": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "Review": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
                         "Delivery": delivery.text if delivery else None,
                         "Off_Percentage": offpercentage.text if offpercentage else None,
                     }
