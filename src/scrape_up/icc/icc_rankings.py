@@ -39,6 +39,8 @@ class ICC:
         """
         try:
             format = format.lower()
+            if format == "t20":
+                format = "t20i"
             obj_keys = ["rank", "team"]
             resposne_list = []
             url = self.url + "team-rankings/" + format
