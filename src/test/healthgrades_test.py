@@ -16,9 +16,16 @@ class HealthGradesTest(unittest.TestCase):
 
     def test_get_best_hospitals(self):
         best_hospitals = self.instance.get_best_hospitals('bihar')
+        first_hospital = best_hospitals[0]
 
         # assert statements
         self.assertIsInstance(best_hospitals, list)
+        self.assertIsInstance(first_hospital, dict)
+        self.assertEqual(
+            list(first_hospital.keys()),
+            ["Name", "Location", "Link", "Awards"],
+            "Healthgrades:get_best_hospitals - keys mismatch",
+        )
 
 
 if __name__ == "__main__":
