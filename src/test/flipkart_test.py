@@ -1,6 +1,7 @@
 import unittest
 from scrape_up import flipkart
 
+
 class FlipKartTest(unittest.TestCase):
     """
     FlipKart module test.\n
@@ -29,15 +30,15 @@ class FlipKartTest(unittest.TestCase):
         method_response = instance.tvs()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Rating","Specifications"]
+            ["Item_Name", "Price", "Rating", "Specifications"],
         )
-    
+
     def test_get_bestseller_books(self):
         instance = flipkart.flipkart_file.Flipkart()
         method_response = instance.bestseller_books()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Rating","Specifications"]
+            ["Item_Name", "Price", "Rating", "Specifications"],
         )
 
     def test_get_mobiles(self):
@@ -45,15 +46,14 @@ class FlipKartTest(unittest.TestCase):
         method_response = instance.mobiles()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Description","Review"]
+            ["Item_Name", "Price", "Description", "Review"],
         )
 
     def test_get_sport_shoes(self):
         instance = flipkart.flipkart_file.Flipkart()
         method_response = instance.sport_shoes()
         self.assertEqual(
-            list(method_response.keys()),
-            ["Item_Name","Image_URL","Details"]
+            list(method_response.keys()), ["Item_Name", "Image_URL", "Details"]
         )
 
     def test_get_laptops(self):
@@ -61,15 +61,15 @@ class FlipKartTest(unittest.TestCase):
         method_response = instance.laptops()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Description","Review"]
+            ["Item_Name", "Price", "Description", "Review"],
         )
-    
+
     def test_get_headphones(self):
         instance = flipkart.flipkart_file.Flipkart()
         method_response = instance.headphones()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Description","Review"]
+            ["Item_Name", "Price", "Description", "Review"],
         )
 
     def test_get_camera(self):
@@ -77,15 +77,14 @@ class FlipKartTest(unittest.TestCase):
         method_response = instance.camera()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Description","Review"]
+            ["Item_Name", "Price", "Description", "Review"],
         )
 
     def test_get_computer(self):
         instance = flipkart.flipkart_file.Flipkart()
         method_response = instance.computer()
         self.assertEqual(
-            list(method_response.keys()),
-            ["Item_Name","Price","Delivery","Review"]
+            list(method_response.keys()), ["Item_Name", "Price", "Delivery", "Review"]
         )
 
     def test_get_tablets(self):
@@ -93,7 +92,7 @@ class FlipKartTest(unittest.TestCase):
         method_response = instance.tablets()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Descripion","Review", "Offer_Price"]
+            ["Item_Name", "Price", "Descripion", "Review", "Offer_Price"],
         )
 
     def test_get_cycle(self):
@@ -101,7 +100,7 @@ class FlipKartTest(unittest.TestCase):
         method_response = instance.cycle()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Description","Review", "Deals"]
+            ["Item_Name", "Price", "Description", "Review", "Deals"],
         )
 
     def test_get_printers(self):
@@ -109,7 +108,7 @@ class FlipKartTest(unittest.TestCase):
         method_response = instance.printers()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Description","Delivery", "Exchange_Upto"]
+            ["Item_Name", "Price", "Description", "Delivery", "Exchange_Upto"],
         )
 
     def test_get_monitor(self):
@@ -117,7 +116,7 @@ class FlipKartTest(unittest.TestCase):
         method_response = instance.monitor()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Description","Review", "Deals"]
+            ["Item_Name", "Price", "Description", "Review", "Deals"],
         )
 
     def test_get_ac(self):
@@ -125,7 +124,7 @@ class FlipKartTest(unittest.TestCase):
         method_response = instance.ac()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Description","Reviews", "Deals"]
+            ["Item_Name", "Price", "Description", "Reviews", "Deals"],
         )
 
     def test_get_refrigerator(self):
@@ -133,15 +132,14 @@ class FlipKartTest(unittest.TestCase):
         method_response = instance.refrigerator()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Description","Reviews", "Deals"]
+            ["Item_Name", "Price", "Description", "Reviews", "Deals"],
         )
 
     def test_get_vrbox(self):
         instance = flipkart.flipkart_file.Flipkart()
         method_response = instance.vrbox()
         self.assertEqual(
-            list(method_response.keys()),
-            ["Item_Name","Price","Reviews","Delivery"]
+            list(method_response.keys()), ["Item_Name", "Price", "Reviews", "Delivery"]
         )
 
     def test_get_speakers(self):
@@ -149,8 +147,9 @@ class FlipKartTest(unittest.TestCase):
         method_response = instance.speakers()
         self.assertEqual(
             list(method_response.keys()),
-            ["Item_Name","Price","Color","Reviews","Delivery", "Off_Percentage"]
+            ["Item_Name", "Price", "Color", "Reviews", "Delivery", "Off_Percentage"],
         )
 
+
 if __name__ == "__main__":
-   unittest.main() 
+    unittest.main()
