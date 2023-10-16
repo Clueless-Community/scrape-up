@@ -15,7 +15,7 @@ class Flipkart:
     | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
     | `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
     | `.laptops()`          | Returns the list of laptop from flipkart.                          |
-    | `.headphones()`        | Returns the list of headphone from flipkart.                       |
+    | `.headphones()`        | Returns the list of headphone from flipkart.                      |
     | `.camera()`           | Returns the list of camera from flipkart.                          |
     | `.computer()`         | Returns the list of computer from flipkart.                        |
     | `.tablets()`          | Returns the list of tablets from flipkart.                         |
