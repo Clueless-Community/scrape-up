@@ -1,6 +1,7 @@
 import unittest
 from scrape_up import github_education
 
+
 class GitHubEducationTest(unittest.TestCase):
     """
     CodeChef module test.\n
@@ -21,9 +22,19 @@ class GitHubEducationTest(unittest.TestCase):
         for event in method_response:
             self.assertEqual(
                 list(event.keys()),
-                ["title", "image_url", "description", "date", "location", "language", "tags", "link"],
+                [
+                    "title",
+                    "image_url",
+                    "description",
+                    "date",
+                    "location",
+                    "language",
+                    "tags",
+                    "link",
+                ],
                 "GitHubEducation:get_events - keys mismatch",
             )
+
 
 if __name__ == "__main__":
     unittest.main()
