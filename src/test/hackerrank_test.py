@@ -1,6 +1,7 @@
 import unittest
 from scrape_up import hackerrank
 
+
 class HackerrankTest(unittest.TestCase):
     """
     CodeChef module test.\n
@@ -18,7 +19,16 @@ class HackerrankTest(unittest.TestCase):
 
         self.assertEqual(
             list(method_response.keys()),
-            ['name', 'username', 'country', 'user_type', 'details', 'badges', 'verified_skills', 'social'],
+            [
+                "name",
+                "username",
+                "country",
+                "user_type",
+                "details",
+                "badges",
+                "verified_skills",
+                "social",
+            ],
             "Hackerrank:get_profile - keys mismatch",
         )
 
@@ -26,32 +36,45 @@ class HackerrankTest(unittest.TestCase):
         instance = hackerrank.User()
         method_response = instance.get_skills()
 
-        self.assertIsInstance(method_response, list, "Hackerrank:get_skills - return type mismatch")
-        self.assertTrue(all(isinstance(skill, dict) for skill in method_response), "Hackerrank:get_skills - return type mismatch")
-        
+        self.assertIsInstance(
+            method_response, list, "Hackerrank:get_skills - return type mismatch"
+        )
+        self.assertTrue(
+            all(isinstance(skill, dict) for skill in method_response),
+            "Hackerrank:get_skills - return type mismatch",
+        )
+
         for skill in method_response:
-            self.assertIn('Name', skill)
-            self.assertIn('Link', skill)
+            self.assertIn("Name", skill)
+            self.assertIn("Link", skill)
 
     def test_active_contests(self):
         instance = hackerrank.Contest()
         method_response = instance.active_contests()
 
-        self.assertIsInstance(method_response, list, "Hackerrank:active_contests - return type mismatch")
-        self.assertTrue(all(isinstance(contest, dict) for contest in method_response), "Hackerrank:active_contests - return type mismatch")
+        self.assertIsInstance(
+            method_response, list, "Hackerrank:active_contests - return type mismatch"
+        )
+        self.assertTrue(
+            all(isinstance(contest, dict) for contest in method_response),
+            "Hackerrank:active_contests - return type mismatch",
+        )
         for contest in method_response:
-            self.assertIn('Title', contest)
-            self.assertIn('Status', contest)
-            self.assertIn('Link', contest)
+            self.assertIn("Title", contest)
+            self.assertIn("Status", contest)
+            self.assertIn("Link", contest)
 
     def test_archived_contests(self):
         instance = hackerrank.Contest()
         method_response = instance.archived_contests()
 
-        self.assertIsInstance(method_response, list, "Hackerrank:archived_contests - return type mismatch")
+        self.assertIsInstance(
+            method_response, list, "Hackerrank:archived_contests - return type mismatch"
+        )
 
         for contest in method_response:
-            self.assertIn('title', contest)
+            self.assertIn("title", contest)
+
 
 if __name__ == "__main__":
     unittest.main()
