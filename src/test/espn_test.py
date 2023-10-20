@@ -15,9 +15,13 @@ class ESPNScraperTest(unittest.TestCase):
         espn = ESPN()
         date = "20230721"  # Replace with a valid date
         scoreboard = espn.get_scoreboard(date)
+
+        # Ensure that the returned data is a list
         self.assertIsInstance(scoreboard, list)
+
         if scoreboard:
             for game in scoreboard:
+                # Validate keys in each game dictionary
                 self.assertCountEqual(
                     game.keys(),
                     ["Game", "Game Link", "Teams", "Location"],
@@ -27,11 +31,15 @@ class ESPNScraperTest(unittest.TestCase):
     def test_get_tournaments(self):
         espn = ESPN()
         tournaments = espn.get_tournaments()
+
+        # Ensure that the returned data is a list
         self.assertIsInstance(tournaments, list)
+
         if tournaments:
             for tournament in tournaments:
                 for tournament_name, links in tournament.items():
                     for link, name in links:
+                        # Validate keys in each tournament dictionary
                         self.assertCountEqual(
                             links[0].keys(),
                             ["Link", "Name"],
@@ -41,9 +49,13 @@ class ESPNScraperTest(unittest.TestCase):
     def test_get_teams(self):
         espn = ESPN()
         teams = espn.get_teams()
+
+        # Ensure that the returned data is a list
         self.assertIsInstance(teams, list)
+
         if teams:
             for team in teams:
+                # Validate keys in each team dictionary
                 self.assertCountEqual(
                     team.keys(),
                     ["Name", "Link"],
