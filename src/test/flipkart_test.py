@@ -5,24 +5,24 @@ from scrape_up import flipkart
 class FlipKartTest(unittest.TestCase):
     """
     FlipKart module test.\n
-    | Methods                       | Details                                                          |
-    | ----------------------------- | ---------------------------------------------------------------- |
-    | `test_get_tvs()`              | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_bestseller_books()` | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_mobiles()`          | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_sport_shoes()`      | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_laptops()`          | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_headphones()`       | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_camera()`           | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_computer()`         | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_tablets()`          | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_cycle()`            | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_printers()`         | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_monitor()`          | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_ac()`               | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_refrigerator()`     | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_VRbox()`            | Returns Item_Name, Price, Rating, Specifications.                |
-    | `test_get_speakers()`         | Returns Item_Name, Price, Rating, Specifications.                |
+    | Methods                        | Details                                                                 |
+    | ------------------------------ | ----------------------------------------------------------------------- |
+    | `.test_get_tvs()`              | Returns Item_Name, Price, Rating, Specifications.                       |
+    | `.test_get_bestseller_books()` | Returns Item_Name, Price, Rating, Specifications.                       |
+    | `.test_get_mobiles()`          | Returns Item_Name, Price, Description, Review.                          |
+    | `.test_get_sport_shoes()`      | Returns Item_Name, Image_URL, Details.                                  |
+    | `.test_get_laptops()`          | Returns Item_Name, Price, Description, Review.                          |
+    | `.test_get_headphones()`       | Returns Item_Name, Price, Description, Review.                          |
+    | `.test_get_camera()`           | Returns Item_Name, Price, Description, Review.                          |
+    | `.test_get_computer()`         | Returns Item_Name, Price, Delivery, Review.                             |
+    | `.test_get_tablets()`          | Returns Item_Name, Price, Description, Review, Offer_Price.             |
+    | `.test_get_cycle()`            | Returns Item_Name, Price, Description, Review, Deals.                   |
+    | `.test_get_printers()`         | Returns Item_Name, Price, Description, Review, Delivery, Exchange_Upto. |
+    | `.test_get_monitor()`          | Returns Item_Name, Price, Description, Review, Deals.                   |
+    | `.test_get_ac()`               | Returns Item_Name, Price, Description, Review, Deals.                   |
+    | `.test_get_refrigerator()`     | Returns Item_Name, Price, Description, Review, Deals.                   |
+    | `.test_get_vrbox()`            | Returns Item_Name, Price, Review, Delivery.                             |
+    | `.test_get_speakers()`         | Returns Item_Name, Price, Color, Review, Delivery, Off_Percentage.      |
     """
 
     def test_get_tvs(self):
