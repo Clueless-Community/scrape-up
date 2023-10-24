@@ -44,6 +44,7 @@ per user.followers()
 - [Flyrobu](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#flyrobu)
 - [HealthGrades](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#healthgrades)
 - [IMDB](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#imdb)
+- [Dictionary.com] (https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#dictionary.com)
 
 ### GitHub
 
@@ -460,6 +461,23 @@ Create an instance of `Cricubzz` class.
 | `.get_team_stats()`          | Returns a list of player stats of a team from Cricbuzz.                |
 
 ---
+
+### Dictionary.com
+
+```py
+from scrape_up import dictionary
+```
+
+Create an instance of the `Dictionary` class.
+
+```python
+d = dictionary.Dictionary()
+```
+| Methods          | Details                                                                                      |
+| ---------------- | -------------------------------------------------------------------------------------------- |
+| `.get_word_of_the_day()`       | Returns the word of the day. |
+| `.word_of_the_day_definition()`    | Returns the definition of the word of the day.
+--------
 
 ### Dribbble
 
