@@ -1,5 +1,6 @@
 import unittest
-from src.scrape_up.academia import Academia
+from scrape_up.academia import Academia
+
 
 class TestAcademia(unittest.TestCase):
     def setUp(self):
@@ -41,5 +42,5 @@ class TestAcademia(unittest.TestCase):
                 self.assertIsInstance(paper["Link"], str)
 
 
-
-
+if __name__ == "__main__":
+    unittest.main()
