@@ -104,4 +104,3 @@ class Spotify:
 
     def close(self):
         self.driver.quit()
-

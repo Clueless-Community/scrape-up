@@ -406,5 +406,7 @@ class Reddit:
             return posts_data["posts"]
         except:
             return None
+
+
 posts = Reddit()
 print(posts.search("github"))

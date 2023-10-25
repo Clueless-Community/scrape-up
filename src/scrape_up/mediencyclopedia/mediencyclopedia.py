@@ -16,7 +16,7 @@ class MediEncyclopedia:
     """
 
     def __init__(self):
-      pass
+        pass
 
     def scrapebyurl(self, url):
         """

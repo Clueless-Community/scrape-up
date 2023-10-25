@@ -102,5 +102,6 @@ class MagicBricks:
         except:
             return None
 
+
 mb = MagicBricks()
 print(mb.flats_by_city(city="Agra"))
