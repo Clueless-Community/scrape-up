@@ -553,7 +553,9 @@ class Flipkart:
                         "Item_Name": names.text if names else None,
                         "Price": price.text if price else None,
                         "Description": description.text if description else None,
-                        "Reviews":  "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "Reviews": "".join(list(str(review.text).split(" ")[0])[2:])
+                        if review
+                        else None,
                         "Deals": deals.text if deals else None,
                     }
 
@@ -606,7 +608,9 @@ class Flipkart:
                         "Item_Name": names.text if names else None,
                         "Price": price.text if price else None,
                         "Description": description.text if description else None,
-                        "Review": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "Review": "".join(list(str(review.text).split(" ")[0])[2:])
+                        if review
+                        else None,
                         "Deals": deals.text if deals else None,
                     }
 
@@ -656,7 +660,9 @@ class Flipkart:
                     item_details = {
                         "Item_Name": names.text if names else None,
                         "Price": price.text if price else None,
-                        "Review": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "Review": "".join(list(str(review.text).split(" ")[0])[2:])
+                        if review
+                        else None,
                         "Delivery": delivery.text if delivery else None,
                     }
 
@@ -711,7 +717,9 @@ class Flipkart:
                         "Item_Name": names.text if names else None,
                         "Price": price.text if price else None,
                         "Color": color.text if color else None,
-                        "Review": "".join(list(str(review.text).split(" ")[0])[2:]) if review else None,
+                        "Review": "".join(list(str(review.text).split(" ")[0])[2:])
+                        if review
+                        else None,
                         "Delivery": delivery.text if delivery else None,
                         "Off_Percentage": offpercentage.text if offpercentage else None,
                     }

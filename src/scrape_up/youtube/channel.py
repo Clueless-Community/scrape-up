@@ -195,7 +195,7 @@ class Channel:
             {
                 "title":"Over the past few weeks, this channel crossed 10,000,000 total views and 150,000 subscribers. It's incredible to think how far its come and how many people this channel has managed to help. Thank you for your support!",
                 "images":[
-                    
+
                 ],
                 "likes_count":"157",
                 "comment_count":"10",
@@ -220,17 +220,13 @@ class Channel:
                     "tabRenderer"
                 ]["content"]["sectionListRenderer"]["contents"][0][
                     "itemSectionRenderer"
-                ][
-                    "contents"
-                ]
+                ]["contents"]
             except:
                 posts = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][5][
                     "tabRenderer"
                 ]["content"]["sectionListRenderer"]["contents"][0][
                     "itemSectionRenderer"
-                ][
-                    "contents"
-                ]
+                ]["contents"]
 
             for p in posts:
                 images = {"images": []}

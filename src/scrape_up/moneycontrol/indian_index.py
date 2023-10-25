@@ -5,11 +5,11 @@ from bs4 import BeautifulSoup as soup
 class IndianIndex:
     """
     Create an instance of `IndianIndex` class
-    
+
     ```python
     indianindex = IndianIndex()
     ```
-    
+
     | Methods      | Details                                                 |
     | ------------ | ------------------------------------------------------- |
     | `.current()` | Returns the Indian Indices and their current value      |
