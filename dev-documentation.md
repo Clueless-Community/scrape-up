@@ -1604,3 +1604,15 @@ scraper = Scraper88x31()
 | Methods      | Details                                         |
 | ------------ | ----------------------------------------------- |
 | `.get_all()` | Returns the list of all available 88x31 banners |
+-----
+
+## Dictionary.com
+
+First create an object of class `Dictionary`.
+
+
+| Methods          | Details                                                                                      |
+| ---------------- | -------------------------------------------------------------------------------------------- |
+| `.get_word_of_the_day()`       | Returns the word of the day. |
+| `.word_of_the_day_definition()`    | Returns the definition of the word of the day.
+--------
