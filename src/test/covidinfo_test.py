@@ -1,9 +1,11 @@
 import unittest
-from src.scrape_up.covidinfo import covidinfo
+from scrape_up.covidinfo import covidinfo
+
 
 class CovidInfoTest(unittest.TestCase):
     def setUp(self):
         self.instance = covidinfo.CovidInfo()
+
     """
     CovidInfo module test.\n
     | Methods | Details |
@@ -14,6 +16,7 @@ class CovidInfoTest(unittest.TestCase):
     | `.total_recovered()` | Returns the count of recovered covid cases all over the world |
     | `.latest_news()` | Return the lastest news of the day |
     """
+
     def test_covid_data(self):
         covid_data_response = self.instance.covid_data()
         self.assertIsInstance(covid_data_response, list)
@@ -51,7 +54,7 @@ class CovidInfoTest(unittest.TestCase):
                 self.assertIn("source", news)
                 self.assertIsInstance(news["news"], str)
                 self.assertIsInstance(news["source"], str)
-                
+
 
 if __name__ == "__main__":
     unittest.main()
