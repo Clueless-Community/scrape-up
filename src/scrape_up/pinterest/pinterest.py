@@ -4,24 +4,27 @@ import requests
 class Pinterest():
 
     """
-        Create an instance of `Flipkart` class.
-        ```python
-        pin = Pinterest()
-        ```
-        | Methods                | Details                                                            |
-        | ---------------------- | ------------------------------------------------------------------ |
-        | `.get_today()`         | Returns the list of todays topics                                  |
-        | `.get_photo(your url)` | Returns the link to the image (so you dont need an account)        |
+    Create an instance of `Flipkart` class.
+     ```python
+     pinterest = Pinterest()
+     ```
+     | Methods                | Details                                                            |
+    | ---------------------- | ------------------------------------------------------------------ |
+    | `.get_today()`         | Returns the list of todays topics                                  |
+    | `.get_photo(your url)` | Returns the link to the image (so you dont need an account)        |
     """
     def __init__(self):
         pass
 
     def get_today(self):
         """
-            Class - `Pinterest`
-            Example - 
-                pinterest = Pinterest()
-                pinterest.get_today()
+        Class - `Pinterest`
+        Example:
+        ```python
+            pinterest = Pinterest()
+            today = pinterest.get_today()
+        ```
+        Returns: Today Page | None
         """
         try:
             page = requests.get("https://www.pinterest.com/today/")
@@ -48,10 +51,13 @@ class Pinterest():
     
     def get_photo(self, url):
         """
-            Class - `Pinterest`
-            Example - 
-                pinterestphoto = Pinterest()
-                pinterestphoto.get_photo(your pinterest url)
+        Class - `Pinterest`
+        Example:
+        ```python 
+            pinterestphoto = Pinterest()
+            photo = pinterestphoto.get_photo(your pinterest url)
+        ```
+        Returns: Photo Image URL | None
         """
         try:
             page = requests.get(url)
