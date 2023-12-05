@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import pandas as pd
+import datetime
 import time
 import xml.etree.ElementTree as ET
 
@@ -166,8 +166,8 @@ class GoogleNews:
         """
 
         number = int(number)
-        x = pd.datetime.today()
-        temp_time = str(x + pd.Timedelta(days=-int(number)))[:10]
+        x = datetime.datetime.today()
+        temp_time = str(x + datetime.timedelta(days=-int(number)))[:10]
         today = str(x)[:10]
         time = "after%3A" + temp_time + "+before%3A" + today
 
