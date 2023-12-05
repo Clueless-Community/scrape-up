@@ -11,8 +11,8 @@ class NSE:
     latest_price_url = "https://www.nseindia.com/api/quote-equity?symbol={symbol}"
     chart_data_url = "https://www.nseindia.com/api/chart-databyindex?index={symbol}"
     historical_data_url = 'https://www.nseindia.com/api/historical/cm/equity?symbol={symbol}&series=["EQ"]&from={from_date}&to={to_date}'
-    currency_type = 'INR'
-    
+    currency_type = "INR"
+
     headers = {
         "Connection": "keep-alive",
         "Cache-Control": "max-age=0",
@@ -89,5 +89,3 @@ class NSE:
         for i in historical_price_data_raw:
             historical_price_data[i["mTIMESTAMP"]] = i["VWAP"]
         return historical_price_data
-
-

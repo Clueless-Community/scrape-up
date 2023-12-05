@@ -73,7 +73,7 @@ class Unsplash:
         Returns: List of quality | None
         """
         try:
-            response =  list(self.all_images.keys())
+            response = list(self.all_images.keys())
             return response
         except:
             return None

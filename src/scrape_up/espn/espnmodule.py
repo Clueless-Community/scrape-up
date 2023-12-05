@@ -8,7 +8,7 @@ class ESPN:
     ```python
     espn = espn.ESPN()
     ```
-    
+
     | Method              | Details                                                           |
     | ------------------- | ----------------------------------------------------------------- |
     | `get_scoreboard()`  | Fetches and returns the football scoreboards for a given date.   |

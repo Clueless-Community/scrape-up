@@ -85,7 +85,7 @@ class Forecast:
                     "UV",
                     "Sunrise",
                     "Sunset",
-                    "Date"
+                    "Date",
                 ]
                 params.append(date)
                 response.append(dict(zip(params_list, params)))

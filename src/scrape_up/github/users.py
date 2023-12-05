@@ -661,11 +661,10 @@ class Users:
                 open_issues.extend(issue_links)
         except:
             return None
-          
+
         return open_issues
-      
-    
-    def get_years_active(self): 
+
+    def get_years_active(self):
         """
         Class - `Users`\n
         Example -\n
@@ -682,8 +681,8 @@ class Users:
 
             years_active = len(li_element)
 
-            return years_active 
+            return years_active
         except:
             return None
-          
+
         return open_issues

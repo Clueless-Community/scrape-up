@@ -76,7 +76,7 @@ class Courses:
         Returns:
         ```js
         [
-            { 
+            {
             'title' : 'Title of course',
             'link' : 'Link to course',
             'description' : 'Description of course',

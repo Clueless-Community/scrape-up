@@ -13,6 +13,7 @@ class AmazonKindle:
     | `.bestsellers()` | Returns the list of best-selling books on AmazonKindle |
     | `.topbooks()`    | Returns the list of top books on AmazonKindle          |
     """
+
     def __init__(self):
         pass
 

@@ -5,11 +5,11 @@ import requests
 class TripAdvisor:
     """
     First, create an object of class `TripAdvisor`
-    
+
     ```python
     hotel = TripAdvisor()
     ```
-    
+
     | Methods                  | Details                                              |
     | ------------------------ | ---------------------------------------------------- |
     | `get_details(hotel_url)` | Get the details of a hotel from its TripAdvisor URL. |
