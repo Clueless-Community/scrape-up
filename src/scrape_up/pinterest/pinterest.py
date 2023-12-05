@@ -1,10 +1,11 @@
-from bs4 import BeautifulSoup as bs 
+from bs4 import BeautifulSoup as bs
 import requests
 
-class Pinterest():
+
+class Pinterest:
 
     """
-    Create an instance of `Flipkart` class.
+    Create an instance of `Pinterest` class.
      ```python
      pinterest = Pinterest()
      ```
@@ -13,6 +14,7 @@ class Pinterest():
     | `.get_today()`         | Returns the list of todays topics                                  |
     | `.get_photo(your url)` | Returns the link to the image (so you dont need an account)        |
     """
+
     def __init__(self):
         pass
 
@@ -24,7 +26,16 @@ class Pinterest():
             pinterest = Pinterest()
             today = pinterest.get_today()
         ```
-        Returns: Today Page | None
+        Output
+        ```js
+        [
+            {
+                "link":"/today/best/how-to-style-a-shawl-this-winter/116286/",
+                "title":"How To Style A Shawl This Winter",
+                "subtitle":"Perfect Winter Companion",
+                "image":"https://i.pinimg.com/736x/10/46/c8/1046c8dc21138326568405a24f871e17.jpg"
+            },
+        ```
         """
         try:
             page = requests.get("https://www.pinterest.com/today/")
@@ -45,15 +56,18 @@ class Pinterest():
                 if all([link, title, subtitle, image]):
                     if item_tuple not in unique_items:
                         unique_items.add(item_tuple)
-            return [{'link': link, 'title': title, 'subtitle': subtitle, 'image': image} for (link, title, subtitle, image) in unique_items]
+            return [
+                {"link": link, "title": title, "subtitle": subtitle, "image": image}
+                for (link, title, subtitle, image) in unique_items
+            ]
         except:
             return None
-    
+
     def get_photo(self, url):
         """
         Class - `Pinterest`
         Example:
-        ```python 
+        ```python
             pinterestphoto = Pinterest()
             photo = pinterestphoto.get_photo(your pinterest url)
         ```
@@ -66,4 +80,3 @@ class Pinterest():
             return {"alt": image.get("alt"), "image": image.get("src")}
         except:
             return None
-        
