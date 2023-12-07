@@ -26,15 +26,15 @@ Terms and conditions for use, reproduction, and distribution are under the [MIT 
 
 ----
 
-## Contribute to this project under Hacktoberfest 2023
-![image](https://github.com/Clueless-Community/scrape-up/assets/93156825/0da5aa25-06db-465b-9d31-cafe48a02ffa)
+## Contribute to this project under CODEPEAK 2023
+![image](https://github.com/Clueless-Community/scrape-up/assets/93156825/ae578d0f-9ea2-491f-aaec-1265d564fa33)
 
-### What is Hacktoberfest? 🤔 
 
-  Every year, DigitalOcean hosts Hacktoberfest to encourage individuals to contribute to open source **throughout October**. The main goals of Hacktoberfest are to support open-source projects, improve skills, and 
-  celebrate all that is **open-source**, especially the people who make it so wonderful.
+### What is CODEPEAK? 🤔 
 
-  Learn more about it [here](https://hacktoberfest.com/)
+  CODE PEAK is a month-long program that helps students understand the paradigm of Open Source contribution and gives them real-world software development experience. The event targets first-timers who wish to participate in Free and Open Source(FOSS) Contributions and the experienced developers who want to show their skills by contributing to real-world projects.
+
+  Learn more about it [here](https://www.codepeak.tech/)
   
 ----
 
