@@ -20,7 +20,9 @@ class eBayTest(unittest.TestCase):
 
         self.assertIsNotNone(spotlights)
         self.assertIsInstance(spotlights, dict)
-        self.assertEqual(list(spotlights.keys()), ['Description', 'Product', 'Price', 'Link'])
+        self.assertEqual(
+            list(spotlights.keys()), ["Description", "Product", "Price", "Link"]
+        )
 
         for value in spotlights.values():
             self.assertIsInstance(value, str)
@@ -33,7 +35,7 @@ class eBayTest(unittest.TestCase):
 
         for item in featured:
             self.assertIsInstance(item, dict)
-            self.assertEqual(list(item.keys()), ['Product', 'Price', 'Link'])
+            self.assertEqual(list(item.keys()), ["Product", "Price", "Link"])
 
             for value in item.values():
                 self.assertIsInstance(value, str)
@@ -46,11 +48,11 @@ class eBayTest(unittest.TestCase):
 
         for item in specific_deals:
             self.assertIsInstance(item, dict)
-            self.assertEqual(list(item.keys()), ['Product', 'Price', 'Link'])
+            self.assertEqual(list(item.keys()), ["Product", "Price", "Link"])
 
             for value in item.values():
                 self.assertIsInstance(value, str)
-        
+
 
 if __name__ == "__main__":
     unittest.main()
