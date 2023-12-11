@@ -52,7 +52,7 @@ class Crypto:
         """
         try:
             cryptocurrency = []
-            container = self.soup.find("div", {"class": "sc-4c520df-2 kGWYlx"})
+            container = self.soup.find("div", {"class": "sc-66133f36-2 cgmess"})
             i = 0
             tbody = container.find("tbody")
             for items in tbody.find_all("tr"):
@@ -70,7 +70,7 @@ class Crypto:
                             "p", {"class": "sc-4984dd93-0 iqdbQL coin-item-symbol"}
                         ).text
                         link = (
-                            "https://coinmarketcap.com/"
+                            "https://coinmarketcap.com"
                             + item.find("a", href=True)["href"]
                         )
                     elif j == 4:
@@ -95,7 +95,7 @@ class Crypto:
                         day = item.text + f" ({market})"
                     elif j == 8:
                         marketcap = item.find(
-                            "span", {"class": "sc-f8982b1f-1 bOsKfy"}
+                            "span", {"class": "sc-7bc56c81-1 bCdPBp"}
                         ).text
                     elif j == 9:
                         volume = item.find(
