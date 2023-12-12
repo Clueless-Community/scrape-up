@@ -31,6 +31,7 @@ class Crypto:
         A list of dictionaries containing details of the top cryptocurrencies.\n
          ```python
         crypto = Crypto()
+        top_crypto = crypto.get_top_cryptocurrencies()
         ```
         Example output:
         ```python
@@ -117,5 +118,5 @@ class Crypto:
                 }
                 cryptocurrency.append(data)
             return cryptocurrency
-        except:
+        except Exception:
             return None
