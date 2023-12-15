@@ -15,7 +15,7 @@ class DribbbleTest(unittest.TestCase):
     | `get_mobile()`       | Returns the latest mobile shots along with their title, designer and designer url like and view count and link.                 |
     | `get_webdesign()`    | Returns the latest web-design shots along with their title, designer and designer url like and view count and link.             |
     """
-    
+
     def setUp(self):
         self.instance = Dribbble()
 
@@ -37,8 +37,8 @@ class DribbbleTest(unittest.TestCase):
                     "designer_url",
                     "like_count",
                     "views_count",
-                    "link"
-                ]
+                    "link",
+                ],
             )
 
             for value in item.values():
@@ -62,8 +62,8 @@ class DribbbleTest(unittest.TestCase):
                     "designer_url",
                     "like_count",
                     "views_count",
-                    "link"
-                ]
+                    "link",
+                ],
             )
 
             for value in item.values():
@@ -87,8 +87,8 @@ class DribbbleTest(unittest.TestCase):
                     "designer_url",
                     "like_count",
                     "views_count",
-                    "link"
-                ]
+                    "link",
+                ],
             )
 
             for value in item.values():
@@ -112,8 +112,8 @@ class DribbbleTest(unittest.TestCase):
                     "designer_url",
                     "like_count",
                     "views_count",
-                    "link"
-                ]
+                    "link",
+                ],
             )
 
             for value in item.values():
@@ -137,8 +137,8 @@ class DribbbleTest(unittest.TestCase):
                     "designer_url",
                     "like_count",
                     "views_count",
-                    "link"
-                ]
+                    "link",
+                ],
             )
 
             for value in item.values():
@@ -162,13 +162,13 @@ class DribbbleTest(unittest.TestCase):
                     "designer_url",
                     "like_count",
                     "views_count",
-                    "link"
-                ]
+                    "link",
+                ],
             )
 
             for value in item.values():
                 self.assertIsInstance(value, str)
-        
+
     def test_get_webdesign(self):
         webdesign = self.instance.get_webdesign()
 
@@ -187,8 +187,8 @@ class DribbbleTest(unittest.TestCase):
                     "designer_url",
                     "like_count",
                     "views_count",
-                    "link"
-                ]
+                    "link",
+                ],
             )
 
             for value in item.values():
