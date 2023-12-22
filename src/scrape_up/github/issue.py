@@ -50,7 +50,7 @@ class Issue:
                 "a", class_="assignee Link--primary css-truncate-target width-fit"
             ):
                 assignees.append(assignee.text.replace("\n", "").strip())
-            assignees
+            return assignees
         except:
             None
 
@@ -73,7 +73,7 @@ class Issue:
             allLabels = []
             for label in allLabelsHtml:
                 allLabels.append(label.text)
-            allLabels
+            return allLabels
         except:
             return None
 
@@ -90,7 +90,7 @@ class Issue:
         data = self.__scrape_page()
         try:
             author_name = data.find("a", class_="author text-bold Link--secondary").text
-            author_name
+            return author_name
         except:
             return None
 
