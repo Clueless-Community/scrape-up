@@ -28,7 +28,6 @@ class GithubTest(unittest.TestCase):
     | `.get_open_issues()`          | Returns the list of open issues                                                                    |
     | `.get_years_active()`         | Returns the number of years that user have been active on github.                                  |
     """
-
     """
     | Methods            | Details                                                                    |
     | ------------------ | -------------------------------------------------------------------------- |
@@ -76,40 +75,50 @@ class GithubTest(unittest.TestCase):
     | `.pinned_repository()`      | Returns the list of pinned repositories with their details.     |
     | `.get_organization_links()` | Returns a dictionary of important website links of a community. |
     """
+    """
+    | Methods           | Details                                                                            |
+    | ----------------- | ---------------------------------------------------------------------------------- |
+    | `.assignees()`    | Returns the assignees of an issue.                                                 |
+    | `.labels()`       | Returns the labels of an issue.                                                    |
+    | `.opened_by()`    | Returns the name of the user, who opened the issue.                                |
+    | `.title()`        | Returns the title of an issue.                                                     |
+    | `.is_milestone()` | Returns the milestone, if the issue is part of one or 'No milestone', if it's not. |
+    | `.opened_at()`    | Returns a string containing the time when the issue was opened in ISO format.      |
+    """
 
     def test_followers(self):
         test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.followers()
+        method_response  =  test_instance_user.followers()
         self.assertIsInstance(method_response, str)
         self.assertEqual(method_response.isdigit(), True)
 
     def test_following(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.following()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.following()
         self.assertIsInstance(method_response, str)
         self.assertEqual(method_response.isdigit(), True)
 
     def test_get_avatar(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.get_avatar()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.get_avatar()
         self.assertIsInstance(method_response, str)
         self.assertIn("https://avatars.githubusercontent.com/u/", method_response)
 
     def test_get_bio(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.get_bio()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.get_bio()
         self.assertIsInstance(method_response, str)
 
     def test_get_repo(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.get_repo()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.get_repo()
         self.assertIsInstance(
             method_response, list, "Return type mismatch [Github Users: get_repo()]"
         )
 
     def test_get_repo_count(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.repo_count()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.repo_count()
         self.assertIsInstance(
             method_response,
             str,
@@ -118,91 +127,76 @@ class GithubTest(unittest.TestCase):
         self.assertEqual(method_response.isdigit(), True)
 
     def test_star_count(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.star_count()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.star_count()
         self.assertIsInstance(
             method_response, str, "Return type mismatch [Github Users: star_count()]"
         )
         self.assertEqual(method_response.isdigit(), True)
 
     def test_get_yearly_contributions(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.get_yearly_contributions()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.get_yearly_contributions()
         self.assertIsInstance(method_response, str)
-        str_portion = method_response.split(" ", 1)[1]
+        str_portion  =  method_response.split(" ", 1)[1]
         self.assertEqual("contributions in the last year", str_portion)
 
     def test_get_repositories(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.get_repositories()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.get_repositories()
         self.assertIsInstance(method_response, list)
 
     def test_get_starred_repos(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.get_starred_repos()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.get_starred_repos()
         self.assertIsInstance(method_response, list)
 
     def test_get_followers(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.get_followers()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.get_followers()
         self.assertIsInstance(method_response, list)
         for item in method_response:
             self.assertIsInstance(item, str)
 
     def test_get_following_users(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.get_following_users()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.get_following_users()
         self.assertIsInstance(method_response, list)
         for item in method_response:
-            self.assertIsInstance(item, str)
+            self.assertIsInstance(item , str)
 
     def test_get_achievements(self):
-        test_instance_user = github.Users("nikhil25803")
-        method_response = test_instance_user.get_achievements()
+        test_instance_user  =  github.Users("nikhil25803")
+        method_response  =  test_instance_user.get_achievements()
         self.assertIsInstance(method_response, list)
 
     def test_get_status(self):
         test_instance_user = github.Users("nikhil25803")
         method_response = test_instance_user.get_status()
         self.assertIsInstance(method_response, str)
-
+    
     def test_get_contribution_streak(self):
         test_instance_user = github.Users("nikhil25803")
         method_response = test_instance_user.get_contribution_streak()
         self.assertIsInstance(method_response, int)
 
     def test_get_repository_details(self):
-        test_instance_user = github.Users("nikhil25803")
+        test_instance_user = github.Users("havoksahil")
         method_response = test_instance_user.get_repository_details()
         self.assertIsInstance(method_response, list)
-        self.assertTrue(
-            all(self.assertIsInstance(item, dict) for item in method_response)
-        )
-        self.assertTrue(
-            all(
-                self.assertEqual(
-                    list(item.keys()),
-                    [
-                        "name",
-                        "url",
-                        "description",
-                        "language",
-                        "forks",
-                        "stars",
-                        "issues",
-                        "pull_requests",
-                    ],
-                    "keys mismatch [Github Users get_repository_details()]",
-                )
-                for item in method_response
+        for items in method_response:
+            self.assertAlmostEqual(
+                list(items.keys()), 
+                ['name', 'url', 'description', 'language', 'forks', 'stars', 'issues', 'pull_requests']
             )
-        )
+
 
     def test_get_merged_pull_requests(self):
         test_instance_user = github.Users("nikhil25803")
         method_response = test_instance_user.get_merged_pull_requests()
         self.assertIsInstance(method_response, list)
 
+    
     def test_get_open_issues(self):
         test_instance_user = github.Users("nikhil25803")
         method_response = test_instance_user.get_open_issues()
@@ -213,223 +207,238 @@ class GithubTest(unittest.TestCase):
         method_response = test_instance_user.get_years_active()
         self.assertIsInstance(method_response, int)
 
-    def test_commits(self):
-        pull_request = github.PullRequest(
-            username="anoma", repository_name="namada", pull_request_number=2294
-        )
+    def test__pull_commits(self):
+        pull_request = github.PullRequest(username = "anoma", repository_name = "namada", pull_request_number = 2294)
         method_response = pull_request.commits()
         self.assertIsInstance(method_response, str)
         self.assertTrue(method_response.isdigit())
-
+    
     def test_title(self):
-        pull_request = github.PullRequest(
-            username="anoma", repository_name="namada", pull_request_number=2294
-        )
+        pull_request = github.PullRequest(username = "anoma", repository_name = "namada", pull_request_number = 2294)
         method_response = pull_request.title()
         self.assertIsInstance(method_response, str)
 
     def test_labels(self):
-        pull_request = github.PullRequest(
-            username="anoma", repository_name="namada", pull_request_number=2294
-        )
+        pull_request = github.PullRequest(username = "chromium", repository_name = "chromium", pull_request_number = 206)
         method_response = pull_request.labels()
-        self.assertIsInstance(method_response, str)
-
+        self.assertIsInstance(method_response, list)
+    
     def test_files_changed(self):
-        pull_request = github.PullRequest(
-            username="anoma", repository_name="namada", pull_request_number=2294
-        )
+        pull_request = github.PullRequest(username = "chromium", repository_name = "chromium", pull_request_number = 206)
         method_response = pull_request.files_changed()
         self.assertIsInstance(method_response, str)
         self.assertTrue(method_response.isdigit())
-
+    
     def test_reviewers(self):
-        pull_request = github.PullRequest(
-            username="anoma", repository_name="namada", pull_request_number=2294
-        )
+        pull_request = github.PullRequest(username = "anoma", repository_name = "namada", pull_request_number = 2294)
         method_response = pull_request.reviewers()
         self.assertIsInstance(method_response, list)
 
+
     def test_fork_count(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.fork_count()
         self.assertIsInstance(method_response, str)
 
+
     def test_get_contributors(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.get_contributors()
-        self.assertIsInstance(method_response, list)
+        self.assertIsInstance(method_response, str)
+        self.assertIn('Contributors', method_response)
+
 
     def test_get_topics(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.topics()
         self.assertIsInstance(method_response, list)
 
+
     def test_pull_requests(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.pull_requests()
-        self.assertIsInstance(method_response, list)
+        self.assertIsInstance(method_response, int)
+
 
     def test_last_updated_at(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.last_update_at()
         self.assertIsInstance(method_response, str)
 
+
     def test_tags(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.tags()
         self.assertIsInstance(method_response, list)
 
+
     def test_releases(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.releases()
         self.assertIsInstance(method_response, list)
 
+
     def test_issues_count(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.issues_count()
         self.assertIsInstance(method_response, str)
         self.assertTrue(method_response.isdigit())
-
+    
     # def test_readme(self): can't test for readme as there is no return value
 
+
     def test_get_pull_requests_id(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.get_pull_requests_ids()
         self.assertIsInstance(method_response, list)
 
+
     def test_get_issues(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.get_issues()
         self.assertIsInstance(method_response, list)
 
-    def test_commits(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+
+    def test_repo_commits(self):
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.commits()
         self.assertIsInstance(method_response, int)
 
+ 
+    def test_get_readme(self):
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
+        method_response = repository.get_readme()
+        self.assertIsInstance(method_response, str)
+
+
     def test_get_environment(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "bobheadxi", repository_name = "deployments")
         method_response = repository.get_environment()
-        self.assertTrue(
-            self.assertIsInstance(method_response, str)
-            or self.assertIsInstance(method_response, list)
-        )
+        self.assertIsInstance(method_response, str)
+
 
     def test_watch_count(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.watch_count()
         self.assertIsInstance(method_response, dict)
-        self.assertIsInstance(method_response["data"], int)
+        self.assertIsInstance(method_response['data'], int)
+
 
     def test_all_watchers(self):
-        repository = github.Repository(
-            username="nikhil25803", repository_name="scrape-up"
-        )
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
         method_response = repository.all_watchers()
         self.assertIsInstance(method_response, list)
 
+    def test_get_insights(self):
+        repository = github.Repository(username = "Clueless-Community", repository_name = "scrape-up")
+        method_response = repository.get_insights('monthly')
+        self.assertIsInstance(method_response, list)
+
     def test_topics(self):
-        organization = github.Organization(organization_name="Clueless-Community")
+        organization = github.Organization(organization_name = "Clueless-Community")
         method_response = organization.top_topics()
         self.assertIsInstance(method_response, list)
 
+
     def test_org_followers(self):
-        organization = github.Organization(organization_name="Clueless-Community")
+        organization = github.Organization(organization_name = "Clueless-Community")
         method_response = organization.followers()
         self.assertIsInstance(method_response, str)
         self.assertTrue(method_response.isdigit())
 
     def test_top_languages(self):
-        organization = github.Organization(organization_name="Clueless-Community")
+        organization = github.Organization(organization_name = "Clueless-Community")
         method_response = organization.top_languages()
         self.assertIsInstance(method_response, list)
 
     def test_org_avatar(self):
-        organization = github.Organization(organization_name="Clueless-Community")
+        organization = github.Organization(organization_name = "Clueless-Community")
         method_response = organization.avatar()
         self.assertIsInstance(method_response, str)
 
     def test_org_repositories(self):
-        organization = github.Organization(organization_name="Clueless-Community")
+        organization = github.Organization(organization_name = "Clueless-Community")
         method_response = organization.repositories()
         self.assertIsInstance(method_response, list)
 
     def test_people(self):
-        organization = github.Organization(organization_name="Clueless-Community")
+        organization = github.Organization(organization_name = "Clueless-Community")
         method_response = organization.people()
         self.assertIsInstance(method_response, list)
 
     def test_peoples(self):
-        organization = github.Organization(organization_name="Clueless-Community")
+        organization = github.Organization(organization_name = "Clueless-Community")
         method_response = organization.peoples()
         self.assertIsInstance(method_response, int)
 
     def test_get_location(self):
-        organization = github.Organization(organization_name="Clueless-Community")
+        organization = github.Organization(organization_name = "Clueless-Community")
         method_response = organization.get_location()
         self.assertIsInstance(method_response, str)
 
     def test_respository_details(self):
-        organization = github.Organization(organization_name="Clueless-Community")
+        organization = github.Organization(organization_name = "Clueless-Community")
         method_response = organization.repository_details()
         self.assertIsInstance(method_response, list)
         for items in method_response:
             self.assertAlmostEqual(
-                list(items.keys()),
-                [
-                    "name",
-                    "url",
-                    "description",
-                    "language",
-                    "forks",
-                    "stars",
-                    "issues",
-                    "pull_requests",
-                ],
+                list(items.keys()), 
+                ['name', 'url', 'description', 'language', 'forks', 'stars', 'issues', 'pull_requests']
             )
 
     def test_pinned_repository(self):
-        organization = github.Organization(organization_name="Clueless-Community")
+        organization = github.Organization(organization_name = "Clueless-Community")
         method_response = organization.pinned_repository()
         self.assertIsInstance(method_response, list)
         for items in method_response:
             self.assertAlmostEqual(
                 list(items.keys()),
-                ["name", "link", "detail", "top_lang", "stars", "forks"],
+                [   
+                    "name",
+                    "link",
+                    "detail",
+                    "top_lang",
+                    "stars",
+                    "forks"
+                ]
             )
 
     def test_org_links(self):
-        organization = github.Organization(organization_name="Clueless-Community")
+        organization = github.Organization(organization_name = "Clueless-Community")
         method_response = organization.get_organization_links()
         self.assertIsInstance(method_response, dict)
 
+    def test_assignees(self):
+        issue = github.Issue(username = "Shreya111111", repository_name = "Linkscrape", issue_number = 1)
+        method_response = issue.assignees()
+        self.assertIsInstance(method_response, list)
 
-if __name__ == "__main__":
+    def test_issue_labels(self):
+        issue = github.Issue(username = "Shreya111111", repository_name = "Linkscrape", issue_number = 1)
+        method_response = issue.labels()
+        self.assertIsInstance(method_response, list)
+
+    def test_opened_by(self):
+        issue = github.Issue(username = "Shreya111111", repository_name = "Linkscrape", issue_number = 1)
+        method_response = issue.opened_by()
+        self.assertIsInstance(method_response, str)
+
+    def test_issue_title(self):
+        issue = github.Issue(username = "Shreya111111", repository_name = "Linkscrape", issue_number = 1)
+        method_response = issue.title()
+        self.assertIsInstance(method_response, str)
+
+    def test_opened_at(self):
+        issue = github.Issue(username = "Shreya111111", repository_name = "Linkscrape", issue_number = 1)
+        method_response = issue.opened_at()
+        self.assertIsInstance(method_response, str)
+
+    # def test_is_milestone(self): need to find a milestone issue
+    #     issue = github.Issue(username = "", repository_name = "", issue_number = )
+    #     method_response = issue.is_milestone()
+    #     self.assertIsInstance(method_response, str)
+
+    
+
+if __name__ == '__main__':
     unittest.main()
