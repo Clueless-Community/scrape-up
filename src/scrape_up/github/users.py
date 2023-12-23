@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from scrape_up.github.repository import Repository
 
 
 class Users:
@@ -479,7 +480,7 @@ class Users:
                     )
                     # create a repository object
                     repository_name = repo_url.split("/")[-1]
-                    repository = repository.Repository(username, repository_name)
+                    repository = Repository(username, repository_name)
                     repo_forks, repo_stars, repo_issues, repo_pull_requests = (
                         repository.fork_count(),
                         repository.star_count(),
@@ -684,5 +685,3 @@ class Users:
             return years_active
         except:
             return None
-
-        return open_issues

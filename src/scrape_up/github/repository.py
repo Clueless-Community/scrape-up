@@ -17,7 +17,7 @@ class Repository:
     | `.get_contributors()`      | Returns the number of contributors of a repository.                                                                                                            |
     | `.topics()`                | Returns the topics of a repository.                                                                                                                            |
     | `.pull_requests()`         | Returns the number of pull requests opened in a repository.                                                                                                    |
-    | `.last_updated_at()`       | Returns the last updated date of a repository.                                                                                                                 |
+    | `.last_update_at()`        | Returns the last updated date of a repository.                                                                                                                 |
     | `.tags()`                  | Returns the last ten tags of a repository.                                                                                                                     |
     | `.releases()`              | Returns the last ten releases of a repository.                                                                                                                 |
     | `.issues_count()`          | Returns number of issues in a repository                                                                                                                       |
@@ -163,7 +163,6 @@ class Repository:
         try:
             topics = data.find_all(class_="topic-tag topic-tag-link")
             allTopics = []
-            print(allTopics)
             for item in topics:
                 allTopics.append(item.text)
             return allTopics
@@ -201,12 +200,11 @@ class Repository:
         """
         data = self.__scrape_page()
         try:
-            pull_requests = (
-                data.find_all(class_="UnderlineNav-item mr-0 mr-md-1 mr-lg-3")[2]
-                .find_all("span")[1]
-                .text.strip()
-            )
-            return pull_requests
+            pull_requests = data.find(
+                "span", {"id": "pull-requests-repo-tab-count", "class": "Counter"}
+            ).text
+
+            return int(pull_requests.replace(",", ""))
         except:
             return None
 
@@ -276,7 +274,7 @@ class Repository:
         """
         session = requests_html.HTMLSession()
         r = session.get(
-            f"https://github.com/{self.username}/{self.username}/blob/main/README.md"
+            f"https://github.com/{self.username}/{self.repository}/blob/main/README.md"
         )
         markdown_content = r.text
 
@@ -326,7 +324,7 @@ class Repository:
             commits = str(data.find_all(class_="d-none d-sm-inline"))
             s = commits.split("<strong>")
             s = s[1].split("</strong>")
-            commits = int(s[0])
+            commits = int(s[0].replace(",", ""))
             return commits
         except:
             return None
@@ -401,11 +399,13 @@ class Repository:
         ```
         """
         data = requests.get(
-            f"https://raw.githubusercontent.com/{self.username}/{self.username}/master/README.md"
+            f"https://raw.githubusercontent.com/{self.username}/{self.repository}/master/README.md",
+            timeout=10,
         )
         if data.status_code == 404:
             data = requests.get(
-                f"https://raw.githubusercontent.com/{self.username}/{self.username}/main/README.md"
+                f"https://raw.githubusercontent.com/{self.username}/{self.repository}/main/README.md",
+                timeout=10,
             )
             if data.status_code == 404:
                 message = f"No special repository found with username {self.username}"
@@ -436,10 +436,8 @@ class Repository:
         """
         try:
             data = self.__scrape_deployments_page()
-            link = data.find(
-                "a", class_="btn btn-outline flex-self-start mt-2 mt-md-0"
-            ).get("href")
-            return link
+            link = data.find_all("a", class_="select-menu-item")
+            return link[0].get("href")
         except:
             return None
 
