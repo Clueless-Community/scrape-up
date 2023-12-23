@@ -200,9 +200,11 @@ class Repository:
         """
         data = self.__scrape_page()
         try:
-            pull_requests = data.find('span', {'id': 'pull-requests-repo-tab-count', 'class': 'Counter'}).text
+            pull_requests = data.find(
+                "span", {"id": "pull-requests-repo-tab-count", "class": "Counter"}
+            ).text
 
-            return int(pull_requests.replace(',', ''))
+            return int(pull_requests.replace(",", ""))
         except:
             return None
 
@@ -322,7 +324,7 @@ class Repository:
             commits = str(data.find_all(class_="d-none d-sm-inline"))
             s = commits.split("<strong>")
             s = s[1].split("</strong>")
-            commits = int(s[0].replace(',', ''))
+            commits = int(s[0].replace(",", ""))
             return commits
         except:
             return None
@@ -398,12 +400,12 @@ class Repository:
         """
         data = requests.get(
             f"https://raw.githubusercontent.com/{self.username}/{self.repository}/master/README.md",
-            timeout=10
+            timeout=10,
         )
         if data.status_code == 404:
             data = requests.get(
                 f"https://raw.githubusercontent.com/{self.username}/{self.repository}/main/README.md",
-                timeout=10
+                timeout=10,
             )
             if data.status_code == 404:
                 message = f"No special repository found with username {self.username}"
@@ -434,8 +436,8 @@ class Repository:
         """
         try:
             data = self.__scrape_deployments_page()
-            link=data.find_all('a', class_='select-menu-item')
-            return link[0].get('href')
+            link = data.find_all("a", class_="select-menu-item")
+            return link[0].get("href")
         except:
             return None
 

@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from scrape_up.github.repository import Repository
 
+
 class Users:
     """
     Create an instance of the class `Users`
