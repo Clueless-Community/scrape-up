@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as soup
 
 
 class Celeb:
-
     """
     Create an instance of `Celeb` class.
     ```python

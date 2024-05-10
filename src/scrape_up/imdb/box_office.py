@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as soup
 
 
 class BoxOffice:
-
     """
     Create an instance of `BoxOffice` class.
     ```python

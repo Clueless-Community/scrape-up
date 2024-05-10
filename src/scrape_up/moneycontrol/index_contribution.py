@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as soup
 
 
 class MoneyControl:
-
     """
     Create an instance of MoneyControl class
     ```python

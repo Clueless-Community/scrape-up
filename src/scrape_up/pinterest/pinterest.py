@@ -3,7 +3,6 @@ import requests
 
 
 class Pinterest:
-
     """
     Create an instance of `Pinterest` class.
      ```python
