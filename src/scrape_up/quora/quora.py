@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup as Soup
 
 
 class Quora:
-
     """
     Class - `Quora`\n
     | Methods                     | Details                                                                                              |

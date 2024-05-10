@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as soup
 
 
 class UTC:
-
     """
     Create an instance of `UTC` class.\n
     ```python

@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as soup
 
 
 class DayInHistory:
-
     """
     Create an instance of `DayInHistory` class.
 

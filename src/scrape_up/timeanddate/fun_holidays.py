@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as soup
 
 
 class FunHolidays:
-
     """
     Create an instance of `FunHolidays` class.
     ```python

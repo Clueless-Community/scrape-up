@@ -56,7 +56,7 @@ class Cricbuzz:
         """
         from datetime import datetime
 
-        dt_obj = datetime.utcfromtimestamp(timestamp / 1000)
+        dt_obj = datetime.fromtimestamp(timestamp / 1000)
         return dt_obj.strftime("%d-%m-%Y %H:%M:%S")
 
     def __scrape_match(self, url, type, isUpcoming=False):
@@ -512,7 +512,7 @@ class Cricbuzz:
         """
         Class - Cricbuzz\n
         Params required
-        - `series_id` = Cricket mathc series Id(can be found on Cricbuzz Website)\n
+        - `series_id` = Cricket match series Id(can be found on Cricbuzz Website)\n
         ```python
         cricbuzz = Cricubzz()
         cricbuzz.get_series_matches(series_id="abc")
@@ -552,7 +552,7 @@ class Cricbuzz:
         """
         Class - Cricbuzz\n
         Params required
-        - `series_id` = Cricket mathc series Id(can be found on Cricbuzz Website)\n
+        - `series_id` = Cricket match series Id(can be found on Cricbuzz Website)\n
         - `match_format` = ["Test", "ODI", "T20I"]\n
         - `stat` = [
             "most-runs",

@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as soup
 
 
 class EquityMutualFunds:
-
     """
     Create an instance of `EquityMutualFunds` class.
     ```python
