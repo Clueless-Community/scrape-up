@@ -21,6 +21,13 @@ class CricbuzzTest(unittest.TestCase):
 	| `.get_team_stats()`          | Returns a list of player stats of a team from Cricbuzz.                |
 	"""
 	
+	def test_connection(self):
+		instance = Cricbuzz()
+		self.assertTrue(
+			instance,
+			"Cricbuzz:__init__ - connection failed",
+		)
+	
 	def test_get_live_matches(self):
 		instance = Cricbuzz()
 		method_response = instance.get_live_matches()
@@ -73,17 +80,18 @@ class CricbuzzTest(unittest.TestCase):
 
 	def test_get_matches_by_day(self):
 		instance = Cricbuzz()
-		method_response = instance.get_matches_by_day()
+		response = instance.get_matches_by_day(type="all")
+		self.assertIsInstance(response, dict)
 
-		self.assertIsInstance(
-			method_response,
-			dict,
-			"Cricbuzz:get_matches_by_day - invalid response",
-		)
+		response = instance.get_matches_by_day(type="invalid_type")
+		self.assertEqual(response, [{"error": "Invalid type"}])
+
+		response = instance.get_matches_by_day(type=None)
+		self.assertIsNone(response)
 
 	def test_get_series_matches(self):
 		instance = Cricbuzz()
-		method_response = instance.get_series_matches(2023)
+		method_response = instance.get_series_matches(7607)
 
 		self.assertIsInstance(
 			method_response,
@@ -93,12 +101,20 @@ class CricbuzzTest(unittest.TestCase):
 	
 	def test_get_series_stats(self):
 		instance = Cricbuzz()
-		method_response = instance.get_series_stats(2023)
+		method_response = instance.get_series_stats(7607)
 
 		self.assertIsInstance(
 			method_response,
 			dict,
 			"Cricbuzz:get_series_stats - invalid response",
+		)
+
+		# invalid series id
+		method_response = instance.get_series_stats(0)
+		self.assertEqual(
+			method_response,
+			{"error": "No data found"},
+			"Cricbuzz:get_series_stats - invalid series id"
 		)
 
 	def test_get_teams_list(self):
