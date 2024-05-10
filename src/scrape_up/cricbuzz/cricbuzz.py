@@ -56,7 +56,7 @@ class Cricbuzz:
         """
         from datetime import datetime
 
-        dt_obj = datetime.utcfromtimestamp(timestamp / 1000)
+        dt_obj = datetime.fromtimestamp(timestamp / 1000)
         return dt_obj.strftime("%d-%m-%Y %H:%M:%S")
 
     def __scrape_match(self, url, type, isUpcoming=False):
