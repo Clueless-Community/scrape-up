@@ -512,7 +512,7 @@ class Cricbuzz:
         """
         Class - Cricbuzz\n
         Params required
-        - `series_id` = Cricket mathc series Id(can be found on Cricbuzz Website)\n
+        - `series_id` = Cricket match series Id(can be found on Cricbuzz Website)\n
         ```python
         cricbuzz = Cricubzz()
         cricbuzz.get_series_matches(series_id="abc")
@@ -552,7 +552,7 @@ class Cricbuzz:
         """
         Class - Cricbuzz\n
         Params required
-        - `series_id` = Cricket mathc series Id(can be found on Cricbuzz Website)\n
+        - `series_id` = Cricket match series Id(can be found on Cricbuzz Website)\n
         - `match_format` = ["Test", "ODI", "T20I"]\n
         - `stat` = [
             "most-runs",
