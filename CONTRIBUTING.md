@@ -71,7 +71,7 @@ pip install -r requirements.txt
 
 Now you are done with the project setup, now you can make the changes you want or assign.
 
-### Let's say you want to scrape the avatar URL of and user. Steps applying which we can do this
+### Let's say you want to scrape the avatar URL of a user. The steps to apply in order to achieve this are as follows:
 
 - At first, we have to scrape the profile page of a user. For that, we have defined a function in the user class as
 
@@ -84,7 +84,7 @@ class Users:
 
     def __scrape_page(self):
         username = self.username
-        data = requests.get(f"https://github.com/{username}")
+        data = requests.get(f"https://github.com/{username}") 
         data = BeautifulSoup(data.text, "html.parser")
         return data
 ```
