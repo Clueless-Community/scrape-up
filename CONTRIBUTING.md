@@ -1,3 +1,6 @@
+Here's the corrected version of the text:
+
+```markdown
 <h1 align=center> For the contributors 🫂 </h1>
 
 ### Haven't made your first contribution yet? 😢
@@ -11,7 +14,7 @@ Do check our [First Contribution](https://github.com/Clueless-Community/first-co
 Copy the URL of the forked repository and clone it.
 
 ```bash
-https://github.com/<your_username>/scrape-up
+git clone https://github.com/<your_username>/scrape-up
 ```
 
 ## Change the directory
@@ -36,7 +39,7 @@ scrape-up
  │  │  ├──── 📄  __init__.py
  │  │  └──── 📂  github/
  │  │  │  ├──── 📄  __init__.py
- │  │  │  ├──── 📄  respository.py
+ │  │  │  ├──── 📄  repository.py
  │  │  │  └──── 📄  users.py
  │  │  └──── 📂  twitter/
  │  │  │  └──── 📄  __init__.py
@@ -51,10 +54,10 @@ python -m venv env
 
 ## Activate the virtual environment
 
-> For windows
+> For Windows
 
 ```bash
-env\scripts\activate
+.\env\Scripts\activate
 ```
 
 > For Linux
@@ -65,18 +68,21 @@ source env/bin/activate
 
 ## Install the dependencies
 
-```powershell
+```bash
 pip install -r requirements.txt
 ```
 
-Now you are done with the project setup, now you can make the changes you want or assign.
+Now you are done with the project setup, and you can make the changes you want or assign.
 
-### Let's say you want to scrape the avatar URL of and user. Steps applying which we can do this
+### Let's say you want to scrape the avatar URL of a user. Steps applying which we can do this
 
-- At first, we have to scrape the profile page of a user. For that, we have defined a function in the user class as
+- Firstly, we have to scrape the profile page of a user. For that, we have defined a function in the user class as
 
 ```python
-- scrape-up/src/scrape_up/github/users.py
+# scrape-up/src/scrape_up/github/users.py
+import requests
+from bs4 import BeautifulSoup
+
 class Users:
 
     def __init__(self, username):
@@ -87,49 +93,50 @@ class Users:
         data = requests.get(f"https://github.com/{username}")
         data = BeautifulSoup(data.text, "html.parser")
         return data
-```
 
-- The `__scrape_page` is a private function defined to scrape any page.
-- Now we have to create a function with an appropriate name, in this case, `followers`.
-
-```python
-def followers(self):
+    def followers(self):
         page = self.__scrape_page()
         try:
-            followers = page.find(class_ = "avatar avatar-user width-full border color-bg-default")
+            followers = page.find(class_="avatar avatar-user width-full border color-bg-default")
             return followers["src"]
         except:
             message = f"{self.username} not found !"
             return message
 ```
 
-- When you do inspect the element of the page, you will get to know the class named `avatar avatar-user width-full border color-bg-default` contains the avatar URL.
+- The `__scrape_page` is a private function defined to scrape any page.
+- Now we have to create a function with an appropriate name, in this case, `followers`.
 
 Once you are done with the changes you wanted to add, follow the steps to make the pull request.
 
 ## Create and checkout to the new branch.
 
-PowerShell
+```bash
 git checkout -b <branch_name>
+```
 
 ## Add the changes
 
+```bash
 git add .
+```
 
 ## Commit your change with a proper message
 
+```bash
 git commit -m "Enter your message here"
+```
 
 ## Make the Pull Request
 
+```bash
 git push origin <branch_name>
+```
 
 ## Writing Tests ✍️
 
 - Ensure that your code changes are accompanied by relevant tests.
-
 - Write test cases that cover different scenarios and edge cases.
-
 - Follow the existing test structure and naming conventions.
 
 ### Documentation 📑
@@ -158,3 +165,4 @@ git push origin <branch_name>
 - Spread the word about the project on social media, developer forums, or any relevant community platforms.
 
 Thank you for your valuable contribution and for being a part of the Clueless Community! Together, we can make a difference. 🚀
+```
