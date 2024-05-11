@@ -15,7 +15,7 @@ pip install scrape-up
 from scrape_up import github
 
 # Instantiate an object with the username provided.
-user = github.Users(username="nikhil25803")
+user = github.Users(username="Suhani2")
 
 # Call the followers function - it will return the number of followers
 per user.followers()
@@ -56,7 +56,7 @@ from scrape_up import github
 Create an instance of the class `Users`.
 
 ```python
-user = github.Users(username="nikhil25803")
+user = github.Users(username="Suhani2")
 ```
 
 | Methods                       | Details                                                                                            |
@@ -88,7 +88,7 @@ user = github.Users(username="nikhil25803")
 Create an instance of the class `Repository`.
 
 ```python
-repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
+repository = github.Repository(username="Suhani2", repository_name="scrape-up")
 ```
 
 | Methods                    | Details                                                                                                                                                        |
@@ -115,7 +115,7 @@ repository = github.Repository(username="nikhil25803", repository_name="scrape-u
 Create an instance of the class `Issue`
 
 ```python
-repository = github.Issue(username="nikhil25803", repository_name="scrape-up", issue_number=59)
+repository = github.Issue(username="Suhani2", repository_name="scrape-up", issue_number=883)
 ```
 
 | Methods           | Details                                                                            |
@@ -132,7 +132,7 @@ repository = github.Issue(username="nikhil25803", repository_name="scrape-up", i
 Create an instance of the class `PullRequest`
 
 ```python
-pull_request = github.PullRequest(username="nikhil25803", repository_name="scrape-up", pull_request_number=30)
+pull_request = github.PullRequest(username="Suhani2", repository_name="scrape-up", pull_request_number=30)
 ```
 
 | Methods            | Details                                                                    |
