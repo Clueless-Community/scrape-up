@@ -1,7 +1,5 @@
 import unittest
-import sys 
-sys.path.insert(1,"C:/Users/KIIT0001/OneDrive/Documents/Coding and shizzz/Scrape-U (GSSOC 24)/scrape-up/src/scrape_up/amazon")
-from products import Product 
+from scrape_up.amazon import Product
 
 class AmazonTest(unittest.TestCase):
     def setUp(self):
