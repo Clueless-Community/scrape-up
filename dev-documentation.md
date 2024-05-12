@@ -1189,7 +1189,7 @@ yf = YahooFinance()
 
 # BBC News
 
-First create an object of class `User`
+First create an object of class `BBCNews`
 
 ```python
 bbc_scraper = BBCNews()
