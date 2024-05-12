@@ -1192,7 +1192,7 @@ yf = YahooFinance()
 First create an object of class `User`
 
 ```python
-user = instagram.Users(username="nikhil25803")
+bbc_scraper = BBCNews()
 ```
 
 | Methods            | Details                                                  |
