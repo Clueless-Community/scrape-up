@@ -56,7 +56,9 @@ class Coursera:
                     taught_by = c.find(
                         "p", class_="cds-ProductCard-partnerNames css-vac8rf"
                     ).getText()
-                    skills = c.find("div", class_="cds-CommonCard-bodyContent").p.getText()[20:]
+                    skills = c.find(
+                        "div", class_="cds-CommonCard-bodyContent"
+                    ).p.getText()[20:]
                     review_div = c.find("div", class_="product-reviews css-pn23ng")
                     rating = review_div.find("p", class_="css-2xargn").getText()
                     review_count = (
@@ -70,7 +72,7 @@ class Coursera:
                     link = "https://www.coursera.org" + c.find("a")["href"]
                 except:
                     pass
-                
+
                 courses_data.append(
                     {
                         "title": title,
@@ -123,7 +125,6 @@ class Coursera:
         try:
             res = requests.get(courseURL)
             if res.status_code == 200:
-                
                 soup = BeautifulSoup(res.text, "html.parser")
                 script_tag = soup.find("script", {"id": "__NEXT_DATA__"})
                 if script_tag is not None:
@@ -131,38 +132,29 @@ class Coursera:
                     product_data = json_blob["props"]["pageProps"]["initialData"][
                         "data"
                     ]["product"]
-                
-                
+
                 type = "Module"
                 module_section = soup.find("div", id="modules")
                 if module_section == None:
                     module_section = soup.find("div", id="courses")
                     type = "Specialization"
-                modules = module_section.find_all("div", attrs={"data-testid": "accordion-item"})
+                modules = module_section.find_all(
+                    "div", attrs={"data-testid": "accordion-item"}
+                )
                 modules_data = {}
-                
+
                 for index, m in enumerate(modules):
-                    if type=="Module":
-                        #For modules
+                    if type == "Module":
+                        # For modules
                         mod = m.find("h3").getText()
                     else:
-                        #For specializations
+                        # For specializations
                         mod = {}
                         mod["Title"] = m.find("h3").getText()
-                        mod["Link"] = "https://www.coursera.org" + m.find("a")['href']
+                        mod["Link"] = "https://www.coursera.org" + m.find("a")["href"]
                     modules_data[f"{type} {index+1}"] = mod
                 return modules_data
             else:
-                return "Server Error. Retry"
+                return None
         except:
-            return "No modules for this course"
-
-
-if __name__ == '__main__':
-    obj = Coursera("python")
-    # courses = obj.get_courses()
-    # print(courses[0]['title'])
-    # modules = obj.fetch_modules(courses[2]['title'])
-    # print(modules)
-
-    
+            return None
