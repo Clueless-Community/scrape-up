@@ -38,6 +38,7 @@ per user.followers()
 - [Coin Market Cap](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#coinmarketcap)
 - [Covid Info](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#covidinfo)
 - [Cricbuzz](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#cricbuzz)
+- [ESPNCricinfo] (https://github.com/Arnav17Sharma/scrape-up/blob/main/documentation.md#espncricinfo)
 - [Dribbble](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#dribbble)
 - [Ebay](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#ebay)
 - [Flipkart](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#flipkart)
@@ -537,7 +538,7 @@ from scrape_up import espncricinfo
 Create an instance of `Espncricinfo` class.
 
 ```python
-	obj = espncricinfo.Espncricinfo()
+obj = espncricinfo.Espncricinfo()
 ```
 
 | Methods                      | Details                                                                  |

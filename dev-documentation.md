@@ -1374,6 +1374,24 @@ espn = ESPN()
 | `get_tournaments()` | Fetches and returns information about football tournaments.    |
 | `get_teams()`       | Fetches and returns information about football teams.          |
 
+### ESPNCricinfo
+
+```py
+from scrape_up import espncricinfo
+```
+
+Create an instance of `Espncricinfo` class.
+
+```python
+obj = espncricinfo.Espncricinfo()
+```
+
+| Methods                      | Details                                                                  |
+| ---------------------------- | ------------------------------------------------------------------------ |
+| `.get_news()`                | Returns a latest news from ESPNCricinfo.                                 |
+| `.get_livescores()`          | Returns a list of live matches from ESPNCricinfo.                        |
+
+
 # Magic Bricks
 
 Create an instance of `MagicBricks` class
