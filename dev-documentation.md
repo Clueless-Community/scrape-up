@@ -1616,3 +1616,13 @@ First create an object of class `Dictionary`.
 | `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
 
 ---
+
+## Geeksforgeeks
+
+First create an object of class `Geeksforgeeks`.
+
+| Methods                         | Details                                        |
+| ------------------------------- | ---------------------------------------------- |
+| `.get_profile()`                | Returns the user data in json format.          |
+
+---
