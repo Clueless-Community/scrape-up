@@ -44,7 +44,7 @@ per user.followers()
 - [Flyrobu](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#flyrobu)
 - [HealthGrades](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#healthgrades)
 - [IMDB](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#imdb)
-
+- [Wuzzuf](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#Wuzzuf)
 ### GitHub
 
 ```python
@@ -778,3 +778,33 @@ scraper.scrape_companies()
 | Methods         | Details                                                                       |
 | --------------- | ----------------------------------------------------------------------------- |
 | `.scrape_companies()` | Returns the company name with the rating |
+### Wuzzuf
+
+The `JobScraper` class provides methods for configuring scraping parameters and fetching job listings:
+
+| Methods               | Details                                                                                             |
+| --------------------- | --------------------------------------------------------------------------------------------------- |
+| `.filterJob()`        | Apply filters such as job title, country, city, and range of years of experience.                   |
+| `.fetchJobs()`        | Fetch job listings from the website based on the applied filters, across multiple pages.            |
+
+```python
+from scrap-up import wuzzuf
+```
+### How to use :
+- **Create an instance of the JobScraper class:**
+    ```python
+    scraper = JobScraper()
+    ```
+<br>
+
+- **Apply filters using the filterJob() method:**
+    ```python
+    scraper.filterJob(title="software engineer", country="Egypt", city="Cairo", minYearsOfExperience=2, maxYearsOfExperience=5)
+    ```
+    Customize the filters based on your requirements.
+<br>
+- **Fetch job listings using the fetchJobs() method:**
+
+    ```python
+    jobs = scraper.fetchJobs()
+    ```
