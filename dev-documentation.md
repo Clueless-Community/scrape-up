@@ -774,10 +774,10 @@ posts = Devpost()
 ```
 
 | Methods             | Details                                                                                                              |
-| -----------------   | -------------------------------------------------------------------------------------------------------------------- |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `.get_projects()`   | Returns the latest projects along with their decription, like and commment count, image and member details.          |
 | `.search(topic)`    | Returns the searched projects along with their decription, like and commment count, image and member details.        |
-| `.get_hackathons()` | Returns the latest hackathons along with their title, participants, prizes, deadlines.						         |
+| `.get_hackathons()` | Returns the latest hackathons along with their title, participants, prizes, deadlines.                               |
 | `.get_featured()`   | Returns the latest featured projects along with their decription, like and commment count, image and member details. |
 | `.get_winner()`     | Returns the latest winning projects along with their decription, like and commment count, image and member details.  |
 
@@ -1189,10 +1189,10 @@ yf = YahooFinance()
 
 # BBC News
 
-First create an object of class `User`
+First create an object of class `BBCNews`
 
 ```python
-user = instagram.Users(username="nikhil25803")
+bbc_scraper = BBCNews()
 ```
 
 | Methods            | Details                                                  |
@@ -1569,7 +1569,6 @@ olympics = Olympics()
 | `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
 | `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
 
-
 ---
 
 ## Codeforces
@@ -1591,7 +1590,7 @@ Methods
 | `.get_user_data(username)` | Fetches user data from CodeForces. |
 ```
 
---------------------
+---
 
 ## 88x31 Banners
 
@@ -1604,15 +1603,16 @@ scraper = Scraper88x31()
 | Methods      | Details                                         |
 | ------------ | ----------------------------------------------- |
 | `.get_all()` | Returns the list of all available 88x31 banners |
------
+
+---
 
 ## Dictionary.com
 
 First create an object of class `Dictionary`.
 
+| Methods                         | Details                                        |
+| ------------------------------- | ---------------------------------------------- |
+| `.get_word_of_the_day()`        | Returns the word of the day.                   |
+| `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
 
-| Methods          | Details                                                                                      |
-| ---------------- | -------------------------------------------------------------------------------------------- |
-| `.get_word_of_the_day()`       | Returns the word of the day. |
-| `.word_of_the_day_definition()`    | Returns the definition of the word of the day.
---------
+---
