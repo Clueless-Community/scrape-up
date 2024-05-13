@@ -1,7 +1,35 @@
 import requests
+import json
 from bs4 import BeautifulSoup
 
 class Geeksforgeeks:
+
+
+    """
+    Create an instance of the class `GeeksforGeeks`
+    
+
+    | Methods           | Details                                                                            |
+    | ----------------- | ---------------------------------------------------------------------------------- |
+    | `.get_profile()`  | Returns the user data in json format.                                              |
+
+
+    output:
+    {
+    "username": "gouravpandey_07",
+    "collage_name": "Rajiv Gandhi Institute of Petroleum Technology (RGIPT) Rae Bareli",
+    "collage_rank": "1",
+    "score": {
+        "overall_coding_score": "6085",
+        "monthly_coding_score": "14"
+    },
+    "languages_used": "C++, Javascript, Python, Java, C",
+    "current_potd_streak": "407/1015",
+    "total_problem_solved": "1534",
+    "campus_ambassader": "22cs3iehq"
+    }
+   
+    """
 
     def __init__(self,user):
         self.user = user
@@ -40,7 +68,7 @@ class Geeksforgeeks:
                 'campus_ambassader':campus_ambaasder,
             }
 
-            return user_data
+            return json.dumps(user_data)
         except:
             return None
 
