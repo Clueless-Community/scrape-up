@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class Comapiens:  # Class name with proper capitalization
+class Comapiens:  
     def __init__(self,num_pages: int=1):
         self.num_pages = num_pages
 
