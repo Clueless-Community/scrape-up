@@ -8,7 +8,7 @@ class TestAcademia(unittest.TestCase):
 
     def test_get_research_topics(self):
         academia = Academia()
-        result = academia.get_research_topics(topic="Machine Learning")
+        result = academia.get_research_topics()
         self.assertIsNotNone(result)
         self.assertIsInstance(result, list)
 
