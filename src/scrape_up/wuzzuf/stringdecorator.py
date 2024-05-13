@@ -1,4 +1,4 @@
-def stringDecorator(func):
+def string_decorator(func):
     """
     The stringDecorator function wraps the decorated function and performs the following modifications:
     - If the result of the decorated function is None, it returns the string "NA".
