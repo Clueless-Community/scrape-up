@@ -1,6 +1,7 @@
 import unittest
 from scrape_up.coursera import Coursera
 
+
 class TestCoursera(unittest.TestCase):
     def setUp(self, topic="Machine Learning"):
         self.scraper = Coursera(topic)
@@ -36,7 +37,6 @@ class TestCoursera(unittest.TestCase):
         if result is not None:
             for key, value in result.items():
                 self.assertIsInstance(value, str)
-                
 
     def test_fetch_modules_with_specializations(self):
         result = self.scraper.fetch_modules(course="Machine Learning")
