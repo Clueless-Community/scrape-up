@@ -740,8 +740,8 @@ The `JobScraper` class provides methods for configuring scraping parameters and 
 
 | Methods               | Details                                                                                             |
 | --------------------- | --------------------------------------------------------------------------------------------------- |
-| `.filterJob()`        | Apply filters such as job title, country, city, and range of years of experience.                   |
-| `.fetchJobs()`        | Fetch job listings from the website based on the applied filters, across multiple pages.            |
+| `.filter_job()`        | Apply filters such as job title, country, city, and range of years of experience.                   |
+| `.fetch_jobs()`        | Fetch job listings from the website based on the applied filters, across multiple pages.            |
 
 ```python
 from scrap-up import wuzzuf
@@ -753,14 +753,14 @@ from scrap-up import wuzzuf
     ```
 <br>
 
-- **Apply filters using the filterJob() method:**
+- **Apply filters using the filter_job() method:**
     ```python
-    scraper.filterJob(title="software engineer", country="Egypt", city="Cairo", minYearsOfExperience=2, maxYearsOfExperience=5)
+    scraper.filter_job(title="software engineer", country="Egypt", city="Cairo", minYearsOfExperience=2, maxYearsOfExperience=5)
     ```
     Customize the filters based on your requirements.
 <br>
-- **Fetch job listings using the fetchJobs() method:**
+- **Fetch job listings using the fetch_jobs() method:**
 
     ```python
-    jobs = scraper.fetchJobs()
+    jobs = scraper.fetch_jobs()
     ```
