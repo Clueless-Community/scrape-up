@@ -1,3 +1,3 @@
 from .geeksforgeeks import Geeksforgeeks
 
-__all__ = ["User"]
+__all__ = ["Geeksforgeeks"]
