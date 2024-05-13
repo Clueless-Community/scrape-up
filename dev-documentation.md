@@ -1386,11 +1386,10 @@ Create an instance of `Espncricinfo` class.
 obj = espncricinfo.Espncricinfo()
 ```
 
-| Methods                      | Details                                                                  |
-| ---------------------------- | ------------------------------------------------------------------------ |
-| `.get_news()`                | Returns a latest news from ESPNCricinfo.                                 |
-| `.get_livescores()`          | Returns a list of live matches from ESPNCricinfo.                        |
-
+| Methods             | Details                                           |
+| ------------------- | ------------------------------------------------- |
+| `.get_news()`       | Returns a latest news from ESPNCricinfo.          |
+| `.get_livescores()` | Returns a list of live matches from ESPNCricinfo. |
 
 # Magic Bricks
 

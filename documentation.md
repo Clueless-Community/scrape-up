@@ -38,7 +38,6 @@ per user.followers()
 - [Coin Market Cap](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#coinmarketcap)
 - [Covid Info](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#covidinfo)
 - [Cricbuzz](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#cricbuzz)
-- [ESPNCricinfo](https://github.com/Arnav17Sharma/scrape-up/blob/main/documentation.md#espncricinfo)
 - [Dribbble](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#dribbble)
 - [Ebay](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#ebay)
 - [Flipkart](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#flipkart)
@@ -526,25 +525,6 @@ espn = espn.ESPN()
 | `get_scoreboard()`  | Fetches and returns the football scoreboards for a given date. |
 | `get_tournaments()` | Fetches and returns information about football tournaments.    |
 | `get_teams()`       | Fetches and returns information about football teams.          |
-
----
-
-### ESPNCricinfo
-
-```py
-from scrape_up import espncricinfo
-```
-
-Create an instance of `Espncricinfo` class.
-
-```python
-obj = espncricinfo.Espncricinfo()
-```
-
-| Methods                      | Details                                                                  |
-| ---------------------------- | ------------------------------------------------------------------------ |
-| `.get_news()`                | Returns a latest news from ESPNCricinfo.                                 |
-| `.get_livescores()`          | Returns a list of live matches from ESPNCricinfo.                        |
 
 ---
 
