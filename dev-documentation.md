@@ -1624,6 +1624,7 @@ First create an object of class `Dictionary`.
 | `.word_of_the_day_definition()`    | Returns the definition of the word of the day.
 >>>>>>> ece18c0 (Formatting and checks.)
 --------
+<<<<<<< HEAD
 
 
 <<<<<<< HEAD
@@ -1704,4 +1705,22 @@ First create an object of class `Geeksforgeeks`.
 
 ---
 >>>>>>> fe11717 (Added doumentation in dev-documentation)
+<<<<<<< HEAD
 >>>>>>> 10b64f3 (Added doumentation in dev-documentation)
+=======
+=======
+## Wuzzuf
+
+```python
+from scrap-up import wuzzuf
+jobs = wuzzuf.Jobs()
+```
+
+The `Jobs` class provides methods for configuring scraping parameters and fetching job listings:
+
+| Methods               | Details                                                                                             |
+| --------------------- | --------------------------------------------------------------------------------------------------- |
+| `.filter_job()`        | Apply filters such as job title, country, city, and range of years of experience.                   |
+| `.fetch_jobs()`        | Fetch job listings from the website based on the applied filters, across multiple pages.            |
+>>>>>>> fb92a26 (update dev-documentation.md with wuzzuf module)
+>>>>>>> 57043b1 (update dev-documentation.md with wuzzuf module)

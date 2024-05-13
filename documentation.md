@@ -44,7 +44,7 @@ per user.followers()
 - [Flyrobu](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#flyrobu)
 - [HealthGrades](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#healthgrades)
 - [IMDB](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#imdb)
-- [Wuzzuf](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md#Wuzzuf)
+
 ### GitHub
 
 ```python
@@ -737,7 +737,6 @@ boxoffice = imdb.BoxOffice()
 | Methods         | Details                                                                       |
 | --------------- | ----------------------------------------------------------------------------- |
 | `.top_movies()` | Returns the top box office movies, weekend and total gross and weeks released |
-
 
 ### Indiantrekking
 
