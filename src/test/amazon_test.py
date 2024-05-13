@@ -1,6 +1,7 @@
 import unittest
 from scrape_up.amazon import Product
 
+
 class AmazonTest(unittest.TestCase):
     def setUp(self):
         self.product = Product("Watch")
@@ -57,6 +58,6 @@ class AmazonTest(unittest.TestCase):
         if result["message"] is not None:
             self.assertIsInstance(result["message"], str)
 
+
 if __name__ == "__main__":
     unittest.main()
-
