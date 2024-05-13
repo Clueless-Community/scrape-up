@@ -1620,6 +1620,9 @@ First create an object of class `Dictionary`.
 ## Geeksforgeeks
 
 First create an object of class `Geeksforgeeks`.
+```python
+geeksforgeeks = Geeksforgeeks(user="username")
+```
 
 | Methods                         | Details                                        |
 | ------------------------------- | ---------------------------------------------- |
