@@ -102,7 +102,7 @@ repository = github.Repository(username="Suhani2", repository_name="scrape-up")
 | `.releases()`              | Returns the last ten releases of a repository.                                                                                                                 |
 | `.issues_count()`          | Returns number of issues in a repository                                                                                                                       |
 | `.readme`                  | Saves the readme.md file of the given user to the current working directory. To view the readme.md with a live server, change ".md" to ".html" in "readme.md". |
-| `.get_pull_requests_ids()` | Returns all ids of opened pull requests in a repository.                                                                                                       |
+| `.get_pull_requests_ids()` | Returns all IDs of opened pull requests in a repository.                                                                                                       |
 | `.get_issues()`            | Returns the list of all open issues in a repository.                                                                                                           |
 | `.commits()`               | Returns the number of commits in a repository.                                                                                                                 |
 | `.get_readme()`            | Returns & saves README.md file of the special repository (if exists)                                                                                           |
@@ -240,10 +240,10 @@ articles = hackernews.Articles()
 from scrape_up import hackerearth
 ```
 
-Create an object of class `Challanges`
+Create an object of class `Challenges`
 
 ```python
-hackerearth = hackerearth.Challanges()
+hackerearth = hackerearth.Challenges()
 ```
 
 | Methods          | Details                                                |
@@ -271,7 +271,7 @@ hackerank = hackerrank.User()
 | Methods                      | Details                                                                                   |
 | ---------------------------- | ----------------------------------------------------------------------------------------- |
 | `get_profile(id="username")` | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
-| `get_skills()`               | Returns a list of verified skills and their links                                         |
+| `get_skills()`               | Returns a list of verified skills and their links.                                        |
 
 ### Scrape contest details
 
@@ -283,8 +283,8 @@ hackerank = hackerrank.Contest()
 
 | Methods               | Details                                                             |
 | --------------------- | ------------------------------------------------------------------- |
-| `active_contests()`   | Returns information on active contests like title, status, and link |
-| `archived_contests()` | Returns information regarding archived contests                     |
+| `active_contests()`   | Returns information on active contests like title, status, and link.|
+| `archived_contests()` | Returns information regarding archived contests.                    |
 
 ---
 
@@ -300,12 +300,12 @@ Create an instance of `Hashnode` class.
 blogs = hashnode.Hashnode()
 ```
 
-| Methods           | Details                                                                                               |
-| ----------------- | ----------------------------------------------------------------------------------------------------- |
-| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date and link  |
-| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date and link    |
-| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link      |
-| `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date and link for a topic |
+| Methods           | Details                                                                                                |
+| ----------------- | ------------------------------------------------------------------------------------------------------ |
+| `.get_feed()`     | Returns the blogs with title, descriptions, author, read time, like and comment count, date, and link. |
+| `.get_featured()` | Returns the featured blogs with title, descriptions, author, like and comment count, date, and link.   |
+| `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date, and link.     |
+| `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date, and link for a topic.|
 
 ---
 
@@ -321,12 +321,12 @@ Create an instance of `ICC` class.
 scraper = icc.ICC()
 ```
 
-| Method                               | Details                                                             |
-| ------------------------------------ | ------------------------------------------------------------------- |
-| `.team_rankings(format)`             | Returns the list of rankings of teams of the desired format         |
-| `.player_ranking(type,format)`       | Returns the list of player ranking of desired type and format       |
-| `.team_rankings_women(format)`       | Returns the list of rankings of teams of the desired format         |
-| `.player_ranking_women(type,format)` | Returns the list of women player ranking of desired type and format |
+| Method                               | Details                                                               |
+| ------------------------------------ | --------------------------------------------------------------------- |
+| `.team_rankings(format)`             | Returns the list of rankings of teams of the desired format.          |
+| `.player_ranking(type,format)`       | Returns the list of player rankings of desired type and format.       |
+| `.team_rankings_women(format)`       | Returns the list of rankings of teams of the desired format.          |
+| `.player_ranking_women(type,format)` | Returns the list of women player rankings of desired type and format. |
 
 ---
 
@@ -363,12 +363,12 @@ questions = askubuntu.Questions("topic")
 
 | Methods                     | Details                                                                                              |
 | --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format              |
-| `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format           |
-| `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format       |
-| `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format         |
-| `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format |
-| `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
+| `.getNewQuestions()`        | Returns the new questions, views, votes, answer counts, and descriptions in JSON format.             |
+| `.getActiveQuestions()`     | Returns the active questions, views, votes, answer counts, and descriptions in JSON format.          |
+| `.getUnansweredQuestions()` | Returns the unanswered questions, views, votes, answer counts, and descriptions in JSON format.      |
+| `.getBountiedQuestions()`   | Returns the bountied questions, views, votes, answer counts, and descriptions in JSON format.        |
+| `.getFrequentQuestions()`   | Returns the frequently asked questions, views, votes, answer counts, and descriptions in JSON format.|
+| `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format.      |
 
 ---
 
@@ -384,10 +384,10 @@ First create an object of class `BBCNews`
 user = bbcnews.BBCNews()
 ```
 
-| Methods            | Details                                                  |
-| ------------------ | -------------------------------------------------------- |
-| `.get_headlines()` | Returns the list of object containig the headlines       |
-| `get_article()`    | Returns an object with proper details about the articles |
+| Methods            | Details                                                   |
+| ------------------ | --------------------------------------------------------- |
+| `.get_headlines()` | Returns the list of objects containing the headlines.     |
+| `get_article()`    | Returns an object with proper details about the articles. |
 
 ---
 
@@ -423,11 +423,11 @@ response = covidinfo.CovidInfo()
 
 | Methods              | Details                                                         |
 | -------------------- | --------------------------------------------------------------- |
-| `.covid_data()`      | Returns the list of all the covid data scraped from the website |
-| `.total_cases()`     | Returns the count of total covid cases all over the world       |
-| `.total_deaths()`    | Returns the count of deaths covid cases all over the world      |
-| `.total_recovered()` | Returns the count of recovered covid cases all over the world   |
-| `.latest_news()`     | Return the lastest news of the day                              |
+| `.covid_data()`      | Returns the list of all covid data scraped from the website.    |
+| `.total_cases()`     | Returns the count of total covid cases all over the world.      |
+| `.total_deaths()`    | Returns the count of deaths covid cases all over the world.     |
+| `.total_recovered()` | Returns the count of recovered covid cases all over the world.  |
+| `.latest_news()`     | Return the latest news of the day.                              |
 
 ---
 
@@ -449,7 +449,7 @@ Create an instance of `Cricubzz` class.
 | `.get_recent_matches()`      | Returns a list of recent matches from Cricbuzz.                        |
 | `.get_upcoming_matches()`    | Returns a list of upcoming matches from Cricbuzz.                      |
 | `.get_series()`              | Returns a dictionary of series in month and year format from Cricbuzz. |
-| `.get_series_from_archive()` | Returns a list of series from archive from Cricbuzz.                   |
+| `.get_series_from_archive()` | Returns a list of series from the archive from Cricbuzz.               |
 | `.get_matches_by_day()`      | Returns a dictionary of matches by day from Cricbuzz.                  |
 | `.get_series_matches()`      | Returns a list of matches in a series from Cricbuzz.                   |
 | `.get_series_stats()`        | Returns a list of stats of players in a series from Cricbuzz.          |
@@ -475,13 +475,13 @@ shots = dribbble.Dribbble()
 
 | Methods               | Details                                                                                                                         |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `.get_shots()`        | Returns the latest shots along with their title, designer and designer url like and view count and link.                        |
-| `.search(topic)`      | Returns the latest shots along with their title, designer and designer url like and view count and link for the searched topic. |
-| `.get_animation()`    | Returns the latest animation along with their title, designer and designer url like and view count and link.                    |
-| `.get_branding()`     | Returns the latest branding along with their title, designer and designer url like and view count and link.                     |
-| `.get_illustration()` | Returns the latest illustration along with their title, designer and designer url like and view count and link.                 |
-| `.get_mobile()`       | Returns the latest mobile shots along with their title, designer and designer url like and view count and link.                 |
-| `.get_webdesign()`    | Returns the latest web-design shots along with their title, designer and designer url like and view count and link.             |
+| `.get_shots()`        | Returns the latest shots along with their title, designer, designer URL, like and view count, and link.                         |
+| `.search(topic)`      | Returns the latest shots along with their title, designer, designer URL, like and view count, and link for the searched topic.  |
+| `.get_animation()`    | Returns the latest animation along with their title, designer, designer URL, like and view count, and link.                     |
+| `.get_branding()`     | Returns the latest branding along with their title, designer, designer URL, like and view count, and link.                      |
+| `.get_illustration()` | Returns the latest illustration along with their title, designer, designer URL, like and view count, and link.                  |
+| `.get_mobile()`       | Returns the latest mobile shots along with their title, designer, designer URL, like and view count, and link.                  |
+| `.get_webdesign()`    | Returns the latest web-design shots along with their title, designer, designer URL, like and view count, and link.              |
 
 ---
 
@@ -497,14 +497,14 @@ Create an instance of `EazyDiner` class.
 restaurants = eazydiner.EazyDiner(location="city-name")
 ```
 
-| Methods                   | Details                                                                           |
-| ------------------------- | --------------------------------------------------------------------------------- |
-| `.get_restaurants()`      | Returns the restaurants name, location, rating, cuisine and prices.               |
-| `.get_breakfast()`        | Returns the restaurants name, location, rating, cuisine and prices for Breakfast. |
-| `.get_lunch()`            | Returns the restaurants name, location, rating, cuisine and prices for Lunch.     |
-| `.get_dinner()`           | Returns the restaurants name, location, rating, cuisine and prices for Dinner.    |
-| `.dinner_with_discount()` | Returns a list of restaurants from the entered location with a 50% offer.         |
-| `.get_top10()`            | Returns a list of the top 10 restaurants from a given city.                       |
+| Methods                   | Details                                                                             |
+| ------------------------- | ----------------------------------------------------------------------------------- |
+| `.get_restaurants()`      | Returns the restaurant's name, location, rating, cuisine, and prices.               |
+| `.get_breakfast()`        | Returns the restaurant's name, location, rating, cuisine, and prices for Breakfast. |
+| `.get_lunch()`            | Returns the restaurant's name, location, rating, cuisine, and prices for Lunch.     |
+| `.get_dinner()`           | Returns the restaurant's name, location, rating, cuisine, and prices for Dinner.    |
+| `.dinner_with_discount()` | Returns a list of restaurants from the entered location with a 50% offer.           |
+| `.get_top10()`            | Returns a list of the top 10 restaurants from a given city.                         |
 
 ---
 
@@ -565,10 +565,10 @@ item = flipkart.Flipkart()
 | `.TVs()`              | Returns the list of TV sets on flipkart                            |
 | `.bestseller_books()` | Returns the list of bestselling books data listed on Flipkart.     |
 | `.mobiles()`          | Returns the list of mobile phones under 50K along with their data. |
-| `.sport_shoes()`      | Returns the list of trendong sport shoes data.                     |
-| `.laptops()`          | Returns the list of laptop from flipkart.                          |
-| `.camera()`           | Returns the list of camera from flipkart.                          |
-| `.computer()`         | Returns the list of computer from flipkart.                        |
+| `.sport_shoes()`      | Returns the list of trending sport shoes data.                     |
+| `.laptops()`          | Returns the list of laptops from flipkart.                         |
+| `.camera()`           | Returns the list of cameras from flipkart.                         |
+| `.computer()`         | Returns the list of computers from flipkart.                       |
 | `.tablets()`          | Returns the list of tablets from flipkart.                         |
 | `.cycle()`            | Returns the list of bicycles from flipkart.                        |
 | `.printers()`         | Returns the list of printers from flipkart.                        |
@@ -590,13 +590,13 @@ cloth = flipkart.FlipkartClothing()
 
 | Methods                    | Details                                                        |
 | -------------------------- | -------------------------------------------------------------- |
-| `.scrape()`                | Returns the list of t-shirts with other relevant info          |
+| `.scrape()`                | Returns the list of t-shirts with other relevant info.         |
 | `.range()`                 | Returns the list of t-shirts between a particular price range. |
-| `.minrating()`             | Returns the list of t-shirts havinga minimum given rating.     |
+| `.minrating()`             | Returns the list of t-shirts having a minimum given rating.    |
 | `.gendermale()`            | Returns the list of t-shirts which are for males.              |
-| `.genderfemale()`          | Returns the list of t-shirts which are there for females.      |
-| `.size()`                  | Returns the list of tshirts havning a particular size.         |
-| `formal_shirts_for_male()` | It returns those t-shirts which are of a particular size       |
+| `.genderfemale()`          | Returns the list of t-shirts that are there for females.       |
+| `.size()`                  | Returns the list of t-shirts having a particular size.         |
+| `formal_shirts_for_male()` | It returns those t-shirts which are of a particular size.      |
 
 ---
 
@@ -610,7 +610,7 @@ item = flipkart.FlipkartLaptops()
 
 | Methods      | Details                                  |
 | ------------ | ---------------------------------------- |
-| `.laptops()` | Returns the list of laptops with details |
+| `.laptops()` | Returns the list of laptops with details.|
 
 ---
 
@@ -628,8 +628,8 @@ flyrobu = flyrobu.Flyrobu()
 
 | Methods                              | Details                                                                                                         |
 | ------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
-| `.search(keyword)`                   | Returns the json data of all the details related to search with informing about the total amount of items found |
-| `.get_product_details(product_name)` | Returns the json data of the product details based on the given `product_name`                                  |
+| `.search(keyword)`                   | Returns the json data of all the details related to search by informing about the total amount of items found.  |
+| `.get_product_details(product_name)` | Returns the json data of the product details based on the given `product_name`.                                 |
 
 ---
 
@@ -677,12 +677,12 @@ Create an instance of `Movie` class.
 movie = imdb.Movie(movie_name)
 ```
 
-| Methods          | Details                                                  |
-| ---------------- | -------------------------------------------------------- |
-| `.rating()`      | Returns the IMDB rating of the movie                     |
-| `.description()` | Returns the description, cast and director of the movie  |
-| `.more_movies()` | Returns similar movies recommended by IMDB               |
-| `.box_office()`  | Returns budget, gross worldwide collections of the movie |
+| Methods          | Details                                                   |
+| ---------------- | --------------------------------------------------------- |
+| `.rating()`      | Returns the IMDB rating of the movie.                     |
+| `.description()` | Returns the description, cast, and director of the movie. |
+| `.more_movies()` | Returns similar movies recommended by IMDB.               |
+| `.box_office()`  | Returns budget, gross worldwide collections of the movie. |
 
 #### IMDB - Actor
 
@@ -692,11 +692,11 @@ Create an instance of `Actor` class.
 actor = imdb.Actor(actor_name)
 ```
 
-| Methods             | Details                                                 |
-| ------------------- | ------------------------------------------------------- |
-| `.popular_movies()` | Returns the popular movies in which the actor has acted |
-| `.all_movies()`     | Returns all movies acted in and upcoming movies         |
-| `.awards()`         | Returns the number of awards and nominations            |
+| Methods             | Details                                                  |
+| ------------------- | -------------------------------------------------------- |
+| `.popular_movies()` | Returns the popular movies in which the actor has acted. |
+| `.all_movies()`     | Returns all movies acted in, and upcoming movies.        |
+| `.awards()`         | Returns the number of awards and nominations.            |
 
 #### IMDB - Celeb
 
@@ -706,9 +706,9 @@ Create an instance of `Celeb` class.
 celeb = imdb.Celeb()
 ```
 
-| Methods         | Details                                            |
-| --------------- | -------------------------------------------------- |
-| `.top_celebs()` | Returns the name, roles, famous movie of the celeb |
+| Methods         | Details                                                |
+| --------------- | ------------------------------------------------------ |
+| `.top_celebs()` | Returns the name, roles, and famous movie of the celeb.|
 
 #### IMDB - Indian Movies
 
@@ -720,7 +720,7 @@ indianmovies = imdb.IndianMovies()
 
 | Methods                | Details                                       |
 | ---------------------- | --------------------------------------------- |
-| `.top_indian_movies()` | Returns the current list of top Indian movies |
+| `.top_indian_movies()` | Returns the current list of top Indian movies.|
 
 #### IMDB - Box Office
 
@@ -730,6 +730,6 @@ Create an instance of `BoxOffice` class.
 boxoffice = imdb.BoxOffice()
 ```
 
-| Methods         | Details                                                                       |
-| --------------- | ----------------------------------------------------------------------------- |
-| `.top_movies()` | Returns the top box office movies, weekend and total gross and weeks released |
+| Methods         | Details                                                                        |
+| --------------- | ------------------------------------------------------------------------------ |
+| `.top_movies()` | Returns the top box office movies, weekend and total gross, and weeks released.|
