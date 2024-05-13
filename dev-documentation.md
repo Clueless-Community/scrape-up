@@ -1615,6 +1615,14 @@ First create an object of class `Dictionary`.
 | `.get_word_of_the_day()`        | Returns the word of the day.                   |
 | `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+| Methods          | Details                                                                                      |
+| ---------------- | -------------------------------------------------------------------------------------------- |
+| `.get_word_of_the_day()`       | Returns the word of the day. |
+| `.word_of_the_day_definition()`    | Returns the definition of the word of the day.
+>>>>>>> ece18c0 (Formatting and checks.)
 --------
 
 
@@ -1643,6 +1651,7 @@ scraper.scrape_companies()
 | --------------- | ----------------------------------------------------------------------------- |
 <<<<<<< HEAD
 | `.scrape_companies()` | Returns the company name with the rating. |
+<<<<<<< HEAD
 
 ---
 
@@ -1675,3 +1684,8 @@ The `Jobs` class provides methods for configuring scraping parameters and fetchi
 =======
 | `.scrape_companies()` | Returns the company name with the rating |
 >>>>>>> a609edf (updated ambitionbox dev-doc.md file)
+=======
+=======
+---
+>>>>>>> 2593059 (Formatting and checks.)
+>>>>>>> ece18c0 (Formatting and checks.)
