@@ -756,3 +756,25 @@ trek=Indiantrekking("hidden-lakes-of-kashmir")
  |`destination()`                |  return name of the place.                                                              |
  |`trip_fact()`                  |  returns the trip duration, destination, altitude and the season good for trekking      |
  |`outline_day_to_day_itinerary` |  returns the ouline of the day to day itinerary                                         |
+ ---
+
+#### AmbitonBx 
+
+Create an directory with name ambitonbox
+created a python which consist the code for scarping the website 
+
+```python
+# Example usage
+from scrape_up import ambitionBox
+
+num_pages_to_scrape = 2  
+
+scraper = ambitionBox.Comapiens(num_pages_to_scrape)
+
+scraper.scrape_companies()
+
+```
+
+| Methods         | Details                                                                       |
+| --------------- | ----------------------------------------------------------------------------- |
+| `.scrape_companies()` | Returns the company name with the rating |
