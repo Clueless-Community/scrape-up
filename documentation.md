@@ -528,6 +528,25 @@ espn = espn.ESPN()
 
 ---
 
+### ESPNCricinfo
+
+```py
+from scrape_up import espncricinfo
+```
+
+Create an instance of `Espncricinfo` class.
+
+```python
+	obj = espncricinfo.Espncricinfo()
+```
+
+| Methods                      | Details                                                                  |
+| ---------------------------- | ------------------------------------------------------------------------ |
+| `.get_news()`                | Returns a latest news from ESPNCricinfo.                                 |
+| `.get_livescores()`          | Returns a list of live matches from ESPNCricinfo.                        |
+
+---
+
 ### eBay
 
 ```py

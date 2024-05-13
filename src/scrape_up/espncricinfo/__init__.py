@@ -1,3 +1,3 @@
-from .espncricinfo import espncricinfo
+from .espncricinfo import Espncricinfo
 
-__all__ = ["espncricinfo"]
+__all__ = ["Espncricinfo"]

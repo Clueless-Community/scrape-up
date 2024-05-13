@@ -1,18 +1,19 @@
 import requests
 from bs4 import BeautifulSoup
 
-class espncricinfo:
+class Espncricinfo:
+	
 
 	BASE_URL = "https://www.espncricinfo.com"
 
 	def __init__(self):
-        self.session = requests.Session()
+		self.session = requests.Session()
 
-   	def get_news(self):
-   		news = []
-		URL = BASE_URL + "/cricket-news"
+	def get_news(self):
+		news = []
+		URL = self.BASE_URL + "/cricket-news"
 		try:
-			res = session.get(URL)
+			res = self.session.get(URL)
 			if res.status_code != 200:
 				return [{"error": "Unable to fetch data from ESPN"}]
 			soup = BeautifulSoup(res.text, "html.parser")
@@ -25,14 +26,13 @@ class espncricinfo:
 				news.append(details)
 			return news
 		except:
-			return None
+			return news
 
-   	def get_livescores(self):
+	def get_livescores(self):
 		live_scores = []
-		URL = BASE_URL + "/live-cricket-score"
+		URL = self.BASE_URL + "/live-cricket-score"
 		try:
-			session = requests.Session()
-			res = session.get(URL)
+			res = self.session.get(URL)
 			if res.status_code != 200:
 				return [{"error": "Unable to fetch data from ESPN"}]
 			soup = BeautifulSoup(res.text, "html.parser")
@@ -67,4 +67,4 @@ class espncricinfo:
 					live_scores.append(match_details)
 			return live_scores
 		except:
-			return None
+			return live_scores
