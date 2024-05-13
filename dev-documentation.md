@@ -1687,5 +1687,21 @@ The `Jobs` class provides methods for configuring scraping parameters and fetchi
 =======
 =======
 ---
+<<<<<<< HEAD
 >>>>>>> 2593059 (Formatting and checks.)
+<<<<<<< HEAD
 >>>>>>> ece18c0 (Formatting and checks.)
+=======
+=======
+
+## Geeksforgeeks
+
+First create an object of class `Geeksforgeeks`.
+
+| Methods                         | Details                                        |
+| ------------------------------- | ---------------------------------------------- |
+| `.get_profile()`                | Returns the user data in json format.          |
+
+---
+>>>>>>> fe11717 (Added doumentation in dev-documentation)
+>>>>>>> 10b64f3 (Added doumentation in dev-documentation)
