@@ -16,7 +16,7 @@ class Geeksforgeeks:
 
     output:
     {
-    "username": "gouravpandey_07",
+    "username": "22cs3iehq",
     "collage_name": "Rajiv Gandhi Institute of Petroleum Technology (RGIPT) Rae Bareli",
     "collage_rank": "1",
     "score": {
