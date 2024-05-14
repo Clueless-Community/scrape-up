@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 from time import sleep
-import json
 
 
 class Jobs:
@@ -76,7 +75,7 @@ class Jobs:
                 job_sub_list.append(job)
             return job_sub_list
         else:
-            raise ConnectionError(f"Error code: {response.status_code}")
+            raise None
 
     def fetch_jobs(self, max_page_number=50):
         """
@@ -117,7 +116,7 @@ class Jobs:
 
     def __get_job_location(self, job_data):
         data = job_data.find("span", {"class": "css-5wys0k"})
-        return data.text.strip() if data else "NA"
+        return data.text.strip() if data else None
 
     def __get_published_time(self, job_data):
         return (
@@ -129,16 +128,4 @@ class Jobs:
         job_properties_string = " ,".join(
             [prop.text for prop in job_data.find_all("span", {"class": "eoyjyou0"})]
         )
-        return job_properties_string if job_properties_string else "NA"
-
-
-
-def main():
-    scraper = Jobs()
-    scraper.filter_job(title="software engineer")
-    jobs = scraper.fetch_jobs(max_page_number=5)
-    print(jobs)
-
-
-if __name__ == "__main__":
-    main()
+        return job_properties_string if job_properties_string else None

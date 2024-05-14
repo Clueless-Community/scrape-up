@@ -1615,11 +1615,8 @@ First create an object of class `Dictionary`.
 | `.get_word_of_the_day()`        | Returns the word of the day.                   |
 | `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
 
-| Methods          | Details                                                                                      |
-| ---------------- | -------------------------------------------------------------------------------------------- |
-| `.get_word_of_the_day()`       | Returns the word of the day. |
-| `.word_of_the_day_definition()`    | Returns the definition of the word of the day.
---------
+---
+
 ## Wuzzuf
 
 ```python
@@ -1629,7 +1626,7 @@ jobs = wuzzuf.Jobs()
 
 The `Jobs` class provides methods for configuring scraping parameters and fetching job listings:
 
-| Methods               | Details                                                                                             |
-| --------------------- | --------------------------------------------------------------------------------------------------- |
-| `.filter_job()`        | Apply filters such as job title, country, city, and range of years of experience.                   |
-| `.fetch_jobs()`        | Fetch job listings from the website based on the applied filters, across multiple pages.            |
+| Methods         | Details                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
+| `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
