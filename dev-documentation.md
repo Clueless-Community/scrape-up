@@ -774,10 +774,10 @@ posts = Devpost()
 ```
 
 | Methods             | Details                                                                                                              |
-| -----------------   | -------------------------------------------------------------------------------------------------------------------- |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `.get_projects()`   | Returns the latest projects along with their decription, like and commment count, image and member details.          |
 | `.search(topic)`    | Returns the searched projects along with their decription, like and commment count, image and member details.        |
-| `.get_hackathons()` | Returns the latest hackathons along with their title, participants, prizes, deadlines.						         |
+| `.get_hackathons()` | Returns the latest hackathons along with their title, participants, prizes, deadlines.                               |
 | `.get_featured()`   | Returns the latest featured projects along with their decription, like and commment count, image and member details. |
 | `.get_winner()`     | Returns the latest winning projects along with their decription, like and commment count, image and member details.  |
 
@@ -1189,10 +1189,10 @@ yf = YahooFinance()
 
 # BBC News
 
-First create an object of class `User`
+First create an object of class `BBCNews`
 
 ```python
-user = instagram.Users(username="nikhil25803")
+bbc_scraper = BBCNews()
 ```
 
 | Methods            | Details                                                  |
@@ -1471,7 +1471,7 @@ academia = Academia()
 
 | Method                        | Details                                                               |
 | ----------------------------- | --------------------------------------------------------------------- |
-| `get_research_topics(letter)` | Fetches and returns research topics starting with the given letter.   |
+| `get_research_topics()`       | Fetches and returns research topics.                                  |
 | `get_research_papers(search)` | Fetches and returns research papers related to the given search term. |
 
 ---
@@ -1569,7 +1569,6 @@ olympics = Olympics()
 | `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
 | `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
 
-
 ---
 
 ## Codeforces
@@ -1591,7 +1590,7 @@ Methods
 | `.get_user_data(username)` | Fetches user data from CodeForces. |
 ```
 
---------------------
+---
 
 ## 88x31 Banners
 
@@ -1604,15 +1603,67 @@ scraper = Scraper88x31()
 | Methods      | Details                                         |
 | ------------ | ----------------------------------------------- |
 | `.get_all()` | Returns the list of all available 88x31 banners |
------
+
+---
 
 ## Dictionary.com
 
 First create an object of class `Dictionary`.
 
+| Methods                         | Details                                        |
+| ------------------------------- | ---------------------------------------------- |
+| `.get_word_of_the_day()`        | Returns the word of the day.                   |
+| `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
 
-| Methods          | Details                                                                                      |
-| ---------------- | -------------------------------------------------------------------------------------------- |
-| `.get_word_of_the_day()`       | Returns the word of the day. |
-| `.word_of_the_day_definition()`    | Returns the definition of the word of the day.
 --------
+
+
+#### AmbitionBx 
+
+Create an directory with name ambitonbox
+created a python which consist the code for scarping the website 
+
+```python
+# Example usage
+from scrape_up import ambitionBox
+
+num_pages_to_scrape = 2  
+
+scraper = ambitionBox.Comapiens(num_pages_to_scrape)
+
+scraper.scrape_companies()
+
+```
+
+| Methods         | Details                                                                       |
+| --------------- | ----------------------------------------------------------------------------- |
+| `.scrape_companies()` | Returns the company name with the rating. |
+
+---
+
+## Geeksforgeeks
+
+First create an object of class `Geeksforgeeks`.
+```python
+geeksforgeeks = Geeksforgeeks(user="username")
+```
+
+| Methods                         | Details                                        |
+| ------------------------------- | ---------------------------------------------- |
+| `.get_profile()`                | Returns the user data in json format.          |
+
+---
+
+## Wuzzuf
+
+```python
+from scrap-up import wuzzuf
+jobs = wuzzuf.Jobs()
+```
+
+The `Jobs` class provides methods for configuring scraping parameters and fetching job listings:
+
+| Methods         | Details                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
+| `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
