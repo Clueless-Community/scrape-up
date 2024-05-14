@@ -11,7 +11,7 @@ class Coursera:
     ```
     | Methods                               | Details                                                                                    |
     | ------------------------------------- | ------------------------------------------------------------------------------------------ |
-    | `.get_courses()`                       | Returns the courses with title, teached by, skills, rating, review count, img url and link |
+    | `.get_courses()`                       | Returns the courses with title, taught by, skills, rating, review count, img url and link |
     | `.fetchModules(course='Course Name')` | Returns the modules associated with the Coursera.                                          |
     """
 
@@ -31,7 +31,7 @@ class Coursera:
         [
             {
                 "title": Title of the course
-                "teached_by": Organization which teaches the course
+                "taught_by": Organization which teaches the course
                 "skills": Skills learnt from the course
                 "rating": Rating of the course
                 "review_count": Np. of review of the course
@@ -47,34 +47,36 @@ class Coursera:
             res = requests.get(url)
             soup = BeautifulSoup(res.text, "html.parser")
 
-            courses_data = {"courses": []}
-
-            courses = soup.find_all("div", class_="css-1cj5od")
+            courses_data = []
+            courses = soup.find_all("div", class_="css-1evtm7z")
 
             for c in courses:
                 try:
-                    title = c.find("h2", class_="cds-119 css-h1jogs cds-121").getText()
-                    teached_by = c.find(
-                        "span", class_="cds-119 css-1mru19s cds-121"
+                    title = c.find("a").getText()
+                    taught_by = c.find(
+                        "p", class_="cds-ProductCard-partnerNames css-vac8rf"
                     ).getText()
-                    skills = c.find("p", class_="cds-119 css-12ksubz cds-121").getText()
-                    rating = c.find("p", class_="cds-119 css-11uuo4b cds-121").getText()
+                    skills = c.find(
+                        "div", class_="cds-CommonCard-bodyContent"
+                    ).p.getText()[20:]
+                    review_div = c.find("div", class_="product-reviews css-pn23ng")
+                    rating = review_div.find("p", class_="css-2xargn").getText()
                     review_count = (
-                        c.find("p", class_="cds-119 css-dmxkm1 cds-121")
+                        review_div.find("p", class_="css-vac8rf")
                         .getText()
                         .replace("(", "")
                         .replace(")", "")
                     )
-                    img = c.find("div", class_="css-1doy6bd")
+                    img = c.find("div", class_="cds-CommonCard-previewImage")
                     img_url = img.find("img")["src"]
                     link = "https://www.coursera.org" + c.find("a")["href"]
                 except:
                     pass
 
-                courses_data["courses"].append(
+                courses_data.append(
                     {
                         "title": title,
-                        "teached_by": teached_by,
+                        "taught_by": taught_by,
                         "skills": skills,
                         "rating": rating,
                         "review_count": review_count,
@@ -82,7 +84,7 @@ class Coursera:
                         "link": link,
                     }
                 )
-            return courses_data["courses"]
+            return courses_data
         except:
             return None
 
@@ -92,15 +94,31 @@ class Coursera:
         Example:
         ```
         courses = Coursera(topic="ml")
-        courses.fetch_modules()
+        courses.fetch_modules(course="Machine Learning with Python)
         ```
+        Note: Some courses have specializations instead of modules. Make sure the code works for both.
+
         Returns:
+        For modules:
         ```js
-        [ modules ]
+        {
+            "Module 1": Name of the first module
+        }
+        ```
+
+        For specializations:
+        ```js
+        {
+            "Specialization 1": {
+                                    Title: Name of the specialization
+                                    Link: Link to the specialization page
+                                }
+        }
         ```
         """
+
         courseList = self.get_courses()
-        global ccourseURL
+        global courseURL
         for i in courseList:
             if i["title"] == course:
                 courseURL = i["link"]
@@ -115,22 +133,28 @@ class Coursera:
                         "data"
                     ]["product"]
 
-                modules = soup.find_all("div", class_="SyllabusModule")
-                modules_data = []
-                for m in modules:
-                    mod = m.find("h3", class_="headline-2-text bold m-b-2").getText()
-                    modules_data.append(mod)
+                type = "Module"
+                module_section = soup.find("div", id="modules")
+                if module_section == None:
+                    module_section = soup.find("div", id="courses")
+                    type = "Specialization"
+                modules = module_section.find_all(
+                    "div", attrs={"data-testid": "accordion-item"}
+                )
+                modules_data = {}
 
-                if modules_data == []:
-                    modules = soup.find_all("div", class_="css-13tws8d")
-                    for m in modules:
-                        mod = m.find(
-                            "a", class_="cds-119 cds-113 cds-115 css-1uw69sh cds-142"
-                        ).getText()
-                        modules_data.append(mod)
-
+                for index, m in enumerate(modules):
+                    if type == "Module":
+                        # For modules
+                        mod = m.find("h3").getText()
+                    else:
+                        # For specializations
+                        mod = {}
+                        mod["Title"] = m.find("h3").getText()
+                        mod["Link"] = "https://www.coursera.org" + m.find("a")["href"]
+                    modules_data[f"{type} {index+1}"] = mod
                 return modules_data
             else:
-                return "Server Error. Retry"
+                return None
         except:
-            return "No modules for this course"
+            return None
