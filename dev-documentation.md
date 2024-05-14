@@ -1653,3 +1653,17 @@ geeksforgeeks = Geeksforgeeks(user="username")
 | `.get_profile()`                | Returns the user data in json format.          |
 
 ---
+
+## Wuzzuf
+
+```python
+from scrap-up import wuzzuf
+jobs = wuzzuf.Jobs()
+```
+
+The `Jobs` class provides methods for configuring scraping parameters and fetching job listings:
+
+| Methods         | Details                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
+| `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
