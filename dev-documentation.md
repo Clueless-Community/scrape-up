@@ -1616,3 +1616,14 @@ First create an object of class `Dictionary`.
 | `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
 
 ---
+
+## Indeed
+
+First create an object of class `Indeed`.
+
+| Methods                         | Details                                        |
+| ------------------------------- | ---------------------------------------------- |
+| `.get_url()`        | Returns the word of the day.                   |
+| `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
+
+---
