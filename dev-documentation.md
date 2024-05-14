@@ -1616,7 +1616,10 @@ First create an object of class `Dictionary`.
 | `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 7521f38 (Formatting and check.)
 <<<<<<< HEAD
 | Methods          | Details                                                                                      |
 | ---------------- | -------------------------------------------------------------------------------------------- |
@@ -1709,6 +1712,10 @@ First create an object of class `Geeksforgeeks`.
 >>>>>>> 10b64f3 (Added doumentation in dev-documentation)
 =======
 =======
+=======
+---
+
+>>>>>>> 9caa54c (Formatting and check.)
 ## Wuzzuf
 
 ```python
@@ -1718,9 +1725,19 @@ jobs = wuzzuf.Jobs()
 
 The `Jobs` class provides methods for configuring scraping parameters and fetching job listings:
 
+<<<<<<< HEAD
 | Methods               | Details                                                                                             |
 | --------------------- | --------------------------------------------------------------------------------------------------- |
 | `.filter_job()`        | Apply filters such as job title, country, city, and range of years of experience.                   |
 | `.fetch_jobs()`        | Fetch job listings from the website based on the applied filters, across multiple pages.            |
 >>>>>>> fb92a26 (update dev-documentation.md with wuzzuf module)
+<<<<<<< HEAD
 >>>>>>> 57043b1 (update dev-documentation.md with wuzzuf module)
+=======
+=======
+| Methods         | Details                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
+| `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
+>>>>>>> 9caa54c (Formatting and check.)
+>>>>>>> 7521f38 (Formatting and check.)
