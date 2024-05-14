@@ -1620,10 +1620,16 @@ First create an object of class `Dictionary`.
 ## Indeed
 
 First create an object of class `Indeed`.
+```python
+from scrape_up import indeed
 
-| Methods                         | Details                                        |
-| ------------------------------- | ---------------------------------------------- |
-| `.get_url()`        | Returns the word of the day.                   |
-| `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
+indeed_job = indeed.get_url(positon="business manager",location="Geneva")
+indeed_job.get_record()
+```
 
+ | Methods                | Details                                                                                          |
+ | ---------------------- | ------------------------------------------------------------------------------------------------ |
+ | `.get_url()`           | Returns the URL of the job having a specific position and location.                              |
+ | `.get_record()`        | Returns the company details like job title, company name, location, job post date, and salary.   |
+ 
 ---
