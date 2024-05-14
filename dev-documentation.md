@@ -1618,7 +1618,7 @@ First create an object of class `Dictionary`.
 --------
 
 
-#### AmbitonBx 
+#### AmbitionBx 
 
 Create an directory with name ambitonbox
 created a python which consist the code for scarping the website 
