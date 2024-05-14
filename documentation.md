@@ -735,23 +735,3 @@ boxoffice = imdb.BoxOffice()
 | `.top_movies()` | Returns the top box office movies, weekend and total gross and weeks released |
 
 
-#### AmbitonBx 
-
-Create an directory with name ambitonbox
-created a python which consist the code for scarping the website 
-
-```python
-# Example usage
-from scrape_up import ambitionBox
-
-num_pages_to_scrape = 2  
-
-scraper = ambitionBox.Comapiens(num_pages_to_scrape)
-
-scraper.scrape_companies()
-
-```
-
-| Methods         | Details                                                                       |
-| --------------- | ----------------------------------------------------------------------------- |
-| `.scrape_companies()` | Returns the company name with the rating |

@@ -1616,3 +1616,25 @@ First create an object of class `Dictionary`.
 | `.get_word_of_the_day()`       | Returns the word of the day. |
 | `.word_of_the_day_definition()`    | Returns the definition of the word of the day.
 --------
+
+
+#### AmbitonBx 
+
+Create an directory with name ambitonbox
+created a python which consist the code for scarping the website 
+
+```python
+# Example usage
+from scrape_up import ambitionBox
+
+num_pages_to_scrape = 2  
+
+scraper = ambitionBox.Comapiens(num_pages_to_scrape)
+
+scraper.scrape_companies()
+
+```
+
+| Methods         | Details                                                                       |
+| --------------- | ----------------------------------------------------------------------------- |
+| `.scrape_companies()` | Returns the company name with the rating |
