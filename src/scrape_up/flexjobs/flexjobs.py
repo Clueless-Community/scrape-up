@@ -4,49 +4,61 @@ from bs4 import BeautifulSoup
 
 class FlexJobs:
     """
-    A class to scrape job listings from FlexJobs website based on search query and location.
+    Create an instance of `FlexJobs` class with the name of the flex_jobs.
+
+    ```python
+    # Create a FlexJobs instance
+    flex_jobs = FlexJobs(search_query, location_query, min_jobs)
+    # flex_jobs = FlexJobs(search_query)
+    # flex_jobs = FlexJobs(search_query, location_query)
+    # flex_jobs = FlexJobs(search_query, min_jobs=10)
+
+    # Get job listings
+    jobs = flex_jobs.get_jobs()
+    ```
 
     Attributes:
-        search_query (str): The search query to filter job listings.
-        location_query (str): The location query to filter job listings (optional, defaults to '').
-        min_jobs (int): The maximum number of job listings to retrieve (optional, defaults to 100).
+    | Attribute         | Optional | Details                                        |
+    |-------------------|----------|------------------------------------------------|
+    | `search_query`    | No       | The search query for job listings              |
+    | `location_query`  | Yes      | The location query for job listings            |
+    | `min_jobs`        | Yes      | The minimum number of job listings to retrieve |
 
-    # Instantiate FlexJobs class with search query
-    flexjobs = FlexJobs("python developer")
-
-    # Optionally, specify location query and maximum number of job listings
-    # flexjobs = FlexJobs("python developer", "New York", min_jobs=50)
-
-    # flexjobs = FlexJobs("python developer", min_jobs=150)
-
-    # Retrieve job listings
-    jobs = flexjobs.get_jobs()
-
-    # Print job details
-    for job in jobs:
-        print(job)
-
+    Methods:
+    | Method                          | Details                                                                  |
+    |---------------------------------|--------------------------------------------------------------------------|
+    | `.get_jobs()`                   | Returns a list of job listings based on the search and location queries. |
+    | `.scrape_job_info(job_listing)` | Extracts job details from a given job listing HTML element               |
     """
 
     def __init__(self, search_query: str, location_query: str = '', min_jobs: int = 100):
-        """
-        Initializes the FlexJobs class with search query, location query, and maximum number of job listings.
-
-        Args:
-            search_query (str): The search query to filter job listings.
-            location_query (str): The location query to filter job listings (optional, defaults to '').
-            min_jobs (int): The maximum number of job listings to retrieve (optional, defaults to 100).
-        """
         self.search_query = search_query
         self.location_query = location_query
         self.min_jobs = min_jobs
 
     def get_jobs(self):
         """
-        Retrieves job listings from FlexJobs website based on search and location queries.
+        Retrieves job listings based on the search and location queries.
 
         Returns:
-            list: A list of dictionaries containing job details.
+        list: A list of dictionaries, each containing details of a job listing.
+        ```js
+        [
+            {
+                'title': 'Contract Administrator',
+                'location': 'Springboro, OH',
+                'link': 'https://www.flexjobs.com//HostedJob.aspx?id=2061188',
+                'posted_day': '13 days ago',
+                'remote': 'Hybrid Remote Work',
+                'schedule': 'Full-Time',
+                'job_type': 'Freelance',
+                'salary': 'A range of 70,000.00 - 90,000.00 USD Annually',
+                'description': 'Coordinate and administer construction contracts, prepare bid documentation, manage purchase orders and subcontracts, manage certificates of insurance and bonds, and liaise with internal teams, clients, and subcontractors.',
+            },
+            {...},
+            {...},
+        ]
+        ```
         """
         # Formatting search and location queries for URL
         search = self.search_query.strip().replace(' ', '%20')
@@ -82,13 +94,26 @@ class FlexJobs:
 
     def scrape_job_info(self, job_listing):
         """
-        Extracts job details from a job listing HTML element.
+        Extracts job details from a given job listing HTML element.
 
         Args:
-            job_listing (BeautifulSoup.element.Tag): HTML element containing job listing information.
+        job_listing: BeautifulSoup HTML element representing a job listing.
 
         Returns:
-            dict: A dictionary containing job details.
+        dict: A dictionary containing details of the extracted job.
+        ```js
+        {
+            'title': 'Contract Administrator',
+            'location': 'Springboro, OH',
+            'link': 'https://www.flexjobs.com//HostedJob.aspx?id=2061188',
+            'posted_day': '13 days ago',
+            'remote': 'Hybrid Remote Work',
+            'schedule': 'Full-Time',
+            'job_type': 'Freelance',
+            'salary': 'A range of 70,000.00 - 90,000.00 USD Annually',
+            'description': 'Coordinate and administer construction contracts, prepare bid documentation, manage purchase orders and subcontracts, manage certificates of insurance and bonds, and liaise with internal teams, clients, and subcontractors.',
+        }
+        ```
         """
         # Extracting job details from HTML elements
         job_title_element = job_listing.find('a', id=lambda x: x and x.startswith('job-name-'))

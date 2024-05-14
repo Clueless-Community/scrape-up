@@ -420,6 +420,48 @@ infosys = StockPrice('infosys','nse')
 
 ---
 
+### FlexJobs
+
+#### Overview
+
+The `FlexJobs` class allows scraping job listings from the FlexJobs website based on search query and location.
+
+#### Attributes
+
+| Attribute        | Description                                                                   |
+|------------------|-------------------------------------------------------------------------------|
+| `search_query`   | The search query to filter job listings.                                      |
+| `location_query` | The location query to filter job listings (defaults to '').                   |
+| `min_jobs`       | The maximum number of job listings to retrieve (defaults to 100).             |
+
+#### Methods
+
+| Method                                          | Description                                                                           |
+|-------------------------------------------------|---------------------------------------------------------------------------------------|
+| `__init__(search_query: str, location_query: str = '', min_jobs: int = 100)` | Initializes the FlexJobs class with search query, location query, and maximum number of job listings. |
+| `get_jobs() -> list`                           | Retrieves job listings from FlexJobs website based on search and location queries. Returns a list of dictionaries containing job details. |
+| `scrape_job_info(job_listing) -> dict`         | Extracts job details from a job listing HTML element.                                   |
+
+#### Example Usage
+
+```python
+# Instantiate FlexJobs class with search query
+flexjobs = FlexJobs("python developer")
+
+# Optionally, specify location query and maximum number of job listings
+# flexjobs = FlexJobs("python developer", "New York", min_jobs=50)
+# flexjobs = FlexJobs("python developer", min_jobs=150)
+
+# Retrieve job listings
+jobs = flexjobs.get_jobs()
+
+# Print job details
+for job in jobs:
+    print(job)
+```
+
+---
+
 ## IMDb
 
 Create an instance of the `IMDB` class.
