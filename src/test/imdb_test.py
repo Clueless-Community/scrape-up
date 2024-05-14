@@ -1,5 +1,5 @@
 import unittest
-from scrape_up import imdb
+from scrape_up.imdb import IMDB
 
 class IMDBTest(unittest.TestCase):
     """
@@ -12,7 +12,7 @@ class IMDBTest(unittest.TestCase):
     """
 
     def setUp(self):
-        self.scraper = imdb()
+        self.scraper = IMDB()
 
     def test_top_rated(self):
         response = self.scraper.top_rated()
