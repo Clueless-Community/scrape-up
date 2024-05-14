@@ -1150,9 +1150,10 @@ user = Codechef(id="username")
 
 ```
 
-| Methods         | Details                                                          |
-| --------------- | ---------------------------------------------------------------- |
-| `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
+| Methods         | Details                                                                   |
+| --------------- | ------------------------------------------------------------------------- |
+| `get_profile()` | Returns name, username, profile_image_link, rating, details etc.          |
+| `get_contests()`| Returns future_contests , past_contests , skill_tests etc in json format. |
 
 ---
 
