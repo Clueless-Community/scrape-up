@@ -546,6 +546,8 @@ quora = ebay.eBay()
 | `.featured()`       | Returns the featured deals on eBay. |
 | `.specific_deals()` | Returns the specific deals on eBay. |
 
+---
+
 ### Flipkart
 
 ```py
