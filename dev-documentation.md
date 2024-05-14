@@ -1637,4 +1637,4 @@ scraper.scrape_companies()
 
 | Methods         | Details                                                                       |
 | --------------- | ----------------------------------------------------------------------------- |
-| `.scrape_companies()` | Returns the company name with the rating |
+| `.scrape_companies()` | Returns the company name with the rating. |
