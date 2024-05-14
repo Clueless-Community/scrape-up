@@ -1618,7 +1618,11 @@ First create an object of class `Dictionary`.
 --------
 
 
+<<<<<<< HEAD
 #### AmbitionBx 
+=======
+#### AmbitonBx 
+>>>>>>> a609edf (updated ambitionbox dev-doc.md file)
 
 Create an directory with name ambitonbox
 created a python which consist the code for scarping the website 
@@ -1637,6 +1641,7 @@ scraper.scrape_companies()
 
 | Methods         | Details                                                                       |
 | --------------- | ----------------------------------------------------------------------------- |
+<<<<<<< HEAD
 | `.scrape_companies()` | Returns the company name with the rating. |
 
 ---
@@ -1667,3 +1672,6 @@ The `Jobs` class provides methods for configuring scraping parameters and fetchi
 | --------------- | ---------------------------------------------------------------------------------------- |
 | `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
 | `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
+=======
+| `.scrape_companies()` | Returns the company name with the rating |
+>>>>>>> a609edf (updated ambitionbox dev-doc.md file)
