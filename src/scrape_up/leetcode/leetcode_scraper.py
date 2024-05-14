@@ -145,9 +145,7 @@ class LeetCode:
         try:
             total_problems = soup.find(
                 "div",
-                {
-                    "class": "text-[30px] font-semibold leading-[32px]"
-                },
+                {"class": "text-[30px] font-semibold leading-[32px]"},
             )
             return {
                 "data": total_problems.text,
