@@ -1,20 +1,16 @@
 import requests
 from bs4 import BeautifulSoup
 
-
-class Comapiens:  
-    def __init__(self,num_pages: int=1):
+class Companies:
+    def __init__(self, num_pages: int = 1):
         self.num_pages = num_pages
 
-    def write_sorted_list(self, file, company_list):
-
+    def print_sorted_list(self, company_list):
         company_list.sort(key=lambda x: x[1], reverse=True)
         for company_name, rating in company_list:
-            file.write(f"{company_name.strip()} {rating}\n")
+            print(f"{company_name.strip()} {rating}")
 
     def scrape_companies(self):
-
-
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
         }
@@ -27,9 +23,7 @@ class Comapiens:
 
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, 'lxml')
-
                 companies = soup.find_all('div', class_="companyCardWrapper")
-
                 company_ratings = []
 
                 for company in companies:
@@ -43,27 +37,21 @@ class Comapiens:
                         except ValueError:
                             print(f"Error parsing rating for company: {company_name}")
 
-                with open("src/scrape_up/ambitionBox/company_ratings.txt", "a") as f:
-                    f.write(f"\nPAGE: {url}\n")
-                    f.write("COMPANY UNDER 5 STAR\n")
-                    self.write_sorted_list(f, [r for r in company_ratings if 4 < r[1] <= 5])
+                print(f"\nPAGE: {url}\n")
+                print("COMPANIES WITH 5 STARS\n")
+                self.print_sorted_list([r for r in company_ratings if 4 < r[1] <= 5])
 
-                    f.write("\nCOMPANY UNDER 4 STAR\n")
-                    self.write_sorted_list(f, [r for r in company_ratings if 3 < r[1] <= 4])
+                print("\nCOMPANIES WITH 4 STARS\n")
+                self.print_sorted_list([r for r in company_ratings if 3 < r[1] <= 4])
 
-                    # Corrected indentation for following lines
-                    f.write("\nCOMPANY UNDER 3 STAR\n")
-                    self.write_sorted_list(f, [r for r in company_ratings if 2 < r[1] <= 3])
+                print("\nCOMPANIES WITH 3 STARS\n")
+                self.print_sorted_list([r for r in company_ratings if 2 < r[1] <= 3])
 
-                    f.write("\nCOMPANY UNDER 2 STAR\n")
-                    self.write_sorted_list(f, [r for r in company_ratings if 1 < r[1] <= 2])
+                print("\nCOMPANIES WITH 2 STARS\n")
+                self.print_sorted_list([r for r in company_ratings if 1 < r[1] <= 2])
 
-                    f.write("\nCOMPANY UNDER 1 STAR\n")
-                    self.write_sorted_list(f, [r for r in company_ratings if 0 < r[1] <= 1])
+                print("\nCOMPANIES WITH 1 STAR\n")
+                self.print_sorted_list([r for r in company_ratings if 0 < r[1] <= 1])
             else:
                 print(f"Error scraping page {page}: {response.status_code}")
 
-
-if __name__ == "__main__":
-    c = Comapiens(10)  
-    c.scrape_companies()
