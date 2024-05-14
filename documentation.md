@@ -733,3 +733,21 @@ boxoffice = imdb.BoxOffice()
 | Methods         | Details                                                                        |
 | --------------- | ------------------------------------------------------------------------------ |
 | `.top_movies()` | Returns the top box office movies, weekend and total gross, and weeks released.|
+
+
+#### Indeed
+
+Create an object of class `Indeed`.
+```python
+from scrape_up import indeed
+
+indeed_job = indeed.get_url(positon="business manager",location="Geneva")
+indeed_job.get_record()
+```
+
+ | Methods                | Details                                                                                          |
+ | ---------------------- | ------------------------------------------------------------------------------------------------ |
+ | `.get_url()`           | Returns the URL of the job having a specific position and location.                              |
+ | `.get_record()`        | Returns the company details like job title, company name, location, job post date, and salary.   |
+ 
+---
