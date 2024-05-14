@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class Product:
     """Class for fetching and retrieving product details from Amazon."""
 
@@ -22,7 +23,7 @@ class Product:
 
         Returns:
             BeautifulSoup: A BeautifulSoup object containing the parsed HTML content of the search page.
-        
+
         Raises:
             Exception: If there is an error fetching the page.
         """
@@ -109,7 +110,9 @@ class Product:
             r = requests.get(product_link, headers=self.headers)
             r.raise_for_status()  # Raise HTTPError for bad responses
             soup = BeautifulSoup(r.content, "html.parser")
-            product_image = soup.find("div", {"id": "imgTagWrapperId"}).find("img")["data-old-hires"]
+            product_image = soup.find("div", {"id": "imgTagWrapperId"}).find("img")[
+                "data-old-hires"
+            ]
             return {
                 "data": product_image,
                 "message": "Product image has been fetched",
@@ -135,11 +138,23 @@ class Product:
             review_elements = soup.find_all("div", {"data-hook": "review"})
             reviews = []
             for review_element in review_elements:
-                reviewer_name = review_element.find("span", {"class": "a-profile-name"}).text
-                rating = review_element.find("i", {"class": "a-icon-star"}).find("span", {"class": "a-icon-alt"}).text
-                review_title = review_element.find("a", {"data-hook": "review-title"}).text.strip()
-                review_date = review_element.find("span", {"data-hook": "review-date"}).text
-                review_text = review_element.find("span", {"data-hook": "review-body"}).text.strip()
+                reviewer_name = review_element.find(
+                    "span", {"class": "a-profile-name"}
+                ).text
+                rating = (
+                    review_element.find("i", {"class": "a-icon-star"})
+                    .find("span", {"class": "a-icon-alt"})
+                    .text
+                )
+                review_title = review_element.find(
+                    "a", {"data-hook": "review-title"}
+                ).text.strip()
+                review_date = review_element.find(
+                    "span", {"data-hook": "review-date"}
+                ).text
+                review_text = review_element.find(
+                    "span", {"data-hook": "review-body"}
+                ).text.strip()
                 review = {
                     "reviewer_name": reviewer_name,
                     "rating": rating,
