@@ -1667,3 +1667,24 @@ The `Jobs` class provides methods for configuring scraping parameters and fetchi
 | --------------- | ---------------------------------------------------------------------------------------- |
 | `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
 | `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
+
+---
+
+# Steam Store
+
+Create an instance of `SteamStoreScraper` class.
+```python
+steam = SteamStoreScraper()
+```
+
+| Methods                            | Details                                          |
+| ---------------------------------- | ------------------------------------------------ |
+| `.Scraper(count, search_filters)`  | Scrapes game data for each specified filter      |
+
+> List of search filter tags:
+> - Top Sellers, Discounts, F2P (Free to Play)
+> - Software, DLC, Demos, Mods, Games
+> - Windows, MacOS, Linux, VR, Deck
+> - MP, PvP, Co-op
+
+---
