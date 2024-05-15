@@ -65,22 +65,31 @@ class Pinterest:
             return None
 
     def get_photo(self, url):
-        """
-        Class - `Pinterest`
-        Example:
-        ```python
-            pinterestphoto = Pinterest()
-            photo = pinterestphoto.get_photo(your pinterest url)
-        ```
+      
+      """
+       Class - `Pinterest`
+      Example:
+     ```python
+        pinterestphoto = Pinterest()
+        photo = pinterestphoto.get_photo(your pinterest url)
+     ```
         Returns: Photo Image URL | None
         """
-        try:
-            page = requests.get(url)
-            soup = bs(page.content, "html.parser")
-            image = soup.find("img", class_="hCL")
+      try:
+        page = requests.get(url)
+        soup = bs(page.content, "html.parser")
+        image = soup.find("img", class_="hCL")
+        print("Image tag:", image)  # Add this line
+        if image:
             return {"alt": image.get("alt"), "image": image.get("src")}
-        except:
+        else:
+            print("No image found")  # Add this line
             return None
+      except Exception as e:
+        print("Error:", e)
+        return None
+    
+
         
     def search_pins(self, keyword):
         """
