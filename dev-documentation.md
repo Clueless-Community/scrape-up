@@ -1667,3 +1667,19 @@ The `Jobs` class provides methods for configuring scraping parameters and fetchi
 | --------------- | ---------------------------------------------------------------------------------------- |
 | `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
 | `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
+
+
+## Lichess
+
+```python
+from scrape-up import lichess
+lichess_games = lichess.LichessGames(username)
+```
+
+The `LichessGames` class provides methods for fetching Lichess game data for a specified user:
+
+
+
+| Methods         | Details                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| `.fetch_games()` | Fetch all the games data for the specified username, returning a list of games or `None` on fail.        |
