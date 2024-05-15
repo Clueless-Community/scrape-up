@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, ResultSet, Tag
 import requests_html
 import os
 
@@ -36,56 +36,84 @@ class Repository:
     def __init__(self, username: str, repository_name: str):
         self.username = username
         self.repository = repository_name
+        self._timeout = 10
 
     def __str__(self):
         return f"{self.repository} belongs to {self.username}"
 
     def __scrape_page(self):
-        data = requests.get(f"https://github.com/{self.username}/{self.repository}")
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        url = f"https://github.com/{self.username}/{self.repository}"
+        data = requests.get(url, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 
     def __scrape_tags_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/tags"
-        )
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        url = f"https://github.com/{self.username}/{self.repository}/tags"
+        data = requests.get(url, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 
     def __scrape_issues_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/issues"
-        )
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        url = f"https://github.com/{self.username}/{self.repository}/issues"
+        data = requests.get(url, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 
     def __scrape_pull_requests_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/pulls"
-        )
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        url = f"https://github.com/{self.username}/{self.repository}/pulls"
+        data = requests.get(url, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 
     def __scrape_deployments_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/deployments/activity_log"
-        )
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        url = f"https://github.com/{self.username}/{self.repository}/deployments/activity_log"
+        data = requests.get(url, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 
     def __scrape_watchers_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/watchers"
-        )
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        url = f"https://github.com/{self.username}/{self.repository}/watchers"
+        data = requests.get(url, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 
-    def __scrape_insights_page(self, period):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/pulse/" + period
+    def __scrape_stargazers_page(self):
+        url = f"https://github.com/{self.username}/{self.repository}/stargazers"
+        data = requests.get(url, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
+
+    def __scrape_insights_page(self, period: str):
+        url = f"https://github.com/{self.username}/{self.repository}/pulse/{period}"
+        data = requests.get(url, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
+
+    def __scrape_contributors_page(self):
+        url = (
+            f"https://github.com/{self.username}/{self.repository}/graphs/contributors"
         )
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        data = requests.get(url, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 
     def languagesUsed(self):
         """
@@ -96,20 +124,13 @@ class Repository:
         languagesUsed = repository.languagesUsed()
         ```
         """
-        data = self.__scrape_page()
-
-        try:
-            languages = data.find_all(class_="color-fg-default text-bold mr-1")
-            allLanguages = []
-            for item in languages:
-                item = str(item)
-                item = item[46:]
-                item = item[:-7]
-                allLanguages.append(item)
-            # return allLanguages  # return list of languages
-            return allLanguages
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        languages = page.find_all(class_="color-fg-default text-bold mr-1")
+        allLanguages = [str(item)[46::-7] for item in languages]
+        return allLanguages
 
     def about(self):
         """
@@ -120,14 +141,13 @@ class Repository:
         about = repository.about()
         ```
         """
-        data = self.__scrape_page()
-
-        try:
-            tag = data.find(class_="f4 mb-3")
-            about = tag.get_text()
-            return about
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        tag = page.find(class_="f4 mb-3")
+        about = tag.getText() if tag is not None else ""
+        return about
 
     def fork_count(self):
         """
@@ -138,181 +158,181 @@ class Repository:
         fork_count = repository.fork_count()
         ```
         """
-        data = self.__scrape_page()
-        try:
-            stats_body = data.find(
-                "ul", class_="pagehead-actions flex-shrink-0 d-none d-md-inline"
-            )
-            forks = stats_body.find("span", id="repo-network-counter")
-            fork_count = forks.text.strip()
-            return fork_count
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        stats_body = page.find(
+            "ul", class_="pagehead-actions flex-shrink-0 d-none d-md-inline"
+        )
+        if not isinstance(stats_body, Tag):
+            return None
+
+        forks = stats_body.find("span", id="repo-network-counter")
+        return forks.text.strip() if forks is not None else None
 
     def topics(self):
         """
         Class - `Repository`
+
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         topics = repository.topics()
         ```
         """
-        data = self.__scrape_page()
-
-        try:
-            topics = data.find_all(class_="topic-tag topic-tag-link")
-            allTopics = []
-            for item in topics:
-                allTopics.append(item.text)
-            return allTopics
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        topics = page.find_all(class_="topic-tag topic-tag-link")
+        all_topics = [topic.text for topic in topics]
+        return all_topics
 
     def star_count(self):
         """
         Class - `Repository`
+
         Example:
         ```pyhton
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         star_count = repository.star_count()
         ```
         """
-        try:
-            data = self.__scrape_page()
-            starCount = (
-                data.find("a", href=f"/{self.username}/{self.repository}/stargazers")
-                .find("span")
-                .text.strip()
-            )
-            return starCount
-        except:
+        page = self.__scrape_stargazers_page()
+        if page is None:
             return None
+
+        stars_count_tag = page.find("span")
+        if stars_count_tag is None:
+            return None
+        return stars_count_tag.text.strip()
 
     def pull_requests(self):
         """
         Class - `Repository`
+
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         pull_requests = repository.pull_requests()
         ```
         """
-        data = self.__scrape_page()
-        try:
-            pull_requests = data.find(
-                "span", {"id": "pull-requests-repo-tab-count", "class": "Counter"}
-            ).text
-
-            return int(pull_requests.replace(",", ""))
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        pull_requests = page.find(
+            "span", {"id": "pull-requests-repo-tab-count", "class": "Counter"}
+        )
+        return int(pull_requests.text.replace(",", "")) if pull_requests else None
 
     def tags(self):
         """
         Class - `Repository`
+
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         tags = repository.tags()
         ```
         """
-        data = self.__scrape_tags_page()
-        try:
-            tags = data.find_all(class_="Link--primary")
-            allTags = []
-            for item in tags:
-                allTags.append(item.text)
-            return allTags
-        except:
+        page = self.__scrape_tags_page()
+        if page is None:
             return None
+
+        tags = page.find_all(class_="Link--primary")
+        allTags = [tag.text for tag in tags]
+        return allTags
 
     def releases(self):
         """
         Class - `Repository`
+
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         releases = repository.releases()
         ```
         """
-        data = self.__scrape_tags_page()
-        try:
-            releases = data.find_all(class_="Link--primary")
-            allReleases = []
-            for item in releases:
-                allReleases.append(item.text)
-            return allReleases
-        except:
+        page = self.__scrape_tags_page()
+        if page is None:
             return None
+
+        releases = page.find_all(class_="Link--primary")
+        allReleases = [release.text for release in releases]
+        return allReleases
 
     def issues_count(self):
         """
         Class - `Repository`
+
         Example:
         ```
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         issues_count = repository.issues_count()
         ```
         """
-        data = self.__scrape_page()
-        try:
-            issues = data.find("span", {"id": "issues-repo-tab-count"}).text.strip()
-            return issues
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        issues = page.find("span", {"id": "issues-repo-tab-count"})
+        return issues.text.strip() if issues else None
 
     def readme(self):
         """
-        Class - `Repository`\n
-        *This downloads the README.md in the root directory*\n
+        Class - `Repository`
+
+        *This downloads the README.md in the root directory*
+
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         readme = repository.readme()
         ```
         """
-        session = requests_html.HTMLSession()
-        r = session.get(
-            f"https://github.com/{self.username}/{self.repository}/blob/main/README.md"
-        )
-        markdown_content = r.text
+        url = f"https://raw.githubusercontent.com/{self.username}/{self.repository}/main/README.md"
+        r = requests.get(url, timeout=self._timeout, stream=True)
 
-        try:
-            with open("out.md", "w", encoding="utf-8") as f:
-                f.write(markdown_content)
-        except:
-            return None
+        with open("out.md", "w", encoding="utf-8") as f:
+            f.write(r.text)
 
     def get_pull_requests_ids(self):
         """
         Class - `Repository`
+
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         get_pull_requests_ids = repository.get_pull_requests_ids()
         ```
         """
-        data = self.__scrape_pull_requests_page()
-        try:
-            pr_body = data.find(
-                "div", class_="js-navigation-container js-active-navigation-container"
-            )
-            pull_requests_ids = []
-            for each_pr in pr_body.find_all(
-                "a",
-                class_="Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title",
-            ):
-                pr_id = each_pr["href"].split("/")[-1]
-                pull_requests_ids.append(pr_id)
-
-            return pull_requests_ids
-        except:
+        page = self.__scrape_pull_requests_page()
+        if page is None:
             return None
+
+        pr_body = page.find(
+            "div", class_="js-navigation-container js-active-navigation-container"
+        )
+        if not isinstance(pr_body, Tag):
+            return None
+
+        pull_requests = pr_body.find_all(
+            "a",
+            class_="Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title",
+        )
+        pull_requests_ids = [
+            str(pull_request["href"]).rsplit("/", 1)[-1]
+            for pull_request in pull_requests
+        ]
+
+        return pull_requests_ids
 
     def commits(self):
         """
         Class - `Repository`
+
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
@@ -320,14 +340,14 @@ class Repository:
         ```
         """
         data = self.__scrape_page()
-        try:
-            commits = str(data.find_all(class_="d-none d-sm-inline"))
-            s = commits.split("<strong>")
-            s = s[1].split("</strong>")
-            commits = int(s[0].replace(",", ""))
-            return commits
-        except:
+        if data is None:
             return None
+
+        commits = "\n".join(data.find_all(class_="d-none d-sm-inline"))
+        s = commits.split("<strong>", 2)
+        s = s[1].split("</strong>", 1)
+        commits = int(s[0].replace(",", "").strip())
+        return commits
 
     def get_issues(self):
         """
@@ -338,18 +358,15 @@ class Repository:
         get_issues = repository.get_issues()
         ```
         """
-        data = self.__scrape_issues_page()
-        try:
-            issues = data.find_all(
-                class_="Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title"
-            )
-            allIssues = []
-
-            for item in issues:
-                allIssues.append(item.text)
-            return allIssues
-        except:
+        page = self.__scrape_issues_page()
+        if page is None:
             return None
+
+        issues = page.find_all(
+            class_="Link--primary v-align-middle no-underline h4 js-navigation-open markdown-title"
+        )
+        allIssues = [issue.text for issue in issues]
+        return allIssues
 
     def get_contributors(self):
         """
@@ -360,18 +377,13 @@ class Repository:
         get_contributors = repository.get_contributors()
         ```
         """
-        data = self.__scrape_page()
-
-        try:
-            contributors = data.find_all(
-                "a", href=f"/{self.username}/{self.repository}/graphs/contributors"
-            )
-            contributor = []
-            for it in contributors:
-                contributor.append(it.get_text())
-            return contributor[0].strip()
-        except:
+        page = self.__scrape_contributors_page()
+        if page is None:
             return None
+
+        contributors = page.find_all("a", class_="text-normal")
+        contributor_names = [contributor.get_text() for contributor in contributors]
+        return contributor_names
 
     def last_update_at(self):
         """
@@ -382,12 +394,12 @@ class Repository:
         last_update_at = repository.last_update_at()
         ```
         """
-        data = self.__scrape_page()
-        try:
-            update = data.find_all("relative-time", class_="no-wrap")
-            return update[0].get_text()
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        update = page.find("relative-time", class_="no-wrap")
+        return update.get_text() if update else None
 
     def get_readme(self):
         """
@@ -400,30 +412,18 @@ class Repository:
         """
         data = requests.get(
             f"https://raw.githubusercontent.com/{self.username}/{self.repository}/master/README.md",
-            timeout=10,
+            timeout=self._timeout,
+            stream=True,
         )
-        if data.status_code == 404:
-            data = requests.get(
-                f"https://raw.githubusercontent.com/{self.username}/{self.repository}/main/README.md",
-                timeout=10,
-            )
-            if data.status_code == 404:
-                message = f"No special repository found with username {self.username}"
-                return {
-                    "data": None,
-                    "message": message,
-                }
-        else:
-            path = f"./{self.username}"
-            try:
-                os.mkdir(path)
-            except OSError as error:
-                return None
-            data = data.text
-            readmeFile = os.open(path + "/README.md", os.O_RDWR | os.O_CREAT)
-            os.write(readmeFile, data.encode("utf-8"))
-            message = "README.md found & saved"
-            return message
+        if data.status_code != 200:
+            return "README.md does not exist"
+
+        path = f"./{self.username}"
+        os.makedirs(path, exist_ok=True)
+
+        with open(f"{path}/README.md", "w", encoding="utf-8") as fo:
+            fo.write(data.text)
+        return "README.md found & saved"
 
     def get_environment(self):
         """
@@ -434,12 +434,13 @@ class Repository:
         get_environment = repository.get_environment()
         ```
         """
-        try:
-            data = self.__scrape_deployments_page()
-            link = data.find_all("a", class_="select-menu-item")
-            return link[0].get("href")
-        except:
+
+        page = self.__scrape_deployments_page()
+        if page is None:
             return None
+
+        link = page.find("a", class_="select-menu-item")
+        return link.get("href", None) if isinstance(link, Tag) else None
 
     def get_branch(self):
         """
@@ -451,19 +452,18 @@ class Repository:
         ```
         """
         data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/branches"
+            f"https://github.com/{self.username}/{self.repository}/branches",
+            timeout=self._timeout,
         )
-        data = BeautifulSoup(data.text, "html.parser")
-        try:
-            branch = data.find_all(
-                class_="branch-name css-truncate-target v-align-baseline width-fit mr-2 Details-content--shown"
-            )
-            allBranches = []
-            for branchNames in branch:
-                allBranches.append(branchNames.text.strip())
-            return allBranches
-        except:
+        if data.status_code != 200:
             return None
+
+        soup = BeautifulSoup(data.text, "html.parser")
+        branches = soup.find_all(
+            class_="branch-name css-truncate-target v-align-baseline width-fit mr-2 Details-content--shown"
+        )
+        allBranches = [branch.text.strip() for branch in branches]
+        return allBranches
 
     def watch_count(self):
         """
@@ -474,46 +474,42 @@ class Repository:
         watch_count = repository.watch_count()
         ```
         """
-        data = self.__scrape_watchers_page()
-        try:
-            watches = len(data.find("ol", {"class": "gutter"}).find_all("li"))
-            return {
-                "data": watches,
-                "message": f"Total watches in {self.repository} repository",
-            }
-        except:
-            message = f"No watches found in {self.repository} repository"
-            return {
-                "data": None,
-                "message": message,
-            }
+        page = self.__scrape_watchers_page()
+        if page is None:
+            return None
+
+        ol_tag = page.find("ol", {"class": "gutter"})
+        if not isinstance(ol_tag, Tag):
+            return None
+
+        watches = len(ol_tag.find_all("li"))
+        return watches
 
     def all_watchers(self):
         """
         Class - `Repository`
+
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
         all_watchers = repository.all_watchers()
         ```
         """
-        data = self.__scrape_watchers_page()
-        try:
-            all = data.find("ol", {"class": "gutter"}).find_all(
-                "a", {"data-hovercard-type": "user"}
-            )[1::2]
-            watchers = []
-            for watcher in all:
-                watchers.append(watcher.text.strip())
-            return watchers
-
-        except:
+        page = self.__scrape_watchers_page()
+        if page is None:
             return None
 
-    def get_insights(self, period):
-        self.period = period
+        ol_tag = page.find("ol", {"class": "gutter"})
+        if not isinstance(ol_tag, Tag):
+            return None
+
+        watchers_tags = ol_tag.find_all("a", {"data-hovercard-type": "user"})[1::2]
+        watchers = [watcher.text.strip() for watcher in watchers_tags]
+        return watchers
+
+    def get_insights(self, period: str):
         """
-        Class - `Repository`.\n
+        Class - `Repository`.
         Example:
         ```python
         repository = github.Repository(username="nikhil25803", repository_name="scrape-up")
@@ -536,125 +532,94 @@ class Repository:
         }
         ```
         """
-        data = self.__scrape_insights_page(self.period)
-        try:
-            overview = {"overview": []}
-            recent_merged_prs_list = []
-            recent_open_prs_list = []
-            recent_closed_issues_list = []
-            recent_open_issues_list = []
-            one = data.find_all("div", class_="mt-2")
-            try:
-                active_pr_count = one[0].find("span").getText()
-            except:
-                active_pr_count = ""
-            try:
-                active_issue_count = one[1].find("span").getText()
-            except:
-                active_issue_count = ""
-            two = data.find_all("span", class_="d-block h4 color-fg-default")
-            try:
-                merged_pr_count = two[0].getText().strip()
-            except:
-                merged_pr_count = ""
-            try:
-                open_pr_count = two[1].getText().strip()
-            except:
-                open_pr_count = ""
-            try:
-                closed_issue_count = two[2].getText().strip()
-            except:
-                closed_issue_count = ""
-            try:
-                new_issue_count = two[3].getText().strip()
-            except:
-                new_issue_count = ""
-            try:
-                base = data.find_all("ul", class_="list-style-none my-4")
-                recent_merged_prs = base[0].find_all("li", class_="clearfix")
-                for pr in recent_merged_prs:
-                    try:
-                        pr_title = pr.find("a").getText()
-                        pr_no = pr.find("p").find("span").getText()
-                        pr_date = pr.find("relative-time").getText()
-                        pr_link = pr.find("a")["href"]
-                        recent_merged_prs_list.append(
-                            {
-                                "pr_title": pr_title,
-                                "pr_no": pr_no,
-                                "pr_date": pr_date,
-                                "pr_link": "https://github.com" + pr_link,
-                            }
-                        )
-                    except:
-                        recent_merged_prs_list = []
-                recent_open_prs = base[1].find_all("li", class_="clearfix")
-                for pr in recent_open_prs:
-                    try:
-                        pr_title = pr.find("a").getText()
-                        pr_no = pr.find("p").find("span").getText()
-                        pr_date = pr.find("relative-time").getText()
-                        pr_link = pr.find("a")["href"]
-                        recent_open_prs_list.append(
-                            {
-                                "pr_title": pr_title,
-                                "pr_no": pr_no,
-                                "pr_date": pr_date,
-                                "pr_link": "https://github.com" + pr_link,
-                            }
-                        )
-                    except:
-                        recent_open_prs_list = []
-                recent_closed_issues = base[2].find_all("li", class_="clearfix")
-                for issue in recent_closed_issues:
-                    try:
-                        issue_title = issue.find("a").getText()
-                        issue_no = issue.find("p").find("span").getText()
-                        issue_date = issue.find("relative-time").getText()
-                        issue_link = issue.find("a")["href"]
-                        recent_closed_issues_list.append(
-                            {
-                                "issue_title": issue_title,
-                                "issue_no": issue_no,
-                                "issue_date": issue_date,
-                                "issue_link": "https://github.com" + issue_link,
-                            }
-                        )
-                    except:
-                        recent_closed_issues_list = []
-                recent_open_issues = base[3].find_all("li", class_="clearfix")
-                for issue in recent_open_issues:
-                    try:
-                        issue_title = issue.find("a").getText()
-                        issue_no = issue.find("p").find("span").getText()
-                        issue_date = issue.find("relative-time").getText()
-                        issue_link = issue.find("a")["href"]
-                        recent_open_issues_list.append(
-                            {
-                                "issue_title": issue_title,
-                                "issue_no": issue_no,
-                                "issue_date": issue_date,
-                                "issue_link": "https://github.com" + issue_link,
-                            }
-                        )
-                    except:
-                        recent_open_issues_list = []
-            except:
-                pass
-            overview["overview"].append(
-                {
-                    "active_pr_count": active_pr_count,
-                    "active_issue_count": active_issue_count,
-                    "merged_pr_count": merged_pr_count,
-                    "open_pr_count": open_pr_count,
-                    "closed_issue_count": closed_issue_count,
-                    "new_issue_count": new_issue_count,
-                    "recent_merged_prs": recent_merged_prs_list,
-                    "recent_open_prs": recent_open_prs_list,
-                    "recent_closed_issues": recent_closed_issues_list,
-                    "recent_open_issues": recent_open_issues_list,
-                }
-            )
-            return overview["overview"]
-        except:
+        page = self.__scrape_insights_page(period)
+        if page is None:
             return None
+
+        overview = {"overview": []}
+        recent_merged_prs_list = []
+        recent_open_prs_list = []
+        recent_closed_issues_list = []
+        recent_open_issues_list = []
+        one = page.find_all("div", class_="mt-2")
+
+        try:
+            active_pr_count = one[0].find("span").getText()
+        except IndexError:
+            active_pr_count = ""
+
+        try:
+            active_issue_count = one[1].find("span").getText()
+        except IndexError:
+            active_issue_count = ""
+
+        two = page.find_all("span", class_="d-block h4 color-fg-default")
+
+        try:
+            merged_pr_count = two[0].getText().strip()
+        except IndexError:
+            merged_pr_count = ""
+
+        try:
+            open_pr_count = two[1].getText().strip()
+        except IndexError:
+            open_pr_count = ""
+
+        try:
+            closed_issue_count = two[2].getText().strip()
+        except IndexError:
+            closed_issue_count = ""
+
+        try:
+            new_issue_count = two[3].getText().strip()
+        except IndexError:
+            new_issue_count = ""
+
+        base = page.find_all("ul", class_="list-style-none my-4")
+        recent_merged_prs = base[0].find_all("li", class_="clearfix")
+        recent_open_prs = base[1].find_all("li", class_="clearfix")
+        recent_closed_issues = base[2].find_all("li", class_="clearfix")
+        recent_open_issues = base[3].find_all("li", class_="clearfix")
+
+        def add_item(items: ResultSet[Tag], name: str):
+            item_list = []
+            for item in items:
+                a_tag = item.find("a")
+                p_tag = item.find("p")
+                p_span_tag = p_tag.find("span") if isinstance(p_tag, Tag) else None
+                relative_time = item.find("relative-time")
+
+                title = a_tag.getText() if isinstance(a_tag, Tag) else ""
+                link = str(a_tag.get("href", "")) if isinstance(a_tag, Tag) else ""
+                issue = p_span_tag.getText() if p_span_tag else ""
+                date = relative_time.getText() if isinstance(relative_time, Tag) else ""
+                item_list.append(
+                    {
+                        f"{name}_title": title,
+                        f"{name}_no": issue,
+                        f"{name}_date": date,
+                        f"{name}_link": "https://github.com" + link,
+                    }
+                )
+            return item_list
+
+        recent_merged_prs_list = add_item(recent_merged_prs, "pr")
+        recent_open_prs_list = add_item(recent_open_prs, "pr")
+        recent_closed_issues_list = add_item(recent_closed_issues, "issue")
+        recent_open_issues_list = add_item(recent_open_issues, "issue")
+
+        overview["overview"].append(
+            {
+                "active_pr_count": active_pr_count,
+                "active_issue_count": active_issue_count,
+                "merged_pr_count": merged_pr_count,
+                "open_pr_count": open_pr_count,
+                "closed_issue_count": closed_issue_count,
+                "new_issue_count": new_issue_count,
+                "recent_merged_prs": recent_merged_prs_list,
+                "recent_open_prs": recent_open_prs_list,
+                "recent_closed_issues": recent_closed_issues_list,
+                "recent_open_issues": recent_open_issues_list,
+            }
+        )
+        return overview["overview"]

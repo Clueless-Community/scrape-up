@@ -22,11 +22,15 @@ class PullRequest:
         self.username = username
         self.repository = repository_name
         self.pr_number = pull_request_number
+        self._timeout = 10
 
     def __scrape_page(self):
         data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/pull/{self.pr_number}"
+            f"https://github.com/{self.username}/{self.repository}/pull/{self.pr_number}",
+            timeout=self._timeout,
         )
+        if data.status_code != 200:
+            return None
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
@@ -39,19 +43,16 @@ class PullRequest:
         labels = repository.labels()
         ```
         """
-        labels_found = []
-        data = self.__scrape_page()
-        label_raw = data.find_all(
+        page = self.__scrape_page()
+        if page is None:
+            return None
+
+        label_raw = page.find_all(
             "a", class_="IssueLabel hx_IssueLabel width-fit mb-1 mr-1"
         )
-        try:
-            for d in label_raw:
-                labels_found.append(d.get_text().strip())
-            labels_found + 1
-            # return labels_found
-            return labels_found
-        except:
-            return None
+
+        labels_found = map(lambda x: x.get_text().strip(), label_raw)
+        return list(labels_found)
 
     def commits(self):
         """
@@ -62,12 +63,12 @@ class PullRequest:
         commits = repository.commits()
         ```
         """
-        data = self.__scrape_page()
-        try:
-            commits_count = data.find("span", id="commits_tab_counter").text.strip()
-            return commits_count
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        commits_count = page.find("span", id="commits_tab_counter")
+        return None if commits_count is None else commits_count.text.strip()
 
     def title(self):
         """
@@ -78,22 +79,23 @@ class PullRequest:
         title = repository.title()
         ```
         """
-        data = self.__scrape_page()
-        try:
-            title_body = data.find("bdi", class_="js-issue-title markdown-title")
-            title = title_body.text.strip()
-            return title
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        title_body = page.find("bdi", class_="js-issue-title markdown-title")
+        return None if title_body is None else title_body.text.strip()
 
     def __files_changed_body(self):
         """
         scrape the data of files changed in a pull request
         """
         link = f"https://github.com/{self.username}/{self.repository}/pull/{self.pr_number}/files"
-        data = requests.get(link)
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        data = requests.get(link, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 
     def files_changed(self):
         """
@@ -105,12 +107,11 @@ class PullRequest:
         ```
         """
         data = self.__files_changed_body()
-        try:
-            files_changed_body = data.find("span", id="files_tab_counter")
-            files_changed = files_changed_body.text.strip()
-            return files_changed
-        except:
+        if data is None:
             return None
+
+        files_changed_body = data.find("span", id="files_tab_counter")
+        return None if files_changed_body is None else files_changed_body.text.strip()
 
     def reviewers(self):
         """
@@ -122,17 +123,11 @@ class PullRequest:
         ```
         """
         data = self.__scrape_page()
-        try:
-            reviewerList = []
-            reviewers = data.find_all(
-                "span", class_="css-truncate-target width-fit v-align-middle"
-            )
-            if len(reviewers) == 0:
-                message = f"No reviewers found for {self.pr_number}"
-                return reviewerList
-            else:
-                for reviewer in reviewers:
-                    reviewerList.append(reviewer.text)
-                return reviewerList
-        except:
+        if data is None:
             return None
+
+        reviewers = data.find_all(
+            "span", class_="css-truncate-target width-fit v-align-middle"
+        )
+        reviewerList = list(map(lambda x: x.text, reviewers))
+        return reviewerList

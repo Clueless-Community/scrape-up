@@ -1,6 +1,6 @@
+from typing import Dict, List, Union
 import requests
-from bs4 import BeautifulSoup
-import json
+from bs4 import BeautifulSoup, Tag
 
 
 class Organization:
@@ -27,163 +27,193 @@ class Organization:
 
     def __init__(self, organization_name: str):
         self.organization = organization_name
+        self._timeout = 10
 
     def __scrape_page(self):
-        data = requests.get(f"https://github.com/{self.organization}")
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        data = requests.get(
+            f"https://github.com/{self.organization}", timeout=self._timeout
+        )
+        if data.status_code != 200:
+            return None
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 
     def top_languages(self):
         """
         Class - `Organisation`
+
         Example:
-        ```
+        ```python
         repository = github.Organization(organization_name="Clueless-Community")
         top_languages = repository.top_languages()
         ```
         """
-        try:
-            languages = []
-            data = self.__scrape_page()
-            lang_raw = data.find_all(
-                "a", class_="no-wrap color-fg-muted d-inline-block Link--muted mt-2"
-            )
-            for lang in lang_raw:
-                languages.append(lang.get_text().strip())
-            return languages
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+        lang_raw = page.find_all(
+            "a", class_="no-wrap color-fg-muted d-inline-block Link--muted mt-2"
+        )
+        languages = [lang.get_text().strip() for lang in lang_raw]
+        return languages
 
     def top_topics(self):
         """
         Class - `Organisation`
+
         Example:
-        ```
+        ```python
         repository = github.Organization(organization_name="Clueless-Community")
         top_topics = repository.top_topics()
         ```
         """
         page = self.__scrape_page()
-        try:
-            all_topics = page.find_all(class_="topic-tag topic-tag-link")
-            topics = []
-            for topic in all_topics:
-                topics.append(topic.text.strip())
-            return topics
-        except:
+        if page is None:
             return None
+
+        all_topics = page.find_all(class_="topic-tag topic-tag-link")
+        topics = [topic.text.strip() for topic in all_topics]
+        return topics
 
     def followers(self):
         """
         Class - `Organisation`
+
         Example:
-        ```
+        ```python
         repository = github.Organization(organization_name="Clueless-Community")
         followers = repository.followers()
         ```
         """
         page = self.__scrape_page()
-        try:
-            followers_body = page.find(
-                "a", class_="Link--secondary no-underline no-wrap"
-            )
-            followers = followers_body.span.text.strip()
-            return followers
-        except:
+        if page is None:
             return None
+
+        followers_body = page.findChild(
+            "span", class_="Link--secondary no-underline no-wrap"
+        )
+        return followers_body.text.strip() if followers_body else None
 
     def avatar(self):
         """
         Class - `Organisation`
+
         Example:
-        ```
+        ```python
         repository = github.Organization(organization_name="Clueless-Community")
         avatar = repository.avatar()
         ```
         """
         page = self.__scrape_page()
-        try:
-            avatar = page.find("a", attrs={"itemprop": "url"})
-            avatar_url = avatar.text.strip()
-            return avatar_url
-        except:
+        if page is None:
             return None
+
+        avatar = page.find("a", attrs={"itemprop": "url"})
+        return avatar.text.strip() if avatar else None
 
     def __scrape_repositories_page(self):
         """
         scrapes the head page of repositories of an organization
         """
         organization = self.organization
-        data = requests.get(f"https://github.com/orgs/{organization}/repositories")
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        data = requests.get(
+            f"https://github.com/orgs/{organization}/repositories",
+            timeout=self._timeout,
+        )
+        if data.status_code != 200:
+            return None
 
-    def __scrape_repositories(self, page):
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
+
+    def __scrape_repositories(self, page: str):
         """
         scrapes the repositories page of an organization
         """
-        data = requests.get(page)
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        data = requests.get(page, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 
     def repositories(self):
         """
         Class - `Organisation`
+
         Example:
-        ```
+        ```python
         repository = github.Organization(organization_name="Clueless-Community")
         repositories = repository.repositories()
         ```
         """
         organization = self.organization
-        data = self.__scrape_repositories_page()
-        try:
-            pages_body = data.find("div", class_="paginate-container")
-            current_page = pages_body.find("em", class_="current")
-            total_pages = 1
-            if current_page != None:
-                total_pages = (int)(current_page["data-total-pages"])
-
-            pages = []
-            if total_pages == 1:
-                pages.append(f"https://github.com/orgs/{organization}/repositories")
-            else:
-                for i in range(1, total_pages + 1):
-                    pages.append(
-                        f"https://github.com/orgs/{organization}/repositories?page={i}"
-                    )
-
-            repositories = []
-            for page in pages:
-                page_data = self.__scrape_repositories(page)
-                repositories_body = page_data.find("div", id="org-repositories")
-                for repo in repositories_body.find_all(
-                    "a", attrs={"itemprop": "name codeRepository"}
-                ):
-                    repositories.append(repo.text.strip())
-
-            return repositories
-        except:
+        page = self.__scrape_repositories_page()
+        if page is None:
             return None
+
+        pages_body = page.find("div", class_="paginate-container")
+        if not isinstance(pages_body, Tag):
+            return None
+
+        current_page = pages_body.find("em", class_="current")
+        total_pages = 1
+        if (
+            isinstance(current_page, Tag)
+            and "data-total-pages" in current_page.attrs
+            and str(current_page["data-total-pages"]).isdigit()
+        ):
+            total_pages = int(current_page["data-total-pages"])
+
+        pages: List[str] = []
+        base = f"https://github.com/orgs/{organization}/repositories"
+        if total_pages == 1:
+            pages.append(base)
+        else:
+            for i in range(total_pages):
+                pages.append(f"{base}?page={i+1}")
+
+        repositories: List[str] = []
+        for page in pages:
+            page_data = self.__scrape_repositories(page)
+            if page_data is None:
+                continue
+
+            repositories_body = page_data.find("div", id="org-repositories")
+            if not isinstance(repositories_body, Tag):
+                continue
+
+            repos = repositories_body.find_all(
+                "a", attrs={"itemprop": "name codeRepository"}
+            )
+            repositories.extend([repo.text.strip() for repo in repos])
+
+        return repositories
 
     def __scrape_people_page(self):
         """
         scrapes the head page of people of an organization
 
         """
-        organization = self.organization
-        data = requests.get(f"https://github.com/orgs/{organization}/people")
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        data = requests.get(
+            f"https://github.com/orgs/{self.organization}/people", timeout=self._timeout
+        )
+        if data.status_code != 200:
+            return None
 
-    def __scrape_people(self, page):
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
+
+    def __scrape_people(self, page: str):
         """
         scrapes the people page of an organization
         """
-        organization = self.organization
-        data = requests.get(page)
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        data = requests.get(page, timeout=self._timeout)
+        if data.status_code != 200:
+            return None
+
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 
     def people(self):
         """
@@ -195,76 +225,100 @@ class Organization:
         ```
         Returns:
         {
-           "data": people,
-           "message": f"Found {len(people)} people for {organization}",
+            "data": people,
+            "message": f"Found {len(people)} people for {organization}",
         }
         """
         organization = self.organization
-        data = self.__scrape_people_page()
-        try:
-            pages_body = data.find("div", class_="paginate-container")
-            current_page = pages_body.find("em", class_="current")
-            total_pages = 1
-            if current_page != None:
-                total_pages = (int)(current_page["data-total-pages"])
-
-            pages = []
-            if total_pages == 1:
-                pages.append(f"https://github.com/orgs/{organization}/people")
-            else:
-                for i in range(1, total_pages + 1):
-                    pages.append(
-                        f"https://github.com/orgs/{organization}/people?page={i}"
-                    )
-
-            peoples = []
-            for page in pages:
-                page_data = self.__scrape_people(page)
-                people_body = page_data.find("div", id="org-members-table")
-                for person in people_body.find_all("li"):
-                    person_username = person.find("a", class_="d-inline-block")
-                    peoples.append(person_username["href"][1:])
-
-            return peoples
-        except:
+        page = self.__scrape_people_page()
+        if page is None:
             return None
+
+        pages_body = page.find("div", class_="paginate-container")
+        if not isinstance(pages_body, Tag):
+            return None
+
+        current_page = pages_body.find("em", class_="current")
+        total_pages = 1
+        if (
+            isinstance(current_page, Tag)
+            and "data-total-pages" in current_page.attrs
+            and str(current_page["data-total-pages"]).isdigit()
+        ):
+            total_pages = int(current_page["data-total-pages"])
+
+        pages: List[str] = []
+        base = f"https://github.com/orgs/{organization}/people"
+        if total_pages == 1:
+            pages.append(base)
+        else:
+            for i in range(1, total_pages + 1):
+                pages.append(f"{base}?page={i}")
+
+        peoples: List[str] = []
+        for page in pages:
+            page_data = self.__scrape_people(page)
+            if page_data is None:
+                continue
+
+            people_body = page_data.find("div", id="org-members-table")
+            if not isinstance(people_body, Tag):
+                continue
+
+            people = people_body.find_all("li")
+            for person in people:
+                person_username = person.find("a", class_="d-inline-block")
+                peoples.append(person_username["href"][1:])
+
+        return peoples
 
     def peoples(self):
         """
         Class - `Organisation`
+
         Example:
-        ```
+        ```python
         repository = github.Organization(organization_name="Clueless-Community")
         peoples = repository.peoples()
         ```
         """
         data = self.__scrape_people_page()
-        try:
-            body = data.find("div", class_="paginate-container")
-            current_page = body.find("em", class_="current")
-            page_count = 1
-            if current_page != None:
-                page_count = int((current_page["data-total-pages"]))
-
-            pages = []
-
-            if page_count == 1:
-                pages.append(f"https://github.com/orgs/{self.organization}/people")
-            else:
-                for i in range(1, page_count + 1):
-                    pages.append(
-                        f"https://github.com/orgs/{self.organization}/people?page={i}"
-                    )
-
-            people_count = 0
-            for page in pages:
-                page_data = self.__scrape_people(page)
-                people_body = page_data.find("div", id="org-members-table")
-                people_count = len(people_body.find_all("li"))
-
-            return people_count
-        except:
+        if data is None:
             return None
+
+        body = data.find("div", class_="paginate-container")
+        if body is None:
+            return None
+
+        current_page = body.find("em", class_="current")
+        page_count = 1
+        if (
+            isinstance(current_page, Tag)
+            and "data-total-pages" in current_page.attrs
+            and str(current_page["data-total-pages"]).isdigit()
+        ):
+            page_count = int(current_page["data-total-pages"])
+
+        pages: List[str] = []
+        base = f"https://github.com/orgs/{self.organization}/people"
+        if page_count == 1:
+            pages.append(base)
+        else:
+            for i in range(page_count):
+                pages.append(f"{base}?page={i+1}")
+
+        people_count = 0
+        for page in pages:
+            page_data = self.__scrape_people(page)
+            if page_data is None:
+                continue
+
+            people_body = page_data.find("div", id="org-members-table")
+            if not isinstance(people_body, Tag):
+                continue
+
+            people_count += len(people_body.find_all("li"))
+        return people_count
 
     def get_location(self):
         """
@@ -276,13 +330,13 @@ class Organization:
         ```
         """
         page = self.__scrape_page()
-        try:
-            lc = page.find("span", itemprop="location")
-            return lc.text.strip()
-        except:
+        if page is None:
             return None
 
-    def repository_stats(self, repo_url):
+        lc = page.find("span", itemprop="location")
+        return lc.text.strip() if lc else None
+
+    def repository_stats(self, repo_url: str):
         """
         Class - `Organisation`
         Example:
@@ -292,26 +346,26 @@ class Organization:
         ```
         """
         data = self.__scrape_repositories(repo_url)
-        try:
-            # forks
-            forksCount = data.find("span", id="repo-network-counter").text.strip()
-            # stars
-            starCount = data.find("span", id="repo-stars-counter-star").text.strip()
-            # issues
-            issuesCount = data.find("span", id="issues-repo-tab-count").text.strip()
-            # pull requests
-            pullRequests = data.find(
-                "span", id="pull-requests-repo-tab-count"
-            ).text.strip()
-            data = {
-                "forks": forksCount,
-                "stars": starCount,
-                "issues": issuesCount,
-                "pullRequests": pullRequests,
-            }
-            return data
-        except:
+        if data is None:
             return None
+
+        # forks
+        forksCount = data.find("span", id="repo-network-counter")
+        # stars
+        starCount = data.find("span", id="repo-stars-counter-star")
+        # issues
+        issuesCount = data.find("span", id="issues-repo-tab-count")
+        # pull requests
+        pullRequests = data.find("span", id="pull-requests-repo-tab-count")
+
+        # Final data
+        data = {
+            "forks": forksCount.text.strip() if forksCount else None,
+            "stars": starCount.text.strip() if starCount else None,
+            "issues": issuesCount.text.strip() if issuesCount else None,
+            "pullRequests": pullRequests.text.strip() if pullRequests else None,
+        }
+        return data
 
     def repository_details(self):
         """
@@ -322,71 +376,80 @@ class Organization:
         repository_details = repository.repository_details()
         ```
         """
-        organization = self.organization
-        data = self.__scrape_repositories_page()
-        try:
-            pages_body = data.find("div", class_="paginate-container")
-            current_page = pages_body.find("em", class_="current")
-            total_pages = 1
-            if current_page != None:
-                total_pages = (int)(current_page["data-total-pages"])
-
-            pages = []
-            if total_pages == 1:
-                pages.append(f"https://github.com/orgs/{organization}/repositories")
-            else:
-                for i in range(1, total_pages + 1):
-                    pages.append(
-                        f"https://github.com/orgs/{organization}/repositories?page={i}"
-                    )
-
-            repositories = []
-            for page in pages:
-                page_data = self.__scrape_repositories(page)
-                repositories_body = page_data.find("div", id="org-repositories")
-                for repo in repositories_body.find_all("li"):
-                    repo_name = repo.find(
-                        "a", attrs={"itemprop": "name codeRepository"}
-                    ).text.strip()
-                    repo_url = f"https://github.com{repo.find('a', attrs = {'itemprop': 'name codeRepository'})['href']}"
-                    repo_description_body = repo.find(
-                        "p", attrs={"itemprop": "description"}
-                    )
-                    repo_description = (
-                        repo_description_body.text.strip()
-                        if repo_description_body != None
-                        else "No description"
-                    )
-                    repo_language_body = repo.find(
-                        "span", attrs={"itemprop": "programmingLanguage"}
-                    )
-                    repo_language = (
-                        repo_language_body.text.strip()
-                        if repo_language_body != None
-                        else "No language"
-                    )
-                    (
-                        repo_forks,
-                        repo_stars,
-                        repo_issues,
-                        repo_pull_requests,
-                    ) = self.repository_stats(repo_url)
-                    repositories.append(
-                        {
-                            "name": repo_name,
-                            "url": repo_url,
-                            "description": repo_description,
-                            "language": repo_language,
-                            "forks": repo_forks,
-                            "stars": repo_stars,
-                            "issues": repo_issues,
-                            "pull_requests": repo_pull_requests,
-                        }
-                    )
-
-            return repositories
-        except:
+        page = self.__scrape_repositories_page()
+        if page is None:
             return None
+
+        pages_body = page.find("div", class_="paginate-container")
+        if not isinstance(pages_body, Tag):
+            return None
+
+        current_page = pages_body.find("em", class_="current")
+        total_pages = 1
+        if (
+            isinstance(current_page, Tag)
+            and "data-total-pages" in current_page.attrs
+            and str(current_page["data-total-pages"]).isdigit()
+        ):
+            total_pages = int(current_page["data-total-pages"])
+
+        pages: List[str] = []
+        base = f"https://github.com/orgs/{self.organization}/repositories"
+        if total_pages == 1:
+            pages.append(base)
+        else:
+            for i in range(1, total_pages + 1):
+                pages.append(f"{base}?page={i}")
+
+        repositories = []
+        for page in pages:
+            page_data = self.__scrape_repositories(page)
+            if page_data is None:
+                continue
+
+            repositories_body = page_data.find("div", id="org-repositories")
+            for repo in repositories_body.find_all("li"):
+                repo_name = repo.find(
+                    "a", attrs={"itemprop": "name codeRepository"}
+                ).text.strip()
+
+                repo_url = f"https://github.com{repo.find('a', attrs = {'itemprop': 'name codeRepository'})['href']}"
+                repo_description_body = repo.find(
+                    "p", attrs={"itemprop": "description"}
+                )
+                repo_description = (
+                    str(repo_description_body.text).strip()
+                    if repo_description_body
+                    else "No description"
+                )
+                repo_language_body = repo.find(
+                    "span", attrs={"itemprop": "programmingLanguage"}
+                )
+                repo_language = (
+                    str(repo_language_body.text).strip()
+                    if repo_language_body
+                    else "No language"
+                )
+                (
+                    repo_forks,
+                    repo_stars,
+                    repo_issues,
+                    repo_pull_requests,
+                ) = self.repository_stats(repo_url)
+                repositories.append(
+                    {
+                        "name": repo_name,
+                        "url": repo_url,
+                        "description": repo_description,
+                        "language": repo_language,
+                        "forks": repo_forks,
+                        "stars": repo_stars,
+                        "issues": repo_issues,
+                        "pull_requests": repo_pull_requests,
+                    }
+                )
+
+        return repositories
 
     def pinned_repository(self):
         """
@@ -464,27 +527,30 @@ class Organization:
         get_organization_links = repository.get_organization_links()
         ```
         """
-        try:
-            links = {}
-            data = self.__scrape_page()
-            website_link = data.find("a", rel="nofollow", itemprop="url", href=True)[
-                "href"
-            ]
-            links["website"] = website_link
-            gmail = data.find("a", itemprop="email", href=True)["href"]
-            links["gmail"] = gmail
-            other_link = data.find_all("a", rel="nofollow", href=True)
-            for o in other_link:
-                name = (
-                    o["href"]
-                    .split("//")[1]
-                    .split("/")[0]
-                    .replace("www.", "")
-                    .split(".")[0]
-                )
-                if name != self.organization or name.find(self.organization) == -1:
-                    if not name in links:
-                        links[name] = o["href"]
-            return links
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        website_link = page.find("a", rel="nofollow", itemprop="url", href=True)
+        gmail = page.find("a", itemprop="email", href=True)
+
+        links: Dict[str, Union[str, None]] = {}
+        links["website"] = (
+            website_link.get("href", None) if isinstance(website_link, Tag) else None
+        )
+        links["gmail"] = gmail.get("href", None) if isinstance(gmail, Tag) else None
+
+        other_link = page.find_all("a", rel="nofollow", href=True)
+        for o in other_link:
+            name = (
+                str(o["href"])
+                .split("//")[1]
+                .split("/")[0]
+                .replace("www.", "")
+                .split(".")[0]
+            )
+            if (
+                name != self.organization or name.find(self.organization) == -1
+            ) and name not in links:
+                links[name] = o["href"]
+        return links

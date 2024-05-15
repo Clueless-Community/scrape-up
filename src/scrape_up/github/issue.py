@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 
 class Issue:
@@ -23,11 +23,15 @@ class Issue:
         self.username = username
         self.repository = repository_name
         self.issue_number = issue_number
+        self._timeout = 10
 
     def __scrape_page(self):
         data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/issues/{self.issue_number}"
+            f"https://github.com/{self.username}/{self.repository}/issues/{self.issue_number}",
+            timeout=self._timeout,
         )
+        if data.status_code != 200:
+            return None
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
@@ -42,17 +46,21 @@ class Issue:
         Returns: Assignees | None
         ```
         """
-        data = self.__scrape_page()
-        try:
-            assignees_body = data.find("span", class_="css-truncate js-issue-assignees")
-            assignees = []
-            for assignee in assignees_body.find_all(
-                "a", class_="assignee Link--primary css-truncate-target width-fit"
-            ):
-                assignees.append(assignee.text.replace("\n", "").strip())
-            return assignees
-        except:
-            None
+        page = self.__scrape_page()
+        if page is None:
+            return None
+
+        assignees_body = page.find("span", class_="css-truncate js-issue-assignees")
+        if not isinstance(assignees_body, Tag):
+            return None
+
+        assignees_body_search = assignees_body.find_all(
+            "a", class_="assignee Link--primary css-truncate-target width-fit"
+        )
+        assignees = map(
+            lambda x: x.text.replace("\n", "").strip(), assignees_body_search
+        )
+        return list(assignees)
 
     def labels(self):
         """
@@ -64,18 +72,19 @@ class Issue:
         ```
         Returns: Labels | None
         """
-        data = self.__scrape_page()
-        try:
-            labelsDiv = data.find(class_="js-issue-labels d-flex flex-wrap")
-            allLabelsHtml = labelsDiv.find_all(
-                class_="css-truncate css-truncate-target width-fit"
-            )
-            allLabels = []
-            for label in allLabelsHtml:
-                allLabels.append(label.text)
-            return allLabels
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        labelsDiv = page.find(class_="js-issue-labels d-flex flex-wrap")
+        if not isinstance(labelsDiv, Tag):
+            return None
+
+        allLabelsHtml = labelsDiv.find_all(
+            class_="css-truncate css-truncate-target width-fit"
+        )
+        allLabels = list(map(lambda x: x.text, allLabelsHtml))
+        return allLabels
 
     def opened_by(self):
         """
@@ -87,12 +96,12 @@ class Issue:
         ```
         Returns: Author Name | None
         """
-        data = self.__scrape_page()
-        try:
-            author_name = data.find("a", class_="author text-bold Link--secondary").text
-            return author_name
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        author_name = page.find("a", class_="author text-bold Link--secondary")
+        return None if author_name is None else author_name.text
 
     def title(self):
         """
@@ -104,13 +113,12 @@ class Issue:
         ```
         Returns: Title | None
         """
-        data = self.__scrape_page()
-        try:
-            title_body = data.find("bdi", class_="js-issue-title markdown-title")
-            title = title_body.text.strip()
-            return title
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        title_body = page.find("bdi", class_="js-issue-title markdown-title")
+        return None if title_body is None else title_body.text.strip()
 
     def opened_at(self):
         """
@@ -122,11 +130,12 @@ class Issue:
         ```
         Returns: Opened at | None
         """
-        try:
-            data = self.__scrape_page()
-            return data.find("relative-time").text
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        relative_time = page.find("relative-time")
+        return None if relative_time is None else relative_time.text
 
     def is_milestone(self):
         """
@@ -138,11 +147,11 @@ class Issue:
         ```js
         Returns: Milestones | None
         """
-        data = self.__scrape_page()
-        try:
-            milestone = data.find(
-                "a", class_="Link--secondary mt-1 d-block text-bold css-truncate"
-            ).text.strip()
-            return milestone
-        except:
+        page = self.__scrape_page()
+        if page is None:
             return None
+
+        milestone = page.find(
+            "a", class_="Link--secondary mt-1 d-block text-bold css-truncate"
+        )
+        return None if milestone is None else milestone.text.strip()
