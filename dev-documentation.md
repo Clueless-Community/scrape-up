@@ -1471,7 +1471,7 @@ academia = Academia()
 
 | Method                        | Details                                                               |
 | ----------------------------- | --------------------------------------------------------------------- |
-| `get_research_topics(letter)` | Fetches and returns research topics starting with the given letter.   |
+| `get_research_topics()`       | Fetches and returns research topics.                                  |
 | `get_research_papers(search)` | Fetches and returns research papers related to the given search term. |
 
 ---
@@ -1615,4 +1615,55 @@ First create an object of class `Dictionary`.
 | `.get_word_of_the_day()`        | Returns the word of the day.                   |
 | `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
 
+--------
+
+
+#### AmbitionBx 
+
+Create an directory with name ambitonbox
+created a python which consist the code for scarping the website 
+
+```python
+# Example usage
+from scrape_up import ambitionBox
+
+num_pages_to_scrape = 2  
+
+scraper = ambitionBox.Comapiens(num_pages_to_scrape)
+
+scraper.scrape_companies()
+
+```
+
+| Methods         | Details                                                                       |
+| --------------- | ----------------------------------------------------------------------------- |
+| `.scrape_companies()` | Returns the company name with the rating. |
+
 ---
+
+## Geeksforgeeks
+
+First create an object of class `Geeksforgeeks`.
+```python
+geeksforgeeks = Geeksforgeeks(user="username")
+```
+
+| Methods                         | Details                                        |
+| ------------------------------- | ---------------------------------------------- |
+| `.get_profile()`                | Returns the user data in json format.          |
+
+---
+
+## Wuzzuf
+
+```python
+from scrap-up import wuzzuf
+jobs = wuzzuf.Jobs()
+```
+
+The `Jobs` class provides methods for configuring scraping parameters and fetching job listings:
+
+| Methods         | Details                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
+| `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
