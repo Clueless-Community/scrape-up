@@ -92,8 +92,16 @@ With our web-scraping-based Python tool, you can unlock a world of data and over
 
 🌟 We value the time and effort you put into contributing, and we look forward to reviewing and merging your contributions. Together, let's make web scraping a powerful and accessible tool for extracting data from various platforms.
 
-✨ Thank you for your contribution!
+<div>
 
----
+<h2 align = "center">Our Contributors ❤️</h2>
+<div align = "center">
+ <h3>Thank you for contributing to our repository</h3>
+
+![Contributors](https://contrib.rocks/image?repo=Clueless-Community/scrape-up)
+
+### Show some ❤️ by starring this awesome repository!
+
+</div>
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
