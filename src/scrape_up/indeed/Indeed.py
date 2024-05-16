@@ -19,7 +19,7 @@ class Indeed:
     | Method                          | Details                                                                  |
     |---------------------------------|--------------------------------------------------------------------------|
     | `.get_jobs()`                   | Returns a list of job listings based on the search and location queries. |
-    | `.scrape_job_info(job_card)` | Extracts job details from a given job listing HTML element               |
+    | `.scrape_job_info(job_card)` | Extracts job details from a given job card HTML element               |
     """
 
     headers: dict = {
