@@ -20,6 +20,28 @@ def _sanitize_int(s: str) -> int:
 class Anime:
     """
     Retrives information about an anime from MyAnimeList (myanimelist.net).
+
+    ```python
+    anime = myanimelist.Anime("demon slayer")
+    ```
+    | Methods                       | Details                                                        |
+    | ----------------------------- | -------------------------------------------------------------- |
+    | `.url`                | Returns the MyAnimelist URL of the anime.                   |
+    | `.title`                | Returns the title of the anime.                   |
+    | `.title_english`                | Returns the English title of the anime.                   |
+    | `.title_jp`                | Returns the Japanese title of the anime.                   |
+    | `.synopsis`                | Returns the synopsis/brief introduction of the anime.                   |
+    | `.score`                | Returns the score of the anime.                   |
+    | `.members`                | Returns the number of members of the anime.                   |
+    | `.popularity`                | Returns the popularity index of the anime.                   |
+    | `.rank`                | Returns the rank of the anime.                   |
+    | `.episodes`                | Returns the number of episodes of the anime.                   |
+    | `.aired` | Returns the duration the anime was being aired in string format, like `Apr 6, 2019 to Sep 28, 2019`. |
+    | `.broadcast`          | Returns the day and time when new episode of the anime used to be broadcasted, like `Saturdays at 23:30 (JST)`.                    |
+    | `.premiered`          | Returns the cour and year anime used to be premiered in, like `Spring 2019`.                    |
+    | `.genres`          | Returns the list of genres of the anime.                    |
+    | `.themes`          | Returns the list of themes of the anime.                    |
+    | `.poster_url`          | Returns the the URL to the poster image of the anime.                    |
     """
 
     SEARCH_ENDPOINT = "https://myanimelist.net/anime.php"
@@ -69,6 +91,31 @@ class Anime:
 
     @classmethod
     def from_id(cls, id: int):
+        """
+            Constructs the Anime class using the anime ID.
+            ```python
+            anime = myanimelist.Anime.from_id(38000)
+            ```
+
+        | Methods                       | Details                                                        |
+        | ----------------------------- | -------------------------------------------------------------- |
+        | `.url`                | Returns the MyAnimelist URL of the anime.                   |
+        | `.title`                | Returns the title of the anime.                   |
+        | `.title_english`                | Returns the English title of the anime.                   |
+        | `.title_jp`                | Returns the Japanese title of the anime.                   |
+        | `.synopsis`                | Returns the synopsis/brief introduction of the anime.                   |
+        | `.score`                | Returns the score of the anime.                   |
+        | `.members`                | Returns the number of members of the anime.                   |
+        | `.popularity`                | Returns the popularity index of the anime.                   |
+        | `.rank`                | Returns the rank of the anime.                   |
+        | `.episodes`                | Returns the number of episodes of the anime.                   |
+        | `.aired` | Returns the duration the anime was being aired in string format, like `Apr 6, 2019 to Sep 28, 2019`. |
+        | `.broadcast`          | Returns the day and time when new episode of the anime used to be broadcasted, like `Saturdays at 23:30 (JST)`.                    |
+        | `.premiered`          | Returns the cour and year anime used to be premiered in, like `Spring 2019`.                    |
+        | `.genres`          | Returns the list of genres of the anime.                    |
+        | `.themes`          | Returns the list of themes of the anime.                    |
+        | `.poster_url`          | Returns the the URL to the poster image of the anime.                    |
+        """
         # calling dunder new because we dont want to call the constructor
         obj = cls.__new__(cls)
         resp = requests.get(f"{cls.ANIME_ID_ENDPOINT}/{id}")
@@ -80,42 +127,112 @@ class Anime:
 
     @property
     def title(self):
+        """
+        Class - `Anime`
+        ```python
+        anime = myanimelist.Anime("demon slayer")
+        title = anime.title
+        ```
+        """
         return self._page.select_one(".title-name > strong").text
 
     @property
     def title_english(self):
+        """
+        Class - `Anime`
+        ```python
+        anime = myanimelist.Anime("demon slayer")
+        titlee = anime.title_english
+        ```
+        """
         return self._page.select_one(".title-english").text
 
     @property
     def title_jp(self):
+        """
+        Class - `Anime`
+        ```python
+        anime = myanimelist.Anime("demon slayer")
+        titlej = anime.title_jp
+        ```
+        """
         return self._divCh("Japanese:")
 
     @property
     def score(self):
+        """
+        Class - `Anime`
+        ```python
+        anime = myanimelist.Anime("demon slayer")
+        score = anime.score
+        ```
+        """
         return float(self._page.select_one(".score-label").text)
 
     @property
     def rank(self):
+        """
+        Class - `Anime`
+        ```python
+        anime = myanimelist.Anime("demon slayer")
+        rank = anime.rank
+        ```
+        """
         return _sanitize_int(self._page.select_one(".ranked strong").text)
 
     @property
     def members(self):
+        """
+        Class - `Anime`
+        ```python
+        anime = myanimelist.Anime("demon slayer")
+        members = anime.members
+        ```
+        """
         return _sanitize_int(self._page.select_one(".members strong").text)
 
     @property
     def popularity(self):
+        """
+        Class - `Anime`
+        ```python
+        anime = myanimelist.Anime("demon slayer")
+        pop = anime.popularity
+        ```
+        """
         return _sanitize_int(self._page.select_one(".popularity strong").text)
 
     @property
     def synopsis(self):
+        """
+        Class - `Anime`
+        ```python
+        anime = myanimelist.Anime("demon slayer")
+        synopsis = animesynopsis.
+        ```
+        """
         return self._page.select_one("p[itemprop='description']").text
 
     @property
     def poster_url(self):
+        """
+        Class - `Anime`
+        ```python
+        anime = myanimelist.Anime("demon slayer")
+        poster_url = anime.poster_url
+        ```
+        """
         return self._page.select_one("img[itemprop='image']")["data-src"]
 
     @property
     def genres(self):
+        """
+        Class - `Anime`
+        ```python
+        anime = myanimelist.Anime("demon slayer")
+        genres = anime.genres
+        ```
+        """
         genres = []
         for container in self._dark:
             if "Genres" in container.text or "Genre" in container.text:
@@ -129,6 +246,13 @@ class Anime:
 
     @property
     def themes(self):
+        """
+        Class - `Anime`
+        ```python
+        anime = myanimelist.Anime("demon slayer")
+        themes= anime.themes
+        ```
+        """
         themes_ = []
         for container in self._dark:
             if "Themes" in container.text or "Theme" in container.text:
