@@ -1,3 +1,3 @@
-from .scraper import Anime, AnimeNotFound
+from .scraper import Anime
 
-__all__ = ["Anime", "AnimeNotFound"]
+__all__ = ["Anime"]
