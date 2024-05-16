@@ -46,8 +46,8 @@ user = github.Users(username="nikhil25803")
 | `.star_count()`               | Returns the number of stars of a user.                                                             |
 | `.get_yearly_contributions()` | Returns the number of contributions made in 365 days frame.                                        |
 | `.get_repositories()`         | Returns the list of repositories of a user.                                                        |
-| `.get_starred_repos()`        | Return the list of starred repositories of a user.                                                 |
-| `.pul_requests()`             | Return the number of pull requests opened in a repository.                                         |
+| `.get_starred_repos()`        | Returns the list of starred repositories of a user.                                                 |
+| `.pul_requests()`             | Returns the number of pull requests opened in a repository.                                         |
 | `.get_followers()`            | Returns the list of followers of a user.                                                           |
 | `.get_following_users()`      | Returns the list of users followed by a user.                                                      |
 | `.get_achievements()`         | Returns the list of achievements of a user.                                                        |
@@ -691,7 +691,7 @@ video = Video(video_url="video_url")
 
 | Methods         | Details                  |
 | --------------- | ------------------------ |
-| `.getDetails()` | Return the video details |
+| `.getDetails()` | Returns the video details |
 
 ## Scrape Channel Details
 
@@ -1457,7 +1457,7 @@ scraper = TheHindu()
 
 | Methods               | Details                                          |
 | --------------------- | ------------------------------------------------ |
-| `.get_news(page_url)` | gets heading, subheading, time, and news content |
+| `.get_news(page_url)` | Gets heading, subheading, time, and news content |
 
 ---
 
@@ -1564,8 +1564,8 @@ olympics = Olympics()
 
 | Methods            | Details                                                                                 |
 | ------------------ | --------------------------------------------------------------------------------------- |
-| `.allcountries()`  | returns the list of all the countries participated yet in olympics.                     |
-| `.allsports()`     | returns the list of all the sports being currently played in olympics.                  |
+| `.allcountries()`  | Returns the list of all the countries participated yet in olympics.                     |
+| `.allsports()`     | Returns the list of all the sports being currently played in olympics.                  |
 | `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
 | `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
 
