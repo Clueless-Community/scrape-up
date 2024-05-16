@@ -1673,6 +1673,9 @@ The `Jobs` class provides methods for configuring scraping parameters and fetchi
 ```python
 from scrape-up import lichess
 lichess_games = lichess.LichessGames(username)
+start_page = 1
+end_page = 4
+lichess_games.fetch_games(start_page,end_page)
 ```
 
 The `LichessGames` class provides methods for fetching Lichess game data for a specified user:

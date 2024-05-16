@@ -41,23 +41,30 @@ class LichessGames:
             game_list.append(game_info)
         return game_list
 
-    def fetch_games(self):
+    def fetch_games(self,start_page=1,end_page=4):
         """
         Fetch all the games data for the specified username.
 
+        Parameters:
+        - `start_page` (int): Starting page number. Default is 1.
+        - `end_page` (int): Ending page number. Default is 4.
+
         Example:
         ```python
+        # Default usage:
         games = scraper.fetch_games()
+        
+        # Custom usage:
+        games = scraper.fetch_games(start_page=5, end_page=8)
         ```
         """
         all_games_list = []
         try:
-            for counter in range(1, 40):
+            for counter in range(start_page, end_page):
                 game_list = self.__fetch_page_games(counter)
                 if game_list is None:
                     break
                 all_games_list += game_list
-                sleep(0.15)
         except Exception:
             return None
         return all_games_list
@@ -123,7 +130,4 @@ class LichessGames:
         pgn_request = requests.get(f"https://lichess.org{gameUrl}")._content
         parsed_pgn = BeautifulSoup(pgn_request, "lxml")
         return parsed_pgn.find("div", {"class": "pgn"}).text
-
-
-lichess = LichessGames(username="Mirror2004")
-print(lichess.fetch_games())
+    
