@@ -1,6 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
-
+import json
 
 class Users:
     """
@@ -22,12 +21,6 @@ class Users:
 
     def __init__(self, username):
         self.username = username
-
-    def _extract_text_or_empty(self, element):
-        """
-        Extract text from an element or return an empty string if the element is None.
-        """
-        return element.text.strip() if element else ""
 
     def get_user_data(self):
         """
@@ -58,105 +51,34 @@ class Users:
         }
         ```
         """
-        try:
-            url = self.user_url.format(self.username)
-            headers = {"User-Agent": "scrapeup"}
-            response = requests.get(url, headers=headers)
-            response.raise_for_status()  # Raise an exception for HTTP errors
+        # API Method to get user information
+        api_url = f"https://codeforces.com/api/user.info?handles={self.username}"
+        request = requests.get(api_url)
+        
+        # Incase of invalid handle or other error return empty dictionary
+        if not request.ok:
+            return {}
 
-            soup = BeautifulSoup(response.text, "html.parser")
+        # Extracting data from response
+        response = json.loads(request.text)
+        data = response["result"][0]
 
-            # Extracting user information
-            user_info = {}
+        # Creating a dictionary
+        result = {
+            "rank": data.get("rank", None),
+            "handle": data.get("handle", None),
+            "firstname": data.get("firstName", "NA"),
+            "lastname": data.get("lastName", "NA"),
+            "city": data.get("city", "NA"),
+            "country": data.get("country", "NA"),
+            "organization": data.get("organization", "NA"),
+            "rating": data.get("rating", None),
+            "contribution": f'+{data.get("maxRating", 0)}',
+            "friendsofcount": data.get("friendOfCount", 0),
+            "lastvisit": data.get("lastOnlineTimeSeconds", 0),
+            "registered": data.get("registrationTimeSeconds", 0),
+            "titlephoto": data.get("titlePhoto", None),
+            "avatar": data.get("avatar", None),
+        }
 
-            # Find the main-info div
-            main_info = soup.find("div", class_="main-info")
-
-            # Extract user's rank
-            user_info["rank"] = self._extract_text_or_empty(
-                main_info.find("div", class_="user-rank")
-            )
-
-            # Extract user's name and handle
-            user_name = main_info.find("h1")
-            user_info["handle"] = user_name.find("a").text.strip()
-
-            # Find the div with user information
-            user_info_string = self._extract_text_or_empty(
-                main_info.find("div", style="margin-top: 0.5em;")
-            )
-            info_list = user_info_string.split(",")
-
-            user_info["firstName"], user_info["lastName"] = info_list[0].split()
-            user_info["city"] = info_list[1]
-
-            location_info = info_list[2].split("From")
-            user_info["country"] = location_info[0].strip()
-            user_info["organization"] = location_info[1]
-
-            # Extract user's rating and max rating
-            user_rating = soup.find("div", class_="info").find_all("li")
-            for item in user_rating:
-                if "Contest rating:" in item.text:
-                    rating_span = item.find("span", class_="user-legendary")
-                    user_info["rating"] = (
-                        self._extract_text_or_empty(rating_span) if rating_span else ""
-                    )
-                elif "max. legendary grandmaster" in item.text:
-                    max_rating_span = item.find("span", class_="user-legendary")
-                    user_info["maxRating"] = (
-                        self._extract_text_or_empty(max_rating_span)
-                        if max_rating_span
-                        else ""
-                    )
-
-            # Find the <div> element with class "info"
-            info_div = soup.find("div", class_="info")
-
-            # Initialize an empty string to store the contest rating and other such info text
-            extracted_text = ""
-
-            # Check if the <div> element exists
-            if info_div:
-                # Find the <ul> element within the <div>
-                ul_element = info_div.find("ul")
-
-                # Check if the <ul> element exists
-                if ul_element:
-                    # Find all <li> elements within the <ul>
-                    li_elements = ul_element.find_all("li")
-
-                    # Loop through each <li> element and extract its text
-                    for li in li_elements:
-                        text = li.get_text(strip=True)
-                        extracted_text += text + " "
-
-            temp = extracted_text.split(":")
-
-            user_info["contribution"] = temp[2].split()[0]
-            user_info["friendsOfCount"] = temp[3].split()[0]
-            user_info["lastVisit"] = int(temp[4].split()[0]) * 3600
-            user_info["registered"] = int(temp[5].split()[0]) * 365.25 * 24 * 60 * 60
-
-            # Extract title photo and avatar
-            title_photo_div = soup.find("div", class_="title-photo")
-            user_info["titlePhoto"] = (
-                title_photo_div.find("img")["src"] if title_photo_div else ""
-            )
-            user_info["avatar"] = (
-                title_photo_div.find("img")["src"] if title_photo_div else ""
-            )
-
-            # Extracting keys
-            keys = [f"{i}".lower() for i in user_info.keys()]
-
-            # Extracting values
-
-            values = [f"{i}" for i in user_info.values()]
-
-            response = dict(zip(keys, values))
-
-            return response
-
-        except:
-            return None
+        return result # Return the dictionary object
