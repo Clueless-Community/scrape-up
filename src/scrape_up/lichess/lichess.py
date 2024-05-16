@@ -13,7 +13,6 @@ class LichessGames:
     ```
     | Methods                       | Details                                                                    |
     | ----------------------------- | -------------------------------------------------------------------------- |
-    | `.__init__(username)`         | Initialize the `LichessGames` instance with the specified username.        |
     | `.fetch_games()`              | Fetch all the games data for the specified username.                       |
 
     Note : player score and score_change is None :
@@ -45,9 +44,6 @@ class LichessGames:
     def fetch_games(self):
         """
         Fetch all the games data for the specified username.
-
-        Returns:
-        - `list` or `None`: A list of dictionaries containing the game information, or None if an exception occurs.
 
         Example:
         ```python
@@ -127,3 +123,7 @@ class LichessGames:
         pgn_request = requests.get(f"https://lichess.org{gameUrl}")._content
         parsed_pgn = BeautifulSoup(pgn_request, "lxml")
         return parsed_pgn.find("div", {"class": "pgn"}).text
+
+
+lichess = LichessGames(username="Mirror2004")
+print(lichess.fetch_games())
