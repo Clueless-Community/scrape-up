@@ -92,7 +92,3 @@ class Geeksforgeeks:
             return user_data
         except:
             return None
-
-
-gfg = Geeksforgeeks(user="nikhil25803")
-print(gfg.get_profile())

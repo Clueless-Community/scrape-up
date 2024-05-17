@@ -16,7 +16,7 @@ class RequestConfig:
 
     def __init__(
         self,
-        timeout: int = 5,
+        timeout: int = 20,
         redirect: bool = False,
         headers: Dict[str, str] = {},
     ):

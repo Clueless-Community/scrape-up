@@ -17,7 +17,7 @@ class TestPinterest(unittest.TestCase):
                 self.assertIn("image", topic)
 
     def test_get_photo(self):
-        url = "https://pin.it/1ZhgQA5AG"  
+        url = "https://pin.it/1ZhgQA5AG"
         photo = self.pinterest.get_photo(url)
         if photo:
             self.assertIn("alt", photo)
@@ -33,7 +33,7 @@ class TestPinterest(unittest.TestCase):
                 self.assertIn("image", pin)
 
     def test_get_pin_details(self):
-        pin_url = "https://pin.it/1ZhgQA5AG"  
+        pin_url = "https://pin.it/1ZhgQA5AG"
         details = self.pinterest.get_pin_details(pin_url)
         if details:
             self.assertIn("title", details)

@@ -26,11 +26,10 @@ class Robu:
             self.config.set_headers(headers)
 
     def __get_html_content(self, url: str):
-        if headers is None:
-
-        response = get(url, self.config)
-        response.raise_for_status()
-        return response.content
+        if self.headers is None:
+            response = get(url, self.config)
+            response.raise_for_status()
+            return response.content
 
     def __get_soup(self, url):
         request_content = self.__get_html_content(url)

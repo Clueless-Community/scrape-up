@@ -19,7 +19,6 @@ class Comapiens:
             file.write(f"{company_name.strip()} {rating}\n")
 
     def scrape_companies(self):
-
         for page in range(1, self.num_pages + 1):
             print(f"Scraping webpage number: {page} of {self.num_pages}")
 
