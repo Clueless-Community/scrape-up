@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 from time import sleep
 
+from scrape_up.config.request_config import RequestConfig, get
+
 
 class Jobs:
     """
@@ -15,8 +17,9 @@ class Jobs:
     | `.fetch_jobs()`               | Fetch job listings based on the applied filters, with an optional maximum number of pages to scrape. |
     """
 
-    def __init__(self):
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
         self.url = "https://wuzzuf.net/search/jobs/?"
+        self.config = config
 
     def filter_job(
         self,
@@ -58,7 +61,7 @@ class Jobs:
             )
 
     def __fetch_page_jobs(self, page_num):
-        response = requests.get(self.url + f"&start={page_num}")
+        response = get(self.url + f"&start={page_num}", self.config)
         if response.status_code == 200:
             parsed_html = BeautifulSoup(response.content, "lxml")
             jobs_data = parsed_html.find_all("div", {"class": "css-1gatmva e1v1l3u10"})

@@ -47,5 +47,10 @@ class RequestConfig:
 
 
 def get(url: str, config: RequestConfig):
-    r = requests.get(url, timeout=config.timeout, allow_redirects=config.redirect)
+    r = requests.get(
+        url=url,
+        headers=config.headers,
+        timeout=config.timeout,
+        allow_redirects=config.redirect,
+    )
     return r
