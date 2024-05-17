@@ -65,32 +65,26 @@ class Pinterest:
             return None
 
     def get_photo(self, url):
-      
-      """
-       Class - `Pinterest`
-      Example:
-     ```python
-        pinterestphoto = Pinterest()
-        photo = pinterestphoto.get_photo(your pinterest url)
-     ```
-        Returns: Photo Image URL | None
         """
-      try:
-        page = requests.get(url)
-        soup = bs(page.content, "html.parser")
-        image = soup.find("img", class_="hCL")
-        print("Image tag:", image)  # Add this line
-        if image:
-            return {"alt": image.get("alt"), "image": image.get("src")}
-        else:
-            print("No image found")  # Add this line
+          Class - `Pinterest`
+         Example:
+        ```python
+           pinterestphoto = Pinterest()
+           photo = pinterestphoto.get_photo(your pinterest url)
+        ```
+           Returns: Photo Image URL | None
+        """
+        try:
+            page = requests.get(url)
+            soup = bs(page.content, "html.parser")
+            image = soup.find("img", class_="hCL")
+            if image:
+                return {"alt": image.get("alt"), "image": image.get("src")}
+            else:
+                return None
+        except Exception as e:
             return None
-      except Exception as e:
-        print("Error:", e)
-        return None
-    
 
-        
     def search_pins(self, keyword):
         """
         Search for pins containing a specific keyword on Pinterest.
@@ -112,7 +106,6 @@ class Pinterest:
                 pins.append({"link": link, "image": image})
             return pins
         except Exception as e:
-            print("Error:", e)
             return None
 
     def get_pin_details(self, pin_url):
@@ -131,8 +124,14 @@ class Pinterest:
             title = soup.find("meta", property="og:title").get("content")
             description = soup.find("meta", property="og:description").get("content")
             saves = soup.find("meta", property="pinterestapp:saves").get("content")
-            comments = soup.find("meta", property="pinterestapp:comments").get("content")
-            return {"title": title, "description": description, "saves": saves, "comments": comments}
+            comments = soup.find("meta", property="pinterestapp:comments").get(
+                "content"
+            )
+            return {
+                "title": title,
+                "description": description,
+                "saves": saves,
+                "comments": comments,
+            }
         except Exception as e:
-            print("Error:", e)
             return None
