@@ -1,6 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 import json
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Video:
@@ -15,8 +16,9 @@ class Video:
     | `.getDetails()` | Return the video details |
     """
 
-    def __init__(self, video_url):
+    def __init__(self, video_url: str, *, config: RequestConfig = RequestConfig()):
         self.video_url = video_url
+        self.config = config
 
     def getDetails(self):
         """
@@ -41,7 +43,7 @@ class Video:
         """
         url = self.video_url
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
             video_data = {"video_data": []}
 
