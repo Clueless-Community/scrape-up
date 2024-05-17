@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Issue:
@@ -19,15 +20,22 @@ class Issue:
     | `.opened_at()`    | Returns a string containing the time when the issue was opened in ISO format.      |
     """
 
-    def __init__(self, username: str, repository_name: str, issue_number: int):
+    def __init__(
+        self,
+        username: str,
+        repository_name: str,
+        issue_number: int,
+        *,
+        config: RequestConfig = RequestConfig(),
+    ):
         self.username = username
         self.repository = repository_name
         self.issue_number = issue_number
+        self.config = config
 
     def __scrape_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/issues/{self.issue_number}"
-        )
+        url = f"https://github.com/{self.username}/{self.repository}/issues/{self.issue_number}"
+        data = get(url, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 

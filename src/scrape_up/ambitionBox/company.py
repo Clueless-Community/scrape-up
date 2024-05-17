@@ -1,10 +1,17 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Comapiens:
-    def __init__(self, num_pages: int = 1):
+    def __init__(self, num_pages: int = 1, *, config: RequestConfig = RequestConfig()):
         self.num_pages = num_pages
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+        }
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
     def write_sorted_list(self, file, company_list):
         company_list.sort(key=lambda x: x[1], reverse=True)
@@ -12,15 +19,12 @@ class Comapiens:
             file.write(f"{company_name.strip()} {rating}\n")
 
     def scrape_companies(self):
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
-        }
 
         for page in range(1, self.num_pages + 1):
             print(f"Scraping webpage number: {page} of {self.num_pages}")
 
             url = f"https://www.ambitionbox.com/list-of-companies?page={page}"
-            response = requests.get(url, headers=headers)
+            response = get(url, self.config)
 
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, "lxml")

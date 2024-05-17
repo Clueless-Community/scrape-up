@@ -1,6 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 import json
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class EazyDiner:
@@ -19,8 +20,9 @@ class EazyDiner:
     | `.get_top10()`      | Returns list of top 10 restaurants from given city|
     """
 
-    def __init__(self, location):
+    def __init__(self, location: str, *, config: RequestConfig = RequestConfig()):
         self.location = location
+        self.config = config
 
     def get_restaurants(self):
         """
@@ -44,7 +46,7 @@ class EazyDiner:
             + self.location.replace(" ", "-").replace(",", "").lower()
         )
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             restaurant_data = {"restaurants": []}
@@ -105,7 +107,7 @@ class EazyDiner:
             + "&meal_period=breakfast"
         )
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             restaurant_data = {"restaurants": []}
@@ -166,7 +168,7 @@ class EazyDiner:
             + "&meal_period=lunch"
         )
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             restaurant_data = {"restaurants": []}
@@ -227,7 +229,7 @@ class EazyDiner:
             + "&meal_period=dinner"
         )
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             restaurant_data = {"restaurants": []}
@@ -289,7 +291,7 @@ class EazyDiner:
             + "&meal_period=dinner&buckets%5B%5D=fifty-percent-discounts"
         )
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             restaurant_data = {"restaurants": []}
@@ -342,7 +344,7 @@ class EazyDiner:
         """
         try:
             url = f"https://www.eazydiner.com/{self.location}/restaurants"
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             restaurant_data = {"restaurants": []}

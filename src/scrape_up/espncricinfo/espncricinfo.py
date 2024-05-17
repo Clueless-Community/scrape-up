@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
+from scrape_up.config.request_config import RequestConfig, get
+
 
 class Espncricinfo:
     """
@@ -15,15 +17,15 @@ class Espncricinfo:
     | `.get_livescores()`          | Returns a list of live matches from ESPNCricinfo. |
     """
 
-    def __init__(self):
-        self.session = requests.Session()
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
         self.BASE_URL = "https://www.espncricinfo.com"
 
     def get_news(self):
         news = []
         URL = self.BASE_URL + "/cricket-news"
         try:
-            res = self.session.get(URL)
+            res = get(URL, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from ESPN"}]
             soup = BeautifulSoup(res.text, "html.parser")
@@ -40,7 +42,7 @@ class Espncricinfo:
         live_scores = []
         URL = self.BASE_URL + "/live-cricket-score"
         try:
-            res = self.session.get(URL)
+            res = get(URL, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from ESPN"}]
             soup = BeautifulSoup(res.text, "html.parser")

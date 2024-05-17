@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Users:
@@ -20,8 +21,12 @@ class Users:
 
     user_url = "https://codeforces.com/profile/{}"
 
-    def __init__(self, username):
+    def __init__(self, username: str, *, config: RequestConfig = RequestConfig()):
         self.username = username
+        headers = {"User-Agent": "scrapeup"}
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
     def _extract_text_or_empty(self, element):
         """
@@ -60,8 +65,7 @@ class Users:
         """
         try:
             url = self.user_url.format(self.username)
-            headers = {"User-Agent": "scrapeup"}
-            response = requests.get(url, headers=headers)
+            response = get(url, self.config)
             response.raise_for_status()  # Raise an exception for HTTP errors
 
             soup = BeautifulSoup(response.text, "html.parser")

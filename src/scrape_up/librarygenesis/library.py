@@ -1,10 +1,11 @@
-import requests
 from bs4 import BeautifulSoup as bs
 
+from scrape_up.config.request_config import RequestConfig, get
 
-def link_to_get(link):
+
+def link_to_get(link, config: RequestConfig):
     """This function will get the url of the image & book download direct link using the given link for book download"""
-    response = requests.get(link)
+    response = get(link, config)
     th_html = bs(response.text, "html.parser")
     td_all = th_html.find_all("td", id="info")
     td_all = td_all[0]
@@ -27,7 +28,10 @@ class LibGen:
     | `.getBooks(book_name=" ")` | Returns the books with name, author, size, format, book link, book cover link, language |
     """
 
-    def getBooks(self, book_name):
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
+
+    def getBooks(self, book_name: str):
         """
         Class - `LibGen`
         Example:
@@ -60,7 +64,7 @@ class LibGen:
 
             url = f"http://libgen.is/search.php?req={name}&lg_topic=libgen&open=0&view=simple&res={mainres}&phrase=1&column=def"
 
-            response = requests.get(url)
+            response = get(url, self.config)
             bs_html = bs(response.text, "html.parser")
 
             if "Search string must contain minimum 3 characters.." in bs_html.body:
@@ -88,7 +92,7 @@ class LibGen:
                         a = link_row.find("a", href=True)
                         link = a.get("href")
 
-                        link_all = link_to_get(link)
+                        link_all = link_to_get(link, self.config)
 
                         language_row = table_datas[6]
                         language = language_row.get_text()

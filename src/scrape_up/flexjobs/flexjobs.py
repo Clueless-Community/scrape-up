@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class FlexJobs:
@@ -23,11 +24,17 @@ class FlexJobs:
     """
 
     def __init__(
-        self, search_query: str, location_query: str = "", min_jobs: int = 100
+        self,
+        search_query: str,
+        location_query: str = "",
+        min_jobs: int = 100,
+        *,
+        config: RequestConfig = RequestConfig(),
     ):
         self.search_query = search_query
         self.location_query = location_query
         self.min_jobs = min_jobs
+        self.config = config
 
     def get_jobs(self):
         """
@@ -67,7 +74,7 @@ class FlexJobs:
         # Loop until maximum job listings are retrieved or no more listings available
         while len(job_listings) < self.min_jobs:
             url = f"{base_url}&page={page}"
-            response = requests.get(url)
+            response = get(url, self.config)
             if response.status_code == 200:
                 # Parsing HTML content
                 soup = BeautifulSoup(response.content, "html.parser")

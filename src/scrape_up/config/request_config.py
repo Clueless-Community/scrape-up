@@ -24,6 +24,15 @@ class RequestConfig:
         self._redirect = redirect
         self._headers = headers
 
+    def set_timeout(self, timeout: int):
+        self._timeout = timeout
+
+    def set_redirect(self, redirect: bool):
+        self._redirect = redirect
+
+    def set_headers(self, headers: Dict[str, str]):
+        self._headers = headers
+
     @property
     def timeout(self):
         return self._timeout

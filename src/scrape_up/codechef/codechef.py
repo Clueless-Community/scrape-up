@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup as bs
 
+from scrape_up.config.request_config import RequestConfig, get
+
 
 class User:
     """
@@ -15,18 +17,24 @@ class User:
 
     """
 
-    def __init__(self, id):
-        self.id = id
+    def __init__(self, id_, *, config: RequestConfig = RequestConfig()):
+        self.id = id_
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Safari/537.36"
+        }
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
     def get_profile(self):
         """
-         Create an object of the 'User' class
-         ```python
-         user1 = User(id="heltion")
-         user1.get_profile()
-         ```
-         Response
-         ```js
+        Create an object of the 'User' class
+        ```python
+        user1 = User(id="heltion")
+        user1.get_profile()
+        ```
+        Response
+        ```js
         {
             'name': 'Yaowei Lyu',
             'username': 'heltion',
@@ -47,15 +55,15 @@ class User:
                     'user_type': 'Student',
                     'institution': 'Zhejiang University China'
                 }
-         }
-         ```
+        }
+        ```
         """
         try:
             url = f"https://www.codechef.com/users/{self.id}"
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
             }
-            response = requests.get(url, headers=headers).text
+            response = get(url, self.config).text
             soup = bs(response, "lxml")
 
             user_details_box = soup.find("div", {"class": "user-details-container"})
@@ -181,10 +189,7 @@ class User:
         """
         try:
             url = "https://www.codechef.com/api/list/contests/all?sort_by=START&sorting_order=asc&offset=0&mode=all"
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Safari/537.36"
-            }
-            response = requests.get(url, headers=headers).text
+            response = get(url, self.config).text
             return response
         except:
             return None
