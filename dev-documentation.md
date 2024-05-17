@@ -46,8 +46,8 @@ user = github.Users(username="nikhil25803")
 | `.star_count()`               | Returns the number of stars of a user.                                                             |
 | `.get_yearly_contributions()` | Returns the number of contributions made in 365 days frame.                                        |
 | `.get_repositories()`         | Returns the list of repositories of a user.                                                        |
-| `.get_starred_repos()`        | Return the list of starred repositories of a user.                                                 |
-| `.pul_requests()`             | Return the number of pull requests opened in a repository.                                         |
+| `.get_starred_repos()`        | Returns the list of starred repositories of a user.                                                |
+| `.pul_requests()`             | Returns the number of pull requests opened in a repository.                                        |
 | `.get_followers()`            | Returns the list of followers of a user.                                                           |
 | `.get_following_users()`      | Returns the list of users followed by a user.                                                      |
 | `.get_achievements()`         | Returns the list of achievements of a user.                                                        |
@@ -420,6 +420,29 @@ infosys = StockPrice('infosys','nse')
 
 ---
 
+### Flex Jobs
+
+```python
+    flex_jobs = FlexJobs(search_query, location_query, min_jobs)
+```
+
+- Attributes
+
+| Attribute        | Description                                                       |
+| ---------------- | ----------------------------------------------------------------- |
+| `search_query`   | The search query to filter job listings.                          |
+| `location_query` | The location query to filter job listings (defaults to '').       |
+| `min_jobs`       | The maximum number of job listings to retrieve (defaults to 100). |
+
+- Methods
+
+| Method                                 | Description                                                                                                                               |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_jobs() -> list`                   | Retrieves job listings from FlexJobs website based on search and location queries. Returns a list of dictionaries containing job details. |
+| `scrape_job_info(job_listing) -> dict` | Extracts job details from a job listing HTML element.                                                                                     |
+
+---
+
 ## IMDb
 
 Create an instance of the `IMDB` class.
@@ -689,9 +712,9 @@ Create an instance of `Video` class.
 video = Video(video_url="video_url")
 ```
 
-| Methods         | Details                  |
-| --------------- | ------------------------ |
-| `.getDetails()` | Return the video details |
+| Methods         | Details                   |
+| --------------- | ------------------------- |
+| `.getDetails()` | Returns the video details |
 
 ## Scrape Channel Details
 
@@ -1150,9 +1173,10 @@ user = Codechef(id="username")
 
 ```
 
-| Methods         | Details                                                          |
-| --------------- | ---------------------------------------------------------------- |
-| `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
+| Methods          | Details                                                                   |
+| ---------------- | ------------------------------------------------------------------------- |
+| `get_profile()`  | Returns name, username, profile_image_link, rating, details etc.          |
+| `get_contests()` | Returns future_contests , past_contests , skill_tests etc in json format. |
 
 ---
 
@@ -1374,6 +1398,44 @@ espn = ESPN()
 | `get_tournaments()` | Fetches and returns information about football tournaments.    |
 | `get_teams()`       | Fetches and returns information about football teams.          |
 
+### ESPNCricinfo
+
+```py
+from scrape_up import espncricinfo
+```
+
+Create an instance of `Espncricinfo` class.
+
+```python
+obj = espncricinfo.Espncricinfo()
+```
+
+| Methods             | Details                                           |
+| ------------------- | ------------------------------------------------- |
+| `.get_news()`       | Returns a latest news from ESPNCricinfo.          |
+| `.get_livescores()` | Returns a list of live matches from ESPNCricinfo. |
+
+### FIDE
+
+```python
+from scrape_up import fide
+```
+
+Create an instance of `FIDE` class.
+
+```python
+obj = fide.FIDE()
+```
+
+| Methods                  | Details                                             |
+| ------------------------ | --------------------------------------------------- |
+| `.get_events()`          | Returns all the major chess events of 2024.         |
+| `.get_open_ratings()`    | Returns a list of top 100 open category players.    |
+| `.get_women_ratings()`   | Returns a list of top 100 women category players.   |
+| `.get_juniors_ratings()` | Returns a list of top 100 juniors category players. |
+| `.get_girls_ratings()`   | Returns a list of top 100 girls category players.   |
+| `.get_news()`            | Returns a list of top chess/fide news.              |
+
 # Magic Bricks
 
 Create an instance of `MagicBricks` class
@@ -1457,7 +1519,7 @@ scraper = TheHindu()
 
 | Methods               | Details                                          |
 | --------------------- | ------------------------------------------------ |
-| `.get_news(page_url)` | gets heading, subheading, time, and news content |
+| `.get_news(page_url)` | Gets heading, subheading, time, and news content |
 
 ---
 
@@ -1471,7 +1533,7 @@ academia = Academia()
 
 | Method                        | Details                                                               |
 | ----------------------------- | --------------------------------------------------------------------- |
-| `get_research_topics(letter)` | Fetches and returns research topics starting with the given letter.   |
+| `get_research_topics()`       | Fetches and returns research topics.                                  |
 | `get_research_papers(search)` | Fetches and returns research papers related to the given search term. |
 
 ---
@@ -1564,8 +1626,8 @@ olympics = Olympics()
 
 | Methods            | Details                                                                                 |
 | ------------------ | --------------------------------------------------------------------------------------- |
-| `.allcountries()`  | returns the list of all the countries participated yet in olympics.                     |
-| `.allsports()`     | returns the list of all the sports being currently played in olympics.                  |
+| `.allcountries()`  | Returns the list of all the countries participated yet in olympics.                     |
+| `.allsports()`     | Returns the list of all the sports being currently played in olympics.                  |
 | `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
 | `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
 
@@ -1614,5 +1676,72 @@ First create an object of class `Dictionary`.
 | ------------------------------- | ---------------------------------------------- |
 | `.get_word_of_the_day()`        | Returns the word of the day.                   |
 | `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
+
+---
+
+#### AmbitionBx
+
+Create an directory with name ambitonbox
+created a python which consist the code for scarping the website
+
+```python
+# Example usage
+from scrape_up import ambitionBox
+
+num_pages_to_scrape = 2
+
+scraper = ambitionBox.Comapiens(num_pages_to_scrape)
+
+scraper.scrape_companies()
+
+```
+
+| Methods               | Details                                   |
+| --------------------- | ----------------------------------------- |
+| `.scrape_companies()` | Returns the company name with the rating. |
+
+---
+
+## Geeksforgeeks
+
+First create an object of class `Geeksforgeeks`.
+
+```python
+geeksforgeeks = Geeksforgeeks(user="username")
+```
+
+| Methods          | Details                               |
+| ---------------- | ------------------------------------- |
+| `.get_profile()` | Returns the user data in json format. |
+
+---
+
+## Wuzzuf
+
+```python
+from scrap_up import wuzzuf
+jobs = wuzzuf.Jobs()
+```
+
+The `Jobs` class provides methods for configuring scraping parameters and fetching job listings:
+
+| Methods         | Details                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
+| `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
+
+## Atcoder
+
+First create an object of class `Atcoder`.
+
+```python
+from scrap_up import Atcoder
+atcoder = Atcoder(user="username")
+atcode.get_profile()
+```
+
+| Methods          | Details                               |
+| ---------------- | ------------------------------------- |
+| `.get_profile()` | Returns the user data in json format. |
 
 ---
