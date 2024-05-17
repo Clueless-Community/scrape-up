@@ -90,7 +90,6 @@ class IMDB:
         genre_data = scraper.scrape_genre_movies(genre)
 
         json_data = json.dumps(genre_data, indent=4)
-        print(json_data)
         ```
         Return\n
         ```python
@@ -103,8 +102,6 @@ class IMDB:
         try:
             url = "https://www.imdb.com/search/title/?genres={}&sort=user_rating,desc&title_type=feature&num_votes=25000,&pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=5aab685f-35eb-40f3-95f7-c53f09d542c3&pf_rd_r=N97GEQS6R7J9EV7V770D&pf_rd_s=right-6&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_gnr_16"
             formatted_url = url.format(genre)
-            print(formatted_url)
-
             resp = requests.get(formatted_url, headers=self.headers)
             content = BeautifulSoup(resp.content, "lxml")
             genres = [
