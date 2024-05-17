@@ -135,4 +135,3 @@ class Pinterest:
             }
         except Exception as e:
             return None
-
