@@ -18,7 +18,7 @@ class Pinterest:
 
     def __init__(self):
         pass
-
+ 
     def get_today(self):
         """
         Class - `Pinterest`
