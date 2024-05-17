@@ -46,8 +46,8 @@ user = github.Users(username="nikhil25803")
 | `.star_count()`               | Returns the number of stars of a user.                                                             |
 | `.get_yearly_contributions()` | Returns the number of contributions made in 365 days frame.                                        |
 | `.get_repositories()`         | Returns the list of repositories of a user.                                                        |
-| `.get_starred_repos()`        | Returns the list of starred repositories of a user.                                                 |
-| `.pul_requests()`             | Returns the number of pull requests opened in a repository.                                         |
+| `.get_starred_repos()`        | Returns the list of starred repositories of a user.                                                |
+| `.pul_requests()`             | Returns the number of pull requests opened in a repository.                                        |
 | `.get_followers()`            | Returns the list of followers of a user.                                                           |
 | `.get_following_users()`      | Returns the list of users followed by a user.                                                      |
 | `.get_achievements()`         | Returns the list of achievements of a user.                                                        |
@@ -712,8 +712,8 @@ Create an instance of `Video` class.
 video = Video(video_url="video_url")
 ```
 
-| Methods         | Details                  |
-| --------------- | ------------------------ |
+| Methods         | Details                   |
+| --------------- | ------------------------- |
 | `.getDetails()` | Returns the video details |
 
 ## Scrape Channel Details
@@ -1173,10 +1173,10 @@ user = Codechef(id="username")
 
 ```
 
-| Methods         | Details                                                                   |
-| --------------- | ------------------------------------------------------------------------- |
-| `get_profile()` | Returns name, username, profile_image_link, rating, details etc.          |
-| `get_contests()`| Returns future_contests , past_contests , skill_tests etc in json format. |
+| Methods          | Details                                                                   |
+| ---------------- | ------------------------------------------------------------------------- |
+| `get_profile()`  | Returns name, username, profile_image_link, rating, details etc.          |
+| `get_contests()` | Returns future_contests , past_contests , skill_tests etc in json format. |
 
 ---
 
@@ -1427,14 +1427,14 @@ Create an instance of `FIDE` class.
 obj = fide.FIDE()
 ```
 
-| Methods                   | Details                                            |
-| ------------------------- | -------------------------------------------------- |
-| `.get_events()`           | Returns all the major chess events of 2024.        |
-| `.get_open_ratings()`     | Returns a list of top 100 open category players.   |
-| `.get_women_ratings()`    | Returns a list of top 100 women category players.  |
-| `.get_juniors_ratings()`  | Returns a list of top 100 juniors category players.|
-| `.get_girls_ratings()`    | Returns a list of top 100 girls category players.  |
-| `.get_news()`             | Returns a list of top chess/fide news.             |
+| Methods                  | Details                                             |
+| ------------------------ | --------------------------------------------------- |
+| `.get_events()`          | Returns all the major chess events of 2024.         |
+| `.get_open_ratings()`    | Returns a list of top 100 open category players.    |
+| `.get_women_ratings()`   | Returns a list of top 100 women category players.   |
+| `.get_juniors_ratings()` | Returns a list of top 100 juniors category players. |
+| `.get_girls_ratings()`   | Returns a list of top 100 girls category players.   |
+| `.get_news()`            | Returns a list of top chess/fide news.              |
 
 # Magic Bricks
 
@@ -1677,19 +1677,18 @@ First create an object of class `Dictionary`.
 | `.get_word_of_the_day()`        | Returns the word of the day.                   |
 | `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
 
---------
+---
 
-
-#### AmbitionBx 
+#### AmbitionBx
 
 Create an directory with name ambitonbox
-created a python which consist the code for scarping the website 
+created a python which consist the code for scarping the website
 
 ```python
 # Example usage
 from scrape_up import ambitionBox
 
-num_pages_to_scrape = 2  
+num_pages_to_scrape = 2
 
 scraper = ambitionBox.Comapiens(num_pages_to_scrape)
 
@@ -1697,8 +1696,8 @@ scraper.scrape_companies()
 
 ```
 
-| Methods         | Details                                                                       |
-| --------------- | ----------------------------------------------------------------------------- |
+| Methods               | Details                                   |
+| --------------------- | ----------------------------------------- |
 | `.scrape_companies()` | Returns the company name with the rating. |
 
 ---
@@ -1706,13 +1705,14 @@ scraper.scrape_companies()
 ## Geeksforgeeks
 
 First create an object of class `Geeksforgeeks`.
+
 ```python
 geeksforgeeks = Geeksforgeeks(user="username")
 ```
 
-| Methods                         | Details                                        |
-| ------------------------------- | ---------------------------------------------- |
-| `.get_profile()`                | Returns the user data in json format.          |
+| Methods          | Details                               |
+| ---------------- | ------------------------------------- |
+| `.get_profile()` | Returns the user data in json format. |
 
 ---
 

@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class FIDE:
     """
     Create an instance of `FIDE` class.
@@ -16,6 +17,7 @@ class FIDE:
     | `.get_girls_ratings()`    | Returns a list of top 100 girls category players.  |
     | `.get_news()`             | Returns a list of top chess/fide news.             |
     """
+
     def __init__(self):
         self.session = requests.Session()
         self.BASE_URL = ""
@@ -28,11 +30,15 @@ class FIDE:
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from ESPN"}]
             soup = BeautifulSoup(res.text, "html.parser")
-            event_domains = soup.find_all("div", attrs={"class": "block-calendar-table-one no-padding col-12"})
+            event_domains = soup.find_all(
+                "div", attrs={"class": "block-calendar-table-one no-padding col-12"}
+            )
             for event_domain in event_domains:
                 table_div = event_domain.find("div", attrs={"class": "ant-table-body"})
                 events_table = table_div.find("table")
-                events_table_body = events_table.find("tbody", attrs={"class": "ant-table-tbody"})
+                events_table_body = events_table.find(
+                    "tbody", attrs={"class": "ant-table-tbody"}
+                )
                 table_rows = events_table_body.find_all("tr")
                 for event in table_rows:
                     try:
@@ -45,7 +51,7 @@ class FIDE:
                             "name": name,
                             "place": place,
                             "start": start,
-                            "end": end
+                            "end": end,
                         }
                         events.append(event)
                     except:
@@ -170,18 +176,16 @@ class FIDE:
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from ESPN"}]
             soup = BeautifulSoup(res.text, "html.parser")
-            articles_div = soup.find("div", attrs={"class": "wppm wppm-grid s1 columns-3"})
+            articles_div = soup.find(
+                "div", attrs={"class": "wppm wppm-grid s1 columns-3"}
+            )
             articles = articles_div.find_all("article")
             for article in articles:
                 headline = article.find("div", attrs={"class": "entry-content"}).text
                 date = article.find("aside", attrs={"class": "meta-row row-3"}).text
                 post_url_div = article.find("div", attrs={"class": "post-img"})
                 url = post_url_div.find("a")
-                news_details = {
-                    "headline": headline,
-                    "date": date,
-                    "url": url['href']
-                }
+                news_details = {"headline": headline, "date": date, "url": url["href"]}
                 news.append(news_details)
             return news
         except:

@@ -61,6 +61,7 @@ class FIDETest(unittest.TestCase):
             list,
             "FIDE:get_juniors_ratings - invalid response",
         )
+
     def test_get_girls_ratings(self):
         instance = FIDE()
         method_response = instance.get_girls_ratings()
@@ -81,5 +82,6 @@ class FIDETest(unittest.TestCase):
             "FIDE:get_news - invalid response",
         )
 
-    if __name__ == "__main__":
-        unittest.main()
+
+if __name__ == "__main__":
+    unittest.main()
