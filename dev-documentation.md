@@ -1708,3 +1708,16 @@ The `Jobs` class provides methods for configuring scraping parameters and fetchi
 | --------------- | ---------------------------------------------------------------------------------------- |
 | `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
 | `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
+
+## Atcode
+
+First create an object of class `Geeksforgeeks`.
+```python
+atcoder = Atcoder(user="username")
+```
+
+| Methods                         | Details                                        |
+| ------------------------------- | ---------------------------------------------- |
+| `.get_profile()`                | Returns the user data in json format.          |
+
+---
