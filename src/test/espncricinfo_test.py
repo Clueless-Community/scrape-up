@@ -3,7 +3,6 @@ from scrape_up.espncricinfo import Espncricinfo
 
 
 class ESPNTest(unittest.TestCase):
-
     def test_connection(self):
         instance = Espncricinfo()
         self.assertTrue(

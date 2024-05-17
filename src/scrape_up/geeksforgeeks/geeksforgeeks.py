@@ -100,3 +100,6 @@ class Geeksforgeeks:
         except Exception as e:
             return f"An error occurred: {e}"
 
+
+gfg = Geeksforgeeks(user="nikhil25803")
+print(gfg.get_profile())
