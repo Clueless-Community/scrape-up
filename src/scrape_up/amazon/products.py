@@ -1,11 +1,12 @@
-import requests
 from bs4 import BeautifulSoup
+import requests
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Product:
     """Class for fetching and retrieving product details from Amazon."""
 
-    def __init__(self, product_name: str):
+    def __init__(self, product_name: str, *, config: RequestConfig = RequestConfig()):
         """
         Initialize the Product object with a product name.
 
@@ -13,9 +14,12 @@ class Product:
             product_name (str): The name of the product.
         """
         self.product_name = product_name
-        self.headers = {
+        headers = {
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
         }
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
     def fetch_product_page(self):
         """
@@ -30,7 +34,7 @@ class Product:
         try:
             product_name = self.product_name.replace(" ", "+")
             url = f"https://www.amazon.in/s?k={product_name}"
-            r = requests.get(url, headers=self.headers)
+            r = get(url, self.config)
             r.raise_for_status()  # Raise HTTPError for bad responses
             return BeautifulSoup(r.content, "html.parser")
         except requests.RequestException as e:
@@ -76,7 +80,7 @@ class Product:
         """
         try:
             product_link = self.get_product()["data"]
-            r = requests.get(product_link, headers=self.headers)
+            r = get(product_link, self.config)
             r.raise_for_status()  # Raise HTTPError for bad responses
             soup = BeautifulSoup(r.content, "html.parser")
             product_name = soup.find("span", {"id": "productTitle"}).text.strip()
@@ -107,7 +111,7 @@ class Product:
         """
         try:
             product_link = self.get_product()["data"]
-            r = requests.get(product_link, headers=self.headers)
+            r = get(product_link, self.config)
             r.raise_for_status()  # Raise HTTPError for bad responses
             soup = BeautifulSoup(r.content, "html.parser")
             product_image = soup.find("div", {"id": "imgTagWrapperId"}).find("img")[
@@ -132,7 +136,7 @@ class Product:
         """
         try:
             product_link = self.get_product()["data"]
-            r = requests.get(product_link, headers=self.headers)
+            r = get(product_link, self.config)
             r.raise_for_status()  # Raise HTTPError for bad responses
             soup = BeautifulSoup(r.content, "html.parser")
             review_elements = soup.find_all("div", {"data-hook": "review"})

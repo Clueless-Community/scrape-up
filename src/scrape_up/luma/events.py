@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Events:
@@ -12,6 +13,9 @@ class Events:
     | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
     | `.get_events()` | Returns the latest events along with their organizer, location, image url, price and link. |
     """
+
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def get_events(self):
         """
@@ -39,7 +43,7 @@ class Events:
         url = "https://lu.ma/nyc"
         events_data = {"events": []}
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.content, "html.parser")
             cards = soup.find_all("div", class_="jsx-3249095655 card-wrapper")
 

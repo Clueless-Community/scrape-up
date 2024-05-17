@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Geeksforgeeks:
@@ -33,14 +34,17 @@ class Geeksforgeeks:
     ```
     """
 
-    def __init__(self, user):
+    def __init__(self, user: str, *, config: RequestConfig = RequestConfig()):
         self.user = user
+        headers = {"User-Agent": "scrapeup"}
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
     def get_profile(self):
         try:
             url = f"https://www.geeksforgeeks.org/user/{self.user}/"
-            headers = {"User-Agent": "scrapeup"}
-            response = requests.get(url, headers=headers)
+            response = get(url, self.config)
             soup = BeautifulSoup(response.text, "html.parser")
             main_info = soup.find("div", class_="AuthLayout_head_content__ql3r2")
 
@@ -98,8 +102,4 @@ class Geeksforgeeks:
 
             return formatted_output
         except Exception as e:
-            return f"An error occurred: {e}"
-
-
-gfg = Geeksforgeeks(user="nikhil25803")
-print(gfg.get_profile())
+            return None

@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class RottenTomatoes:
@@ -15,11 +16,14 @@ class RottenTomatoes:
     | `.best_shows()`              | Returns the best TV shows listed on the Rotten Tomatoes website.    |
     """
 
-    def __init__(self):
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
         self.url = "https://www.rottentomatoes.com/"
-        self.headers = {
+        headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
         }
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
     def top_rated(self):
         """
@@ -40,7 +44,7 @@ class RottenTomatoes:
         """
         try:
             url = self.url + "top/bestofrt/"
-            response = requests.get(url)
+            response = get(url, self.config)
             soup = BeautifulSoup(response.content, "html.parser")
 
             movie_titles = []
@@ -110,8 +114,8 @@ class RottenTomatoes:
         """
         try:
             movie_name = movie_name.replace(" ", "_")
-            url = self.url + "m/" + movie_name
-            response = requests.get(url)
+            url = f"{self.url}m/{movie_name}"
+            response = get(url, self.config)
             soup = BeautifulSoup(response.content, "html.parser")
             movie_details = {}
             # Extract the movie details from the <ul> element with id="info"
@@ -181,7 +185,7 @@ class RottenTomatoes:
         """
         try:
             url = "https://www.rottentomatoes.com/browse/tv_series_browse/sort:popular"
-            html_text = requests.get(url, headers=self.headers).text
+            html_text = get(url, self.config).text
             soup = BeautifulSoup(html_text, "lxml")
 
             movies = []

@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup as bs
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Pinterest:
@@ -16,8 +17,8 @@ class Pinterest:
     | `.get_pin_details(pin_url)`| Fetch details about a specific pin on Pinterest                 |
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def get_today(self):
         """
@@ -39,7 +40,7 @@ class Pinterest:
         ```
         """
         try:
-            page = requests.get("https://www.pinterest.com/today/")
+            page = get("https://www.pinterest.com/today/", self.config)
             soup = bs(page.content, "html.parser")
             unique_items = set()
 
@@ -64,7 +65,7 @@ class Pinterest:
         except:
             return None
 
-    def get_photo(self, url):
+    def get_photo(self, url: str):
         """
           Class - `Pinterest`
          Example:
@@ -75,7 +76,7 @@ class Pinterest:
            Returns: Photo Image URL | None
         """
         try:
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = bs(page.content, "html.parser")
             image = soup.find("img", class_="hCL")
             if image:
@@ -85,7 +86,7 @@ class Pinterest:
         except Exception as e:
             return None
 
-    def search_pins(self, keyword):
+    def search_pins(self, keyword: str):
         """
         Search for pins containing a specific keyword on Pinterest.
 
@@ -97,7 +98,7 @@ class Pinterest:
         """
         try:
             url = f"https://www.pinterest.com/search/pins/?q={keyword}"
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = bs(page.content, "html.parser")
             pins = []
             for item in soup.find_all("div", class_="GrowthUnauthPinImage"):
@@ -108,7 +109,7 @@ class Pinterest:
         except Exception as e:
             return None
 
-    def get_pin_details(self, pin_url):
+    def get_pin_details(self, pin_url: str):
         """
         Fetch details about a specific pin on Pinterest.
 
@@ -119,7 +120,7 @@ class Pinterest:
             dict: A dictionary containing details about the pin, such as title, description, saves, and comments.
         """
         try:
-            page = requests.get(pin_url)
+            page = get(pin_url, self.config)
             soup = bs(page.content, "html.parser")
             title = soup.find("meta", property="og:title").get("content")
             description = soup.find("meta", property="og:description").get("content")

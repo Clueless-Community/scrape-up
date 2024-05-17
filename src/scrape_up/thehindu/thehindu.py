@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup as bs
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class TheHindu:
@@ -13,8 +14,13 @@ class TheHindu:
     | `.get_news(page_url)` |  gets heading, subheading, time, and news content                         |
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
+        }
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
     def get_news(self, page_url):
         """
@@ -34,11 +40,8 @@ class TheHindu:
         ```
         """
         try:
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
-            }
             page_url = "https://www.thehindu.com/news/cities/Delhi/sc-appoints-former-delhi-hc-judge-justice-jayant-nath-as-interim-chairperson-of-power-regulator-derc/article67157713.ece"
-            response = requests.get(page_url, headers=headers).text
+            response = get(page_url, self.config).text
             soup = bs(response, "lxml")
             main_content_box = soup.find("div", {"class": "articlebodycontent"})
             news_text = main_content_box.find_all("p")

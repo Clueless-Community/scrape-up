@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class PullRequest:
@@ -18,15 +19,22 @@ class PullRequest:
     | `.reviewers()`     | Return the list of reviewers assigned in a pull request.                   |
     """
 
-    def __init__(self, username: str, repository_name: str, pull_request_number: int):
+    def __init__(
+        self,
+        username: str,
+        repository_name: str,
+        pull_request_number: int,
+        *,
+        config: RequestConfig = RequestConfig(),
+    ):
         self.username = username
         self.repository = repository_name
         self.pr_number = pull_request_number
+        self.config = config
 
     def __scrape_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/pull/{self.pr_number}"
-        )
+        url = f"https://github.com/{self.username}/{self.repository}/pull/{self.pr_number}"
+        data = get(url, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
@@ -91,7 +99,7 @@ class PullRequest:
         scrape the data of files changed in a pull request
         """
         link = f"https://github.com/{self.username}/{self.repository}/pull/{self.pr_number}/files"
-        data = requests.get(link)
+        data = get(link, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 

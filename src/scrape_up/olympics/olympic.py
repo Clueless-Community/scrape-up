@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 
+from scrape_up.config.request_config import RequestConfig, get
+
 
 class Olympics:
     """
@@ -16,8 +18,9 @@ class Olympics:
     | `.alltimemedals()`     |  Returns list of all countries with their total numbers of medals yet in all categories.   |
     """
 
-    def __init__(self):
-        print(self)
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
+        # print(self)
 
     def allcountries(self):
         """
@@ -38,7 +41,7 @@ class Olympics:
 
         try:
             try:
-                response = requests.get(url)
+                response = get(url, self.config)
                 response.raise_for_status()  # Raise an exception for HTTP errors (4xx or 5xx)
             except requests.RequestException as e:
                 print(f"Error fetching headlines: {e}")
@@ -78,7 +81,7 @@ class Olympics:
 
         try:
             try:
-                response = requests.get(url)
+                response = get(url, self.config)
                 response.raise_for_status()  # Raise an exception for HTTP errors (4xx or 5xx)
             except requests.RequestException as e:
                 print(f"Error fetching headlines: {e}")
@@ -118,7 +121,7 @@ class Olympics:
 
         try:
             try:
-                response = requests.get(url)
+                response = get(url, self.config)
                 response.raise_for_status()  # Raise an exception for HTTP errors (4xx or 5xx)
             except requests.RequestException as e:
                 print(f"Error fetching headlines: {e}")
@@ -155,7 +158,7 @@ class Olympics:
         url = "http://www.olympedia.org/statistics/medal/country"
         try:
             try:
-                response = requests.get(url)
+                response = get(url, self.config)
                 response.raise_for_status()  # Raise an exception for HTTP errors (4xx or 5xx)
             except requests.RequestException as e:
                 print(f"Error fetching headlines: {e}")

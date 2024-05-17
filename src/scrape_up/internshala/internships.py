@@ -1,5 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
+import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Internshala:
@@ -15,13 +17,14 @@ class Internshala:
     | `.certification_courses()`| Scrapes and returns a list of dictionaries representing certification courses.|
     """
 
-    def __init__(self, search_type):
+    def __init__(self, search_type: str, *, config: RequestConfig = RequestConfig()):
         self.base_url = "https://internshala.com/"
         self.search_type = search_type
+        self.config = config
 
-    def __scrape_page(self, url):
+    def __scrape_page(self, url: str):
         try:
-            html_text = requests.get(url)
+            html_text = get(url, self.config)
             html_text.raise_for_status()
             return html_text.text
         except requests.exceptions.RequestException as e:

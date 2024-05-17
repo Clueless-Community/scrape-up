@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Dribbble:
@@ -18,6 +19,9 @@ class Dribbble:
     | `.get_mobile()` | Returns the latest mobile shots along with their title, designer and designer url like and view count and link. |
     | `.get_webdesign()` | Returns the latest web-design shots along with their title, designer and designer url like and view count and link. |
     """
+
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def get_shots(self):
         """
@@ -46,7 +50,7 @@ class Dribbble:
         url = "https://dribbble.com/shots"
         shots_data = {"shots": []}
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
@@ -127,7 +131,7 @@ class Dribbble:
         url = "https://dribbble.com/search/" + topic
         shots_data = {"shots": []}
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
@@ -211,7 +215,7 @@ class Dribbble:
         url = "https://dribbble.com/shots/popular/animation"
         shots_data = {"shots": []}
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
@@ -295,7 +299,7 @@ class Dribbble:
         url = "https://dribbble.com/shots/popular/branding"
         shots_data = {"shots": []}
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
@@ -379,7 +383,7 @@ class Dribbble:
         url = "https://dribbble.com/shots/popular/illustration"
         shots_data = {"shots": []}
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
@@ -463,7 +467,7 @@ class Dribbble:
         url = "https://dribbble.com/shots/popular/mobile"
         shots_data = {"shots": []}
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
@@ -547,7 +551,7 @@ class Dribbble:
         url = "https://dribbble.com/shots/popular/web-design"
         shots_data = {"shots": []}
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
