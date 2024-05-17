@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
-from playwright.sync_api import sync_playwright
 import re
+import requests
 
 
 class Indiantrekking:
@@ -23,18 +23,12 @@ class Indiantrekking:
 
     def __init__(self, place):
         self.place = place
-
         try:
-            with sync_playwright() as p:
-                browser = p.webkit.launch()
-                page = browser.new_page()
-
-                page.goto(f"https://www.indiantrekking.com/{self.place}.html")
-                html_text = page.content()
-
-                self.soup = BeautifulSoup(html_text, "lxml")
+            url = f"https://www.indiantrekking.com/{self.place}.html"
+            response = requests.get(url, headers={"User-Agent": "XY"})
+            self.soup = BeautifulSoup(response.content, "lxml")
         except:
-            return "destination doesn't found"
+            return None
 
     def destination_name(self):
         try:
