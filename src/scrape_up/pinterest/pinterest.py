@@ -65,22 +65,31 @@ class Pinterest:
             return None
 
     def get_photo(self, url):
-        """
-        Class - `Pinterest`
-        Example:
-        ```python
-            pinterestphoto = Pinterest()
-            photo = pinterestphoto.get_photo(your pinterest url)
-        ```
+      
+      """
+       Class - `Pinterest`
+      Example:
+     ```python
+        pinterestphoto = Pinterest()
+        photo = pinterestphoto.get_photo(your pinterest url)
+     ```
         Returns: Photo Image URL | None
         """
-        try:
-            page = requests.get(url)
-            soup = bs(page.content, "html.parser")
-            image = soup.find("img", class_="hCL")
+      try:
+        page = requests.get(url)
+        soup = bs(page.content, "html.parser")
+        image = soup.find("img", class_="hCL")
+        print("Image tag:", image)  # Add this line
+        if image:
             return {"alt": image.get("alt"), "image": image.get("src")}
-        except:
+        else:
+            print("No image found")  # Add this line
             return None
+      except Exception as e:
+        print("Error:", e)
+        return None
+    
+
         
     def search_pins(self, keyword):
         """
@@ -119,11 +128,19 @@ class Pinterest:
         try:
             page = requests.get(pin_url)
             soup = bs(page.content, "html.parser")
-            title = soup.find("meta", property="og:title").get("content")
-            description = soup.find("meta", property="og:description").get("content")
-            saves = soup.find("meta", property="pinterestapp:saves").get("content")
-            comments = soup.find("meta", property="pinterestapp:comments").get("content")
+            
+            title_meta = soup.find("meta", property="og:title")
+            description_meta = soup.find("meta", property="og:description")
+            saves_meta = soup.find("meta", property="pinterestapp:saves")
+            comments_meta = soup.find("meta", property="pinterestapp:comments")
+            
+            title = title_meta.get("content") if title_meta else None
+            description = description_meta.get("content") if description_meta else None
+            saves = saves_meta.get("content") if saves_meta else None
+            comments = comments_meta.get("content") if comments_meta else None
+            
             return {"title": title, "description": description, "saves": saves, "comments": comments}
         except Exception as e:
             print("Error:", e)
             return None
+
