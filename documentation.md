@@ -528,6 +528,29 @@ espn = espn.ESPN()
 
 ---
 
+### FIDE
+
+```python
+from scrape_up import fide
+```
+
+Create an instance of `FIDE` class.
+
+```python
+obj = fide.FIDE()
+```
+
+| Methods                   | Details                                            |
+| ------------------------- | -------------------------------------------------- |
+| `.get_events()`           | Returns all the major chess events of 2024.        |
+| `.get_open_ratings()`     | Returns a list of top 100 open category players.   |
+| `.get_women_ratings()`    | Returns a list of top 100 women category players.  |
+| `.get_juniors_ratings()`  | Returns a list of top 100 juniors category players.|
+| `.get_girls_ratings()`    | Returns a list of top 100 girls category players.  |
+| `.get_news()`             | Returns a list of top chess/fide news.             |
+
+---
+
 ### eBay
 
 ```py
