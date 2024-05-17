@@ -78,7 +78,7 @@ Now you are done with the project setup, now you can make the changes you want o
 ```python
 # scrape-up/src/scrape_up/github/users.py
 
-from scrape_up.config.request_config import RequestConfig, get 
+from scrape_up.config.request_config import RequestConfig, get
 
 class Users:
 
