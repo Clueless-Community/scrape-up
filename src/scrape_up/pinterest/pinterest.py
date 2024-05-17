@@ -126,13 +126,17 @@ class Pinterest:
             description_meta = soup.find("meta", property="og:description")
             saves_meta = soup.find("meta", property="pinterestapp:saves")
             comments_meta = soup.find("meta", property="pinterestapp:comments")
-            
+
             title = title_meta.get("content") if title_meta else None
             description = description_meta.get("content") if description_meta else None
             saves = saves_meta.get("content") if saves_meta else None
             comments = comments_meta.get("content") if comments_meta else None
-            
-            return {"title": title, "description": description, "saves": saves, "comments": comments}
+
+            return {
+                "title": title,
+                "description": description,
+                "saves": saves,
+                "comments": comments,
+            }
         except Exception as e:
             return None
-
