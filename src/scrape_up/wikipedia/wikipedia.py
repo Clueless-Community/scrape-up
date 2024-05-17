@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class WikipediaScraper:
@@ -16,13 +17,13 @@ class WikipediaScraper:
     | `.get_featured()` | Returns the featured article for the day from Wikipedia |
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
-    def scrape(self, query):
+    def scrape(self, query: str):
         try:
             URL = f"https://en.wikipedia.org/wiki/{query}"
-            response = requests.get(URL)
+            response = get(URL, self.config)
             soup = BeautifulSoup(response.text, "html.parser")
 
             # Extract the title

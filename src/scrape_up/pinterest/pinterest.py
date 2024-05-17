@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup as bs
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Pinterest:
@@ -12,10 +13,12 @@ class Pinterest:
     | ---------------------- | ------------------------------------------------------------------ |
     | `.get_today()`         | Returns the list of todays topics                                  |
     | `.get_photo(your url)` | Returns the link to the image (so you dont need an account)        |
+    | `.search_pins(keyword)`| Search for pins containing a specific keyword on Pinterest         |
+    | `.get_pin_details(pin_url)`| Fetch details about a specific pin on Pinterest                 |
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def get_today(self):
         """
@@ -37,7 +40,7 @@ class Pinterest:
         ```
         """
         try:
-            page = requests.get("https://www.pinterest.com/today/")
+            page = get("https://www.pinterest.com/today/", self.config)
             soup = bs(page.content, "html.parser")
             unique_items = set()
 
@@ -62,20 +65,74 @@ class Pinterest:
         except:
             return None
 
-    def get_photo(self, url):
+    def get_photo(self, url: str):
         """
-        Class - `Pinterest`
-        Example:
+          Class - `Pinterest`
+         Example:
         ```python
-            pinterestphoto = Pinterest()
-            photo = pinterestphoto.get_photo(your pinterest url)
+           pinterestphoto = Pinterest()
+           photo = pinterestphoto.get_photo(your pinterest url)
         ```
-        Returns: Photo Image URL | None
+           Returns: Photo Image URL | None
         """
         try:
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = bs(page.content, "html.parser")
             image = soup.find("img", class_="hCL")
-            return {"alt": image.get("alt"), "image": image.get("src")}
-        except:
+            if image:
+                return {"alt": image.get("alt"), "image": image.get("src")}
+            else:
+                return None
+        except Exception as e:
+            return None
+
+    def search_pins(self, keyword: str):
+        """
+        Search for pins containing a specific keyword on Pinterest.
+
+        Args:
+            keyword (str): The keyword to search for.
+
+        Returns:
+            list: A list of dictionaries containing information about the matching pins.
+        """
+        try:
+            url = f"https://www.pinterest.com/search/pins/?q={keyword}"
+            page = get(url, self.config)
+            soup = bs(page.content, "html.parser")
+            pins = []
+            for item in soup.find_all("div", class_="GrowthUnauthPinImage"):
+                link = item.find("a").get("href")
+                image = item.find("img").get("src")
+                pins.append({"link": link, "image": image})
+            return pins
+        except Exception as e:
+            return None
+
+    def get_pin_details(self, pin_url: str):
+        """
+        Fetch details about a specific pin on Pinterest.
+
+        Args:
+            pin_url (str): The URL of the Pinterest pin.
+
+        Returns:
+            dict: A dictionary containing details about the pin, such as title, description, saves, and comments.
+        """
+        try:
+            page = get(pin_url, self.config)
+            soup = bs(page.content, "html.parser")
+            title = soup.find("meta", property="og:title").get("content")
+            description = soup.find("meta", property="og:description").get("content")
+            saves = soup.find("meta", property="pinterestapp:saves").get("content")
+            comments = soup.find("meta", property="pinterestapp:comments").get(
+                "content"
+            )
+            return {
+                "title": title,
+                "description": description,
+                "saves": saves,
+                "comments": comments,
+            }
+        except Exception as e:
             return None

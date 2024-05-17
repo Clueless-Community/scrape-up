@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class AmazonKindle:
@@ -14,8 +15,8 @@ class AmazonKindle:
     | `.topbooks()`    | Returns the list of top books on AmazonKindle          |
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def bestsellers(self):
         """
@@ -40,7 +41,7 @@ class AmazonKindle:
         """
         try:
             url = "https://www.amazon.in/gp/bestsellers/books/"
-            response = requests.get(url)
+            response = get(url, self.config)
             page_contents = response.text
             doc = BeautifulSoup(page_contents, "html.parser")
 
@@ -122,7 +123,7 @@ class AmazonKindle:
                 "https://www.amazon.in/gp/bestsellers/digital-text/ref=zg_bs_nav_0",
                 "https://www.amazon.in/gp/bestsellers/digital-text/ref=zg_bs_pg_2_digital-text?ie=UTF8&pg=2",
             ]:
-                webpage = requests.get(page_link, headers=headers).text
+                webpage = get(page_link, self.config).text
                 soup = BeautifulSoup(webpage, "lxml")
                 books_container = soup.find(
                     "div", {"class": "p13n-gridRow _cDEzb_grid-row_3Cywl"}

@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Geeksforgeeks:
@@ -33,43 +34,45 @@ class Geeksforgeeks:
     ```
     """
 
-    def __init__(self, user):
+    def __init__(self, user: str, *, config: RequestConfig = RequestConfig()):
         self.user = user
+        headers = {"User-Agent": "scrapeup"}
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
     def get_profile(self):
         try:
             url = f"https://www.geeksforgeeks.org/user/{self.user}/"
-            headers = {"User-Agent": "scrapeup"}
-            response = requests.get(url, headers=headers)
+            response = get(url, self.config)
             soup = BeautifulSoup(response.text, "html.parser")
             main_info = soup.find("div", class_="AuthLayout_head_content__ql3r2")
-            user_data = []
 
             username = main_info.find(
                 "div",
                 class_="profilePicSection_head_userHandleAndFollowBtnContainer_userHandle__p7sDO",
-            ).text
+            ).text.strip()
             collage_rank = main_info.find(
                 "span", class_="profilePicSection_head_userRankContainer_rank__abngM"
-            ).text
+            ).text.strip()
             collage = main_info.find(
                 "div", class_="educationDetails_head_left--text__tgi9I"
-            ).text
+            ).text.strip()
             languages = main_info.find(
                 "div", class_="educationDetails_head_right--text__lLOHI"
-            ).text
+            ).text.strip()
             campus_ambaasder = soup.find(
                 "a", class_="basicUserDetails_head_CA--text__IoHEU"
-            ).text
+            ).text.strip()
             current_potd_streak = main_info.find(
                 "div", class_="circularProgressBar_head_mid_streakCnt__MFOF1 tooltipped"
-            ).text
+            ).text.strip()
             score = main_info.find_all(
                 "div", class_="scoreCard_head_card_left--score__pC6ZA"
             )
-            overall_coding_score = score[0].text
-            total_problem_solved = score[1].text
-            monthly_coding_score = score[2].text
+            overall_coding_score = score[0].text.strip()
+            total_problem_solved = score[1].text.strip()
+            monthly_coding_score = score[2].text.strip()
 
             user_data = {
                 "username": username,
@@ -85,10 +88,18 @@ class Geeksforgeeks:
                 "campus_ambassader": campus_ambaasder,
             }
 
-            return user_data
-        except:
+            formatted_output = (
+                f"Username: {user_data['username']}\n"
+                f"College Name: {user_data['collage_name']}\n"
+                f"College Rank: {user_data['collage_rank']}\n"
+                f"Overall Coding Score: {user_data['score']['overall_coding_score']}\n"
+                f"Monthly Coding Score: {user_data['score']['monthly_coding_score']}\n"
+                f"Languages Used: {user_data['languages_used']}\n"
+                f"Current POTD Streak: {user_data['current_potd_streak']}\n"
+                f"Total Problems Solved: {user_data['total_problem_solved']}\n"
+                f"Campus Ambassador: {user_data['campus_ambassader']}"
+            )
+
+            return formatted_output
+        except Exception as e:
             return None
-
-
-gfg = Geeksforgeeks(user="nikhil25803")
-print(gfg.get_profile())

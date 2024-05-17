@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
 from pprint import pprint
 import json
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class DevCommunity:
@@ -18,13 +19,14 @@ class DevCommunity:
     dev = DevCommunity('francescoxx')
     """
 
-    def __init__(self, username: str):
+    def __init__(self, username: str, *, config: RequestConfig = RequestConfig()):
         self.help = "This scrapes articles from the DevCommunity website."
         self.username = username
+        self.config = config
 
     def __scrape_page(self):
         try:
-            data = requests.get("https://www.dev.to")
+            data = get("https://www.dev.to", self.config)
             data.raise_for_status()
             data = BeautifulSoup(data.text, "html.parser")
             return data
@@ -144,7 +146,7 @@ class DevCommunity:
     def __scrape_tag(self, tag: str):
         try:
             self.tag = tag
-            data = requests.get(f"https://www.dev.to/t/{self.tag}")
+            data = get(f"https://www.dev.to/t/{self.tag}", self.config)
             data.raise_for_status()
             data = BeautifulSoup(data.text, "html.parser")
             return data
@@ -263,7 +265,7 @@ class DevCommunity:
     def __scrape_User(self):
         try:
             username = self.username
-            data = requests.get(f"https://www.dev.to/{username}")
+            data = get(f"https://www.dev.to/{username}", self.config)
             data.raise_for_status()
             data = BeautifulSoup(data.text, "html.parser")
             return data

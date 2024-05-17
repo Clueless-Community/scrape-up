@@ -1,5 +1,5 @@
-import requests
 from bs4 import BeautifulSoup
+from scrape_up.config.request_config import RequestConfig, get
 from scrape_up.github.repository import Repository
 
 
@@ -34,15 +34,16 @@ class Users:
     | `.get_years_active()`         | Returns the number of years that user have been active on github.                                  |
     """
 
-    def __init__(self, username: str):
+    def __init__(self, username: str, *, config: RequestConfig = RequestConfig()):
         self.username = username
+        self.config = config
 
     def __str__(self):
         return f" The username is: {self.username}"
 
     def __scrape_page(self):
         username = self.username
-        data = requests.get(f"https://github.com/{username}")
+        data = get(f"https://github.com/{username}", self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
@@ -193,7 +194,7 @@ class Users:
         Scrape the repositories page of a GitHub user.
         """
         username = self.username
-        repo_data = requests.get(f"https://github.com/{username}?tab=repositories")
+        repo_data = get(f"https://github.com/{username}?tab=repositories", self.config)
         repo_data = BeautifulSoup(repo_data.text, "html.parser")
         return repo_data
 
@@ -262,7 +263,7 @@ class Users:
         Scrape the starred page of a GitHub user.
         """
         username = self.username
-        starred_data = requests.get(f"https://github.com/{username}?tab=stars")
+        starred_data = get(f"https://github.com/{username}?tab=stars", self.config)
         starred_data = BeautifulSoup(starred_data.text, "html.parser")
         return starred_data
 
@@ -294,7 +295,8 @@ class Users:
         Scrape the followers page of a GitHub user.
         """
         username = self.username
-        followers_data = requests.get(f"https://github.com/{username}?tab=followers")
+        url = f"https://github.com/{username}?tab=followers"
+        followers_data = get(url, self.config)
         followers_data = BeautifulSoup(followers_data.text, "html.parser")
         return followers_data
 
@@ -324,7 +326,8 @@ class Users:
         Scrape the following page of a GitHub user.
         """
         username = self.username
-        following_data = requests.get(f"https://github.com/{username}?tab=following")
+        url = f"https://github.com/{username}?tab=following"
+        following_data = get(url, self.config)
         following_data = BeautifulSoup(following_data.text, "html.parser")
         return following_data
 
@@ -407,11 +410,11 @@ class Users:
         except:
             return None
 
-    def __get_page_details(self, link):
+    def __get_page_details(self, link: str):
         """
         scrape the data in the page
         """
-        data = requests.get(link)
+        data = get(link, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
@@ -534,8 +537,8 @@ class Users:
                 # description= description.replace('\n','')
                 repositories.append(description)
 
-                url1 = "https://github.com" + link
-                response1 = requests.get(url1)
+                url1 = f"https://github.com{link}"
+                response1 = get(url1, self.config)
                 soup = BeautifulSoup(response1.content, "html.parser")
                 li_elements = soup.find_all("li", class_="d-inline")
 
@@ -549,11 +552,11 @@ class Users:
 
                 pullurl = url1 + "/pulls"
                 issuesurl = url1 + "/issues"
-                pullresponse = requests.get(
-                    pullurl
+                pullresponse = get(
+                    pullurl, self.config
                 )  # getting the content of pull requests page
-                issueresponse = requests.get(
-                    issuesurl
+                issueresponse = get(
+                    issuesurl, self.config
                 )  # getting the content of issues page
 
                 p_soup = BeautifulSoup(
