@@ -774,10 +774,10 @@ posts = Devpost()
 ```
 
 | Methods             | Details                                                                                                              |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| -----------------   | -------------------------------------------------------------------------------------------------------------------- |
 | `.get_projects()`   | Returns the latest projects along with their decription, like and commment count, image and member details.          |
 | `.search(topic)`    | Returns the searched projects along with their decription, like and commment count, image and member details.        |
-| `.get_hackathons()` | Returns the latest hackathons along with their title, participants, prizes, deadlines.                               |
+| `.get_hackathons()` | Returns the latest hackathons along with their title, participants, prizes, deadlines.						         |
 | `.get_featured()`   | Returns the latest featured projects along with their decription, like and commment count, image and member details. |
 | `.get_winner()`     | Returns the latest winning projects along with their decription, like and commment count, image and member details.  |
 
@@ -1189,10 +1189,10 @@ yf = YahooFinance()
 
 # BBC News
 
-First create an object of class `BBCNews`
+First create an object of class `User`
 
 ```python
-bbc_scraper = BBCNews()
+user = instagram.Users(username="nikhil25803")
 ```
 
 | Methods            | Details                                                  |
@@ -1471,7 +1471,7 @@ academia = Academia()
 
 | Method                        | Details                                                               |
 | ----------------------------- | --------------------------------------------------------------------- |
-| `get_research_topics()`       | Fetches and returns research topics.                                  |
+| `get_research_topics(letter)` | Fetches and returns research topics starting with the given letter.   |
 | `get_research_papers(search)` | Fetches and returns research papers related to the given search term. |
 
 ---
@@ -1569,6 +1569,7 @@ olympics = Olympics()
 | `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
 | `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
 
+
 ---
 
 ## Codeforces
@@ -1590,7 +1591,7 @@ Methods
 | `.get_user_data(username)` | Fetches user data from CodeForces. |
 ```
 
----
+--------------------
 
 ## 88x31 Banners
 
@@ -1603,141 +1604,15 @@ scraper = Scraper88x31()
 | Methods      | Details                                         |
 | ------------ | ----------------------------------------------- |
 | `.get_all()` | Returns the list of all available 88x31 banners |
-
----
+-----
 
 ## Dictionary.com
 
 First create an object of class `Dictionary`.
 
-| Methods                         | Details                                        |
-| ------------------------------- | ---------------------------------------------- |
-| `.get_word_of_the_day()`        | Returns the word of the day.                   |
-| `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 7521f38 (Formatting and check.)
-<<<<<<< HEAD
 | Methods          | Details                                                                                      |
 | ---------------- | -------------------------------------------------------------------------------------------- |
 | `.get_word_of_the_day()`       | Returns the word of the day. |
 | `.word_of_the_day_definition()`    | Returns the definition of the word of the day.
->>>>>>> ece18c0 (Formatting and checks.)
 --------
-<<<<<<< HEAD
-
-
-<<<<<<< HEAD
-#### AmbitionBx 
-=======
-#### AmbitonBx 
->>>>>>> a609edf (updated ambitionbox dev-doc.md file)
-
-Create an directory with name ambitonbox
-created a python which consist the code for scarping the website 
-
-```python
-# Example usage
-from scrape_up import ambitionBox
-
-num_pages_to_scrape = 2  
-
-scraper = ambitionBox.Comapiens(num_pages_to_scrape)
-
-scraper.scrape_companies()
-
-```
-
-| Methods         | Details                                                                       |
-| --------------- | ----------------------------------------------------------------------------- |
-<<<<<<< HEAD
-| `.scrape_companies()` | Returns the company name with the rating. |
-<<<<<<< HEAD
-
----
-
-## Geeksforgeeks
-
-First create an object of class `Geeksforgeeks`.
-```python
-geeksforgeeks = Geeksforgeeks(user="username")
-```
-
-| Methods                         | Details                                        |
-| ------------------------------- | ---------------------------------------------- |
-| `.get_profile()`                | Returns the user data in json format.          |
-
----
-
-## Wuzzuf
-
-```python
-from scrap-up import wuzzuf
-jobs = wuzzuf.Jobs()
-```
-
-The `Jobs` class provides methods for configuring scraping parameters and fetching job listings:
-
-| Methods         | Details                                                                                  |
-| --------------- | ---------------------------------------------------------------------------------------- |
-| `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
-| `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
-=======
-| `.scrape_companies()` | Returns the company name with the rating |
->>>>>>> a609edf (updated ambitionbox dev-doc.md file)
-=======
-=======
----
-<<<<<<< HEAD
->>>>>>> 2593059 (Formatting and checks.)
-<<<<<<< HEAD
->>>>>>> ece18c0 (Formatting and checks.)
-=======
-=======
-
-## Geeksforgeeks
-
-First create an object of class `Geeksforgeeks`.
-
-| Methods                         | Details                                        |
-| ------------------------------- | ---------------------------------------------- |
-| `.get_profile()`                | Returns the user data in json format.          |
-
----
->>>>>>> fe11717 (Added doumentation in dev-documentation)
-<<<<<<< HEAD
->>>>>>> 10b64f3 (Added doumentation in dev-documentation)
-=======
-=======
-=======
----
-
->>>>>>> 9caa54c (Formatting and check.)
-## Wuzzuf
-
-```python
-from scrap-up import wuzzuf
-jobs = wuzzuf.Jobs()
-```
-
-The `Jobs` class provides methods for configuring scraping parameters and fetching job listings:
-
-<<<<<<< HEAD
-| Methods               | Details                                                                                             |
-| --------------------- | --------------------------------------------------------------------------------------------------- |
-| `.filter_job()`        | Apply filters such as job title, country, city, and range of years of experience.                   |
-| `.fetch_jobs()`        | Fetch job listings from the website based on the applied filters, across multiple pages.            |
->>>>>>> fb92a26 (update dev-documentation.md with wuzzuf module)
-<<<<<<< HEAD
->>>>>>> 57043b1 (update dev-documentation.md with wuzzuf module)
-=======
-=======
-| Methods         | Details                                                                                  |
-| --------------- | ---------------------------------------------------------------------------------------- |
-| `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
-| `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
->>>>>>> 9caa54c (Formatting and check.)
->>>>>>> 7521f38 (Formatting and check.)
