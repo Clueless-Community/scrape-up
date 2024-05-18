@@ -1762,3 +1762,25 @@ pinterest = Pinterest()
 | `.get_photo(your_url)`      | Returns the link to the image (so you don't need an account) |
 | `.search_pins(keyword)`     | Search for pins containing a specific keyword on Pinterest   |
 | `.get_pin_details(pin_url)` | Fetch details about a specific pin on Pinterest              |
+
+---
+
+### Indiantrekking
+
+```py
+from scrape_up import Indiantrekking
+```
+
+Create an instance of 'Indiantrekking' class
+
+```python
+trek=Indiantrekking("hidden-lakes-of-kashmir")
+```
+
+| Method                         | Details                                                                           |
+| ------------------------------ | --------------------------------------------------------------------------------- |
+| `destination()`                | return name of the place.                                                         |
+| `trip_fact()`                  | returns the trip duration, destination, altitude and the season good for trekking |
+| `outline_day_to_day_itinerary` | returns the ouline of the day to day itinerary                                    |
+
+---
