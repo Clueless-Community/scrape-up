@@ -1,4 +1,6 @@
 import re
+import sys
+import io
 import requests
 from bs4 import BeautifulSoup
 
@@ -10,7 +12,7 @@ class SteamStoreScraper:
     How to use?
     ```python
     steam = SteamStoreScraper()
-    result = Scraper(n0Games=5, tags=["Discounts", "F2P"])
+    result = steam.ScrapeGames(n0Games=5, tags=["Discounts", "F2P"])
     ```
 
     | Args            | Details                                            |
@@ -18,7 +20,7 @@ class SteamStoreScraper:
     | `n0Games (int)` | Number of games to scrape for each tag             |
     | `tags (list)`   | List of tags to filter games by                    |
 
-    Note: Use `help(SteamStoreScraper.Scraper)` for more information on tags.
+    Note: Use `help(SteamStoreScraper.ScrapeGames)` for more information on tags.
     """
 
     def __init__(self):
@@ -138,7 +140,7 @@ class SteamStoreScraper:
                 break
         return all_game_info
 
-    def Scraper(self, n0Games=5, tags=["Discounts", "F2P"]):
+    def ScrapeGames(self, n0Games=5, tags=["Discounts", "F2P"]):
         """
         Scrapes game data for each tag specified in the 'tags' attribute and returns a dictionary.
 
@@ -198,9 +200,17 @@ class SteamStoreScraper:
         Returns:
             list: List of dictionaries with game data.
         """
+        # Ensure the output is encoded in utf-8 to avoid encoding issues
+
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+
         print(data)
         readable_data = []
         for i in range(len(data["Name"])):
             game_data = {col: data[col][i] for col in self.cols}
             readable_data.append(game_data)
         return readable_data
+
+
+steam = SteamStoreScraper()
+result = steam.ScrapeGames(n0Games=5, tags=["Discounts", "F2P"])

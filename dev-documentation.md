@@ -1615,19 +1615,18 @@ First create an object of class `Dictionary`.
 | `.get_word_of_the_day()`        | Returns the word of the day.                   |
 | `.word_of_the_day_definition()` | Returns the definition of the word of the day. |
 
---------
+---
 
-
-#### AmbitionBx 
+#### AmbitionBx
 
 Create an directory with name ambitonbox
-created a python which consist the code for scarping the website 
+created a python which consist the code for scarping the website
 
 ```python
 # Example usage
 from scrape_up import ambitionBox
 
-num_pages_to_scrape = 2  
+num_pages_to_scrape = 2
 
 scraper = ambitionBox.Comapiens(num_pages_to_scrape)
 
@@ -1635,8 +1634,8 @@ scraper.scrape_companies()
 
 ```
 
-| Methods         | Details                                                                       |
-| --------------- | ----------------------------------------------------------------------------- |
+| Methods               | Details                                   |
+| --------------------- | ----------------------------------------- |
 | `.scrape_companies()` | Returns the company name with the rating. |
 
 ---
@@ -1644,13 +1643,14 @@ scraper.scrape_companies()
 ## Geeksforgeeks
 
 First create an object of class `Geeksforgeeks`.
+
 ```python
 geeksforgeeks = Geeksforgeeks(user="username")
 ```
 
-| Methods                         | Details                                        |
-| ------------------------------- | ---------------------------------------------- |
-| `.get_profile()`                | Returns the user data in json format.          |
+| Methods          | Details                               |
+| ---------------- | ------------------------------------- |
+| `.get_profile()` | Returns the user data in json format. |
 
 ---
 
@@ -1673,18 +1673,14 @@ The `Jobs` class provides methods for configuring scraping parameters and fetchi
 # Steam Store
 
 Create an instance of `SteamStoreScraper` class.
+
 ```python
 steam = SteamStoreScraper()
+result = steam.ScrapeGames(n0Games=5, tags=["Discounts", "F2P"])
 ```
 
-| Methods                            | Details                                          |
-| ---------------------------------- | ------------------------------------------------ |
-| `.Scraper(count, search_filters)`  | Scrapes game data for each specified filter      |
-
-> List of search filter tags:
-> - Top Sellers, Discounts, F2P (Free to Play)
-> - Software, DLC, Demos, Mods, Games
-> - Windows, MacOS, Linux, VR, Deck
-> - MP, PvP, Co-op
+| Methods                       | Details                                     |
+| ----------------------------- | ------------------------------------------- |
+| `.ScrapeGames(n0Games, tags)` | Scrapes game data for each specified filter |
 
 ---
