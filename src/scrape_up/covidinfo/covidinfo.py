@@ -1,6 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 from datetime import date
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class CovidInfo:
@@ -19,6 +20,9 @@ class CovidInfo:
     | `.latest_news()` | Return the lastest news of the day |
     """
 
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
+
     def covid_data(self):
         """
         Class - `CovidInfo`\n
@@ -33,7 +37,7 @@ class CovidInfo:
         """
 
         url = "https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/"
-        page = requests.get(url)
+        page = get(url, self.config)
         soup = BeautifulSoup(page.text, "html.parser")
         keys_data = ["Country", "Number of Cases", "Deaths", "Continent"]
         response_data = []
@@ -69,7 +73,7 @@ class CovidInfo:
         """
         try:
             url = "https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/"
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.text, "html.parser")
             req = soup.find_all("span", {"class": "bold_number"})
 
@@ -93,7 +97,7 @@ class CovidInfo:
         """
         try:
             url = "https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/"
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.text, "html.parser")
             req = soup.find_all("a", {"href": "/coronavirus/coronavirus-death-toll/"})
             k = req[0].find("strong").contents[0].split(" ")
@@ -112,7 +116,7 @@ class CovidInfo:
         """
         try:
             url = "https://www.worldometers.info/coronavirus/"
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.text, "html.parser")
             req = soup.find_all("div", {"id": "maincounter-wrap"})
             recovered_count = req[-1].find("span").text.strip()
@@ -141,7 +145,7 @@ class CovidInfo:
         """
         try:
             url = "https://www.worldometers.info/coronavirus/"
-            page = requests.get(url)
+            page = get(url, self.config)
             news_data = []
             soup = BeautifulSoup(page.text, "html.parser")
             news_block = soup.find("div", {"id": "news_block"})

@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class MediEncyclopedia:
@@ -15,10 +16,10 @@ class MediEncyclopedia:
     | `.byletter()`         | Returns the list of medical relics starting with a particular letter                         |
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
-    def scrapebyurl(self, url):
+    def scrapebyurl(self, url: str):
         """
         Class - `MediEncyclopedia`
         Example:
@@ -36,7 +37,7 @@ class MediEncyclopedia:
         """
 
         try:
-            content = requests.get(url)
+            content = get(url, self.config)
             soup = BeautifulSoup(content.content, "html.parser")
             headline = soup.find("h1", attrs={"class": "with-also"}).text
             article = soup.find("article")
@@ -56,7 +57,7 @@ class MediEncyclopedia:
         except:
             return None
 
-    def query(self, userquery):
+    def query(self, userquery: str):
         """
         Class - `MediEncyclopedia`
         Example:
@@ -86,7 +87,7 @@ class MediEncyclopedia:
         except:
             return None
 
-    def byletter(self, character):
+    def byletter(self, character: str):
         """
         Class - `MediEncyclopedia`
         Example:
@@ -107,8 +108,8 @@ class MediEncyclopedia:
             chk = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             if character not in chk:
                 return None
-            url = "https://medlineplus.gov/ency/encyclopedia_{}.htm".format(character)
-            content = requests.get(url)
+            url = f"https://medlineplus.gov/ency/encyclopedia_{character}.htm"
+            content = get(url, self.config)
             base = "https://medlineplus.gov/ency/"
             soup = BeautifulSoup(content.content, "html.parser")
             vals = []

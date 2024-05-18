@@ -1,7 +1,8 @@
-import requests
 from bs4 import BeautifulSoup
 import requests_html
 import os
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Repository:
@@ -33,57 +34,59 @@ class Repository:
                                    list of recent open prs, list of recent closed issues, list of recent open issues for a specified period                                                                           |
     """
 
-    def __init__(self, username: str, repository_name: str):
+    def __init__(
+        self,
+        username: str,
+        repository_name: str,
+        *,
+        config: RequestConfig = RequestConfig(),
+    ):
         self.username = username
         self.repository = repository_name
+        self.config = config
 
     def __str__(self):
         return f"{self.repository} belongs to {self.username}"
 
     def __scrape_page(self):
-        data = requests.get(f"https://github.com/{self.username}/{self.repository}")
+        url = f"https://github.com/{self.username}/{self.repository}"
+        data = get(url, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
     def __scrape_tags_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/tags"
-        )
+        url = f"https://github.com/{self.username}/{self.repository}/tags"
+        data = get(url, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
     def __scrape_issues_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/issues"
-        )
+        url = f"https://github.com/{self.username}/{self.repository}/issues"
+        data = get(url, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
     def __scrape_pull_requests_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/pulls"
-        )
+        url = f"https://github.com/{self.username}/{self.repository}/pulls"
+        data = get(url, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
     def __scrape_deployments_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/deployments/activity_log"
-        )
+        url = f"https://github.com/{self.username}/{self.repository}/deployments/activity_log"
+        data = get(url, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
     def __scrape_watchers_page(self):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/watchers"
-        )
+        url = f"https://github.com/{self.username}/{self.repository}/watchers"
+        data = get(url, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
     def __scrape_insights_page(self, period):
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/pulse/" + period
-        )
+        url = f"https://github.com/{self.username}/{self.repository}/pulse/{period}"
+        data = get(url, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
@@ -398,15 +401,10 @@ class Repository:
         get_readme = repository.get_readme()
         ```
         """
-        data = requests.get(
-            f"https://raw.githubusercontent.com/{self.username}/{self.repository}/master/README.md",
-            timeout=10,
-        )
+        url = f"https://raw.githubusercontent.com/{self.username}/{self.repository}/master/README.md"
+        data = get(url, self.config)
         if data.status_code == 404:
-            data = requests.get(
-                f"https://raw.githubusercontent.com/{self.username}/{self.repository}/main/README.md",
-                timeout=10,
-            )
+            data = get(url, self.config)
             if data.status_code == 404:
                 message = f"No special repository found with username {self.username}"
                 return {
@@ -450,9 +448,8 @@ class Repository:
         get_branch = repository.get_branch()
         ```
         """
-        data = requests.get(
-            f"https://github.com/{self.username}/{self.repository}/branches"
-        )
+        url = f"https://github.com/{self.username}/{self.repository}/branches"
+        data = get(url, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         try:
             branch = data.find_all(

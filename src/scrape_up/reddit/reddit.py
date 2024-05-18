@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Reddit:
@@ -16,6 +17,9 @@ class Reddit:
     | `.get_top()`     | Returns the top posts with title, descriptions, subreddit, subreddit avatar, time, vote and comment count, image, category and link  |
     | `.search(topic)` | Returns the top posts with title, subreddit, subreddit avatar, date, vote and comment count and link for a searched topic            |
     """
+
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def getFeed(self):
         """
@@ -42,7 +46,7 @@ class Reddit:
         """
         url = "https://www.reddit.com/"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             posts_data = {"posts": []}
@@ -125,7 +129,7 @@ class Reddit:
         """
         url = "https://www.reddit.com/r/popular/best/?feedViewType=classicView"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             posts_data = {"posts": []}
@@ -208,7 +212,7 @@ class Reddit:
         """
         url = "https://www.reddit.com/r/popular/hot/?feedViewType=cardView"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             posts_data = {"posts": []}
@@ -287,7 +291,7 @@ class Reddit:
         """
         url = "https://www.reddit.com/r/popular/top/"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             posts_data = {"posts": []}
@@ -365,7 +369,7 @@ class Reddit:
         """
         url = "https://www.reddit.com/search/?q=" + topic
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             posts_data = {"posts": []}

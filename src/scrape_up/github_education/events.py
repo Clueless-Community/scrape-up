@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Events:
@@ -12,6 +13,9 @@ class Events:
     | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
     | `.get_events()` | Returns the latest events along with their title, image_url, description, date, location, language, tags and link. |
     """
+
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def get_events(self):
         """
@@ -41,7 +45,7 @@ class Events:
         url = "https://education.github.com/events"
         events_data = {"events": []}
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 

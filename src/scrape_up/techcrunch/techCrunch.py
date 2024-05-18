@@ -1,6 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 import json
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class TechCrunch:
@@ -14,8 +15,10 @@ class TechCrunch:
     1. ``.getArticles() | Response - Articles with title, descriptions, images, date and link.
     """
 
-    def getArticles(self, category):
-        self.category = category
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
+
+    def getArticles(self, category: str):
         """
         Class - `TechCrunch`
         Example:
@@ -33,11 +36,12 @@ class TechCrunch:
             "link": Link to the article
         }
         """
+        self.category = category
         url = (
             "https://techcrunch.com/category/" + self.category.replace(" ", "-").lower()
         )
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             articles_data = {"articles": []}
@@ -100,7 +104,6 @@ class TechCrunch:
             return ejson
 
     def search(self, topic):
-        self.topic = topic
         """
         Class - `TechCrunch`
         Example:
@@ -118,9 +121,10 @@ class TechCrunch:
             "link": Link to the article
         }
         """
+        self.topic = topic
         url = "https://search.techcrunch.com/search?p=" + self.topic + "&fr=techcrunch"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             articles_data = {"articles": []}

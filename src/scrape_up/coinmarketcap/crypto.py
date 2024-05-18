@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import requests
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Crypto:
@@ -15,7 +15,7 @@ class Crypto:
     | `get_top_cryptocurrencies()` | Fetches and returns data about the top cryptocurrencies. |
     """
 
-    def __init__(self):
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
         """
         Initialize the CoinMarketCap class by fetching data from the CoinMarketCap website.
         """
@@ -23,13 +23,16 @@ class Crypto:
             "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
         }
         url = "https://coinmarketcap.com/"
-        html_text = requests.get(url, headers=headers).text
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
+        html_text = get(url, self.config).text
         self.soup = BeautifulSoup(html_text, "lxml")
 
     def get_top_cryptocurrencies(self):
         """
         A list of dictionaries containing details of the top cryptocurrencies.\n
-         ```python
+        ```python
         crypto = Crypto()
         top_crypto = crypto.get_top_cryptocurrencies()
         ```

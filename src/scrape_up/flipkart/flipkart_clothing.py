@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class FlipkartClothing:
@@ -19,8 +20,8 @@ class FlipkartClothing:
     | `formal_shirts_for_male()` | It returns those t-shirts which are of a particular size       |
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def tshirts(
         self,
@@ -36,7 +37,7 @@ class FlipkartClothing:
         """
         obj_keys = ["name", "price", "description", "image", "link"]
         try:
-            content = requests.get(url)
+            content = get(url, self.config)
 
             soup = BeautifulSoup(content.content, "html.parser")
 

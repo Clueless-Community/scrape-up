@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class EBAY:
@@ -15,12 +16,15 @@ class EBAY:
     | `.specific_deals()` | Returns the specific deals on EBAY. |
     """
 
-    def __init__(self):
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Safari/537.36"
         }
         url = "https://www.ebay.com/globaldeals"
-        html_text = requests.get(url, headers=headers).text
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
+        html_text = get(url, self.config).text
         soup = BeautifulSoup(html_text, "lxml")
 
         self.container = soup.find("div", {"class": "sections-container"})

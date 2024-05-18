@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class HealthGrades:
@@ -16,10 +17,13 @@ class HealthGrades:
 
     """
 
-    def __init__(self):
-        self.headers = {
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
         }
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
     def get_best_hospitals(self, state):
         """
@@ -47,7 +51,7 @@ class HealthGrades:
             url = (
                 f"https://www.healthgrades.com/quality/americas-best-hospitals/{state}"
             )
-            html_text = requests.get(url, headers=self.headers).text
+            html_text = get(url, self.config).text
             soup = BeautifulSoup(html_text, "lxml")
 
             hospitals = []

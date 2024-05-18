@@ -1,6 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 import json
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Channel:
@@ -17,8 +18,11 @@ class Channel:
     | `.get_community()`| Returns all the post details in the community page of the channel |
     """
 
-    def __init__(self, channel_username):
+    def __init__(
+        self, channel_username: str, *, config: RequestConfig = RequestConfig()
+    ):
         self.channel_username = channel_username
+        self.config = config
 
     def get_about(self):
         """
@@ -46,7 +50,7 @@ class Channel:
         """
         url = f"https://www.youtube.com/@{self.channel_username}/about"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
             channel_data = {"channel_data": []}
             link_data = {"link_data": []}
@@ -136,7 +140,7 @@ class Channel:
         """
         url = f"https://www.youtube.com/@{self.channel_username}/videos"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
             videos_data = {"videos": []}
             scripts = soup.find_all("script")
@@ -207,7 +211,7 @@ class Channel:
         """
         url = f"https://www.youtube.com/@{self.channel_username}/community"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
             posts_data = {"posts": []}
             scripts = soup.find_all("script")
