@@ -651,6 +651,25 @@ hc = healthgrades.HealthGrades()
 
 ---
 
+### Indiantrekking
+
+```py
+from scrape_up import Indiantrekking
+```
+
+Create an instance of 'Indiantrekking' class
+
+```python
+trek=Indiantrekking("hidden-lakes-of-kashmir")
+``` 
+
+ | Method                           | Details                                                                              |
+ | ---------------------------   | --------------------------------------------------------------------                    |
+ |`destination()`                |  return name of the place.                                                              |
+ |`trip_fact()`                  |  returns the trip duration, destination, altitude and the season good for trekking      |
+ |`outline_day_to_day_itinerary` |  returns the ouline of the day to day itinerary                                         |
+ ---
+ 
 ### IMDB
 
 ```py
