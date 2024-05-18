@@ -12,7 +12,7 @@ class Atcoder:
     | Methods           | Details                                                                            |
     | ----------------- | ---------------------------------------------------------------------------------- |
     | `.get_profile()`  | Returns the user data in json format.                                              |
-    
+
     Response
     ```json
     {
@@ -35,7 +35,6 @@ class Atcoder:
     }
     ```
     """
-
 
     def __init__(self, user):
         self.user = user
