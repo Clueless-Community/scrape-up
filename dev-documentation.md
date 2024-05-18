@@ -1657,7 +1657,7 @@ geeksforgeeks = Geeksforgeeks(user="username")
 ## Wuzzuf
 
 ```python
-from scrap-up import wuzzuf
+from scrape_up import wuzzuf
 jobs = wuzzuf.Jobs()
 ```
 
@@ -1671,7 +1671,7 @@ The `Jobs` class provides methods for configuring scraping parameters and fetchi
 ## Lichess
 
 ```python
-from scrape-up import lichess
+from scrape_up import lichess
 lichess_games = lichess.LichessGames(username)
 start_page = 1
 end_page = 4
@@ -1683,3 +1683,17 @@ The `LichessGames` class provides methods for fetching Lichess game data for a s
 | Methods          | Details                                                                                           |
 | ---------------- | ------------------------------------------------------------------------------------------------- |
 | `.fetch_games()` | Fetch all the games data for the specified username, returning a list of games or `None` on fail. |
+
+## Bayt
+
+```python
+from scrape_up import bayt
+jobs = bayt.Jobs()
+jobs.fetch_jobs(query="software engineer",page=1)
+```
+
+The `Jobs` class provides methods fetching job listings:
+
+| Methods         | Details                                                             |
+| --------------- | --------------------------------------------------------------------|
+| `.fetch_jobs()` | Fetch job listings from the website across specified single page. 	|
