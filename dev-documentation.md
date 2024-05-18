@@ -1745,3 +1745,20 @@ atcode.get_profile()
 | `.get_profile()` | Returns the user data in json format. |
 
 ---
+
+## Pinterest
+
+First create an object of class `Pinterest`.
+
+```python
+from scrap_up import Pinterest
+
+pinterest = Pinterest()
+```
+
+| Methods                     | Details                                                      |
+| --------------------------- | ------------------------------------------------------------ |
+| `.get_today()`              | Returns the list of today's topics                           |
+| `.get_photo(your_url)`      | Returns the link to the image (so you don't need an account) |
+| `.search_pins(keyword)`     | Search for pins containing a specific keyword on Pinterest   |
+| `.get_pin_details(pin_url)` | Fetch details about a specific pin on Pinterest              |

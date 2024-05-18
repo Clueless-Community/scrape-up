@@ -5,10 +5,10 @@ import requests
 class Pinterest:
     """
     Create an instance of `Pinterest` class.
-     ```python
-     pinterest = Pinterest()
-     ```
-     | Methods                | Details                                                            |
+    ```python
+    pinterest = Pinterest()
+    ```
+    | Methods                | Details                                                            |
     | ---------------------- | ------------------------------------------------------------------ |
     | `.get_today()`         | Returns the list of today's topics                                  |
     | `.get_photo(your_url)` | Returns the link to the image (so you don't need an account)        |
