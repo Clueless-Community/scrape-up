@@ -1635,12 +1635,13 @@ olympics = Olympics()
 
 ## Codeforces
 
-Create an instance of `Codeforces` class
+Create an instance of `Users` class
 
 ```python
 from scrape_up import codeforces
 
-codeforces = Codeforces()
+codeforces_user = codeforces.Users(username="tourist")
+codeforces_user.get_user_data()
 ```
 
 Methods
@@ -1649,7 +1650,6 @@ Methods
 | Methods                    | Details                            |
 | -------------------------- | ---------------------------------- |
 | `.get_user_data(username)` | Fetches user data from CodeForces. |
-| `get_contests()`           | Returns information on contests.   |   
 ```
 
 ---
