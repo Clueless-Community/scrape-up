@@ -2,6 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 import json
 
+from scrape_up.config.request_config import RequestConfig, get
+
 
 class StackOverflow:
     """
@@ -21,8 +23,9 @@ class StackOverflow:
     | `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
     """
 
-    def __init__(self, topic):
+    def __init__(self, topic: str, *, config: RequestConfig = RequestConfig()):
         self.topic = topic
+        self.config = config
 
     def getNewQuestions(self):
         """
@@ -44,7 +47,7 @@ class StackOverflow:
         """
         url = "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Newest"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}
@@ -77,7 +80,6 @@ class StackOverflow:
             return json_data
         except:
             error_message = {"message": "No questions related to the topic found"}
-
             ejson = json.dumps(error_message)
             return ejson
 
@@ -101,7 +103,7 @@ class StackOverflow:
         """
         url = "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Active"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}
@@ -157,7 +159,7 @@ class StackOverflow:
             "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Bounties"
         )
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}
@@ -215,7 +217,7 @@ class StackOverflow:
             + "?tab=Unanswered"
         )
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}
@@ -271,7 +273,7 @@ class StackOverflow:
             "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Frequent"
         )
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}
@@ -325,7 +327,7 @@ class StackOverflow:
         """
         url = "https://stackoverflow.com/questions/tagged/" + self.topic + "?tab=Votes"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}
@@ -360,5 +362,6 @@ class StackOverflow:
             return None
 
 
-stack = StackOverflow(topic="python")
-print(stack.getBountiedQuestions())
+if __name__ == "__main__":
+    stack = StackOverflow(topic="python")
+    print(stack.getBountiedQuestions())

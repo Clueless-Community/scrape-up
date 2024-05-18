@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Unsplash:
@@ -20,18 +21,18 @@ class Unsplash:
 
     BASE_URL = "https://unsplash.com/s/photos/"
 
-    def __init__(self, search_query):
+    def __init__(self, search_query: str, *, config: RequestConfig = RequestConfig()):
         self.search_query = search_query
-
         self.non_premium_images = {}
         self.all_images = self.__get_images()
+        self.config = config
 
     def __get_url(self):
         return self.BASE_URL + "-".join(self.search_query.split(" "))
 
     def __get_images(self):
         url = self.__get_url()
-        response = requests.get(url).text
+        response = get(url, self.config).text
 
         soup = BeautifulSoup(response, "html.parser")
         img_data = []

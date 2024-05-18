@@ -1,8 +1,7 @@
-import urllib
-import requests
-import pandas as pd
 import json
 from bs4 import BeautifulSoup as Soup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Quora:
@@ -16,10 +15,10 @@ class Quora:
 
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
-    def fetch_answers(self, url):
+    def fetch_answers(self, url: str):
         """
         Class - `Quora`
         Example:
@@ -35,7 +34,7 @@ class Quora:
         ```
         """
         try:
-            req = requests.get(url)
+            req = get(url, self.config)
 
             page_soup = Soup(req.content, "html.parser")
             main_box = page_soup.findAll("script", {"type": "application/ld+json"})[
@@ -77,7 +76,7 @@ class Quora:
         except:
             return None
 
-    def profile_details(self, username):
+    def profile_details(self, username: str):
         """
         Class - `Quora`
         Example:
@@ -92,14 +91,14 @@ class Quora:
         """
         try:
             username = username.upper()
-            username = username.split()
-            for i in range(1, len(username)):
-                username[i] = "-" + username[i]
+            username_ = username.split()
+            for i in range(1, len(username_)):
+                username_[i] = "-" + username_[i]
 
-            res = "".join(username)
+            res = "".join(username_)
             base = "https://www.quora.com/profile/"
             url = base + res
-            req = requests.get(url)
+            req = get(url, self.config)
             soup = Soup(req.content, "html.parser")
 
             name = soup.find_all("meta")[3]["content"]

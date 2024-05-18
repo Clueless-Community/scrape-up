@@ -1,9 +1,9 @@
-import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+from scrape_up.config.request_config import RequestConfig, get
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
@@ -26,9 +26,10 @@ class LeetCode:
     | `.get_community_stats()` | Used to scrape community stats of a user on LeetCode. |
     """
 
-    def __init__(self, username: str = ""):
+    def __init__(self, username: str = "", *, config: RequestConfig = RequestConfig()):
         self.username = username
         self.user_profile = self.__scrape_user_profile()
+        self.config = config
 
         self.chrome_options = Options()
         self.chrome_options.add_argument("--headless")
@@ -54,7 +55,7 @@ class LeetCode:
 
     def __scrape_user_profile(self):
         url = f"https://leetcode.com/{self.username}"
-        data = requests.get(url)
+        data = get(url, self.config)
         data.raise_for_status()
         soup = BeautifulSoup(data.text, "html.parser")
         return soup
@@ -367,7 +368,7 @@ class LeetCode:
         \n
         """
         url = "https://leetcode.com/contest/"
-        data = requests.get(url)
+        data = get(url, self.config)
         data.raise_for_status()
         soup = BeautifulSoup(data.text, "html.parser")
 

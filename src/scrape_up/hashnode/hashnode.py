@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Hashnode:
@@ -15,6 +16,9 @@ class Hashnode:
     | `.get_recent()`   | Returns the recent blogs with title, descriptions, author, like and comment count, date and link     |
     | `.search(topic)`  | Returns the blogs with title, descriptions, author, like and comment count, date and link for a topic|
     """
+
+    def __init__(self, *, config: RequestConfig = RequestConfig()) -> None:
+        self.config = config
 
     def get_feed(self):
         """
@@ -39,7 +43,7 @@ class Hashnode:
         """
         url = "https://hashnode.com/community/"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             blogs_data = {"blogs": []}
@@ -139,7 +143,7 @@ class Hashnode:
         """
         url = "https://hashnode.com/featured"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             blogs_data = {"blogs": []}
@@ -238,7 +242,7 @@ class Hashnode:
         """
         url = "https://hashnode.com/recent"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             blogs_data = {"blogs": []}
@@ -312,7 +316,7 @@ class Hashnode:
         except:
             return None
 
-    def search(self, topic):
+    def search(self, topic: str):
         """
         Class - `Hashnode`
         Example:
@@ -334,10 +338,10 @@ class Hashnode:
             ...
         ]
         """
-        url = "https://hashnode.com/search?q=" + topic
+        url = f"https://hashnode.com/search?q={topic}"
 
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             blogs_data = {"blogs": []}

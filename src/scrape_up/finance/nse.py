@@ -31,7 +31,7 @@ class NSE:
     fetcher = requests.Session()
     fetcher.headers.update(headers)
 
-    def __init__(self, stock_name):
+    def __init__(self, stock_name: str):
         self.stock_name = stock_name
         self.stock_symbol = self.get_data()["symbol"]
         self.latest_price_url = self.latest_price_url.format(symbol=self.stock_symbol)

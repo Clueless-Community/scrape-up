@@ -1,5 +1,6 @@
-import requests
 import bs4
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Scraper88x31:
@@ -13,7 +14,7 @@ class Scraper88x31:
     | `get_all()`        | Returns the list of all available 88x31 banners          |
     """
 
-    def __init__(self):
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
         self.urls_to_scrape = [
             "https://cyber.dabamos.de/88x31/index.html",
             "https://cyber.dabamos.de/88x31/index2.html",
@@ -21,6 +22,7 @@ class Scraper88x31:
             "https://cyber.dabamos.de/88x31/index4.html",
             "https://cyber.dabamos.de/88x31/index5.html",
         ]
+        self.config = config
 
     def get_all(self):
         """
@@ -40,7 +42,7 @@ class Scraper88x31:
         img_alt = []
         for url in self.urls_to_scrape:
             try:
-                response = requests.get(url)
+                response = get(url, self.config)
                 response.raise_for_status()
                 source = response.content
                 soup = bs4.BeautifulSoup(source, "lxml")

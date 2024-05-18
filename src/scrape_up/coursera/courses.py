@@ -1,6 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 import json
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Coursera:
@@ -15,8 +16,9 @@ class Coursera:
     | `.fetchModules(course='Course Name')` | Returns the modules associated with the Coursera.                                          |
     """
 
-    def __init__(self, topic):
+    def __init__(self, topic: str, *, config: RequestConfig = RequestConfig()):
         self.topic = topic
+        self.config = config
 
     def get_courses(self):
         """
@@ -44,7 +46,7 @@ class Coursera:
         """
         url = "https://www.coursera.org/search?query=" + self.topic
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             courses_data = []
@@ -123,7 +125,7 @@ class Coursera:
             if i["title"] == course:
                 courseURL = i["link"]
         try:
-            res = requests.get(courseURL)
+            res = get(courseURL, self.config)
             if res.status_code == 200:
                 soup = BeautifulSoup(res.text, "html.parser")
                 script_tag = soup.find("script", {"id": "__NEXT_DATA__"})
