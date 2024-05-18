@@ -1,11 +1,12 @@
-import requests
 from bs4 import BeautifulSoup
-import json
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class TimesJobs:
-    def __init__(self, role: str):
+    def __init__(self, role: str, *, config: RequestConfig = RequestConfig()):
         self.role = role
+        self.config = config
 
     def list_jobs(self):
         """
@@ -34,7 +35,7 @@ class TimesJobs:
             return None
         try:
             url = f"https://m.timesjobs.com/mobile/jobs-search-result.html?txtKeywords={self.role}&txtLocation=India&cboWorkExp1=-1"
-            response = requests.get(url)
+            response = get(url, self.config)
             soup = BeautifulSoup(response.text, "html.parser")
             companies = soup.find_all("h4")
             experiences = soup.find_all("div", class_="srp-exp")

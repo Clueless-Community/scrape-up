@@ -1,6 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 import re
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Flyrobu:
@@ -18,32 +19,31 @@ class Flyrobu:
     | `.get_product_details(product_name)` | Returns the json data of the product details based on the given `product_name` |
     """
 
-    def __init__(self):
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
         self.base_url = "https://www.flyrobo.in"
         self.outputs = []
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+        }
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
-    def __get_html_content(self, url, headers=None):
-        if headers is None:
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
-            }
-
-        session = requests.Session()
-        session.headers.update(headers)
-        response = session.get(url)
+    def __get_html_content(self, url: str):
+        response = get(url, self.config)
         response.raise_for_status()
         return response.content
 
-    def __get_soup(self, url):
+    def __get_soup(self, url: str):
         request_content = self.__get_html_content(url)
         soup = BeautifulSoup(request_content, "html.parser")
         return soup
 
-    def __is_matching_title(self, title, search_item):
+    def __is_matching_title(self, title: str, search_item: str):
         search_words = search_item.lower().split()
         return all(word in title.lower() for word in search_words)
 
-    def __scrape_results(self, soup, search_item):
+    def __scrape_results(self, soup: BeautifulSoup, search_item: str):
         results_container = soup.find("div", class_="product-grid")
         results = results_container.find_all("div", class_="product-layout")
 
@@ -105,7 +105,7 @@ class Flyrobu:
             except Exception as e:
                 return None
 
-    def search(self, keyword):
+    def search(self, keyword: str):
         """
         Class - `Flyrobu`\n
         Example -\n
@@ -142,7 +142,7 @@ class Flyrobu:
                         "a", class_="next"
                     )
                     if next_page:
-                        url = next_page["href"]
+                        url = str(next_page["href"])
                     else:
                         break
                 except:

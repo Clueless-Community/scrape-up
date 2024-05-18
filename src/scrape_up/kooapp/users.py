@@ -1,7 +1,7 @@
-import requests
 import json
 from bs4 import BeautifulSoup
-from datetime import datetime
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class KooUser:
@@ -18,8 +18,9 @@ class KooUser:
     >>> 'https://images.kooapp.com/transcode_input/8074390/profile16851706949505ew9y8.jpg'
     """
 
-    def __init__(self, username: str) -> None:
+    def __init__(self, username: str, *, config: RequestConfig = RequestConfig()):
         self.username = username
+        self.config = config
 
     def __str__(self) -> str:
         return f"The username is: {self.username}"
@@ -28,9 +29,9 @@ class KooUser:
     def profile_url(self) -> str:
         return f"https://www.kooapp.com/profile/{self.username}"
 
-    def __scrape_page(self) -> requests.Response:
+    def __scrape_page(self):
         try:
-            res = requests.get(self.profile_url)
+            res = get(self.profile_url, self.config)
             if res.status_code == 404:
                 raise Exception(f"User not found with username: {self.username}")
             return res
@@ -68,9 +69,11 @@ class KooUser:
         name = userdata.get("name")
         return {
             "data": name or None,
-            "message": f"Name of the user {self.username} is {name}"
-            if name
-            else f"No name found for the user {self.username}",
+            "message": (
+                f"Name of the user {self.username} is {name}"
+                if name
+                else f"No name found for the user {self.username}"
+            ),
         }
 
     def get_bio(self) -> str:
@@ -81,9 +84,11 @@ class KooUser:
         bio = userdata.get("description")
         return {
             "data": bio or None,
-            "message": f"Bio found for the user {self.username}"
-            if bio
-            else f"No bio found for the user {self.username}",
+            "message": (
+                f"Bio found for the user {self.username}"
+                if bio
+                else f"No bio found for the user {self.username}"
+            ),
         }
 
     def get_avatar_url(self) -> str:
@@ -94,9 +99,11 @@ class KooUser:
         avatar = userdata.get("profileImage")
         return {
             "data": avatar or None,
-            "message": f"Avatar found for the user {self.username}"
-            if avatar
-            else f"Avatar not found for the user {self.username}",
+            "message": (
+                f"Avatar found for the user {self.username}"
+                if avatar
+                else f"Avatar not found for the user {self.username}"
+            ),
         }
 
     def followers(self) -> int:
@@ -133,9 +140,11 @@ class KooUser:
         }
         return {
             "data": profiles or None,
-            "message": f"Found {len(profiles)} social profiles for the user {self.username}"
-            if profiles
-            else f"No social profiles found for the user {self.username}",
+            "message": (
+                f"Found {len(profiles)} social profiles for the user {self.username}"
+                if profiles
+                else f"No social profiles found for the user {self.username}"
+            ),
         }
 
     def get_profession(self) -> str:
@@ -146,7 +155,9 @@ class KooUser:
         profession = userdata.get("title")
         return {
             "data": profession or None,
-            "message": f"Profession found for the user {self.username}"
-            if profession
-            else f"No profession found for the user {self.username}",
+            "message": (
+                f"Profession found for the user {self.username}"
+                if profession
+                else f"No profession found for the user {self.username}"
+            ),
         }

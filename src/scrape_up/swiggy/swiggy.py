@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup as bs
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Swiggy:
@@ -14,10 +15,15 @@ class Swiggy:
     | `get_restaurants()`       | Returns the restaurant names as per given city                            |
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
+        }
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
-    def get_restraunt_details(self, restraunt_url):
+    def get_restraunt_details(self, restraunt_url: str):
         """
         Create an object of the 'Swiggy' class\n
         ```python
@@ -43,10 +49,7 @@ class Swiggy:
         ```
         """
         try:
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
-            }
-            response = requests.get(restraunt_url, headers=headers).text
+            response = get(restraunt_url, self.config).text
             soup = bs(response, "lxml")
             restaurant_data = []
             name = soup.find(
@@ -96,7 +99,7 @@ class Swiggy:
         except:
             return None
 
-    def get_restaurants(self, city):
+    def get_restaurants(self, city: str):
         """
         Get a list of restaurants in the given city.
 
@@ -122,7 +125,7 @@ class Swiggy:
                 "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
             }
             url = "https://www.swiggy.com/city/" + city.lower()
-            html_text = requests.get(url, headers=headers).text
+            html_text = get(url, self.config).text
             soup = bs(html_text, "lxml")
 
             container = soup.find("div", {"class": "sc-iBdmCd hPntbc"})

@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup as b
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class FlipkartLaptops:
@@ -13,8 +14,8 @@ class FlipkartLaptops:
     | `.laptops()`          | Returns the list of Laptops on flipkart with all the details       |
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def laptops(self):
         """
@@ -40,7 +41,7 @@ class FlipkartLaptops:
         """
         try:
             link = "https://www.flipkart.com/search?q=laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = b(page.content, "html.parser")
 
             details = []
