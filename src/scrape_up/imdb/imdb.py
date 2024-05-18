@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 
+from scrape_up.config.request_config import RequestConfig, get
+
 
 class IMDB:
     """
@@ -15,10 +17,11 @@ class IMDB:
     | `.top_rated_shows()` | Returns the top-rated shows listed on IMDB. |
     """
 
-    def __init__(self):
-        self.headers = headers = {
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
         }
+        self.config = config
 
     def top_rated(self):
         """
@@ -44,7 +47,7 @@ class IMDB:
         """
         try:
             url = "https://www.imdb.com/chart/top/?ref_=nv_mv_250"
-            html_text = requests.get(url, headers=self.headers).text
+            html_text = get(url, self.config).text
             soup = BeautifulSoup(html_text, "lxml")
             movies_container = soup.find(
                 "ul",
@@ -105,7 +108,7 @@ class IMDB:
             formatted_url = url.format(genre)
             print(formatted_url)
 
-            resp = requests.get(formatted_url, headers=self.headers)
+            resp = get(formatted_url, self.config)
             content = BeautifulSoup(resp.content, "lxml")
             genres = [
                 "Adventure",
@@ -194,7 +197,7 @@ class IMDB:
         """
         try:
             url = "https://www.imdb.com/chart/toptv/?ref_=nv_tvv_250"
-            html_text = requests.get(url, headers=self.headers).text
+            html_text = get(url, self.config).text
             soup = BeautifulSoup(html_text, "lxml")
             shows_container = soup.find(
                 "ul",

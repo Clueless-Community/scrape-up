@@ -26,7 +26,7 @@ class StockPrice:
 
     """
 
-    def __init__(self, stock_name, stock_index):
+    def __init__(self, stock_name: str, stock_index: str):
         self.stock_name = stock_name.strip()
         self.stock_index = stock_index.strip().lower()
         stock_class = None

@@ -1,9 +1,8 @@
-import requests
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from scrape_up.config.request_config import RequestConfig, get
 import undetected_chromedriver as uc
-import re
 import json
 
 
@@ -21,6 +20,9 @@ class Devpost:
     | `.get_featured()` | Returns the latest featured projects along with their decription, like and commment count, image and member details. |
     | `.get_winner()` | Returns the latest winning projects along with their decription, like and commment count, image and member details. |
     """
+
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def get_projects(self):
         """
@@ -54,7 +56,7 @@ class Devpost:
         url = "https://devpost.com/software"
         projects_data = {"projects": []}
         try:
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.content, "html.parser")
             heads = soup.find_all("div", class_="large-3 small-12 columns gallery-item")
             for h in heads:
@@ -100,9 +102,9 @@ class Devpost:
         hackathons = devpost.search()
         ```
         """
-        url = "https://devpost.com/software/search?query=" + topic
+        url = f"https://devpost.com/software/search?query={topic}"
         try:
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.content, "html.parser")
             data = str(soup)
             projects = json.loads(data)
@@ -222,7 +224,7 @@ class Devpost:
         """
         url = "https://devpost.com/software/search?query=is%3Afeatured"
         try:
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.content, "html.parser")
             str_data = str(soup)
             data = json.loads(str_data)
@@ -261,7 +263,7 @@ class Devpost:
         """
         url = "https://devpost.com/software/search?query=is%3Awinner"
         try:
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.content, "html.parser")
             str_data = str(soup)
             data = json.loads(str_data)

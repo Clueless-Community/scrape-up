@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as soup
 
 
 class TopLosers:
-
     """
     Create an instance of `TopLosers` class
     ```python

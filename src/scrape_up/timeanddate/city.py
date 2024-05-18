@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as soup
 
 
 class IndianCity:
-
     """
     Create an instance of `IndianCity` class with the name of the city
     ```python

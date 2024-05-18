@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as soup
 
 
 class GoldPrice:
-
     """
     Create an instance of `GoldPrice` class
     ```python

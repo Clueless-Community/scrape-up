@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup as bs
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Flipkart:
@@ -28,8 +29,8 @@ class Flipkart:
     | `.speakers()`         | Returns the list of speakers from flipkart.                        |
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()) -> None:
+        self.config = config
 
     def tvs(self):
         """
@@ -41,7 +42,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=tv&as=on&as-show=on&otracker=AS_Query_TrendingAutoSuggest_8_0_na_na_na&otracker1=AS_Query_TrendingAutoSuggest_8_0_na_na_na&as-pos=8&as-type=TRENDING&suggestionId=tv&requestId=9c9fa553-b7e5-454b-a65b-bbb7a9c74a29"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -81,7 +82,7 @@ class Flipkart:
             """
 
             link = "https://www.flipkart.com/search?q=bestsellers&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -117,7 +118,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=MOBILE+PHONE+UNDER+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=3"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -154,7 +155,7 @@ class Flipkart:
         try:
             all_items = []
             url = "https://www.flipkart.com/mens-footwear/sports-shoes/pr?sid=osp,cil,1cu&otracker=nmenu_sub_Men_0_Sports%20Shoes"
-            response = requests.get(url)
+            response = get(url, self.config)
             html_content = response.content
             soup = bs(html_content, "html.parser")
 
@@ -196,7 +197,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=1"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -231,7 +232,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=headphones+bluetooth&sid=0pm%2Cfcn%2Cgc3%2Cka8&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_17_na_na_ps&as-pos=1&as-type=RECENT&suggestionId=headphones+bluetooth%7CWireless+Headphones&requestId=beefc9a9-55a8-4b64-b510-b9bc44ae6680&as-backfill=on&page=1"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -266,7 +267,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=camera&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -301,7 +302,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=computer&sid=6bo%2Cnl4%2Cigk&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_2_8_na_na_na&otracker1=AS_QueryStore_OrganicAutoSuggest_2_8_na_na_na&as-pos=2&as-type=RECENT&suggestionId=computer%7CAll+In+One+PCs&requestId=a640e175-ccac-4757-81de-8580730de6ef&as-backfill=on&page=1"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -337,7 +338,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=tablet&sid=tyy%2Chry&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_5_na_na_na&otracker1=AS_QueryStore_OrganicAutoSuggest_1_5_na_na_na&as-pos=1&as-type=RECENT&suggestionId=tablet%7CTablets&requestId=07b434d5-21a5-48e0-9170-8d9f4a90928f&as-searchtext=tablet&page=1"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -376,7 +377,7 @@ class Flipkart:
             """
 
             link = "https://www.flipkart.com/search?q=bicycle&sid=abc%2Culv%2Cixt&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&as-pos=1&as-type=RECENT&suggestionId=bicycle%7CCycles&requestId=05fd446d-fd05-4abe-8bcc-445937cc6fb1&as-searchtext=bicy&page=1"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -429,7 +430,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=printer&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -483,7 +484,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=monitors&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -536,7 +537,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=ac&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -553,9 +554,11 @@ class Flipkart:
                         "Item_Name": names.text if names else None,
                         "Price": price.text if price else None,
                         "Description": description.text if description else None,
-                        "Reviews": "".join(list(str(review.text).split(" ")[0])[2:])
-                        if review
-                        else None,
+                        "Reviews": (
+                            "".join(list(str(review.text).split(" ")[0])[2:])
+                            if review
+                            else None
+                        ),
                         "Deals": deals.text if deals else None,
                     }
 
@@ -591,7 +594,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=refrigerator&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=1"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -608,9 +611,11 @@ class Flipkart:
                         "Item_Name": names.text if names else None,
                         "Price": price.text if price else None,
                         "Description": description.text if description else None,
-                        "Review": "".join(list(str(review.text).split(" ")[0])[2:])
-                        if review
-                        else None,
+                        "Review": (
+                            "".join(list(str(review.text).split(" ")[0])[2:])
+                            if review
+                            else None
+                        ),
                         "Deals": deals.text if deals else None,
                     }
 
@@ -645,7 +650,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=vr+box&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=2"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -660,9 +665,11 @@ class Flipkart:
                     item_details = {
                         "Item_Name": names.text if names else None,
                         "Price": price.text if price else None,
-                        "Review": "".join(list(str(review.text).split(" ")[0])[2:])
-                        if review
-                        else None,
+                        "Review": (
+                            "".join(list(str(review.text).split(" ")[0])[2:])
+                            if review
+                            else None
+                        ),
                         "Delivery": delivery.text if delivery else None,
                     }
 
@@ -699,7 +706,7 @@ class Flipkart:
         """
         try:
             link = "https://www.flipkart.com/search?q=speaker&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page=2"
-            page = requests.get(link)
+            page = get(link, self.config)
             soup = bs(page.content, "html.parser")
 
             all_items = []
@@ -717,9 +724,11 @@ class Flipkart:
                         "Item_Name": names.text if names else None,
                         "Price": price.text if price else None,
                         "Color": color.text if color else None,
-                        "Review": "".join(list(str(review.text).split(" ")[0])[2:])
-                        if review
-                        else None,
+                        "Review": (
+                            "".join(list(str(review.text).split(" ")[0])[2:])
+                            if review
+                            else None
+                        ),
                         "Delivery": delivery.text if delivery else None,
                         "Off_Percentage": offpercentage.text if offpercentage else None,
                     }

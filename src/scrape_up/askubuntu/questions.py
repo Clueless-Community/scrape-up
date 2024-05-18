@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
-import requests
 import json
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Questions:
@@ -21,8 +22,9 @@ class Questions:
     | `.getHighScoredQuestions()` | Returns the most voted questions, views, votes, answer counts, and descriptions in JSON format       |
     """
 
-    def __init__(self, topic):
+    def __init__(self, topic: str, *, config: RequestConfig = RequestConfig()):
         self.topic = topic
+        self.config = config
 
     def getNewQuestions(self):
         """
@@ -46,7 +48,7 @@ class Questions:
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Newest"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}
@@ -103,7 +105,7 @@ class Questions:
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Active"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}
@@ -160,7 +162,7 @@ class Questions:
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Unanswered"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}
@@ -217,7 +219,7 @@ class Questions:
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Bountied"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}
@@ -274,7 +276,7 @@ class Questions:
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Frequent"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}
@@ -331,7 +333,7 @@ class Questions:
         """
         url = "https://askubuntu.com/questions/tagged/" + self.topic + "?tab=Votes"
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, "html.parser")
 
             questions_data = {"questions": []}

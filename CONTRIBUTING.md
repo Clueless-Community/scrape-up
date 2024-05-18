@@ -71,36 +71,41 @@ pip install -r requirements.txt
 
 Now you are done with the project setup, now you can make the changes you want or assign.
 
-### Let's say you want to scrape the avatar URL of and user. Steps applying which we can do this
+### Let's say you want to scrape the avatar URL of a user. The steps to apply in order to achieve this are as follows:
 
 - At first, we have to scrape the profile page of a user. For that, we have defined a function in the user class as
 
 ```python
-- scrape-up/src/scrape_up/github/users.py
+# scrape-up/src/scrape_up/github/users.py
+
+from scrape_up.config.request_config import RequestConfig, get
+
 class Users:
 
-    def __init__(self, username):
+    def __init__(self, username, *, config: RequestConfig = RequestConfig()):
         self.username = username
+        self.config = config
 
     def __scrape_page(self):
         username = self.username
-        data = requests.get(f"https://github.com/{username}")
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        data = get(f"https://github.com/{username}", self.config)
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 ```
 
 - The `__scrape_page` is a private function defined to scrape any page.
 - Now we have to create a function with an appropriate name, in this case, `followers`.
+- `scrape_up.config.request_config` contains our custom get function. This function takes 2 parameters: `url` and `config`. The `url` parameter is the URL of the page you want to scrape. The `config` parameter is an instance of the `RequestConfig` class. The `RequestConfig` class contains various settings like headers, timeout, and redirect.
 
 ```python
 def followers(self):
-        page = self.__scrape_page()
-        try:
-            followers = page.find(class_ = "avatar avatar-user width-full border color-bg-default")
-            return followers["src"]
-        except:
-            message = f"{self.username} not found !"
-            return message
+    page = self.__scrape_page()
+    try:
+        followers = page.find(class_ = "avatar avatar-user width-full border color-bg-default")
+        return followers["src"]
+    except:
+        message = f"{self.username} not found !"
+        return message
 ```
 
 - When you do inspect the element of the page, you will get to know the class named `avatar avatar-user width-full border color-bg-default` contains the avatar URL.

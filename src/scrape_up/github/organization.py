@@ -1,6 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
-import json
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Organization:
@@ -25,11 +25,14 @@ class Organization:
     | `.get_organization_links()` | Returns a dictionary of important website links of a community. |
     """
 
-    def __init__(self, organization_name: str):
+    def __init__(
+        self, organization_name: str, *, config: RequestConfig = RequestConfig()
+    ):
         self.organization = organization_name
+        self.config = config
 
     def __scrape_page(self):
-        data = requests.get(f"https://github.com/{self.organization}")
+        data = get(f"https://github.com/{self.organization}", self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
@@ -114,15 +117,15 @@ class Organization:
         scrapes the head page of repositories of an organization
         """
         organization = self.organization
-        data = requests.get(f"https://github.com/orgs/{organization}/repositories")
+        data = get(f"https://github.com/orgs/{organization}/repositories", self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
-    def __scrape_repositories(self, page):
+    def __scrape_repositories(self, page: str):
         """
         scrapes the repositories page of an organization
         """
-        data = requests.get(page)
+        data = get(page, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
@@ -172,16 +175,15 @@ class Organization:
 
         """
         organization = self.organization
-        data = requests.get(f"https://github.com/orgs/{organization}/people")
+        data = get(f"https://github.com/orgs/{organization}/people", self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
-    def __scrape_people(self, page):
+    def __scrape_people(self, page: str):
         """
         scrapes the people page of an organization
         """
-        organization = self.organization
-        data = requests.get(page)
+        data = get(page, self.config)
         data = BeautifulSoup(data.text, "html.parser")
         return data
 
@@ -421,7 +423,7 @@ class Organization:
                 ).text.strip()
 
                 url = "https://github.com" + repo.find("a", href=True)["href"]
-                response = requests.get(url)
+                response = get(url, self.config)
 
                 url_parts = url.split("/")
 

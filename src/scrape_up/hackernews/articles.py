@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Articles:
@@ -17,6 +18,9 @@ class Articles:
     | `.show_articles()` | Returns the show articles along with their score, author, author URL, time, comment count, and link.       |
     | `.jobs()`          | Returns the jobs along with their time and link.                                                           |
     """
+
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def articles_list(self):
         """
@@ -47,7 +51,7 @@ class Articles:
         articles_data = {"articles": []}
 
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
@@ -111,7 +115,7 @@ class Articles:
         articles_data = {"articles": []}
 
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
@@ -175,7 +179,7 @@ class Articles:
         articles_data = {"articles": []}
 
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
@@ -239,7 +243,7 @@ class Articles:
         articles_data = {"articles": []}
 
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
@@ -303,7 +307,7 @@ class Articles:
         articles_data = {"articles": []}
 
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 
@@ -363,7 +367,7 @@ class Articles:
         articles_data = {"articles": []}
 
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
 
             soup = BeautifulSoup(res.text, "html.parser")
 

@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
+from scrape_up.config.request_config import RequestConfig, get
+
 
 class Cricbuzz:
     """
@@ -47,8 +49,8 @@ class Cricbuzz:
         "lowest-sr",
     ]
 
-    def __init__(self):
-        self.session = requests.Session()
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def __timestamp_to_date(self, timestamp):
         """
@@ -56,12 +58,12 @@ class Cricbuzz:
         """
         from datetime import datetime
 
-        dt_obj = datetime.utcfromtimestamp(timestamp / 1000)
+        dt_obj = datetime.fromtimestamp(timestamp / 1000)
         return dt_obj.strftime("%d-%m-%Y %H:%M:%S")
 
     def __scrape_match(self, url, type, isUpcoming=False):
         try:
-            res = self.session.get(url)
+            res = get(url, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from cricbuzz"}]
             soup = BeautifulSoup(res.text, "html.parser")
@@ -235,7 +237,7 @@ class Cricbuzz:
 
     def __scrape_series(self, url, type="all"):
         try:
-            res = self.session.get(url)
+            res = get(url, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from cricbuzz"}]
             soup = BeautifulSoup(res.text, "html.parser")
@@ -321,7 +323,7 @@ class Cricbuzz:
 
     def __scrape_series_from_archive(self, url, type="all"):
         try:
-            res = self.session.get(url)
+            res = get(url, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from cricbuzz"}]
             soup = BeautifulSoup(res.text, "html.parser")
@@ -387,7 +389,7 @@ class Cricbuzz:
 
     def __scarpe_matches_by_day(self, url, type):
         try:
-            res = self.session.get(url)
+            res = get(url, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from cricbuzz"}]
             soup = BeautifulSoup(res.text, "html.parser")
@@ -451,7 +453,7 @@ class Cricbuzz:
 
     def __scrape_series_matches(self, url):
         try:
-            res = self.session.get(url)
+            res = get(url, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from cricbuzz"}]
             soup = BeautifulSoup(res.text, "html.parser")
@@ -512,7 +514,7 @@ class Cricbuzz:
         """
         Class - Cricbuzz\n
         Params required
-        - `series_id` = Cricket mathc series Id(can be found on Cricbuzz Website)\n
+        - `series_id` = Cricket match series Id(can be found on Cricbuzz Website)\n
         ```python
         cricbuzz = Cricubzz()
         cricbuzz.get_series_matches(series_id="abc")
@@ -528,7 +530,7 @@ class Cricbuzz:
         try:
             format_index = self.FORMATS.index(match_format) + 1
             URL = f"https://www.cricbuzz.com/api/html/series/{series_id}/{stat}/{format_index}/0/0"
-            res = self.session.get(URL)
+            res = get(URL, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from cricbuzz"}]
             soup = BeautifulSoup(res.text, "html.parser")
@@ -552,7 +554,7 @@ class Cricbuzz:
         """
         Class - Cricbuzz\n
         Params required
-        - `series_id` = Cricket mathc series Id(can be found on Cricbuzz Website)\n
+        - `series_id` = Cricket match series Id(can be found on Cricbuzz Website)\n
         - `match_format` = ["Test", "ODI", "T20I"]\n
         - `stat` = [
             "most-runs",
@@ -589,9 +591,9 @@ class Cricbuzz:
         except:
             return None
 
-    def __scrape_team_data(self, url):
+    def __scrape_team_data(self, url: str):
         try:
-            res = self.session.get(url)
+            res = get(url, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from cricbuzz"}]
             soup = BeautifulSoup(res.text, "html.parser")
@@ -632,9 +634,9 @@ class Cricbuzz:
             }
         return self.__scrape_team_data(url=URL)
 
-    def __scrape_team_schedule(self, url):
+    def __scrape_team_schedule(self, url: str):
         try:
-            res = self.session.get(url)
+            res = get(url, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from cricbuzz"}]
             soup = BeautifulSoup(res.text, "html.parser")
@@ -706,9 +708,9 @@ class Cricbuzz:
         URL = self.BASE_URL + f"cricket-team/team/{team_id}/schedule"
         return self.__scrape_team_schedule(url=URL)
 
-    def __scrape_team_players(self, url):
+    def __scrape_team_players(self, url: str):
         # try:
-        res = self.session.get(url)
+        res = get(url, self.config)
         if res.status_code != 200:
             return [{"error": "Unable to fetch data from cricbuzz"}]
         soup = BeautifulSoup(res.text, "html.parser")
@@ -743,9 +745,9 @@ class Cricbuzz:
         except:
             return None
 
-    def __scrape_team_results(self, url):
+    def __scrape_team_results(self, url: str):
         try:
-            res = self.session.get(url)
+            res = get(url, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from cricbuzz"}]
             soup = BeautifulSoup(res.text, "html.parser")
@@ -830,7 +832,7 @@ class Cricbuzz:
         try:
             format_index = self.FORMATS.index(match_format) + 1
             URL = f"https://www.cricbuzz.com/cricket-team/team/{team_id}/stats-table/{stat}/{format_index}/{year}/all"
-            res = self.session.get(URL)
+            res = get(URL, self.config)
             if res.status_code != 200:
                 return [{"error": "Unable to fetch data from cricbuzz"}]
             soup = BeautifulSoup(res.text, "html.parser")

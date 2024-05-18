@@ -1,8 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 import datetime
-import time
-import xml.etree.ElementTree as ET
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class GoogleNews:
@@ -22,8 +21,8 @@ class GoogleNews:
 
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
     def get_articles(self, topic: str):
         """
@@ -45,7 +44,7 @@ class GoogleNews:
         """
         url = "https://news.google.com/rss/search?q=" + topic
         try:
-            res = requests.get(url)
+            res = get(url, self.config)
             soup = BeautifulSoup(res.text, features="xml")
             # find all li tags
             lis = soup.find_all("item")
@@ -84,7 +83,7 @@ class GoogleNews:
         """
         url = "https://news.google.com/news/rss"
         try:
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.content, features="xml")
             lis = soup.find_all("item")
             sub_articles = []
@@ -130,7 +129,7 @@ class GoogleNews:
             time = " when:" + time
         url = "https://news.google.com/news/rss/search?q=" + topic + time
         try:
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.content, features="xml")
             lis = soup.find_all("item")
             sub_articles = []
@@ -174,7 +173,7 @@ class GoogleNews:
         url = "https://news.google.com/news/rss/search?q=" + topic + time
 
         try:
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.content, features="xml")
             lis = soup.find_all("item")
             sub_articles = []
@@ -223,7 +222,7 @@ class GoogleNews:
         url = "https://news.google.com/news/rss/search?q=" + topic + addlang
 
         try:
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.content, features="xml")
             lis = soup.find_all("item")
             sub_articles = []
@@ -269,7 +268,7 @@ class GoogleNews:
         )
 
         try:
-            page = requests.get(url)
+            page = get(url, self.config)
             soup = BeautifulSoup(page.content, features="xml")
             lis = soup.find_all("item")
             sub_articles = []

@@ -1,5 +1,6 @@
-import requests
 from bs4 import BeautifulSoup as bs
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Zomato:
@@ -13,10 +14,10 @@ class Zomato:
     | `.get_restaurants_details()` | Returns the restraunt data with name, cuisine, area, rating, offers, etc  |
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
+        self.config = config
 
-    def get_restaurants_details(self, page_url):
+    def get_restaurants_details(self, page_url: str):
         """
         Create an object of the 'Zomato' class\n
         ```python
@@ -56,7 +57,7 @@ class Zomato:
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
             }
-            response = requests.get(page_url, headers=headers).text
+            response = get(page_url, self.config).text
             soup = bs(response, "lxml")
             restaurant_data = []
             name = soup.find(

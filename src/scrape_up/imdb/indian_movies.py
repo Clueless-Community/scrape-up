@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as soup
 
 
 class IndianMovies:
-
     """
     Create an instance of `IndianMovies` class.
     ```python

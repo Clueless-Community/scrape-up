@@ -2,11 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
-<<<<<<< HEAD
 local_test.py
-=======
-locaL_test.py
->>>>>>> 8f31f07307b5d503598fb062f51376a7b9eac315
+
 # C extensions
 *.so
 *.ipynb

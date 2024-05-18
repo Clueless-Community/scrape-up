@@ -1,6 +1,7 @@
-import json
-import requests
 from bs4 import BeautifulSoup
+import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Robu:
@@ -14,21 +15,21 @@ class Robu:
     | `.search()` | Returns the json data of all the details related to search with informing about the total amount of items found |
     """
 
-    def __init__(self):
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
         self.base_url = "https://www.robo.in"
         self.outputs = []
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+        }
+        self.config = config
+        if self.config.headers == {}:
+            self.config.set_headers(headers)
 
-    def __get_html_content(self, url, headers=None):
-        if headers is None:
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
-            }
-
-        session = requests.Session()
-        session.headers.update(headers)
-        response = session.get(url)
-        response.raise_for_status()
-        return response.content
+    def __get_html_content(self, url: str):
+        if self.headers is None:
+            response = get(url, self.config)
+            response.raise_for_status()
+            return response.content
 
     def __get_soup(self, url):
         request_content = self.__get_html_content(url)
