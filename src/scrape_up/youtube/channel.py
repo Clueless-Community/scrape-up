@@ -224,17 +224,13 @@ class Channel:
                     "tabRenderer"
                 ]["content"]["sectionListRenderer"]["contents"][0][
                     "itemSectionRenderer"
-                ][
-                    "contents"
-                ]
+                ]["contents"]
             except:
                 posts = data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][5][
                     "tabRenderer"
                 ]["content"]["sectionListRenderer"]["contents"][0][
                     "itemSectionRenderer"
-                ][
-                    "contents"
-                ]
+                ]["contents"]
 
             for p in posts:
                 images = {"images": []}
