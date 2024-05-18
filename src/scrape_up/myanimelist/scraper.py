@@ -22,7 +22,10 @@ class Anime:
     Retrives information about an anime from MyAnimeList (myanimelist.net).
 
     ```python
-    anime = myanimelist.Anime("demon slayer")
+    from scrape_up.myanimelist import Anime
+    a = Anime("demon slayer")
+    # or construct the class by ID
+    b = Anime.from_id(38000)
     ```
     | Methods                       | Details                                                        |
     | ----------------------------- | -------------------------------------------------------------- |
@@ -92,31 +95,11 @@ class Anime:
     @classmethod
     def from_id(cls, id: int):
         """
-            Constructs the Anime class using the anime ID.
-            ```python
-            anime = myanimelist.Anime.from_id(38000)
-            ```
-
-        | Methods                       | Details                                                        |
-        | ----------------------------- | -------------------------------------------------------------- |
-        | `.url`                | Returns the MyAnimelist URL of the anime.                   |
-        | `.title`                | Returns the title of the anime.                   |
-        | `.title_english`                | Returns the English title of the anime.                   |
-        | `.title_jp`                | Returns the Japanese title of the anime.                   |
-        | `.synopsis`                | Returns the synopsis/brief introduction of the anime.                   |
-        | `.score`                | Returns the score of the anime.                   |
-        | `.members`                | Returns the number of members of the anime.                   |
-        | `.popularity`                | Returns the popularity index of the anime.                   |
-        | `.rank`                | Returns the rank of the anime.                   |
-        | `.episodes`                | Returns the number of episodes of the anime.                   |
-        | `.aired` | Returns the duration the anime was being aired in string format, like `Apr 6, 2019 to Sep 28, 2019`. |
-        | `.broadcast`          | Returns the day and time when new episode of the anime used to be broadcasted, like `Saturdays at 23:30 (JST)`.                    |
-        | `.premiered`          | Returns the cour and year anime used to be premiered in, like `Spring 2019`.                    |
-        | `.genres`          | Returns the list of genres of the anime.                    |
-        | `.themes`          | Returns the list of themes of the anime.                    |
-        | `.poster_url`          | Returns the the URL to the poster image of the anime.                    |
+        Constructs the Anime class using the anime ID.
+        ```python
+        anime = myanimelist.Anime.from_id(38000)
+        ```
         """
-        # calling dunder new because we dont want to call the constructor
         obj = cls.__new__(cls)
         resp = requests.get(f"{cls.ANIME_ID_ENDPOINT}/{id}")
         if resp.status_code != 200:
@@ -263,25 +246,3 @@ class Anime:
                     themes_.append(sub.text)
 
         return themes_
-
-
-if __name__ == "__main__":
-    a = Anime("demon slayer")
-    print(a.url)
-    print(a.title_english)
-    print(a.title)
-    print(a.title_jp)
-    print(a.score)
-    print(a.members)
-    print(a.popularity)
-    print(a.rank)
-    print(a.episodes)
-    print(a.aired)
-    print(a.broadcast)
-    print(a.premiered)
-    print(a.synopsis)
-    print(a.genres)
-    print(a.themes)
-    print(a.poster_url)
-    b = Anime.from_id(7088)
-    print(b.title_english)
