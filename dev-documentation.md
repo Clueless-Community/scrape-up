@@ -1730,6 +1730,9 @@ The `Jobs` class provides methods for configuring scraping parameters and fetchi
 | `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
 | `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
 
+-------
+
+
 ## Lichess
 
 ```python
@@ -1746,6 +1749,42 @@ The `LichessGames` class provides methods for fetching Lichess game data for a s
 | ---------------- | ------------------------------------------------------------------------------------------------- |
 | `.fetch_games()` | Fetch all the games data for the specified username, returning a list of games or `None` on fail. |
 
+---
+
+## MyAnimeList
+
+Import the `myanimelist` module and create an instance of the `Anime` class.
+
+```py
+from scrape_up.myanimelist import Anime
+a = Anime("demon slayer")
+# or construct the class by ID
+b = Anime.from_id(38000)
+```
+
+The `Anime` class provides various information about the any anime you want to search - either by name or by its ID.
+
+| Methods          | Details                                                                                                         |
+| ---------------- | --------------------------------------------------------------------------------------------------------------- |
+| `.url`           | Returns the MyAnimelist URL of the anime.                                                                       |
+| `.title`         | Returns the title of the anime.                                                                                 |
+| `.title_english` | Returns the English title of the anime.                                                                         |
+| `.title_jp`      | Returns the Japanese title of the anime.                                                                        |
+| `.synopsis`      | Returns the synopsis/brief introduction of the anime.                                                           |
+| `.score`         | Returns the score of the anime.                                                                                 |
+| `.members`       | Returns the number of members of the anime.                                                                     |
+| `.popularity`    | Returns the popularity index of the anime.                                                                      |
+| `.rank`          | Returns the rank of the anime.                                                                                  |
+| `.episodes`      | Returns the number of episodes of the anime.                                                                    |
+| `.aired`         | Returns the duration the anime was being aired in string format, like `Apr 6, 2019 to Sep 28, 2019`.            |
+| `.broadcast`     | Returns the day and time when new episode of the anime used to be broadcasted, like `Saturdays at 23:30 (JST)`. |
+| `.premiered`     | Returns the cour and year anime used to be premiered in, like `Spring 2019`.                                    |
+| `.genres`        | Returns the list of genres of the anime.                                                                        |
+| `.themes`        | Returns the list of themes of the anime.                                                                        |
+| `.poster_url`    | Returns the the URL to the poster image of the anime.                                                           |
+
+## Atcoder
+
 First create an object of class `Atcoder`.
 
 ```python
@@ -1759,3 +1798,20 @@ atcode.get_profile()
 | `.get_profile()` | Returns the user data in json format. |
 
 ---
+
+## Pinterest
+
+First create an object of class `Pinterest`.
+
+```python
+from scrap_up import Pinterest
+
+pinterest = Pinterest()
+```
+
+| Methods                     | Details                                                      |
+| --------------------------- | ------------------------------------------------------------ |
+| `.get_today()`              | Returns the list of today's topics                           |
+| `.get_photo(your_url)`      | Returns the link to the image (so you don't need an account) |
+| `.search_pins(keyword)`     | Search for pins containing a specific keyword on Pinterest   |
+| `.get_pin_details(pin_url)` | Fetch details about a specific pin on Pinterest              |
