@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import json
 
 from scrape_up.config.request_config import RequestConfig, get
 
@@ -54,7 +55,7 @@ class Contest:
         response = get(codeforces_url, self.config)
         
         if response.status_code != 200:
-            return {"data": None, "message": "Can not load Contest"}
+            json.dumps({"data": None, "message": "Cannot load Contest"})
 
         soup = BeautifulSoup(response.text, "html.parser")
         contest_list = []
@@ -76,6 +77,5 @@ class Contest:
                     "length": duration_str,
                 })
 
-        return {"data": contest_list, "message": "Found contest list"}
-
+        return json.dumps({"data": contest_list, "message": "Found contest list"})
 
