@@ -12,6 +12,7 @@ class Atcoder:
     | Methods           | Details                                                                            |
     | ----------------- | ---------------------------------------------------------------------------------- |
     | `.get_profile()`  | Returns the user data in json format.                                              |
+    | `get_contests()`  | Returns future_contests , past_contests , skill_tests etc in json format.          |
 
     Response
     ```json
@@ -70,6 +71,50 @@ class Atcoder:
                     r.find("td").text.replace("\n", " ").strip()
                 )
             return json.dumps(user_details)
+        except:
+            return None
+    
+    def get_contests(self):
+        try:
+            url="https://atcoder.jp/contests/"
+            headers = {"User-Agent": "scrapeup"}
+            response = requests.get(url, headers=headers)
+            soup = BeautifulSoup(response.text, "html.parser")
+            # print(soup)
+            ac=soup.find('div',id="contest-table-action").find('tbody')
+            active={}
+            row=ac.find_all('tr')
+            i=1
+            for r in row:
+                b=r.find_all('td')
+                active[i]={"start_time":b[0].text.strip().replace("\n"," "),"name":b[1].text.strip().replace("\n"," "),"Duration":b[2].text.strip().replace("\n"," "),"Rated_for":b[3].text.strip().replace("\n"," ")}
+                i=i+1
+            ac=soup.find('div',id="contest-table-upcoming").find('tbody')
+            upcoming={}
+            row=ac.find_all('tr')
+            i=1
+            for r in row:
+                b=r.find_all('td')
+                upcoming[i]={"start_time":b[0].text.strip().replace("\n"," "),"name":b[1].text.strip().replace("\n"," "),"Duration":b[2].text.strip().replace("\n"," "),"Rated_for":b[3].text.strip().replace("\n"," ")}
+                # print(b[1].text)
+                i=i+1
+            ac=soup.find('div',id="contest-table-recent").find('tbody')
+            recent={}
+            row=ac.find_all('tr')
+            i=1
+            for r in row:
+                b=r.find_all('td')
+                recent[i]={"start_time":b[0].text.strip().replace("\n"," "),"name":b[1].text.strip().replace("\n"," "),"Duration":b[2].text.strip().replace("\n"," "),"Rated_for":b[3].text.strip().replace("\n"," ")}
+                i=i+1
+            ac=soup.find('div',id="contest-table-permanent").find('tbody')
+            permanent={}
+            row=ac.find_all('tr')
+            i=1
+            for r in row:
+                b=r.find_all('td')
+                permanent[i]={"name":b[0].text.strip().replace("\n"," "),"Rated_for":b[1].text.strip().replace("\n"," ")}
+                i=i+1
+            return json.dumps({"active":active,"Upcoming":upcoming,"Recent":recent,"Permanent":permanent})
         except:
             return None
 

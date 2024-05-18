@@ -1809,9 +1809,10 @@ atcoder = Atcoder(user="username")
 atcode.get_profile()
 ```
 
-| Methods          | Details                               |
-| ---------------- | ------------------------------------- |
-| `.get_profile()` | Returns the user data in json format. |
+| Methods          | Details                                                                   |
+| ---------------- | ------------------------------------------------------------------------- |
+| `.get_profile()` | Returns the user data in json format.                                     |
+| `get_contests()` | Returns future_contests , past_contests , skill_tests etc in json format. |
 
 ---
 
