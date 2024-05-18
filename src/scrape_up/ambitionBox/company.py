@@ -19,6 +19,10 @@ class Comapiens:
             file.write(f"{company_name.strip()} {rating}\n")
 
     def scrape_companies(self):
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+        }
+
         for page in range(1, self.num_pages + 1):
             print(f"Scraping webpage number: {page} of {self.num_pages}")
 
