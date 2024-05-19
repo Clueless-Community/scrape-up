@@ -1649,7 +1649,7 @@ Methods
 | Methods                    | Details                            |
 | -------------------------- | ---------------------------------- |
 | `.get_user_data(username)` | Fetches user data from CodeForces. |
-| `get_contests()`           | Returns information on contests.   |   
+| `get_contests()`           | Returns information on contests.   |
 ```
 
 ---
@@ -1745,9 +1745,7 @@ result = steam.ScrapeGames(n0Games=5, tags=["Discounts", "F2P"])
 | ----------------------------- | ------------------------------------------- |
 | `.ScrapeGames(n0Games, tags)` | Scrapes game data for each specified filter |
 
-
--------
-
+---
 
 ## Lichess
 
@@ -1853,4 +1851,3 @@ trek=Indiantrekking("hidden-lakes-of-kashmir")
 | `outline_day_to_day_itinerary` | returns the ouline of the day to day itinerary                                    |
 
 ---
-
