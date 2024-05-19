@@ -62,15 +62,12 @@ class Contest:
             for contest in upcoming_contests:
                 columns = contest.find_all("td")
                 if len(columns) == 6:
-                    name = columns[0].text.strip()
+                    name = columns[0].text.strip().replace("Enter"," ").replace("Virtual participation"," ").replace("\u00bb"," ")
                     start_time_str = columns[2].text.strip()
                     duration_str = columns[3].text.strip()
-
                     name = " ".join(
                         line.strip() for line in name.splitlines() if line.strip()
                     )
-                    name = name.replace("Enter »", "").strip()
-
                     upcoming_list.append(
                         {
                             "name": name,
@@ -83,15 +80,12 @@ class Contest:
             for contest in ended_contests:
                 columns = contest.find_all("td")
                 if len(columns) == 6:
-                    name = columns[0].text.strip()
-                    start_time_str = columns[2].text.strip()
+                    name = columns[0].text.strip().replace("Enter"," ").replace("Virtual participation"," ").replace("\u00bb"," ")
+                    start_time_str = columns[2].find('span',class_="format-date").text.strip()
                     duration_str = columns[3].text.strip()
-
                     name = " ".join(
                         line.strip() for line in name.splitlines() if line.strip()
                     )
-                    name = name.replace("Enter »", "").strip()
-
                     ended_list.append(
                         {
                             "name": name,
