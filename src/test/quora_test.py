@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from scrape_up.quora import Quora
+from src.scrape_up.quora import Quora
 
 
 class TestQuora(unittest.TestCase):
