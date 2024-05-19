@@ -57,7 +57,8 @@ class Contest:
         contest_list = []
 
         try:
-            upcoming_contests = soup.find("div", {"class": "datatable"}).find_all("tr")
+            upcoming_list=[]
+            upcoming_contests = soup.find_all("div", {"class": "datatable"})[0].find_all("tr")
             for contest in upcoming_contests:
                 columns = contest.find_all("td")
                 if len(columns) == 6:
@@ -70,14 +71,36 @@ class Contest:
                     )
                     name = name.replace("Enter »", "").strip()
 
-                    contest_list.append(
+                    upcoming_list.append(
                         {
                             "name": name,
                             "start": start_time_str,
                             "length": duration_str,
                         }
                     )
+            ended_list=[]
+            ended_contests = soup.find_all("div", {"class": "datatable"})[1].find_all("tr")
+            for contest in ended_contests:
+                columns = contest.find_all("td")
+                if len(columns) == 6:
+                    name = columns[0].text.strip()
+                    start_time_str = columns[2].text.strip()
+                    duration_str = columns[3].text.strip()
 
-            return contest_list
+                    name = " ".join(
+                        line.strip() for line in name.splitlines() if line.strip()
+                    )
+                    name = name.replace("Enter »", "").strip()
+
+                    ended_list.append(
+                        {
+                            "name": name,
+                            "start": start_time_str,
+                            "length": duration_str,
+                        }
+                    )
+            contest_list={"upcoming_contest":upcoming_list,"ended_contest":ended_list}
+
+            return json.dumps(contest_list)
         except Exception:
             return None
