@@ -1650,6 +1650,7 @@ Methods
 | Methods                    | Details                            |
 | -------------------------- | ---------------------------------- |
 | `.get_user_data(username)` | Fetches user data from CodeForces. |
+| `get_contests()`           | Returns information on contests.   |
 ```
 
 ---
@@ -1719,7 +1720,7 @@ geeksforgeeks = Geeksforgeeks(user="username")
 ## Wuzzuf
 
 ```python
-from scrap_up import wuzzuf
+from scrape_up import wuzzuf
 jobs = wuzzuf.Jobs()
 ```
 
@@ -1745,14 +1746,12 @@ result = steam.ScrapeGames(n0Games=5, tags=["Discounts", "F2P"])
 | ----------------------------- | ------------------------------------------- |
 | `.ScrapeGames(n0Games, tags)` | Scrapes game data for each specified filter |
 
-
--------
-
+---
 
 ## Lichess
 
 ```python
-from scrape-up import lichess
+from scrape_up import lichess
 lichess_games = lichess.LichessGames(username)
 start_page = 1
 end_page = 4
@@ -1854,3 +1853,16 @@ trek=Indiantrekking("hidden-lakes-of-kashmir")
 
 ---
 
+## Bayt
+
+```python
+from scrape_up import bayt
+jobs = bayt.Jobs()
+jobs.fetch_jobs(query="software engineer",page=1)
+```
+
+The `Jobs` class provides methods fetching job listings:
+
+| Methods         | Details                                                           |
+| --------------- | ----------------------------------------------------------------- |
+| `.fetch_jobs()` | Fetch job listings from the website across specified single page. |
