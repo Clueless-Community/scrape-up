@@ -79,17 +79,13 @@ class Geeksforgeeks:
                 "username": username,
                 "collage_name": collage,
                 "collage_rank": collage_rank,
-               
                 "overall_coding_score": overall_coding_score,
                 "monthly_coding_score": monthly_coding_score,
-            
                 "languages_used": languages,
                 "current_potd_streak": current_potd_streak,
                 "total_problem_solved": total_problem_solved,
                 "campus_ambassader": campus_ambaasder,
             }
-
-           
 
             return json.dumps(user_data)
         except Exception as e:

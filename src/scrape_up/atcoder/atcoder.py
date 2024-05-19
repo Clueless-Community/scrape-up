@@ -1,4 +1,5 @@
 import json
+import sys
 import requests
 from bs4 import BeautifulSoup
 
@@ -73,51 +74,74 @@ class Atcoder:
             return json.dumps(user_details)
         except:
             return None
-    
+
     def get_contests(self):
         try:
-            url="https://atcoder.jp/contests/"
+            url = "https://atcoder.jp/contests/"
             headers = {"User-Agent": "scrapeup"}
             response = requests.get(url, headers=headers)
             soup = BeautifulSoup(response.text, "html.parser")
             # print(soup)
-            ac=soup.find('div',id="contest-table-action").find('tbody')
-            active={}
-            row=ac.find_all('tr')
-            i=1
+            ac = soup.find("div", id="contest-table-action").find("tbody")
+            active = {}
+            row = ac.find_all("tr")
+            i = 1
             for r in row:
-                b=r.find_all('td')
-                active[i]={"start_time":b[0].text.strip().replace("\n"," "),"name":b[1].text.strip().replace("\n"," "),"Duration":b[2].text.strip().replace("\n"," "),"Rated_for":b[3].text.strip().replace("\n"," ")}
-                i=i+1
-            ac=soup.find('div',id="contest-table-upcoming").find('tbody')
-            upcoming={}
-            row=ac.find_all('tr')
-            i=1
+                b = r.find_all("td")
+                active[i] = {
+                    "start_time": b[0].text.strip().replace("\n", " "),
+                    "name": b[1].text.strip().replace("\n", " "),
+                    "Duration": b[2].text.strip().replace("\n", " "),
+                    "Rated_for": b[3].text.strip().replace("\n", " "),
+                }
+                i = i + 1
+            ac = soup.find("div", id="contest-table-upcoming").find("tbody")
+            upcoming = {}
+            row = ac.find_all("tr")
+            i = 1
             for r in row:
-                b=r.find_all('td')
-                upcoming[i]={"start_time":b[0].text.strip().replace("\n"," "),"name":b[1].text.strip().replace("\n"," "),"Duration":b[2].text.strip().replace("\n"," "),"Rated_for":b[3].text.strip().replace("\n"," ")}
+                b = r.find_all("td")
+                upcoming[i] = {
+                    "start_time": b[0].text.strip().replace("\n", " "),
+                    "name": b[1].text.strip().replace("\n", " "),
+                    "Duration": b[2].text.strip().replace("\n", " "),
+                    "Rated_for": b[3].text.strip().replace("\n", " "),
+                }
                 # print(b[1].text)
-                i=i+1
-            ac=soup.find('div',id="contest-table-recent").find('tbody')
-            recent={}
-            row=ac.find_all('tr')
-            i=1
+                i = i + 1
+            ac = soup.find("div", id="contest-table-recent").find("tbody")
+            recent = {}
+            row = ac.find_all("tr")
+            i = 1
             for r in row:
-                b=r.find_all('td')
-                recent[i]={"start_time":b[0].text.strip().replace("\n"," "),"name":b[1].text.strip().replace("\n"," "),"Duration":b[2].text.strip().replace("\n"," "),"Rated_for":b[3].text.strip().replace("\n"," ")}
-                i=i+1
-            ac=soup.find('div',id="contest-table-permanent").find('tbody')
-            permanent={}
-            row=ac.find_all('tr')
-            i=1
+                b = r.find_all("td")
+                recent[i] = {
+                    "start_time": b[0].text.strip().replace("\n", " "),
+                    "name": b[1].text.strip().replace("\n", " "),
+                    "Duration": b[2].text.strip().replace("\n", " "),
+                    "Rated_for": b[3].text.strip().replace("\n", " "),
+                }
+                i = i + 1
+            ac = soup.find("div", id="contest-table-permanent").find("tbody")
+            permanent = {}
+            row = ac.find_all("tr")
+            i = 1
             for r in row:
-                b=r.find_all('td')
-                permanent[i]={"name":b[0].text.strip().replace("\n"," "),"Rated_for":b[1].text.strip().replace("\n"," ")}
-                i=i+1
-            return json.dumps({"active":active,"Upcoming":upcoming,"Recent":recent,"Permanent":permanent})
+                b = r.find_all("td")
+                permanent[i] = {
+                    "name": b[0].text.strip().replace("\n", " "),
+                    "Rated_for": b[1].text.strip().replace("\n", " "),
+                }
+                i = i + 1
+
+            response = {
+                "active": active,
+                "Upcoming": upcoming,
+                "Recent": recent,
+                "Permanent": permanent,
+            }
+
+            sys.stdout.reconfigure(encoding="utf-8")
+            return response
         except:
             return None
-
-
-atc = Atcoder(user="chokudai")
-print(atc.get_profile())
