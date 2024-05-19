@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from src.scrape_up.quora import Quora
+from scrape_up.quora import Quora
 
 
 class TestQuora(unittest.TestCase):
@@ -19,7 +19,7 @@ class TestQuora(unittest.TestCase):
         """
         self.quora_scraper = Quora()
 
-    @patch('scrape_up.quora.get')  # Mock the get method in scrape_up.quora
+    @patch("scrape_up.quora.get")  # Mock the get method in scrape_up.quora
     def test_fetch_answers(self, mock_get):
         """
         Test the fetch_answers() method.
@@ -45,7 +45,7 @@ class TestQuora(unittest.TestCase):
         except:
             return None
 
-    @patch('scrape_up.quora.get')  # Mock the get method in scrape_up.quora
+    @patch("scrape_up.quora.get")  # Mock the get method in scrape_up.quora
     def test_get_by_query(self, mock_get):
         """
         Test the get_by_query() method.
@@ -70,7 +70,7 @@ class TestQuora(unittest.TestCase):
         except:
             return None
 
-    @patch('scrape_up.quora.get')  # Mock the get method in scrape_up.quora
+    @patch("scrape_up.quora.get")  # Mock the get method in scrape_up.quora
     def test_profile_details(self, mock_get):
         """
         Test the profile_details() method.
@@ -83,11 +83,13 @@ class TestQuora(unittest.TestCase):
 
             username = "John-Doe"
             profile = self.quora_scraper.profile_details(username)
-            self.assertEqual(profile, {"name": "John Doe", "url": "https://www.quora.com/profile/JOHN-DOE"})
+            self.assertEqual(
+                profile,
+                {"name": "John Doe", "url": "https://www.quora.com/profile/JOHN-DOE"},
+            )
         except:
             return None
 
 
 if __name__ == "__main__":
     unittest.main()
-
