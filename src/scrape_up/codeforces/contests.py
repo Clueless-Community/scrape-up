@@ -13,7 +13,7 @@ class Contest:
 
     | Methods                      | Details                                                                                   |
     | ---------------------------- | ----------------------------------------------------------------------------------------- |
-    | `get_contests()`          | Returns information on active contests like title, start, and duration                       |
+    | `get_contests()`             | Returns information on active and past contests like title, start, and duration           |           |
     """
 
     def __init__(self, *, config: RequestConfig = RequestConfig()):
@@ -24,7 +24,7 @@ class Contest:
 
     def get_contests(self):
         """
-        Method to fetch the list of active contests on Codeforces using web scraping.
+        Method to fetch the list of active and past contests on Codeforces using web scraping.
 
         Example
         -------
@@ -35,8 +35,8 @@ class Contest:
 
         Returns
         -------
-        {
-            "data": [
+         {
+            "upcoming_contest": [
                 {
                     "name": "Codeforces Round #731 (Div. 3)",
                     "start": "Aug/08/2021 17:35",
@@ -44,7 +44,14 @@ class Contest:
                 },
                 ...
             ],
-            "message": "Found contest list"
+            "ended_contest": [
+                {
+                    "name": "Codeforces Round #730 (Div. 2)",
+                    "start": "Aug/01/2021 17:35",
+                    "length": "2 hrs"
+                },
+                ...
+            ]
         }
         """
         codeforces_url = "https://codeforces.com/contests"
