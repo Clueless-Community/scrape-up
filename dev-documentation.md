@@ -1862,7 +1862,6 @@ jobs.fetch_jobs(query="software engineer",page=1)
 
 The `Jobs` class provides methods fetching job listings:
 
-| Methods         | Details                                                             |
-| --------------- | --------------------------------------------------------------------|
-| `.fetch_jobs()` | Fetch job listings from the website across specified single page. 	|
-
+| Methods         | Details                                                           |
+| --------------- | ----------------------------------------------------------------- |
+| `.fetch_jobs()` | Fetch job listings from the website across specified single page. |

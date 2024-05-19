@@ -57,7 +57,6 @@ class Contest:
         contest_list = []
 
         try:
-
             upcoming_contests = soup.find("div", {"class": "datatable"}).find_all("tr")
             for contest in upcoming_contests:
                 columns = contest.find_all("td")

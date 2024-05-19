@@ -1,3 +1,4 @@
+import sys
 import requests
 from bs4 import BeautifulSoup
 
@@ -45,7 +46,7 @@ class Jobs:
                 job_info = self.__extract_job_info(job)
                 if job_info:
                     jobs.append(job_info)
-
+            sys.stdout.reconfigure(encoding="utf-8")
             return jobs
         except Exception:
             return None
