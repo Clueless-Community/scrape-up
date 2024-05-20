@@ -8,7 +8,7 @@ class Cars:
     Create an instance of the class `Cars`
     ```python
     scraper = Cars()
-    cars_data = scraper.fetch_cars(make, model, page)
+    cars_data = scraper.fetch_cars(model, page)
     ```
     | Methods                    | Details                                              |
     | ---------------------------| ---------------------------------------------------- |
@@ -20,7 +20,7 @@ class Cars:
 
     def fetch_cars(self, model, page=1):
         """
-        Fetch car listings data based on the make, model, and page.
+        Fetch car listings data based on the model, and page.
 
         Parameters:
         - `model`: The model of the car.
