@@ -1866,3 +1866,19 @@ The `Jobs` class provides methods fetching job listings:
 | Methods         | Details                                                           |
 | --------------- | ----------------------------------------------------------------- |
 | `.fetch_jobs()` | Fetch job listings from the website across specified single page. |
+
+---
+
+## Cars
+
+```python
+from scrape_up import cars
+cars = cars.cars()
+cars.fetch_cars(model="bmw m5",page=1)
+```
+
+The `cars` class includes methods for retrieving job listings:
+
+| Methods         | Details                                                             |
+| --------------- | ------------------------------------------------------------------- |
+| `.fetch_cars()` | Retrieve car listings from the website for a specified single page. |
