@@ -86,10 +86,3 @@ class Cars:
     def __extract_car_discount(self, car):
         car_discount = car.find("span", class_="price-drop")
         return car_discount.text.strip() if car_discount else None
-
-
-c = Cars()
-data = c.fetch_cars("Toyota", 5)
-dd = json.dumps(data, indent=4)
-with open("k.json", "w") as m:
-    m.write(dd)
