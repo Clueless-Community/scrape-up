@@ -24,7 +24,7 @@ class RequestConfig:
         self._timeout = timeout
         self._redirect = redirect
         self._headers = headers
-        selt._proxies = proxies
+        self._proxies = proxies
 
     def set_timeout(self, timeout: int):
         self._timeout = timeout
