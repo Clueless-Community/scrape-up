@@ -6,7 +6,35 @@ nav:
 - Scrape Up: index.md
 - Contributing: CONTRIBUTING.md
 - Installation: installation.md
-- Usage: usage.md
+- Usage: 
+  - 'Usage': uses/usage.md
+  - 'GitHub': uses/github.md
+  - 'Gitlab': uses/gitlab.md
+  - 'Instagram': uses/instagram.md
+  - 'Internshala': uses/internshala.md
+  - 'Kooapp': uses/kooapp.md
+  - 'Medium': uses/medium.md
+  - 'Hackernews': uses/Hackernews.md
+  - 'Twitter': uses/Twitter.md
+  - 'Leet Code': uses/leetcode.md
+  - 'Finance': uses/Finance.md
+  - 'Flex Jobs': uses/flexjobs.md
+  - 'IMDb': uses/imdb.md
+  - 'Coursera': uses/coursera.md
+  - 'Wikipedia': uses/wikipedia.md
+  - 'Amazon': uses/uses/amazon.md
+  - 'Flipkart': uses/flipkart.md
+  - 'Spotify': uses/spotify.md
+  - 'Ask-Ubuntu': uses/ask-ubuntu.md
+  - 'Eazydiner': uses/eazydiner.md
+  - 'Stack Overflow': uses/stackoverflow.md
+  - 'Tech Crunch': uses/techcrunch.md
+  - 'Youtube': uses/youtube.md
+  - 'Google News': uses/googlenews.md
+  - 'Hashnode': uses/hashnode.md
+  - 'Reddit': uses/reddit.md
+  - 'Devpost': uses/devpost.md
+  - 'Luma': uses/luma.md
 - Code of Conduct: CODE_OF_CONDUCT.md
 
 theme:
