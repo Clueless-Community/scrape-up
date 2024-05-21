@@ -1,7 +1,17 @@
 site_name: Scrape Up
 site_description: A web-scraping-based python package that enables you to scrape data from various platforms like GitHub, Twitter, Instagram, or any useful website.
 site_url: https://github.com/Clueless-Community/scrape-up
+
+nav:
+- Scrape Up: index.md
+- Contributing: CONTRIBUTING.md
+- Installation: installation.md
+- Usage: usage.md
+- Code of Conduct: CODE_OF_CONDUCT.md
+
 theme:
+  features:
+  - header.autohide
   name: material
   palette:
   - media: '(prefers-color-scheme: dark)'
