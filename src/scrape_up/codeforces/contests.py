@@ -13,7 +13,7 @@ class Contest:
 
     | Methods                      | Details                                                                                   |
     | ---------------------------- | ----------------------------------------------------------------------------------------- |
-    | `get_contests()`          | Returns information on active contests like title, start, and duration                       |
+    | `get_contests()`             | Returns information on active and past contests like title, start, and duration           |           |
     """
 
     def __init__(self, *, config: RequestConfig = RequestConfig()):
@@ -24,7 +24,7 @@ class Contest:
 
     def get_contests(self):
         """
-        Method to fetch the list of active contests on Codeforces using web scraping.
+        Method to fetch the list of active and past contests on Codeforces using web scraping.
 
         Example
         -------
@@ -35,8 +35,8 @@ class Contest:
 
         Returns
         -------
-        {
-            "data": [
+         {
+            "upcoming_contest": [
                 {
                     "name": "Codeforces Round #731 (Div. 3)",
                     "start": "Aug/08/2021 17:35",
@@ -44,7 +44,14 @@ class Contest:
                 },
                 ...
             ],
-            "message": "Found contest list"
+            "ended_contest": [
+                {
+                    "name": "Codeforces Round #730 (Div. 2)",
+                    "start": "Aug/01/2021 17:35",
+                    "length": "2 hrs"
+                },
+                ...
+            ]
         }
         """
         codeforces_url = "https://codeforces.com/contests"
@@ -57,27 +64,65 @@ class Contest:
         contest_list = []
 
         try:
-            upcoming_contests = soup.find("div", {"class": "datatable"}).find_all("tr")
+            upcoming_list = []
+            upcoming_contests = soup.find_all("div", {"class": "datatable"})[
+                0
+            ].find_all("tr")
             for contest in upcoming_contests:
                 columns = contest.find_all("td")
                 if len(columns) == 6:
-                    name = columns[0].text.strip()
+                    name = (
+                        columns[0]
+                        .text.strip()
+                        .replace("Enter", " ")
+                        .replace("Virtual participation", " ")
+                        .replace("\u00bb", " ")
+                    )
                     start_time_str = columns[2].text.strip()
                     duration_str = columns[3].text.strip()
-
                     name = " ".join(
                         line.strip() for line in name.splitlines() if line.strip()
                     )
-                    name = name.replace("Enter »", "").strip()
-
-                    contest_list.append(
+                    upcoming_list.append(
                         {
                             "name": name,
                             "start": start_time_str,
                             "length": duration_str,
                         }
                     )
+            ended_list = []
+            ended_contests = soup.find_all("div", {"class": "datatable"})[1].find_all(
+                "tr"
+            )
+            for contest in ended_contests:
+                columns = contest.find_all("td")
+                if len(columns) == 6:
+                    name = (
+                        columns[0]
+                        .text.strip()
+                        .replace("Enter", " ")
+                        .replace("Virtual participation", " ")
+                        .replace("\u00bb", " ")
+                    )
+                    start_time_str = (
+                        columns[2].find("span", class_="format-date").text.strip()
+                    )
+                    duration_str = columns[3].text.strip()
+                    name = " ".join(
+                        line.strip() for line in name.splitlines() if line.strip()
+                    )
+                    ended_list.append(
+                        {
+                            "name": name,
+                            "start": start_time_str,
+                            "length": duration_str,
+                        }
+                    )
+            contest_list = {
+                "upcoming_contest": upcoming_list,
+                "ended_contest": ended_list,
+            }
 
-            return contest_list
+            return json.dumps(contest_list)
         except Exception:
             return None
