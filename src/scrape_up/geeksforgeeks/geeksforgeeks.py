@@ -1,6 +1,4 @@
 from bs4 import BeautifulSoup
-import json
-
 from scrape_up.config.request_config import RequestConfig, get
 
 
@@ -14,7 +12,7 @@ class Geeksforgeeks:
 
     | Methods           | Details                                                                            |
     | ----------------- | ---------------------------------------------------------------------------------- |
-    | `.get_profile()`  | Returns the user data in json format.                                              |
+    | `.get_profile()`  | Returns the user data in python dict format.                                              |
 
 
     Response:
@@ -87,6 +85,6 @@ class Geeksforgeeks:
                 "campus_ambassader": campus_ambaasder,
             }
 
-            return json.dumps(user_data)
+            return user_data
         except Exception as e:
             return None
