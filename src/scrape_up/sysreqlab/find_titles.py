@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 
 class FindTitles:
-    def __init__(self, search_term: str, search_alphabet: str[1]):
+    def __init__(self, search_term: str, search_alphabet: str):
         self.search_term = search_term
         self.search_alphabet = search_alphabet
 
@@ -14,7 +14,7 @@ class FindTitles:
             return html.text
 
         except requests.exceptions.RequestException as e:
-            raise Exception(f"An error occurred while fetching the page: {str(e)}")`
+            raise Exception(f"An error occurred while fetching the page: {str(e)}")
 
     def __parse_page(self):
         html = self.__scrape_data()
@@ -25,8 +25,9 @@ class FindTitles:
         try:
             soup = self.__parse_page()
 
-            title_elements = soup.find_all("div", class_="pt-3")
-            all_titles = [title_element.text.strip() for title_element in title_elements]
+            div_elements = soup.find("div", class_="pt-3")
+            li_elements = div_elements.find_all("li")
+            all_titles = [title.text.strip() for title in li_elements]
 
             titles = [title for title in all_titles if self.search_term.lower() in title.lower()]
 
@@ -34,7 +35,5 @@ class FindTitles:
 
         except Exception as e:
             raise Exception(f"An error occurred while fetching the titles: {str(e)}")
-
-
 
 
