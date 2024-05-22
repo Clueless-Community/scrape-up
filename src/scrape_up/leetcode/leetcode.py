@@ -13,7 +13,6 @@ class LeetCode:
     ```python
     leetCode = LeetCode(user="Agastya3636")
     ```
-    **username** might not require in a few methods
     | Methods                                | Details                                                                      |
     | ---------------------------------------| -----------------------------------------------------------------------------|
     | `.userContestRanking()`                | Returns rating, global ranking, top percentage, contest count, etc.          |
