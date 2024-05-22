@@ -197,3 +197,4 @@ git push origin <branch_name>
 - Spread the word about the project on social media, developer forums, or any relevant community platforms.
 
 Thank you for your valuable contribution and for being a part of the Clueless Community! Together, we can make a difference. 🚀
+<p align="right">(<a href="#top">Back to top</a>)</p>

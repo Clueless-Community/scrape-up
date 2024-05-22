@@ -2,4 +2,5 @@ beautifulsoup4==4.11.1
 bs4==0.0.1
 requests==2.28.2
 requests-html==0.10.0
+mkdocs==1.6.0
 mkdocs-material

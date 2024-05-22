@@ -1,7 +1,44 @@
 site_name: Scrape Up
 site_description: A web-scraping-based python package that enables you to scrape data from various platforms like GitHub, Twitter, Instagram, or any useful website.
-site_url: https://github.com/Clueless-Community/scrape-up
+site_url: ""
+
+nav:
+- Scrape Up: index.md
+- Contribution: CONTRIBUTING.md
+- Installation: installation.md
+- Modules: 
+  - 'GitHub': modules/github.md
+  - 'Gitlab': modules/gitlab.md
+  - 'Instagram': modules/instagram.md
+  - 'Internshala': modules/internshala.md
+  - 'Kooapp': modules/kooapp.md
+  - 'Medium': modules/medium.md
+  - 'Hackernews': modules/Hackernews.md
+  - 'Twitter': modules/Twitter.md
+  - 'Leet Code': modules/leetcode.md
+  - 'Finance': modules/Finance.md
+  - 'Flex Jobs': modules/flexjobs.md
+  - 'IMDb': modules/imdb.md
+  - 'Coursera': modules/coursera.md
+  - 'Wikipedia': modules/wikipedia.md
+  - 'Amazon': modules/modules/amazon.md
+  - 'Flipkart': modules/flipkart.md
+  - 'Spotify': modules/spotify.md
+  - 'Ask-Ubuntu': modules/ask-ubuntu.md
+  - 'Eazydiner': modules/eazydiner.md
+  - 'Stack Overflow': modules/stackoverflow.md
+  - 'Tech Crunch': modules/techcrunch.md
+  - 'Youtube': modules/youtube.md
+  - 'Google News': modules/googlenews.md
+  - 'Hashnode': modules/hashnode.md
+  - 'Reddit': modules/reddit.md
+  - 'Devpost': modules/devpost.md
+  - 'Luma': modules/luma.md
+- Code of Conduct: CODE_OF_CONDUCT.md
+
 theme:
+  features:
+  - header.autohide
   name: material
   palette:
   - media: '(prefers-color-scheme: dark)'
