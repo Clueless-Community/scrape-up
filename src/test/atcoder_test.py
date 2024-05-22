@@ -12,6 +12,11 @@ class TestAtcoder(unittest.TestCase):
     | `get_contests()`  | Returns future_contests , past_contests , skill_tests etc in json format.          |
 
     """
+    def setUp(self):
+        # Initialize an Atcoder instance before each test method
+        self.user = "testuser"
+        self.atcoder = Atcoder(user=self.user)
+        
     @patch('requests.get')
     def test_get_profile(self, mock_get):
         try:
