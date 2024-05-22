@@ -11,7 +11,7 @@ class RequestConfig:
 class LeetCode:
     """
     ```python
-    LeetCode = LeetCode(username="Agastya3636")
+    leetCode = LeetCode(user="Agastya3636")
     ```
     **username** might not require in a few methods
     | Methods                                | Details                                                                      |

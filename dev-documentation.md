@@ -376,7 +376,7 @@ from scrape_up import leetcode
 First, create an object of class `LeetCodeScraper`
 
 ```python
-leetcode_scraper = LeetCodeScraper(username="nikhil25803")
+leetcode_scraper = LeetCodeScraper(user="nikhil25803")
 ```
 
 **User Specific Methods - Require Username**
