@@ -44,7 +44,7 @@ class Letterboxd:
             page_soup = Soup(req.content, "html.parser")
             data = page_soup.find("a", attrs={"href": f"/{self.username}/films/"}).find("span").text.replace(",", "")
             
-            return int(data)
+            return {"data": int(data)}
         
         except Exception:
             return None
@@ -70,10 +70,10 @@ class Letterboxd:
             page_soup = Soup(req.content, "html.parser")
             data = [film.img["alt"] for film in page_soup.find("ul", attrs={"class": "poster-list"}).findAll("li")]
             
-            return data[:n]
+            return {"data": data[:n]}
         
-        except Exception as e:
-            return e
+        except Exception:
+            return None
     
     def recent_reviews(self, n=None) -> list:
         """
@@ -96,10 +96,9 @@ class Letterboxd:
             soup = Soup(response.content, "html.parser")
             reviews_list = [dict(zip(keys, [text.replace("Watched", "").strip() for text in review_item.text.strip().split("  ") if text not in ["", "\n"]])) for review_item in soup.find_all("li", attrs={"class": ["film-detail", "viewing-poster-container"]})]
 
-            return reviews_list[:n]
+            return {"data": reviews_list[:n]}
         
-        except Exception as e:
-            print(f"An error occurred: {e}")
+        except Exception:
             return None
     
     def get_watchlist(self, n=None) -> list:
@@ -122,10 +121,10 @@ class Letterboxd:
             page_soup = Soup(req.content, "html.parser")
             data = [[j.get("alt") for j in i.find_all("img")] for i in page_soup.find_all("ul", attrs={"class": "poster-list"})][0]
             
-            return data[:n]
+            return {"data": data[:n]}
         
-        except Exception as e:
-            return e
+        except Exception:
+            return None
     
     def get_followers_count(self) -> int:
         """
@@ -148,7 +147,7 @@ class Letterboxd:
             page_soup = Soup(req.content, "html.parser")
             data = page_soup.find_all("a", attrs={"href": f"/{self.username}/followers/"})[0].find("span").text
             
-            return int(data)
+            return {"data": int(data)}
         
         except Exception:
             return None
@@ -163,7 +162,7 @@ class Letterboxd:
         letterboxd_user.get_following_count()
         ```
         
-        Returns the number of following of the user.:
+        Returns the a number of following of the user.:
         ```python
         60
         ```
@@ -174,7 +173,7 @@ class Letterboxd:
             page_soup = Soup(req.content, "html.parser")
             data = page_soup.find_all("a", attrs={"href": f"/{self.username}/following/"})[0].find("span").text
             
-            return int(data)
+            return {"data": int(data)}
         
         except Exception:
             return None
