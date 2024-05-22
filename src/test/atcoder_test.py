@@ -5,7 +5,14 @@ from src.scrape_up.atcoder import Atcoder
 
 
 class TestAtcoder(unittest.TestCase):
+    """
 
+    | Methods           | Details                                                                            |
+    | ----------------- | ---------------------------------------------------------------------------------- |
+    | `.get_profile()`  | Returns the user data in json format.                                              |
+    | `get_contests()`  | Returns future_contests , past_contests , skill_tests etc in json format.          |
+    
+    """
 
     def setUp(self):
         # Initialize an Atcoder instance before each test method
