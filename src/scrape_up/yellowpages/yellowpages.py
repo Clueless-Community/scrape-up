@@ -1,33 +1,25 @@
 import requests
 from bs4 import BeautifulSoup
 
-info = []
 
-
-class yellowpages:
+class Yellowpages:
     """
-    A class to scrape data from yellowpagess
-
     Create an instance of `yellowpages` class
 
     ```python
     # This will return the list of restaurtants in New York and their information
     data = yellowpages("restaurtant", "New York")
     ```
+    | Method            | Details                                                           |
+    | ----------------- | ----------------------------------------------------------------- |
+    | `business_info()` | Returns the list of dictionaries containing business information. |
 
-    | Method                        | Details                                                                              |
-    | ---------------------------   | --------------------------------------------------------------------------           |
-    |`business_info()`              |  Returns the list of dictionaries containing business information like:
-                                       business name, business address, rating, phone number, opening hours,
-                                       website, amenities                                                                 |
-
-
-    ---
     """
 
     def __init__(self, business, place):
         self.business = business
         self.place = place
+        self.info = []
         try:
             url = f"https://www.yellowpages.com/search?search_terms={self.business}&geo_location_terms={self.place}"
             response = requests.get(url, headers={"User-Agent": "XY"})
@@ -83,5 +75,5 @@ class yellowpages:
                 "amenities": amenities,
                 "opentime": opentime,
             }
-            info.append(businessinfo)
-        return info
+            self.info.append(businessinfo)
+        return self.info
