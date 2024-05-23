@@ -20,6 +20,7 @@ print(github_data)
 print(githubedu_data)
 print(codechef_data)
 ```
+
 Replace 'username' with the actual username you want to scrape data for. The scrape function returns the scraped data, which you can then print or use in your application.
 
 ## The platforms we cover.
@@ -30,15 +31,16 @@ We provide modules for a wide range of platforms. Each module allows you to inte
 - [BBC News](modules/bbc.md)
 - [Codechef](modules/codechef.md)
 - [Coin Market Cap](modules/coinmarketcap.md)
-- [Covid Info](modules/covid-19.md) <!-- If your Covid module is named covid-19.md -->
+- [Covid Info](modules/covid-19.md)
 - [Cricbuzz](modules/crickbuzz.md)
 - [GitHub](modules/github.md)
 - [GitHub Education](modules/githubedu.md)
 - [HackerEarth](modules/HackerEarth.md)
 - [Hacker News](modules/Hackernews.md)
-- [HackerRank](modules/HackerRank.md) <!-- If you have a HackerRank module -->
+- [HackerRank](modules/hackerrank.md)
 - [Hashnode](modules/hashnode.md)
 - [ICC Rankings](modules/iccranking.md)
 
 Remember, you can contribute to the development of these modules or suggest new ones by following our [contribution guidelines](CONTRIBUTING.md).
+
 <p align="right">(<a href="#top">Back to top</a>)</p>
