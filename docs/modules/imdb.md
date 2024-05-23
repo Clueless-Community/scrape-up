@@ -66,3 +66,5 @@ boxoffice = BoxOffice()
 | `.top_movies()` | Returns the top box office movies, weekend and total gross and weeks released |
 
 ---
+
+<p align="right">(<a href="#top">Back to top</a>)</p>
