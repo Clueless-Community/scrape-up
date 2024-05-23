@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from src.scrape_up.wuzzuf import Jobs
+from scrape_up.wuzzuf import Jobs
 import requests
 
 class JobsTest(unittest.TestCase):
