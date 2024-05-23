@@ -81,3 +81,4 @@ pull_request = gitlab.PullRequest(username="example_user", repository="example_r
 | `.get_title()`       | Returns the title of the pull request.       |
 | `.get_description()` | Returns the description of the pull request. |
 | `.get_author()`      | Returns the author of the pull request.      |
+<p align="right">(<a href="#top">Back to top</a>)</p>
