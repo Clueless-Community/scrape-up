@@ -1854,6 +1854,25 @@ trek=Indiantrekking("hidden-lakes-of-kashmir")
 
 ---
 
+### Yellowpages
+
+```py
+from scrape_up import Yellowpages
+```
+
+Create an instance of `Yellowpages` class
+
+```python
+
+data = Yellowpages("restaurtant", "New York")
+```
+
+| Method            | Details                                                           |
+| ----------------- | ----------------------------------------------------------------- |
+| `business_info()` | Returns the list of dictionaries containing business information. |
+
+---
+
 ## Bayt
 
 ```python
