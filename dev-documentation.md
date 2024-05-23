@@ -1924,3 +1924,15 @@ print(letterboxd_user.get_followers_count())
 
 Note: `n` is an integer value which is optional and can be used to limit the number of results returned by the methods.
 ---
+
+#### CodeWars
+```python
+cwars = Codewars(user="agastya463")
+cwars.get_profile()
+```
+
+| Methods           | Details                                                                            |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| `.get_profile()`  | Returns the user data in json format.                                              |
+
+---
