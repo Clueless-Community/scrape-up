@@ -115,7 +115,7 @@ class Jobs:
         return job_data.find("h2", {"class": "css-m604qf"}).find("a")["href"]
 
     def __get_job_company(self, job_data):
-        return job_data.find("div", {"class": "css-d7j1kk"}).find("a").text[:-1].strip()
+        return job_data.find("div", {"class": "css-d7j1kk"}).find("a").text.strip()
 
     def __get_job_location(self, job_data):
         data = job_data.find("span", {"class": "css-5wys0k"})
