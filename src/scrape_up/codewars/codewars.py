@@ -53,11 +53,11 @@ class Codewars:
             url = f"https://www.codewars.com/users/{self.user}"
             response = get(url, self.config)
             soup = BeautifulSoup(response.text, "html.parser")
-            d=soup.find_all('div',class_="stat")
-            data={}
+            d = soup.find_all("div", class_="stat")
+            data = {}
             for i in d:
-                k=i.text.split(':')
-                data[k[0]]=k[1] 
+                k = i.text.split(":")
+                data[k[0]] = k[1]
             return json.dumps(data)
-        except Exception as e:
+        except Exception:
             return None
