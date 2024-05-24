@@ -4,6 +4,7 @@ from time import sleep
 
 from scrape_up.config.request_config import RequestConfig, get
 
+
 class Jobs:
     """
     Create an instance of the class `Jobs`

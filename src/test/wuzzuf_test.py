@@ -3,6 +3,7 @@ from unittest.mock import patch
 from scrape_up.wuzzuf import Jobs
 import requests
 
+
 class JobsTest(unittest.TestCase):
     """
     Jobs module test.
@@ -17,12 +18,16 @@ class JobsTest(unittest.TestCase):
 
     def test_filter_job(self):
         self.scraper.filter_job(
-            title="software engineer", country="Egypt", city="Cairo", min_years_of_experience=2, max_years_of_experience=5
+            title="software engineer",
+            country="Egypt",
+            city="Cairo",
+            min_years_of_experience=2,
+            max_years_of_experience=5,
         )
         expected_url = "https://wuzzuf.net/search/jobs/?q=software+engineer&filters[country][0]=Egypt&filters[city][0]=Cairo&filters[years_of_experience_min][0]=2&filters[years_of_experience_max][0]=5"
         self.assertEqual(self.scraper.url, expected_url)
 
-    @patch('requests.get')
+    @patch("requests.get")
     def test_fetch_jobs(self, mock_get):
         # Mock the get response
         mock_response = requests.Response()
@@ -46,11 +51,12 @@ class JobsTest(unittest.TestCase):
             "company": "Company Name",
             "location": "Cairo, Egypt",
             "published_time": "3 days ago",
-            "properties": "Full Time ,Senior"
+            "properties": "Full Time ,Senior",
         }
 
         self.assertEqual(len(jobs), 1)
         self.assertEqual(jobs[0], expected_job)
+
 
 if __name__ == "__main__":
     unittest.main()
