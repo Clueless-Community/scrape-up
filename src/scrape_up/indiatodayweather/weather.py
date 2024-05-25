@@ -37,13 +37,13 @@ class Indiatodayweather:
     def info_about_weather(self):
         try:
             temp = self.soup.find("div", class_="wtr_tmp_rhs").text
-            humid = self.soup.find("span", class_="wtr_crd_ttl").text + "%"
+            humid = self.soup.find("span", class_="wtr_crd_ttl").text + " %"
             description = self.soup.find("span", class_="wtr_tmp_txt").text
             speed = (
                 self.soup.find("div", class_="wtr_wid_sec crd_three")
                 .find("span", class_="wtr_crd_ttl")
                 .text
-            ) + "km/h"
+            ) + " km/h"
 
             weather_info = {
                 "temperature": temp,
