@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
+
 class FindTitles:
     def __init__(self, search_term: str, search_alphabet: str):
         self.search_term = search_term
@@ -21,7 +22,17 @@ class FindTitles:
         soup = BeautifulSoup(html, "html.parser")
         return soup
 
-    def find_titles(self):
+    def find_titles(self, number_of_titles: int):
+        """
+        Class - `FindTitles`
+        Example:
+        ```python
+        titles = FindTitles(search_term="Call of Duty", search_alphabet="c")
+        titles = titles.find_titles(5)
+        ```
+        Returns a list of titles that match the search term.
+        """
+
         try:
             soup = self.__parse_page()
 
@@ -31,9 +42,7 @@ class FindTitles:
 
             titles = [title for title in all_titles if self.search_term.lower() in title.lower()]
 
-            return titles
+            return titles[:number_of_titles]
 
         except Exception as e:
             raise Exception(f"An error occurred while fetching the titles: {str(e)}")
-
-
