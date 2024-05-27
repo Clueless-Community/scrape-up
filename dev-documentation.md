@@ -1984,6 +1984,31 @@ print(letterboxd_user.get_followers_count())
 Note: `n` is an integer value which is optional and can be used to limit the number of results returned by the methods.
 ---
 
+
+#### Lastfm
+
+```python
+from scrape_up.lastfm import Lastfm
+
+lastfm_user = Lastfm("arpy8")
+print(lastfm_user.get_followers())
+```
+
+Class - `Lastfm`
+
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.user_stats()`             | Returns the numbers of scrobbles, artists and loved tracks.                                          | 
+| `.recent_tracks()`          | Returns a dictionary containing the latest tracks scrobbled by the user.                             |
+| `.top_tracks()`             | Returns a dictionary containing the top tracks of the user.                                          |
+| `.top_albums()`             | Returns a dictionary containing the top albums of the user.                                          |
+| `.top_artists()`            | Returns a dictionary containing the top artists of the user.                                         |
+| `.get_following()`          | Returns the total number of users followed by the user.                                              |
+| `.get_followers()`          | Returns the total number of followers of the user.                                                   |
+
+Note: usernames are case sensitive.
+
+
 #### CodeWars
 ```python
 cwars = Codewars(user="agastya463")
