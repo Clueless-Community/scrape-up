@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup as bs
 import requests
 
+
 class Requirements:
     """
     Create an instance of `Requirements` class.
@@ -76,7 +77,9 @@ class Requirements:
                 if category in li.find("strong").text:
                     return li.text.split(":")[1].strip()
         except Exception as e:
-            raise Exception(f"An error occurred while fetching the {category.lower()}:\n{str(e)}")
+            raise Exception(
+                f"An error occurred while fetching the {category.lower()}:\n{str(e)}"
+            )
 
     def minimum_graphics(self):
         """
@@ -225,7 +228,7 @@ class Requirements:
             "RAM": self.minimum_ram(),
             "OS": self.minimum_os(),
             "Storage": self.minimum_storage(),
-            "VRAM": self.minimum_vram()
+            "VRAM": self.minimum_vram(),
         }
 
     def recommended_requirements(self):
@@ -243,5 +246,5 @@ class Requirements:
             "RAM": self.recommended_ram(),
             "OS": self.recommended_os(),
             "Storage": self.recommended_storage(),
-            "VRAM": self.recommended_vram()
+            "VRAM": self.recommended_vram(),
         }

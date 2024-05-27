@@ -3,6 +3,18 @@ import requests
 
 
 class FindTitles:
+    """
+    Create an instance of `FindTitles` class.
+
+    ```python
+    titles = sysreqlab.FindTitles(search_term="Call of Duty", search_alphabet="c")
+    ```
+
+    | Methods                          | Details                                                               |
+    | -------------------------------- | --------------------------------------------------------------------- |
+    | `.find_titles(number_of_titles)` | Returns the list of titles based on the search term, search alphabet. |
+    """
+
     def __init__(self, search_term: str, search_alphabet: str):
         self.search_term = search_term
         self.search_alphabet = search_alphabet
@@ -40,7 +52,11 @@ class FindTitles:
             li_elements = div_elements.find_all("li")
             all_titles = [title.text.strip() for title in li_elements]
 
-            titles = [title for title in all_titles if self.search_term.lower() in title.lower()]
+            titles = [
+                title
+                for title in all_titles
+                if self.search_term.lower() in title.lower()
+            ]
 
             return titles[:number_of_titles]
 

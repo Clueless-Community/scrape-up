@@ -1628,7 +1628,7 @@ titles = sysreqlab.FindTitles(search_term="Call of Duty", search_alphabet="c")
 ```
 
 | Methods                          | Details                                                               |
-|----------------------------------|-----------------------------------------------------------------------|
+| -------------------------------- | --------------------------------------------------------------------- |
 | `.find_titles(number_of_titles)` | Returns the list of titles based on the search term, search alphabet. |
 
 ### Scrape System Requirements
@@ -1640,7 +1640,7 @@ requirements = sysreqlab.Requirements(search_term="Cyberpunk 2077", search_alpha
 ```
 
 | Methods                       | Details                                                 |
-|-------------------------------|---------------------------------------------------------|
+| ----------------------------- | ------------------------------------------------------- |
 | `.minimum_graphics()`         | Returns the minimum graphics required for the game.     |
 | `.minimum_cpu()`              | Returns the minimum CPU required for the game.          |
 | `.minimum_ram()`              | Returns the minimum RAM required for the game.          |
