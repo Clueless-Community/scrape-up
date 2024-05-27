@@ -1915,6 +1915,23 @@ data = Yellowpages("restaurtant", "New York")
 
 ---
 
+### Indiatodayweather
+
+```py
+from scrape_up import Indiatodayweather
+```
+Create an instance of `Indiatodayweather` class
+
+```python
+weather=Indiatodayweather("Mumbai")
+```
+
+| Method                        | Details                                                                                            |
+| ---------------------------   | ------------------------------------------------------------------------                           |
+|`info_about_weather()`         |  return the temperature, wind speed ,description                                                
+                                   and humidity of the place.                                      |
+---
+
 ## Bayt
 
 ```python
