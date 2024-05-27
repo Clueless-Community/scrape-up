@@ -76,31 +76,36 @@ Now you are done with the project setup, now you can make the changes you want o
 - At first, we have to scrape the profile page of a user. For that, we have defined a function in the user class as
 
 ```python
-- scrape-up/src/scrape_up/github/users.py
+# scrape-up/src/scrape_up/github/users.py
+
+from scrape_up.config.request_config import RequestConfig, get
+
 class Users:
 
-    def __init__(self, username):
+    def __init__(self, username, *, config: RequestConfig = RequestConfig()):
         self.username = username
+        self.config = config
 
     def __scrape_page(self):
         username = self.username
-        data = requests.get(f"https://github.com/{username}") 
-        data = BeautifulSoup(data.text, "html.parser")
-        return data
+        data = get(f"https://github.com/{username}", self.config)
+        soup = BeautifulSoup(data.text, "html.parser")
+        return soup
 ```
 
 - The `__scrape_page` is a private function defined to scrape any page.
 - Now we have to create a function with an appropriate name, in this case, `followers`.
+- `scrape_up.config.request_config` contains our custom get function. This function takes 2 parameters: `url` and `config`. The `url` parameter is the URL of the page you want to scrape. The `config` parameter is an instance of the `RequestConfig` class. The `RequestConfig` class contains various settings like headers, timeout, and redirect.
 
 ```python
 def followers(self):
-        page = self.__scrape_page()
-        try:
-            followers = page.find(class_ = "avatar avatar-user width-full border color-bg-default")
-            return followers["src"]
-        except:
-            message = f"{self.username} not found !"
-            return message
+    page = self.__scrape_page()
+    try:
+        followers = page.find(class_ = "avatar avatar-user width-full border color-bg-default")
+        return followers["src"]
+    except:
+        message = f"{self.username} not found !"
+        return message
 ```
 
 - When you do inspect the element of the page, you will get to know the class named `avatar avatar-user width-full border color-bg-default` contains the avatar URL.
@@ -131,6 +136,40 @@ git push origin <branch_name>
 - Write test cases that cover different scenarios and edge cases.
 
 - Follow the existing test structure and naming conventions.
+
+### Alternatively contribute using GitHub Desktop
+
+1. **Open GitHub Desktop:**
+   Launch GitHub Desktop and log in to your GitHub account if you haven't already.
+
+2. **Clone the Repository:**
+   - If you haven't cloned the scrape-up repository yet, you can do so by clicking on the "File" menu and selecting "Clone Repository."
+   - Choose the scrape-up repository from the list of repositories on GitHub and clone it to your local machine.
+
+3. **Switch to the Correct Branch:**
+   - Ensure you are on the branch that you want to submit a pull request for.
+   - If you need to switch branches, you can do so by clicking on the "Current Branch" dropdown menu and selecting the desired branch.
+
+4. **Make Changes:**
+   Make your changes to the code or files in the repository using your preferred code editor.
+
+5. **Commit Changes:**
+   - In GitHub Desktop, you'll see a list of the files you've changed. Check the box next to each file you want to include in the commit.
+   - Enter a summary and description for your changes in the "Summary" and "Description" fields, respectively. Click the "Commit to <branch-name>" button to commit your changes to the local branch.
+
+6. **Push Changes to GitHub:**
+   After committing your changes, click the "Push origin" button in the top right corner of GitHub Desktop to push your changes to your forked repository on GitHub.
+
+7. **Create a Pull Request:**
+  - Go to the GitHub website and navigate to your fork of the scrape-up repository.
+  - You should see a button to "Compare & pull request" between your fork and the original repository. Click on it.
+
+8. **Review and Submit:**
+   - On the pull request page, review your changes and add any additional information, such as a title and description, that you want to include with your pull request.
+   - Once you're satisfied, click the "Create pull request" button to submit your pull request.
+
+9. **Wait for Review:**
+    Your pull request will now be available for review by the project maintainers. They may provide feedback or ask for changes before merging your pull request into the main branch of the scrape-up repository.
 
 ### Documentation 📑
 

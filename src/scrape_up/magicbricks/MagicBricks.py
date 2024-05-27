@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class MagicBricks:
@@ -19,12 +20,13 @@ class MagicBricks:
 
     """
 
-    def __init__(self):
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
         }
+        self.config = config
 
-    def flats_by_city(self, city):
+    def flats_by_city(self, city: str):
         """
         Fetches and returns the details of ready-to-move flats in the specified city.
 
@@ -54,7 +56,7 @@ class MagicBricks:
             city = city.replace(" ", "-")
             city = city.lower()
             url = f"https://www.magicbricks.com/ready-to-move-flats-in-{city}-pppfs"
-            html_text = requests.get(url, headers=self.headers).text
+            html_text = get(url, self.config).text
             soup = BeautifulSoup(html_text, "lxml")
 
             houses = []

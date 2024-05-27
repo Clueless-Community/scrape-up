@@ -1,5 +1,8 @@
-import requests
 import json
+
+import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class Billionaires:
@@ -18,7 +21,7 @@ class Billionaires:
 
     """
 
-    def __init__(self):
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
         self.lists = [
             {"type": "person", "year": 2022, "uri": "billionaires"},  # World richest
             {
@@ -119,6 +122,7 @@ class Billionaires:
                 "uri": "rtrl",
             },
         ]
+        self.config = config
 
     def realtime(self):
         """
@@ -165,7 +169,7 @@ class Billionaires:
         #     return None
         try:
             url = "http://www.forbes.com/ajax/list/data"
-            response = requests.get(url, params=self.lists[20])
+            response = get(url, self.config)
             if response.status_code == 200:
                 k = response.json()
                 return k
@@ -189,7 +193,7 @@ class Billionaires:
         """
         try:
             url = "http://www.forbes.com/ajax/list/data"
-            response = requests.get(url, params=self.lists[19])
+            response = get(url, self.config)
             k = response.json()
             return k
         except:
@@ -205,7 +209,7 @@ class Billionaires:
         """
         try:
             url = "http://www.forbes.com/ajax/list/data"
-            response = requests.get(url, params=self.lists[18])
+            response = get(url, self.config)
             k = response.json()
             return k
         except:
@@ -247,7 +251,7 @@ class Billionaires:
                 k = i
                 break
         if i is not None:
-            response = requests.get(url, params=k)
+            response = get(url, self.config)
             k = response.json()
             return k
         else:

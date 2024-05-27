@@ -46,8 +46,8 @@ user = github.Users(username="nikhil25803")
 | `.star_count()`               | Returns the number of stars of a user.                                                             |
 | `.get_yearly_contributions()` | Returns the number of contributions made in 365 days frame.                                        |
 | `.get_repositories()`         | Returns the list of repositories of a user.                                                        |
-| `.get_starred_repos()`        | Return the list of starred repositories of a user.                                                 |
-| `.pul_requests()`             | Return the number of pull requests opened in a repository.                                         |
+| `.get_starred_repos()`        | Returns the list of starred repositories of a user.                                                |
+| `.pul_requests()`             | Returns the number of pull requests opened in a repository.                                        |
 | `.get_followers()`            | Returns the list of followers of a user.                                                           |
 | `.get_following_users()`      | Returns the list of users followed by a user.                                                      |
 | `.get_achievements()`         | Returns the list of achievements of a user.                                                        |
@@ -420,6 +420,29 @@ infosys = StockPrice('infosys','nse')
 
 ---
 
+### Flex Jobs
+
+```python
+    flex_jobs = FlexJobs(search_query, location_query, min_jobs)
+```
+
+- Attributes
+
+| Attribute        | Description                                                       |
+| ---------------- | ----------------------------------------------------------------- |
+| `search_query`   | The search query to filter job listings.                          |
+| `location_query` | The location query to filter job listings (defaults to '').       |
+| `min_jobs`       | The maximum number of job listings to retrieve (defaults to 100). |
+
+- Methods
+
+| Method                                 | Description                                                                                                                               |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_jobs() -> list`                   | Retrieves job listings from FlexJobs website based on search and location queries. Returns a list of dictionaries containing job details. |
+| `scrape_job_info(job_listing) -> dict` | Extracts job details from a job listing HTML element.                                                                                     |
+
+---
+
 ## IMDb
 
 Create an instance of the `IMDB` class.
@@ -689,9 +712,9 @@ Create an instance of `Video` class.
 video = Video(video_url="video_url")
 ```
 
-| Methods         | Details                  |
-| --------------- | ------------------------ |
-| `.getDetails()` | Return the video details |
+| Methods         | Details                   |
+| --------------- | ------------------------- |
+| `.getDetails()` | Returns the video details |
 
 ## Scrape Channel Details
 
@@ -1150,9 +1173,10 @@ user = Codechef(id="username")
 
 ```
 
-| Methods         | Details                                                          |
-| --------------- | ---------------------------------------------------------------- |
-| `get_profile()` | Returns name, username, profile_image_link, rating, details etc. |
+| Methods          | Details                                                                   |
+| ---------------- | ------------------------------------------------------------------------- |
+| `get_profile()`  | Returns name, username, profile_image_link, rating, details etc.          |
+| `get_contests()` | Returns future_contests , past_contests , skill_tests etc in json format. |
 
 ---
 
@@ -1374,6 +1398,44 @@ espn = ESPN()
 | `get_tournaments()` | Fetches and returns information about football tournaments.    |
 | `get_teams()`       | Fetches and returns information about football teams.          |
 
+### ESPNCricinfo
+
+```py
+from scrape_up import espncricinfo
+```
+
+Create an instance of `Espncricinfo` class.
+
+```python
+obj = espncricinfo.Espncricinfo()
+```
+
+| Methods             | Details                                           |
+| ------------------- | ------------------------------------------------- |
+| `.get_news()`       | Returns a latest news from ESPNCricinfo.          |
+| `.get_livescores()` | Returns a list of live matches from ESPNCricinfo. |
+
+### FIDE
+
+```python
+from scrape_up import fide
+```
+
+Create an instance of `FIDE` class.
+
+```python
+obj = fide.FIDE()
+```
+
+| Methods                  | Details                                             |
+| ------------------------ | --------------------------------------------------- |
+| `.get_events()`          | Returns all the major chess events of 2024.         |
+| `.get_open_ratings()`    | Returns a list of top 100 open category players.    |
+| `.get_women_ratings()`   | Returns a list of top 100 women category players.   |
+| `.get_juniors_ratings()` | Returns a list of top 100 juniors category players. |
+| `.get_girls_ratings()`   | Returns a list of top 100 girls category players.   |
+| `.get_news()`            | Returns a list of top chess/fide news.              |
+
 # Magic Bricks
 
 Create an instance of `MagicBricks` class
@@ -1457,7 +1519,7 @@ scraper = TheHindu()
 
 | Methods               | Details                                          |
 | --------------------- | ------------------------------------------------ |
-| `.get_news(page_url)` | gets heading, subheading, time, and news content |
+| `.get_news(page_url)` | Gets heading, subheading, time, and news content |
 
 ---
 
@@ -1471,7 +1533,7 @@ academia = Academia()
 
 | Method                        | Details                                                               |
 | ----------------------------- | --------------------------------------------------------------------- |
-| `get_research_topics(letter)` | Fetches and returns research topics starting with the given letter.   |
+| `get_research_topics()`       | Fetches and returns research topics.                                  |
 | `get_research_papers(search)` | Fetches and returns research papers related to the given search term. |
 
 ---
@@ -1564,8 +1626,8 @@ olympics = Olympics()
 
 | Methods            | Details                                                                                 |
 | ------------------ | --------------------------------------------------------------------------------------- |
-| `.allcountries()`  | returns the list of all the countries participated yet in olympics.                     |
-| `.allsports()`     | returns the list of all the sports being currently played in olympics.                  |
+| `.allcountries()`  | Returns the list of all the countries participated yet in olympics.                     |
+| `.allsports()`     | Returns the list of all the sports being currently played in olympics.                  |
 | `.alldeceased()`   | Returns the list of all recently deceased olympians along with their death date.        |
 | `.alltimemedals()` | Returns list of all countries with their total numbers of medals yet in all categories. |
 
@@ -1588,6 +1650,7 @@ Methods
 | Methods                    | Details                            |
 | -------------------------- | ---------------------------------- |
 | `.get_user_data(username)` | Fetches user data from CodeForces. |
+| `get_contests()`           | Returns information on contests.   |
 ```
 
 ---
@@ -1655,3 +1718,263 @@ requirements = sysreqlab.Requirements(search_term="Cyberpunk 2077", search_alpha
 | `.recommended_vram()`         | Returns the recommended VRAM required for the game.     |
 | `.minimum_requirements()`     | Returns the minimum requirements for the game.          |
 | `.recommended_requirements()` | Returns the recommended requirements for the game.      |
+
+-----
+
+
+#### AmbitionBx
+
+Create an directory with name ambitonbox
+created a python which consist the code for scarping the website
+
+```python
+# Example usage
+from scrape_up import ambitionBox
+
+num_pages_to_scrape = 2
+
+scraper = ambitionBox.Comapiens(num_pages_to_scrape)
+
+scraper.scrape_companies()
+
+```
+
+| Methods               | Details                                   |
+| --------------------- | ----------------------------------------- |
+| `.scrape_companies()` | Returns the company name with the rating. |
+
+---
+
+## Geeksforgeeks
+
+First create an object of class `Geeksforgeeks`.
+
+```python
+geeksforgeeks = Geeksforgeeks(user="username")
+```
+
+| Methods          | Details                               |
+| ---------------- | ------------------------------------- |
+| `.get_profile()` | Returns the user data in json format. |
+
+---
+
+## Wuzzuf
+
+```python
+from scrape_up import wuzzuf
+jobs = wuzzuf.Jobs()
+```
+
+The `Jobs` class provides methods for configuring scraping parameters and fetching job listings:
+
+| Methods         | Details                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| `.filter_job()` | Apply filters such as job title, country, city, and range of years of experience.        |
+| `.fetch_jobs()` | Fetch job listings from the website based on the applied filters, across multiple pages. |
+
+---
+
+# Steam Store
+
+Create an instance of `SteamStoreScraper` class.
+
+```python
+steam = SteamStoreScraper()
+result = steam.ScrapeGames(n0Games=5, tags=["Discounts", "F2P"])
+```
+
+| Methods                       | Details                                     |
+| ----------------------------- | ------------------------------------------- |
+| `.ScrapeGames(n0Games, tags)` | Scrapes game data for each specified filter |
+
+---
+
+## Lichess
+
+```python
+from scrape_up import lichess
+lichess_games = lichess.LichessGames(username)
+start_page = 1
+end_page = 4
+lichess_games.fetch_games(start_page,end_page)
+```
+
+The `LichessGames` class provides methods for fetching Lichess game data for a specified user:
+
+| Methods          | Details                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------- |
+| `.fetch_games()` | Fetch all the games data for the specified username, returning a list of games or `None` on fail. |
+
+---
+
+## MyAnimeList
+
+Import the `myanimelist` module and create an instance of the `Anime` class.
+
+```py
+from scrape_up.myanimelist import Anime
+a = Anime("demon slayer")
+# or construct the class by ID
+b = Anime.from_id(38000)
+```
+
+The `Anime` class provides various information about the any anime you want to search - either by name or by its ID.
+
+| Methods          | Details                                                                                                         |
+| ---------------- | --------------------------------------------------------------------------------------------------------------- |
+| `.url`           | Returns the MyAnimelist URL of the anime.                                                                       |
+| `.title`         | Returns the title of the anime.                                                                                 |
+| `.title_english` | Returns the English title of the anime.                                                                         |
+| `.title_jp`      | Returns the Japanese title of the anime.                                                                        |
+| `.synopsis`      | Returns the synopsis/brief introduction of the anime.                                                           |
+| `.score`         | Returns the score of the anime.                                                                                 |
+| `.members`       | Returns the number of members of the anime.                                                                     |
+| `.popularity`    | Returns the popularity index of the anime.                                                                      |
+| `.rank`          | Returns the rank of the anime.                                                                                  |
+| `.episodes`      | Returns the number of episodes of the anime.                                                                    |
+| `.aired`         | Returns the duration the anime was being aired in string format, like `Apr 6, 2019 to Sep 28, 2019`.            |
+| `.broadcast`     | Returns the day and time when new episode of the anime used to be broadcasted, like `Saturdays at 23:30 (JST)`. |
+| `.premiered`     | Returns the cour and year anime used to be premiered in, like `Spring 2019`.                                    |
+| `.genres`        | Returns the list of genres of the anime.                                                                        |
+| `.themes`        | Returns the list of themes of the anime.                                                                        |
+| `.poster_url`    | Returns the the URL to the poster image of the anime.                                                           |
+
+## Atcoder
+
+First create an object of class `Atcoder`.
+
+```python
+from scrap_up import Atcoder
+atcoder = Atcoder(user="username")
+atcode.get_profile()
+```
+
+| Methods          | Details                                                                   |
+| ---------------- | ------------------------------------------------------------------------- |
+| `.get_profile()` | Returns the user data in json format.                                     |
+| `get_contests()` | Returns future_contests , past_contests , skill_tests etc in json format. |
+
+---
+
+## Pinterest
+
+First create an object of class `Pinterest`.
+
+```python
+from scrap_up import Pinterest
+
+pinterest = Pinterest()
+```
+
+| Methods                     | Details                                                      |
+| --------------------------- | ------------------------------------------------------------ |
+| `.get_today()`              | Returns the list of today's topics                           |
+| `.get_photo(your_url)`      | Returns the link to the image (so you don't need an account) |
+| `.search_pins(keyword)`     | Search for pins containing a specific keyword on Pinterest   |
+| `.get_pin_details(pin_url)` | Fetch details about a specific pin on Pinterest              |
+
+---
+
+### Indiantrekking
+
+```py
+from scrape_up import Indiantrekking
+```
+
+Create an instance of 'Indiantrekking' class
+
+```python
+trek=Indiantrekking("hidden-lakes-of-kashmir")
+```
+
+| Method                         | Details                                                                           |
+| ------------------------------ | --------------------------------------------------------------------------------- |
+| `destination()`                | return name of the place.                                                         |
+| `trip_fact()`                  | returns the trip duration, destination, altitude and the season good for trekking |
+| `outline_day_to_day_itinerary` | returns the ouline of the day to day itinerary                                    |
+
+---
+
+### Yellowpages
+
+```py
+from scrape_up import Yellowpages
+```
+
+Create an instance of `Yellowpages` class
+
+```python
+
+data = Yellowpages("restaurtant", "New York")
+```
+
+| Method            | Details                                                           |
+| ----------------- | ----------------------------------------------------------------- |
+| `business_info()` | Returns the list of dictionaries containing business information. |
+
+---
+
+## Bayt
+
+```python
+from scrape_up import bayt
+jobs = bayt.Jobs()
+jobs.fetch_jobs(query="software engineer",page=1)
+```
+
+The `Jobs` class provides methods fetching job listings:
+
+| Methods         | Details                                                           |
+| --------------- | ----------------------------------------------------------------- |
+| `.fetch_jobs()` | Fetch job listings from the website across specified single page. |
+
+---
+
+## Cars
+
+```python
+from scrape_up import cars
+cars = cars.cars()
+cars.fetch_cars(model="bmw m5",page=1)
+```
+
+The `cars` class includes methods for retrieving job listings:
+
+| Methods         | Details                                                             |
+| --------------- | ------------------------------------------------------------------- |
+| `.fetch_cars()` | Retrieve car listings from the website for a specified single page. |
+
+
+#### Letterboxd
+
+```python
+from scrape_up.letterboxd import Letterboxd
+
+letterboxd_user = Letterboxd("arpy8")
+print(letterboxd_user.get_followers_count())
+```
+
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.films_watched()`          | Returns the numbers of films watched by the user.                                                    |
+| `.recent_activity(n)`       | Returns a list of length `n` of the latest activity by the user.                                     |
+| `.recent_reviews(n)`        | Returns a list of dictionaries of length `n` with the latest reviews by the user.                    |
+| `.get_watchlist(n)`         | Returns a list of length `n` including movies and series watchlisted by the user.                    |
+| `.get_followers_count()`    | Returns the number of followers of the user.                                                         |  
+| `.get_following_count()`    | Returns the number of following of the user.                                                         |
+
+Note: `n` is an integer value which is optional and can be used to limit the number of results returned by the methods.
+---
+
+#### CodeWars
+```python
+cwars = Codewars(user="agastya463")
+cwars.get_profile()
+```
+
+| Methods           | Details                                                                            |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| `.get_profile()`  | Returns the user data in json format.                                              |
+
+---

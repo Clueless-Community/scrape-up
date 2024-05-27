@@ -1,0 +1,81 @@
+site_name: Scrape Up
+site_description: A web-scraping-based python package that enables you to scrape data from various platforms like GitHub, Twitter, Instagram, or any useful website.
+site_url: ""
+plugins:
+  - search
+nav:
+- Scrape Up: index.md
+- Contribution: CONTRIBUTING.md
+- Installation: installation.md
+- Guide: home.md
+- Modules: 
+  - 'Academia': modules/academia.md
+  - 'BBC News': modules/bbc.md
+  - 'Codechef': modules/codechef.md
+  - 'Coin Market Cap': modules/coinmarketcap.md
+  - 'Covid-19': modules/covid-19.md
+  - 'Crickbuzz': modules/crickbuzz.md
+  - 'Dribbble': modules/dribbble.md
+  - 'Ebay': modules/ebay.md
+  - 'ESPN': modules/espn.md
+  - 'Eazydiner': modules/eazydinner.md
+  - 'Flipkart': modules/flipkart.md
+  - 'Flipkart Clothing': modules/flipkartclothing.md
+  - 'Flipkart laptops': modules/flipkartlaptop.md
+  - 'Flyrobu': modules/flyrobu.md
+  - 'GitHub': modules/github.md
+  - 'Github Education': modules/githubedu.md
+  - 'Gitlab': modules/gitlab.md
+  - 'HackerEarth': modules/HackerEarth.md
+  - 'Hackernews': modules/Hackernews.md
+  - 'Hashnode': modules/hashnode.md
+  - 'Health Grades': modules/healthgrade.md
+  - 'ICC Rankings': modules/iccranking.md
+  - 'IMDb': modules/imdb.md
+  - 'IMDb Box Office': modules/imdb-boxoffice.md
+  - 'IMDb Indian Movies': modules/imdb-indian.md
+  - 'imdb-actor': modules/imdb-actor.md
+  - 'imdb-celebrity': modules/imdb-celeb.md
+  - 'imdb-movies': modules/imdb-movies.md
+  # - 'Amazon': modules/modules/amazon.md
+  # - 'Ask-Ubuntu': modules/ask-ubuntu.md
+  # - 'Coursera': modules/coursera.md
+  # - 'Devpost': modules/devpost.md
+  # - 'Finance': modules/Finance.md
+  # - 'Flex Jobs': modules/flexjobs.md
+  # - 'Google News': modules/googlenews.md
+  # - 'Instagram': modules/instagram.md
+  # - 'Internshala': modules/internshala.md
+  # - 'Kooapp': modules/kooapp.md
+  # - 'Leet Code': modules/leetcode.md
+  # - 'Luma': modules/luma.md
+  # - 'Medium': modules/medium.md
+  # - 'Reddit': modules/reddit.md
+  # - 'Spotify': modules/spotify.md
+  # - 'Stack Overflow': modules/stackoverflow.md
+  # - 'Tech Crunch': modules/techcrunch.md
+  # - 'Twitter': modules/Twitter.md
+  # - 'Wikipedia': modules/wikipedia.md
+  # - 'Youtube': modules/youtube.md- Code of Conduct: CODE_OF_CONDUCT.md
+
+theme:
+  features:
+  - header.autohide
+  name: material
+  palette:
+  - media: '(prefers-color-scheme: dark)'
+    scheme: default
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to light mode
+repo_name: /scrape-up
+repo_url: https://github.com/Clueless-Community/scrape-up

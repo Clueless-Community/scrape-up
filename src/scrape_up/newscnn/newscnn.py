@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests
+
+from scrape_up.config.request_config import RequestConfig, get
 
 
 class NewsCNN:
@@ -14,10 +15,11 @@ class NewsCNN:
     | `.news_by_category(type)`           | Returns the list of articles by a specific category.              |
     """
 
-    def __init__(self):
+    def __init__(self, *, config: RequestConfig = RequestConfig()):
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36"
         }
+        self.config = config
 
     def news_by_location(self, country: str):
         """
@@ -36,7 +38,7 @@ class NewsCNN:
             obj_keys = ["news", "link"]
             location = country.lower()
             URL = f"https://edition.cnn.com/world/{location}"
-            page = requests.get(URL)
+            page = get(URL, self.config)
             parse = BeautifulSoup(page.content, "html.parser")
             heads = parse.find_all("span", attrs={"data-editable": "headline"})
             links1 = parse.find_all(
@@ -95,7 +97,7 @@ class NewsCNN:
             sol = []
             type = type.lower()
             url = f"https://edition.cnn.com/{type}"
-            page = requests.get(url, headers=self.headers)
+            page = get(url, self.config)
             parse = BeautifulSoup(page.content, "html.parser")
             articles = parse.find_all(
                 "a", {"class": "container__link container_lead-plus-headlines__link"}
