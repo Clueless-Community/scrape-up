@@ -1680,6 +1680,48 @@ First create an object of class `Dictionary`.
 
 ---
 
+## SystemRequirementsLab
+
+### Scrape Titles
+
+Create an instance of `FindTitles` class.
+
+```python
+titles = sysreqlab.FindTitles(search_term="Call of Duty", search_alphabet="c")
+```
+
+| Methods                          | Details                                                               |
+| -------------------------------- | --------------------------------------------------------------------- |
+| `.find_titles(number_of_titles)` | Returns the list of titles based on the search term, search alphabet. |
+
+### Scrape System Requirements
+
+Create an instance of `Requirements` class.
+
+```python
+requirements = sysreqlab.Requirements(search_term="Cyberpunk 2077", search_alphabet="c")
+```
+
+| Methods                       | Details                                                 |
+| ----------------------------- | ------------------------------------------------------- |
+| `.minimum_graphics()`         | Returns the minimum graphics required for the game.     |
+| `.minimum_cpu()`              | Returns the minimum CPU required for the game.          |
+| `.minimum_ram()`              | Returns the minimum RAM required for the game.          |
+| `.minimum_os()`               | Returns the minimum OS required for the game.           |
+| `.minimum_storage()`          | Returns the minimum storage required for the game.      |
+| `.minimum_vram()`             | Returns the minimum VRAM required for the game.         |
+| `.recommended_graphics()`     | Returns the recommended graphics required for the game. |
+| `.recommended_cpu()`          | Returns the recommended CPU required for the game.      |
+| `.recommended_ram()`          | Returns the recommended RAM required for the game.      |
+| `.recommended_os()`           | Returns the recommended OS required for the game.       |
+| `.recommended_storage()`      | Returns the recommended storage required for the game.  |
+| `.recommended_vram()`         | Returns the recommended VRAM required for the game.     |
+| `.minimum_requirements()`     | Returns the minimum requirements for the game.          |
+| `.recommended_requirements()` | Returns the recommended requirements for the game.      |
+
+-----
+
+
 #### AmbitionBx
 
 Create an directory with name ambitonbox
