@@ -4,7 +4,9 @@ from src.scrape_up.bayt import Jobs
 
 class TestJobs(unittest.TestCase):
     """
-    Test the methods of the Jobs class from the bayt module.
+    | Methods                       | Details                                                                    |
+    | ----------------------------- | -------------------------------------------------------------------------- |
+    | `.fetch_jobs(query, page)`    | Fetch job listings data from Bayt.com based on the given query and page.   |
     """
 
     def setUp(self):
