@@ -59,7 +59,7 @@ class Zomato:
             }
             response = get(page_url, self.config).text
             soup = bs(response, "lxml")
-            restaurant_data = []
+            restaurant_data = {}
             name = soup.find(
                 "h1", {"class": "sc-7kepeu-0 sc-iSDuPN fwzNdh"}
             ).text.strip()
@@ -100,3 +100,4 @@ class Zomato:
             return restaurant_data
         except:
             return None
+        
