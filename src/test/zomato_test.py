@@ -1,14 +1,15 @@
 import unittest
-from scrape_up.zomato import Zomato
+from src.scrape_up.zomato import Zomato
 
 class TestZomato(unittest.TestCase):
     def setUp(self):
         self.restaurant = Zomato()
         
     def test_get_restaurants_details(self):
-        restaurant = Zomato()
-        result=restaurant.get_restaurant_details("https://www.zomato.com/ncr/toy-boy-paras-tierea-noida/order")
-        self.assertIsNone(result)
+        #restaurant = Zomato()
+        result=self.restaurant.get_restaurants_details(page_url="https://www.zomato.com/ncr/music-mountains-hillside-cafe-greater-kailash-gk-1-new-delhi/order")
+        print(result)
+        self.assertIsNotNone(result)
         self.assertIsInstance(result,dict)
         if result is not None:
             self.assertIn("name",result)
@@ -33,9 +34,10 @@ class TestZomato(unittest.TestCase):
             self.assertIsInstance(result["dining_rating"],str)
         if result["delivery_review_count"] is not None:    
             self.assertIsInstance(result["dining_review_count"],str)    
-        if result["orders"] is not None:
-            self.assertIsInstance(result["orders"],list)   
-            
+        if result["offers"] is not None:
+            self.assertIsInstance(result["offers"],list)   
+  
+      
 if __name__ == "__main__":
     unittest.main()
             
