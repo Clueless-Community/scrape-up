@@ -1,5 +1,5 @@
 import unittest
-from src.scrape_up.bayt import Jobs
+from scrape_up.bayt import Jobs
 
 
 class TestJobs(unittest.TestCase):
@@ -59,6 +59,7 @@ class TestJobs(unittest.TestCase):
 
         except:
             return None
+
 
 if __name__ == "__main__":
     unittest.main()
