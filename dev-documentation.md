@@ -1629,7 +1629,7 @@ from scrape_up import ambitionBox
 
 num_pages_to_scrape = 2  
 
-scraper = ambitionBox.Comapiens(num_pages_to_scrape)
+scraper = ambitionBox.Companies(num_pages_to_scrape)
 
 scraper.scrape_companies()
 
