@@ -250,9 +250,9 @@ class SteamStoreScraper:
             for col, value in zip(self.cols, row):
                 data[col].append(value)
                 
-        return self.to_readable_format(data)
+        return self.__to_readable_format(data)
 
-    def to_readable_format(self, data):
+    def __to_readable_format(self, data):
         """
         Converts the data dictionary to a list for better readability.
 
@@ -275,4 +275,4 @@ class SteamStoreScraper:
 
 
 steam = SteamStoreScraper()
-result = steam.ScrapeGames(n0Games=5, tags=["Discounts", "Games"])
+result = steam.ScrapeGames(n0Games=500, tags=["Discounts", "Games"])
