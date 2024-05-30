@@ -18,7 +18,7 @@ from scrape_up import github
 user = github.Users(username="Suhani2")
 
 # Call the followers function - it will return the number of followers
-per user.followers()
+print(user.followers())
 ```
 
 ---
