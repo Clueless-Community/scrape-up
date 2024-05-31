@@ -4,7 +4,7 @@ from scrape_up import hackerrank
 
 class HackerrankTest(unittest.TestCase):
     """
-    CodeChef module test.\n
+    Hackerrank module test.\n
     | Methods                       | Details                                                          |
     | ----------------------------- | ---------------------------------------------------------------- |
     | `get_profile(id="username")`  | Returns name, username, country, user_type, details, badges, verified_skills, social etc. |
