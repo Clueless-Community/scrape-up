@@ -2007,7 +2007,7 @@ Class - `Lastfm`
 | `.get_followers()`          | Returns the total number of followers of the user.                                                   |
 
 Note: usernames are case sensitive.
-
+---
 
 #### CodeWars
 ```python
@@ -2018,5 +2018,18 @@ cwars.get_profile()
 | Methods           | Details                                                                            |
 | ----------------- | ---------------------------------------------------------------------------------- |
 | `.get_profile()`  | Returns the user data in json format.                                              |
+
+---
+
+#### MLH
+    Create an instance of the class `GeeksforGeeks`
+    ```py
+    mlh = MLH()
+    mlh.get_events()
+    ```
+
+    | Methods           | Details                                                                            |
+    | ----------------- | ---------------------------------------------------------------------------------- |
+    | `.get_events()`   | Returns the upcoming event ,past event,ongoing event.                              |
 
 ---
