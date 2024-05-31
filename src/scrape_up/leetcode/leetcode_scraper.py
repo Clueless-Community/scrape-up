@@ -1,3 +1,4 @@
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -7,6 +8,8 @@ from scrape_up.config.request_config import RequestConfig, get
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
+from scrape_up.config.request_config import RequestConfig, get
+
 
 
 class LeetCode:
@@ -54,6 +57,8 @@ class LeetCode:
         self.wait = WebDriverWait(self.driver, 100)
 
     def __scrape_user_profile(self):
+        if not self.username:
+            raise ValueError("Username is required to scrape user profile.")
         url = f"https://leetcode.com/{self.username}"
         data = get(url, self.config)
         data.raise_for_status()
@@ -128,33 +133,12 @@ class LeetCode:
             }
 
     def get_problems_solved(self):
-        """
-        Method to scrape the number of problem solved by the user\n
-        Required argument - **username**
-        Example\n
-        ```python
-        user = LeetCode(username="nikhil25803")
-        user.get_problems_solved()
-        ```
-        \n
-        """
-        if self.username == "":
-            message = f"username is not given"
-            return {"data": None, "message": message}
-
-        soup = self.user_profile
         try:
-            total_problems = soup.find(
-                "div",
-                {"class": "text-[30px] font-semibold leading-[32px]"},
-            )
-            return {
-                "data": total_problems.text,
-                "message": f"Found total problems solved for user '{self.username}'",
-            }
-        except:
-            message = f"Failed to scrape total problems for user '{self.username}'"
-            return {"data": None, "message": message}
+            total_problems = self.user_profile.find("div", {"class": "text-[30px] font-semibold leading-[32px]"})
+            return {"data": total_problems.text, "message": f"Found total problems solved for user '{self.username}'"}
+        except Exception as e:
+            return {"data": None, "message": f"Failed to scrape total problems for user '{self.username}': {str(e)}"}
+
 
     def get_solved_by_difficulty(self):
         """
@@ -506,3 +490,6 @@ class LeetCode:
                 "submissions_count": None,
                 "message": f"Failed to scrape submissions count for user '{username}'",
             }
+
+    def __del__(self):
+        self.driver.quit()
