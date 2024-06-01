@@ -1,11 +1,11 @@
 from bs4 import BeautifulSoup
 from scrape_up.config.request_config import RequestConfig, get
-
+import json
 class MLH:
     """
     Create an instance of the class `GeeksforGeeks`
     ```py
-    mlh = MLH()
+    mlh = MLH(year="2024")
     mlh.get_events()
     ```
 
@@ -14,14 +14,15 @@ class MLH:
     | `.get_events()`  | Returns the upcoming event ,past event,ongoing event.                                              |
 
     """
-    def __init__(self, user: str, *, config: RequestConfig = RequestConfig()):
+    def __init__(self, year: str, *, config: RequestConfig = RequestConfig()):
         headers = {"User-Agent": "scrapeup"}
         self.config = config
+        self.year= year
         if self.config.headers == {}:
             self.config.set_headers(headers)
     def get_events(self):
         try:
-            url = "https://mlh.io/seasons/2024/events"
+            url = f"https://mlh.io/seasons/{self.year}/events"
             response = get(url, self.config)
             soup = BeautifulSoup(response.text, "html.parser")
             main_info=soup.find_all('div',class_="container feature")
@@ -30,12 +31,10 @@ class MLH:
             e=[]
             for t in types:
                 h=t.find('h3',class_='text-center mb-3')
-                print(h)
                 
                 if(h):
                     d=[]
                     evs=t.find_all('div',class_='event')
-                    print(len(evs))
                     for ev in evs:
                         name=ev.find('h3',class_='event-name').text.strip()
                         date=ev.find('p',class_='event-date').text.strip()
