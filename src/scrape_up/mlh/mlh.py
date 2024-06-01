@@ -3,7 +3,7 @@ from scrape_up.config.request_config import RequestConfig, get
 import json
 class MLH:
     """
-    Create an instance of the class `GeeksforGeeks`
+    Create an instance of the class `MLH`
     ```py
     mlh = MLH(year="2024")
     mlh.get_events()
@@ -43,7 +43,7 @@ class MLH:
                         d.append({'name':name,'location':location,'date':date,'mode':mode})
                     e.append({h.text.strip():d})
 
-            return (json.dumps(e))
+            return (json.dumps(e, indent=2))
         except Exception as e:
             return None
 

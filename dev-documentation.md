@@ -2022,7 +2022,7 @@ cwars.get_profile()
 ---
 
 #### MLH
-    Create an instance of the class `GeeksforGeeks`
+    Create an instance of the class `MLH`
     ```py
     mlh = MLH(year="2024")
     mlh.get_events()
