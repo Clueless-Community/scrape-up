@@ -50,7 +50,7 @@ class SteamStoreScraper:
                 search results according to the provided tags.
 
         Example:
-            If `tags` = ["Discounts", "Games", "Windows", "MacOS", "Linux"], 
+            If `tags` = ["Discounts", "Games", "Windows", "MacOS", "Linux"],
             the method will return: "specials=1&category1=998&os=win%2Cmac%2Clinux"
         """
         search_filters = {
@@ -132,20 +132,30 @@ class SteamStoreScraper:
         """
         try:
             name = game.find("span", {"class": "title"}).text
-            published_date = game.find("div", {"class": "col search_released responsive_secondrow"}).text.strip() or None
+            published_date = (
+                game.find(
+                    "div", {"class": "col search_released responsive_secondrow"}
+                ).text.strip()
+                or None
+            )
         except:
             name = None
 
         try:
             div_element = game.find("div", class_="col search_name ellipsis")
             platform_images = div_element.find_all("span", class_="platform_img")
-            platforms = [img.get("class")[1] if len(img.get("class")) > 1 else None for img in platform_images]
+            platforms = [
+                img.get("class")[1] if len(img.get("class")) > 1 else None
+                for img in platform_images
+            ]
         except:
             name = None
 
         try:
             original_price_elem = game.find("div", {"class": "discount_original_price"})
-            original_price = original_price_elem.text.strip() if original_price_elem else None
+            original_price = (
+                original_price_elem.text.strip() if original_price_elem else None
+            )
         except:
             original_price = None
 
@@ -157,13 +167,17 @@ class SteamStoreScraper:
 
         try:
             discount_price_elem = game.find("div", {"class": "discount_final_price"})
-            discount_price = discount_price_elem.text.strip() if discount_price_elem else None
+            discount_price = (
+                discount_price_elem.text.strip() if discount_price_elem else None
+            )
         except:
             discount_price = None
 
         try:
             review_summary = game.find("span", {"class": "search_review_summary"})
-            reviews_html = review_summary["data-tooltip-html"] if review_summary else None
+            reviews_html = (
+                review_summary["data-tooltip-html"] if review_summary else None
+            )
             pattern = r"(.+)<br>(\d+%)\s+of\s+the\s+([\d,]+)\s+user reviews.*"
             match = re.match(pattern, reviews_html)
             sentiment = match.group(1) if match else None
@@ -181,9 +195,18 @@ class SteamStoreScraper:
 
         except:
             reviews = None
-            review_count = None 
+            review_count = None
 
-        return name, published_date, platforms, original_price, discount_pct, discount_price, reviews, review_count
+        return (
+            name,
+            published_date,
+            platforms,
+            original_price,
+            discount_pct,
+            discount_price,
+            reviews,
+            review_count,
+        )
 
     def _scrape_page(self, url, filter, n0Games):
         """
@@ -204,7 +227,9 @@ class SteamStoreScraper:
                 response = requests.get(f"{url}&page={page}")
                 response.raise_for_status()
                 doc = BeautifulSoup(response.content, "html.parser")
-                games = doc.find_all("div", {"class": "responsive_search_name_combined"})
+                games = doc.find_all(
+                    "div", {"class": "responsive_search_name_combined"}
+                )
 
                 for game in games:
                     game_info = self._extract_game_info(game)
@@ -215,7 +240,7 @@ class SteamStoreScraper:
                 if len(all_game_info) >= n0Games:
                     break
             except requests.RequestException as e:
-                print(f"Error scraping page {page}: {e}")
+
                 break
         return all_game_info
 
@@ -241,7 +266,7 @@ class SteamStoreScraper:
         all_data = []
         filters = self._construct_filter_url(tags)
         url = f"{self.base_url}{filters}"
-        print(f"Scraping URL: {url}")
+
         filter_data = self._scrape_page(url, filters, n0Games)
         all_data.extend(filter_data)
 
@@ -249,7 +274,7 @@ class SteamStoreScraper:
         for row in all_data:
             for col, value in zip(self.cols, row):
                 data[col].append(value)
-                
+
         return self.__to_readable_format(data)
 
     def __to_readable_format(self, data):
@@ -266,13 +291,9 @@ class SteamStoreScraper:
 
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
-        print(data)
         readable_data = []
         for i in range(len(data["Name"])):
             game_data = {col: data[col][i] for col in self.cols}
+            del game_data["Filter"]
             readable_data.append(game_data)
         return readable_data
-
-
-steam = SteamStoreScraper()
-result = steam.ScrapeGames(n0Games=500, tags=["Discounts", "Games"])
