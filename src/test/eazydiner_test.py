@@ -27,7 +27,7 @@ class EazyDinerTest(unittest.TestCase):
 
     def test_get_restaurants(self):
         eazydiner = EazyDiner(
-            location="Delhi NCR"
+            location="AGRA"
         )  # Replace with an appropriate location
         restaurants = eazydiner.get_restaurants()
         self.assertIsInstance(restaurants, str)
@@ -35,7 +35,7 @@ class EazyDinerTest(unittest.TestCase):
 
     def test_get_breakfast(self):
         eazydiner = EazyDiner(
-            location="Delhi NCR"
+            location="AGRA"
         )  # Replace with an appropriate location
         breakfast = eazydiner.get_breakfast()
         self.assertIsInstance(breakfast, str)
@@ -43,7 +43,7 @@ class EazyDinerTest(unittest.TestCase):
 
     def test_get_lunch(self):
         eazydiner = EazyDiner(
-            location="Delhi NCR"
+            location="AGRA"
         )  # Replace with an appropriate location
         lunch = eazydiner.get_lunch()
         self.assertIsInstance(lunch, str)
@@ -51,7 +51,7 @@ class EazyDinerTest(unittest.TestCase):
 
     def test_get_dinner(self):
         eazydiner = EazyDiner(
-            location="Delhi NCR"
+            location="AGRA"
         )  # Replace with an appropriate location
         dinner = eazydiner.get_dinner()
         self.assertIsInstance(dinner, str)
@@ -59,14 +59,14 @@ class EazyDinerTest(unittest.TestCase):
 
     def test_dinner_with_discount(self):
         eazydiner = EazyDiner(
-            location="Delhi NCR"
+            location="AGRA"
         )  # Replace with an appropriate location
         dinner_discount = eazydiner.dinner_with_discount()
         self.assertIsInstance(dinner_discount, list)
 
     def test_get_top10(self):
         eazydiner = EazyDiner(
-            location="Delhi NCR"
+            location="AGRA"
         )  # Replace with an appropriate location
         top10 = eazydiner.get_top10()
         self.assertIsInstance(top10, dict)

@@ -15,7 +15,7 @@ class ICCTest(unittest.TestCase):
 
     def test_team_rankings(self):
         instance = icc.ICC()
-        response = instance.team_rankings("ODI")
+        response = instance.team_rankings("T20i")
         self.assertGreater(len(response), 0, "Team rankings is empty")
         self.assertTrue(isinstance(response, list), "Team rankings is not a list")
         self.assertTrue(
@@ -28,7 +28,7 @@ class ICCTest(unittest.TestCase):
 
     def test_player_ranking(self):
         instance = icc.ICC()
-        response = instance.player_ranking("batting", "TEST")
+        response = instance.player_ranking("batting", "T20i")
         self.assertGreater(len(response), 0, "Player ranking is empty")
         self.assertTrue(isinstance(response, list), "Player ranking is not a list")
         self.assertTrue(
@@ -41,7 +41,7 @@ class ICCTest(unittest.TestCase):
 
     def test_team_rankings_women(self):
         instance = icc.ICC()
-        response = instance.team_rankings_women("T20")
+        response = instance.team_rankings_women("ODI")
         self.assertGreater(len(response), 0, "Team rankings for women is empty")
         self.assertTrue(
             isinstance(response, list), "Team rankings for women is not a list"
@@ -56,7 +56,7 @@ class ICCTest(unittest.TestCase):
 
     def test_player_ranking_women(self):
         instance = icc.ICC()
-        response = instance.player_ranking("bowling", "ODI")
+        response = instance.player_ranking("bowling", "Test")
         self.assertGreater(len(response), 0, "Player ranking for women is empty")
         self.assertTrue(
             isinstance(response, list), "Player ranking for women is not a list"

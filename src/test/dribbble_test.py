@@ -45,7 +45,7 @@ class DribbbleTest(unittest.TestCase):
                 self.assertIsInstance(value, str)
 
     def test_search(self):
-        search = self.instance.search(topic="christmas")
+        search = self.instance.search(topic="diwali")
 
         self.assertIsNotNone(search)
         self.assertIsInstance(search, list)

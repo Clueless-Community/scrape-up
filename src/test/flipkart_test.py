@@ -25,9 +25,33 @@ class FlipKartTest(unittest.TestCase):
     | `.test_get_speakers()`         | Returns Item_Name, Price, Color, Review, Delivery, Off_Percentage.      |
     """
 
-    def test_get_tvs(self):
+    def test_get_telivision(self):
         instance = flipkart.flipkart_file.Flipkart()
         method_response = instance.tvs()
+        self.assertEqual(
+            list(method_response.keys()),
+            ["Item_Name", "Price", "Rating", "Specifications"],
+        )
+        
+    def test_get_boytshirt(self):
+        instance = flipkart.flipkart_file.Flipkart()
+        method_response = instance.boytshirt()
+        self.assertEqual(
+            list(method_response.keys()),
+            ["Item_Name", "Price", "Rating", "Specifications"],
+        )
+
+    def test_get_boyjeans(self):
+        instance = flipkart.flipkart_file.Flipkart()
+        method_response = instance.boyjeans()
+        self.assertEqual(
+            list(method_response.keys()),
+            ["Item_Name", "Price", "Rating", "Specifications"],
+        )
+
+    def test_get_girltshirt(self):
+        instance = flipkart.flipkart_file.Flipkart()
+        method_response = instance.girltshirt()
         self.assertEqual(
             list(method_response.keys()),
             ["Item_Name", "Price", "Rating", "Specifications"],
