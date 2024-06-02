@@ -16,7 +16,7 @@ from scrape_up import github
 user = github.Users(username="nikhil25803")
 
 # Call the followers function - it will return the number of followers
-user.followers()
+print(user.followers())
 ```
 
 ---
@@ -1680,6 +1680,48 @@ First create an object of class `Dictionary`.
 
 ---
 
+## SystemRequirementsLab
+
+### Scrape Titles
+
+Create an instance of `FindTitles` class.
+
+```python
+titles = sysreqlab.FindTitles(search_term="Call of Duty", search_alphabet="c")
+```
+
+| Methods                          | Details                                                               |
+| -------------------------------- | --------------------------------------------------------------------- |
+| `.find_titles(number_of_titles)` | Returns the list of titles based on the search term, search alphabet. |
+
+### Scrape System Requirements
+
+Create an instance of `Requirements` class.
+
+```python
+requirements = sysreqlab.Requirements(search_term="Cyberpunk 2077", search_alphabet="c")
+```
+
+| Methods                       | Details                                                 |
+| ----------------------------- | ------------------------------------------------------- |
+| `.minimum_graphics()`         | Returns the minimum graphics required for the game.     |
+| `.minimum_cpu()`              | Returns the minimum CPU required for the game.          |
+| `.minimum_ram()`              | Returns the minimum RAM required for the game.          |
+| `.minimum_os()`               | Returns the minimum OS required for the game.           |
+| `.minimum_storage()`          | Returns the minimum storage required for the game.      |
+| `.minimum_vram()`             | Returns the minimum VRAM required for the game.         |
+| `.recommended_graphics()`     | Returns the recommended graphics required for the game. |
+| `.recommended_cpu()`          | Returns the recommended CPU required for the game.      |
+| `.recommended_ram()`          | Returns the recommended RAM required for the game.      |
+| `.recommended_os()`           | Returns the recommended OS required for the game.       |
+| `.recommended_storage()`      | Returns the recommended storage required for the game.  |
+| `.recommended_vram()`         | Returns the recommended VRAM required for the game.     |
+| `.minimum_requirements()`     | Returns the minimum requirements for the game.          |
+| `.recommended_requirements()` | Returns the recommended requirements for the game.      |
+
+-----
+
+
 #### AmbitionBx
 
 Create an directory with name ambitonbox
@@ -1873,6 +1915,23 @@ data = Yellowpages("restaurtant", "New York")
 
 ---
 
+### Indiatodayweather
+
+```py
+from scrape_up import Indiatodayweather
+```
+Create an instance of `Indiatodayweather` class
+
+```python
+weather=Indiatodayweather("Mumbai")
+```
+
+| Method                        | Details                                                                                            |
+| ---------------------------   | ------------------------------------------------------------------------                           |
+|`info_about_weather()`         |  return the temperature, wind speed ,description                                                
+                                   and humidity of the place.                                      |
+---
+
 ## Bayt
 
 ```python
@@ -1924,6 +1983,8 @@ print(letterboxd_user.get_followers_count())
 
 Note: `n` is an integer value which is optional and can be used to limit the number of results returned by the methods.
 
+-----
+
 # Walmart Product Scraper
 ```python
 from scrape_up import WalmartProduct
@@ -1936,5 +1997,41 @@ product = WalmartProduct("example-product-name")
 | `get_product_details()`        | Get details of the product from the product page.                                 |
 | `get_product_image()`          | Get the URL of the product image from the product page.                           |
 | `customer_review()`            | Get customer reviews of the product from the product page.                        |
+
+---
+
+#### Lastfm
+
+```python
+from scrape_up.lastfm import Lastfm
+
+lastfm_user = Lastfm("arpy8")
+print(lastfm_user.get_followers())
+```
+
+Class - `Lastfm`
+
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.user_stats()`             | Returns the numbers of scrobbles, artists and loved tracks.                                          | 
+| `.recent_tracks()`          | Returns a dictionary containing the latest tracks scrobbled by the user.                             |
+| `.top_tracks()`             | Returns a dictionary containing the top tracks of the user.                                          |
+| `.top_albums()`             | Returns a dictionary containing the top albums of the user.                                          |
+| `.top_artists()`            | Returns a dictionary containing the top artists of the user.                                         |
+| `.get_following()`          | Returns the total number of users followed by the user.                                              |
+| `.get_followers()`          | Returns the total number of followers of the user.                                                   |
+
+Note: usernames are case sensitive.
+
+
+#### CodeWars
+```python
+cwars = Codewars(user="agastya463")
+cwars.get_profile()
+```
+
+| Methods           | Details                                                                            |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| `.get_profile()`  | Returns the user data in json format.                                              |
 
 ---
