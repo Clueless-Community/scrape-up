@@ -3,7 +3,20 @@ import requests
 from scrape_up.config.request_config import RequestConfig, get
 
 class WalmartProduct:
-    """Class for fetching and retrieving product details from Walmart."""
+    """
+    Class for fetching and retrieving product details from Walmart.
+        Create an instance of 'WalmartProduct' class
+        product = WalmartProduct("example-product-name") 
+        
+        | Method                         | Details                                                                           |
+        | ------------------------------ | --------------------------------------------------------------------------------- |
+        | `get_product()`                | Get the link to the product from the search page.                                 |
+        | `get_product_details()`        | Get details of the product from the product page.                                 |
+        | `get_product_image()`          | Get the URL of the product image from the product page.                           |
+        | `customer_review()`            | Get customer reviews of the product from the product page.                        |
+
+    """
+
 
     def __init__(self, product_name: str, *, config: RequestConfig = RequestConfig()):
         """
