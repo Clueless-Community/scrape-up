@@ -11,9 +11,11 @@ class TestWHO(unittest.TestCase):
         self.who_scraper = WHO()
 
     def test_get_disease_outbreak(self):
-        """
-        Test the get_disease_outbreak() method.
-        """
+    """
+    | Methods                        | Details                                     |
+    | ------------------------------ | ------------------------------------------- |
+    |    `get_disease_outbreak()`    | Get Disease Outbreak News from WHO website. |
+    """
         try:
             # Test with a valid number of items (assuming each page contains 10 items)
             number_of_items = 10
