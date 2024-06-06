@@ -1,5 +1,5 @@
 import unittest
-from src.scrape_up.lichess import LichessGames
+from scrape_up.lichess import LichessGames
 
 
 class TestLichessGames(unittest.TestCase):
@@ -8,6 +8,7 @@ class TestLichessGames(unittest.TestCase):
     | ----------------------------- | -------------------------------------------------------------------------- |
     | `.fetch_games()`              | Fetch all the games data for the specified username.                       |
     """
+
     def setUp(self):
         """
         Initialize a LichessGames instance before each test method.
@@ -50,7 +51,9 @@ class TestLichessGames(unittest.TestCase):
         try:
             self.lichess_scraper = LichessGames(username="non_existent_user")
             games = self.lichess_scraper.fetch_games()
-            self.assertEqual(games, [], "Expected an empty list for a non-existent user")
+            self.assertEqual(
+                games, [], "Expected an empty list for a non-existent user"
+            )
         except:
             return None
 
