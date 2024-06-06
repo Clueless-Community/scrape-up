@@ -1962,6 +1962,23 @@ The `cars` class includes methods for retrieving job listings:
 | --------------- | ------------------------------------------------------------------- |
 | `.fetch_cars()` | Retrieve car listings from the website for a specified single page. |
 
+---
+
+#### Omdena
+
+```python
+from scrape_up.omdena import Omdena
+
+omdena = Omdena()
+print(omdena.get_projects())
+```
+
+| Methods                     | Details                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `.get_datasets()`           | Returns a dictionary of datasets in Omdena.                                                          |
+| `.get_projects()`           | Returns a dictionary of latest ongoing projects in Omdena.                                           |
+| `.get_blogs()`              | Returns a dictionary of latest blogs in Omdena.                                                      |
+---
 
 #### Letterboxd
 
