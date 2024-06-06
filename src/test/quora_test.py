@@ -9,7 +9,6 @@ class TestQuora(unittest.TestCase):
 
     def test_fetch_answers(self):
         try:
-
             expected_answers = ["Accepted answer 1", "Suggested answer 1"]
 
             self.assertEqual(
@@ -21,7 +20,6 @@ class TestQuora(unittest.TestCase):
 
     def test_get_by_query(self):
         try:
-
             expected_answer = "Suggested answer 1"
 
             self.assertEqual(
@@ -33,7 +31,6 @@ class TestQuora(unittest.TestCase):
 
     def test_profile_details(self):
         try:
-
             expected_profile = {
                 "name": "Nikhil Raj",
                 "url": "https://www.quora.com/profile/Nikhil-Raj",
