@@ -1,0 +1,40 @@
+#LA LIGA SQUAD STATS TABLE#
+
+
+import requests
+import pandas as pd
+from bs4 import BeautifulSoup
+
+# Define the URL of the webpage you want to scrape
+url = "https://fbref.com/en/squads/8d6fd021/Alaves-Stats"
+
+# Send an HTTP GET request to the URL
+response = requests.get(url)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Parse the HTML content of the page
+    soup = BeautifulSoup(response.text,'html.parser')
+    squad_stats_table = soup.select('table.stats_table')[2]
+
+    if squad_stats_table:
+        # Extract data directly from the table
+        data = []
+        for row in squad_stats_table.find_all('tr')[1:]:
+            row_data = [cell.get_text(strip=True) for cell in row.find_all(['td', 'th'])]
+            data.append(row_data)
+
+        # Define the column names (headers)
+        headers = data[0]
+        # Create a pandas DataFrame
+        df = pd.DataFrame(data[1:], columns=headers)
+
+        # Save the DataFrame to an Excel file
+        excel_file = "Team Score .xlsx"
+        df.to_excel(excel_file, index=False)
+
+        print(f"Data has been scraped and saved to {excel_file}")
+    else:
+        print("Squad stats table not found on the page.")
+else:
+    print("Failed to retrieve the webpage")
