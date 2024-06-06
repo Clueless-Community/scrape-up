@@ -18,7 +18,6 @@ class TestSwiggy(unittest.TestCase):
 
     def test_get_restraunt_details(self):
         try:
-
             expected_data = {
                 "name": "Pizza Hut",
                 "cuisine": "Pizzas",
@@ -38,7 +37,6 @@ class TestSwiggy(unittest.TestCase):
 
     def test_get_restaurants(self):
         try:
-
             expected_restaurants = [
                 {
                     "Name": "Domino's Pizza",
