@@ -3,7 +3,6 @@ from src.scrape_up.banners import Scraper88x31
 
 
 class TestScraper88x31(unittest.TestCase):
-
     def setUp(self):
         """
         Initialize a Scraper88x31 instance before each test method.
@@ -12,9 +11,9 @@ class TestScraper88x31(unittest.TestCase):
 
     def test_get_all(self):
         """
-         | Methods            | Details                                                  |
-         | ------------------ | -------------------------------------------------------- |
-         | `get_all()`        | Returns the list of all available 88x31 banners          |
+        | Methods            | Details                                                  |
+        | ------------------ | -------------------------------------------------------- |
+        | `get_all()`        | Returns the list of all available 88x31 banners          |
         """
         try:
             banners = self.scraper.get_all()
