@@ -1,13 +1,14 @@
 import unittest
-from src.scrape_up.librarygenesis import LibGen
+from scrape_up.librarygenesis import LibGen
 
 
 class TestLibGen(unittest.TestCase):
     """
-        | Methods       | Details                       |
-        | --------------| ----------------------------- |
-        | `.getBooks(book_name=" ")` | Returns the books with name, author, size, format, book link, book cover link, language |
-        """
+    | Methods       | Details                       |
+    | --------------| ----------------------------- |
+    | `.getBooks(book_name=" ")` | Returns the books with name, author, size, format, book link, book cover link, language |
+    """
+
     def setUp(self):
         """
         Initialize a LibGen instance before each test method.
@@ -20,7 +21,11 @@ class TestLibGen(unittest.TestCase):
         """
         try:
             result = self.libgen.getBooks("")
-            self.assertEqual(result, "Error: enter name", "Expected error message for empty book name")
+            self.assertEqual(
+                result,
+                "Error: enter name",
+                "Expected error message for empty book name",
+            )
         except:
             return None
 
@@ -30,7 +35,11 @@ class TestLibGen(unittest.TestCase):
         """
         try:
             result = self.libgen.getBooks("AI")
-            self.assertEqual(result, "Error: Title Too Short", "Expected error message for short book name")
+            self.assertEqual(
+                result,
+                "Error: Title Too Short",
+                "Expected error message for short book name",
+            )
         except:
             return None
 
@@ -58,7 +67,11 @@ class TestLibGen(unittest.TestCase):
         """
         try:
             result = self.libgen.getBooks("somebookthatdoesnotexist")
-            self.assertEqual(result, "Error: no results found", "Expected error message for no results found")
+            self.assertEqual(
+                result,
+                "Error: no results found",
+                "Expected error message for no results found",
+            )
         except:
             return None
 
