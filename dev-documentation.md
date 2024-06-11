@@ -1982,8 +1982,23 @@ print(letterboxd_user.get_followers_count())
 | `.get_following_count()`    | Returns the number of following of the user.                                                         |
 
 Note: `n` is an integer value which is optional and can be used to limit the number of results returned by the methods.
----
 
+-----
+
+# Walmart Product Scraper
+```python
+from scrape_up import WalmartProduct
+Create an instance of 'WalmartProduct' class
+product = WalmartProduct("example-product-name") 
+``` 
+| Method                         | Details                                                                           |
+| ------------------------------ | --------------------------------------------------------------------------------- |
+| `get_product()`                | Get the link to the product from the search page.                                 |
+| `get_product_details()`        | Get details of the product from the product page.                                 |
+| `get_product_image()`          | Get the URL of the product image from the product page.                           |
+| `customer_review()`            | Get customer reviews of the product from the product page.                        |
+
+---
 
 #### Lastfm
 
