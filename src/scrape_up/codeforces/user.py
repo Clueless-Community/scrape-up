@@ -5,7 +5,7 @@ from scrape_up.config.request_config import RequestConfig, get
 
 class Users:
     """
-    Create an object of class `LeetCodeScraper`
+    Create an object of class `CodeForcesScraper`
 
     ```python
     from scrape_up import codeforces
@@ -40,7 +40,7 @@ class Users:
         Example
 
         ```python
-        codeforces_user = codeforces.Users(username="tourist")
+        codeforces_user = Users(username="tourist")
         codeforces_user.get_user_data()
         ```
         Response
