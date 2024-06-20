@@ -240,7 +240,6 @@ class SteamStoreScraper:
                 if len(all_game_info) >= n0Games:
                     break
             except requests.RequestException as e:
-
                 break
         return all_game_info
 
