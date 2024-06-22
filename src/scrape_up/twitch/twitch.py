@@ -9,18 +9,18 @@ import requests
 
     Steps for use:
 
-    1. Create "Twitch_Scraper()" class instance
+    1. Create "TwitchScraper()" class instance
     2. call the instance's function "scrape_title_description()" providing the channel name as a string
     3. Channel stream title is returned (if live),  Channel Description is returned (if offline)
     
     Example: using KaiCenat's twitch channel
 
-    scraper = Twitch_Scraper()
+    scraper = TwitchScraper()
     title = scraper.scrape_title_description("kaicenat")
     print(title)
 
     '''
-class Twitch_Scraper():
+class TwitchScraper():
 
     def __init__(self):
         self.status = None

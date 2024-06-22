@@ -4,10 +4,10 @@ from scrape_up import twitch
 
 ### Scrape 
 
-First, create an object of class `Twitch_Scraper`
+First, create an object of class `TwitchScraper`
 
 ```python
-twitch_scraper = Twitch_Scraper()
+twitch_scraper = TwitchScraper()
 ```
 
 | Methods                    | Details                                       |
@@ -19,7 +19,7 @@ twitch_scraper = Twitch_Scraper()
 
     Example: using KaiCenat's twitch channel
 ```python
-    scraper = Twitch_Scraper()
+    scraper = TwitchScraper()
     title = scraper.scrape_title_description("kaicenat")
     print(title)
 ```

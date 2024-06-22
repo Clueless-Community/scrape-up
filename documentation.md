@@ -733,3 +733,21 @@ boxoffice = imdb.BoxOffice()
 | Methods         | Details                                                                         |
 | --------------- | ------------------------------------------------------------------------------- |
 | `.top_movies()` | Returns the top box office movies, weekend and total gross, and weeks released. |
+
+### Twitch
+
+```py
+from scrape_up import twitch
+```
+
+Create an instance of `TwitchScraper` class
+
+```python
+twitch_scraper = TwitchScraper()
+```
+
+| Method                      | Details                                                              |
+| --------------------------- | -------------------------------------------------------------------- |
+| `scrape_title_description(channel)` | Returns: Stream Title (if Live) or Channel Description (if Offline). |
+
+---
