@@ -1,99 +1,54 @@
-## 🕷️ Scrape Up
+# 🕷️ Scrape Up
 
-An alternative to APIs, Scrape Up is a Python package for web scraping. It allows you to extract data from platforms like GitHub, Twitter, Instagram, or any other website that contains valuable information. It enables you to gather data through programming.
+Scrape Up is a Python package for extracting publicly available data from websites such as GitHub, Instagram, Twitter, and many others. It provides a straightforward, programmatic alternative when a platform API is unavailable or too limited for your use case.
 
-<div align="center">
-  <br>
-  <img src="https://img.shields.io/github/repo-size/Clueless-Community/scrape-up?style=for-the-badge" />
-  <img src="https://img.shields.io/github/issues/Clueless-Community/scrape-up?style=for-the-badge" />
-  <img src="https://img.shields.io/github/issues-closed-raw/Clueless-Community/scrape-up?style=for-the-badge" />
-  <br>
-  <img src="https://img.shields.io/github/forks/Clueless-Community/scrape-up?style=for-the-badge" />
-  <img src="https://img.shields.io/github/issues-pr/Clueless-Community/scrape-up?style=for-the-badge" />
-  <img src="https://img.shields.io/github/issues-pr-closed-raw/Clueless-Community/scrape-up?style=for-the-badge" />
-  <br>
-  <img src="https://img.shields.io/github/stars/Clueless-Community/scrape-up?style=for-the-badge" />
-  <img src="https://img.shields.io/github/last-commit/Clueless-Community/scrape-up?style=for-the-badge" />
-</div>
+<p align="center">
+  <a href="https://pypi.org/project/scrape-up/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/scrape-up?style=for-the-badge"></a>
+  <a href="https://pepy.tech/project/scrape-up"><img alt="Total PyPI downloads" src="https://img.shields.io/pepy/dt/scrape-up?style=for-the-badge"></a>
+  <a href="https://github.com/Clueless-Community/scrape-up/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Clueless-Community/scrape-up?style=for-the-badge"></a>
+  <a href="https://github.com/Clueless-Community/scrape-up/forks"><img alt="GitHub forks" src="https://img.shields.io/github/forks/Clueless-Community/scrape-up?style=for-the-badge"></a>
+  <a href="https://github.com/Clueless-Community/scrape-up/issues"><img alt="GitHub open issues" src="https://img.shields.io/github/issues/Clueless-Community/scrape-up?style=for-the-badge"></a>
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-yellow.svg?style=for-the-badge"></a>
+</p>
 
----
+## Why Scrape Up?
 
-## License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+- **Flexible:** Choose the platform and data you want to extract.
+- **Approachable:** Use a small Python interface suitable for scripts and applications.
+- **Broad coverage:** Work with modules for GitHub, social platforms, news sites, marketplaces, and more.
+- **API alternative:** Retrieve public information without depending entirely on a platform API.
 
-Terms and conditions for use, reproduction, and distribution are under the [MIT License](https://opensource.org/license/mit/).
+## Installation
 
-
-----
-
-## Contribute to this project under GSSoC 2024.
-![image](https://github.com/Clueless-Community/scrape-up/assets/93156825/0c77de27-cae3-45ec-87fa-2d192450005d)
-
-
-### What is GSSoC? 🤔 
-
-GirlScript Summer Of Code is a three-month-long Open-Source Program conducted every summer by the Girlscript Foundation. With constant efforts, participants contribute to numerous projects under the extreme guidance of skilled mentors over these months. With such exposure, students begin to contribute to real-world projects from the comfort of their homes. GirlScript Summer Of Code has witnessed active participation over the years, and the 2024 edition aims to carry the legacy with a promising impact.
-
-  Learn more about it [here](https://gssoc.girlscript.tech/)
-  
-----
-
-## Why Scrape Up? 👀
-
-- **Flexible Scraping**: Customize and define the specific data you want to extract from different platforms.
-- **Easy-to-Use**: Intuitive Python package interface for both beginners and experienced developers.
-- **Multiple Platforms**: Scrape data from various platforms, including GitHub, Twitter, Instagram, and more.
-- **Efficient and Fast**: Designed for efficient and reliable scraping of data from multiple sources.
-
-## How to use it? ✨
-
-1. Install the package using `pip`:
+Install or upgrade the package from [PyPI](https://pypi.org/project/scrape-up/):
 
 ```bash
-pip install scrape-up --upgrade
+python -m pip install --upgrade scrape-up
 ```
 
-2. Import the required module and instantiate an object with the necessary parameters:
+## Quick start
+
+Import a platform module, create the relevant scraper, and call the method for the data you need:
 
 ```python
-# Import the required module
 from scrape_up import github
 
-# Instantiate an object with the username
 user = github.Users(username="nikhil25803")
-```
-
-3. Call the desired method to scrape the required information. For example, to extract the number of followers of a user:
-
-```python
-# Call the followers method
 followers_count = user.followers()
 
-# Print the output
 print(followers_count)
 ```
 
-Output:
+Because websites can change their markup or access rules, scraper behavior may change even when your code does not. Use each platform responsibly and follow its applicable terms and policies.
 
-```
-83
-```
+## Documentation
 
-4. Explore all the available methods provided by Scrape Up on different platforms [here](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md).
+See the [platform and method reference](https://github.com/Clueless-Community/scrape-up/blob/main/documentation.md) for the available scrapers and their interfaces.
 
-Happy scrapping! 🕸️
+## Contributing
 
-## The goal 🎯
+Contributions are welcome. Read the [contribution guide](https://github.com/Clueless-Community/scrape-up/blob/main/CONTRIBUTING.md), then check the [open issues](https://github.com/Clueless-Community/scrape-up/issues) or propose an improvement.
 
-In our project journey, we encountered several challenges, including requesting timeouts and rate limits. To overcome these limitations, we developed a powerful Python tool based on web scraping. Our goal is to provide an alternative to APIs for extracting data from various platforms, including GitHub, Twitter, Instagram, and any other website that contains valuable information. Here's what our project aims to achieve:
+## License
 
-With our web-scraping-based Python tool, you can unlock a world of data and overcome the limitations often encountered when relying solely on APIs.
-
-
-🌟 We value the time and effort you put into contributing, and we look forward to reviewing and merging your contributions. Together, let's make web scraping a powerful and accessible tool for extracting data from various platforms.
-
-✨ Thank you for your contribution!
-
----
-
-<p align="right">(<a href="#top">Back to top</a>)</p>
+Scrape Up is distributed under the [MIT License](LICENSE).
